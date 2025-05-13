@@ -11,7 +11,7 @@ import { Image } from 'astro:assets';
   <!-- Hero Content -->
   <div class="container relative z-40">
     <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-      <div class="w-full lg:w-1/2">
+      <div class="w-full lg:w-1/2 mb-8 lg:mb-0">
         <div class="animate-fade-in">
           <span class="inline-block px-4 py-2 rounded-full bg-primary-100 text-primary-700 font-medium text-sm mb-6">
             Your Swiss Relocation Guide
@@ -66,15 +66,15 @@ import { Image } from 'astro:assets';
       </div>
       
       <div class="w-full lg:w-1/2 relative animate-slide-up">
-        <div class="relative lg:ml-12">
+        <div class="relative">
           <img 
             src="https://res.cloudinary.com/dphbnwjtx/image/upload/v1747143445/background_removed_image_-fW1sh-2TKWEBnWuPNng0A_sg7s4u.png" 
             alt="Beautiful Swiss landscape" 
             class="w-full h-auto rounded-xl shadow-xl relative z-10"
           />
         
-        <!-- Stats Overlay -->
-        <div class="absolute top-4 -left-4 lg:-left-24 bg-white rounded-lg shadow-lg p-4 animate-fade-in z-20">
+        <!-- Stats Overlay - Hidden on mobile -->
+        <div class="hidden lg:block absolute top-4 -left-24 bg-white rounded-lg shadow-lg p-4 animate-fade-in z-20">
           <div class="flex items-center space-x-3">
             <div class="bg-primary-100 p-3 rounded-full">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -89,7 +89,7 @@ import { Image } from 'astro:assets';
           </div>
         </div>
         
-        <div class="absolute bottom-4 -right-4 lg:-right-24 bg-white rounded-lg shadow-lg p-4 animate-fade-in z-20" style="animation-delay: 0.2s;">
+        <div class="hidden lg:block absolute bottom-4 -right-24 bg-white rounded-lg shadow-lg p-4 animate-fade-in z-20" style="animation-delay: 0.2s;">
           <div class="flex items-center space-x-3">
             <div class="bg-secondary-100 p-3 rounded-full">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-secondary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
