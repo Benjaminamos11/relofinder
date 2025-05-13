@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import BlogCard from '../../components/blog/BlogCard.astro';
+import ContactButton from '../../components/forms/ContactButton.astro';
 
 const company = {
   name: 'PrimeRelocation',
@@ -376,4 +377,6 @@ const description = company.description;
       </div>
     </div>
   </section>
+  
+  <ContactButton company={company} />
 </Layout>
