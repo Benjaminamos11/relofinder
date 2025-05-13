@@ -1,0 +1,344 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CompanyCard from '../../components/companies/CompanyCard.astro';
+
+const title = 'Housing & Real Estate Services in Switzerland | ReloFinder.ch';
+const description = 'Expert assistance with finding and securing your ideal home in Switzerland. Connect with trusted real estate and housing professionals.';
+
+// Sample companies offering housing services
+const companies = [
+  {
+    id: 'relocation-experts',
+    name: 'Swiss Relocation Experts',
+    logo: 'https://images.pexels.com/photos/14936128/pexels-photo-14936128.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Full-service relocation agency with 15+ years of experience helping expats settle in Switzerland.',
+    services: ['Housing Search', 'Immigration Support', 'School Search'],
+    regions: ['Zürich', 'Basel', 'Geneva'],
+    rating: 4.8,
+    reviewCount: 245
+  },
+  {
+    id: 'alpine-home',
+    name: 'Alpine Home Finders',
+    logo: 'https://images.pexels.com/photos/14936082/pexels-photo-14936082.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Boutique real estate agency specializing in finding rental and purchase properties for expats.',
+    services: ['Rental Search', 'Property Purchase', 'Relocation Support'],
+    regions: ['Zürich', 'Zug', 'Lucerne'],
+    rating: 4.6,
+    reviewCount: 156
+  }
+];
+
+// Process steps
+const steps = [
+  {
+    title: 'Initial Consultation',
+    description: 'Discuss your requirements, preferences, and budget with our housing experts.',
+    icon: 'chat'
+  },
+  {
+    title: 'Property Search',
+    description: 'We search and shortlist properties matching your criteria across Switzerland.',
+    icon: 'search'
+  },
+  {
+    title: 'Viewings',
+    description: 'Arrange and accompany you on property viewings, providing local insights.',
+    icon: 'home'
+  },
+  {
+    title: 'Application Support',
+    description: 'Help prepare and submit rental applications with required documentation.',
+    icon: 'document'
+  },
+  {
+    title: 'Contract Review',
+    description: 'Review lease agreements and explain Swiss rental terms and conditions.',
+    icon: 'check'
+  },
+  {
+    title: 'Move-in Support',
+    description: 'Assist with utilities setup, insurance, and property handover.',
+    icon: 'key'
+  }
+];
+
+// Key benefits
+const benefits = [
+  {
+    title: 'Local Market Knowledge',
+    description: 'Access to extensive property databases and market insights'
+  },
+  {
+    title: 'Time Savings',
+    description: 'Efficient property search and application process'
+  },
+  {
+    title: 'Language Support',
+    description: 'Communication with landlords and property managers'
+  },
+  {
+    title: 'Legal Protection',
+    description: 'Understanding your rights and Swiss rental regulations'
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="relative py-20 overflow-hidden">
+    <div class="absolute inset-0">
+      <img 
+        src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1920" 
+        alt="Swiss housing" 
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-accent-900/95 to-accent-900/80"></div>
+    </div>
+    
+    <div class="container relative z-10">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          Housing & Real Estate Services
+        </h1>
+        <p class="text-xl text-white/90 mb-8 max-w-2xl">
+          Find your perfect home in Switzerland with expert assistance from real estate professionals who understand expat needs.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#contact" class="btn bg-white text-primary-600 hover:bg-white/90">
+            Get Started
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+          <a href="#process" class="btn border-2 border-white text-white hover:bg-white/10">
+            Learn More
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Benefits -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Why Use Our Housing <span class="gradient-text">Services</span></h2>
+        <p class="text-lg text-accent-600">
+          Expert assistance to make your housing search in Switzerland smooth and successful.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {benefits.map(benefit => (
+          <div class="card p-6 text-center hover:shadow-lg transition-all duration-300">
+            <div class="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style="background: linear-gradient(to right, #cb356b, #bd3f32);">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">{benefit.title}</h3>
+            <p class="text-accent-600">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Steps -->
+  <section id="process" class="section bg-accent-50">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Our Housing Search <span class="gradient-text">Process</span></h2>
+        <p class="text-lg text-accent-600">
+          A structured approach to finding your ideal home in Switzerland.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {steps.map((step, index) => (
+          <div class="card p-6 hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold" style="background: linear-gradient(to right, #cb356b, #bd3f32); color: white;">
+                {index + 1}
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">{step.title}</h3>
+                <p class="text-accent-600">{step.description}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Companies -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Trusted Housing <span class="gradient-text">Partners</span></h2>
+        <p class="text-lg text-accent-600">
+          Connect with experienced real estate professionals and relocation experts.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {companies.map(company => (
+          <CompanyCard company={company} />
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="/companies" class="btn-primary">
+          View All Companies
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section bg-accent-50">
+    <div class="container">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold mb-8 text-center">Frequently Asked <span class="gradient-text">Questions</span></h2>
+        
+        <div class="space-y-6">
+          <div class="card p-6">
+            <h3 class="text-xl font-semibold mb-3">How long does it typically take to find housing in Switzerland?</h3>
+            <p class="text-accent-600">
+              The timeline can vary depending on location and requirements, but typically takes 4-8 weeks. Popular areas like Zürich and Geneva may take longer due to high demand.
+            </p>
+          </div>
+          
+          <div class="card p-6">
+            <h3 class="text-xl font-semibold mb-3">What documents do I need for a rental application?</h3>
+            <p class="text-accent-600">
+              Common requirements include employment contract, salary statements, residence permit, credit report (if available), and references. Our housing experts will help you prepare all necessary documentation.
+            </p>
+          </div>
+          
+          <div class="card p-6">
+            <h3 class="text-xl font-semibold mb-3">Can I rent property without being in Switzerland?</h3>
+            <p class="text-accent-600">
+              Yes, our partners can handle property viewings and applications on your behalf. However, some landlords may require meeting tenants in person before finalizing the contract.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section id="contact" class="section bg-white">
+    <div class="container">
+      <div class="max-w-3xl mx-auto">
+        <div class="card p-8">
+          <h2 class="text-2xl font-bold mb-6 text-center">Get Housing Assistance</h2>
+          <p class="text-accent-600 text-center mb-8">
+            Fill out the form below and we'll connect you with the right housing experts for your needs.
+          </p>
+
+          <form class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-medium text-accent-700 mb-1">First Name*</label>
+                <input 
+                  type="text" 
+                  required 
+                  class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-accent-700 mb-1">Last Name*</label>
+                <input 
+                  type="text" 
+                  required 
+                  class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-accent-700 mb-1">Email*</label>
+              <input 
+                type="email" 
+                required 
+                class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-accent-700 mb-1">Phone</label>
+              <input 
+                type="tel" 
+                class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-accent-700 mb-1">Preferred Location*</label>
+              <select 
+                required 
+                class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+              >
+                <option value="">Select a location</option>
+                <option value="zurich">Zürich</option>
+                <option value="geneva">Geneva</option>
+                <option value="basel">Basel</option>
+                <option value="lausanne">Lausanne</option>
+                <option value="bern">Bern</option>
+                <option value="zug">Zug</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-accent-700 mb-1">Housing Type*</label>
+              <select 
+                required 
+                class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+              >
+                <option value="">Select housing type</option>
+                <option value="apartment">Apartment</option>
+                <option value="house">House</option>
+                <option value="temporary">Temporary Housing</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-accent-700 mb-1">Additional Requirements</label>
+              <textarea 
+                rows="4"
+                class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+                placeholder="Tell us about your specific needs, budget, or preferences..."
+              ></textarea>
+            </div>
+
+            <div class="flex items-start">
+              <input 
+                type="checkbox" 
+                required
+                class="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+              />
+              <label class="ml-2 text-sm text-accent-600">
+                I agree to the <a href="/privacy-policy" class="text-primary-600 hover:underline">Privacy Policy</a> and consent to having my data processed.
+              </label>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn-primary">
+                Submit Request
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
