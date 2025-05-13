@@ -4,26 +4,26 @@ import { Image } from 'astro:assets';
 
 <section class="relative pt-20 pb-32 overflow-hidden">
   <!-- Background Pattern -->
-  <div class="absolute inset-0 z-30">
+  <div class="absolute inset-0 z-30 pointer-events-none">
     <div class="absolute inset-0 bg-gradient-to-br from-[#cb356b] to-[#bd3f32] opacity-10"></div>
   </div>
   
   <!-- Hero Content -->
   <div class="container relative z-40">
-    <div class="flex flex-col lg:flex-row items-center">
-      <div class="lg:w-1/2 mb-12 lg:mb-0">
+    <div class="flex flex-col lg:flex-row items-center gap-12">
+      <div class="w-full lg:w-1/2">
         <div class="animate-fade-in">
           <span class="inline-block px-4 py-2 rounded-full bg-primary-100 text-primary-700 font-medium text-sm mb-6">
             Your Swiss Relocation Guide
           </span>
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
             Simplifying Your <span class="text-primary-600">Swiss</span> Relocation Journey
           </h1>
-          <p class="text-lg md:text-xl text-accent-600 mb-8 max-w-xl">
+          <p class="text-base sm:text-lg md:text-xl text-accent-600 mb-8">
             Helping expats find the best relocation services, connect with trusted companies, and discover ideal regions across Switzerland.
           </p>
           
-          <div class="flex flex-col sm:flex-row gap-4">
+          <div class="flex flex-col sm:flex-row gap-4 mb-8 sm:mb-12">
             <a href="/services" class="btn" style="background: linear-gradient(to right, #cb356b, #bd3f32); color: white;">
               Browse Services
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
@@ -35,14 +35,14 @@ import { Image } from 'astro:assets';
             </a>
           </div>
           
-          <div class="mt-12 flex items-center">
+          <div class="flex items-center">
             <div class="flex -space-x-3">
               <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100" alt="User" class="h-10 w-10 rounded-full border-2 border-white object-cover">
               <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=100" alt="User" class="h-10 w-10 rounded-full border-2 border-white object-cover">
               <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=100" alt="User" class="h-10 w-10 rounded-full border-2 border-white object-cover">
             </div>
             <div class="ml-4">
-              <p class="text-sm font-medium">Trusted by <span class="text-primary-600 font-bold">5,000+</span> expats</p>
+              <p class="text-xs sm:text-sm font-medium">Trusted by <span class="text-primary-600 font-bold">5,000+</span> expats</p>
               <div class="flex text-yellow-400 mt-1">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -65,16 +65,16 @@ import { Image } from 'astro:assets';
         </div>
       </div>
       
-      <div class="lg:w-1/2 relative animate-slide-up">
+      <div class="w-full lg:w-1/2 relative animate-slide-up">
         <div class="relative">
           <img 
             src="https://res.cloudinary.com/dphbnwjtx/image/upload/v1747143445/background_removed_image_-fW1sh-2TKWEBnWuPNng0A_sg7s4u.png" 
             alt="Beautiful Swiss landscape" 
-            class="rounded-xl shadow-xl relative"
+            class="w-full h-auto rounded-xl shadow-xl relative"
           />
         
         <!-- Stats Overlay -->
-        <div class="absolute top-10 -left-10 bg-white rounded-lg shadow-lg p-4 animate-fade-in z-20">
+        <div class="absolute top-4 sm:top-10 -left-4 sm:-left-10 bg-white rounded-lg shadow-lg p-4 animate-fade-in z-20">
           <div class="flex items-center space-x-3">
             <div class="bg-primary-100 p-3 rounded-full">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -89,7 +89,7 @@ import { Image } from 'astro:assets';
           </div>
         </div>
         
-        <div class="absolute bottom-10 -right-10 bg-white rounded-lg shadow-lg p-4 animate-fade-in z-20" style="animation-delay: 0.2s;">
+        <div class="absolute bottom-4 sm:bottom-10 -right-4 sm:-right-10 bg-white rounded-lg shadow-lg p-4 animate-fade-in z-20" style="animation-delay: 0.2s;">
           <div class="flex items-center space-x-3">
             <div class="bg-secondary-100 p-3 rounded-full">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-secondary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
