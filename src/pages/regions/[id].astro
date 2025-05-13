@@ -1,0 +1,320 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CompanyCard from '../../components/companies/CompanyCard.astro';
+import BlogCard from '../../components/blog/BlogCard.astro';
+
+// Add getStaticPaths export
+export function getStaticPaths() {
+  return [
+    { params: { id: 'zurich' } },
+    { params: { id: 'geneva' } },
+    { params: { id: 'basel' } },
+    { params: { id: 'lugano' } },
+    { params: { id: 'bern' } },
+    { params: { id: 'lausanne' } },
+    { params: { id: 'lucerne' } },
+    { params: { id: 'zug' } }
+  ];
+}
+
+// Get the region ID from the URL
+const { id } = Astro.params;
+
+// Region data (in a real app, this would come from a database)
+const regions = {
+  zurich: {
+    name: 'Zürich',
+    description: 'Switzerland\'s largest city and a global financial center with vibrant cultural scenes and high quality of life.',
+    image: 'https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    population: '402,762',
+    languages: ['German', 'English'],
+    industries: ['Finance', 'Technology', 'Research'],
+    longDescription: `
+      Zürich is Switzerland's largest city and one of the world's leading financial centers. Located in north-central Switzerland, it offers an exceptional quality of life, combining urban sophistication with easy access to nature.
+
+      Key Highlights:
+      - Global financial hub with numerous banking institutions
+      - Thriving tech scene and startup ecosystem
+      - Excellent public transportation system
+      - Rich cultural offerings with museums, theaters, and galleries
+      - Beautiful location on Lake Zürich with views of the Alps
+    `,
+    neighborhoods: [
+      {
+        name: 'Zürich City Center (District 1)',
+        description: 'Historic heart of the city with luxury shopping and cultural attractions'
+      },
+      {
+        name: 'Enge (District 2)',
+        description: 'Upscale residential area near the lake with many expat families'
+      },
+      {
+        name: 'Oerlikon (District 11)',
+        description: 'Modern business district with excellent transport connections'
+      },
+      {
+        name: 'Seefeld (District 8)',
+        description: 'Popular lakeside area with trendy restaurants and boutiques'
+      }
+    ],
+    facts: [
+      {
+        title: 'Cost of Living',
+        description: 'Among the highest in the world, reflecting the high quality of life'
+      },
+      {
+        title: 'Education',
+        description: 'Home to ETH Zürich and numerous international schools'
+      },
+      {
+        title: 'Healthcare',
+        description: 'World-class medical facilities and healthcare services'
+      },
+      {
+        title: 'Transportation',
+        description: 'Comprehensive public transport network and international airport'
+      }
+    ]
+  }
+  // Add other regions as needed
+};
+
+// Get the specific region data
+const region = regions[id];
+
+// Companies active in this region
+const activeCompanies = [
+  {
+    id: 'relocation-experts',
+    name: 'Swiss Relocation Experts',
+    logo: 'https://images.pexels.com/photos/14936128/pexels-photo-14936128.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Full-service relocation agency with 15+ years of experience helping expats settle in Switzerland.',
+    services: ['Housing Search', 'Immigration Support', 'School Search'],
+    regions: ['Zürich', 'Basel', 'Geneva'],
+    rating: 4.8,
+    reviewCount: 245
+  },
+  {
+    id: 'swiss-move',
+    name: 'SwissMove',
+    logo: 'https://images.pexels.com/photos/14936096/pexels-photo-14936096.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Premium moving and logistics services for international relocations to and within Switzerland.',
+    services: ['International Moving', 'Storage Solutions', 'Pet Transport'],
+    regions: ['Nationwide'],
+    rating: 4.7,
+    reviewCount: 183
+  },
+  {
+    id: 'alpine-home',
+    name: 'Alpine Home Finders',
+    logo: 'https://images.pexels.com/photos/14936082/pexels-photo-14936082.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Boutique real estate agency specializing in finding rental and purchase properties for expats.',
+    services: ['Rental Search', 'Property Purchase', 'Relocation Support'],
+    regions: ['Zürich', 'Zug', 'Lucerne'],
+    rating: 4.6,
+    reviewCount: 156
+  }
+];
+
+// Related blog posts
+const relatedPosts = [
+  {
+    id: 'living-in-zurich',
+    title: 'Living in Zürich: A Complete Guide for Expats',
+    excerpt: 'Everything you need to know about life in Zürich, from housing and schools to culture and entertainment.',
+    image: 'https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'City Guides',
+    author: 'Maria Schmidt',
+    authorImage: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=100',
+    date: '2025-04-12',
+    readTime: '10 min read'
+  },
+  {
+    id: 'zurich-neighborhoods',
+    title: 'Best Neighborhoods in Zürich for Expats',
+    excerpt: 'Discover the most expat-friendly areas in Zürich, comparing amenities, prices, and lifestyle options.',
+    image: 'https://images.pexels.com/photos/4825701/pexels-photo-4825701.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Housing',
+    author: 'Thomas Weber',
+    authorImage: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100',
+    date: '2025-04-05',
+    readTime: '8 min read'
+  },
+  {
+    id: 'zurich-activities',
+    title: '10 Must-Do Activities in Zürich',
+    excerpt: 'From lakeside walks to cultural events, discover the best ways to experience Zürich like a local.',
+    image: 'https://images.pexels.com/photos/4825728/pexels-photo-4825728.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Lifestyle',
+    author: 'Sophie Keller',
+    authorImage: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100',
+    date: '2025-03-28',
+    readTime: '6 min read'
+  }
+];
+
+// Format date helper function
+function formatDate(dateString) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(dateString).toLocaleDateString('en-US', options);
+}
+
+// Page metadata
+const title = `Living in ${region.name}, Switzerland | ReloFinder.ch`;
+const description = region.description;
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="relative h-[60vh] min-h-[500px] flex items-center">
+    <div class="absolute inset-0">
+      <img 
+        src={region.image} 
+        alt={`${region.name}, Switzerland`} 
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-accent-900/90 to-accent-900/60"></div>
+    </div>
+    
+    <div class="container relative z-10">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          Living in {region.name}
+        </h1>
+        <p class="text-xl text-white/90 mb-8">
+          {region.description}
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <div class="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
+            <p class="text-white/80 text-sm">Population</p>
+            <p class="text-white font-semibold">{region.population}</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
+            <p class="text-white/80 text-sm">Languages</p>
+            <p class="text-white font-semibold">{region.languages.join(', ')}</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
+            <p class="text-white/80 text-sm">Key Industries</p>
+            <p class="text-white font-semibold">{region.industries.join(', ')}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Region Overview -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <div class="prose prose-lg mb-12">
+          <p class="text-lg text-accent-600 whitespace-pre-line">
+            {region.longDescription}
+          </p>
+        </div>
+
+        <h2 class="text-2xl font-bold mb-6">Popular Neighborhoods</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          {region.neighborhoods.map(neighborhood => (
+            <div class="card p-6">
+              <h3 class="text-xl font-semibold mb-2">{neighborhood.name}</h3>
+              <p class="text-accent-600">{neighborhood.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <h2 class="text-2xl font-bold mb-6">Key Facts</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          {region.facts.map(fact => (
+            <div class="card p-6">
+              <h3 class="text-xl font-semibold mb-2">{fact.title}</h3>
+              <p class="text-accent-600">{fact.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Active Companies -->
+  <section class="section bg-accent-50">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h2 class="text-3xl font-bold mb-4">Relocation Services in <span class="gradient-text">{region.name}</span></h2>
+        <p class="text-lg text-accent-600">
+          Connect with trusted relocation companies operating in {region.name}.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {activeCompanies.map(company => (
+          <CompanyCard company={company} />
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="/companies" class="btn-primary">
+          View All Companies
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Blog Posts -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h2 class="text-3xl font-bold mb-4">Life in <span class="gradient-text">{region.name}</span></h2>
+        <p class="text-lg text-accent-600">
+          Discover insider tips and guides about living in {region.name}.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {relatedPosts.map(post => (
+          <BlogCard post={post} formatDate={formatDate} />
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="/blog" class="btn-primary">
+          Read More Articles
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section bg-accent-50">
+    <div class="container">
+      <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          <div class="p-8 md:p-12">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">Planning to move to {region.name}?</h2>
+            <p class="text-accent-600 mb-6">
+              Get personalized assistance with your relocation to {region.name}. Our experts will help you navigate every aspect of your move.
+            </p>
+            <a href="/contact" class="btn-primary">
+              Contact Us
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </a>
+          </div>
+          <div class="hidden md:block">
+            <img 
+              src={region.image}
+              alt={`${region.name} cityscape`} 
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

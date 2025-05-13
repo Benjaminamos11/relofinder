@@ -1,0 +1,101 @@
+---
+// Sample blog posts
+const blogPosts = [
+  {
+    id: 'swiss-visa-guide',
+    title: 'Complete Guide to Swiss Visa and Residence Permits',
+    excerpt: 'Navigate the complexities of Swiss immigration with our step-by-step guide to various permit types and application processes.',
+    image: 'https://images.pexels.com/photos/1201488/pexels-photo-1201488.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Guides',
+    author: 'Maria Schmidt',
+    authorImage: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=100',
+    date: '2025-04-12',
+    readTime: '8 min read'
+  },
+  {
+    id: 'swiss-tax-system',
+    title: 'Understanding the Swiss Tax System for Expats',
+    excerpt: 'Learn about federal, cantonal, and municipal taxes in Switzerland, along with available deductions and how to file your first tax return.',
+    image: 'https://images.pexels.com/photos/53621/calculator-calculation-insurance-finance-53621.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Finances',
+    author: 'Thomas Weber',
+    authorImage: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100',
+    date: '2025-04-05',
+    readTime: '10 min read'
+  },
+  {
+    id: 'renting-in-zurich',
+    title: 'Finding an Apartment in Zürich: Tips and Tricks',
+    excerpt: 'Discover strategies for navigating Zürich\'s competitive rental market, understanding rental contracts, and securing your ideal home.',
+    image: 'https://images.pexels.com/photos/15500792/pexels-photo-15500792/free-photo-of-view-of-zurich-cityscape.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Housing',
+    author: 'Sophie Keller',
+    authorImage: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100',
+    date: '2025-03-28',
+    readTime: '7 min read'
+  },
+];
+
+// Format date
+function formatDate(dateString) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(dateString).toLocaleDateString('en-US', options);
+}
+---
+
+<section class="section bg-accent-50">
+  <div class="container">
+    <div class="section-title">
+      <h2>Latest from our <span class="gradient-text">Blog</span></h2>
+      <p>
+        Expert advice, guides, and news to help you navigate your relocation to Switzerland.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {blogPosts.map(post => (
+        <a href={`/blog/${post.id}`} class="card group h-full flex flex-col">
+          <div class="relative overflow-hidden h-48">
+            <img 
+              src={post.image} 
+              alt={post.title} 
+              class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+            />
+            <div class="absolute top-0 right-0 bg-primary-600 text-white px-3 py-1 text-sm font-medium">
+              {post.category}
+            </div>
+          </div>
+          
+          <div class="p-6 flex flex-col flex-grow">
+            <div class="flex items-center mb-4">
+              <img src={post.authorImage} alt={post.author} class="w-8 h-8 rounded-full mr-3 object-cover" />
+              <div>
+                <p class="text-sm font-medium">{post.author}</p>
+                <p class="text-xs text-accent-500">{formatDate(post.date)} · {post.readTime}</p>
+              </div>
+            </div>
+            
+            <h3 class="text-xl font-semibold mb-3 group-hover:text-primary-600 transition-colors">{post.title}</h3>
+            <p class="text-accent-600 mb-4 flex-grow">{post.excerpt}</p>
+            
+            <div class="mt-auto flex items-center gradient-text font-medium transition-all duration-300 group-hover:translate-x-2">
+              Read Article
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+    
+    <div class="mt-12 text-center">
+      <a href="/blog" class="btn-primary">
+        View All Articles
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

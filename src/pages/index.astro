@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/home/Hero.astro';
+import ServicesSection from '../components/home/ServicesSection.astro';
+import RegionsSection from '../components/home/RegionsSection.astro';
+import FeaturedCompanies from '../components/home/FeaturedCompanies.astro';
+import BlogPreview from '../components/home/BlogPreview.astro';
+import CTA from '../components/home/CTA.astro';
+
+// Page metadata
+const title = 'ReloFinder.ch | Swiss Relocation Services for Expats';
+const description = 'Connect with trusted relocation services, companies, and discover ideal regions across Switzerland to make your expat journey smooth and successful.';
+---
+
+<Layout title={title} description={description}>
+  <Hero />
+  <ServicesSection />
+  <RegionsSection />
+  <FeaturedCompanies />
+  <BlogPreview />
+  <CTA />
+</Layout>
+
+<script>
+  // Animate elements on scroll
+  document.addEventListener('DOMContentLoaded', function() {
+    const animateOnScrollElements = document.querySelectorAll('.animate-on-scroll');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+    
+    animateOnScrollElements.forEach(element => {
+      observer.observe(element);
+    });
+  });
+</script>

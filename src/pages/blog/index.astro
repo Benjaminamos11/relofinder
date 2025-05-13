@@ -1,0 +1,321 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogCard from '../../components/blog/BlogCard.astro';
+
+// Sample blog posts
+const blogPosts = [
+  {
+    id: 'swiss-visa-guide',
+    title: 'Complete Guide to Swiss Visa and Residence Permits',
+    excerpt: 'Navigate the complexities of Swiss immigration with our step-by-step guide to various permit types and application processes.',
+    image: 'https://images.pexels.com/photos/1201488/pexels-photo-1201488.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Guides',
+    author: 'Maria Schmidt',
+    authorImage: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=100',
+    date: '2025-04-12',
+    readTime: '8 min read'
+  },
+  {
+    id: 'swiss-tax-system',
+    title: 'Understanding the Swiss Tax System for Expats',
+    excerpt: 'Learn about federal, cantonal, and municipal taxes in Switzerland, along with available deductions and how to file your first tax return.',
+    image: 'https://images.pexels.com/photos/53621/calculator-calculation-insurance-finance-53621.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Finances',
+    author: 'Thomas Weber',
+    authorImage: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100',
+    date: '2025-04-05',
+    readTime: '10 min read'
+  },
+  {
+    id: 'renting-in-zurich',
+    title: 'Finding an Apartment in Zürich: Tips and Tricks',
+    excerpt: 'Discover strategies for navigating Zürich\'s competitive rental market, understanding rental contracts, and securing your ideal home.',
+    image: 'https://images.pexels.com/photos/15500792/pexels-photo-15500792/free-photo-of-view-of-zurich-cityscape.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Housing',
+    author: 'Sophie Keller',
+    authorImage: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100',
+    date: '2025-03-28',
+    readTime: '7 min read'
+  },
+  {
+    id: 'swiss-healthcare-system',
+    title: 'Navigating the Swiss Healthcare System: A Comprehensive Guide',
+    excerpt: 'Everything you need to know about health insurance requirements, finding doctors, and accessing medical care in Switzerland.',
+    image: 'https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Healthcare',
+    author: 'Dr. Andreas Müller',
+    authorImage: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=100',
+    date: '2025-03-20',
+    readTime: '9 min read'
+  },
+  {
+    id: 'public-transportation',
+    title: 'Master the Swiss Public Transportation System',
+    excerpt: 'A guide to trains, trams, buses, and passes that will help you navigate Switzerland\'s world-class public transportation network.',
+    image: 'https://images.pexels.com/photos/1209978/pexels-photo-1209978.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Transportation',
+    author: 'Laura Blanc',
+    authorImage: 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=100',
+    date: '2025-03-15',
+    readTime: '6 min read'
+  },
+  {
+    id: 'swiss-banking-basics',
+    title: 'Swiss Banking Basics for Expats',
+    excerpt: 'Learn how to open a bank account, understand different account types, and manage your finances efficiently in Switzerland.',
+    image: 'https://images.pexels.com/photos/164501/pexels-photo-164501.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Finances',
+    author: 'Thomas Weber',
+    authorImage: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100',
+    date: '2025-03-08',
+    readTime: '8 min read'
+  },
+  {
+    id: 'international-schools',
+    title: 'International Schools in Switzerland: Options for Expat Families',
+    excerpt: 'A comprehensive overview of international schools across Switzerland, including curricula, fees, and admission processes.',
+    image: 'https://images.pexels.com/photos/207692/pexels-photo-207692.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Education',
+    author: 'Emma Johnson',
+    authorImage: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=100',
+    date: '2025-03-01',
+    readTime: '11 min read'
+  },
+  {
+    id: 'swiss-culture-etiquette',
+    title: 'Swiss Culture and Etiquette: What Expats Should Know',
+    excerpt: 'Understand Swiss social norms, business etiquette, and cultural practices to help you integrate smoothly into Swiss society.',
+    image: 'https://images.pexels.com/photos/2835436/pexels-photo-2835436.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Culture',
+    author: 'Maria Schmidt',
+    authorImage: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=100',
+    date: '2025-02-22',
+    readTime: '7 min read'
+  },
+  {
+    id: 'swiss-job-market',
+    title: 'Navigating the Swiss Job Market as an Expatriate',
+    excerpt: 'Insights into finding employment, understanding work culture, and building a successful career in Switzerland.',
+    image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Career',
+    author: 'Daniel Schmid',
+    authorImage: 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=100',
+    date: '2025-02-15',
+    readTime: '9 min read'
+  },
+];
+
+// Define categories with colors
+const categories = [
+  { id: 'guides', name: 'Guides', color: 'bg-primary-600' },
+  { id: 'finances', name: 'Finances', color: 'bg-green-600' },
+  { id: 'housing', name: 'Housing', color: 'bg-amber-600' },
+  { id: 'healthcare', name: 'Healthcare', color: 'bg-purple-600' },
+  { id: 'transportation', name: 'Transportation', color: 'bg-teal-600' },
+  { id: 'education', name: 'Education', color: 'bg-indigo-600' },
+  { id: 'culture', name: 'Culture', color: 'bg-pink-600' },
+  { id: 'career', name: 'Career', color: 'bg-blue-600' },
+  { id: 'news', name: 'News', color: 'bg-secondary-600' },
+  { id: 'expat-stories', name: 'Expat Stories', color: 'bg-orange-600' },
+];
+
+// Format date helper function
+function formatDate(dateString) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(dateString).toLocaleDateString('en-US', options);
+}
+
+// Page metadata
+const title = 'Expat Relocation Blog | ReloFinder.ch';
+const description = 'Practical guides, news, and advice for expats relocating to Switzerland, covering visas, housing, finance, healthcare, and more.';
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="py-16 md:py-24 bg-gradient-to-br from-accent-800 to-accent-900 text-white">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+          Swiss Relocation Blog for Expats
+        </h1>
+        <p class="text-lg md:text-xl text-white/90 mb-8">
+          Stay informed with practical guides, news, and advice to make your Swiss relocation journey smooth and successful.
+        </p>
+        
+        <!-- Search Blog -->
+        <div class="bg-white p-2 rounded-lg shadow-lg flex items-center max-w-xl mx-auto">
+          <input 
+            type="text" 
+            placeholder="Search articles..." 
+            class="px-4 py-2 w-full text-accent-800 focus:outline-none"
+          />
+          <button class="btn-primary py-2 whitespace-nowrap">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+            </svg>
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Featured Articles -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="mb-16">
+        <h2 class="text-3xl font-bold mb-8">Featured <span class="text-accent-600">Articles</span></h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div class="card overflow-hidden">
+            <div class="relative h-64 lg:h-full">
+              <img 
+                src="https://images.pexels.com/photos/1201488/pexels-photo-1201488.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Complete Guide to Swiss Visa and Residence Permits" 
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute top-0 right-0 bg-primary-600 text-white px-3 py-1 text-sm font-medium">
+                Guides
+              </div>
+            </div>
+          </div>
+          
+          <div class="p-6 lg:p-8 flex flex-col">
+            <div class="flex items-center mb-4">
+              <img src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Maria Schmidt" class="w-10 h-10 rounded-full mr-3 object-cover" />
+              <div>
+                <p class="text-sm font-medium">Maria Schmidt</p>
+                <p class="text-xs text-accent-500">April 12, 2025 · 8 min read</p>
+              </div>
+            </div>
+            
+            <h3 class="text-2xl md:text-3xl font-bold mb-4">Complete Guide to Swiss Visa and Residence Permits</h3>
+            <p class="text-accent-600 mb-6 text-lg">
+              Navigate the complexities of Swiss immigration with our step-by-step guide to various permit types and application processes. Learn about requirements, documentation, and important timelines for different permit categories.
+            </p>
+            
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span>Different permit types (B, C, G, L) explained</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span>Application process and required documents</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span>Timeline expectations and renewal procedures</span>
+              </li>
+            </ul>
+            
+            <a href="/blog/swiss-visa-guide" class="btn-primary mt-auto self-start">
+              Read Full Article
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Categories -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold mb-4">Browse By Category</h3>
+        <div class="flex flex-wrap gap-3">
+          <a href="/blog" class="px-4 py-2 bg-accent-900 text-white rounded-full text-sm font-medium hover:bg-accent-800 transition-colors">
+            All Categories
+          </a>
+          {categories.map(category => (
+            <a href={`/blog/category/${category.id}`} class={`px-4 py-2 ${category.color} text-white rounded-full text-sm font-medium hover:opacity-90 transition-colors`}>
+              {category.name}
+            </a>
+          ))}
+        </div>
+      </div>
+      
+      <!-- Latest Articles -->
+      <div class="mb-16">
+        <h2 class="text-3xl font-bold mb-8">Latest <span class="text-accent-600">Articles</span></h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-on-scroll">
+          {blogPosts.map(post => (
+            <BlogCard post={post} formatDate={formatDate} />
+          ))}
+        </div>
+        
+        <!-- Pagination -->
+        <div class="mt-12 flex justify-center">
+          <div class="flex space-x-1">
+            <a href="#" class="px-4 py-2 border border-gray-300 rounded-md text-accent-700 hover:bg-accent-50">Previous</a>
+            <a href="#" class="px-4 py-2 bg-accent-900 text-white rounded-md">1</a>
+            <a href="#" class="px-4 py-2 border border-gray-300 rounded-md text-accent-700 hover:bg-accent-50">2</a>
+            <a href="#" class="px-4 py-2 border border-gray-300 rounded-md text-accent-700 hover:bg-accent-50">3</a>
+            <span class="px-4 py-2 text-accent-700">...</span>
+            <a href="#" class="px-4 py-2 border border-gray-300 rounded-md text-accent-700 hover:bg-accent-50">8</a>
+            <a href="#" class="px-4 py-2 border border-gray-300 rounded-md text-accent-700 hover:bg-accent-50">Next</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Newsletter -->
+  <section class="section bg-accent-50">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-4">Stay <span class="text-accent-600">Informed</span></h2>
+        <p class="text-lg text-accent-600 mb-8">
+          Subscribe to our newsletter for the latest articles, news, and updates about expat life in Switzerland.
+        </p>
+        
+        <div class="bg-white p-8 rounded-lg shadow-md">
+          <div class="flex flex-col md:flex-row gap-4">
+            <input 
+              type="email" 
+              placeholder="Your email address" 
+              class="px-4 py-3 w-full border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-accent-500"
+            />
+            <button class="btn-primary whitespace-nowrap">
+              Subscribe
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+              </svg>
+            </button>
+          </div>
+          <p class="text-xs text-accent-500 mt-3">
+            By subscribing, you agree to our Privacy Policy. You can unsubscribe at any time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <script>
+    // Animate elements on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const animateOnScrollElements = document.querySelectorAll('.animate-on-scroll');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, {
+        threshold: 0.2
+      });
+      
+      animateOnScrollElements.forEach(element => {
+        observer.observe(element);
+      });
+    });
+  </script>
+</Layout>

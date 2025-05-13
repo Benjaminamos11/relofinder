@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans text-accent-800 antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl leading-snug;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+@layer components {
+  .container {
+    @apply px-4 mx-auto max-w-screen-xl;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-200 text-center relative;
+  }
+
+  .btn-primary {
+    @apply btn text-white focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    background: linear-gradient(to right, #cb356b, #bd3f32);
+  }
+
+  .btn-secondary {
+    @apply btn text-white focus:ring-2 focus:ring-secondary-500 focus:ring-offset-2;
+    background: linear-gradient(to right, #cb356b, #bd3f32);
+  }
+
+  .btn-outline {
+    @apply btn border-2;
+    border-image: linear-gradient(to right, #cb356b, #bd3f32) 1;
+    background: linear-gradient(to right, #cb356b, #bd3f32);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-card overflow-hidden transition-all duration-300 hover:shadow-card-hover;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(to right, #cb356b, #bd3f32);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .section-title {
+    @apply text-center mb-16;
+  }
+
+  .section-title h2 {
+    @apply mb-4;
+  }
+
+  .section-title p {
+    @apply text-lg text-accent-600 max-w-2xl mx-auto;
+  }
+
+  .animate-on-scroll {
+    @apply opacity-0 transition-all duration-700 translate-y-8;
+  }
+
+  .animate-on-scroll.is-visible {
+    @apply opacity-100 translate-y-0;
+  }
+}

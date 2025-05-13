@@ -1,0 +1,417 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServiceCard from '../../components/services/ServiceCard.astro';
+
+// Service categories
+const services = [
+  {
+    id: 'housing',
+    title: 'Housing & Real Estate',
+    description: 'Find apartments, houses, property managers, and real estate agents to help with your housing needs in Switzerland.',
+    icon: 'home',
+    bgColor: 'bg-red-50',
+    iconColor: 'text-primary-600',
+  },
+  {
+    id: 'legal',
+    title: 'Legal & Immigration',
+    description: 'Expert assistance with visas, work permits, residency applications, and legal advice for relocating to Switzerland.',
+    icon: 'document',
+    bgColor: 'bg-blue-50',
+    iconColor: 'text-secondary-600',
+  },
+  {
+    id: 'finance',
+    title: 'Banking & Finance',
+    description: 'Services for bank account setup, financial advisors, insurance, and tax consulting for expats in Switzerland.',
+    icon: 'credit-card',
+    bgColor: 'bg-green-50',
+    iconColor: 'text-green-600',
+  },
+  {
+    id: 'education',
+    title: 'Education & Schools',
+    description: 'Information on international schools, language courses, universities, and childcare options across Switzerland.',
+    icon: 'academic-cap',
+    bgColor: 'bg-amber-50',
+    iconColor: 'text-amber-600',
+  },
+  {
+    id: 'health',
+    title: 'Healthcare',
+    description: 'Connect with health insurance providers, medical services, hospitals, and wellness providers in your new Swiss location.',
+    icon: 'heart',
+    bgColor: 'bg-purple-50',
+    iconColor: 'text-purple-600',
+  },
+  {
+    id: 'transport',
+    title: 'Transportation',
+    description: 'Moving services, public transportation information, car leasing options, and assistance with driving licenses in Switzerland.',
+    icon: 'truck',
+    bgColor: 'bg-teal-50',
+    iconColor: 'text-teal-600',
+  },
+  {
+    id: 'language',
+    title: 'Language Services',
+    description: 'Language schools, translation services, and intercultural training to help you communicate effectively in Switzerland.',
+    icon: 'chat',
+    bgColor: 'bg-indigo-50',
+    iconColor: 'text-indigo-600',
+  },
+  {
+    id: 'job',
+    title: 'Employment & Career',
+    description: 'Job search assistance, recruitment agencies, and career coaching for expats looking to work in Switzerland.',
+    icon: 'briefcase',
+    bgColor: 'bg-orange-50',
+    iconColor: 'text-orange-600',
+  },
+];
+
+// Page metadata
+const title = 'Relocation Services in Switzerland | ReloFinder.ch';
+const description = 'Explore specialized relocation services for expats moving to Switzerland, from housing and legal assistance to education and healthcare support.';
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-primary-600 to-primary-700 text-white py-16 md:py-24">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+          Comprehensive Relocation Services for Switzerland
+        </h1>
+        <p class="text-lg md:text-xl text-white/90 mb-8">
+          Connect with specialized service providers to make your relocation journey smooth and successful.
+        </p>
+        
+        <!-- Search Box -->
+        <div class="bg-white p-2 rounded-lg shadow-lg flex items-center max-w-xl mx-auto">
+          <input 
+            type="text" 
+            placeholder="What service are you looking for?" 
+            class="px-4 py-2 w-full text-accent-800 focus:outline-none"
+          />
+          <button class="btn-primary py-2 whitespace-nowrap">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+            </svg>
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Services Grid -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h2 class="text-3xl font-bold mb-4">Our Relocation <span class="text-primary-600">Services</span></h2>
+        <p class="text-lg text-accent-600">
+          Browse our comprehensive selection of services to help with every aspect of your relocation to Switzerland.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-on-scroll">
+        {services.map(service => (
+          <ServiceCard service={service} />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Featured Service Providers -->
+  <section class="section bg-accent-50">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h2 class="text-3xl font-bold mb-4">Top-Rated <span class="text-primary-600">Service Providers</span></h2>
+        <p class="text-lg text-accent-600">
+          These highly-rated companies excel in providing quality relocation services across Switzerland.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* This will be replaced with actual featured service providers */}
+        <div class="card p-6">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-16 h-16 rounded-lg bg-accent-100 p-2 flex items-center justify-center overflow-hidden">
+              <img 
+                src="https://images.pexels.com/photos/14936128/pexels-photo-14936128.jpeg?auto=compress&cs=tinysrgb&w=200"
+                alt="Swiss Relocation Experts logo" 
+                class="w-full h-full object-contain rounded"
+              />
+            </div>
+            <div class="flex items-center">
+              <span class="text-yellow-500 font-bold mr-1">4.8</span>
+              <div class="flex text-yellow-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              </div>
+              <span class="text-xs text-accent-500 ml-1">(245)</span>
+            </div>
+          </div>
+          
+          <h3 class="text-xl font-semibold mb-2">Swiss Relocation Experts</h3>
+          <p class="text-accent-600 mb-3 text-sm">Full-service relocation agency with 15+ years of experience helping expats settle in Switzerland.</p>
+          
+          <div class="space-y-2 mb-4">
+            <div class="flex items-start text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+              <span><strong>Services:</strong> Housing Search, Immigration Support, School Search</span>
+            </div>
+            <div class="flex items-start text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span><strong>Regions:</strong> Zürich, Basel, Geneva</span>
+            </div>
+          </div>
+          
+          <a href="/companies/relocation-experts" class="flex items-center text-primary-600 font-medium transition-all duration-300 hover:translate-x-2">
+            View Company
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="card p-6">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-16 h-16 rounded-lg bg-accent-100 p-2 flex items-center justify-center overflow-hidden">
+              <img 
+                src="https://images.pexels.com/photos/14936096/pexels-photo-14936096.jpeg?auto=compress&cs=tinysrgb&w=200"
+                alt="SwissMove logo" 
+                class="w-full h-full object-contain rounded"
+              />
+            </div>
+            <div class="flex items-center">
+              <span class="text-yellow-500 font-bold mr-1">4.7</span>
+              <div class="flex text-yellow-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              </div>
+              <span class="text-xs text-accent-500 ml-1">(183)</span>
+            </div>
+          </div>
+          
+          <h3 class="text-xl font-semibold mb-2">SwissMove</h3>
+          <p class="text-accent-600 mb-3 text-sm">Premium moving and logistics services for international relocations to and within Switzerland.</p>
+          
+          <div class="space-y-2 mb-4">
+            <div class="flex items-start text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+              <span><strong>Services:</strong> International Moving, Storage Solutions, Pet Transport</span>
+            </div>
+            <div class="flex items-start text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span><strong>Regions:</strong> Nationwide</span>
+            </div>
+          </div>
+          
+          <a href="/companies/swiss-move" class="flex items-center text-primary-600 font-medium transition-all duration-300 hover:translate-x-2">
+            View Company
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="card p-6">
+          <div class="flex items-start justify-between mb-4">
+            <div class="w-16 h-16 rounded-lg bg-accent-100 p-2 flex items-center justify-center overflow-hidden">
+              <img 
+                src="https://images.pexels.com/photos/14939081/pexels-photo-14939081.jpeg?auto=compress&cs=tinysrgb&w=200"
+                alt="Expat Financial Advisors logo" 
+                class="w-full h-full object-contain rounded"
+              />
+            </div>
+            <div class="flex items-center">
+              <span class="text-yellow-500 font-bold mr-1">4.9</span>
+              <div class="flex text-yellow-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              </div>
+              <span class="text-xs text-accent-500 ml-1">(127)</span>
+            </div>
+          </div>
+          
+          <h3 class="text-xl font-semibold mb-2">Expat Financial Advisors</h3>
+          <p class="text-accent-600 mb-3 text-sm">Specialized financial advice for expatriates covering banking, taxes, investments, and insurance.</p>
+          
+          <div class="space-y-2 mb-4">
+            <div class="flex items-start text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+              <span><strong>Services:</strong> Banking Setup, Tax Advisory, Insurance Consulting</span>
+            </div>
+            <div class="flex items-start text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span><strong>Regions:</strong> Geneva, Zürich, Lugano</span>
+            </div>
+          </div>
+          
+          <a href="/companies/expat-financial" class="flex items-center text-primary-600 font-medium transition-all duration-300 hover:translate-x-2">
+            View Company
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- How It Works -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h2 class="text-3xl font-bold mb-4">How It <span class="text-primary-600">Works</span></h2>
+        <p class="text-lg text-accent-600">
+          Finding and connecting with the right service providers is simple with ReloFinder.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="bg-primary-100 text-primary-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Find Services</h3>
+          <p class="text-accent-600">
+            Browse our comprehensive selection of relocation services tailored to your specific needs in Switzerland.
+          </p>
+        </div>
+        
+        <div class="text-center">
+          <div class="bg-secondary-100 text-secondary-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Schedule Consultations</h3>
+          <p class="text-accent-600">
+            Contact and schedule consultations with service providers that match your requirements and preferences.
+          </p>
+        </div>
+        
+        <div class="text-center">
+          <div class="bg-green-100 text-green-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Start Your Relocation</h3>
+          <p class="text-accent-600">
+            Begin your Swiss relocation journey with confidence, supported by experienced professionals.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA -->
+  <section class="py-16 bg-primary-600">
+    <div class="container">
+      <div class="bg-white rounded-xl shadow-xl p-8 md:p-12 max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">Need personalized assistance?</h2>
+            <p class="text-accent-600 mb-6">
+              Not sure which service you need? Let us help you find the right providers for your specific relocation requirements.
+            </p>
+            <a href="/contact" class="btn-primary">
+              Get in Touch
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </a>
+          </div>
+          <div class="hidden md:block">
+            <img 
+              src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800" 
+              alt="Team consulting" 
+              class="rounded-lg shadow-md w-full h-64 object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <script>
+    // Animate elements on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const animateOnScrollElements = document.querySelectorAll('.animate-on-scroll');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, {
+        threshold: 0.2
+      });
+      
+      animateOnScrollElements.forEach(element => {
+        observer.observe(element);
+      });
+    });
+  </script>
+</Layout>

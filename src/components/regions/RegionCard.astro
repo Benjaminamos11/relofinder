@@ -1,0 +1,45 @@
+---
+const { region } = Astro.props;
+---
+
+<a href={`/regions/${region.id}`} class="card group overflow-hidden h-full hover:shadow-card-hover transition-all duration-300">
+  <div class="relative overflow-hidden h-48">
+    <img 
+      src={region.image} 
+      alt={`${region.name}, Switzerland`} 
+      class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-accent-900/70 flex items-end">
+      <h3 class="text-white font-bold text-xl p-4">{region.name}</h3>
+    </div>
+  </div>
+  <div class="p-4">
+    <p class="text-accent-600 mb-4 line-clamp-3">{region.description}</p>
+    <div class="space-y-2">
+      <div class="flex items-center text-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        <span>Population: {region.population}</span>
+      </div>
+      <div class="flex items-center text-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+        </svg>
+        <span>Languages: {region.languages.join(', ')}</span>
+      </div>
+      <div class="flex items-center text-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+        <span>Key Industries: {region.industries.join(', ')}</span>
+      </div>
+    </div>
+    <div class="mt-4 flex items-center text-accent-600 font-medium transition-all duration-300 group-hover:translate-x-2">
+      Explore Region
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+      </svg>
+    </div>
+  </div>
+</a>

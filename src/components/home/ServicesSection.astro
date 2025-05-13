@@ -1,0 +1,125 @@
+---
+// Service categories for relocation
+const services = [
+  {
+    id: 'housing',
+    title: 'Housing & Real Estate',
+    description: 'Find apartments, houses, property managers, and real estate agents.',
+    icon: 'home',
+    bgColor: 'bg-red-50',
+    iconColor: 'text-primary-600',
+  },
+  {
+    id: 'legal',
+    title: 'Legal & Immigration',
+    description: 'Visa assistance, work permits, residency applications, and legal advice.',
+    icon: 'document',
+    bgColor: 'bg-blue-50',
+    iconColor: 'text-secondary-600',
+  },
+  {
+    id: 'finance',
+    title: 'Banking & Finance',
+    description: 'Bank account setup, financial advisors, insurance, and tax services.',
+    icon: 'credit-card',
+    bgColor: 'bg-green-50',
+    iconColor: 'text-green-600',
+  },
+  {
+    id: 'education',
+    title: 'Education & Schools',
+    description: 'International schools, language courses, universities, and childcare.',
+    icon: 'academic-cap',
+    bgColor: 'bg-amber-50',
+    iconColor: 'text-amber-600',
+  },
+  {
+    id: 'health',
+    title: 'Healthcare',
+    description: 'Health insurance, medical services, hospitals, and wellness providers.',
+    icon: 'heart',
+    bgColor: 'bg-purple-50',
+    iconColor: 'text-purple-600',
+  },
+  {
+    id: 'transport',
+    title: 'Transportation',
+    description: 'Moving services, public transportation, car leasing, and driving licenses.',
+    icon: 'truck',
+    bgColor: 'bg-teal-50',
+    iconColor: 'text-teal-600',
+  },
+];
+---
+
+<section class="section bg-white">
+  <div class="container">
+    <div class="section-title">
+      <h2>Our Relocation <span class="gradient-text">Services</span></h2>
+      <p>
+        Connect with trusted service providers to make your relocation to Switzerland seamless and stress-free.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map(service => (
+        <a href={`/services/${service.id}`} class="card group">
+          <div class="p-6">
+            <div class="w-14 h-14 rounded-full flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-110" style="background: linear-gradient(to right, #cb356b, #bd3f32);">
+              {service.icon === 'home' && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+              )}
+              {service.icon === 'document' && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              )}
+              {service.icon === 'credit-card' && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                </svg>
+              )}
+              {service.icon === 'academic-cap' && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                  <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                </svg>
+              )}
+              {service.icon === 'heart' && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              )}
+              {service.icon === 'truck' && (
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+                </svg>
+              )}
+            </div>
+            <h3 class="text-xl font-semibold mb-3 group-hover:text-primary-600 transition-colors">{service.title}</h3>
+            <p class="text-accent-600">{service.description}</p>
+            <div class="mt-4 flex items-center gradient-text font-medium transition-all duration-300 group-hover:translate-x-2">
+              Explore Services
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+    
+    <div class="mt-12 text-center">
+      <a href="/services" class="btn-primary">
+        View All Services
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

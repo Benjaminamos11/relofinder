@@ -1,0 +1,36 @@
+---
+const { post, formatDate } = Astro.props;
+---
+
+<a href={`/blog/${post.id}`} class="card group h-full flex flex-col hover:shadow-card-hover transition-all duration-300">
+  <div class="relative overflow-hidden h-48">
+    <img 
+      src={post.image} 
+      alt={post.title} 
+      class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+    />
+    <div class="absolute top-0 right-0 bg-primary-600 text-white px-3 py-1 text-sm font-medium">
+      {post.category}
+    </div>
+  </div>
+  
+  <div class="p-6 flex flex-col flex-grow">
+    <div class="flex items-center mb-4">
+      <img src={post.authorImage} alt={post.author} class="w-8 h-8 rounded-full mr-3 object-cover" />
+      <div>
+        <p class="text-sm font-medium">{post.author}</p>
+        <p class="text-xs text-accent-500">{formatDate(post.date)} · {post.readTime}</p>
+      </div>
+    </div>
+    
+    <h3 class="text-xl font-semibold mb-3 group-hover:text-accent-600 transition-colors">{post.title}</h3>
+    <p class="text-accent-600 mb-4 flex-grow">{post.excerpt}</p>
+    
+    <div class="mt-auto flex items-center text-accent-600 font-medium transition-all duration-300 group-hover:translate-x-2">
+      Read Article
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+      </svg>
+    </div>
+  </div>
+</a>

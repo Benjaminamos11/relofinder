@@ -1,0 +1,160 @@
+---
+const providers = [
+  {
+    id: 'swiss-life',
+    name: 'Swiss Life',
+    logo: 'https://images.pexels.com/photos/14939081/pexels-photo-14939081.jpeg?auto=compress&cs=tinysrgb&w=200',
+    type: 'Health & Life Insurance',
+    rating: 4.9,
+    reviewCount: 312,
+    description: 'Comprehensive health and life insurance solutions tailored for expats.',
+    languages: ['English', 'German', 'French']
+  },
+  {
+    id: 'axa',
+    name: 'AXA Insurance',
+    logo: 'https://images.pexels.com/photos/14936081/pexels-photo-14936081.jpeg?auto=compress&cs=tinysrgb&w=200',
+    type: 'Property & Liability',
+    rating: 4.7,
+    reviewCount: 245,
+    description: 'Property, liability, and accident insurance for your peace of mind.',
+    languages: ['English', 'German', 'French', 'Italian']
+  },
+  {
+    id: 'zurich',
+    name: 'Zurich Insurance',
+    logo: 'https://images.pexels.com/photos/14936097/pexels-photo-14936097.jpeg?auto=compress&cs=tinysrgb&w=200',
+    type: 'Auto & Home Insurance',
+    rating: 4.8,
+    reviewCount: 189,
+    description: 'Protecting your vehicles and home with comprehensive coverage.',
+    languages: ['English', 'German']
+  },
+  {
+    id: 'css',
+    name: 'CSS Insurance',
+    logo: 'https://images.pexels.com/photos/14936100/pexels-photo-14936100.jpeg?auto=compress&cs=tinysrgb&w=200',
+    type: 'Health Insurance',
+    rating: 4.6,
+    reviewCount: 278,
+    description: 'Leading Swiss health insurance provider with flexible plans.',
+    languages: ['English', 'German', 'French']
+  }
+];
+---
+
+<section class="section bg-accent-50">
+  <div class="container">
+    <div class="section-title">
+      <h2>Insurance <span class="gradient-text">Solutions</span></h2>
+      <p>Connect with trusted insurance providers offering comprehensive coverage for expats in Switzerland.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 auto-rows-[200px]">
+      <!-- Featured Provider - Large Card -->
+      <a href={`/providers/${providers[0].id}`} class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl md:col-span-6 md:row-span-2">
+        <div class="absolute inset-0">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary-600/90 to-primary-700/90 group-hover:scale-110 transition-transform duration-500"></div>
+          <img 
+            src={providers[0].logo} 
+            alt={`${providers[0].name} logo`} 
+            class="w-full h-full object-cover opacity-20"
+          />
+          <div class="absolute inset-0 p-8 flex flex-col justify-between text-white">
+            <div class="flex items-center justify-between">
+              <div class="w-20 h-20 bg-white rounded-xl p-3 shadow-lg">
+                <img 
+                  src={providers[0].logo} 
+                  alt={`${providers[0].name} logo`} 
+                  class="w-full h-full object-contain"
+                />
+              </div>
+              <div class="flex items-center bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full">
+                <span class="text-yellow-400 font-bold mr-1">{providers[0].rating}</span>
+                <span class="text-xs text-white/80">({providers[0].reviewCount})</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold mb-2">{providers[0].name}</h3>
+              <p class="text-white/90 mb-4">{providers[0].description}</p>
+              <div class="flex flex-wrap gap-2">
+                {providers[0].languages.map(lang => (
+                  <span class="bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full text-sm">{lang}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Secondary Provider - Tall Card -->
+      <a href={`/providers/${providers[1].id}`} class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl md:col-span-3 md:row-span-2">
+        <div class="absolute inset-0">
+          <div class="absolute inset-0 bg-gradient-to-br from-secondary-600/90 to-secondary-700/90 group-hover:scale-110 transition-transform duration-500"></div>
+          <img 
+            src={providers[1].logo} 
+            alt={`${providers[1].name} logo`} 
+            class="w-full h-full object-cover opacity-20"
+          />
+          <div class="absolute inset-0 p-6 flex flex-col justify-between text-white">
+            <div class="w-16 h-16 bg-white rounded-xl p-2 shadow-lg">
+              <img 
+                src={providers[1].logo} 
+                alt={`${providers[1].name} logo`} 
+                class="w-full h-full object-contain"
+              />
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-2">{providers[1].name}</h3>
+              <p class="text-white/90 text-sm mb-3">{providers[1].description}</p>
+              <div class="flex items-center text-sm">
+                <span class="text-yellow-400 font-bold mr-1">{providers[1].rating}</span>
+                <span class="text-white/80">({providers[1].reviewCount})</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Remaining Providers - Regular Cards -->
+      {providers.slice(2).map(provider => (
+        <a href={`/providers/${provider.id}`} class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl md:col-span-3">
+          <div class="absolute inset-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-accent-700/90 to-accent-800/90 group-hover:scale-110 transition-transform duration-500"></div>
+            <img 
+              src={provider.logo} 
+              alt={`${provider.name} logo`} 
+              class="w-full h-full object-cover opacity-20"
+            />
+            <div class="absolute inset-0 p-4 flex flex-col justify-between text-white">
+              <div class="w-12 h-12 bg-white rounded-lg p-2 shadow-lg">
+                <img 
+                  src={provider.logo} 
+                  alt={`${provider.name} logo`} 
+                  class="w-full h-full object-contain"
+                />
+              </div>
+              <div>
+                <h3 class="text-lg font-bold mb-1">{provider.name}</h3>
+                <p class="text-white/90 text-sm mb-2 line-clamp-2">{provider.description}</p>
+                <div class="flex items-center text-sm">
+                  <span class="text-yellow-400 font-bold mr-1">{provider.rating}</span>
+                  <span class="text-white/80">({provider.reviewCount})</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-12 text-center">
+      <a href="/providers" class="btn-primary">
+        View All Providers
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

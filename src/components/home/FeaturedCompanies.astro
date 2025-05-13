@@ -1,0 +1,110 @@
+---
+// Sample featured companies
+const companies = [
+  {
+    id: 'relocation-experts',
+    name: 'Swiss Relocation Experts',
+    logo: 'https://images.pexels.com/photos/14936128/pexels-photo-14936128.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Full-service relocation agency with 15+ years of experience helping expats settle in Switzerland.',
+    services: ['Housing Search', 'Immigration Support', 'School Search'],
+    regions: ['Zürich', 'Basel', 'Geneva'],
+    rating: 4.8,
+    reviewCount: 245
+  },
+  {
+    id: 'swiss-move',
+    name: 'SwissMove',
+    logo: 'https://images.pexels.com/photos/14936096/pexels-photo-14936096.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Premium moving and logistics services for international relocations to and within Switzerland.',
+    services: ['International Moving', 'Storage Solutions', 'Pet Transport'],
+    regions: ['Nationwide'],
+    rating: 4.7,
+    reviewCount: 183
+  },
+  {
+    id: 'expat-financial',
+    name: 'Expat Financial Advisors',
+    logo: 'https://images.pexels.com/photos/14939081/pexels-photo-14939081.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Specialized financial advice for expatriates covering banking, taxes, investments, and insurance.',
+    services: ['Banking Setup', 'Tax Advisory', 'Insurance Consulting'],
+    regions: ['Geneva', 'Zürich', 'Lugano'],
+    rating: 4.9,
+    reviewCount: 127
+  },
+  {
+    id: 'alpine-home',
+    name: 'Alpine Home Finders',
+    logo: 'https://images.pexels.com/photos/14936082/pexels-photo-14936082.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Boutique real estate agency specializing in finding rental and purchase properties for expats.',
+    services: ['Rental Search', 'Property Purchase', 'Relocation Support'],
+    regions: ['Zürich', 'Zug', 'Lucerne'],
+    rating: 4.6,
+    reviewCount: 156
+  },
+];
+---
+
+<section class="section bg-white">
+  <div class="container">
+    <div class="section-title">
+      <h2>Trusted <span class="gradient-text">Companies</span></h2>
+      <p>
+        Connect with established relocation companies and service providers that specialize in supporting expats in Switzerland.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {companies.map(company => (
+        <a href={`/companies/${company.id}`} class="card group overflow-hidden hover:shadow-xl transition-all duration-300">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-16 h-16 bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl p-3 transition-transform duration-300 group-hover:scale-110">
+                <img 
+                  src={company.logo} 
+                  alt={`${company.name} logo`} 
+                  class="w-full h-full object-contain"
+                />
+              </div>
+              <div class="flex items-center bg-accent-50 px-3 py-1 rounded-full">
+                <span class="text-yellow-600 font-bold mr-1">{company.rating}</span>
+                <span class="text-xs text-accent-500">({company.reviewCount})</span>
+              </div>
+            </div>
+            
+            <h3 class="text-xl font-bold mb-3 group-hover:text-primary-600 transition-colors">{company.name}</h3>
+            <p class="text-accent-600 mb-6 line-clamp-2">{company.description}</p>
+            
+            <div class="space-y-3">
+              <div class="flex items-center text-sm">
+                <span class="w-6 h-6 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center mr-2 flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                </span>
+                <p class="text-accent-600 line-clamp-1">{company.services.join(' • ')}</p>
+              </div>
+              <div class="flex items-center text-sm">
+                <span class="w-6 h-6 rounded-full bg-primary-100 text-primary-600 flex items-center justify-center mr-2 flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </span>
+                <p class="text-accent-600 line-clamp-1">{company.regions.join(' • ')}</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+    
+    <div class="mt-12 text-center">
+      <a href="/companies" class="btn-primary">
+        View All Companies
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
