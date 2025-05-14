@@ -2,10 +2,16 @@
 import Layout from '../layouts/Layout.astro';
 import { supabase } from '../lib/supabase';
 
-const { data: todos, error } = await supabase.from('todos').select('*');
+let todos = [];
+let error = null;
 
-if (error) {
-  console.error('Error fetching todos:', error);
+try {
+  const { data, error: supabaseError } = await supabase.from('todos').select('*');
+  if (supabaseError) throw supabaseError;
+  todos = data;
+} catch (e) {
+  console.error('Error fetching todos:', e);
+  error = e;
 }
 ---
 
@@ -13,18 +19,19 @@ if (error) {
   <div class="container py-8">
     <h1 class="text-2xl font-bold mb-6">Todos</h1>
     
-    {error && (
+    {error ? (
       <div class="bg-red-100 text-red-700 p-4 rounded mb-6">
         Error loading todos: {error.message}
       </div>
+    ) : (
+      <ul class="space-y-2">
+        {todos?.map((todo) => (
+          <li class="bg-white p-4 rounded shadow">
+            {todo.name}
+          </li>
+        ))}
+      </ul>
     )}
     
-    <ul class="space-y-2">
-      {todos?.map((todo) => (
-        <li class="bg-white p-4 rounded shadow">
-          {todo.name}
-        </li>
-      ))}
-    </ul>
   </div>
 </Layout>
