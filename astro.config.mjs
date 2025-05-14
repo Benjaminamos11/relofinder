@@ -9,14 +9,14 @@ export default defineConfig({
   integrations: [
     tailwind(), 
     react(), 
-    alpinejs(),
+    alpinejs()
   ],
   vite: {
     optimizeDeps: {
-      exclude: ['@supabase/supabase-js']
+      exclude: ['@supabase/supabase-js', '@rollup/plugin-node-resolve']
     },
     ssr: {
-      noExternal: ['@supabase/supabase-js']
+      noExternal: ['@supabase/supabase-js', '@rollup/plugin-node-resolve']
     }
   }
 });
