@@ -2,7 +2,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "clean": "rm -rf dist .astro node_modules/.vite"
   },
   "dependencies": {
     "@astrojs/alpinejs": "^0.3.2",
