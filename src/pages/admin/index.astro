@@ -1,0 +1,127 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY
+);
+
+const {
+  data: { session },
+  error: sessionError,
+} = await supabase.auth.getSession();
+
+if (!session) {
+  return Astro.redirect('/login');
+}
+
+// Fetch user role
+const { data: userData } = await supabase
+  .from('users')
+  .select('raw_user_meta_data->role')
+  .eq('id', session.user.id)
+  .single();
+
+const isAdmin = userData?.raw_user_meta_data?.role === 'admin';
+
+if (!isAdmin) {
+  return Astro.redirect('/dashboard');
+}
+
+// Fetch analytics data
+const { data: analytics } = await supabase
+  .from('company_analytics')
+  .select(`
+    *,
+    relocators (
+      name,
+      logo
+    )
+  `)
+  .order('views_count', { ascending: false })
+  .limit(10);
+---
+
+<Layout title="Admin Dashboard | ReloFinder.ch">
+  <div class="min-h-screen bg-gray-50">
+    <div class="container py-8">
+      <div class="flex justify-between items-center mb-8">
+        <h1 class="text-2xl font-bold">Admin Dashboard</h1>
+        <div class="flex gap-4">
+          <a href="/admin/companies" class="btn-outline">
+            Manage Companies
+          </a>
+          <a href="/admin/analytics" class="btn-primary">
+            View Analytics
+          </a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="card p-6">
+          <h3 class="text-lg font-semibold mb-2">Total Companies</h3>
+          <p class="text-3xl font-bold text-primary-600">
+            {analytics?.length || 0}
+          </p>
+        </div>
+        
+        <div class="card p-6">
+          <h3 class="text-lg font-semibold mb-2">Total Page Views</h3>
+          <p class="text-3xl font-bold text-primary-600">
+            {analytics?.reduce((sum, item) => sum + item.views_count, 0) || 0}
+          </p>
+        </div>
+        
+        <div class="card p-6">
+          <h3 class="text-lg font-semibold mb-2">Total Inquiries</h3>
+          <p class="text-3xl font-bold text-primary-600">
+            {analytics?.reduce((sum, item) => sum + item.contact_form_submissions, 0) || 0}
+          </p>
+        </div>
+      </div>
+
+      <div class="card p-6">
+        <h2 class="text-xl font-bold mb-6">Top Performing Companies</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="border-b border-gray-200">
+                <th class="text-left py-3 px-4">Company</th>
+                <th class="text-right py-3 px-4">Views</th>
+                <th class="text-right py-3 px-4">Inquiries</th>
+                <th class="text-right py-3 px-4">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {analytics?.map((item) => (
+                <tr class="border-b border-gray-200">
+                  <td class="py-3 px-4">
+                    <div class="flex items-center">
+                      <img 
+                        src={item.relocators.logo} 
+                        alt={item.relocators.name}
+                        class="w-8 h-8 rounded object-contain mr-3"
+                      />
+                      <span class="font-medium">{item.relocators.name}</span>
+                    </div>
+                  </td>
+                  <td class="text-right py-3 px-4">{item.views_count}</td>
+                  <td class="text-right py-3 px-4">{item.contact_form_submissions}</td>
+                  <td class="text-right py-3 px-4">
+                    <a 
+                      href={`/admin/companies/${item.company_id}`}
+                      class="text-primary-600 hover:text-primary-700"
+                    >
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
