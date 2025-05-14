@@ -1,28 +1,9 @@
 {
-  "name": "relofinder-website",
-  "type": "module",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
   "dependencies": {
-    "astro": "^5.2.5",
-    "@astrojs/tailwind": "^5.1.0",
-    "tailwindcss": "^3.4.1",
-    "@astrojs/react": "^3.0.10",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@astrojs/alpinejs": "^0.4.0",
-    "alpinejs": "^3.13.5",
-    "astro-icon": "^1.1.0",
-    "resend": "^3.2.0",
     "@supabase/auth-ui-react": "^0.4.7",
     "@supabase/auth-ui-shared": "^0.1.8",
-    "@tremor/react": "^3.14.1",
-    "date-fns": "^3.3.1"
+    "@supabase/supabase-js": "^2.39.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
