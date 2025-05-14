@@ -1,13 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { createClient } from '@supabase/supabase-js';
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
-
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
 ---
 
 <Layout title="Login | ReloFinder.ch">
@@ -22,7 +16,8 @@ const supabase = createClient(
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
         <Auth
           client:only="react"
-          supabaseClient={supabase}
+          supabaseUrl={import.meta.env.VITE_SUPABASE_URL}
+          supabaseKey={import.meta.env.VITE_SUPABASE_ANON_KEY}
           appearance={{ theme: ThemeSupa }}
           providers={[]}
           redirectTo={`${import.meta.env.SITE}/admin`}
