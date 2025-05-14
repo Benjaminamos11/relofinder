@@ -1,4 +1,4 @@
-import { Resend } from 'npm:resend@3.2.0';
+import { Resend } from 'npm:@resend/node@0.16.2';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
