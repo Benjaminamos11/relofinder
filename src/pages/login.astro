@@ -29,13 +29,14 @@ import Layout from '../layouts/Layout.astro';
     import.meta.env.VITE_SUPABASE_ANON_KEY
   );
 
-  render(
+  const AuthComponent = () => (
     <Auth
       supabaseClient={supabase}
       appearance={{ theme: ThemeSupa }}
       providers={[]}
       redirectTo={`${window.location.origin}/admin`}
-    />,
-    document.getElementById('supabase-auth')
+    />
   );
+
+  render(<AuthComponent />, document.getElementById('supabase-auth'));
 </script>
