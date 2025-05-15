@@ -14,7 +14,7 @@ const errors = Astro.url.searchParams.get('error');
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <form class="space-y-6" method="POST" action="/api/login" enctype="application/x-www-form-urlencoded">
+        <form class="space-y-6" id="loginForm">
           {errors && (
             <div class="bg-red-50 text-red-600 p-4 rounded-md mb-4">
               Invalid email or password
@@ -85,4 +85,29 @@ const errors = Astro.url.searchParams.get('error');
       </div>
     </div>
   </div>
+  
+  <script>
+    document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(e.target);
+      const urlEncodedData = new URLSearchParams(formData);
+      
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: urlEncodedData,
+        });
+        
+        if (response.redirected) {
+          window.location.href = response.url;
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+      }
+    });
+  </script>
 </Layout>
