@@ -120,23 +120,22 @@ const description = 'Get instant answers to your Swiss relocation questions from
             </div>
 
             <!-- Input Form -->
-            <div class="border-t p-4">
-              <form @submit.prevent="sendMessage" class="flex gap-2">
-                <input
-                  type="text"
-                  x-model="input"
-                  placeholder="Type your message..."
-                  class="flex-1 px-4 py-2 border border-accent-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  :disabled="loading"
-                />
-                <button 
-                  type="submit"
-                  class="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 disabled:opacity-50 transition-colors"
-                  :disabled="loading || !input.trim()"
-                >
-                  Send
-                </button>
-              </form>
+            <div class="border-t p-4 flex gap-2">
+              <input
+                type="text"
+                x-model="input"
+                @keydown.enter.prevent="sendMessage()"
+                placeholder="Type your message..."
+                class="flex-1 px-4 py-2 border border-accent-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                :disabled="loading"
+              />
+              <button 
+                @click="sendMessage()"
+                class="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 disabled:opacity-50 transition-colors"
+                :disabled="loading || !input.trim()"
+              >
+                Send
+              </button>
             </div>
           </div>
         </div>
@@ -179,7 +178,8 @@ const description = 'Get instant answers to your Swiss relocation questions from
         return DOMPurify.sanitize(html);
       },
 
-      async sendMessage() {
+      async sendMessage(e) {
+        if (e) e.preventDefault();
         if (!this.input.trim() || this.loading) return;
 
         const userMessage = this.input.trim();
