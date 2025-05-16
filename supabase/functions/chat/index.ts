@@ -3,6 +3,7 @@ import { Configuration, OpenAIApi } from 'npm:openai@3.3.0'
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Content-Type': 'application/json'
 }
 
 // Helper function to return error responses
@@ -10,7 +11,7 @@ const errorResponse = (message: string, status = 500) => {
   return new Response(
     JSON.stringify({ error: message }),
     { 
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: corsHeaders,
       status 
     }
   )
@@ -65,28 +66,33 @@ You have access to current information about:
 
 If asked about specific service providers or making recommendations, encourage users to explore options on ReloFinder.ch.`
 
-    const completion = await openai.createChatCompletion({
-      model: 'gpt-4',
-      messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: message }
-      ],
-      temperature: 0.7,
-      max_tokens: 500
-    })
+    try {
+      const completion = await openai.createChatCompletion({
+        model: 'gpt-4',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: message }
+        ],
+        temperature: 0.7,
+        max_tokens: 500
+      })
 
-    const responseMessage = completion.data.choices[0].message?.content
-    if (!responseMessage) {
-      console.error('No response from OpenAI')
-      return errorResponse('Failed to generate response')
+      const responseMessage = completion.data.choices[0]?.message?.content
+      if (!responseMessage) {
+        console.error('No response content from OpenAI')
+        return errorResponse('Failed to generate response')
+      }
+
+      return new Response(
+        JSON.stringify({ message: responseMessage }),
+        { headers: corsHeaders }
+      )
+    } catch (error) {
+      console.error('OpenAI API error:', error)
+      return errorResponse('Failed to generate AI response')
     }
-
-    return new Response(
-      JSON.stringify({ message: responseMessage }),
-      { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-    )
   } catch (error) {
     console.error('Chat function error:', error)
-    return errorResponse(error.message || 'An error occurred while processing your request')
+    return errorResponse('An error occurred while processing your request')
   }
 })

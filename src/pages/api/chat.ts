@@ -20,36 +20,59 @@ export async function POST({ request }) {
       body: JSON.stringify({ message })
     });
 
-    // Check if response is ok before trying to parse JSON
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Chat function error:', errorText);
+    let responseData;
+    try {
+      const responseText = await response.text();
+      try {
+        responseData = JSON.parse(responseText);
+      } catch (parseError) {
+        console.error('Failed to parse response:', responseText);
+        return new Response(JSON.stringify({ 
+          error: 'Invalid JSON response from chat function',
+          details: responseText.substring(0, 100) // Log first 100 chars for debugging
+        }), {
+          status: 500,
+          headers: { 'Content-Type': 'application/json' }
+        });
+      }
+    } catch (error) {
+      console.error('Failed to read response:', error);
       return new Response(JSON.stringify({ 
-        error: 'Failed to get response from chat function' 
-      }), {
-        status: response.status,
-        headers: { 'Content-Type': 'application/json' }
-      });
-    }
-
-    const data = await response.json();
-    
-    if (!data || !data.message) {
-      return new Response(JSON.stringify({ 
-        error: 'Invalid response from chat function' 
+        error: 'Failed to read response from chat function' 
       }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' }
       });
     }
 
-    return new Response(JSON.stringify(data), {
+    if (!response.ok) {
+      console.error('Chat function error:', responseData);
+      return new Response(JSON.stringify({ 
+        error: responseData.error || 'Failed to get response from chat function' 
+      }), {
+        status: response.status,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    if (!responseData || !responseData.message) {
+      console.error('Invalid response structure:', responseData);
+      return new Response(JSON.stringify({ 
+        error: 'Invalid response structure from chat function' 
+      }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    return new Response(JSON.stringify(responseData), {
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (error) {
     console.error('Chat API error:', error);
     return new Response(JSON.stringify({ 
-      error: 'An error occurred while processing your request' 
+      error: 'An error occurred while processing your request',
+      details: error.message
     }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
