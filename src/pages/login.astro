@@ -1,7 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { supabase } from '../lib/supabase';
 
 const errors = Astro.url.searchParams.get('error');
+
+// Check if user is already logged in
+const { data: { session } } = await supabase.auth.getSession();
+
+if (session) {
+  return Astro.redirect('/admin');
+}
 ---
 
 <Layout title="Login | ReloFinder.ch">
@@ -14,7 +22,7 @@ const errors = Astro.url.searchParams.get('error');
 
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <form class="space-y-6" id="loginForm" method="POST" action="/api/login">
+        <form class="space-y-6" id="loginForm" method="POST" action="/api/login" enctype="application/x-www-form-urlencoded">
           {errors && (
             <div class="bg-red-50 text-red-600 p-4 rounded-md mb-4">
               Invalid email or password

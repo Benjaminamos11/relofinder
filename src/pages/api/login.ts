@@ -1,10 +1,5 @@
 export async function POST({ request, redirect }) {
   try {
-    const contentType = request.headers.get('content-type');
-    if (!contentType || !contentType.includes('application/x-www-form-urlencoded')) {
-      return new Response('Unsupported Media Type', { status: 415 });
-    }
-
     const formData = await request.formData();
     const email = formData.get('email');
     const password = formData.get('password');
@@ -12,13 +7,20 @@ export async function POST({ request, redirect }) {
     if (!email || !password) {
       return new Response('Email and password are required', { status: 400 });
     }
+    
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password
+    });
 
-    // Hardcoded credentials check
-    if (email === 'bw@expat-savvy.ch' && password === '12Benjamin!') {
+    if (error) {
+      return redirect('/login?error=invalid');
+    }
+    
+    if (data?.user) {
       return redirect('/admin');
     }
 
-    // Redirect back to login with error
     return redirect('/login?error=invalid');
   } catch (error) {
     return new Response(`Login error: ${error.message}`, { status: 500 });
