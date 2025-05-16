@@ -11,10 +11,10 @@ export async function POST({ request }) {
       });
     }
 
-    const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`, {
+    const response = await fetch(`${import.meta.env.SUPABASE_URL}/functions/v1/chat`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+        'Authorization': `Bearer ${import.meta.env.SUPABASE_ANON_KEY}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ message })
