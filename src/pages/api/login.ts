@@ -1,3 +1,5 @@
+import { supabase } from '../../lib/supabase';
+
 export async function POST({ request, redirect }) {
   try {
     const formData = await request.formData();

@@ -82,21 +82,30 @@
             if (!input.trim()) return;
             messages.push({ id: Date.now(), role: 'user', content: input });
             loading = true;
+            const currentInput = input;
+            input = '';
             fetch('/api/chat', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ message: input })
+              body: JSON.stringify({ message: currentInput })
             })
               .then(res => res.json())
               .then(data => {
-                messages.push({ id: Date.now(), role: 'assistant', content: data.message });
+                if (data.error) {
+                  throw new Error(data.error);
+                }
+                messages.push({ 
+                  id: Date.now(), 
+                  role: 'assistant', 
+                  content: data.message || 'I apologize, but I am unable to provide an answer at this moment.'
+                });
                 loading = false;
               })
               .catch(err => {
                 messages.push({ id: Date.now(), role: 'assistant', content: 'Sorry, I encountered an error. Please try again.' });
                 loading = false;
+                console.error('Chat error:', err);
               });
-            input = '';
           "
           class="border-t p-4 flex gap-2"
         >
