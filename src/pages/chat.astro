@@ -20,7 +20,7 @@ const description = 'Get instant answers to your Swiss relocation questions from
       <div class="bg-white rounded-xl shadow-xl overflow-hidden" x-data="chatInterface()">
         <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[600px]">
           <!-- Sidebar -->
-          <div class="lg:col-span-3 bg-accent-50 p-4 border-r border-accent-100" x-cloak>
+          <div class="lg:col-span-3 bg-accent-50 p-4 border-r border-accent-100">
             <div class="mb-6">
               <button 
                 @click="startNewChat"
@@ -64,7 +64,7 @@ const description = 'Get instant answers to your Swiss relocation questions from
             <!-- Messages -->
             <div class="flex-1 p-4 overflow-y-auto space-y-4" id="chat-messages">
               <!-- Welcome Message -->
-              <div x-show="messages.length === 0">
+              <template x-if="messages.length === 0">
                 <div class="bg-accent-50 p-6 rounded-xl">
                   <h2 class="text-xl font-semibold mb-3">👋 Welcome to ReloFinder's AI Assistant!</h2>
                   <p class="text-accent-600 mb-4">
@@ -91,7 +91,7 @@ const description = 'Get instant answers to your Swiss relocation questions from
                     </li>
                   </ul>
                 </div>
-              </div>
+              </template>
 
               <!-- Chat Messages -->
               <template x-for="message in messages" :key="message.id">
@@ -108,7 +108,7 @@ const description = 'Get instant answers to your Swiss relocation questions from
               </template>
 
               <!-- Loading Indicator -->
-              <div x-show="loading" class="flex justify-start">
+              <template x-if="loading">
                 <div class="bg-accent-50 rounded-xl p-4 shadow-sm animate-pulse">
                   <div class="flex space-x-3">
                     <div class="w-3 h-3 bg-accent-300 rounded-full"></div>
@@ -116,7 +116,7 @@ const description = 'Get instant answers to your Swiss relocation questions from
                     <div class="w-3 h-3 bg-accent-300 rounded-full"></div>
                   </div>
                 </div>
-              </div>
+              </template>
             </div>
 
             <!-- Input Form -->
@@ -124,7 +124,7 @@ const description = 'Get instant answers to your Swiss relocation questions from
               <input
                 type="text"
                 x-model.trim="input"
-                @keydown.enter.prevent="sendMessage()"
+                @keydown.enter.prevent="sendMessage"
                 placeholder="Type your message..."
                 class="flex-1 px-4 py-2 border border-accent-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
                 :disabled="loading"
@@ -161,7 +161,7 @@ const description = 'Get instant answers to your Swiss relocation questions from
           gfm: true
         });
 
-        // Configure DOMPurify
+        // Configure DOMPurify for safe HTML
         DOMPurify.setConfig({
           ALLOWED_TAGS: [
             'p', 'br', 'b', 'i', 'em', 'strong', 'a', 'ul', 'ol', 'li',
@@ -171,8 +171,8 @@ const description = 'Get instant answers to your Swiss relocation questions from
           ALLOWED_ATTR: ['href', 'target', 'class']
         });
       },
-
-      formatMessage: (content) => {
+      
+      formatMessage(content) {
         // Convert markdown to HTML and sanitize
         const html = marked(content);
         return DOMPurify.sanitize(html);
@@ -192,7 +192,7 @@ const description = 'Get instant answers to your Swiss relocation questions from
           const container = document.getElementById('chat-messages');
           container.scrollTop = container.scrollHeight;
         });
-
+        
         try {
           const response = await fetch('/api/chat', {
             method: 'POST',
@@ -241,6 +241,10 @@ const description = 'Get instant answers to your Swiss relocation questions from
 
     return state;
   }
+</script>
+
+<script>
+  import Alpine from 'alpinejs';
 </script>
 
 <style>
