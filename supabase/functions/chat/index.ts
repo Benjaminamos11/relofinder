@@ -6,17 +6,6 @@ const corsHeaders = {
   'Content-Type': 'application/json'
 }
 
-// Helper function to return error responses
-const errorResponse = (message: string, status = 500) => {
-  return new Response(
-    JSON.stringify({ error: message }),
-    { 
-      headers: corsHeaders,
-      status 
-    }
-  )
-}
-
 Deno.serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -24,12 +13,17 @@ Deno.serve(async (req) => {
   }
 
   try {
+    // Validate OpenAI API key
     const apiKey = Deno.env.get('OPENAI_API_KEY')
     if (!apiKey) {
       console.error('OpenAI API key not found')
-      return errorResponse('Chat service configuration error')
+      return new Response(
+        JSON.stringify({ error: 'Chat service configuration error' }),
+        { headers: corsHeaders, status: 500 }
+      )
     }
 
+    // Initialize OpenAI
     const configuration = new Configuration({ apiKey })
     const openai = new OpenAIApi(configuration)
 
@@ -39,15 +33,24 @@ Deno.serve(async (req) => {
       body = await req.json()
     } catch (e) {
       console.error('Failed to parse request body:', e)
-      return errorResponse('Invalid request body', 400)
+      return new Response(
+        JSON.stringify({ error: 'Invalid request body' }),
+        { headers: corsHeaders, status: 400 }
+      )
     }
 
+    // Validate message
     const { message } = body
-    if (!message) {
-      return errorResponse('Message is required', 400)
+    if (!message?.trim()) {
+      return new Response(
+        JSON.stringify({ error: 'Message is required' }),
+        { headers: corsHeaders, status: 400 }
+      )
     }
 
+    // System prompt
     const systemPrompt = `You are a helpful Swiss relocation assistant. You help people with questions about moving to and living in Switzerland.
+
 Your responses should be:
 - Accurate and up-to-date
 - Focused on practical advice
@@ -97,32 +100,44 @@ Example response format:
 > Important: [Any crucial information or warnings]`
 
     try {
+      // Call OpenAI API
       const completion = await openai.createChatCompletion({
         model: 'gpt-4',
         messages: [
           { role: 'system', content: systemPrompt },
-          { role: 'user', content: message }
+          { role: 'user', content: message.trim() }
         ],
         temperature: 0.7,
         max_tokens: 500
       })
 
+      // Validate response
       const responseMessage = completion.data.choices[0]?.message?.content
       if (!responseMessage) {
         console.error('No response content from OpenAI')
-        return errorResponse('Failed to generate response')
+        return new Response(
+          JSON.stringify({ error: 'Failed to generate response' }),
+          { headers: corsHeaders, status: 500 }
+        )
       }
 
+      // Return successful response
       return new Response(
         JSON.stringify({ message: responseMessage }),
         { headers: corsHeaders }
       )
     } catch (error) {
       console.error('OpenAI API error:', error)
-      return errorResponse('Failed to generate AI response')
+      return new Response(
+        JSON.stringify({ error: 'Failed to generate AI response' }),
+        { headers: corsHeaders, status: 500 }
+      )
     }
   } catch (error) {
     console.error('Chat function error:', error)
-    return errorResponse('An error occurred while processing your request')
+    return new Response(
+      JSON.stringify({ error: 'An error occurred while processing your request' }),
+      { headers: corsHeaders, status: 500 }
+    )
   }
 })

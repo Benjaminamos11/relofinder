@@ -4,6 +4,7 @@ export async function POST({ request }) {
   const headers = { 'Content-Type': 'application/json' };
 
   try {
+    // Parse request body
     let body;
     try {
       body = await request.json();
@@ -15,15 +16,16 @@ export async function POST({ request }) {
       });
     }
 
+    // Validate message
     const { message } = body;
-
-    if (!message) {
+    if (!message?.trim()) {
       return new Response(JSON.stringify({ error: 'Message is required' }), {
         status: 400,
         headers
       });
     }
 
+    // Get Supabase configuration
     const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || import.meta.env.SUPABASE_URL;
     const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.SUPABASE_ANON_KEY;
 
@@ -35,20 +37,22 @@ export async function POST({ request }) {
       });
     }
 
+    // Call Supabase Edge Function
     const response = await fetch(`${supabaseUrl}/functions/v1/chat`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${supabaseKey}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ message })
+      body: JSON.stringify({ message: message.trim() })
     });
 
+    // Handle non-OK responses
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('Chat function error response:', errorText);
+      console.error('Chat function error:', errorText);
       return new Response(JSON.stringify({ 
-        error: 'Failed to get response from chat function',
+        error: 'Failed to get response from chat service',
         details: errorText
       }), {
         status: response.status,
@@ -56,43 +60,40 @@ export async function POST({ request }) {
       });
     }
 
-    let responseData;
+    // Parse response
+    let data;
     try {
-      const responseText = await response.text();
-      try {
-        responseData = JSON.parse(responseText);
-      } catch (parseError) {
-        console.error('Failed to parse response:', responseText);
-        return new Response(JSON.stringify({ 
-          error: 'Invalid JSON response from chat function',
-          details: responseText.substring(0, 100) // Log first 100 chars for debugging
-        }), {
-          status: 500,
-          headers
-        });
-      }
+      const text = await response.text();
+      data = JSON.parse(text);
     } catch (error) {
-      console.error('Failed to read response:', error);
+      console.error('Failed to parse chat response:', error);
       return new Response(JSON.stringify({ 
-        error: 'Failed to read response from chat function' 
+        error: 'Invalid response from chat service' 
       }), {
         status: 500,
         headers
       });
     }
 
-    if (!responseData || !responseData.message) {
-      console.error('Invalid response structure:', responseData);
+    // Validate response structure
+    if (!data?.message) {
+      console.error('Invalid response structure:', data);
       return new Response(JSON.stringify({ 
-        error: 'Invalid response structure from chat function' 
+        error: 'Invalid response from chat service' 
       }), {
         status: 500,
         headers
       });
     }
 
-    return new Response(JSON.stringify(responseData), { headers });
+    // Return successful response
+    return new Response(JSON.stringify({
+      message: data.message
+    }), { 
+      headers 
+    });
   } catch (error) {
+    // Handle any other errors
     console.error('Chat API error:', error);
     return new Response(JSON.stringify({ 
       error: 'An error occurred while processing your request',
