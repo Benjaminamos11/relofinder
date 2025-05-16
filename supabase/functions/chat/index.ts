@@ -5,13 +5,48 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
 
-const configuration = new Configuration({
-  apiKey: Deno.env.get('OPENAI_API_KEY'),
-})
+// Helper function to return error responses
+const errorResponse = (message: string, status = 500) => {
+  return new Response(
+    JSON.stringify({ error: message }),
+    { 
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      status 
+    }
+  )
+}
 
-const openai = new OpenAIApi(configuration)
+Deno.serve(async (req) => {
+  // Handle CORS preflight requests
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { headers: corsHeaders })
+  }
 
-const systemPrompt = `You are a helpful Swiss relocation assistant. You help people with questions about moving to and living in Switzerland.
+  try {
+    const apiKey = Deno.env.get('OPENAI_API_KEY')
+    if (!apiKey) {
+      console.error('OpenAI API key not found')
+      return errorResponse('Chat service configuration error')
+    }
+
+    const configuration = new Configuration({ apiKey })
+    const openai = new OpenAIApi(configuration)
+
+    // Parse request body
+    let body
+    try {
+      body = await req.json()
+    } catch (e) {
+      console.error('Failed to parse request body:', e)
+      return errorResponse('Invalid request body', 400)
+    }
+
+    const { message } = body
+    if (!message) {
+      return errorResponse('Message is required', 400)
+    }
+
+    const systemPrompt = `You are a helpful Swiss relocation assistant. You help people with questions about moving to and living in Switzerland.
 Your responses should be:
 - Accurate and up-to-date
 - Focused on practical advice
@@ -30,14 +65,6 @@ You have access to current information about:
 
 If asked about specific service providers or making recommendations, encourage users to explore options on ReloFinder.ch.`
 
-Deno.serve(async (req) => {
-  if (req.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders })
-  }
-
-  try {
-    const { message } = await req.json()
-
     const completion = await openai.createChatCompletion({
       model: 'gpt-4',
       messages: [
@@ -48,16 +75,18 @@ Deno.serve(async (req) => {
       max_tokens: 500
     })
 
-    const response = completion.data.choices[0].message?.content || 'I apologize, but I am unable to provide an answer at this moment.'
+    const responseMessage = completion.data.choices[0].message?.content
+    if (!responseMessage) {
+      console.error('No response from OpenAI')
+      return errorResponse('Failed to generate response')
+    }
 
     return new Response(
-      JSON.stringify({ message: response }),
+      JSON.stringify({ message: responseMessage }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     )
   } catch (error) {
-    return new Response(
-      JSON.stringify({ error: error.message }),
-      { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 500 }
-    )
+    console.error('Chat function error:', error)
+    return errorResponse(error.message || 'An error occurred while processing your request')
   }
 })
