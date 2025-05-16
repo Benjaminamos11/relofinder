@@ -20,7 +20,7 @@ const description = 'Get instant answers to your Swiss relocation questions from
       <div class="bg-white rounded-xl shadow-xl overflow-hidden" x-data="chatInterface()">
         <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[600px]">
           <!-- Sidebar -->
-          <div class="lg:col-span-3 bg-accent-50 p-4 border-r border-accent-100">
+          <div class="lg:col-span-3 bg-accent-50 p-4 border-r border-accent-100" x-cloak>
             <div class="mb-6">
               <button 
                 @click="startNewChat"
@@ -64,7 +64,7 @@ const description = 'Get instant answers to your Swiss relocation questions from
             <!-- Messages -->
             <div class="flex-1 p-4 overflow-y-auto space-y-4" id="chat-messages">
               <!-- Welcome Message -->
-              <template x-if="messages.length === 0">
+              <div x-show="messages.length === 0">
                 <div class="bg-accent-50 p-6 rounded-xl">
                   <h2 class="text-xl font-semibold mb-3">👋 Welcome to ReloFinder's AI Assistant!</h2>
                   <p class="text-accent-600 mb-4">
@@ -91,7 +91,7 @@ const description = 'Get instant answers to your Swiss relocation questions from
                     </li>
                   </ul>
                 </div>
-              </template>
+              </div>
 
               <!-- Chat Messages -->
               <template x-for="message in messages" :key="message.id">
@@ -123,7 +123,7 @@ const description = 'Get instant answers to your Swiss relocation questions from
             <div class="border-t p-4 flex gap-2">
               <input
                 type="text"
-                x-model="input"
+                x-model.trim="input"
                 @keydown.enter.prevent="sendMessage()"
                 placeholder="Type your message..."
                 class="flex-1 px-4 py-2 border border-accent-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
@@ -131,7 +131,7 @@ const description = 'Get instant answers to your Swiss relocation questions from
               />
               <button 
                 @click="sendMessage()"
-                class="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 disabled:opacity-50 transition-colors"
+                class="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 disabled:opacity-50 transition-colors flex-shrink-0"
                 :disabled="loading || !input.trim()"
               >
                 Send
@@ -149,7 +149,7 @@ const description = 'Get instant answers to your Swiss relocation questions from
   import DOMPurify from 'dompurify';
 
   function chatInterface() {
-    return {
+    const state = {
       messages: [],
       input: '',
       loading: false,
@@ -172,7 +172,7 @@ const description = 'Get instant answers to your Swiss relocation questions from
         });
       },
 
-      formatMessage(content) {
+      formatMessage: (content) => {
         // Convert markdown to HTML and sanitize
         const html = marked(content);
         return DOMPurify.sanitize(html);
@@ -180,7 +180,7 @@ const description = 'Get instant answers to your Swiss relocation questions from
 
       async sendMessage(e) {
         if (e) e.preventDefault();
-        if (!this.input.trim() || this.loading) return;
+        if (!state.input.trim() || state.loading) return;
 
         const userMessage = this.input.trim();
         this.messages.push({ id: Date.now(), role: 'user', content: userMessage });
@@ -188,7 +188,7 @@ const description = 'Get instant answers to your Swiss relocation questions from
         this.loading = true;
 
         // Scroll to bottom
-        this.$nextTick(() => {
+        setTimeout(() => {
           const container = document.getElementById('chat-messages');
           container.scrollTop = container.scrollHeight;
         });
@@ -221,7 +221,7 @@ const description = 'Get instant answers to your Swiss relocation questions from
         } finally {
           this.loading = false;
           // Scroll to bottom again after new message
-          this.$nextTick(() => {
+          setTimeout(() => {
             const container = document.getElementById('chat-messages');
             container.scrollTop = container.scrollHeight;
           });
@@ -238,6 +238,8 @@ const description = 'Get instant answers to your Swiss relocation questions from
         this.sendMessage();
       }
     };
+
+    return state;
   }
 </script>
 
@@ -281,5 +283,9 @@ const description = 'Get instant answers to your Swiss relocation questions from
 
   .prose th {
     @apply bg-accent-50;
+  }
+
+  [x-cloak] {
+    display: none !important;
   }
 </style>
