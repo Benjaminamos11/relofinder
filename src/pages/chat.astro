@@ -261,11 +261,20 @@ const { data: { session } } = await supabase.auth.getSession();
             body: JSON.stringify({ message: userMessage })
           });
 
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-
           const data = await response.json();
+
+          if (!response.ok) {
+            let errorMessage = 'I apologize, but I encountered an error. Please try again.';
+            
+            if (data.error) {
+              errorMessage = data.error;
+              if (data.details) {
+                errorMessage += `: ${data.details}`;
+              }
+            }
+
+            throw new Error(errorMessage);
+          }
           
           if (data.error) {
             throw new Error(data.error);
@@ -281,7 +290,7 @@ const { data: { session } } = await supabase.auth.getSession();
           this.messages.push({
             id: Date.now(),
             role: 'assistant',
-            content: 'I apologize, but I encountered an error. Please try again.'
+            content: error.message
           });
         } finally {
           this.loading = false;
