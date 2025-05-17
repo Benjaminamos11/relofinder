@@ -145,6 +145,9 @@ Choose your next topic:
 [Learn About Topic 1](button:topic1)
 [Explore Topic 2](button:topic2)
 [Get Personalized Help](button:help)`
+  }
+}
+)
 
 ### Related Topics
 [Topic 1](button:topic1)
