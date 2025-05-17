@@ -98,60 +98,87 @@
   }
   
   .chat-message {
-    @apply p-6 rounded-2xl shadow-sm mb-4 max-w-[85%] animate-fade-in transition-all duration-300;
+    @apply p-6 rounded-2xl shadow-sm mb-4 max-w-[85%] transition-all duration-300;
+    animation: slideIn 0.3s ease-out;
   }
   
   .chat-message.user {
-    @apply ml-auto bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-tr-none transform hover:scale-[1.02];
+    @apply ml-auto bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-tr-none;
+    transform-origin: bottom right;
   }
   
   .chat-message.assistant {
-    @apply mr-auto bg-gradient-to-br from-accent-50 to-white text-accent-800 rounded-tl-none transform hover:scale-[1.02];
+    @apply mr-auto bg-gradient-to-br from-accent-50 to-white text-accent-800 rounded-tl-none;
+    transform-origin: bottom left;
   }
   
   .chat-button {
-    @apply inline-flex items-center px-4 py-2 rounded-xl text-white font-medium shadow-sm 
-           hover:shadow-md transition-all duration-300 bg-gradient-to-r from-primary-600 to-primary-700 
-           hover:translate-x-1 mb-2 mr-2 cursor-pointer transform hover:scale-105;
+    @apply inline-flex items-center px-4 py-2 rounded-xl text-white font-medium 
+           shadow-sm hover:shadow-md transition-all duration-300 
+           bg-gradient-to-r from-primary-600 to-primary-700 
+           hover:translate-x-1 mb-2 mr-2 cursor-pointer;
+    transform-origin: center;
+    animation: fadeIn 0.3s ease-out;
   }
   
   .chat-form {
-    @apply bg-white p-6 rounded-xl shadow-sm border border-accent-200 my-4;
+    @apply bg-gradient-to-br from-accent-50 to-white p-6 rounded-xl 
+           shadow-sm border border-accent-200 my-4;
+    animation: slideUp 0.3s ease-out;
   }
   
-  .chat-form input,
-  .chat-form textarea {
-    @apply w-full px-4 py-3 rounded-xl border border-accent-200 
-    focus:ring-2 focus:ring-primary-500 focus:outline-none mb-3;
+  .chat-input {
+    @apply w-full px-4 py-3 rounded-xl border border-accent-200
+           bg-white focus:ring-2 focus:ring-primary-500 
+           focus:outline-none mb-3 transition-all duration-200;
   }
   
-  .chat-form button {
-    @apply px-6 py-3 rounded-xl text-white font-medium shadow-sm 
-    hover:shadow-md transition-all duration-300 bg-gradient-to-r 
-    from-primary-600 to-primary-700;
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   
   .info-box {
-    @apply bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl 
-    border border-blue-200 my-4 text-blue-900;
-  }
-  
-  .warning-box {
-    @apply bg-gradient-to-br from-amber-50 to-white p-6 rounded-xl 
-    border border-amber-200 my-4 text-amber-900;
-  }
-  
-  .success-box {
-    @apply bg-gradient-to-br from-emerald-50 to-white p-6 rounded-xl 
-    border border-emerald-200 my-4 text-emerald-900;
+    @apply bg-gradient-to-br from-blue-50 to-white p-6 rounded-xl
+           border border-blue-200 my-4 text-blue-900 shadow-sm;
+    animation: slideUp 0.3s ease-out;
   }
   
   .next-questions {
-    @apply flex flex-wrap gap-2 mt-4 pt-4 border-t border-accent-200;
+    @apply flex flex-wrap gap-2 mt-4 pt-4 border-t border-accent-200
+           animate-fade-in;
   }
   
   .next-question-button {
-    @apply inline-flex items-center px-4 py-2 rounded-xl text-accent-700 
-    font-medium bg-accent-50 hover:bg-accent-100 transition-all duration-300;
+    @apply inline-flex items-center px-4 py-2 rounded-xl text-accent-700
+           font-medium bg-accent-50 hover:bg-accent-100 
+           transition-all duration-300 hover:translate-x-1;
+    animation: fadeIn 0.3s ease-out forwards;
   }
 }

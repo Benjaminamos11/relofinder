@@ -140,12 +140,7 @@ const { data: { session } } = await supabase.auth.getSession();
               <!-- Chat Messages -->
               <template x-for="message in messages" :key="message.id">
                 <div :class="message.role === 'user' ? 'flex justify-end' : 'flex justify-start'">
-                  <div
-                    :class="message.role === 'user' 
-                      ? 'bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-2xl rounded-tr-none max-w-[80%]' 
-                      : 'bg-gradient-to-br from-accent-50 to-white text-accent-800 rounded-2xl rounded-tl-none max-w-[80%]'"
-                    class="p-6 shadow-sm"
-                  >
+                  <div class="chat-message" :class="message.role === 'user' ? 'user' : 'assistant'">
                     <div x-html="formatMessage(message.content)" class="prose prose-sm max-w-none"></div>
                   </div>
                 </div>
@@ -229,23 +224,23 @@ const { data: { session } } = await supabase.auth.getSession();
       formatMessage(content) {
         try {
           // Process custom buttons
-          content = content.replace(/\[([^\]]+)\]\(button:([^\)]+)\)/g, 
-            '<button class="action-button" data-action="$2">$1</button>'
+          content = content.replace(/\[([^\]]+)\]\(button:([^\)]+)\)/g,
+            '<button class="chat-button" @click="askQuestion(\'$2\')">$1</button>'
           );
           
           // Process contact forms
           content = content.replace(/\[Open Contact Form\]\(form:contact\)/g, `
-            <form class="contact-form">
-              <input type="text" placeholder="Your Name" required>
-              <input type="email" placeholder="Your Email" required>
-              <textarea placeholder="Your Message" rows="4" required></textarea>
-              <button type="submit">Send Message</button>
+            <form class="chat-form" @submit.prevent="submitContactForm">
+              <input type="text" placeholder="Your Name" required class="chat-input">
+              <input type="email" placeholder="Your Email" required class="chat-input">
+              <textarea placeholder="Your Message" rows="4" required class="chat-input"></textarea>
+              <button type="submit" class="chat-button">Send Message</button>
             </form>
           `);
           
           // Process article links
           content = content.replace(/\[([^\]]+)\]\(article:([^\)]+)\)/g,
-            '<a href="/blog/$2" class="action-button">$1</a>'
+            '<a href="/blog/$2" class="chat-button">$1</a>'
           );
 
           const html = marked(content);
@@ -254,7 +249,6 @@ const { data: { session } } = await supabase.auth.getSession();
           console.error('Error formatting message:', error);
           return content; // Fallback to plain text
         }
-      },
 
       async sendMessage() {
         if (!this.input.trim() || this.loading) return;
