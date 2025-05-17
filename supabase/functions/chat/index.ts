@@ -18,7 +18,10 @@ Deno.serve(async (req) => {
     if (!apiKey) {
       console.error('OpenAI API key not found')
       return new Response(
-        JSON.stringify({ error: 'Chat service configuration error' }),
+        JSON.stringify({ 
+          error: 'Chat service configuration error',
+          details: 'OpenAI API key is not configured'
+        }),
         { headers: corsHeaders, status: 500 }
       )
     }
@@ -34,7 +37,10 @@ Deno.serve(async (req) => {
     } catch (e) {
       console.error('Failed to parse request body:', e)
       return new Response(
-        JSON.stringify({ error: 'Invalid request body' }),
+        JSON.stringify({ 
+          error: 'Invalid request body',
+          details: 'The request body could not be parsed as JSON'
+        }),
         { headers: corsHeaders, status: 400 }
       )
     }
@@ -43,7 +49,10 @@ Deno.serve(async (req) => {
     const { message } = body
     if (!message?.trim()) {
       return new Response(
-        JSON.stringify({ error: 'Message is required' }),
+        JSON.stringify({ 
+          error: 'Message is required',
+          details: 'The message field cannot be empty'
+        }),
         { headers: corsHeaders, status: 400 }
       )
     }
@@ -175,41 +184,91 @@ Important warnings or considerations
 [Get Personalized Help](button:help)`
 
     try {
-      // Call OpenAI API
-      const completion = await openai.createChatCompletion({
-        model: 'gpt-4',
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: message.trim() }
-        ]
-      })
+      // Call OpenAI API with retries
+      let attempts = 0;
+      const maxAttempts = 3;
+      let lastError = null;
 
-      // Validate response
-      const responseMessage = completion.data.choices[0]?.message?.content
-      if (!responseMessage) {
-        console.error('No response content from OpenAI')
-        return new Response(
-          JSON.stringify({ error: 'Failed to generate response' }),
-          { headers: corsHeaders, status: 500 }
-        )
+      while (attempts < maxAttempts) {
+        try {
+          const completion = await openai.createChatCompletion({
+            model: 'gpt-4',
+            messages: [
+              { role: 'system', content: systemPrompt },
+              { role: 'user', content: message.trim() }
+            ],
+            temperature: 0.7,
+            max_tokens: 1000
+          })
+
+          // Validate response
+          const responseMessage = completion.data.choices[0]?.message?.content
+          if (!responseMessage) {
+            throw new Error('No response content from OpenAI')
+          }
+
+          // Return successful response
+          return new Response(
+            JSON.stringify({ message: responseMessage }),
+            { headers: corsHeaders }
+          )
+        } catch (error) {
+          lastError = error
+          
+          // Only retry on specific error types
+          if (error.response?.status === 429 || // Rate limit
+              error.response?.status === 503 || // Service unavailable
+              error.code === 'ECONNRESET' ||    // Connection reset
+              error.code === 'ETIMEDOUT') {     // Timeout
+            attempts++
+            if (attempts < maxAttempts) {
+              // Exponential backoff
+              await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempts) * 1000))
+              continue
+            }
+          } else {
+            // Don't retry on other errors
+            break
+          }
+        }
       }
 
-      // Return successful response
+      // If we get here, all attempts failed
+      console.error('OpenAI API error after retries:', lastError)
+      
+      let errorMessage = 'Failed to generate AI response'
+      let errorDetails = ''
+
+      if (lastError.response?.data?.error?.message) {
+        errorDetails = lastError.response.data.error.message
+      } else if (lastError.message) {
+        errorDetails = lastError.message
+      }
+
       return new Response(
-        JSON.stringify({ message: responseMessage }),
-        { headers: corsHeaders }
+        JSON.stringify({ 
+          error: errorMessage,
+          details: errorDetails
+        }),
+        { headers: corsHeaders, status: 500 }
       )
     } catch (error) {
       console.error('OpenAI API error:', error)
       return new Response(
-        JSON.stringify({ error: 'Failed to generate AI response' }),
+        JSON.stringify({ 
+          error: 'Failed to generate AI response',
+          details: error.message
+        }),
         { headers: corsHeaders, status: 500 }
       )
     }
   } catch (error) {
     console.error('Chat function error:', error)
     return new Response(
-      JSON.stringify({ error: 'An error occurred while processing your request' }),
+      JSON.stringify({ 
+        error: 'An error occurred while processing your request',
+        details: error.message
+      }),
       { headers: corsHeaders, status: 500 }
     )
   }
