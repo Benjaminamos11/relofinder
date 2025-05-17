@@ -204,7 +204,7 @@ const { data: { session } } = await supabase.auth.getSession();
   });
 
   window.chatInterface = function() {
-    return {
+    const state = {
       messages: [],
       input: '',
       loading: false,
@@ -240,7 +240,7 @@ const { data: { session } } = await supabase.auth.getSession();
         }
       },
 
-      sendMessage: async () => {
+      sendMessage: async function() {
         if (!this.input.trim() || this.loading) return;
 
         const userMessage = this.input.trim();
@@ -289,7 +289,7 @@ const { data: { session } } = await supabase.auth.getSession();
         }
       },
 
-      scrollToBottom: () => {
+      scrollToBottom: function() {
         setTimeout(() => {
           const container = document.getElementById('chat-messages');
           if (container) {
@@ -301,17 +301,19 @@ const { data: { session } } = await supabase.auth.getSession();
         }, 100);
       },
 
-      startNewChat: () => {
+      startNewChat: function() {
         this.messages = [];
         this.input = '';
         this.error = null;
       },
 
-      askQuestion: (question) => {
+      askQuestion: function(question) {
         this.input = question;
         this.sendMessage();
       }
     };
+
+    return state;
   };
 
   window.Alpine = Alpine;
