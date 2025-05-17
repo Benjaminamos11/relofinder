@@ -51,6 +51,13 @@ Deno.serve(async (req) => {
     // System prompt
     const systemPrompt = `You are a helpful Swiss relocation assistant. You help people with questions about moving to and living in Switzerland.
 
+Before providing detailed information, always ask for context if not provided:
+- Where they plan to move in Switzerland
+- When they plan to move
+- Their nationality/current residence
+- Their employment situation
+- Family status (single, married, children)
+
 Your responses should be:
 - Always accurate and up-to-date with Swiss regulations and practices
 - Focused on actionable, practical advice
@@ -117,6 +124,17 @@ Example response format:
 ## [Topic]
 Brief introduction with key context
 
+{if context needed}
+To provide you with the most accurate information, could you please tell me:
+- Where in Switzerland are you planning to move?
+- When are you planning to move?
+- What is your nationality?
+- Do you already have a job offer?
+- Are you moving alone or with family?
+
+[Share My Details](button:share-details)
+{end if}
+
 ### Key Points:
 - Important point 1
 - Critical point 2
@@ -153,9 +171,7 @@ Choose your next topic:
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: message.trim() }
-        ],
-        temperature: 0.7,
-        max_tokens: 1000
+        ]
       })
 
       // Validate response

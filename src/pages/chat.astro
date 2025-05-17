@@ -22,7 +22,7 @@ const { data: { session } } = await supabase.auth.getSession();
 
       <!-- Chat Interface -->
       <div class="bg-white rounded-xl shadow-xl overflow-hidden" x-data="chatInterface()">
-        <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[600px]">
+        <div class="grid grid-cols-1 lg:grid-cols-12 h-[600px]">
           <!-- Sidebar -->
           <div class="lg:col-span-3 bg-accent-50/50 p-6 border-r border-accent-100">
             <div class="mb-6">
@@ -68,9 +68,9 @@ const { data: { session } } = await supabase.auth.getSession();
           </div>
 
           <!-- Main Chat Area -->
-          <div class="lg:col-span-9 flex flex-col">
+          <div class="lg:col-span-9 flex flex-col h-full">
             <!-- Messages -->
-            <div class="flex-1 p-4 overflow-y-auto space-y-4" id="chat-messages">
+            <div class="flex-1 p-4 overflow-y-auto space-y-4 h-[calc(600px-80px)]" id="chat-messages">
               <!-- Welcome Message -->
               <template x-if="messages.length === 0">
                 <div class="bg-gradient-to-br from-accent-50 to-white p-8 rounded-2xl shadow-sm">
@@ -166,7 +166,7 @@ const { data: { session } } = await supabase.auth.getSession();
             </div>
 
             <!-- Input Form -->
-            <div class="border-t p-4">
+            <div class="border-t p-4 bg-white">
               <form @submit.prevent="sendMessage" class="flex gap-2">
                 <input
                   type="text"
