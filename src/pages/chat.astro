@@ -117,25 +117,22 @@ const { data: { session } } = await supabase.auth.getSession();
                             <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/>
                             <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"/>
                           </svg>
-                        </div>
-                        <span class="font-semibold text-accent-900">Banking & Insurance</span>
-                      </div>
-                      <p class="text-sm text-accent-600 pl-11">Set up your financial life in Switzerland</p>
-                    </button>
+                  <div class="grid grid-cols-2 gap-4">
                     <button 
-                      @click="askQuestion('Tell me about education in Switzerland')"
+                      @click="askQuestion('Tell me about the Swiss visa process')"
                       class="group text-left p-4 rounded-xl bg-white shadow-sm hover:shadow-md border border-accent-100 hover:border-primary-200 transition-all duration-300"
                     >
                       <div class="flex items-center mb-2">
                         <div class="w-8 h-8 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm3 1h6v4H7V5zm6 6H7v2h6v-2z" clip-rule="evenodd"/>
                           </svg>
                         </div>
-                        <span class="font-semibold text-accent-900">Education</span>
+                        <span class="font-semibold text-accent-900">Visa Process</span>
                       </div>
-                      <p class="text-sm text-accent-600 pl-11">Explore schools & universities</p>
+                      <p class="text-sm text-accent-600 pl-11">Learn about permits & documentation</p>
                     </button>
+                    <!-- Add similar buttons for other topics -->
                   </div>
                 </div>
               </template>
@@ -334,6 +331,37 @@ const { data: { session } } = await supabase.auth.getSession();
 <style>
   .prose {
     @apply text-current;
+  }
+  
+  .prose .action-button {
+    @apply inline-flex items-center px-4 py-2 rounded-xl font-medium text-white shadow-sm hover:shadow-md transition-all no-underline border-none mb-3 mr-3;
+    background: linear-gradient(to right, #cb356b, #bd3f32);
+  }
+  
+  .prose .contact-form {
+    @apply bg-gradient-to-br from-accent-50 to-white p-6 rounded-xl border border-accent-200 my-6 shadow-sm;
+  }
+  
+  .prose .contact-form input,
+  .prose .contact-form textarea {
+    @apply w-full px-4 py-3 border border-accent-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 mb-4 bg-white;
+  }
+  
+  .prose .contact-form button {
+    @apply px-6 py-3 rounded-xl font-medium text-white shadow-sm hover:shadow-md transition-all;
+    background: linear-gradient(to right, #cb356b, #bd3f32);
+  }
+  
+  .prose .info-box {
+    @apply bg-gradient-to-br from-accent-50 to-white p-6 rounded-xl border border-accent-200 my-6 shadow-sm;
+  }
+  
+  .prose .warning-box {
+    @apply bg-gradient-to-br from-yellow-50 to-white p-6 rounded-xl border border-yellow-200 my-6 shadow-sm text-yellow-800;
+  }
+  
+  .prose .success-box {
+    @apply bg-gradient-to-br from-green-50 to-white p-6 rounded-xl border border-green-200 my-6 shadow-sm text-green-800;
   }
   
   .prose .action-button {
