@@ -68,9 +68,9 @@ const { data: { session } } = await supabase.auth.getSession();
           </div>
 
           <!-- Main Chat Area -->
-          <div class="lg:col-span-9 flex flex-col h-full">
+          <div class="lg:col-span-9 flex flex-col h-[600px]">
             <!-- Messages -->
-            <div class="flex-1 p-4 overflow-y-auto space-y-4 h-[calc(600px-80px)]" id="chat-messages">
+            <div class="flex-1 p-4 overflow-y-auto space-y-4" id="chat-messages" style="height: calc(100% - 80px);">
               <!-- Welcome Message -->
               <template x-if="messages.length === 0">
                 <div class="bg-gradient-to-br from-accent-50 to-white p-8 rounded-2xl shadow-sm">
@@ -169,10 +169,11 @@ const { data: { session } } = await supabase.auth.getSession();
             <div class="border-t p-4 bg-white">
               <form @submit.prevent="sendMessage" class="flex gap-2">
                 <input
+                  id="chat-input"
                   type="text"
                   x-model="input"
                   placeholder="Type your message..."
-                  class="flex-1 px-4 py-3 bg-accent-50/30 border border-accent-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 placeholder-accent-400"
+                  class="flex-1 px-4 py-3 bg-accent-50/30 border border-accent-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 placeholder-accent-400 sticky bottom-0"
                   :disabled="loading"
                 />
                 <button 
@@ -307,7 +308,12 @@ const { data: { session } } = await supabase.auth.getSession();
       scrollToBottom() {
         setTimeout(() => {
           const container = document.getElementById('chat-messages');
-          container.scrollTop = container.scrollHeight;
+          if (container) {
+            container.scrollTop = container.scrollHeight;
+            // Keep input visible
+            const input = document.getElementById('chat-input');
+            if (input) input.scrollIntoView(false);
+          }
         }, 100);
       },
 

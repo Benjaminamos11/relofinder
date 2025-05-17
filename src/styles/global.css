@@ -98,21 +98,21 @@
   }
   
   .chat-message {
-    @apply p-6 rounded-2xl shadow-sm mb-4 max-w-[85%] animate-fade-in;
+    @apply p-6 rounded-2xl shadow-sm mb-4 max-w-[85%] animate-fade-in transition-all duration-300;
   }
   
   .chat-message.user {
-    @apply ml-auto bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-tr-none;
+    @apply ml-auto bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-tr-none transform hover:scale-[1.02];
   }
   
   .chat-message.assistant {
-    @apply mr-auto bg-gradient-to-br from-accent-50 to-white text-accent-800 rounded-tl-none;
+    @apply mr-auto bg-gradient-to-br from-accent-50 to-white text-accent-800 rounded-tl-none transform hover:scale-[1.02];
   }
   
   .chat-button {
     @apply inline-flex items-center px-4 py-2 rounded-xl text-white font-medium shadow-sm 
-    hover:shadow-md transition-all duration-300 bg-gradient-to-r from-primary-600 to-primary-700 
-    hover:translate-x-1 mb-2 mr-2 cursor-pointer;
+           hover:shadow-md transition-all duration-300 bg-gradient-to-r from-primary-600 to-primary-700 
+           hover:translate-x-1 mb-2 mr-2 cursor-pointer transform hover:scale-105;
   }
   
   .chat-form {
