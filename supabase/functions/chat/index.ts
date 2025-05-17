@@ -162,7 +162,7 @@ Choose your next topic:
           { role: 'user', content: message.trim() }
         ],
         temperature: 0.7,
-        max_tokens: 500
+        max_tokens: 1000
       })
 
       // Validate response

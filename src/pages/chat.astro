@@ -73,27 +73,68 @@ const { data: { session } } = await supabase.auth.getSession();
             <div class="flex-1 p-4 overflow-y-auto space-y-4" id="chat-messages">
               <!-- Welcome Message -->
               <template x-if="messages.length === 0">
-                <div class="bg-accent-50/50 p-6 rounded-xl">
-                  <h2 class="text-xl font-semibold mb-3">👋 Welcome to ReloFinder's AI Assistant!</h2>
+                <div class="bg-gradient-to-br from-accent-50 to-white p-8 rounded-2xl shadow-sm">
+                  <h2 class="text-2xl font-bold mb-4">👋 Welcome to ReloFinder's AI Assistant!</h2>
                   <p class="text-accent-600 mb-4">
                     I'm here to help you with your relocation to Switzerland. I can provide information about:
                   </p>
-                  <div class="grid grid-cols-2 gap-3">
-                    <button class="text-left p-3 text-sm rounded-lg bg-white shadow-sm border border-accent-100 hover:border-accent-300 transition-all">
-                      <span class="block font-medium text-accent-800 mb-1">Visa Process</span>
-                      <span class="text-xs text-accent-500">Permits & documentation</span>
+                  <div class="grid grid-cols-2 gap-4">
+                    <button 
+                      @click="askQuestion('Tell me about the Swiss visa process')"
+                      class="group text-left p-4 rounded-xl bg-white shadow-sm hover:shadow-md border border-accent-100 hover:border-primary-200 transition-all duration-300"
+                    >
+                      <div class="flex items-center mb-2">
+                        <div class="w-8 h-8 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm3 1h6v4H7V5zm6 6H7v2h6v-2z" clip-rule="evenodd"/>
+                          </svg>
+                        </div>
+                        <span class="font-semibold text-accent-900">Visa Process</span>
+                      </div>
+                      <p class="text-sm text-accent-600 pl-11">Learn about permits & documentation</p>
                     </button>
-                    <button class="text-left p-3 text-sm rounded-lg bg-white shadow-sm border border-accent-100 hover:border-accent-300 transition-all">
-                      <span class="block font-medium text-accent-800 mb-1">Housing Search</span>
-                      <span class="text-xs text-accent-500">Find your new home</span>
+                    <button 
+                      @click="askQuestion('How does housing work in Switzerland?')"
+                      class="group text-left p-4 rounded-xl bg-white shadow-sm hover:shadow-md border border-accent-100 hover:border-primary-200 transition-all duration-300"
+                    >
+                      <div class="flex items-center mb-2">
+                        <div class="w-8 h-8 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                          </svg>
+                        </div>
+                        <span class="font-semibold text-accent-900">Housing Search</span>
+                      </div>
+                      <p class="text-sm text-accent-600 pl-11">Find your perfect home in Switzerland</p>
                     </button>
-                    <button class="text-left p-3 text-sm rounded-lg bg-white shadow-sm border border-accent-100 hover:border-accent-300 transition-all">
-                      <span class="block font-medium text-accent-800 mb-1">Banking & Insurance</span>
-                      <span class="text-xs text-accent-500">Financial setup</span>
+                    <button 
+                      @click="askQuestion('How do I set up banking in Switzerland?')"
+                      class="group text-left p-4 rounded-xl bg-white shadow-sm hover:shadow-md border border-accent-100 hover:border-primary-200 transition-all duration-300"
+                    >
+                      <div class="flex items-center mb-2">
+                        <div class="w-8 h-8 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/>
+                            <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"/>
+                          </svg>
+                        </div>
+                        <span class="font-semibold text-accent-900">Banking & Insurance</span>
+                      </div>
+                      <p class="text-sm text-accent-600 pl-11">Set up your financial life in Switzerland</p>
                     </button>
-                    <button class="text-left p-3 text-sm rounded-lg bg-white shadow-sm border border-accent-100 hover:border-accent-300 transition-all">
-                      <span class="block font-medium text-accent-800 mb-1">Education</span>
-                      <span class="text-xs text-accent-500">Schools & universities</span>
+                    <button 
+                      @click="askQuestion('Tell me about education in Switzerland')"
+                      class="group text-left p-4 rounded-xl bg-white shadow-sm hover:shadow-md border border-accent-100 hover:border-primary-200 transition-all duration-300"
+                    >
+                      <div class="flex items-center mb-2">
+                        <div class="w-8 h-8 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                          </svg>
+                        </div>
+                        <span class="font-semibold text-accent-900">Education</span>
+                      </div>
+                      <p class="text-sm text-accent-600 pl-11">Explore schools & universities</p>
                     </button>
                   </div>
                 </div>
@@ -104,9 +145,9 @@ const { data: { session } } = await supabase.auth.getSession();
                 <div :class="message.role === 'user' ? 'flex justify-end' : 'flex justify-start'">
                   <div
                     :class="message.role === 'user' 
-                      ? 'bg-primary-600 text-white rounded-2xl rounded-tr-none max-w-[80%]' 
-                      : 'bg-accent-50/50 text-accent-800 rounded-2xl rounded-tl-none max-w-[80%]'"
-                    class="p-4 shadow-sm"
+                      ? 'bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-2xl rounded-tr-none max-w-[80%]' 
+                      : 'bg-gradient-to-br from-accent-50 to-white text-accent-800 rounded-2xl rounded-tl-none max-w-[80%]'"
+                    class="p-6 shadow-sm"
                   >
                     <div x-html="formatMessage(message.content)" class="prose prose-sm max-w-none"></div>
                   </div>
@@ -134,12 +175,12 @@ const { data: { session } } = await supabase.auth.getSession();
                   type="text"
                   x-model="input"
                   placeholder="Type your message..."
-                  class="flex-1 px-4 py-2 bg-accent-50/50 border border-accent-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  class="flex-1 px-4 py-3 bg-accent-50/30 border border-accent-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 placeholder-accent-400"
                   :disabled="loading"
                 />
                 <button 
                   type="submit"
-                  class="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 disabled:opacity-50 transition-all flex-shrink-0 shadow-sm"
+                  class="bg-gradient-to-r from-primary-600 to-primary-700 text-white px-6 py-3 rounded-xl hover:shadow-md disabled:opacity-50 transition-all flex-shrink-0"
                   :disabled="loading || !input.trim()"
                 >
                   Send
@@ -296,87 +337,88 @@ const { data: { session } } = await supabase.auth.getSession();
   }
   
   .prose .action-button {
-    @apply inline-flex items-center px-4 py-2 rounded-lg font-medium text-white shadow-sm transition-colors no-underline border-none mb-2 mr-2;
+    @apply inline-flex items-center px-4 py-2 rounded-xl font-medium text-white shadow-sm hover:shadow-md transition-all no-underline border-none mb-3 mr-3;
     background: linear-gradient(to right, #cb356b, #bd3f32);
   }
   
   .prose .contact-form {
-    @apply bg-white p-6 rounded-xl border border-accent-200 my-4 shadow-sm;
+    @apply bg-gradient-to-br from-accent-50 to-white p-6 rounded-xl border border-accent-200 my-6 shadow-sm;
   }
   
   .prose .contact-form input,
   .prose .contact-form textarea {
-    @apply w-full px-4 py-2 border border-accent-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 mb-4;
+    @apply w-full px-4 py-3 border border-accent-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 mb-4 bg-white;
   }
   
   .prose .contact-form button {
-    @apply px-4 py-2 rounded-lg font-medium text-white shadow-sm transition-colors;
+    @apply px-6 py-3 rounded-xl font-medium text-white shadow-sm hover:shadow-md transition-all;
     background: linear-gradient(to right, #cb356b, #bd3f32);
   }
   
   .prose .info-box {
-    @apply bg-accent-50/50 p-4 rounded-lg border border-accent-200 my-4;
+    @apply bg-gradient-to-br from-accent-50 to-white p-6 rounded-xl border border-accent-200 my-6 shadow-sm;
   }
   
   .prose .warning-box {
-    @apply bg-yellow-50 p-4 rounded-lg border border-yellow-200 my-4 text-yellow-800;
+    @apply bg-gradient-to-br from-yellow-50 to-white p-6 rounded-xl border border-yellow-200 my-6 shadow-sm text-yellow-800;
   }
   
   .prose .success-box {
-    @apply bg-green-50 p-4 rounded-lg border border-green-200 my-4 text-green-800;
+    @apply bg-gradient-to-br from-green-50 to-white p-6 rounded-xl border border-green-200 my-6 shadow-sm text-green-800;
   }
   
   .prose h1 {
-    @apply text-2xl font-bold mb-4 mt-6;
+    @apply text-3xl font-bold mb-6 mt-8;
   }
   
   .prose h2 {
-    @apply text-xl font-bold mb-3 mt-5;
+    @apply text-2xl font-bold mb-4 mt-6;
   }
   
   .prose h3 {
-    @apply text-lg font-bold mb-2 mt-4;
+    @apply text-xl font-bold mb-3 mt-5;
   }
   
   .prose a {
-    @apply text-primary-600 hover:text-primary-700 font-medium no-underline border-b border-primary-200 hover:border-primary-600 transition-colors;
+    @apply text-primary-600 hover:text-primary-700 font-medium no-underline border-b-2 border-primary-100 hover:border-primary-500 transition-all;
   }
 
   .prose code {
-    @apply bg-accent-100/50 px-2 py-0.5 rounded-md text-sm font-mono text-accent-800;
+    @apply bg-accent-100/50 px-3 py-1 rounded-lg text-sm font-mono text-accent-800;
   }
 
   .prose pre {
-    @apply bg-accent-800 text-white p-4 rounded-lg overflow-x-auto my-4;
+    @apply bg-accent-900 text-white p-6 rounded-xl overflow-x-auto my-6 shadow-sm;
   }
 
   .prose blockquote {
-    @apply border-l-4 border-primary-200 bg-primary-50/50 pl-4 py-2 rounded-r-lg italic my-4;
+    @apply border-l-4 border-primary-300 bg-gradient-to-r from-primary-50 to-white pl-6 py-4 rounded-r-xl italic my-6;
   }
 
   .prose ul {
-    @apply list-disc pl-6 my-4 space-y-2;
+    @apply list-disc pl-8 my-6 space-y-3;
   }
 
   .prose ol {
-    @apply list-decimal pl-6 my-4 space-y-2;
+    @apply list-decimal pl-8 my-6 space-y-3;
   }
 
   .prose table {
-    @apply w-full border-collapse my-4;
+    @apply w-full border-collapse my-6 bg-white rounded-xl overflow-hidden shadow-sm;
   }
 
   .prose th,
   .prose td {
-    @apply border border-accent-200 px-4 py-2 text-sm;
+    @apply border border-accent-200 px-6 py-3 text-sm;
   }
 
   .prose th {
-    @apply bg-accent-50/50 font-medium;
+    @apply bg-gradient-to-br from-accent-50 to-white font-semibold;
   }
 
   .prose .btn {
-    @apply inline-flex items-center px-4 py-2 rounded-lg font-medium text-white bg-primary-600 hover:bg-primary-700 transition-colors no-underline border-none;
+    @apply inline-flex items-center px-6 py-3 rounded-xl font-medium text-white shadow-sm hover:shadow-md transition-all no-underline border-none;
+    background: linear-gradient(to right, #cb356b, #bd3f32);
   }
 
   .prose .contact-form {
