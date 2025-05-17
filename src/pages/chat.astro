@@ -117,22 +117,11 @@ const { data: { session } } = await supabase.auth.getSession();
                             <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/>
                             <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"/>
                           </svg>
-                  <div class="grid grid-cols-2 gap-4">
-                    <button 
-                      @click="askQuestion('Tell me about the Swiss visa process')"
-                      class="group text-left p-4 rounded-xl bg-white shadow-sm hover:shadow-md border border-accent-100 hover:border-primary-200 transition-all duration-300"
-                    >
-                      <div class="flex items-center mb-2">
-                        <div class="w-8 h-8 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm3 1h6v4H7V5zm6 6H7v2h6v-2z" clip-rule="evenodd"/>
-                          </svg>
                         </div>
-                        <span class="font-semibold text-accent-900">Visa Process</span>
+                        <span class="font-semibold text-accent-900">Banking Setup</span>
                       </div>
-                      <p class="text-sm text-accent-600 pl-11">Learn about permits & documentation</p>
+                      <p class="text-sm text-accent-600 pl-11">Open your Swiss bank account</p>
                     </button>
-                    <!-- Add similar buttons for other topics -->
                   </div>
                 </div>
               </template>
@@ -221,7 +210,7 @@ const { data: { session } } = await supabase.auth.getSession();
       loading: false,
       error: null,
       
-      formatMessage(content) {
+      formatMessage: (content) => {
         try {
           // Process custom buttons
           content = content.replace(/\[([^\]]+)\]\(button:([^\)]+)\)/g,
@@ -249,8 +238,9 @@ const { data: { session } } = await supabase.auth.getSession();
           console.error('Error formatting message:', error);
           return content; // Fallback to plain text
         }
+      },
 
-      async sendMessage() {
+      sendMessage: async () => {
         if (!this.input.trim() || this.loading) return;
 
         const userMessage = this.input.trim();
@@ -299,7 +289,7 @@ const { data: { session } } = await supabase.auth.getSession();
         }
       },
 
-      scrollToBottom() {
+      scrollToBottom: () => {
         setTimeout(() => {
           const container = document.getElementById('chat-messages');
           if (container) {
@@ -311,13 +301,13 @@ const { data: { session } } = await supabase.auth.getSession();
         }, 100);
       },
 
-      startNewChat() {
+      startNewChat: () => {
         this.messages = [];
         this.input = '';
         this.error = null;
       },
 
-      askQuestion(question) {
+      askQuestion: (question) => {
         this.input = question;
         this.sendMessage();
       }
@@ -331,37 +321,6 @@ const { data: { session } } = await supabase.auth.getSession();
 <style>
   .prose {
     @apply text-current;
-  }
-  
-  .prose .action-button {
-    @apply inline-flex items-center px-4 py-2 rounded-xl font-medium text-white shadow-sm hover:shadow-md transition-all no-underline border-none mb-3 mr-3;
-    background: linear-gradient(to right, #cb356b, #bd3f32);
-  }
-  
-  .prose .contact-form {
-    @apply bg-gradient-to-br from-accent-50 to-white p-6 rounded-xl border border-accent-200 my-6 shadow-sm;
-  }
-  
-  .prose .contact-form input,
-  .prose .contact-form textarea {
-    @apply w-full px-4 py-3 border border-accent-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 mb-4 bg-white;
-  }
-  
-  .prose .contact-form button {
-    @apply px-6 py-3 rounded-xl font-medium text-white shadow-sm hover:shadow-md transition-all;
-    background: linear-gradient(to right, #cb356b, #bd3f32);
-  }
-  
-  .prose .info-box {
-    @apply bg-gradient-to-br from-accent-50 to-white p-6 rounded-xl border border-accent-200 my-6 shadow-sm;
-  }
-  
-  .prose .warning-box {
-    @apply bg-gradient-to-br from-yellow-50 to-white p-6 rounded-xl border border-yellow-200 my-6 shadow-sm text-yellow-800;
-  }
-  
-  .prose .success-box {
-    @apply bg-gradient-to-br from-green-50 to-white p-6 rounded-xl border border-green-200 my-6 shadow-sm text-green-800;
   }
   
   .prose .action-button {
