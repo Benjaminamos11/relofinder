@@ -173,10 +173,11 @@ const { data: { session } } = await supabase.auth.getSession();
   DOMPurify.setConfig({
     ALLOWED_TAGS: [
       'p', 'br', 'b', 'i', 'em', 'strong', 'a', 'ul', 'ol', 'li',
-      'h1', 'h2', 'h3', 'h4', 'code', 'pre', 'blockquote', 'hr',
-      'table', 'thead', 'tbody', 'tr', 'th', 'td'
+      'h1', 'h2', 'h3', 'h4', 'code', 'pre', 'blockquote', 'hr', 'div',
+      'table', 'thead', 'tbody', 'tr', 'th', 'td', 'form', 'input',
+      'textarea', 'button', 'label', 'select', 'option'
     ],
-    ALLOWED_ATTR: ['href', 'target', 'class', 'id']
+    ALLOWED_ATTR: ['href', 'target', 'class', 'id', 'type', 'placeholder', 'required', 'data-action']
   });
 
   window.chatInterface = function() {
@@ -188,6 +189,26 @@ const { data: { session } } = await supabase.auth.getSession();
       
       formatMessage(content) {
         try {
+          // Process custom buttons
+          content = content.replace(/\[([^\]]+)\]\(button:([^\)]+)\)/g, 
+            '<button class="action-button" data-action="$2">$1</button>'
+          );
+          
+          // Process contact forms
+          content = content.replace(/\[Open Contact Form\]\(form:contact\)/g, `
+            <form class="contact-form">
+              <input type="text" placeholder="Your Name" required>
+              <input type="email" placeholder="Your Email" required>
+              <textarea placeholder="Your Message" rows="4" required></textarea>
+              <button type="submit">Send Message</button>
+            </form>
+          `);
+          
+          // Process article links
+          content = content.replace(/\[([^\]]+)\]\(article:([^\)]+)\)/g,
+            '<a href="/blog/$2" class="action-button">$1</a>'
+          );
+
           const html = marked(content);
           return DOMPurify.sanitize(html);
         } catch (error) {
@@ -272,6 +293,37 @@ const { data: { session } } = await supabase.auth.getSession();
 <style>
   .prose {
     @apply text-current;
+  }
+  
+  .prose .action-button {
+    @apply inline-flex items-center px-4 py-2 rounded-lg font-medium text-white shadow-sm transition-colors no-underline border-none mb-2 mr-2;
+    background: linear-gradient(to right, #cb356b, #bd3f32);
+  }
+  
+  .prose .contact-form {
+    @apply bg-white p-6 rounded-xl border border-accent-200 my-4 shadow-sm;
+  }
+  
+  .prose .contact-form input,
+  .prose .contact-form textarea {
+    @apply w-full px-4 py-2 border border-accent-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 mb-4;
+  }
+  
+  .prose .contact-form button {
+    @apply px-4 py-2 rounded-lg font-medium text-white shadow-sm transition-colors;
+    background: linear-gradient(to right, #cb356b, #bd3f32);
+  }
+  
+  .prose .info-box {
+    @apply bg-accent-50/50 p-4 rounded-lg border border-accent-200 my-4;
+  }
+  
+  .prose .warning-box {
+    @apply bg-yellow-50 p-4 rounded-lg border border-yellow-200 my-4 text-yellow-800;
+  }
+  
+  .prose .success-box {
+    @apply bg-green-50 p-4 rounded-lg border border-green-200 my-4 text-green-800;
   }
   
   .prose h1 {
