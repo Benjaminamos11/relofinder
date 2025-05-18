@@ -121,23 +121,14 @@ const description = 'Explore regions across Switzerland to find your ideal locat
 
 <Layout title={title} description={description}>
   <!-- Hero Section -->
-  <section class="relative min-h-[600px] flex items-center py-16 md:py-24 overflow-hidden">
-    <div class="absolute inset-0">
-      <div class="absolute inset-0 bg-gradient-to-br from-accent-900/90 to-accent-900/70"></div>
-      <img 
-        src="https://images.pexels.com/photos/290386/pexels-photo-290386.jpeg?auto=compress&cs=tinysrgb&w=1920" 
-        alt="Swiss regions" 
-        class="w-full h-full object-cover"
-      />
-    </div>
-    
+  <section class="min-h-[600px] flex items-stretch">
     <div class="container">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 relative">
-        <div class="text-white">
+      <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
+        <div class="flex flex-col justify-center py-16 md:py-24 pr-8">
           <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Compare Swiss Regions
           </h1>
-          <p class="text-xl text-white/90 mb-8 max-w-xl">
+          <p class="text-xl text-accent-600 mb-8 max-w-xl">
             Get expert guidance on choosing the perfect Swiss location—completely free. Our comparison tools help you understand each region's unique characteristics and find your ideal home.
           </p>
           <a href="/contact" class="btn-primary">
@@ -148,7 +139,8 @@ const description = 'Explore regions across Switzerland to find your ideal locat
           </a>
         </div>
 
-        <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
+        <div class="bg-gradient-to-br from-primary-600 to-primary-700 flex items-center p-8 lg:p-12">
+          <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl w-full">
           <h2 class="text-2xl font-bold mb-6 text-accent-900">Why compare regions with us?</h2>
           <div class="space-y-6">
             <div class="flex gap-4">
