@@ -196,11 +196,11 @@ const { data: { session } } = await supabase.auth.getSession();
   DOMPurify.setConfig({
     ALLOWED_TAGS: [
       'p', 'br', 'b', 'i', 'em', 'strong', 'a', 'ul', 'ol', 'li',
-      'h1', 'h2', 'h3', 'h4', 'code', 'pre', 'blockquote', 'hr', 'div',
+      'h1', 'h2', 'h3', 'h4', 'code', 'pre', 'blockquote', 'hr', 'div', 
       'table', 'thead', 'tbody', 'tr', 'th', 'td', 'form', 'input',
       'textarea', 'button', 'label', 'select', 'option'
     ],
-    ALLOWED_ATTR: ['href', 'target', 'class', 'id', 'type', 'placeholder', 'required', 'data-action']
+    ALLOWED_ATTR: ['href', 'target', 'class', 'id', 'type', 'placeholder', 'required', 'data-action', '@click', '@submit.prevent']
   });
 
   window.chatInterface = function() {
@@ -213,27 +213,35 @@ const { data: { session } } = await supabase.auth.getSession();
       formatMessage: (content) => {
         try {
           // Process custom buttons
-          content = content.replace(/\[([^\]]+)\]\(button:([^\)]+)\)/g,
-            '<button class="chat-button" @click="askQuestion(\'$2\')">$1</button>'
+          content = content.replace(/\[([^\]]+)\]\(button:([^\)]+)\)/g, (_, text, action) =>
+            `<button class="chat-button" @click="askQuestion('${action.replace(/'/g, "\\'")}')">${text}</button>`
           );
           
           // Process contact forms
-          content = content.replace(/\[Open Contact Form\]\(form:contact\)/g, `
-            <form class="chat-form" @submit.prevent="submitContactForm">
-              <input type="text" placeholder="Your Name" required class="chat-input">
-              <input type="email" placeholder="Your Email" required class="chat-input">
-              <textarea placeholder="Your Message" rows="4" required class="chat-input"></textarea>
-              <button type="submit" class="chat-button">Send Message</button>
-            </form>
-          `);
+          content = content.replace(/\[Open Contact Form\]\(form:contact\)/g, () => {
+            const formHtml = `
+              <form class="chat-form" @submit.prevent="submitContactForm">
+                <input type="text" placeholder="Your Name" required class="chat-input">
+                <input type="email" placeholder="Your Email" required class="chat-input">
+                <textarea placeholder="Your Message" rows="4" required class="chat-input"></textarea>
+                <button type="submit" class="chat-button">Send Message</button>
+              </form>
+            `;
+            return DOMPurify.sanitize(formHtml);
+          });
           
           // Process article links
           content = content.replace(/\[([^\]]+)\]\(article:([^\)]+)\)/g,
             '<a href="/blog/$2" class="chat-button">$1</a>'
           );
 
+          // Process markdown and sanitize
           const html = marked(content);
-          return DOMPurify.sanitize(html);
+          const sanitized = DOMPurify.sanitize(html, {
+            ADD_ATTR: ['@click', '@submit.prevent']
+          });
+          
+          return sanitized;
         } catch (error) {
           console.error('Error formatting message:', error);
           return content; // Fallback to plain text
@@ -296,6 +304,20 @@ const { data: { session } } = await supabase.auth.getSession();
           this.loading = false;
           this.scrollToBottom();
         }
+      },
+
+      submitContactForm: async function(event) {
+        const form = event.target;
+        const formData = new FormData(form);
+        
+        this.messages.push({
+          id: Date.now(),
+          role: 'user',
+          content: `Contact Form Submission:\nName: ${formData.get('name')}\nEmail: ${formData.get('email')}\nMessage: ${formData.get('message')}`
+        });
+        
+        form.reset();
+        this.scrollToBottom();
       },
 
       scrollToBottom: function() {
@@ -425,5 +447,17 @@ const { data: { session } } = await supabase.auth.getSession();
 
   [x-cloak] {
     display: none !important;
+  }
+
+  .chat-form {
+    @apply bg-gradient-to-br from-accent-50 to-white p-6 rounded-xl 
+           shadow-sm border border-accent-200 my-4;
+  }
+  
+  .chat-input {
+    @apply w-full px-4 py-3 rounded-xl border border-accent-200
+           bg-white focus:ring-2 focus:ring-primary-500 
+           focus:outline-none mb-3 transition-all duration-200
+           placeholder-accent-400;
   }
 </style>
