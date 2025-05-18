@@ -121,35 +121,70 @@ const description = 'Explore regions across Switzerland to find your ideal locat
 
 <Layout title={title} description={description}>
   <!-- Hero Section -->
-  <section class="py-16 md:py-24 relative">
-    <div class="absolute inset-0 bg-accent-900 opacity-70 z-0">
-      <div class="absolute inset-0" style="background-image: url('https://images.pexels.com/photos/290386/pexels-photo-290386.jpeg?auto=compress&cs=tinysrgb&w=1920'); background-position: center; background-size: cover; mix-blend-mode: multiply;"></div>
+  <section class="relative min-h-[600px] flex items-center py-16 md:py-24 overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-gradient-to-br from-accent-900/90 to-accent-900/70"></div>
+      <img 
+        src="https://images.pexels.com/photos/290386/pexels-photo-290386.jpeg?auto=compress&cs=tinysrgb&w=1920" 
+        alt="Swiss regions" 
+        class="w-full h-full object-cover"
+      />
     </div>
     
-    <div class="container relative z-10">
-      <div class="max-w-3xl mx-auto text-center text-white">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-          Discover Switzerland's Diverse Regions
-        </h1>
-        <p class="text-lg md:text-xl text-white/90 mb-8">
-          Explore different cantons and cities to find your perfect home in Switzerland based on language, culture, and lifestyle.
-        </p>
-        
-        <!-- Region Quick Filter -->
-        <div class="bg-white p-4 rounded-lg shadow-lg">
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <a href="#german" class="flex items-center justify-center p-3 border border-accent-200 rounded-lg hover:bg-accent-50 transition-colors text-accent-800">
-              <span>German Switzerland</span>
-            </a>
-            <a href="#french" class="flex items-center justify-center p-3 border border-accent-200 rounded-lg hover:bg-accent-50 transition-colors text-accent-800">
-              <span>French Switzerland</span>
-            </a>
-            <a href="#italian" class="flex items-center justify-center p-3 border border-accent-200 rounded-lg hover:bg-accent-50 transition-colors text-accent-800">
-              <span>Italian Switzerland</span>
-            </a>
-            <a href="#cities" class="flex items-center justify-center p-3 border border-accent-200 rounded-lg hover:bg-accent-50 transition-colors text-accent-800">
-              <span>Major Cities</span>
-            </a>
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 relative">
+        <div class="text-white">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            Compare Swiss Regions
+          </h1>
+          <p class="text-xl text-white/90 mb-8 max-w-xl">
+            Get expert guidance on choosing the perfect Swiss location—completely free. Our comparison tools help you understand each region's unique characteristics and find your ideal home.
+          </p>
+          <a href="/contact" class="btn-primary">
+            Schedule Your Free Call
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
+          <h2 class="text-2xl font-bold mb-6 text-accent-900">Why compare regions with us?</h2>
+          <div class="space-y-6">
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-1">Local Expertise</h3>
+                <p class="text-accent-600">Get insights from experts who know each Swiss region intimately.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2M6 7l-3-1m3 1l3-1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-1">Cost Comparison</h3>
+                <p class="text-accent-600">Compare living costs, housing prices, and quality of life across regions.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-1">Lifestyle Match</h3>
+                <p class="text-accent-600">Find the perfect region based on your lifestyle, work, and family needs.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
