@@ -212,7 +212,7 @@ const description = 'Discover top-rated relocation companies in Switzerland offe
             Error loading companies: {error.message}
           </div>
         )}
-        {companies.map(company => (
+        {(companies ?? mockCompanies).map(company => (
           <CompanyCard company={company} />
         ))}
       </div>
