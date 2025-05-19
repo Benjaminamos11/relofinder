@@ -135,57 +135,64 @@ const description = 'Discover top-rated relocation companies in Switzerland offe
 
 <Layout title={title} description={description}>
   <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-secondary-600 to-secondary-700 text-white py-16 md:py-24">
+  <section class="min-h-[600px] flex items-stretch">
     <div class="container">
-      <div class="max-w-3xl mx-auto text-center">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-          Find the Perfect Relocation Partners in Switzerland
-        </h1>
-        <p class="text-lg md:text-xl text-white/90 mb-8">
-          Connect with trusted companies specializing in expat relocation services across Switzerland.
-        </p>
-        
-        <!-- Search & Filter Box -->
-        <div class="bg-white p-4 rounded-lg shadow-lg max-w-xl mx-auto">
-          <div class="flex flex-col md:flex-row gap-4">
-            <div class="flex-grow">
-              <input 
-                type="text" 
-                placeholder="Search companies" 
-                class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-secondary-500 text-accent-800"
-              />
-            </div>
-            <div class="md:w-1/3">
-              <select class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-secondary-500 text-accent-800 appearance-none bg-white">
-                <option value="">All Services</option>
-                <option value="housing">Housing & Real Estate</option>
-                <option value="legal">Legal & Immigration</option>
-                <option value="finance">Banking & Finance</option>
-                <option value="education">Education & Schools</option>
-                <option value="health">Healthcare</option>
-                <option value="transport">Transportation</option>
-              </select>
-            </div>
-          </div>
-          <div class="flex flex-col md:flex-row gap-4 mt-4">
-            <div class="md:w-1/2">
-              <select class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-secondary-500 text-accent-800 appearance-none bg-white">
-                <option value="">All Regions</option>
-                <option value="zurich">Zürich</option>
-                <option value="geneva">Geneva</option>
-                <option value="basel">Basel</option>
-                <option value="bern">Bern</option>
-                <option value="lausanne">Lausanne</option>
-                <option value="nationwide">Nationwide</option>
-              </select>
-            </div>
-            <div class="md:w-1/2">
-              <select class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-secondary-500 text-accent-800 appearance-none bg-white">
-                <option value="rating">Sort by: Rating</option>
-                <option value="name">Sort by: Name</option>
-                <option value="reviews">Sort by: Most Reviews</option>
-              </select>
-            </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
+        <div class="flex flex-col justify-center py-16 md:py-24 pr-8">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            Compare Service Companies
+          </h1>
+          <p class="text-xl text-accent-600 mb-8 max-w-xl">
+            Get expert guidance on choosing the right service providers—completely free. Our comparison tools help you evaluate companies and find the perfect match for your needs.
+          </p>
+          <a href="/contact" class="btn-primary">
+            Get Started
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="bg-gradient-to-br from-primary-600 to-primary-700 flex items-center p-8 lg:p-12">
+          <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl w-full">
+            <h2 class="text-2xl font-bold mb-6">Find Your Perfect Match</h2>
+            <form class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-accent-700 mb-1">Service Type</label>
+                <select class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-primary-500">
+                  <option value="">Select a service</option>
+                  <option value="relocation">Relocation Services</option>
+                  <option value="housing">Housing & Real Estate</option>
+                  <option value="finance">Financial Services</option>
+                  <option value="education">Education</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-accent-700 mb-1">Location</label>
+                <select class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-primary-500">
+                  <option value="">Select a location</option>
+                  <option value="zurich">Zürich</option>
+                  <option value="geneva">Geneva</option>
+                  <option value="basel">Basel</option>
+                  <option value="bern">Bern</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-accent-700 mb-1">Budget Range</label>
+                <select class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-primary-500">
+                  <option value="">Select budget range</option>
+                  <option value="economy">Economy</option>
+                  <option value="standard">Standard</option>
+                  <option value="premium">Premium</option>
+                </select>
+              </div>
+              <button type="submit" class="w-full btn-primary">
+                Compare Companies
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </button>
+            </form>
           </div>
         </div>
       </div>
