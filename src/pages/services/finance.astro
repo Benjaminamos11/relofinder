@@ -1,0 +1,238 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import CompanyCard from '../../components/companies/CompanyCard.astro';
+
+const title = 'Financial Services in Switzerland | ReloFinder.ch';
+const description = 'Expert assistance with banking, investments, and financial planning for expatriates in Switzerland. Connect with trusted financial advisors.';
+
+// Define service object
+const service = {
+  title: 'Financial Services',
+  description: 'Navigate Swiss banking, investments, and financial planning with expert guidance tailored for expatriates.',
+  icon: 'currency'
+};
+
+// Sample companies offering financial services
+const companies = [
+  {
+    id: 'swiss-finance-advisors',
+    name: 'Swiss Finance Advisors',
+    logo: 'https://images.pexels.com/photos/936137/pexels-photo-936137.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Specialized financial consultancy for expatriates with a focus on investment management and tax planning.',
+    services: ['Investment Advisory', 'Tax Planning', 'Retirement Planning'],
+    regions: ['Zürich', 'Geneva', 'Lugano'],
+    rating: 4.9,
+    reviewCount: 178
+  },
+  {
+    id: 'expat-financial',
+    name: 'Expat Financial Solutions',
+    logo: 'https://images.pexels.com/photos/6694543/pexels-photo-6694543.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Comprehensive financial planning services for international professionals relocating to Switzerland.',
+    services: ['Banking Setup', 'Investment Management', 'Insurance Consulting'],
+    regions: ['Nationwide'],
+    rating: 4.7,
+    reviewCount: 142
+  }
+];
+
+// Process steps
+const steps = [
+  {
+    title: 'Initial Consultation',
+    description: 'Discuss your financial situation, goals, and requirements with our financial experts.',
+    icon: 'chat'
+  },
+  {
+    title: 'Needs Analysis',
+    description: 'We analyze your financial profile and identify the best strategies for your situation.',
+    icon: 'search'
+  },
+  {
+    title: 'Provider Selection',
+    description: 'We match you with the most suitable financial advisors and institutions.',
+    icon: 'check'
+  },
+  {
+    title: 'Account Setup',
+    description: 'Assistance with opening accounts and establishing financial relationships.',
+    icon: 'document'
+  },
+  {
+    title: 'Strategy Implementation',
+    description: 'Execute your financial plan with ongoing support and monitoring.',
+    icon: 'chart'
+  },
+  {
+    title: 'Regular Reviews',
+    description: 'Scheduled check-ins to ensure your financial strategy remains aligned with your goals.',
+    icon: 'calendar'
+  }
+];
+
+// Key benefits
+const benefits = [
+  {
+    title: 'Expert Guidance',
+    description: 'Access to financial professionals who understand expatriate needs'
+  },
+  {
+    title: 'Tax Optimization',
+    description: 'Strategies to navigate Swiss and international tax regulations'
+  },
+  {
+    title: 'Investment Solutions',
+    description: 'Tailored investment approaches for your unique situation'
+  },
+  {
+    title: 'Long-term Planning',
+    description: 'Support for retirement, education, and wealth preservation'
+  }
+];
+---
+
+<ServiceLayout title={title} description={description} service={service}>
+  <!-- Key Benefits -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Why Use Our Financial <span class="gradient-text">Services</span></h2>
+        <p class="text-lg text-accent-600">
+          Expert assistance to make your financial transition to Switzerland smooth and successful.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {benefits.map(benefit => (
+          <div class="card p-6 text-center hover:shadow-lg transition-all duration-300">
+            <div class="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style="background: linear-gradient(to right, #4776E6, #8E54E9);">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">{benefit.title}</h3>
+            <p class="text-accent-600">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Steps -->
+  <section id="process" class="section bg-accent-50">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Our Financial Planning <span class="gradient-text">Process</span></h2>
+        <p class="text-lg text-accent-600">
+          A structured approach to establishing your financial foundation in Switzerland.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {steps.map((step, index) => (
+          <div class="card p-6 hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold" style="background: linear-gradient(to right, #4776E6, #8E54E9); color: white;">
+                {index + 1}
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">{step.title}</h3>
+                <p class="text-accent-600">{step.description}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Companies -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Trusted Financial <span class="gradient-text">Partners</span></h2>
+        <p class="text-lg text-accent-600">
+          Connect with experienced financial advisors specializing in expatriate services.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {companies.map(company => (
+          <CompanyCard company={company} />
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="/companies" class="btn-primary">
+          View All Companies
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section bg-accent-50">
+    <div class="container">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold mb-8 text-center">Frequently Asked <span class="gradient-text">Questions</span></h2>
+        
+        <div class="space-y-6">
+          <div class="card p-6">
+            <h3 class="text-xl font-semibold mb-3">What documents do I need to open a Swiss bank account?</h3>
+            <p class="text-accent-600">
+              Typically, you'll need your passport, residence permit, proof of address, and employment contract. Some banks may require additional documentation such as reference letters from your current bank.
+            </p>
+          </div>
+          
+          <div class="card p-6">
+            <h3 class="text-xl font-semibold mb-3">How is taxation handled for expatriates in Switzerland?</h3>
+            <p class="text-accent-600">
+              Taxation in Switzerland occurs at federal, cantonal, and municipal levels. Expatriates may be eligible for special tax regimes depending on their status. Our financial advisors can provide tailored guidance.
+            </p>
+          </div>
+          
+          <div class="card p-6">
+            <h3 class="text-xl font-semibold mb-3">Can I maintain investment accounts from my home country?</h3>
+            <p class="text-accent-600">
+              While often possible, cross-border financial arrangements can have complex tax implications. Our advisors can help you structure your investments optimally across multiple jurisdictions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section id="contact" class="py-16 bg-accent-50">
+    <div class="container">
+      <div class="bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl shadow-xl overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          <div class="p-8 md:p-12 flex items-center">
+            <div class="text-white max-w-lg">
+              <h2 class="text-2xl md:text-3xl font-bold mb-4">Ready to optimize your finances?</h2>
+              <p class="text-white/90 mb-8">
+                Connect with our expert team to discuss your specific financial needs and receive personalized recommendations.
+              </p>
+              <a href="/contact" class="inline-flex items-center px-6 py-3 rounded-lg bg-white text-primary-600 font-semibold hover:bg-white/90 transition-all duration-300">
+                Schedule a Free Consultation
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="hidden md:block relative">
+            <img 
+              src="https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=800" 
+              alt="Financial consultation" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ServiceLayout> 

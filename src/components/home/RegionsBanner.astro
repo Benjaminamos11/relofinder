@@ -1,0 +1,324 @@
+---
+// Swiss regions with their key cities and services
+const regions = [
+  {
+    id: "zurich",
+    name: "Zurich",
+    description: "Switzerland's largest city and a global financial center with vibrant culture and high quality of living. Zurich offers excellent infrastructure, international schools, and a thriving expat community.",
+    image: "https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    cities: ["Zurich", "Winterthur", "Uster"],
+    services: [
+      "Home Search",
+      "School Selection",
+      "Immigration Support",
+      "Settling-in Services"
+    ]
+  },
+  {
+    id: "geneva",
+    name: "Geneva",
+    description: "International hub with the United Nations and Red Cross headquarters. Geneva features a cosmopolitan atmosphere, beautiful lake views, and excellent public services for international professionals.",
+    image: "https://images.pexels.com/photos/6209567/pexels-photo-6209567.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    cities: ["Geneva", "Versoix", "Carouge"],
+    services: [
+      "International Organization Support",
+      "Home Search",
+      "Banking Setup",
+      "Family Integration"
+    ]
+  },
+  {
+    id: "basel",
+    name: "Basel",
+    description: "Cultural center at the border of France and Germany known for pharmaceuticals and art. Basel offers a strategic location, rich cultural heritage, and excellent transportation connections.",
+    image: "https://images.pexels.com/photos/15307184/pexels-photo-15307184.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    cities: ["Basel", "Riehen", "Muttenz"],
+    services: [
+      "Cross-border Commuting",
+      "Home Search",
+      "Healthcare Setup",
+      "Cultural Integration"
+    ]
+  },
+  {
+    id: "bern",
+    name: "Bern",
+    description: "Switzerland's capital city with a UNESCO World Heritage Old Town. Bern combines historic charm with modern amenities, offering a relaxed lifestyle and excellent connections to all parts of the country.",
+    image: "https://images.pexels.com/photos/11086135/pexels-photo-11086135.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    cities: ["Bern", "Köniz", "Ostermundigen"],
+    services: [
+      "Government Liaison",
+      "Home Search",
+      "Cultural Integration",
+      "Relocation Services"
+    ]
+  },
+  {
+    id: "lausanne",
+    name: "Lausanne",
+    description: "Olympic capital on the shores of Lake Geneva with a vibrant university atmosphere. Lausanne offers spectacular lake views, excellent educational institutions, and a high quality of life.",
+    image: "https://images.pexels.com/photos/6155909/pexels-photo-6155909.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    cities: ["Lausanne", "Renens", "Pully"],
+    services: [
+      "Academic Placement",
+      "Home Search",
+      "Sports Integration",
+      "Family Services"
+    ]
+  },
+  {
+    id: "lugano",
+    name: "Lugano",
+    description: "Italian-speaking region with Mediterranean flair, nestled between beautiful lakes and mountains. Lugano blends Swiss efficiency with Italian lifestyle, creating a unique cultural experience.",
+    image: "https://images.pexels.com/photos/10250224/pexels-photo-10250224.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    cities: ["Lugano", "Bellinzona", "Locarno"],
+    services: [
+      "Italian Language Support",
+      "Home Search",
+      "Cross-border Services",
+      "Lifestyle Integration"
+    ]
+  },
+  {
+    id: "lucerne",
+    name: "Lucerne",
+    description: "Picturesque city with a beautiful lake and mountains, offering a perfect blend of urban and natural environments. Lucerne provides excellent quality of life with stunning Alpine views.",
+    image: "https://images.pexels.com/photos/1119972/pexels-photo-1119972.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    cities: ["Lucerne", "Kriens", "Emmen"],
+    services: [
+      "Tourism Industry Support",
+      "Home Search",
+      "Cultural Integration",
+      "Family Services"
+    ]
+  },
+  {
+    id: "zug",
+    name: "Zug",
+    description: "Business-friendly canton with low taxes and a high quality of life. Zug has become a magnet for international businesses and offers excellent services for expatriates relocating to Switzerland.",
+    image: "https://images.pexels.com/photos/13284755/pexels-photo-13284755.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    cities: ["Zug", "Baar", "Cham"],
+    services: [
+      "Corporate Relocation",
+      "Tax Advisory",
+      "Executive Housing",
+      "Family Services"
+    ]
+  }
+];
+
+// Initial active region (first one)
+const defaultRegion = regions[0];
+---
+
+<div class="py-12 bg-gray-50">
+  <div class="container">
+    <h2 class="text-3xl font-bold text-center mb-8">Choose a <span class="text-primary-600">Region</span></h2>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+      <!-- Left: Region Selector -->
+      <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
+        <div class="p-5 border-b border-gray-100">
+          <div class="flex items-center text-lg font-semibold text-gray-800">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Choose a Region
+          </div>
+        </div>
+        
+        <div class="region-list">
+          {regions.map((region, index) => (
+            <button 
+              class={`w-full text-left py-4 px-5 border-b last:border-b-0 border-gray-100 hover:bg-gray-50 transition-colors ${index === 0 ? 'bg-primary-50 text-primary-700 font-medium' : 'text-gray-700'}`}
+              data-region-id={region.id}
+            >
+              {region.name}
+            </button>
+          ))}
+        </div>
+      </div>
+      
+      <!-- Right: Region Details -->
+      <div class="lg:col-span-2">
+        {regions.map((region) => (
+          <div 
+            class={`region-detail bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 ${region.id === defaultRegion.id ? 'block' : 'hidden'}`}
+            id={`region-${region.id}`}
+          >
+            <!-- Region Image -->
+            <div class="relative h-64 overflow-hidden">
+              <img 
+                src={region.image}
+                alt={`${region.name} Region`}
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                <span class="inline-block bg-white/90 text-primary-700 text-xs font-medium px-2.5 py-1 rounded-full">
+                  Region
+                </span>
+                <h3 class="text-3xl font-bold text-white mt-2">{region.name}</h3>
+              </div>
+            </div>
+            
+            <!-- Region Content -->
+            <div class="p-6">
+              <p class="text-accent-600 mb-6">
+                {region.description}
+              </p>
+              
+              <div class="mb-6">
+                <h4 class="text-lg font-semibold mb-3">Key Services in {region.name}:</h4>
+                <ul class="space-y-2">
+                  {region.services.map(service => (
+                    <li class="flex items-start">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                      </svg>
+                      {service}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <a 
+                href={`/services?region=${region.id}`}
+                class="inline-flex items-center px-5 py-2.5 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors"
+              >
+                Explore {region.name} Services
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    // Get all region buttons and detail panels
+    const regionButtons = document.querySelectorAll<HTMLButtonElement>('.region-list button');
+    const regionDetails = document.querySelectorAll<HTMLDivElement>('.region-detail');
+    let currentRegionIndex = 0;
+    let autoRotationTimer: number | undefined;
+    let isPaused = false;
+    
+    // Function to activate a specific region
+    function activateRegion(regionId: string, buttonElement: HTMLButtonElement | null = null) {
+      // Update button styles
+      regionButtons.forEach(btn => {
+        btn.classList.remove('bg-primary-50', 'text-primary-700', 'font-medium');
+        btn.classList.add('text-gray-700');
+      });
+      
+      if (buttonElement) {
+        buttonElement.classList.add('bg-primary-50', 'text-primary-700', 'font-medium');
+        buttonElement.classList.remove('text-gray-700');
+      } else {
+        // Find the button by region ID
+        const button = document.querySelector<HTMLButtonElement>(`.region-list button[data-region-id="${regionId}"]`);
+        if (button) {
+          button.classList.add('bg-primary-50', 'text-primary-700', 'font-medium');
+          button.classList.remove('text-gray-700');
+        }
+      }
+      
+      // Show the selected region detail and hide others
+      regionDetails.forEach(detail => {
+        if (detail.id === `region-${regionId}`) {
+          detail.classList.remove('hidden');
+          detail.classList.add('block');
+        } else {
+          detail.classList.add('hidden');
+          detail.classList.remove('block');
+        }
+      });
+      
+      // Update current index for auto rotation
+      regionButtons.forEach((btn, index) => {
+        if (btn.getAttribute('data-region-id') === regionId) {
+          currentRegionIndex = index;
+        }
+      });
+    }
+    
+    // Start auto rotation
+    function startAutoRotation() {
+      // Clear any existing timer
+      if (autoRotationTimer) {
+        clearInterval(autoRotationTimer);
+      }
+      
+      // Set new timer for rotation every 3 seconds
+      autoRotationTimer = window.setInterval(() => {
+        if (!isPaused) {
+          // Move to next region
+          currentRegionIndex = (currentRegionIndex + 1) % regionButtons.length;
+          const nextRegionId = regionButtons[currentRegionIndex].getAttribute('data-region-id') || '';
+          activateRegion(nextRegionId);
+        }
+      }, 3000);
+    }
+    
+    // Add click event to each region button
+    regionButtons.forEach(button => {
+      // Click handling
+      button.addEventListener('click', () => {
+        const regionId = button.getAttribute('data-region-id') || '';
+        activateRegion(regionId, button);
+        
+        // Reset the timer when a user manually selects a region
+        startAutoRotation();
+      });
+      
+      // Hover handling
+      button.addEventListener('mouseenter', () => {
+        isPaused = true;
+        const regionId = button.getAttribute('data-region-id') || '';
+        activateRegion(regionId, button);
+      });
+      
+      button.addEventListener('mouseleave', () => {
+        isPaused = false;
+      });
+    });
+    
+    // Pause rotation when hovering over region details
+    regionDetails.forEach(detail => {
+      detail.addEventListener('mouseenter', () => {
+        isPaused = true;
+      });
+      
+      detail.addEventListener('mouseleave', () => {
+        isPaused = false;
+      });
+    });
+    
+    // Initialize auto rotation
+    startAutoRotation();
+  });
+</script>
+
+<style>
+  .regions-container {
+    height: 280px;
+    position: relative;
+  }
+  
+  .regions-scroller {
+    position: absolute;
+    width: 100%;
+    transition: transform 0.1s linear;
+  }
+  
+  @media (min-width: 768px) {
+    .regions-container {
+      height: 320px;
+    }
+  }
+</style> 

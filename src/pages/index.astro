@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/home/Hero.astro';
 import ServicesSection from '../components/home/ServicesSection.astro';
-import RegionsSection from '../components/home/RegionsSection.astro';
+import RegionsBanner from '../components/home/RegionsBanner.astro';
 import FeaturedCompanies from '../components/home/FeaturedCompanies.astro';
 import BlogPreview from '../components/home/BlogPreview.astro';
 import CTA from '../components/home/CTA.astro';
@@ -13,12 +13,12 @@ const description = 'Connect with trusted relocation services, companies, and di
 ---
 
 <Layout title={title} description={description}>
-  <Hero />
-  <ServicesSection />
-  <RegionsSection />
-  <FeaturedCompanies />
-  <BlogPreview />
-  <CTA />
+	<Hero />
+	<ServicesSection />
+	<RegionsBanner />
+	<FeaturedCompanies />
+	<BlogPreview />
+	<CTA />
 </Layout>
 
 <script>

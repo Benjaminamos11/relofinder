@@ -1,25 +1,54 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
 import CompanyCard from '../../components/companies/CompanyCard.astro';
 import BlogCard from '../../components/blog/BlogCard.astro';
+
+// Add const prerender directive
+export const prerender = true;
 
 // Add getStaticPaths export
 export function getStaticPaths() {
   return [
     { params: { id: 'housing' } },
-    { params: { id: 'legal' } }
+    { params: { id: 'legal' } },
+    { params: { id: 'finance' } },
+    { params: { id: 'education' } },
+    { params: { id: 'health' } },
+    { params: { id: 'transport' } },
+    { params: { id: 'language' } }
   ];
 }
 
 // Get the service ID from the URL
 const { id } = Astro.params;
 
+// Define service type structure
+type ServiceFeature = {
+  title: string;
+  description: string;
+};
+
+type ServiceData = {
+  title: string;
+  description: string;
+  icon: string;
+  longDescription: string;
+  features: ServiceFeature[];
+  gradient: string;
+};
+
+type ServicesObject = {
+  [key: string]: ServiceData;
+};
+
 // Service data (in a real app, this would come from a database)
-const services = {
+const services: ServicesObject = {
   housing: {
     title: 'Housing & Real Estate',
     description: 'Find your perfect home in Switzerland with expert assistance from real estate professionals who understand expat needs.',
     icon: 'home',
+    gradient: 'from-red-600 to-rose-600',
     longDescription: `
       Finding suitable housing in Switzerland can be challenging due to the competitive market and strict rental regulations. Our housing and real estate services help expatriates navigate this process seamlessly.
 
@@ -53,6 +82,7 @@ const services = {
     title: 'Legal & Immigration',
     description: 'Expert assistance with visas, permits, and legal matters for a smooth relocation to Switzerland.',
     icon: 'document',
+    gradient: 'from-blue-600 to-indigo-600',
     longDescription: `
       Navigating Swiss immigration law and legal requirements is crucial for a successful relocation. Our legal and immigration services provide comprehensive support throughout the process.
 
@@ -81,12 +111,182 @@ const services = {
         description: 'Assistance with document preparation and legalization'
       }
     ]
+  },
+  finance: {
+    title: 'Financial Services',
+    description: 'Navigate Swiss banking, investments, and financial planning with expert guidance tailored for expatriates.',
+    icon: 'currency',
+    gradient: 'from-green-600 to-emerald-600',
+    longDescription: `
+      Understanding the Swiss financial system is essential for expatriates. Our financial services connect you with experts who can help with banking, investments, tax planning, and more.
+
+      Our network of financial professionals can assist with:
+      - Banking setup and account management
+      - Investment strategies for expatriates
+      - Tax planning and compliance
+      - Pension and retirement planning
+      - Insurance solutions
+    `,
+    features: [
+      {
+        title: 'Banking Assistance',
+        description: 'Help with setting up accounts and understanding Swiss banking'
+      },
+      {
+        title: 'Investment Planning',
+        description: 'Tailored investment strategies for your expatriate situation'
+      },
+      {
+        title: 'Tax Optimization',
+        description: 'Navigate Swiss tax regulations and optimize your tax situation'
+      },
+      {
+        title: 'Retirement Planning',
+        description: 'Long-term planning for pension and retirement needs'
+      }
+    ]
+  },
+  education: {
+    title: 'Education & Schools',
+    description: 'Find the right educational path for your children with our expert guidance on Swiss and international schools.',
+    icon: 'school',
+    gradient: 'from-amber-500 to-yellow-600',
+    longDescription: `
+      Switzerland offers a variety of educational options, from local public schools to prestigious international institutions. We help expatriate families navigate these choices to find the best fit.
+
+      Our education experts can assist with:
+      - School selection and application processes
+      - Understanding the Swiss education system
+      - International school options and admission requirements
+      - Language programs and tutoring solutions
+      - Higher education guidance
+    `,
+    features: [
+      {
+        title: 'School Selection',
+        description: 'Personalized guidance on finding the right school for your children'
+      },
+      {
+        title: 'Application Support',
+        description: 'Assistance with admission procedures and documentation'
+      },
+      {
+        title: 'Education Consulting',
+        description: 'Expert advice on navigating Swiss and international curricula'
+      },
+      {
+        title: 'Language Programs',
+        description: 'Resources for language acquisition and integration'
+      }
+    ]
+  },
+  health: {
+    title: 'Healthcare Services',
+    description: 'Navigate the Swiss healthcare system with expert guidance, from insurance selection to finding the right medical providers.',
+    icon: 'health',
+    gradient: 'from-purple-600 to-indigo-600',
+    longDescription: `
+      Understanding the Swiss healthcare system is essential for expatriates. Our healthcare services connect you with experts who can help with insurance, finding doctors, and more.
+
+      Our network of healthcare professionals can assist with:
+      - Health insurance selection and enrollment
+      - Finding doctors and specialists
+      - Hospital and clinic recommendations
+      - Prescription medication guidance
+      - Wellness and preventive care options
+    `,
+    features: [
+      {
+        title: 'Insurance Guidance',
+        description: 'Expert help selecting the right health insurance for your needs'
+      },
+      {
+        title: 'Provider Matching',
+        description: 'Find doctors and specialists who meet your needs and speak your language'
+      },
+      {
+        title: 'Medical Navigation',
+        description: 'Assistance with appointments, referrals, and medical administration'
+      },
+      {
+        title: 'Healthcare Translation',
+        description: 'Support for medical appointments and documentation'
+      }
+    ]
+  },
+  transport: {
+    title: 'Transportation & Mobility',
+    description: 'Expert guidance on navigating Swiss transportation options, from public transit to vehicle registration and driving licenses.',
+    icon: 'transport',
+    gradient: 'from-teal-500 to-cyan-600',
+    longDescription: `
+      Switzerland offers excellent transportation infrastructure, but navigating the systems and requirements can be complex. Our mobility experts help you understand your options and legal requirements.
+
+      Our transportation services include assistance with:
+      - Public transportation cards and passes
+      - Driving license exchange and requirements
+      - Vehicle import and registration
+      - Car purchase or leasing guidance
+      - Mobility solutions for families and commuters
+    `,
+    features: [
+      {
+        title: 'Transit Orientation',
+        description: 'Guide to using Swiss public transportation efficiently'
+      },
+      {
+        title: 'License Exchange',
+        description: 'Support with driving license transfer and Swiss driving regulations'
+      },
+      {
+        title: 'Vehicle Registration',
+        description: 'Assistance with importing, purchasing, or registering vehicles'
+      },
+      {
+        title: 'Mobility Planning',
+        description: 'Customized transportation solutions for your lifestyle and needs'
+      }
+    ]
+  },
+  language: {
+    title: 'Language & Integration',
+    description: 'Accelerate your adaptation to Swiss life with language courses, cultural training, and integration support services.',
+    icon: 'language',
+    gradient: 'from-purple-500 to-pink-600',
+    longDescription: `
+      Language skills and cultural understanding are key to successfully integrating into Swiss society. Our language and integration services help you and your family adapt more quickly and comfortably.
+
+      Our network of language professionals can assist with:
+      - Language course selection and enrollment
+      - Private tutoring arrangements
+      - Cultural adaptation training
+      - Integration and networking opportunities
+      - Communication support for official matters
+    `,
+    features: [
+      {
+        title: 'Language Training',
+        description: 'Customized language courses for various proficiency levels and needs'
+      },
+      {
+        title: 'Cultural Workshops',
+        description: 'Learn about Swiss customs, etiquette, and social expectations'
+      },
+      {
+        title: 'Integration Programs',
+        description: 'Activities and events to help you connect with local communities'
+      },
+      {
+        title: 'Communication Support',
+        description: 'Assistance with official correspondence and documentation'
+      }
+    ]
   }
   // Add other services as needed
 };
 
 // Get the specific service data
-const service = services[id];
+const service = services[id as keyof typeof services];
 
 // Related companies (in a real app, this would be filtered from a database)
 const relatedCompanies = [
@@ -149,8 +349,8 @@ const relatedPosts = [
 ];
 
 // Format date helper function
-function formatDate(dateString) {
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+function formatDate(dateString: string): string {
+  const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
   return new Date(dateString).toLocaleDateString('en-US', options);
 }
 
@@ -159,35 +359,28 @@ const title = `${service.title} Services in Switzerland | ReloFinder.ch`;
 const description = service.description;
 ---
 
-<Layout title={title} description={description}>
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-primary-600 to-primary-700 text-white py-16 md:py-24">
+<ServiceLayout title={title} description={description} service={service}>
+  <!-- Hero Banner with Key Message -->
+  <section class={`py-12 bg-gradient-to-r from-${service.gradient.split(' ')[0].replace('from-', '')}-50 to-${service.gradient.split(' ')[1].replace('to-', '')}-50`}>
     <div class="container">
-      <div class="max-w-3xl mx-auto text-center">
-        <div class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center" style="background: linear-gradient(to right, #cb356b, #bd3f32);">
-          {service.icon === 'home' && (
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-          )}
-          {service.icon === 'document' && (
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-          )}
-        </div>
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-          {service.title}
-        </h1>
-        <p class="text-lg md:text-xl text-white/90 mb-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl font-bold mb-6">
+          {service.title.split('&')[0]}
+          <span class={`text-transparent bg-clip-text bg-gradient-to-r ${service.gradient}`}>
+            {service.title.includes('&') ? '& ' + service.title.split('&')[1] : ''}
+          </span>
+        </h2>
+        <p class="text-xl text-accent-700 mb-8">
           {service.description}
         </p>
-        <a href="#contact" class="btn bg-white text-primary-600 hover:bg-white/90">
-          Get Started
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
-        </a>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="#features" class={`btn btn-primary px-6 py-3 rounded-lg bg-gradient-to-r ${service.gradient} text-white font-medium hover:shadow-lg transition-all duration-300`}>
+            Key Features
+          </a>
+          <a href="#contact" class={`btn btn-secondary px-6 py-3 rounded-lg border-2 border-${service.gradient.split(' ')[0].replace('from-', '')} text-${service.gradient.split(' ')[0].replace('from-', '')} font-medium hover:bg-${service.gradient.split(' ')[0].replace('from-', '')}-50 transition-all duration-300`}>
+            Get Expert Help
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -202,11 +395,15 @@ const description = service.description;
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {service.features.map(feature => (
-            <div class="card p-6">
-              <h3 class="text-xl font-semibold mb-3">{feature.title}</h3>
-              <p class="text-accent-600">{feature.description}</p>
+        <div id="features" class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          {service.features.map((feature: ServiceFeature) => (
+            <div class="card p-6 hover:shadow-md transition-all duration-300 rounded-xl border border-gray-100 relative overflow-hidden group">
+              <!-- Subtle Gradient Hover Effect -->
+              <div class={`absolute inset-0 rounded-xl p-0.5 bg-gradient-to-r ${service.gradient} opacity-0 group-hover:opacity-100 transition-all duration-300`}></div>
+              <div class="relative bg-white rounded-xl p-5">
+                <h3 class="text-xl font-semibold mb-3">{feature.title}</h3>
+                <p class="text-accent-600">{feature.description}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -218,7 +415,7 @@ const description = service.description;
   <section class="section bg-accent-50">
     <div class="container">
       <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-3xl font-bold mb-4">Trusted Service <span class="gradient-text">Providers</span></h2>
+        <h2 class="text-3xl font-bold mb-4">Trusted Service <span class={`text-transparent bg-clip-text bg-gradient-to-r ${service.gradient}`}>Providers</span></h2>
         <p class="text-lg text-accent-600">
           Connect with experienced companies specializing in {service.title.toLowerCase()}.
         </p>
@@ -231,7 +428,7 @@ const description = service.description;
       </div>
 
       <div class="mt-12 text-center">
-        <a href="/companies" class="btn-primary">
+        <a href="/companies" class={`btn-primary px-6 py-3 rounded-lg bg-gradient-to-r ${service.gradient} text-white font-medium inline-flex items-center hover:shadow-lg transition-all duration-300`}>
           View All Companies
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -245,21 +442,21 @@ const description = service.description;
   <section class="section bg-white">
     <div class="container">
       <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-3xl font-bold mb-4">Related <span class="gradient-text">Articles</span></h2>
+        <h2 class="text-3xl font-bold mb-4">Related <span class={`text-transparent bg-clip-text bg-gradient-to-r ${service.gradient}`}>Articles</span></h2>
         <p class="text-lg text-accent-600">
           Learn more about {service.title.toLowerCase()} in Switzerland through our comprehensive guides and articles.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {relatedPosts.map(post => (
           <BlogCard post={post} formatDate={formatDate} />
         ))}
       </div>
 
       <div class="mt-12 text-center">
-        <a href="/blog" class="btn-primary">
-          Read More Articles
+        <a href="/blog" class={`btn-primary px-6 py-3 rounded-lg bg-gradient-to-r ${service.gradient} text-white font-medium inline-flex items-center hover:shadow-lg transition-all duration-300`}>
+          View All Articles
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
           </svg>
@@ -268,84 +465,34 @@ const description = service.description;
     </div>
   </section>
 
-  <!-- Contact Form -->
-  <section id="contact" class="section bg-accent-50">
+  <!-- Contact CTA -->
+  <section id="contact" class="py-16 bg-accent-50">
     <div class="container">
-      <div class="max-w-3xl mx-auto">
-        <div class="card p-8">
-          <h2 class="text-2xl font-bold mb-6 text-center">Get Personalized Assistance</h2>
-          <p class="text-accent-600 text-center mb-8">
-            Fill out the form below and we'll connect you with the right service providers for your needs.
-          </p>
-
-          <form class="space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label class="block text-sm font-medium text-accent-700 mb-1">First Name*</label>
-                <input 
-                  type="text" 
-                  required 
-                  class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
-                />
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-accent-700 mb-1">Last Name*</label>
-                <input 
-                  type="text" 
-                  required 
-                  class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-sm font-medium text-accent-700 mb-1">Email*</label>
-              <input 
-                type="email" 
-                required 
-                class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
-              />
-            </div>
-
-            <div>
-              <label class="block text-sm font-medium text-accent-700 mb-1">Phone</label>
-              <input 
-                type="tel" 
-                class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
-              />
-            </div>
-
-            <div>
-              <label class="block text-sm font-medium text-accent-700 mb-1">Message*</label>
-              <textarea 
-                required 
-                rows="4"
-                class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
-              ></textarea>
-            </div>
-
-            <div class="flex items-start">
-              <input 
-                type="checkbox" 
-                required
-                class="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
-              />
-              <label class="ml-2 text-sm text-accent-600">
-                I agree to the <a href="/privacy-policy" class="text-primary-600 hover:underline">Privacy Policy</a> and consent to having my data processed.
-              </label>
-            </div>
-
-            <div class="text-center">
-              <button type="submit" class="btn-primary">
-                Submit Request
+      <div class={`bg-gradient-to-r ${service.gradient} rounded-2xl shadow-xl overflow-hidden`}>
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          <div class="p-8 md:p-12 flex items-center">
+            <div class="text-white max-w-lg">
+              <h2 class="text-2xl md:text-3xl font-bold mb-4">Ready to get started?</h2>
+              <p class="text-white/90 mb-8">
+                Connect with our expert team to discuss your specific {service.title.toLowerCase()} needs and receive personalized recommendations.
+              </p>
+              <a href="/contact" class={`inline-flex items-center px-6 py-3 rounded-lg bg-white text-${service.gradient.split(' ')[0].replace('from-', '')} font-semibold hover:bg-white/90 transition-all duration-300`}>
+                Schedule a Free Consultation
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                 </svg>
-              </button>
+              </a>
             </div>
-          </form>
+          </div>
+          <div class="hidden md:block relative">
+            <img 
+              src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800" 
+              alt="Team consulting" 
+              class="w-full h-full object-cover"
+            />
+          </div>
         </div>
       </div>
     </div>
   </section>
-</Layout>
+</ServiceLayout>

@@ -1,0 +1,318 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+import CompanyCard from '../../components/companies/CompanyCard.astro';
+
+const title = 'Education & Schools in Switzerland | ReloFinder.ch';
+const description = 'Expert assistance with finding the best schools and educational options for expatriate families relocating to Switzerland.';
+
+// Define service object
+const service = {
+  title: 'Education & Schools',
+  description: 'Find the right educational path for your children with our expert guidance on Swiss and international schools.',
+  icon: 'school'
+};
+
+// Sample companies offering education services
+const companies = [
+  {
+    id: 'swiss-education-advisors',
+    name: 'Swiss Education Advisors',
+    logo: 'https://images.pexels.com/photos/256455/pexels-photo-256455.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Specialized educational consultancy helping expatriate families find the right schools and programs in Switzerland.',
+    services: ['School Placement', 'Education Planning', 'University Admissions'],
+    regions: ['Zürich', 'Geneva', 'Basel'],
+    rating: 4.8,
+    reviewCount: 156
+  },
+  {
+    id: 'international-learning',
+    name: 'International Learning Partners',
+    logo: 'https://images.pexels.com/photos/301926/pexels-photo-301926.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Educational support services for international families, providing tutoring, language programs, and school transitions.',
+    services: ['Tutoring', 'Language Programs', 'Academic Support'],
+    regions: ['Nationwide'],
+    rating: 4.7,
+    reviewCount: 124
+  }
+];
+
+// Process steps
+const steps = [
+  {
+    title: 'Initial Assessment',
+    description: 'Discuss your children\'s educational background, needs, and preferences with our education experts.',
+    icon: 'chat'
+  },
+  {
+    title: 'School Research',
+    description: 'We research and identify schools matching your requirements and educational philosophy.',
+    icon: 'search'
+  },
+  {
+    title: 'School Visits',
+    description: 'Arrange and accompany you on visits to selected schools, providing insights and guidance.',
+    icon: 'eye'
+  },
+  {
+    title: 'Application Support',
+    description: 'Assistance with school applications, including documentation and preparation for interviews.',
+    icon: 'document'
+  },
+  {
+    title: 'Enrollment Process',
+    description: 'Guide you through the enrollment process, including registration and required documentation.',
+    icon: 'check'
+  },
+  {
+    title: 'Transition Support',
+    description: 'Ongoing support to ensure a smooth transition into the new educational environment.',
+    icon: 'user'
+  }
+];
+
+// Key benefits
+const benefits = [
+  {
+    title: 'School Selection',
+    description: 'Expert guidance on finding the right school for your child\'s needs'
+  },
+  {
+    title: 'Curriculum Knowledge',
+    description: 'Deep understanding of Swiss and international education systems'
+  },
+  {
+    title: 'Language Support',
+    description: 'Resources for language acquisition and integration'
+  },
+  {
+    title: 'Long-term Planning',
+    description: 'Strategic educational planning for your child\'s future'
+  }
+];
+---
+
+<ServiceLayout title={title} description={description} service={service}>
+  <!-- Key Benefits -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Why Use Our Education <span class="gradient-text">Services</span></h2>
+        <p class="text-lg text-accent-600">
+          Expert assistance to find the perfect educational environment for your children in Switzerland.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {benefits.map(benefit => (
+          <div class="card p-6 text-center hover:shadow-lg transition-all duration-300">
+            <div class="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style="background: linear-gradient(to right, #1D976C, #93F9B9);">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">{benefit.title}</h3>
+            <p class="text-accent-600">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Steps -->
+  <section id="process" class="section bg-accent-50">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Our School Placement <span class="gradient-text">Process</span></h2>
+        <p class="text-lg text-accent-600">
+          A structured approach to finding the right educational environment for your children.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {steps.map((step, index) => (
+          <div class="card p-6 hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold" style="background: linear-gradient(to right, #1D976C, #93F9B9); color: white;">
+                {index + 1}
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">{step.title}</h3>
+                <p class="text-accent-600">{step.description}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Swiss Education System Overview -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Swiss Education <span class="gradient-text">System</span></h2>
+        <p class="text-lg text-accent-600">
+          Understanding the different educational options available in Switzerland.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="card p-6">
+          <h3 class="text-xl font-semibold mb-4">Public Schools</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <div>
+                <p class="font-medium">Free education of high quality</p>
+                <p class="text-accent-600 text-sm">Swiss public schools are known for their excellent standards</p>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <div>
+                <p class="font-medium">Taught in local language</p>
+                <p class="text-accent-600 text-sm">German, French, Italian or Romansh depending on the canton</p>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <div>
+                <p class="font-medium">Strong community integration</p>
+                <p class="text-accent-600 text-sm">Excellent for long-term expatriate families</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="card p-6">
+          <h3 class="text-xl font-semibold mb-4">International Schools</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <div>
+                <p class="font-medium">Taught primarily in English</p>
+                <p class="text-accent-600 text-sm">With additional language options available</p>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <div>
+                <p class="font-medium">International curricula</p>
+                <p class="text-accent-600 text-sm">IB, British, American, and other recognized programs</p>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <div>
+                <p class="font-medium">Diverse international community</p>
+                <p class="text-accent-600 text-sm">Ideal for globally mobile families</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Companies -->
+  <section class="section bg-accent-50">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Trusted Education <span class="gradient-text">Partners</span></h2>
+        <p class="text-lg text-accent-600">
+          Connect with experienced education consultants specializing in expatriate family needs.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {companies.map(company => (
+          <CompanyCard company={company} />
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="/companies" class="btn-primary">
+          View All Companies
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold mb-8 text-center">Frequently Asked <span class="gradient-text">Questions</span></h2>
+        
+        <div class="space-y-6">
+          <div class="card p-6">
+            <h3 class="text-xl font-semibold mb-3">What's the difference between Swiss public and international schools?</h3>
+            <p class="text-accent-600">
+              Swiss public schools are taught in the local language (German, French, Italian or Romansh), follow the Swiss curriculum, and are free. International schools typically teach in English, follow international curricula (IB, British, American), and charge tuition fees.
+            </p>
+          </div>
+          
+          <div class="card p-6">
+            <h3 class="text-xl font-semibold mb-3">How early should we begin the school application process?</h3>
+            <p class="text-accent-600">
+              For international schools, we recommend starting 6-12 months before your desired enrollment date, as popular schools often have waiting lists. For public schools, the process is typically simpler but should begin 2-3 months before the start of the school year.
+            </p>
+          </div>
+          
+          <div class="card p-6">
+            <h3 class="text-xl font-semibold mb-3">What language support is available for non-native speakers?</h3>
+            <p class="text-accent-600">
+              Most international schools offer English as a Second Language (ESL) programs. Swiss public schools typically provide intensive language courses for non-native speakers, and additional tutoring options are available through private providers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section id="contact" class="py-16 bg-accent-50">
+    <div class="container">
+      <div class="bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl shadow-xl overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          <div class="p-8 md:p-12 flex items-center">
+            <div class="text-white max-w-lg">
+              <h2 class="text-2xl md:text-3xl font-bold mb-4">Ready to find the perfect school?</h2>
+              <p class="text-white/90 mb-8">
+                Connect with our education experts to discuss your children's needs and receive personalized school recommendations.
+              </p>
+              <a href="/contact" class="inline-flex items-center px-6 py-3 rounded-lg bg-white text-primary-600 font-semibold hover:bg-white/90 transition-all duration-300">
+                Schedule a Free Consultation
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="hidden md:block relative">
+            <img 
+              src="https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=800" 
+              alt="Educational consultation" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ServiceLayout> 
