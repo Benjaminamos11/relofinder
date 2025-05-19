@@ -1,9 +1,37 @@
 import { Configuration, OpenAIApi } from 'npm:openai@3.3.0'
+import { Resend } from 'npm:resend@1.1.0'
+import { convert } from 'npm:html-to-text@9.0.5'
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
   'Content-Type': 'application/json'
+}
+
+interface EmailRequest {
+  to: string;
+  subject: string;
+  content: string;
+}
+
+async function sendEmail({ to, subject, content }: EmailRequest) {
+  const resend = new Resend(Deno.env.get('RESEND_API_KEY'));
+  
+  const textContent = convert(content, {
+    wordwrap: 130,
+    selectors: [
+      { selector: 'a', options: { hideLinkHrefIfSameAsText: true } },
+      { selector: 'img', format: 'skip' }
+    ]
+  });
+
+  return await resend.emails.send({
+    from: 'ReloFinder Assistant <assistant@relofinder.ch>',
+    to,
+    subject,
+    html: content,
+    text: textContent
+  });
 }
 
 // Create Supabase client
@@ -74,7 +102,7 @@ Deno.serve(async (req) => {
     }
 
     // Validate message
-    const { message } = body
+    const { message, email } = body
     if (!message?.trim()) {
       return new Response(
         JSON.stringify({ 
@@ -110,10 +138,34 @@ Deno.serve(async (req) => {
           }
 
           // Return successful response
+          let emailResponse = null;
+          
+          // Check if response contains email request
+          if (email && responseMessage.includes('[SEND_EMAIL]')) {
+            try {
+              const emailContent = responseMessage.replace('[SEND_EMAIL]', '').trim();
+              await sendEmail({
+                to: email,
+                subject: 'Your ReloFinder Chat Summary',
+                content: emailContent
+              });
+              emailResponse = { sent: true };
+            } catch (error) {
+              console.error('Failed to send email:', error);
+              emailResponse = { 
+                sent: false, 
+                error: 'Failed to send email'
+              };
+            }
+          }
+          
           return new Response(
-            JSON.stringify({ message: responseMessage }),
+            JSON.stringify({ 
+              message: responseMessage.replace('[SEND_EMAIL]', '').trim(),
+              email: emailResponse
+            }),
             { headers: corsHeaders }
-          )
+          );
         } catch (error) {
           lastError = error
           
