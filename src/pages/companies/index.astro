@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import CompanyCard from '../../components/companies/CompanyCard.astro';
 import { supabase } from '../../lib/supabase';
 
-  },
+const mockCompanies = [
   {
     id: 'swiss-move',
     name: 'SwissMove',
@@ -113,7 +113,9 @@ import { supabase } from '../../lib/supabase';
     regions: ['Zürich', 'Basel', 'Geneva', 'Lausanne'],
     rating: 4.9,
     reviewCount: 167
-  },
+  }
+];
+
 // Fetch companies from Supabase
 const { data: companies, error } = await supabase
   .from('relocators')
