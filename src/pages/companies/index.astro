@@ -1,18 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CompanyCard from '../../components/companies/CompanyCard.astro';
+import { supabase } from '../../lib/supabase';
 
-// Sample featured companies
-const companies = [
-  {
-    id: 'relocation-experts',
-    name: 'Swiss Relocation Experts',
-    logo: 'https://images.pexels.com/photos/14936128/pexels-photo-14936128.jpeg?auto=compress&cs=tinysrgb&w=200',
-    description: 'Full-service relocation agency with 15+ years of experience helping expats settle in Switzerland.',
-    services: ['Housing Search', 'Immigration Support', 'School Search'],
-    regions: ['Zürich', 'Basel', 'Geneva'],
-    rating: 4.8,
-    reviewCount: 245
   },
   {
     id: 'swiss-move',
@@ -124,9 +114,21 @@ const companies = [
     rating: 4.9,
     reviewCount: 167
   },
-];
-
-// Filter and search functionality would be implemented here in a real application
+// Fetch companies from Supabase
+const { data: companies, error } = await supabase
+  .from('relocators')
+  .select(`
+    id,
+    name,
+    logo,
+    description,
+    rating,
+    google_rating,
+    regions_served,
+    languages,
+    team
+  `)
+  .order('name');
 
 // Page metadata
 const title = 'Relocation Companies in Switzerland | ReloFinder.ch';
@@ -138,7 +140,7 @@ const description = 'Discover top-rated relocation companies in Switzerland offe
   <section class="min-h-[600px] flex items-stretch">
     <div class="container">
       <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
-        <div class="flex flex-col justify-center py-16 md:py-24 pr-8">
+        <div class="flex flex-col justify-center py-16 md:py-24 lg:pr-8 bg-white">
           <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Compare Service Companies
           </h1>
@@ -153,7 +155,7 @@ const description = 'Discover top-rated relocation companies in Switzerland offe
           </a>
         </div>
 
-        <div class="bg-gradient-to-br from-primary-600 to-primary-700 flex items-center p-8 lg:p-12">
+        <div class="bg-gradient-to-r from-red-600 to-rose-600 flex items-center p-8 lg:p-12">
           <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl w-full">
             <h2 class="text-2xl font-bold mb-6">Find Your Perfect Match</h2>
             <form class="space-y-4">
@@ -203,6 +205,11 @@ const description = 'Discover top-rated relocation companies in Switzerland offe
   <section class="section bg-white">
     <div class="container">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-on-scroll">
+        {error && (
+          <div class="col-span-full bg-red-50 text-red-600 p-4 rounded-lg">
+            Error loading companies: {error.message}
+          </div>
+        )}
         {companies.map(company => (
           <CompanyCard company={company} />
         ))}
