@@ -1,63 +1,69 @@
 ---
+id: "bern"
 name: "Bern"
-description: "Switzerland's capital city with UNESCO-listed old town, diplomatic hub, and relaxed lifestyle in a picture-perfect medieval setting."
+subtitle: "Switzerland's Historic Capital"
+canton: "Bern"
+population: 133883
+area: 51.6
+language: "German"
 image: "https://images.pexels.com/photos/3860029/pexels-photo-3860029.jpeg?auto=compress&cs=tinysrgb&w=1920"
-longDescription: |
-  Bern is Switzerland's capital and political center, offering a unique blend of history, culture, and modern diplomacy. The medieval old town, a UNESCO World Heritage site, provides a stunning backdrop for government institutions and international organizations.
-
-  Key Highlights:
-  - Swiss federal capital and diplomatic center
-  - Perfectly preserved medieval old town with distinctive arcades
-  - More affordable cost of living than Zurich or Geneva
-  - Bilingual environment with German and French influences
-  - Central location with excellent connections to all parts of Switzerland
-population: "133,883 (city), 424,796 (greater area)"
-languages:
-  - "German"
-  - "French"
-industries:
-  - "Government & Public Administration"
-  - "Healthcare"
-  - "Education"
-  - "Telecommunications"
-  - "Tourism"
-neighborhoods:
+heroImage: "https://images.pexels.com/photos/3860029/pexels-photo-3860029.jpeg?auto=compress&cs=tinysrgb&w=1920"
+featured: true
+coordinates:
+  lat: 46.9480
+  lng: 7.4474
+highlights:
+  - "Switzerland's federal capital and political center"
+  - "UNESCO World Heritage medieval Old Town"
+  - "More affordable than Zurich or Geneva"
+  - "Bilingual German-French cultural influences"
+  - "Excellent work-life balance and quality of life"
+description: "Switzerland's capital city with UNESCO-listed old town, diplomatic hub, and relaxed lifestyle in a picture-perfect medieval setting."
+keyFacts:
+  costOfLiving: "High but lower than Zurich/Geneva"
+  avgRent: "CHF 1,800-3,000/month"
+  taxRate: "12-20% (competitive rates)"
+  internetSpeed: "High-speed fiber available"
+  publicTransport: "Excellent tram and bus network"
+livingCosts:
+  oneBedroomApt:
+    min: 1000
+    max: 1800
+  threeBedroomApt:
+    min: 2200
+    max: 3500
+  utilities:
+    min: 140
+    max: 250
+  transportation: 70
+  groceries: 550
+  dining:
+    budget: 18
+    midRange: 40
+    highEnd: 80
+districts:
   - name: "Old Town (Altstadt)"
     description: "UNESCO-listed medieval center with historic buildings and cultural attractions"
+    characteristics: ["Historic", "Central", "Tourist area", "Cultural"]
+    avgRent: "CHF 2,200-3,200"
   - name: "Kirchenfeld"
     description: "Prestigious district with embassies, museums, and elegant residences"
-  - name: "Breitenrain"
-    description: "Popular residential area with good transport links and family-friendly atmosphere"
+    characteristics: ["Prestigious", "Diplomatic", "Cultural", "Elegant"]
+    avgRent: "CHF 2,600-3,800"
   - name: "Länggasse"
     description: "University district with student vibe, cafes, and cultural diversity"
-  - name: "Mattenhof"
-    description: "Urban neighborhood with good amenities and mixed residential-commercial character"
-  - name: "Monbijou"
-    description: "Central residential area with good schools and convenient location"
-  - name: "Muri"
-    description: "Affluent suburb with larger homes, gardens, and excellent views"
-facts:
-  - title: "Cost of Living"
-    description: "More affordable than Zurich or Geneva, with good quality of life and reasonable housing costs"
-  - title: "Education"
-    description: "University of Bern, International School of Berne, and excellent public schools"
-  - title: "Healthcare"
-    description: "Top-quality facilities including Inselspital university hospital and specialized clinics"
-  - title: "Transportation"
-    description: "Excellent public transport with trams, buses, and central location in Swiss rail network"
-  - title: "Work-Life Balance"
-    description: "Known for its relaxed pace and high quality of life compared to financial centers"
-cities:
-  - "Bern"
-  - "Köniz"
-  - "Ostermundigen"
-  - "Muri bei Bern"
-  - "Ittigen"
-  - "Wabern"
-featured: true
-displayOrder: 6
-seoTitle: "Living in Bern | Expat Guide to Switzerland's Capital City | ReloFinder.ch"
-seoDescription: "Discover Bern - Switzerland's beautiful capital with UNESCO heritage, diplomatic center, and excellent quality of life. Complete relocation guide for expatriates."
+    characteristics: ["University", "Vibrant", "Cultural", "Student-friendly"]
+    avgRent: "CHF 1,800-2,800"
+  - name: "Breitenrain"
+    description: "Popular residential area with good transport links and family-friendly atmosphere"
+    characteristics: ["Family-friendly", "Residential", "Good transport", "Practical"]
+    avgRent: "CHF 2,000-3,000"
+companies: []
+relocationStats:
+  expatsPercentage: 25
+  avgMoveTime: "4-6 weeks"
+  satisfaction: 4.5
+  topIndustries: ["Government", "Healthcare", "Education", "Telecommunications"]
 ---
 
 # Bern: Switzerland's Historic Capital and Diplomatic Center

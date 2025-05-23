@@ -5,13 +5,42 @@ import { getCollection } from 'astro:content';
 export async function getStaticPaths() {
   const regions = await getCollection('regions');
   return regions.map((region) => ({
-    params: { id: region.data.id },
+    params: { id: region.data.id || region.slug },
     props: { region },
   }));
 }
 
 const { region } = Astro.props;
 const { Content } = await region.render();
+
+// Add safety checks for missing data
+const relocationStats = region.data.relocationStats || {
+  expatsPercentage: 20,
+  avgMoveTime: "4-6 weeks", 
+  satisfaction: 4.0,
+  topIndustries: ["Various"]
+};
+
+const keyFacts = region.data.keyFacts || {
+  costOfLiving: "Information not available",
+  avgRent: "Information not available",
+  taxRate: "Information not available", 
+  internetSpeed: "Information not available",
+  publicTransport: "Information not available"
+};
+
+const livingCosts = region.data.livingCosts || {
+  oneBedroomApt: { min: 1000, max: 2000 },
+  threeBedroomApt: { min: 2000, max: 3000 },
+  utilities: { min: 150, max: 250 },
+  transportation: 80,
+  groceries: 500,
+  dining: { budget: 20, midRange: 50, highEnd: 100 }
+};
+
+const highlights = region.data.highlights || ["Beautiful location", "Quality of life", "Swiss excellence"];
+const districts = region.data.districts || [];
+const population = typeof region.data.population === 'string' ? region.data.population : region.data.population?.toLocaleString() || 'N/A';
 ---
 
 <Layout title={`Living in ${region.data.name} | Complete Relocation Guide | ReloFinder.ch`}>
@@ -61,19 +90,19 @@ const { Content } = await region.render();
           <!-- Key Stats -->
           <div class="grid grid-cols-2 md:grid-cols-4 gap-6 py-6">
             <div class="text-center">
-              <div class="text-2xl font-bold text-primary-600">{region.data.population.toLocaleString()}</div>
+              <div class="text-2xl font-bold text-primary-600">{population}</div>
               <div class="text-sm text-gray-600">Population</div>
             </div>
             <div class="text-center">
-              <div class="text-2xl font-bold text-primary-600">{region.data.relocationStats.expatsPercentage}%</div>
+              <div class="text-2xl font-bold text-primary-600">{relocationStats.expatsPercentage}%</div>
               <div class="text-sm text-gray-600">Expats</div>
             </div>
             <div class="text-center">
-              <div class="text-2xl font-bold text-primary-600">{region.data.relocationStats.satisfaction}</div>
+              <div class="text-2xl font-bold text-primary-600">{relocationStats.satisfaction}</div>
               <div class="text-sm text-gray-600">Satisfaction</div>
             </div>
             <div class="text-center">
-              <div class="text-2xl font-bold text-primary-600">{region.data.relocationStats.avgMoveTime}</div>
+              <div class="text-2xl font-bold text-primary-600">{relocationStats.avgMoveTime}</div>
               <div class="text-sm text-gray-600">Move Time</div>
             </div>
           </div>
@@ -129,7 +158,7 @@ const { Content } = await region.render();
         <div>
           <h2 class="text-3xl font-bold mb-8">Essential Information</h2>
           <div class="space-y-6">
-            {Object.entries(region.data.keyFacts).map(([key, value]) => (
+            {Object.entries(keyFacts).map(([key, value]) => (
               <div class="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl">
                 <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center flex-shrink-0">
                   {key === 'costOfLiving' && (
@@ -173,7 +202,7 @@ const { Content } = await region.render();
         <div>
           <h2 class="text-3xl font-bold mb-8">Why Choose {region.data.name}?</h2>
           <div class="space-y-4">
-            {region.data.highlights.map((highlight: string) => (
+            {highlights.map((highlight: string) => (
               <div class="flex items-start space-x-3">
                 <div class="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                   <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
@@ -189,7 +218,7 @@ const { Content } = await region.render();
           <div class="mt-8">
             <h3 class="text-lg font-bold mb-4">Top Industries</h3>
             <div class="flex flex-wrap gap-2">
-              {region.data.relocationStats.topIndustries.map((industry: string) => (
+              {relocationStats.topIndustries.map((industry: string) => (
                 <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
                   {industry}
                 </span>
@@ -214,7 +243,7 @@ const { Content } = await region.render();
       </div>
 
       <div class="grid md:grid-cols-2 gap-8">
-        {region.data.districts.map((district: any) => (
+        {districts.map((district: any) => (
           <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300">
             <div class="flex items-start justify-between mb-4">
               <h3 class="text-xl font-bold text-gray-900">{district.name}</h3>
@@ -259,15 +288,15 @@ const { Content } = await region.render();
           <div class="space-y-3">
             <div class="flex justify-between">
               <span class="text-gray-700">1-Bedroom Apt</span>
-              <span class="font-semibold">CHF {region.data.livingCosts.oneBedroomApt.min}-{region.data.livingCosts.oneBedroomApt.max}</span>
+              <span class="font-semibold">CHF {livingCosts.oneBedroomApt.min}-{livingCosts.oneBedroomApt.max}</span>
             </div>
             <div class="flex justify-between">
               <span class="text-gray-700">3-Bedroom Apt</span>
-              <span class="font-semibold">CHF {region.data.livingCosts.threeBedroomApt.min}-{region.data.livingCosts.threeBedroomApt.max}</span>
+              <span class="font-semibold">CHF {livingCosts.threeBedroomApt.min}-{livingCosts.threeBedroomApt.max}</span>
             </div>
             <div class="flex justify-between">
               <span class="text-gray-700">Utilities</span>
-              <span class="font-semibold">CHF {region.data.livingCosts.utilities.min}-{region.data.livingCosts.utilities.max}</span>
+              <span class="font-semibold">CHF {livingCosts.utilities.min}-{livingCosts.utilities.max}</span>
             </div>
           </div>
         </div>
@@ -278,11 +307,11 @@ const { Content } = await region.render();
           <div class="space-y-3">
             <div class="flex justify-between">
               <span class="text-gray-700">Transportation</span>
-              <span class="font-semibold">CHF {region.data.livingCosts.transportation}/month</span>
+              <span class="font-semibold">CHF {livingCosts.transportation}/month</span>
             </div>
             <div class="flex justify-between">
               <span class="text-gray-700">Groceries</span>
-              <span class="font-semibold">CHF {region.data.livingCosts.groceries}/month</span>
+              <span class="font-semibold">CHF {livingCosts.groceries}/month</span>
             </div>
             <div class="flex justify-between">
               <span class="text-gray-700">Internet/Phone</span>
@@ -297,15 +326,15 @@ const { Content } = await region.render();
           <div class="space-y-3">
             <div class="flex justify-between">
               <span class="text-gray-700">Budget Meal</span>
-              <span class="font-semibold">CHF {region.data.livingCosts.dining.budget}</span>
+              <span class="font-semibold">CHF {livingCosts.dining.budget}</span>
             </div>
             <div class="flex justify-between">
               <span class="text-gray-700">Mid-Range</span>
-              <span class="font-semibold">CHF {region.data.livingCosts.dining.midRange}</span>
+              <span class="font-semibold">CHF {livingCosts.dining.midRange}</span>
             </div>
             <div class="flex justify-between">
               <span class="text-gray-700">Fine Dining</span>
-              <span class="font-semibold">CHF {region.data.livingCosts.dining.highEnd}+</span>
+              <span class="font-semibold">CHF {livingCosts.dining.highEnd}+</span>
             </div>
           </div>
         </div>
@@ -344,15 +373,15 @@ const { Content } = await region.render();
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div>
-            <div class="text-3xl font-bold mb-2">{region.data.relocationStats.expatsPercentage}%</div>
+            <div class="text-3xl font-bold mb-2">{relocationStats.expatsPercentage}%</div>
             <div class="text-sm opacity-75">International Residents</div>
           </div>
           <div>
-            <div class="text-3xl font-bold mb-2">{region.data.relocationStats.satisfaction}/5</div>
+            <div class="text-3xl font-bold mb-2">{relocationStats.satisfaction}/5</div>
             <div class="text-sm opacity-75">Expat Satisfaction</div>
           </div>
           <div>
-            <div class="text-3xl font-bold mb-2">{region.data.relocationStats.avgMoveTime}</div>
+            <div class="text-3xl font-bold mb-2">{relocationStats.avgMoveTime}</div>
             <div class="text-sm opacity-75">Average Setup Time</div>
           </div>
         </div>

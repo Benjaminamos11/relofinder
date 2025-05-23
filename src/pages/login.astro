@@ -4,8 +4,16 @@ import { supabase } from '../lib/supabase';
 
 const errors = Astro.url.searchParams.get('error');
 
-// Check if user is already logged in
-const { data: { session } } = await supabase.auth.getSession();
+// Check if user is already logged in (only if supabase is available)
+let session = null;
+if (supabase) {
+  try {
+    const { data } = await supabase.auth.getSession();
+    session = data.session;
+  } catch (error) {
+    console.warn('Could not get session:', error);
+  }
+}
 
 if (session) {
   return Astro.redirect('/admin');

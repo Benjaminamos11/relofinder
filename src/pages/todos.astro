@@ -2,7 +2,18 @@
 import Layout from '../layouts/Layout.astro';
 import { supabase } from '../lib/supabase';
 
-const { data: todos, error } = await supabase.from('todos').select('*');
+let todos = null;
+let error = null;
+
+if (supabase) {
+  try {
+    const result = await supabase.from('todos').select('*');
+    todos = result.data;
+    error = result.error;
+  } catch (err) {
+    error = err;
+  }
+}
 ---
 
 <Layout title="Todos | ReloFinder.ch">
@@ -11,7 +22,7 @@ const { data: todos, error } = await supabase.from('todos').select('*');
     
     {error ? (
       <div class="bg-red-100 text-red-700 p-4 rounded mb-6">
-        Error loading todos: {error.message}
+        Error loading todos: {String(error)}
       </div>
     ) : (
       <ul class="space-y-2">
