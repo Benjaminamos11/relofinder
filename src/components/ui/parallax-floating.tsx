@@ -1,0 +1,1 @@
+// Content from parallax-floating.tsx
