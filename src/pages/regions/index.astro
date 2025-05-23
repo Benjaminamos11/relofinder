@@ -1,118 +1,24 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import RegionCard from '../../components/regions/RegionCard.astro';
+import { getCollection } from 'astro:content';
 
-// Swiss regions data
-const regions = [
-  {
-    id: 'zurich',
-    name: 'Zürich',
-    description: 'Switzerland\'s largest city and a global financial center with vibrant cultural scenes and high quality of life.',
-    image: 'https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&w=800',
-    population: '402,762',
-    languages: ['German', 'English'],
-    industries: ['Finance', 'Technology', 'Research']
-  },
-  {
-    id: 'geneva',
-    name: 'Geneva',
-    description: 'International hub hosting many UN and non-governmental organizations, with a beautiful lakeside setting.',
-    image: 'https://images.pexels.com/photos/19012697/pexels-photo-19012697/free-photo-of-jet-deau-fountain-and-the-mont-blanc-in-geneva.jpeg?auto=compress&cs=tinysrgb&w=800',
-    population: '201,818',
-    languages: ['French', 'English'],
-    industries: ['International Organizations', 'Banking', 'Luxury Goods']
-  },
-  {
-    id: 'basel',
-    name: 'Basel',
-    description: 'Cultural capital of Switzerland known for its pharmaceuticals industry and art scene.',
-    image: 'https://images.pexels.com/photos/18852500/pexels-photo-18852500/free-photo-of-view-of-basel.jpeg?auto=compress&cs=tinysrgb&w=800',
-    population: '173,232',
-    languages: ['German', 'English'],
-    industries: ['Pharmaceuticals', 'Chemical', 'Art']
-  },
-  {
-    id: 'lugano',
-    name: 'Lugano',
-    description: 'The largest city in Ticino canton offering Mediterranean flair in Switzerland.',
-    image: 'https://images.pexels.com/photos/11538103/pexels-photo-11538103.jpeg?auto=compress&cs=tinysrgb&w=800',
-    population: '62,315',
-    languages: ['Italian', 'German', 'English'],
-    industries: ['Banking', 'Tourism', 'Healthcare']
-  },
-  {
-    id: 'bern',
-    name: 'Bern',
-    description: 'The capital city of Switzerland with a UNESCO World Heritage-listed Old Town and relaxed atmosphere.',
-    image: 'https://images.pexels.com/photos/6854072/pexels-photo-6854072.jpeg?auto=compress&cs=tinysrgb&w=800',
-    population: '133,883',
-    languages: ['German', 'English'],
-    industries: ['Government', 'Education', 'Services']
-  },
-  {
-    id: 'lausanne',
-    name: 'Lausanne',
-    description: 'Olympic Capital on Lake Geneva with beautiful views and a vibrant student population.',
-    image: 'https://images.pexels.com/photos/16695010/pexels-photo-16695010/free-photo-of-view-of-lausanne-old-city-in-switzerland.jpeg?auto=compress&cs=tinysrgb&w=800',
-    population: '139,111',
-    languages: ['French', 'English'],
-    industries: ['Sports', 'Education', 'Healthcare']
-  },
-  {
-    id: 'lucerne',
-    name: 'Lucerne',
-    description: 'Picturesque city in central Switzerland known for its preserved medieval architecture.',
-    image: 'https://images.pexels.com/photos/13599752/pexels-photo-13599752.jpeg?auto=compress&cs=tinysrgb&w=800',
-    population: '81,057',
-    languages: ['German', 'English'],
-    industries: ['Tourism', 'Watchmaking', 'Services']
-  },
-  {
-    id: 'zug',
-    name: 'Zug',
-    description: 'Small but affluent canton and city known for low taxes and high quality of life.',
-    image: 'https://images.pexels.com/photos/3618682/pexels-photo-3618682.jpeg?auto=compress&cs=tinysrgb&w=800',
-    population: '30,542',
-    languages: ['German', 'English'],
-    industries: ['Finance', 'Blockchain', 'Technology']
-  },
-  {
-    id: 'st-gallen',
-    name: 'St. Gallen',
-    description: 'University city in eastern Switzerland known for its UNESCO-listed Abbey Library.',
-    image: 'https://images.pexels.com/photos/4101351/pexels-photo-4101351.jpeg?auto=compress&cs=tinysrgb&w=800',
-    population: '75,833',
-    languages: ['German', 'English'],
-    industries: ['Education', 'Textiles', 'Services']
-  },
-  {
-    id: 'winterthur',
-    name: 'Winterthur',
-    description: 'Zürich\'s smaller neighbor offering cultural richness with numerous museums and gardens.',
-    image: 'https://images.pexels.com/photos/2868728/pexels-photo-2868728.jpeg?auto=compress&cs=tinysrgb&w=800',
-    population: '113,500',
-    languages: ['German', 'English'],
-    industries: ['Engineering', 'Education', 'Services']
-  },
-  {
-    id: 'montreux',
-    name: 'Montreux',
-    description: 'Resort town on Lake Geneva known for its mild climate and the annual Montreux Jazz Festival.',
-    image: 'https://images.pexels.com/photos/17605000/pexels-photo-17605000/free-photo-of-montreux-cityscape-with-lake-geneva-switzerland.jpeg?auto=compress&cs=tinysrgb&w=800',
-    population: '26,433',
-    languages: ['French', 'English'],
-    industries: ['Tourism', 'Hospitality', 'Events']
-  },
-  {
-    id: 'interlaken',
-    name: 'Interlaken',
-    description: 'Resort town between Lake Thun and Lake Brienz, gateway to mountains of the Bernese Oberland.',
-    image: 'https://images.pexels.com/photos/4215108/pexels-photo-4215108.jpeg?auto=compress&cs=tinysrgb&w=800',
-    population: '5,592',
-    languages: ['German', 'English'],
-    industries: ['Tourism', 'Adventure Sports', 'Hospitality']
-  },
-];
+const regions = await getCollection('regions');
+
+// Sort regions by featured first, then by population
+const sortedRegions = regions.sort((a, b) => {
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  
+  // Handle population being either string or number
+  const aPopulation = typeof a.data.population === 'string' ? parseInt(a.data.population.replace(/,/g, '')) : (a.data.population || 0);
+  const bPopulation = typeof b.data.population === 'string' ? parseInt(b.data.population.replace(/,/g, '')) : (b.data.population || 0);
+  
+  return bPopulation - aPopulation;
+});
+
+const featuredRegions = regions.filter(region => region.data.featured);
+// Remove featured regions from the all regions list to avoid duplication
+const nonFeaturedRegions = regions.filter(region => !region.data.featured);
 
 // Page metadata
 const title = 'Swiss Regions Guide for Expats | ReloFinder.ch';
@@ -121,424 +27,403 @@ const description = 'Explore regions across Switzerland to find your ideal locat
 
 <Layout title={title} description={description}>
   <!-- Hero Section -->
-  <section class="min-h-[600px] flex items-stretch">
-    <div class="container">
-      <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
-        <div class="flex flex-col justify-center py-16 md:py-24 pr-8">
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Compare Swiss Regions
-          </h1>
-          <p class="text-xl text-accent-600 mb-8 max-w-xl">
-            Get expert guidance on choosing the perfect Swiss location—completely free. Our comparison tools help you understand each region's unique characteristics and find your ideal home.
-          </p>
-          <a href="/contact" class="btn-primary">
-            Schedule Your Free Call
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-            </svg>
-          </a>
-        </div>
+  <section class="relative py-20 bg-gradient-to-br from-primary-50 via-white to-secondary-50 overflow-hidden">
+    <div class="absolute inset-0 opacity-30">
+      <div class="absolute inset-0 bg-repeat" style="background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23e11d48%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%224%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E);"></div>
+    </div>
 
-        <div class="bg-gradient-to-br from-primary-600 to-primary-700 flex items-center p-8 lg:p-12">
-          <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl w-full">
-          <h2 class="text-2xl font-bold mb-6 text-accent-900">Why compare regions with us?</h2>
-          <div class="space-y-6">
-            <div class="flex gap-4">
-              <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-lg font-semibold mb-1">Local Expertise</h3>
-                <p class="text-accent-600">Get insights from experts who know each Swiss region intimately.</p>
-              </div>
-            </div>
-            <div class="flex gap-4">
-              <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2M6 7l-3-1m3 1l3-1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9" />
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-lg font-semibold mb-1">Cost Comparison</h3>
-                <p class="text-accent-600">Compare living costs, housing prices, and quality of life across regions.</p>
-              </div>
-            </div>
-            <div class="flex gap-4">
-              <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-              <div>
-                <h3 class="text-lg font-semibold mb-1">Lifestyle Match</h3>
-                <p class="text-accent-600">Find the perfect region based on your lifestyle, work, and family needs.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <div class="container relative z-10">
+      <div class="text-center max-w-4xl mx-auto">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center justify-center space-x-2 text-sm text-gray-600 mb-8">
+          <a href="/" class="hover:text-primary-600 transition-colors">Home</a>
+          <span>→</span>
+          <span class="text-gray-900">Regions</span>
+        </nav>
 
-  <!-- Swiss Map Overview -->
-  <section class="section bg-white">
-    <div class="container">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-3xl font-bold mb-4">Switzerland at a <span class="text-accent-600">Glance</span></h2>
-        <p class="text-lg text-accent-600">
-          Switzerland is divided into 26 cantons, each with its own unique culture, traditions, and sometimes language.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div>
-          <!-- This would be a Swiss map with interactive regions -->
-          <img 
-            src="https://images.pexels.com/photos/11261433/pexels-photo-11261433.jpeg?auto=compress&cs=tinysrgb&w=800" 
-            alt="Map of Switzerland" 
-            class="rounded-lg shadow-lg w-full"
-          />
-        </div>
-        
-        <div class="space-y-6">
-          <div>
-            <h3 class="text-xl font-semibold mb-2">Language Regions</h3>
-            <p class="text-accent-600 mb-4">
-              Switzerland has four official languages, distributed across different regions:
-            </p>
-            <div class="grid grid-cols-2 gap-4">
-              <div class="flex items-center">
-                <div class="w-4 h-4 rounded-full bg-primary-600 mr-2"></div>
-                <span>German (63%)</span>
-              </div>
-              <div class="flex items-center">
-                <div class="w-4 h-4 rounded-full bg-secondary-600 mr-2"></div>
-                <span>French (23%)</span>
-              </div>
-              <div class="flex items-center">
-                <div class="w-4 h-4 rounded-full bg-green-600 mr-2"></div>
-                <span>Italian (8%)</span>
-              </div>
-              <div class="flex items-center">
-                <div class="w-4 h-4 rounded-full bg-yellow-600 mr-2"></div>
-                <span>Romansh (0.5%)</span>
-              </div>
-            </div>
-          </div>
-          
-          <div>
-            <h3 class="text-xl font-semibold mb-2">Key Facts</h3>
-            <ul class="space-y-2">
-              <li class="flex items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Population: 8.7 million</span>
-              </li>
-              <li class="flex items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Area: 41,285 km²</span>
-              </li>
-              <li class="flex items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Capital: Bern</span>
-              </li>
-              <li class="flex items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Largest city: Zürich</span>
-              </li>
-              <li class="flex items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent-600 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Currency: Swiss Franc (CHF)</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Regions Grid -->
-  <section class="section bg-accent-50" id="cities">
-    <div class="container">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-3xl font-bold mb-4">Major Swiss <span class="text-accent-600">Cities & Regions</span></h2>
-        <p class="text-lg text-accent-600">
-          Explore Switzerland's diverse regions and find the perfect place for your relocation.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-on-scroll">
-        {regions.map(region => (
-          <RegionCard region={region} />
-        ))}
-      </div>
-      
-      <!-- Language Region Sections -->
-      <div class="mt-20" id="german">
-        <h3 class="text-2xl font-bold mb-6 border-b border-accent-200 pb-3">German-Speaking Switzerland</h3>
-        <p class="text-accent-600 mb-8">
-          German-speaking Switzerland (also called Swiss-German Switzerland) makes up about 65% of the country and includes major cities such as Zürich, Bern, and Basel. The local dialect is Swiss German (Schweizerdeutsch), which can differ significantly from High German.
-        </p>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <a href="/regions/zurich" class="card p-4 text-center hover:shadow-lg transition-all">
-            <h4 class="font-semibold">Zürich</h4>
-          </a>
-          <a href="/regions/bern" class="card p-4 text-center hover:shadow-lg transition-all">
-            <h4 class="font-semibold">Bern</h4>
-          </a>
-          <a href="/regions/basel" class="card p-4 text-center hover:shadow-lg transition-all">
-            <h4 class="font-semibold">Basel</h4>
-          </a>
-          <a href="/regions/st-gallen" class="card p-4 text-center hover:shadow-lg transition-all">
-            <h4 class="font-semibold">St. Gallen</h4>
-          </a>
-        </div>
-      </div>
-      
-      <div class="mt-16" id="french">
-        <h3 class="text-2xl font-bold mb-6 border-b border-accent-200 pb-3">French-Speaking Switzerland</h3>
-        <p class="text-accent-600 mb-8">
-          French-speaking Switzerland (Romandy or la Suisse romande) covers the western part of the country, including Geneva and Lausanne. The French spoken here has some unique Swiss expressions but is largely similar to standard French.
-        </p>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <a href="/regions/geneva" class="card p-4 text-center hover:shadow-lg transition-all">
-            <h4 class="font-semibold">Geneva</h4>
-          </a>
-          <a href="/regions/lausanne" class="card p-4 text-center hover:shadow-lg transition-all">
-            <h4 class="font-semibold">Lausanne</h4>
-          </a>
-          <a href="/regions/montreux" class="card p-4 text-center hover:shadow-lg transition-all">
-            <h4 class="font-semibold">Montreux</h4>
-          </a>
-          <a href="/regions/neuchatel" class="card p-4 text-center hover:shadow-lg transition-all">
-            <h4 class="font-semibold">Neuchâtel</h4>
-          </a>
-        </div>
-      </div>
-      
-      <div class="mt-16" id="italian">
-        <h3 class="text-2xl font-bold mb-6 border-b border-accent-200 pb-3">Italian-Speaking Switzerland</h3>
-        <p class="text-accent-600 mb-8">
-          Italian-speaking Switzerland is primarily in the canton of Ticino in the south, bordering Italy. This region offers a Mediterranean flair with palm trees, Italian cuisine, and a more relaxed lifestyle.
-        </p>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <a href="/regions/lugano" class="card p-4 text-center hover:shadow-lg transition-all">
-            <h4 class="font-semibold">Lugano</h4>
-          </a>
-          <a href="/regions/locarno" class="card p-4 text-center hover:shadow-lg transition-all">
-            <h4 class="font-semibold">Locarno</h4>
-          </a>
-          <a href="/regions/bellinzona" class="card p-4 text-center hover:shadow-lg transition-all">
-            <h4 class="font-semibold">Bellinzona</h4>
-          </a>
-          <a href="/regions/mendrisio" class="card p-4 text-center hover:shadow-lg transition-all">
-            <h4 class="font-semibold">Mendrisio</h4>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Expat Stories -->
-  <section class="section bg-white">
-    <div class="container">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-3xl font-bold mb-4">Expat <span class="text-accent-600">Stories</span></h2>
-        <p class="text-lg text-accent-600">
-          Read about the experiences of other expats who have relocated to different regions of Switzerland.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="card overflow-hidden">
-          <div class="relative h-48">
-            <img 
-              src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=800" 
-              alt="Expat in Zürich" 
-              class="w-full h-full object-cover"
-            />
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-3">"Zürich exceeded all my expectations"</h3>
-            <p class="text-accent-600 mb-4">
-              "Moving from London to Zürich was a smooth transition. The city offers an incredible quality of life, fantastic public transportation, and beautiful nature just a short train ride away."
-            </p>
-            <div class="flex items-center">
-              <img 
-                src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=100" 
-                alt="Sarah" 
-                class="w-10 h-10 rounded-full mr-3 object-cover"
-              />
-              <div>
-                <p class="font-medium">Sarah</p>
-                <p class="text-sm text-accent-500">UK expat in Zürich</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card overflow-hidden">
-          <div class="relative h-48">
-            <img 
-              src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=800" 
-              alt="Expat in Geneva" 
-              class="w-full h-full object-cover"
-            />
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-3">"Geneva's international community made me feel at home"</h3>
-            <p class="text-accent-600 mb-4">
-              "The diverse community in Geneva made it easy to settle in. Working for an international organization, I found colleagues from all over the world who shared their experiences."
-            </p>
-            <div class="flex items-center">
-              <img 
-                src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100" 
-                alt="Miguel" 
-                class="w-10 h-10 rounded-full mr-3 object-cover"
-              />
-              <div>
-                <p class="font-medium">Miguel</p>
-                <p class="text-sm text-accent-500">Spanish expat in Geneva</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card overflow-hidden">
-          <div class="relative h-48">
-            <img 
-              src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=800" 
-              alt="Expat in Lugano" 
-              class="w-full h-full object-cover"
-            />
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-3">"Lugano offers the best of Switzerland and Italy"</h3>
-            <p class="text-accent-600 mb-4">
-              "Living in Lugano gives me Swiss efficiency with Italian flair. The palm trees, lake views, and proximity to Italy make it a unique place to live within Switzerland."
-            </p>
-            <div class="flex items-center">
-              <img 
-                src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100" 
-                alt="Emma" 
-                class="w-10 h-10 rounded-full mr-3 object-cover"
-              />
-              <div>
-                <p class="font-medium">Emma</p>
-                <p class="text-sm text-accent-500">US expat in Lugano</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="mt-12 text-center">
-        <a href="/blog/category/expat-stories" class="btn-outline">
-          Read More Expat Stories
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+        <!-- Badge -->
+        <div class="inline-flex items-center px-4 py-2 rounded-full bg-secondary-100 text-secondary-700 font-medium text-sm mb-8">
+          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
           </svg>
-        </a>
+          26 Swiss Cantons & Cities
+        </div>
+
+        <!-- Title & Description -->
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+          Discover Swiss <span class="gradient-text">Regions</span>
+        </h1>
+        <p class="text-xl text-gray-600 leading-relaxed mb-8">
+          Explore Switzerland's diverse regions and find the perfect location for your new home. From cosmopolitan cities to Alpine villages, discover what makes each area unique.
+        </p>
+
+        <!-- CTA -->
+        <button onclick="openModal('individual-lead-modal')" class="btn-primary px-8 py-4">
+          Get Location Recommendations
+        </button>
       </div>
     </div>
   </section>
-  
-  <!-- Region Comparison Tool -->
-  <section class="section bg-accent-50">
+
+  <!-- Featured Regions -->
+  {featuredRegions.length > 0 && (
+    <section class="py-20 bg-white">
+      <div class="container">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 rounded-full bg-primary-100 text-primary-700 font-medium text-sm mb-4">
+            Most Popular
+          </span>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            Top Expat <span class="gradient-text">Destinations</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            The most popular Swiss regions for international residents and their families.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 mb-12">
+          {featuredRegions.slice(0, 2).map((region, index) => {
+            // Handle population formatting
+            const population = typeof region.data.population === 'string' 
+              ? region.data.population 
+              : region.data.population?.toLocaleString() || 'N/A';
+            
+            return (
+              <div class="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden">
+                <!-- Background Image -->
+                <div class="absolute inset-0">
+                  <img 
+                    src={region.data.image} 
+                    alt={`${region.data.name} Switzerland`}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+                </div>
+
+                <!-- Content -->
+                <div class="relative z-10 p-8 h-96 flex flex-col justify-end text-white">
+                  <div class="mb-4">
+                    <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium mb-3">
+                      {region.data.canton || 'Switzerland'}
+                    </span>
+                    <h3 class="text-3xl font-bold mb-3">{region.data.name}</h3>
+                    <p class="text-lg opacity-90 mb-4">{region.data.subtitle || region.data.description.substring(0, 60) + '...'}</p>
+                    <p class="opacity-80 leading-relaxed mb-6">
+                      {region.data.description}
+                    </p>
+                  </div>
+
+                  <!-- Stats -->
+                  <div class="grid grid-cols-3 gap-4 mb-6">
+                    <div class="text-center">
+                      <div class="text-lg font-bold">{population}</div>
+                      <div class="text-xs opacity-75">Population</div>
+                    </div>
+                    <div class="text-center">
+                      <div class="text-lg font-bold">{region.data.relocationStats?.expatsPercentage || 'International'}</div>
+                      <div class="text-xs opacity-75">Community</div>
+                    </div>
+                    <div class="text-center">
+                      <div class="text-lg font-bold">{region.data.relocationStats?.satisfaction || 'High Quality'}</div>
+                      <div class="text-xs opacity-75">Living</div>
+                    </div>
+                  </div>
+
+                  <!-- CTA -->
+                  <a href={`/regions/${region.data.id || region.slug}`} class="inline-flex items-center justify-center w-full py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl hover:bg-white/20 transition-all duration-300 group-hover:scale-105">
+                    Explore {region.data.name}
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <!-- Additional Featured Regions -->
+        <div class="grid md:grid-cols-3 gap-6">
+          {featuredRegions.slice(2).map((region) => (
+            <div class="group relative bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
+              <div class="aspect-w-16 aspect-h-10">
+                <img 
+                  src={region.data.image} 
+                  alt={`${region.data.name} Switzerland`}
+                  class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              
+              <div class="p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary-600 transition-colors duration-300">
+                    {region.data.name}
+                  </h3>
+                  <span class="text-xs font-medium bg-primary-100 text-primary-700 px-2 py-1 rounded-full">
+                    Popular
+                  </span>
+                </div>
+                
+                <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+                  {region.data.description}
+                </p>
+                
+                <div class="grid grid-cols-2 gap-4 mb-4 text-center">
+                  <div>
+                    <div class="text-sm font-bold text-primary-600">{region.data.relocationStats?.expatsPercentage || 'International'}</div>
+                    <div class="text-xs text-gray-500">Community</div>
+                  </div>
+                  <div>
+                    <div class="text-sm font-bold text-primary-600">{region.data.relocationStats?.avgMoveTime || 'Varies'}</div>
+                    <div class="text-xs text-gray-500">Setup Time</div>
+                  </div>
+                </div>
+                
+                <a href={`/regions/${region.data.id || region.slug}`} class="block w-full text-center py-2 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-medium rounded-xl hover:shadow-lg transition-all duration-300 group-hover:scale-105">
+                  Learn More
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- All Regions Grid -->
+  <section class="py-20 bg-gray-50">
     <div class="container">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-3xl font-bold mb-4">Compare Swiss <span class="text-accent-600">Regions</span></h2>
-        <p class="text-lg text-accent-600">
-          Use our comparison tool to evaluate different Swiss regions based on factors important to you.
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          {featuredRegions.length > 0 ? 'More Swiss ' : 'All Swiss '}
+          <span class="gradient-text">Regions</span>
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          {featuredRegions.length > 0 
+            ? 'Discover additional Swiss regions and cities to find your ideal location.'
+            : 'Browse our complete collection of Swiss regions and cities to find your ideal location.'}
         </p>
       </div>
-      
-      <div class="card p-8">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div>
-            <label class="block text-sm font-medium text-accent-600 mb-2">Region 1</label>
-            <select class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-accent-500 text-accent-800 appearance-none bg-white">
-              <option value="">Select a region</option>
-              <option value="zurich">Zürich</option>
-              <option value="geneva">Geneva</option>
-              <option value="basel">Basel</option>
-              <option value="bern">Bern</option>
-              <option value="lausanne">Lausanne</option>
-              <option value="lugano">Lugano</option>
-            </select>
-          </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {(featuredRegions.length > 0 ? nonFeaturedRegions : sortedRegions).map((region) => {
+          // Handle population formatting
+          const population = typeof region.data.population === 'string' 
+            ? parseInt(region.data.population.replace(/,/g, '')) || 0
+            : (region.data.population ?? 0);
           
-          <div>
-            <label class="block text-sm font-medium text-accent-600 mb-2">Region 2</label>
-            <select class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-accent-500 text-accent-800 appearance-none bg-white">
-              <option value="">Select a region</option>
-              <option value="zurich">Zürich</option>
-              <option value="geneva">Geneva</option>
-              <option value="basel">Basel</option>
-              <option value="bern">Bern</option>
-              <option value="lausanne">Lausanne</option>
-              <option value="lugano">Lugano</option>
-            </select>
+          return (
+            <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 group hover:-translate-y-1">
+              <!-- Header with Image -->
+              <div class="flex items-start space-x-4 mb-4">
+                <div class="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
+                  <img 
+                    src={region.data.image} 
+                    alt={`${region.data.name} Switzerland`}
+                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                
+                <div class="flex-1">
+                  <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-lg font-bold text-gray-900 group-hover:text-primary-600 transition-colors duration-300">
+                      {region.data.name}
+                    </h3>
+                    {region.data.featured && (
+                      <span class="text-xs font-medium bg-primary-100 text-primary-700 px-2 py-1 rounded-full">
+                        Popular
+                      </span>
+                    )}
+                  </div>
+                  <p class="text-sm text-gray-600">{region.data.subtitle || 'Swiss Region'}</p>
+                  <p class="text-xs text-gray-500 mt-1">{region.data.canton || 'Switzerland'}</p>
+                </div>
+              </div>
+
+              <!-- Description -->
+              <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">
+                {region.data.description}
+              </p>
+
+              <!-- Key Stats -->
+              <div class="grid grid-cols-3 gap-3 mb-4 py-3 px-4 bg-gray-50 rounded-xl">
+                <div class="text-center">
+                  <div class="text-sm font-bold text-primary-600">
+                    {population > 1000 ? `${(population / 1000).toFixed(0)}k` : population || 'N/A'}
+                  </div>
+                  <div class="text-xs text-gray-500">Population</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-sm font-bold text-primary-600">{region.data.relocationStats?.expatsPercentage || 'International'}</div>
+                  <div class="text-xs text-gray-500">Community</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-sm font-bold text-primary-600">{region.data.relocationStats?.satisfaction || 'Quality'}</div>
+                  <div class="text-xs text-gray-500">Living</div>
+                </div>
+              </div>
+
+              <!-- Key Industries -->
+              {region.data.relocationStats?.topIndustries && Array.isArray(region.data.relocationStats.topIndustries) && region.data.relocationStats.topIndustries.length > 0 && (
+                <div class="mb-4">
+                  <div class="text-xs font-semibold text-gray-700 mb-2">Top Industries:</div>
+                  <div class="flex flex-wrap gap-1">
+                    {region.data.relocationStats.topIndustries.slice(0, 3).map((industry: string) => (
+                      <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">
+                        {industry}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <!-- Cost Range -->
+              <div class="flex items-center justify-between mb-4 text-sm">
+                <span class="text-gray-600">Living Cost:</span>
+                <span class="font-semibold text-gray-900">{region.data.keyFacts?.costOfLiving || 'Contact for info'}</span>
+              </div>
+
+              <!-- CTA -->
+              <div class="flex space-x-2">
+                <a href={`/regions/${region.data.id || region.slug}`} class="flex-1 text-center py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-medium rounded-xl hover:shadow-lg transition-all duration-300 group-hover:scale-105">
+                  Explore
+                </a>
+                <button onclick="openModal('individual-lead-modal')" class="px-4 py-3 border-2 border-primary-200 text-primary-600 rounded-xl hover:bg-primary-50 transition-all duration-300">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Map Section -->
+  <section class="py-20 bg-white">
+    <div class="container">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          Explore by <span class="gradient-text">Category</span>
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Discover Swiss regions by their unique characteristics and benefits for expatriates.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Economic Centers -->
+        <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border border-blue-200">
+          <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+            </svg>
           </div>
-          
-          <div>
-            <label class="block text-sm font-medium text-accent-600 mb-2">Compare By</label>
-            <select class="w-full px-4 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-accent-500 text-accent-800 appearance-none bg-white">
-              <option value="all">All Factors</option>
-              <option value="cost">Cost of Living</option>
-              <option value="housing">Housing</option>
-              <option value="jobs">Job Market</option>
-              <option value="transport">Transportation</option>
-              <option value="education">Education</option>
-              <option value="healthcare">Healthcare</option>
-            </select>
+          <h3 class="text-lg font-bold mb-3 text-blue-900">Economic Centers</h3>
+          <p class="text-blue-700 text-sm mb-4">Major financial and business hubs</p>
+          <div class="space-y-2">
+            {regions.filter(r => r.data.relocationStats?.topIndustries?.includes('Finance')).slice(0, 3).map(region => (
+              <a href={`/regions/${region.data.id || region.slug}`} class="block text-sm text-blue-800 hover:text-blue-900 hover:underline">
+                • {region.data.name}
+              </a>
+            ))}
           </div>
         </div>
-        
-        <div class="text-center">
-          <button class="btn-primary">Compare Regions</button>
+
+        <!-- Tech Hubs -->
+        <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6 border border-purple-200">
+          <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold mb-3 text-purple-900">Tech Hubs</h3>
+          <p class="text-purple-700 text-sm mb-4">Innovation and technology centers</p>
+          <div class="space-y-2">
+            {regions.filter(r => r.data.relocationStats?.topIndustries?.includes('Technology')).slice(0, 3).map(region => (
+              <a href={`/regions/${region.data.id || region.slug}`} class="block text-sm text-purple-800 hover:text-purple-900 hover:underline">
+                • {region.data.name}
+              </a>
+            ))}
+          </div>
         </div>
-        
-        <div class="mt-8 text-center text-accent-600">
-          <p>Select two regions to see a detailed comparison.</p>
+
+        <!-- International -->
+        <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 border border-green-200">
+          <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold mb-3 text-green-900">International</h3>
+          <p class="text-green-700 text-sm mb-4">Global organizations & diplomacy</p>
+          <div class="space-y-2">
+            {regions.filter(r => r.data.relocationStats?.topIndustries?.includes('International Organizations')).slice(0, 3).map(region => (
+              <a href={`/regions/${region.data.id || region.slug}`} class="block text-sm text-green-800 hover:text-green-900 hover:underline">
+                • {region.data.name}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Family-Friendly -->
+        <div class="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-6 border border-amber-200">
+          <div class="w-12 h-12 bg-amber-500 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold mb-3 text-amber-900">High Quality</h3>
+          <p class="text-amber-700 text-sm mb-4">Great amenities & lifestyle</p>
+          <div class="space-y-2">
+            {regions.filter(r => (r.data.relocationStats?.satisfaction || 4.0) >= 4.5).slice(0, 3).map(region => (
+              <a href={`/regions/${region.data.id || region.slug}`} class="block text-sm text-amber-800 hover:text-amber-900 hover:underline">
+                • {region.data.name}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </div>
   </section>
-  
-  <script>
-    // Animate elements on scroll
-    document.addEventListener('DOMContentLoaded', function() {
-      const animateOnScrollElements = document.querySelectorAll('.animate-on-scroll');
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
-        });
-      }, {
-        threshold: 0.2
-      });
-      
-      animateOnScrollElements.forEach(element => {
-        observer.observe(element);
-      });
-    });
-  </script>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+    <div class="container">
+      <div class="text-center max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          Not Sure Which Region is Right for You?
+        </h2>
+        <p class="text-xl mb-8 opacity-90">
+          Get personalized recommendations based on your lifestyle, career, and family needs.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <button onclick="openModal('individual-lead-modal')" class="btn-white px-8 py-4">
+            Get Location Recommendations
+          </button>
+          <a href="/chat" class="btn-outline-white px-8 py-4">
+            Ask Our AI Assistant
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <div>
+            <div class="text-3xl font-bold mb-2">{regions.length}</div>
+            <div class="text-sm opacity-75">Swiss Regions</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold mb-2">Professional</div>
+            <div class="text-sm opacity-75">Expert Guidance</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold mb-2">Quality</div>
+            <div class="text-sm opacity-75">Living Standards</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
