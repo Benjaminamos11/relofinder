@@ -1,0 +1,28 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+# Schedule the fetch-reviews function to run weekly (Monday at 1:00 AM UTC)
+[functions.fetch-reviews]
+  schedule = "@weekly"
+
+# Environment variable configuration
+[build.environment]
+  NODE_VERSION = "18"
+
+# Use our custom plugin to fetch reviews during build
+[[plugins]]
+  package = "./netlify/plugins/fetch-reviews-plugin"
+
+# Redirects for API endpoints
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Handle trailing slashes and missing .html extensions
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404 

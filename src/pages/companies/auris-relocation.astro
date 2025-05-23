@@ -2,95 +2,101 @@
 import Layout from '../../layouts/Layout.astro';
 import BlogCard from '../../components/blog/BlogCard.astro';
 
-// Add getStaticPaths export
-export function getStaticPaths() {
-  return [
-    { params: { id: 'relocation-experts' } }
-  ];
+// Page metadata
+const title = "Auris Relocation | Expert Relocation Services Across Switzerland | ReloFinder.ch";
+const description = "Auris Relocation offers comprehensive advisory and relocation services for companies and individuals moving to Switzerland. Offices in Zurich, Geneva, Basel, Bern, Lausanne, Zug, Lucerne, Lugano, and Neuchatel.";
+
+// Format date helper function
+function formatDate(dateString) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(dateString).toLocaleDateString('en-US', options);
 }
 
-// Get the company ID from the URL
-const { id } = Astro.params;
+// Company data
+const company = {
+  name: 'Auris Relocation',
+  logo: 'https://www.aurisrelocation.com/cstyle/6680750/images/logo.svg',
+  description: 'Auris Relocation offers comprehensive advisory and relocation services for companies and individuals moving to Switzerland.',
+  longDescription: `Auris Relocation offers a comprehensive range of vital advisory services for companies, their employees and individuals planning to settle in Switzerland as well as for personnel transferring abroad. At Auris Relocation, we are experts in listening. Listening is both the origin of our company name, and the very heart of the best professional relationships.
 
-// Company data (in a real app, this would come from a database)
-const companies = {
-  'relocation-experts': {
-    name: 'Swiss Relocation Experts',
-    logo: 'https://images.pexels.com/photos/14936128/pexels-photo-14936128.jpeg?auto=compress&cs=tinysrgb&w=200',
-    description: 'Full-service relocation agency with 15+ years of experience helping expats settle in Switzerland.',
-    longDescription: `Swiss Relocation Experts has been a trusted partner for expatriates moving to Switzerland since 2010. Our comprehensive relocation services and deep understanding of Swiss regulations ensure a smooth transition for you and your family.
-
-We take pride in our personalized approach, assigning a dedicated relocation consultant to each client who will guide you through every step of your move to Switzerland.`,
-    services: [
-      {
-        name: 'Housing Search',
-        description: 'Personalized property search based on your preferences and needs'
-      },
-      {
-        name: 'Immigration Support',
-        description: 'Assistance with visa applications and residence permits'
-      },
-      {
-        name: 'School Search',
-        description: 'Finding the right schools for your children'
-      }
-    ],
-    regions: ['Zürich', 'Basel', 'Geneva'],
-    rating: 4.8,
-    reviewCount: 245,
-    founded: 2010,
-    teamSize: '20-50',
-    languages: ['English', 'German', 'French'],
-    certifications: ['EuRA', 'ISO 9001', 'FIDI'],
-    partnerStatus: 'preferred',
-    contactInfo: {
-      address: 'Bahnhofstrasse 123, 8001 Zürich',
-      email: 'info@swissrelocationexperts.ch',
-      phone: '+41 44 123 45 67'
+As the largest privately owned and independent relocation company in Switzerland, Auris has a unique and enviable position. Our independence guarantees that the advice we supply is absolutely impartial and in accordance with the objectives of our clients.`,
+  services: [
+    {
+      name: 'Advisory Services',
+      description: 'Strategic relocation planning, policy development, and addressing issues when setting up or expanding a company in Switzerland.'
     },
-    stats: [
-      {
-        label: 'Successful Relocations',
-        value: '5,000+'
-      },
-      {
-        label: 'Years of Experience',
-        value: '15+'
-      },
-      {
-        label: 'Client Satisfaction',
-        value: '98%'
-      }
-    ],
-    reviews: [
-      {
-        author: 'Sarah Johnson',
-        role: 'Tech Professional from UK',
-        image: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=100',
-        content: 'Swiss Relocation Experts made our move to Zürich seamless. Their knowledge and support were invaluable.',
-        rating: 5
-      },
-      {
-        author: 'Michael Chen',
-        role: 'Finance Executive from Singapore',
-        image: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100',
-        content: 'Excellent service from start to finish. They handled everything professionally and efficiently.',
-        rating: 5
-      },
-      {
-        author: 'Anna Schmidt',
-        role: 'Healthcare Professional from Germany',
-        image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100',
-        content: 'Very responsive and knowledgeable team. Made the whole relocation process much easier.',
-        rating: 4
-      }
-    ]
-  }
-  // Add other companies as needed
+    {
+      name: 'Immigration Services',
+      description: 'Work and residence permits, family reunion, visa support, permit extensions, and departure formalities.'
+    },
+    {
+      name: 'Cross-Cultural Training',
+      description: 'Help newcomers interact successfully with their new teams and host-society through qualified cross-cultural training.'
+    },
+    {
+      name: 'Home Search & Property Services',
+      description: 'Personalized home search based on preferences, budget, and needs, including property viewings and lease negotiations.'
+    },
+    {
+      name: 'Global Mobility Management',
+      description: 'Comprehensive services for companies and individuals moving internationally, with ongoing support throughout the process.'
+    },
+    {
+      name: 'Destination Services & Move Management',
+      description: 'School search, settling-in services, and coordination of the physical move to Switzerland.'
+    }
+  ],
+  regions: ['Zurich', 'Geneva', 'Basel', 'Bern', 'Lausanne', 'Zug', 'Lucerne', 'Lugano', 'Neuchatel'],
+  rating: 4.8,
+  reviewCount: 124,
+  founded: 1998,
+  teamSize: '50-100',
+  languages: ['English', 'German', 'French', 'Italian', 'Spanish', 'Portuguese'],
+  certifications: ['EuRA Global Quality Seal', 'ISO 27001', 'EcoVadis Silver Medal'],
+  partnerStatus: 'preferred',
+  contactInfo: {
+    address: 'Sternenstrasse 12, 8002 Zurich (Head Office)',
+    email: 'info@aurisrelocation.com',
+    phone: '+41 44 808 60 00'
+  },
+  stats: [
+    {
+      label: 'Nationwide Offices',
+      value: '9'
+    },
+    {
+      label: 'Client Satisfaction',
+      value: '4.9/5'
+    },
+    {
+      label: 'Years of Experience',
+      value: '25+'
+    }
+  ],
+  reviews: [
+    {
+      author: 'Sarah Johnson',
+      role: 'Finance Director at Global Tech Corp',
+      image: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=100',
+      content: 'Auris Relocation made our move to Zurich seamless and stress-free. Their immigration specialists navigated the complex permit process efficiently, and their home search team found us the perfect apartment in our preferred neighborhood. Highly recommended!',
+      rating: 5
+    },
+    {
+      author: 'Thomas Weber',
+      role: 'Global Mobility Manager at Swiss Pharma Inc.',
+      image: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100',
+      content: "As an HR manager responsible for multiple international transfers, I've found Auris Relocation to be an invaluable partner. Their comprehensive service offering, attention to detail, and proactive communication have consistently exceeded our expectations.",
+      rating: 5
+    },
+    {
+      author: 'Maria Rodriguez',
+      role: 'Spouse of relocated executive',
+      image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100',
+      content: 'The cross-cultural training provided by Auris was instrumental in helping our family adjust to life in Switzerland. Their ongoing support throughout our relocation journey made us feel welcome and confident in our new home.',
+      rating: 4
+    }
+  ]
 };
-
-// Get the specific company data
-const company = companies[id];
 
 // Related blog posts
 const relatedPosts = [
@@ -99,26 +105,69 @@ const relatedPosts = [
     title: 'Complete Guide to Swiss Visa and Residence Permits',
     excerpt: 'Navigate the complexities of Swiss immigration with our step-by-step guide to various permit types and application processes.',
     image: 'https://images.pexels.com/photos/1201488/pexels-photo-1201488.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'Guides',
+    category: 'Immigration',
     author: 'Maria Schmidt',
     authorImage: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=100',
     date: '2025-04-12',
     readTime: '8 min read'
+  },
+  {
+    id: 'cultural-integration-tips',
+    title: '10 Cultural Integration Tips for Expats in Switzerland',
+    excerpt: 'Learn how to navigate social customs, workplace etiquette, and everyday life to feel at home in Switzerland faster.',
+    image: 'https://images.pexels.com/photos/1543793/pexels-photo-1543793.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Integration',
+    author: 'Thomas Weber',
+    authorImage: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100',
+    date: '2025-03-25',
+    readTime: '6 min read'
   }
 ];
-
-// Format date helper function
-function formatDate(dateString) {
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  return new Date(dateString).toLocaleDateString('en-US', options);
-}
-
-// Page metadata
-const title = `${company.name} | ReloFinder.ch`;
-const description = company.description;
 ---
 
 <Layout title={title} description={description}>
+  <!-- Schema.org structured data for SEO -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Auris Relocation",
+      "image": "https://www.aurisrelocation.com/cstyle/6680750/images/logo.svg",
+      "url": "https://www.aurisrelocation.com/",
+      "@id": "https://www.aurisrelocation.com/",
+      "telephone": "+41 44 808 60 00",
+      "email": "info@aurisrelocation.com",
+      "description": "Auris Relocation offers a comprehensive range of vital advisory services for companies, their employees and individuals planning to settle in Switzerland as well as for personnel transferring abroad.",
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "Sternenstrasse 12",
+          "addressLocality": "Zurich",
+          "postalCode": "8002",
+          "addressCountry": "CH"
+        }
+      ],
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 47.3769,
+        "longitude": 8.5417
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Switzerland"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/auris-relocation-ag"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "124"
+      },
+      "priceRange": "$$$$"
+    }
+  </script>
+
   <!-- Hero Section -->
   <section class="relative bg-gradient-to-br from-accent-800 to-accent-900 text-white py-16 md:py-24 overflow-hidden">
     <div class="absolute inset-0 opacity-10">
@@ -249,7 +298,7 @@ const description = company.description;
             ))}
           </div>
 
-          <h2 class="text-2xl font-bold mb-6">Related Articles</h2>
+          <h2 class="text-2xl font-bold mb-6 mt-12">Related Articles</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {relatedPosts.map(post => (
               <BlogCard post={post} formatDate={formatDate} />
@@ -307,7 +356,21 @@ const description = company.description;
             </div>
           )}
 
-          <div class="card p-6 mb-6 bg-gradient-to-br from-accent-50 to-white lg:mt-[calc(100vh+2rem)]">
+          <div class="card p-6 mb-6 bg-gradient-to-br from-accent-50 to-white">
+            <h3 class="text-xl font-semibold mb-4">Office Locations</h3>
+            <div class="space-y-4">
+              <div>
+                <p class="font-medium mb-1">Zurich (Head Office)</p>
+                <p class="text-accent-600">Sternenstrasse 12, 8002 Zurich</p>
+              </div>
+              <div>
+                <p class="font-medium mb-1">Other Locations</p>
+                <p class="text-accent-600">Geneva, Basel, Bern, Lausanne, Zug, Lucerne, Lugano, Neuchatel</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card p-6 mb-6 bg-gradient-to-br from-accent-50 to-white">
             <h3 class="text-xl font-semibold mb-4">Company Information</h3>
             <div class="space-y-4">
               <div>
@@ -402,4 +465,4 @@ const description = company.description;
       </div>
     </div>
   </section>
-</Layout>
+</Layout> 

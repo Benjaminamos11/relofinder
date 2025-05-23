@@ -1,0 +1,327 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Page metadata
+const title = 'About Us | ReloFinder.ch';
+const description = 'Learn about the ReloFinder team, our 10+ years of experience helping internationals relocate to Switzerland, and our mission to create transparency in the Swiss relocation market.';
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="py-16 md:py-24 bg-gradient-to-r from-primary-600 to-accent-700">
+    <div class="container">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          About ReloFinder
+        </h1>
+        <p class="text-xl text-white/90 mb-8 leading-relaxed">
+          We are a team of experienced consultants dedicated to helping international professionals navigate the complex world of Swiss relocation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story Section -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl font-bold mb-6">Our Story</h2>
+          <p class="text-lg text-accent-600 mb-4">
+            ReloFinder was born from a decade of experience working with internationals relocating to Switzerland and collaborating with various relocation agencies across the country.
+          </p>
+          <p class="text-lg text-accent-600 mb-4">
+            Over the years, we noticed that many expatriates and corporations struggled to find comprehensive, transparent information about the Swiss relocation market. The landscape of service providers, regional differences, and specialized needs created a complex ecosystem that was difficult to navigate.
+          </p>
+          <p class="text-lg text-accent-600 mb-4">
+            We created ReloFinder to address this gap, providing a comprehensive resource that helps individuals and companies make informed decisions about their relocation journey.
+          </p>
+        </div>
+        
+        <div class="rounded-xl overflow-hidden shadow-xl">
+          <img 
+            src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+            alt="ReloFinder Team" 
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Our Team Section -->
+  <section class="section bg-accent-50">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <h2 class="text-3xl font-bold mb-4">Our Team</h2>
+        <p class="text-lg text-accent-600">
+          With over 10 years of experience in Swiss relocation and insurance services, our consultants understand the unique challenges faced by international professionals and corporations moving to Switzerland.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="card p-8 text-center">
+          <div class="w-32 h-32 rounded-full overflow-hidden mx-auto mb-6">
+            <img 
+              src="https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+              alt="Team Member" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h3 class="text-xl font-bold mb-2">Sarah Meyer</h3>
+          <p class="text-accent-600 mb-4">Founder & Relocation Specialist</p>
+          <p class="text-accent-600">
+            With 12 years of experience in international relocation services, Sarah has helped hundreds of expatriates and families successfully settle in Switzerland.
+          </p>
+        </div>
+        
+        <div class="card p-8 text-center">
+          <div class="w-32 h-32 rounded-full overflow-hidden mx-auto mb-6">
+            <img 
+              src="https://images.pexels.com/photos/3778603/pexels-photo-3778603.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+              alt="Team Member" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h3 class="text-xl font-bold mb-2">Thomas Weber</h3>
+          <p class="text-accent-600 mb-4">Insurance & Financial Specialist</p>
+          <p class="text-accent-600">
+            Thomas specializes in navigating Switzerland's complex insurance and financial landscape, ensuring clients find the optimal solutions for their needs.
+          </p>
+        </div>
+        
+        <div class="card p-8 text-center">
+          <div class="w-32 h-32 rounded-full overflow-hidden mx-auto mb-6">
+            <img 
+              src="https://images.pexels.com/photos/5439153/pexels-photo-5439153.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+              alt="Team Member" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h3 class="text-xl font-bold mb-2">Lisa Schmid</h3>
+          <p class="text-accent-600 mb-4">Corporate Solutions Director</p>
+          <p class="text-accent-600">
+            Lisa works with multinational companies to streamline their relocation processes, helping them find the right partners and optimize their expatriate programs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Our Mission Section -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1">
+          <img 
+            src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+            alt="Our Mission" 
+            class="rounded-xl shadow-xl w-full"
+          />
+        </div>
+        
+        <div class="order-1 lg:order-2">
+          <h2 class="text-3xl font-bold mb-6">Our Mission</h2>
+          <p class="text-lg text-accent-600 mb-4">
+            We believe that relocating to Switzerland should be a transparent, informed, and positive experience. Our mission is to:
+          </p>
+          
+          <ul class="space-y-4 mb-6">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-lg text-accent-600">Provide comprehensive, accurate information about living and relocating to Switzerland's diverse regions</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-lg text-accent-600">Create transparency in the Swiss relocation market by objectively showcasing service providers</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-lg text-accent-600">Connect individuals and companies with relocation partners that best fit their unique needs</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-lg text-accent-600">Offer expert guidance to both individuals and corporations throughout their relocation journey</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- High-Net-Worth Individuals Section -->
+  <section class="section bg-gradient-to-r from-accent-900 to-primary-900 text-white">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Specialized Services for High-Net-Worth Individuals</h2>
+        <p class="text-xl opacity-90">
+          We understand the unique requirements of high-net-worth individuals relocating to Switzerland's most prestigious locations.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8">
+          <h3 class="text-xl font-bold mb-4">Luxury Property Acquisition</h3>
+          <p class="opacity-90 mb-4">
+            We connect you with specialists in navigating Lex Koller regulations, structuring optimal ownership arrangements, and accessing exclusive off-market properties in Switzerland's most prestigious locations.
+          </p>
+        </div>
+        
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8">
+          <h3 class="text-xl font-bold mb-4">Fiscal Optimization</h3>
+          <p class="opacity-90 mb-4">
+            Our network includes experts in lump-sum taxation (Pauschalbesteuerung) arrangements, helping you navigate the application process and structure your affairs for optimal outcomes.
+          </p>
+        </div>
+        
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8">
+          <h3 class="text-xl font-bold mb-4">Concierge Lifestyle</h3>
+          <p class="opacity-90 mb-4">
+            From private staffing to security arrangements, asset management to exclusive community introductions, we facilitate all aspects of establishing your life in Switzerland.
+          </p>
+        </div>
+      </div>
+      
+      <div class="mt-12 text-center">
+        <a href="/contact" class="btn-white-outline">
+          Schedule a Confidential Consultation
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Corporate Solutions Section -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold mb-4 text-center">Corporate Solutions</h2>
+        <p class="text-lg text-accent-600 mb-12 text-center">
+          We help companies optimize their relocation programs through objective assessment and comparison of service providers.
+        </p>
+        
+        <div class="card p-8 mb-8">
+          <h3 class="text-xl font-bold mb-4">Anonymous Vendor Evaluation</h3>
+          <p class="text-accent-600 mb-4">
+            We help your organization anonymously evaluate and compare relocation agencies based on your specific needs and requirements. Our process includes:
+          </p>
+          
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <div class="bg-primary-100 text-primary-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                <span class="font-semibold text-sm">1</span>
+              </div>
+              <span class="text-accent-600">Detailed needs assessment of your organization's relocation requirements</span>
+            </li>
+            <li class="flex items-start">
+              <div class="bg-primary-100 text-primary-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                <span class="font-semibold text-sm">2</span>
+              </div>
+              <span class="text-accent-600">Anonymous collection of proposals and rate structures from multiple providers</span>
+            </li>
+            <li class="flex items-start">
+              <div class="bg-primary-100 text-primary-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                <span class="font-semibold text-sm">3</span>
+              </div>
+              <span class="text-accent-600">Objective comparison matrix with standardized evaluation criteria</span>
+            </li>
+            <li class="flex items-start">
+              <div class="bg-primary-100 text-primary-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                <span class="font-semibold text-sm">4</span>
+              </div>
+              <span class="text-accent-600">Facilitation of final selection process and contract negotiation</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="card p-8">
+          <h3 class="text-xl font-bold mb-4">Program Optimization</h3>
+          <p class="text-accent-600 mb-4">
+            We help multinational companies optimize their relocation programs through:
+          </p>
+          
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-accent-600">Policy review and benchmarking against industry standards</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-accent-600">Cost analysis and efficiency improvement recommendations</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-accent-600">Expatriate experience enhancement strategies</span>
+            </li>
+            <li class="flex items-start">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-accent-600">Specialized solutions for executive-level relocations</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="mt-12 text-center">
+          <a href="/corporate" class="btn-primary">
+            Learn More About Corporate Solutions
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="section bg-accent-50">
+    <div class="container">
+      <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          <div class="p-8 md:p-12">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">Ready to Start Your Swiss Journey?</h2>
+            <p class="text-accent-600 mb-6">
+              Schedule a free consultation to discuss your unique needs and learn how we can help make your relocation to Switzerland seamless and successful.
+            </p>
+            <a href="/contact" class="btn-primary">
+              Schedule Your Free Call
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </a>
+          </div>
+          <div class="hidden md:block">
+            <img 
+              src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+              alt="Schedule a consultation" 
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .btn-white-outline {
+    @apply inline-flex items-center px-6 py-3 border-2 border-white text-white font-medium rounded-lg hover:bg-white hover:text-accent-900 transition-colors;
+  }
+</style> 

@@ -23,7 +23,9 @@ const companies = [
     services: ['Housing Search', 'Immigration Support', 'School Search'],
     regions: ['Zürich', 'Basel', 'Geneva'],
     rating: 4.8,
-    reviewCount: 245
+    reviewCount: 245,
+    consultationUrl: 'https://www.swissrelocationexperts.ch/book-consultation',
+    quoteUrl: 'https://www.swissrelocationexperts.ch/request-quote'
   },
   {
     id: 'alpine-home',
@@ -33,7 +35,33 @@ const companies = [
     services: ['Rental Search', 'Property Purchase', 'Relocation Support'],
     regions: ['Zürich', 'Zug', 'Lucerne'],
     rating: 4.6,
-    reviewCount: 156
+    reviewCount: 156,
+    consultationUrl: 'https://www.alpinehomefinders.ch/book-consultation',
+    quoteUrl: 'https://www.alpinehomefinders.ch/request-quote'
+  },
+  {
+    id: 'swiss-move',
+    name: 'Swiss Move Solutions',
+    logo: 'https://images.pexels.com/photos/5816293/pexels-photo-5816293.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Comprehensive relocation service specializing in housing and settling-in services across Switzerland.',
+    services: ['Housing Search', 'Rental Negotiation', 'Area Orientation'],
+    regions: ['Geneva', 'Lausanne', 'Montreux'],
+    rating: 4.7,
+    reviewCount: 183,
+    consultationUrl: 'https://www.swissmovesolutions.ch/book-consultation',
+    quoteUrl: 'https://www.swissmovesolutions.ch/request-quote'
+  },
+  {
+    id: 'zurich-relo',
+    name: 'Zürich Relocation Partners',
+    logo: 'https://images.pexels.com/photos/6169659/pexels-photo-6169659.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Specialists in the competitive Zürich housing market with extensive property network and local expertise.',
+    services: ['Property Search', 'Lease Negotiation', 'Home Setup'],
+    regions: ['Zürich', 'Winterthur', 'Zug'],
+    rating: 4.9,
+    reviewCount: 211,
+    consultationUrl: 'https://www.zurichrelocation.ch/book-consultation',
+    quoteUrl: 'https://www.zurichrelocation.ch/request-quote'
   }
 ];
 
@@ -119,6 +147,96 @@ const marketFacts = [
     description: "of Swiss residents are renters rather than owners"
   }
 ];
+
+// Service pricing tiers
+const pricingTiers = [
+  {
+    name: "Essential",
+    description: "Basic housing search assistance for budget-conscious expatriates",
+    price: "CHF 1,200 - 2,500",
+    features: [
+      "Initial needs assessment",
+      "Property shortlisting (up to 8 properties)",
+      "Virtual property viewings",
+      "Basic application support"
+    ]
+  },
+  {
+    name: "Premium",
+    description: "Comprehensive housing support for families and professionals",
+    price: "CHF 2,500 - 4,500",
+    features: [
+      "In-depth needs analysis",
+      "Extensive property search (unlimited options)",
+      "Accompanied in-person viewings",
+      "Full application preparation",
+      "Lease negotiation support",
+      "Contract review and explanation"
+    ]
+  },
+  {
+    name: "Concierge",
+    description: "White-glove service for executives and high-net-worth individuals",
+    price: "CHF 4,500+",
+    features: [
+      "All Premium services",
+      "Priority access to exclusive properties",
+      "Full property viewing schedule management",
+      "Lease negotiation and customization",
+      "Complete move-in coordination",
+      "Utility and service setup",
+      "Home furnishing assistance"
+    ]
+  }
+];
+
+// How housing relocation services work section
+const howItWorks = {
+  title: "How Housing Relocation Services Work",
+  description: "Understanding the process of working with a housing relocation provider in Switzerland",
+  steps: [
+    {
+      title: "Service Selection",
+      description: "Choose the level of service that matches your needs and budget. Most providers offer tiered packages from basic property search to comprehensive relocation support.",
+      icon: "check-circle"
+    },
+    {
+      title: "Needs Assessment",
+      description: "Your consultant will conduct a detailed interview to understand your housing requirements, preferences, budget constraints, and timeline.",
+      icon: "clipboard"
+    },
+    {
+      title: "Market Education",
+      description: "Receive a briefing on the current housing market in your target area, including realistic expectations for properties in your budget range.",
+      icon: "academic-cap"
+    },
+    {
+      title: "Property Matching",
+      description: "Relocation consultants access both public and private property listings, often with pre-market opportunities not available to the general public.",
+      icon: "search"
+    },
+    {
+      title: "Accompanied Viewings",
+      description: "Your consultant arranges and attends property viewings with you, providing transportation and translation when needed.",
+      icon: "home"
+    },
+    {
+      title: "Application Preparation",
+      description: "Expert assistance with preparing a complete and competitive rental application, including all required documentation formatted to Swiss standards.",
+      icon: "document-text"
+    },
+    {
+      title: "Lease Negotiation",
+      description: "Professional negotiation of lease terms on your behalf, ensuring fair conditions and explaining all contractual obligations.",
+      icon: "chat-alt"
+    },
+    {
+      title: "Move-in Coordination",
+      description: "Support with all practical aspects of moving in, including utility connections, insurance arrangements, and property condition documentation.",
+      icon: "truck"
+    }
+  ]
+};
 ---
 
 <ServiceLayout title={title} description={description} service={service}>
@@ -211,6 +329,76 @@ const marketFacts = [
     </div>
   </section>
 
+  <!-- How Housing Relocation Services Work -->
+  <section class="section bg-accent-50 py-16">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">How Housing Relocation Services <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-600">Work</span></h2>
+        <p class="text-lg text-accent-600 mb-6">
+          Understanding the process of working with housing professionals in Switzerland
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {howItWorks.steps.map((step, index) => (
+          <div class="bg-white rounded-xl p-6 flex items-start gap-4 shadow-sm hover:shadow-md transition-all duration-300">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-red-600 to-rose-600 text-white flex items-center justify-center">
+              <span class="text-xl font-bold">{index + 1}</span>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold mb-2">{step.title}</h3>
+              <p class="text-accent-600">{step.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Pricing Options -->
+  <section class="section bg-white py-16">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Service <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-600">Options</span></h2>
+        <p class="text-lg text-accent-600">
+          Common service tiers offered by housing relocation providers in Switzerland
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {pricingTiers.map((tier, index) => (
+          <div class={`rounded-xl overflow-hidden border transition-all duration-300 hover:shadow-xl ${index === 1 ? 'border-red-200 relative' : 'border-gray-200'}`}>
+            {index === 1 && (
+              <div class="absolute top-0 inset-x-0 bg-gradient-to-r from-red-600 to-rose-600 text-white text-center py-1 text-sm font-medium">
+                Most Popular
+              </div>
+            )}
+            <div class={`p-6 ${index === 1 ? 'pt-8' : ''}`}>
+              <h3 class="text-xl font-bold mb-2">{tier.name}</h3>
+              <p class="text-accent-600 text-sm mb-4 min-h-[60px]">{tier.description}</p>
+              <div class="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-600">
+                {tier.price}
+              </div>
+              <ul class="space-y-3 mb-8">
+                {tier.features.map(feature => (
+                  <li class="flex items-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-sm text-accent-700">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <a href="#companies" class={`block text-center py-3 px-6 rounded-lg transition-all duration-300 ${index === 1 ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white' : 'border border-red-600 text-red-600 hover:bg-red-50'}`}>
+                Get Quotes
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Process Steps -->
   <section id="process" class="section bg-accent-50">
     <div class="container">
@@ -249,24 +437,86 @@ const marketFacts = [
   </section>
 
   <!-- Featured Companies -->
-  <section class="section bg-white">
+  <section id="companies" class="section bg-white">
     <div class="container">
       <div class="max-w-3xl mx-auto text-center mb-12">
         <h2 class="text-3xl font-bold mb-4">Trusted Housing <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-600">Partners</span></h2>
-        <p class="text-lg text-accent-600">
-          Connect with experienced real estate professionals and relocation experts.
+        <p class="text-lg text-accent-600 mb-8">
+          Connect with experienced real estate professionals and relocation experts. Request quotes from multiple providers to compare services and prices.
         </p>
+        
+        <!-- Multi-quote request form -->
+        <div class="bg-accent-50 p-6 rounded-xl mb-10">
+          <h3 class="text-xl font-semibold mb-4">Request Multiple Quotes</h3>
+          <p class="text-accent-600 mb-6">Fill in one form to receive proposals from up to 4 housing relocation providers</p>
+          <a href="/contact?service=housing&multi=true" class="btn-primary px-6 py-3 rounded-lg bg-gradient-to-r from-red-600 to-rose-600 text-white font-medium inline-flex items-center hover:shadow-lg transition-all duration-300">
+            Get Multiple Quotes
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+              <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {companies.map(company => (
-          <CompanyCard company={company} />
+          <div class="card p-6 border border-gray-100 rounded-xl hover:shadow-lg transition-all duration-300">
+            <div class="mb-4 flex justify-between items-start">
+              <div class="w-16 h-16 rounded-lg bg-accent-100 p-2 flex items-center justify-center overflow-hidden">
+                <img 
+                  src={company.logo} 
+                  alt={`${company.name} logo`} 
+                  class="w-full h-full object-contain rounded"
+                />
+              </div>
+              <div class="flex items-center">
+                <span class="text-yellow-500 font-bold mr-1">{company.rating}</span>
+                <div class="flex text-yellow-400">
+                  {Array(5).fill(0).map((_, i) => (
+                    <svg xmlns="http://www.w3.org/2000/svg" class={`h-4 w-4 ${i < Math.floor(company.rating) ? 'text-yellow-400' : 'text-gray-300'}`} viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <span class="text-xs text-accent-500 ml-1">({company.reviewCount})</span>
+              </div>
+            </div>
+            
+            <h3 class="text-xl font-semibold mb-2">{company.name}</h3>
+            <p class="text-accent-600 mb-3 text-sm">{company.description}</p>
+            
+            <div class="space-y-2 mb-6">
+              <div class="flex items-start text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+                <span><strong>Services:</strong> {company.services.join(', ')}</span>
+              </div>
+              <div class="flex items-start text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span><strong>Regions:</strong> {company.regions.join(', ')}</span>
+              </div>
+            </div>
+            
+            <div class="flex gap-3">
+              <a href={company.quoteUrl} class="flex-1 text-center py-2 px-4 rounded-lg border border-red-600 text-red-600 hover:bg-red-50 transition-all duration-300">
+                Request Quote
+              </a>
+              <a href={company.consultationUrl} class="flex-1 text-center py-2 px-4 rounded-lg bg-gradient-to-r from-red-600 to-rose-600 text-white hover:shadow-md transition-all duration-300">
+                Book Consultation
+              </a>
+            </div>
+          </div>
         ))}
       </div>
 
       <div class="mt-12 text-center">
-        <a href="/companies" class="btn-primary px-6 py-3 rounded-lg bg-gradient-to-r from-red-600 to-rose-600 text-white font-medium inline-flex items-center hover:shadow-lg transition-all duration-300">
-          View All Companies
+        <a href="/companies?service=housing" class="btn-primary px-6 py-3 rounded-lg bg-gradient-to-r from-red-600 to-rose-600 text-white font-medium inline-flex items-center hover:shadow-lg transition-all duration-300">
+          View All Housing Companies
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
           </svg>
@@ -300,6 +550,13 @@ const marketFacts = [
             <h3 class="text-xl font-semibold mb-3">Can I rent property without being in Switzerland?</h3>
             <p class="text-accent-600">
               While possible, it's challenging to secure housing remotely. Many landlords prefer meeting tenants in person. Our relocation specialists can represent you during property viewings and help secure temporary accommodation for your arrival.
+            </p>
+          </div>
+          
+          <div class="card p-6 hover:shadow-md transition-all duration-300">
+            <h3 class="text-xl font-semibold mb-3">How much do housing relocation services cost?</h3>
+            <p class="text-accent-600">
+              Service fees vary based on the scope and complexity of your requirements. Basic packages typically start around CHF 1,200, while comprehensive services for families or executives range from CHF 2,500 to CHF 5,000+. Many employers cover these costs as part of relocation packages.
             </p>
           </div>
         </div>

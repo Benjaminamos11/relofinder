@@ -117,20 +117,32 @@ const mockCompanies = [
 ];
 
 // Fetch companies from Supabase
-const { data: companies, error } = await supabase
-  .from('relocators')
-  .select(`
-    id,
-    name,
-    logo,
-    description,
-    rating,
-    google_rating,
-    regions_served,
-    languages,
-    team
-  `)
-  .order('name');
+let companies = null;
+let error = null;
+
+if (supabase) {
+  try {
+    const result = await supabase
+      .from('relocators')
+      .select(`
+        id,
+        name,
+        logo,
+        description,
+        rating,
+        google_rating,
+        regions_served,
+        languages,
+        team
+      `)
+      .order('name');
+    
+    companies = result.data;
+    error = result.error;
+  } catch (err) {
+    error = err;
+  }
+}
 
 // Page metadata
 const title = 'Relocation Companies in Switzerland | ReloFinder.ch';

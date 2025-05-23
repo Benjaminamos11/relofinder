@@ -1,127 +1,214 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { createClient } from '@supabase/supabase-js';
 
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
-);
-
-const {
-  data: { session },
-  error: sessionError,
-} = await supabase.auth.getSession();
-
-if (!session) {
-  return Astro.redirect('/login');
-}
-
-// Fetch user role
-const { data: userData } = await supabase
-  .from('users')
-  .select('raw_user_meta_data->role')
-  .eq('id', session.user.id)
-  .single();
-
-const isAdmin = userData?.raw_user_meta_data?.role === 'admin';
-
-if (!isAdmin) {
-  return Astro.redirect('/dashboard');
-}
-
-// Fetch analytics data
-const { data: analytics } = await supabase
-  .from('company_analytics')
-  .select(`
-    *,
-    relocators (
-      name,
-      logo
-    )
-  `)
-  .order('views_count', { ascending: false })
-  .limit(10);
+// For static builds, we'll handle authentication on the client side
+const title = 'Admin Dashboard | ReloFinder.ch';
 ---
 
-<Layout title="Admin Dashboard | ReloFinder.ch">
+<Layout title={title}>
   <div class="min-h-screen bg-gray-50">
     <div class="container py-8">
-      <div class="flex justify-between items-center mb-8">
-        <h1 class="text-2xl font-bold">Admin Dashboard</h1>
-        <div class="flex gap-4">
-          <a href="/admin/companies" class="btn-outline">
-            Manage Companies
-          </a>
-          <a href="/admin/analytics" class="btn-primary">
-            View Analytics
-          </a>
+      <div id="admin-content" class="hidden">
+        <div class="flex justify-between items-center mb-8">
+          <h1 class="text-2xl font-bold">Admin Dashboard</h1>
+          <div class="flex gap-4">
+            <a href="/admin/companies" class="btn-outline">
+              Manage Companies
+            </a>
+            <a href="/admin/analytics" class="btn-primary">
+              View Analytics
+            </a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div class="card p-6">
+            <h3 class="text-lg font-semibold mb-2">Total Companies</h3>
+            <p class="text-3xl font-bold text-primary-600" id="total-companies">
+              Loading...
+            </p>
+          </div>
+          
+          <div class="card p-6">
+            <h3 class="text-lg font-semibold mb-2">Total Page Views</h3>
+            <p class="text-3xl font-bold text-primary-600" id="total-views">
+              Loading...
+            </p>
+          </div>
+          
+          <div class="card p-6">
+            <h3 class="text-lg font-semibold mb-2">Total Inquiries</h3>
+            <p class="text-3xl font-bold text-primary-600" id="total-inquiries">
+              Loading...
+            </p>
+          </div>
+        </div>
+
+        <div class="card p-6">
+          <h2 class="text-xl font-bold mb-6">Top Performing Companies</h2>
+          <div class="overflow-x-auto">
+            <div id="companies-table">
+              Loading analytics data...
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div class="card p-6">
-          <h3 class="text-lg font-semibold mb-2">Total Companies</h3>
-          <p class="text-3xl font-bold text-primary-600">
-            {analytics?.length || 0}
-          </p>
-        </div>
-        
-        <div class="card p-6">
-          <h3 class="text-lg font-semibold mb-2">Total Page Views</h3>
-          <p class="text-3xl font-bold text-primary-600">
-            {analytics?.reduce((sum, item) => sum + item.views_count, 0) || 0}
-          </p>
-        </div>
-        
-        <div class="card p-6">
-          <h3 class="text-lg font-semibold mb-2">Total Inquiries</h3>
-          <p class="text-3xl font-bold text-primary-600">
-            {analytics?.reduce((sum, item) => sum + item.contact_form_submissions, 0) || 0}
-          </p>
-        </div>
+      <div id="loading-screen" class="text-center py-12">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+        <p class="text-gray-600">Checking authentication...</p>
       </div>
 
-      <div class="card p-6">
-        <h2 class="text-xl font-bold mb-6">Top Performing Companies</h2>
-        <div class="overflow-x-auto">
-          <table class="w-full">
-            <thead>
-              <tr class="border-b border-gray-200">
-                <th class="text-left py-3 px-4">Company</th>
-                <th class="text-right py-3 px-4">Views</th>
-                <th class="text-right py-3 px-4">Inquiries</th>
-                <th class="text-right py-3 px-4">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {analytics?.map((item) => (
-                <tr class="border-b border-gray-200">
-                  <td class="py-3 px-4">
-                    <div class="flex items-center">
-                      <img 
-                        src={item.relocators.logo} 
-                        alt={item.relocators.name}
-                        class="w-8 h-8 rounded object-contain mr-3"
-                      />
-                      <span class="font-medium">{item.relocators.name}</span>
-                    </div>
-                  </td>
-                  <td class="text-right py-3 px-4">{item.views_count}</td>
-                  <td class="text-right py-3 px-4">{item.contact_form_submissions}</td>
-                  <td class="text-right py-3 px-4">
-                    <a 
-                      href={`/admin/companies/${item.company_id}`}
-                      class="text-primary-600 hover:text-primary-700"
-                    >
-                      Edit
-                    </a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <div id="access-denied" class="hidden text-center py-12">
+        <div class="mb-4">
+          <svg class="w-16 h-16 text-red-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+          </svg>
         </div>
+        <h2 class="text-2xl font-bold text-gray-900 mb-2">Access Denied</h2>
+        <p class="text-gray-600 mb-4">You don't have permission to access this page.</p>
+        <a href="/login" class="btn-primary">
+          Login
+        </a>
       </div>
     </div>
   </div>
+
+  <script>
+    // Client-side authentication and data loading
+    async function initAdmin() {
+      try {
+        // Dynamically import Supabase to avoid build-time issues
+        const { createClient } = await import('@supabase/supabase-js');
+        
+        // Check if we have the required environment variables
+        const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL || import.meta.env.VITE_SUPABASE_URL;
+        const supabaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+        if (!supabaseUrl || !supabaseKey) {
+          console.warn('Supabase configuration not found - admin functionality disabled');
+          showAccessDenied();
+          return;
+        }
+
+        const supabase = createClient(supabaseUrl, supabaseKey);
+
+        // Check session
+        const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+
+        if (!session) {
+          window.location.href = '/login';
+          return;
+        }
+
+        // Check if user is admin
+        const { data: userData } = await supabase
+          .from('users')
+          .select('raw_user_meta_data->role')
+          .eq('id', session.user.id)
+          .single();
+
+        const isAdmin = userData?.raw_user_meta_data?.role === 'admin';
+
+        if (!isAdmin) {
+          window.location.href = '/dashboard';
+          return;
+        }
+
+        // Load analytics data
+        const { data: analytics } = await supabase
+          .from('company_analytics')
+          .select(`
+            *,
+            relocators (
+              name,
+              logo
+            )
+          `)
+          .order('views_count', { ascending: false })
+          .limit(10);
+
+        // Update the UI
+        showAdminContent(analytics || []);
+
+      } catch (error) {
+        console.error('Error initializing admin:', error);
+        showAccessDenied();
+      }
+    }
+
+    function showAdminContent(analytics) {
+      const loadingScreen = document.getElementById('loading-screen');
+      const adminContent = document.getElementById('admin-content');
+      
+      if (loadingScreen) loadingScreen.classList.add('hidden');
+      if (adminContent) adminContent.classList.remove('hidden');
+
+      // Update stats
+      const totalCompanies = document.getElementById('total-companies');
+      const totalViews = document.getElementById('total-views');
+      const totalInquiries = document.getElementById('total-inquiries');
+      
+      if (totalCompanies) totalCompanies.textContent = String(analytics.length || 0);
+      if (totalViews) totalViews.textContent = String(
+        analytics.reduce((sum, item) => sum + (item.views_count || 0), 0)
+      );
+      if (totalInquiries) totalInquiries.textContent = String(
+        analytics.reduce((sum, item) => sum + (item.contact_form_submissions || 0), 0)
+      );
+
+      // Update table
+      const tableHtml = `
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-gray-200">
+              <th class="text-left py-3 px-4">Company</th>
+              <th class="text-right py-3 px-4">Views</th>
+              <th class="text-right py-3 px-4">Inquiries</th>
+              <th class="text-right py-3 px-4">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${analytics.map(item => `
+              <tr class="border-b border-gray-200">
+                <td class="py-3 px-4">
+                  <div class="flex items-center">
+                    <img 
+                      src="${item.relocators?.logo || '/placeholder.png'}" 
+                      alt="${item.relocators?.name || 'Company'}"
+                      class="w-8 h-8 rounded object-contain mr-3"
+                    />
+                    <span class="font-medium">${item.relocators?.name || 'Unknown'}</span>
+                  </div>
+                </td>
+                <td class="text-right py-3 px-4">${item.views_count || 0}</td>
+                <td class="text-right py-3 px-4">${item.contact_form_submissions || 0}</td>
+                <td class="text-right py-3 px-4">
+                  <a 
+                    href="/admin/companies/${item.company_id}"
+                    class="text-primary-600 hover:text-primary-700"
+                  >
+                    Edit
+                  </a>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+      const companiesTable = document.getElementById('companies-table');
+      if (companiesTable) companiesTable.innerHTML = tableHtml;
+    }
+
+    function showAccessDenied() {
+      const loadingScreen = document.getElementById('loading-screen');
+      const accessDenied = document.getElementById('access-denied');
+      
+      if (loadingScreen) loadingScreen.classList.add('hidden');
+      if (accessDenied) accessDenied.classList.remove('hidden');
+    }
+
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', initAdmin);
+  </script>
 </Layout>

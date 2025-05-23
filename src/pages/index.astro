@@ -1,11 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/home/Hero.astro';
-import ServicesSection from '../components/home/ServicesSection.astro';
-import RegionsBanner from '../components/home/RegionsBanner.astro';
-import FeaturedCompanies from '../components/home/FeaturedCompanies.astro';
-import BlogPreview from '../components/home/BlogPreview.astro';
-import CTA from '../components/home/CTA.astro';
+import RegionsShowcase from '../components/home/RegionsShowcase.astro';
+import ServicesShowcase from '../components/home/ServicesShowcase.astro';
+import CompaniesShowcase from '../components/home/CompaniesShowcase.astro';
+import TestimonialsSection from '../components/home/TestimonialsSection.astro';
+import TrustSection from '../components/home/TrustSection.astro';
+import CTASection from '../components/home/CTASection.astro';
+import Footer from '../components/common/Footer.astro';
 
 // Page metadata
 const title = 'ReloFinder.ch | Swiss Relocation Services for Expats';
@@ -13,12 +15,26 @@ const description = 'Connect with trusted relocation services, companies, and di
 ---
 
 <Layout title={title} description={description}>
+	<!-- 1. Hero - Welcome & Value Proposition -->
 	<Hero />
-	<ServicesSection />
-	<RegionsBanner />
-	<FeaturedCompanies />
-	<BlogPreview />
-	<CTA />
+	
+	<!-- 2. Regions - Where do you want to move? -->
+	<RegionsShowcase />
+	
+	<!-- 3. Services - What do you need help with? -->
+	<ServicesShowcase />
+	
+	<!-- 4. Companies - Who can help you? -->
+	<CompaniesShowcase />
+	
+	<!-- 5. Testimonials - Social Proof -->
+	<TestimonialsSection />
+	
+	<!-- 6. Trust - Why trust us? -->
+	<TrustSection />
+	
+	<!-- 7. CTA - How to get started -->
+	<CTASection />
 </Layout>
 
 <script>
@@ -40,4 +56,19 @@ const description = 'Connect with trusted relocation services, companies, and di
       observer.observe(element);
     });
   });
+
+  // Modal functionality
+  function openModal(modalId) {
+    document.getElementById(modalId).classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(modalId) {
+    document.getElementById(modalId).classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  }
+
+  // Global modal functions
+  window.openModal = openModal;
+  window.closeModal = closeModal;
 </script>

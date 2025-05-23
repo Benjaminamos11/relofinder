@@ -5,8 +5,16 @@ import { supabase } from '../lib/supabase';
 const title = 'AI Relocation Assistant | ReloFinder.ch';
 const description = 'Get instant answers to your Swiss relocation questions from our AI assistant. Expert guidance on visas, housing, and more.';
 
-// Check if user is logged in
-const { data: { session } } = await supabase.auth.getSession();
+// Check if user is logged in (only if supabase is available)
+let session = null;
+if (supabase) {
+  try {
+    const { data } = await supabase.auth.getSession();
+    session = data.session;
+  } catch (error) {
+    console.warn('Could not get session:', error);
+  }
+}
 ---
 
 <Layout title={title} description={description}>

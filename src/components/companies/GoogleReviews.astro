@@ -1,0 +1,134 @@
+import { getCollection } from 'astro:content';
+
+export interface Props {
+  companySlug: string;
+}
+
+const { companySlug } = Astro.props;
+
+// Try to get reviews from the reviews collection
+let reviewData;
+
+try {
+  const reviews = await getCollection('reviews');
+  reviewData = reviews.find(item => item.id === companySlug);
+} catch (error) {
+  console.error(`Error loading reviews for ${companySlug}:`, error);
+}
+
+// Fallback to company's own reviews if Google ones aren't available
+if (!reviewData) {
+  try {
+    const companies = await getCollection('companies');
+    const company = companies.find(c => c.id === companySlug);
+    
+    if (company && company.data.reviews) {
+      reviewData = {
+        data: {
+          companyName: company.data.name,
+          rating: company.data.rating,
+          reviewCount: company.data.reviewCount,
+          reviews: company.data.reviews.map(r => ({
+            author: r.author,
+            authorImage: r.image,
+            content: r.content,
+            rating: r.rating,
+            date: 'N/A'
+          }))
+        }
+      };
+    }
+  } catch (error) {
+    console.error(`Error loading company data for ${companySlug}:`, error);
+  }
+}
+
+// If we still don't have reviews, set a default empty state
+if (!reviewData) {
+  reviewData = {
+    data: {
+      companyName: '',
+      rating: 0,
+      reviewCount: 0,
+      reviews: []
+    }
+  };
+}
+
+// Helper function to render stars
+function renderStars(rating: number) {
+  const fullStars = Math.floor(rating);
+  const halfStar = rating % 1 >= 0.5;
+  const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+  
+  return `${'★'.repeat(fullStars)}${halfStar ? '⯨' : ''}${'☆'.repeat(emptyStars)}`;
+}
+
+<section class="bg-white py-12 rounded-lg shadow-sm">
+  <div class="container">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+      <h2 class="text-2xl font-bold mb-2 md:mb-0">Customer Reviews</h2>
+      
+      <div class="flex items-center">
+        <div class="flex items-center mr-3">
+          <div class="text-yellow-400 text-2xl mr-2" aria-hidden="true">
+            {renderStars(reviewData.data.rating)}
+          </div>
+          <span class="font-semibold">{reviewData.data.rating.toFixed(1)}</span>
+        </div>
+        <span class="text-gray-500">Based on {reviewData.data.reviewCount} reviews</span>
+      </div>
+    </div>
+    
+    {reviewData.data.reviews && reviewData.data.reviews.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {reviewData.data.reviews.map((review) => (
+          <div class="border border-gray-200 rounded-lg p-6 bg-gray-50">
+            <div class="flex items-center mb-4">
+              {review.authorImage ? (
+                <img
+                  src={review.authorImage}
+                  alt={review.author}
+                  class="w-12 h-12 rounded-full object-cover mr-4"
+                />
+              ) : (
+                <div class="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center mr-4">
+                  <span class="text-gray-600 text-xl">{review.author.charAt(0)}</span>
+                </div>
+              )}
+              
+              <div>
+                <h3 class="font-semibold">{review.author}</h3>
+                <div class="flex items-center">
+                  <div class="text-yellow-400 mr-2" aria-hidden="true">
+                    {renderStars(review.rating)}
+                  </div>
+                  <time class="text-sm text-gray-500">{review.date}</time>
+                </div>
+              </div>
+            </div>
+            
+            <p class="text-gray-700">{review.content}</p>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-8">
+        <p class="text-gray-500">No reviews available yet.</p>
+      </div>
+    )}
+    
+    {reviewData.data.reviewCount > reviewData.data.reviews.length && (
+      <div class="mt-8 text-center">
+        <a 
+          href={`https://www.google.com/search?q=${encodeURIComponent(reviewData.data.companyName)}+switzerland+relocation&tbm=lcl`} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-block px-6 py-2 rounded-md bg-accent-600 text-white font-medium hover:bg-accent-700 transition-colors"
+        >
+          See all {reviewData.data.reviewCount} reviews on Google
+        </a>
+      </div>
+    )}
+  </div>
+</section> 

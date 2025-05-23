@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100">
+  <style>
+    .logo-text { fill: #00457c; font-family: Arial, sans-serif; font-weight: bold; }
+    .anchor-icon { fill: #00457c; }
+  </style>
+  
+  <!-- Anchor Icon -->
+  <path class="anchor-icon" d="M50,20 C40,20 32,28 32,38 C32,48 40,56 50,56 C60,56 68,48 68,38 C68,28 60,20 50,20 Z M50,52 C42,52 36,46 36,38 C36,30 42,24 50,24 C58,24 64,30 64,38 C64,46 58,52 50,52 Z" />
+  <rect class="anchor-icon" x="48" y="56" width="4" height="24" />
+  <path class="anchor-icon" d="M35,65 L65,65 L65,69 L35,69 Z" />
+  <path class="anchor-icon" d="M30,75 C30,75 35,80 50,80 C65,80 70,75 70,75 L70,80 C70,80 65,85 50,85 C35,85 30,80 30,80 Z" />
+  
+  <!-- Text -->
+  <text class="logo-text" x="80" y="50" font-size="24">ANCHOR</text>
+  <text class="logo-text" x="80" y="75" font-size="18">RELOCATION</text>
+</svg> 
