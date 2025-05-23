@@ -1,8 +1,8 @@
 'use client'
-import { Button } from '@/components/ui/button'
+import { Button } from './button'
 import { ArrowRight, Mail, Menu, SendHorizonal, X } from 'lucide-react'
 import { useState } from 'react'
-import { cn } from '@/lib/utils'
+import { cn } from '../../lib/utils'
 
 const menuItems = [
     { name: 'Features', href: '#' },
