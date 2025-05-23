@@ -3,10 +3,6 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
-      fontFamily: {
-        calendas: ['Calendas Plus', 'serif'],
-        overusedGrotesk: ['Overused Grotesk', 'sans-serif'],
-      },
       colors: {
         primary: {
           50: '#fdf2f6',

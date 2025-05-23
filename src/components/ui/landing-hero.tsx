@@ -1,1 +1,0 @@
-// Content from demo.tsx renamed to landing-hero.tsx
