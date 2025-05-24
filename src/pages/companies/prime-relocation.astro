@@ -5,7 +5,7 @@ import ContactButton from '../../components/forms/ContactButton.astro';
 
 const company = {
   name: 'PrimeRelocation',
-  logo: 'https://images.pexels.com/photos/14936128/pexels-photo-14936128.jpeg?auto=compress&cs=tinysrgb&w=200',
+  logo: 'https://cdn.prod.website-files.com/6718b88a9ad8ce0f3ec5e7a6/672df357ed71370900ec04cb_output-onlinepngtools-p-800.png',
   description: 'Your Trusted Partner for a Smooth Transition to Switzerland',
   longDescription: `Making Switzerland Your Home, Seamlessly and Successfully
 
@@ -102,8 +102,8 @@ const relatedPosts = [
 ];
 
 // Format date helper function
-function formatDate(dateString) {
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+function formatDate(dateString: string) {
+  const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
   return new Date(dateString).toLocaleDateString('en-US', options);
 }
 
