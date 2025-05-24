@@ -179,7 +179,7 @@ const mainServices = [
   </div>
 
   <!-- Mobile Navigation -->
-  <div class="lg:hidden bg-white absolute w-full left-0 shadow-xl border-t border-gray-100 transform translate-y-0 transition-transform duration-300 ease-in-out opacity-0 invisible" id="mobile-menu">
+  <div class="lg:hidden bg-white w-full left-0 shadow-xl border-t border-gray-100 transition-all duration-300 ease-in-out max-h-0 overflow-hidden" id="mobile-menu">
     <div class="container py-6 space-y-1">
       
       <!-- Mobile Regions -->
@@ -237,36 +237,35 @@ const mainServices = [
 </header>
 
 <script>
-  // Handle mobile menu toggle
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const header = document.getElementById('main-header');
-  
-  let isMenuOpen = false;
-  
-  menuToggle?.addEventListener('click', () => {
-    isMenuOpen = !isMenuOpen;
+  // Wait for DOM to be fully loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const header = document.getElementById('main-header');
     
-    if (isMenuOpen) {
-      // Show menu
-      mobileMenu?.classList.remove('opacity-0', 'invisible');
-      mobileMenu?.classList.add('opacity-100', 'visible');
+    let isMenuOpen = false;
+    
+    // Mobile menu toggle function
+    function toggleMobileMenu() {
+      if (!menuToggle || !mobileMenu) return;
       
-      // Change hamburger to X icon
-      if (menuToggle) {
+      isMenuOpen = !isMenuOpen;
+      
+      if (isMenuOpen) {
+        // Show menu
+        mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+        
+        // Change hamburger to X icon
         menuToggle.innerHTML = `
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         `;
-      }
-    } else {
-      // Hide menu
-      mobileMenu?.classList.add('opacity-0', 'invisible');
-      mobileMenu?.classList.remove('opacity-100', 'visible');
-      
-      // Change X back to hamburger icon
-      if (menuToggle) {
+      } else {
+        // Hide menu
+        mobileMenu.style.maxHeight = '0px';
+        
+        // Change X back to hamburger icon
         menuToggle.innerHTML = `
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -274,36 +273,23 @@ const mainServices = [
         `;
       }
     }
-  });
-
-  // Close mobile menu when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!header?.contains(e.target as Node) && isMenuOpen) {
-      isMenuOpen = false;
-      mobileMenu?.classList.add('opacity-0', 'invisible');
-      mobileMenu?.classList.remove('opacity-100', 'visible');
-      
-      // Reset hamburger icon
-      if (menuToggle) {
-        menuToggle.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        `;
-      }
+    
+    // Add click event to menu toggle button
+    if (menuToggle) {
+      menuToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMobileMenu();
+      });
     }
-  });
 
-  // Close mobile menu when clicking on links
-  const mobileLinks = mobileMenu?.querySelectorAll('a');
-  mobileLinks?.forEach(link => {
-    link.addEventListener('click', () => {
-      isMenuOpen = false;
-      mobileMenu?.classList.add('opacity-0', 'invisible');
-      mobileMenu?.classList.remove('opacity-100', 'visible');
-      
-      // Reset hamburger icon
-      if (menuToggle) {
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (isMenuOpen && header && mobileMenu && menuToggle && e.target instanceof Node && !header.contains(e.target)) {
+        isMenuOpen = false;
+        mobileMenu.style.maxHeight = '0px';
+        
+        // Reset hamburger icon
         menuToggle.innerHTML = `
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -311,16 +297,34 @@ const mainServices = [
         `;
       }
     });
-  });
 
-  // Header scroll effect
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      header?.classList.add('shadow-xl');
-      header?.classList.remove('shadow-lg');
-    } else {
-      header?.classList.remove('shadow-xl');
-      header?.classList.add('shadow-lg');
+    // Close mobile menu when clicking on links
+    const mobileLinks = mobileMenu?.querySelectorAll('a');
+    if (mobileLinks && mobileMenu && menuToggle) {
+      mobileLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          isMenuOpen = false;
+          mobileMenu.style.maxHeight = '0px';
+          
+          // Reset hamburger icon
+          menuToggle.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          `;
+        });
+      });
     }
+
+    // Header scroll effect
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        header?.classList.add('shadow-xl');
+        header?.classList.remove('shadow-lg');
+      } else {
+        header?.classList.remove('shadow-xl');
+        header?.classList.add('shadow-lg');
+      }
+    });
   });
 </script>
