@@ -1,7 +1,6 @@
 {
   "name": "project",
   "dependencies": {
-    "@astrojs/node": "^8.2.3",
     "@astrojs/react": "^3.0.10",
     "@astrojs/tailwind": "^5.1.0",
     "@supabase/auth-helpers-shared": "^0.6.1",
@@ -19,6 +18,11 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "html-to-text": "^9.0.5"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^5.0.0"
   },
   "type": "module",
   "version": "0.0.1",
