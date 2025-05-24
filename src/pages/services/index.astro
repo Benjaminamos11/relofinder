@@ -63,7 +63,7 @@ const description = 'Explore specialized relocation services for expats moving t
   <!-- Featured Services -->
   {featuredServices.length > 0 && (
     <section class="py-20 bg-white">
-      <div class="container">
+    <div class="container">
         <div class="text-center mb-16">
           <span class="inline-block px-4 py-2 rounded-full bg-primary-100 text-primary-700 font-medium text-sm mb-4">
             Most Popular
@@ -106,7 +106,7 @@ const description = 'Explore specialized relocation services for expats moving t
                 {!service.data.icon && (
                   <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg>
+                </svg>
                 )}
               </div>
 
@@ -125,8 +125,8 @@ const description = 'Explore specialized relocation services for expats moving t
                 <div>
                   <div class="text-lg font-bold text-primary-600">{service.data.stats?.providers || 'Multiple'}</div>
                   <div class="text-xs text-gray-500">Providers</div>
-                </div>
-                <div>
+              </div>
+              <div>
                   <div class="text-lg font-bold text-primary-600">{service.data.stats?.satisfaction || 'Rated'}</div>
                   <div class="text-xs text-gray-500">Service</div>
                 </div>
@@ -192,7 +192,7 @@ const description = 'Explore specialized relocation services for expats moving t
                 {!service.data.icon && (
                   <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg>
+                </svg>
                 )}
               </div>
               
@@ -261,7 +261,7 @@ const description = 'Explore specialized relocation services for expats moving t
       </div>
     </div>
   </section>
-
+  
   <!-- Service Categories -->
   <section class="py-20 bg-white">
     <div class="container">
@@ -287,7 +287,7 @@ const description = 'Explore specialized relocation services for expats moving t
             lifestyle: { name: 'Lifestyle & Integration', icon: 'star', color: 'pink' },
             business: { name: 'Business Services', icon: 'briefcase', color: 'teal' }
           }[category];
-
+              
           return (
             <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300">
               <div class="flex items-center space-x-3 mb-4">
@@ -324,7 +324,7 @@ const description = 'Explore specialized relocation services for expats moving t
       </div>
     </div>
   </section>
-
+  
   <!-- CTA Section -->
   <section class="py-20 bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
     <div class="container">
