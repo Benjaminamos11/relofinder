@@ -148,7 +148,7 @@ const faq = service.data.faq || [
           <div>
             <h2 class="text-3xl font-bold mb-6">What's Included</h2>
             <div class="grid md:grid-cols-2 gap-4">
-              {features.map((feature: string) => (
+              {features.map((feature) => (
                 <div class="flex items-center space-x-3">
                   <div class="w-2 h-2 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full"></div>
                   <span class="text-gray-700 font-medium">{feature}</span>
@@ -161,7 +161,7 @@ const faq = service.data.faq || [
           <div>
             <h3 class="text-2xl font-bold mb-4">Key Benefits</h3>
             <div class="space-y-3">
-              {benefits.map((benefit: string) => (
+              {benefits.map((benefit) => (
                 <div class="flex items-center space-x-3">
                   <div class="w-5 h-5 bg-emerald-100 rounded-full flex items-center justify-center">
                     <svg class="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
@@ -193,7 +193,7 @@ const faq = service.data.faq || [
 
             <div class="space-y-3">
               <h5 class="font-semibold text-gray-900">What You'll Need:</h5>
-              {requirements.map((req: string) => (
+              {requirements.map((req) => (
                 <div class="flex items-center space-x-2 text-sm text-gray-600">
                   <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
                   <span>{req}</span>
@@ -221,7 +221,7 @@ const faq = service.data.faq || [
       </div>
 
       <div class="space-y-8">
-        {process.map((step: any, index: number) => (
+        {process.map((step, index) => (
           <div class="flex flex-col md:flex-row items-start gap-8 group">
             <!-- Step Number -->
             <div class="flex-shrink-0">
@@ -272,7 +272,7 @@ const faq = service.data.faq || [
       </div>
 
         <div class="space-y-6">
-          {faq.map((item: any, index: number) => (
+          {faq.map((item, index) => (
             <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
               <button 
                 class="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
@@ -333,9 +333,9 @@ const faq = service.data.faq || [
 </Layout>
 
 <script>
-  function toggleFAQ(index: number) {
+  function toggleFAQ(index) {
     const faq = document.getElementById(`faq-${index}`);
-    const button = faq?.previousElementSibling as HTMLElement;
+    const button = faq?.previousElementSibling;
     const icon = button?.querySelector('svg');
     
     if (faq?.classList.contains('hidden')) {

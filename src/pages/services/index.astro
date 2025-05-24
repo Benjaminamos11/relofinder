@@ -217,10 +217,10 @@ const description = 'Explore specialized relocation services for expats moving t
             {service.data.features && service.data.features.length > 0 && (
               <div class="mb-4">
                 <div class="grid grid-cols-2 gap-2">
-                  {service.data.features.slice(0, 4).map((feature: string) => (
-                    <div class="flex items-center space-x-2 text-xs text-gray-600">
+                  {service.data.features.slice(0, 4).map((feature) => (
+                    <div class="flex items-center space-x-2">
                       <div class="w-1.5 h-1.5 bg-primary-500 rounded-full"></div>
-                      <span>{feature}</span>
+                      <span class="text-sm text-gray-600">{feature}</span>
                     </div>
                   ))}
                 </div>
