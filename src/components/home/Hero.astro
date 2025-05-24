@@ -98,11 +98,35 @@ import { Image } from 'astro:assets';
         <div class="relative">
           <div class="absolute inset-0 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-2xl lg:rounded-3xl rotate-2 lg:rotate-3 transform scale-105 opacity-20"></div>
           <div class="relative bg-white rounded-2xl lg:rounded-3xl shadow-2xl overflow-hidden">
-            <img 
-              src="https://res.cloudinary.com/dphbnwjtx/image/upload/v1748002920/a-humorous-slightly-quirky-photograph-of_E3yQygvrSj2lK35PvdcPXA_jo8EU6MaTSePalCxA1yBzA_hnzcxp.webp" 
-              alt="Welcome to Switzerland - Swiss cow with welcome sign for expat relocation" 
-              class="w-full h-[300px] sm:h-[400px] lg:h-[500px] xl:h-[700px] object-cover rounded-2xl lg:rounded-3xl"
-            />
+            <!-- Optimized responsive hero image -->
+            <picture>
+              <!-- Mobile version (smaller) -->
+              <source 
+                media="(max-width: 640px)" 
+                srcset="https://res.cloudinary.com/dphbnwjtx/image/upload/w_400,h_300,c_fill,f_webp,q_auto:good/v1748002920/a-humorous-slightly-quirky-photograph-of_E3yQygvrSj2lK35PvdcPXA_jo8EU6MaTSePalCxA1yBzA_hnzcxp.webp"
+              >
+              <!-- Tablet version -->
+              <source 
+                media="(max-width: 1024px)" 
+                srcset="https://res.cloudinary.com/dphbnwjtx/image/upload/w_600,h_400,c_fill,f_webp,q_auto:good/v1748002920/a-humorous-slightly-quirky-photograph-of_E3yQygvrSj2lK35PvdcPXA_jo8EU6MaTSePalCxA1yBzA_hnzcxp.webp"
+              >
+              <!-- Desktop version -->
+              <source 
+                media="(min-width: 1025px)" 
+                srcset="https://res.cloudinary.com/dphbnwjtx/image/upload/w_800,h_600,c_fill,f_webp,q_auto:good/v1748002920/a-humorous-slightly-quirky-photograph-of_E3yQygvrSj2lK35PvdcPXA_jo8EU6MaTSePalCxA1yBzA_hnzcxp.webp"
+              >
+              <!-- Fallback image -->
+              <img 
+                src="https://res.cloudinary.com/dphbnwjtx/image/upload/w_600,h_400,c_fill,f_webp,q_auto:good/v1748002920/a-humorous-slightly-quirky-photograph-of_E3yQygvrSj2lK35PvdcPXA_jo8EU6MaTSePalCxA1yBzA_hnzcxp.webp" 
+                alt="Welcome to Switzerland - Swiss cow with welcome sign for expat relocation" 
+                class="w-full h-[300px] sm:h-[400px] lg:h-[500px] xl:h-[700px] object-cover rounded-2xl lg:rounded-3xl"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                width="600"
+                height="400"
+              />
+            </picture>
             <!-- Overlay Content -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end rounded-2xl lg:rounded-3xl">
               <div class="p-4 lg:p-8 text-white">

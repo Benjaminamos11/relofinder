@@ -179,7 +179,7 @@ const mainServices = [
   </div>
 
   <!-- Mobile Navigation -->
-  <div class="lg:hidden bg-white absolute w-full left-0 shadow-xl border-t border-gray-100 transform -translate-y-full transition-transform duration-300 ease-in-out" id="mobile-menu">
+  <div class="lg:hidden bg-white absolute w-full left-0 shadow-xl border-t border-gray-100 transform translate-y-0 transition-transform duration-300 ease-in-out opacity-0 invisible" id="mobile-menu">
     <div class="container py-6 space-y-1">
       
       <!-- Mobile Regions -->
@@ -242,15 +242,75 @@ const mainServices = [
   const mobileMenu = document.getElementById('mobile-menu');
   const header = document.getElementById('main-header');
   
+  let isMenuOpen = false;
+  
   menuToggle?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('-translate-y-full');
+    isMenuOpen = !isMenuOpen;
+    
+    if (isMenuOpen) {
+      // Show menu
+      mobileMenu?.classList.remove('opacity-0', 'invisible');
+      mobileMenu?.classList.add('opacity-100', 'visible');
+      
+      // Change hamburger to X icon
+      if (menuToggle) {
+        menuToggle.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        `;
+      }
+    } else {
+      // Hide menu
+      mobileMenu?.classList.add('opacity-0', 'invisible');
+      mobileMenu?.classList.remove('opacity-100', 'visible');
+      
+      // Change X back to hamburger icon
+      if (menuToggle) {
+        menuToggle.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        `;
+      }
+    }
   });
 
   // Close mobile menu when clicking outside
   document.addEventListener('click', (e) => {
-    if (!header?.contains(e.target as Node)) {
-      mobileMenu?.classList.add('-translate-y-full');
+    if (!header?.contains(e.target as Node) && isMenuOpen) {
+      isMenuOpen = false;
+      mobileMenu?.classList.add('opacity-0', 'invisible');
+      mobileMenu?.classList.remove('opacity-100', 'visible');
+      
+      // Reset hamburger icon
+      if (menuToggle) {
+        menuToggle.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        `;
+      }
     }
+  });
+
+  // Close mobile menu when clicking on links
+  const mobileLinks = mobileMenu?.querySelectorAll('a');
+  mobileLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      isMenuOpen = false;
+      mobileMenu?.classList.add('opacity-0', 'invisible');
+      mobileMenu?.classList.remove('opacity-100', 'visible');
+      
+      // Reset hamburger icon
+      if (menuToggle) {
+        menuToggle.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        `;
+      }
+    });
   });
 
   // Header scroll effect

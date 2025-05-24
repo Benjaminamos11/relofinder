@@ -6,7 +6,8 @@ const services = [
     description: 'Find your perfect Swiss home with our network of trusted real estate professionals. From luxury apartments in Zurich to cozy chalets in the Alps.',
     features: ['Apartment Search', 'Property Viewing', 'Lease Negotiation', 'Relocation Support'],
     icon: 'home',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748008123/a-humorous-slightly-quirky-photograph-of_WL6sfp_DQZuAY5SOUQ6zkg_VPyMSfVwR1uw9Wd0nvlUsA_bytggv.webp',
+    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/w_600,h_400,c_fill,f_webp,q_auto:good/v1748008123/a-humorous-slightly-quirky-photograph-of_WL6sfp_DQZuAY5SOUQ6zkg_VPyMSfVwR1uw9Wd0nvlUsA_bytggv.webp',
+    imageMobile: 'https://res.cloudinary.com/dphbnwjtx/image/upload/w_400,h_250,c_fill,f_webp,q_auto:good/v1748008123/a-humorous-slightly-quirky-photograph-of_WL6sfp_DQZuAY5SOUQ6zkg_VPyMSfVwR1uw9Wd0nvlUsA_bytggv.webp',
     stats: { providers: '150+', avgTime: '2 weeks', satisfaction: '4.8/5' }
   },
   {
@@ -15,7 +16,8 @@ const services = [
     description: 'Navigate Swiss immigration with expert guidance. Work permits, residency applications, and legal support to make your move seamless.',
     features: ['Work Permits', 'Residency Applications', 'Family Visas', 'Legal Consultation'],
     icon: 'document',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748008123/a-humorous-brightly-lit-photograph-depic_8N6jRqvGSMSGbsVuTrOKrQ_zw_r9uUsRqK4YUAK_D_nFQ_ggthvz.webp',
+    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/w_600,h_400,c_fill,f_webp,q_auto:good/v1748008123/a-humorous-brightly-lit-photograph-depic_8N6jRqvGSMSGbsVuTrOKrQ_zw_r9uUsRqK4YUAK_D_nFQ_ggthvz.webp',
+    imageMobile: 'https://res.cloudinary.com/dphbnwjtx/image/upload/w_400,h_250,c_fill,f_webp,q_auto:good/v1748008123/a-humorous-brightly-lit-photograph-depic_8N6jRqvGSMSGbsVuTrOKrQ_zw_r9uUsRqK4YUAK_D_nFQ_ggthvz.webp',
     stats: { providers: '50+', avgTime: '6-12 weeks', satisfaction: '4.9/5' }
   },
   {
@@ -24,7 +26,8 @@ const services = [
     description: 'Set up your Swiss financial life effortlessly. Bank accounts, investment advice, insurance, and tax planning from trusted financial experts.',
     features: ['Bank Account Setup', 'Investment Advice', 'Insurance Planning', 'Tax Consultation'],
     icon: 'credit-card',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748008124/a-whimsical-lifestyle-advertisement-for-_t7RIjCZcSZe6Nh25cw7NIQ_t9GHZqKxRTCTOFGsivntJw_ww93y2.webp',
+    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/w_600,h_400,c_fill,f_webp,q_auto:good/v1748008124/a-whimsical-lifestyle-advertisement-for-_t7RIjCZcSZe6Nh25cw7NIQ_t9GHZqKxRTCTOFGsivntJw_ww93y2.webp',
+    imageMobile: 'https://res.cloudinary.com/dphbnwjtx/image/upload/w_400,h_250,c_fill,f_webp,q_auto:good/v1748008124/a-whimsical-lifestyle-advertisement-for-_t7RIjCZcSZe6Nh25cw7NIQ_t9GHZqKxRTCTOFGsivntJw_ww93y2.webp',
     stats: { providers: '80+', avgTime: '1 week', satisfaction: '4.7/5' }
   },
   {
@@ -33,7 +36,8 @@ const services = [
     description: 'Find the best educational opportunities for your family. International schools, language courses, and university admissions support.',
     features: ['School Search', 'Enrollment Support', 'Language Courses', 'University Guidance'],
     icon: 'academic-cap',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748008124/a-humorous-slightly-quirky-photograph-of_Zp2MB5AESz6K4P5dKPA3iw_1V5urjskTk2CGfEbc3f_8g_sgcb5c.webp',
+    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/w_600,h_400,c_fill,f_webp,q_auto:good/v1748008124/a-humorous-slightly-quirky-photograph-of_Zp2MB5AESz6K4P5dKPA3iw_1V5urjskTk2CGfEbc3f_8g_sgcb5c.webp',
+    imageMobile: 'https://res.cloudinary.com/dphbnwjtx/image/upload/w_400,h_250,c_fill,f_webp,q_auto:good/v1748008124/a-humorous-slightly-quirky-photograph-of_Zp2MB5AESz6K4P5dKPA3iw_1V5urjskTk2CGfEbc3f_8g_sgcb5c.webp',
     stats: { providers: '120+', avgTime: '3-4 weeks', satisfaction: '4.8/5' }
   }
 ];
@@ -71,11 +75,29 @@ const services = [
               <div class="relative group">
                 <div class="absolute inset-0 bg-gradient-to-br from-primary-400 to-secondary-400 rounded-2xl lg:rounded-3xl transform rotate-2 group-hover:rotate-3 lg:group-hover:rotate-6 transition-transform duration-500 opacity-20"></div>
                 <div class="relative bg-white rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl lg:shadow-2xl group-hover:shadow-3xl transition-all duration-500">
-                  <img 
-                    src={service.image} 
-                    alt={`${service.title} relocation services in Switzerland`}
-                    class="w-full h-[250px] lg:h-80 object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
+                  <!-- Responsive optimized service image -->
+                  <picture>
+                    <!-- Mobile version -->
+                    <source 
+                      media="(max-width: 768px)" 
+                      srcset={service.imageMobile}
+                    >
+                    <!-- Desktop version -->
+                    <source 
+                      media="(min-width: 769px)" 
+                      srcset={service.image}
+                    >
+                    <!-- Fallback image -->
+                    <img 
+                      src={service.image} 
+                      alt={`${service.title} relocation services in Switzerland`}
+                      class="w-full h-[250px] lg:h-80 object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                      decoding="async"
+                      width="600"
+                      height="400"
+                    />
+                  </picture>
                   
                   <!-- Stats Overlay -->
                   <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 lg:p-6">
