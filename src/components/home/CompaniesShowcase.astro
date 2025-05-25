@@ -14,10 +14,10 @@ const sortedCompanies = allCompanies.sort((a, b) => {
 // Get featured company (first one with featured: true)
 const featuredCompany = sortedCompanies.find(company => company.data.featured);
 
-// Get other companies (exclude the featured one, take next 7)
+// Get other companies (exclude the featured one, take next 6)
 const otherCompanies = sortedCompanies
   .filter(company => company.data.id !== featuredCompany?.data.id)
-  .slice(0, 7);
+  .slice(0, 6);
 
 // Transform company data to match the expected format
 function transformCompanyData(company: any) {

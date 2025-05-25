@@ -36,7 +36,7 @@ languages:
 founded: 2001
 employees: "10-20"
 verified: true
-featured: true
+featured: false
 rating:
   score: 4.2
   reviews: 87

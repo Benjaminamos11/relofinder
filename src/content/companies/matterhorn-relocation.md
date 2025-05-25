@@ -2,7 +2,7 @@
 id: matterhorn-relocation
 name: Matterhorn Relocation
 logo: https://placehold.co/200x80/png?text=Matterhorn+Relocation+Logo
-featured: true
+featured: false
 description: Matterhorn Relocation offers premium relocation and real estate services in Zurich, Zug, Schwyz, Klosters, and Zermatt. Expert support for renting, buying, letting, and selling properties.
 founded: 2016
 employees: "1"
