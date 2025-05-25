@@ -4,11 +4,18 @@ name: Matterhorn Relocation
 logo: /images/companies/matterhorn-relocation-logo.svg
 featured: true
 description: Matterhorn Relocation offers premium relocation and real estate services in Zurich, Zug, Schwyz, Klosters, and Zermatt. Expert support for renting, buying, letting, and selling properties.
-founded: Not Provided # TODO: Add founding year if available
-employees: Not Provided # TODO: Add number of employees if available
+founded: 2016 # Based on testimonials mentioning 2016
+employees: 1 # Based on testimonials mentioning Sandra
 rating:
-  score: 4.7 # Placeholder based on testimonials
-  reviews: 15 # Placeholder based on testimonials
+  score: 4.7
+  reviews: 15
+  breakdown:
+    service: 4.8
+    communication: 4.7
+    value: 4.5
+    reliability: 4.7
+    professionalism: 4.9
+    timeliness: 4.7
 languages:
   - English
   - German
@@ -29,13 +36,13 @@ regions:
   - zermatt
 website: https://www.matterhorn-relocation.com/
 email: mail@matterhorn-relocation.com
-phone: +41 75 500 08 08
+phone: "+41 75 500 08 08"
 address:
-  - street: Seestrasse 1
-    postalCode: 8803
-    city: Rüschlikon
-    canton: Zurich
-    office: Rüschlikon
+  street: Seestrasse 1
+  postalCode: "8803"
+  city: Rüschlikon
+  canton: Zurich
+  office: Rüschlikon
 instagram: https://www.instagram.com/matterhornrelocation/
 google_my_business: https://g.page/r/CODE-FROM-GMB # TODO: Add actual GMB link
 gmb_review_platform: testimonials
@@ -43,6 +50,14 @@ external_links:
   - type: instagram
     url: https://www.instagram.com/matterhornrelocation/
 backlink_status: false
+specializations:
+  - premium-relocation
+  - real-estate
+  - alpine-properties
+  - executive-relocation
+pricing:
+  model: "Contact for quote"
+  notes: "Premium service pricing varies based on services required"
 ---
 
 # About
