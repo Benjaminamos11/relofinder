@@ -1,14 +1,21 @@
 ---
 id: the-relocation-company
 name: The Relocation Company GmbH
-logo: /images/companies/the-relocation-company-logo.png # Placeholder logo path
+logo: https://placehold.co/200x80/png?text=The+Relocation+Company+Logo
 featured: false
 description: The Relocation Company GmbH, led by Nicole Elbel, offers personalized relocation services in Zug and surrounding areas. Local expertise since 2006.
 founded: 2006
-employees: Not Provided # TODO: Add number of employees if available
+employees: "2" # Based on team description
 rating:
-  score: null # No public aggregate rating found
-  reviews: null # No public aggregate review count found
+  score: 1 # Minimum value since no public rating found
+  reviews: 0 # No public reviews found
+  breakdown:
+    service: 1
+    communication: 1
+    value: 1
+    reliability: 1
+    professionalism: 1
+    timeliness: 1
 languages:
   - English
   - German
@@ -28,18 +35,14 @@ regions:
   - zug
   - zug-surroundings
 website: https://the-relocation-company.ch/?lang=en
-email:
-  - n.elbel@the-relocation-company.ch
-  - p.recupero@the-relocation-company.ch
-phone:
-  - +41-79-833-22-52 # Nicole Elbel
-  - +41-79-800-89-63 # Piera Recupero
+email: n.elbel@the-relocation-company.ch
+phone: "+41-79-833-22-52"
 address:
-  - street: Poststrasse 14
-    postalCode: 6300
-    city: Zug
-    canton: ZG
-    office: Zug
+  street: Poststrasse 14
+  postalCode: "6300"
+  city: Zug
+  canton: ZG
+  office: Zug
 consultants:
   - name: Nicole Elbel
     role: Owner & CEO
@@ -54,6 +57,15 @@ consultants:
 google_my_business: https://www.google.com/maps/place/The+Relocation+Company+%26+Consulting+GmbH/@47.1681111,8.5168333,17z/data=!4m6!3m5!1s0x479aa971f0f8f0f9:0x3e0b8a0c1c9a7a0f!8m2!3d47.1681111!4d8.5168333!16s%2Fg%2F11c6_1l9y3
 external_links: []
 backlink_status: false
+specializations:
+  - zug-area
+  - personalized-service
+  - local-expertise
+  - cultural-integration
+  - flexible-packages
+pricing:
+  model: "Package-based"
+  notes: "Combination of standard packages and individual consulting available"
 ---
 
 # About

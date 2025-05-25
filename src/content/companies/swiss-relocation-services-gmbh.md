@@ -1,11 +1,11 @@
 ---
 id: swiss-relocation-services-gmbh
 name: Swiss Relocation Services GmbH
-logo: /images/companies/swiss-relocation-logo.png # Placeholder logo path
+logo: https://placehold.co/200x80/png?text=Swiss+Relocation+Services+Logo
 featured: false
 description: All-in-One Swiss Relocation Services GmbH, led by Jennifer Stiers since 2005, offers personalized relocation support in Zurich & nearby cantons. Packages & individual services.
 founded: 2005
-employees: 1 # Based on founder-led service
+employees: "1" # Based on founder-led service
 rating:
   score: 1 # Minimum value since no public rating found
   reviews: 0 # No public reviews found

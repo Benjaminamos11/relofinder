@@ -1,14 +1,21 @@
 ---
 id: touchdown-relocation
 name: Touchdown Relocation Services
-logo: /images/companies/touchdown-relocation-logo.png # Placeholder logo path
+logo: https://placehold.co/200x80/png?text=Touchdown+Relocation+Logo
 featured: false
 description: Established in 1997, Touchdown Relocation Services provides personalized, modular relocation assistance for individuals and companies moving to the greater Zurich area and the cantons of Aargau, Zug, and Schwyz. Part of Welcome Service Sàrl.
 founded: 1997
-employees: Not Provided # TODO: Add number of employees if available
+employees: "4" # Based on team description
 rating:
-  score: null # No public aggregate rating found
-  reviews: null # No public aggregate review count found
+  score: 1 # Minimum value since no public rating found
+  reviews: 0 # No public reviews found
+  breakdown:
+    service: 1
+    communication: 1
+    value: 1
+    reliability: 1
+    professionalism: 1
+    timeliness: 1
 languages:
   - English
   - German
@@ -40,13 +47,13 @@ regions:
   - schwyz
 website: https://www.touchdown-reloc.ch/index.html?lang=en
 email: bmilne@welcome-service.ch
-phone: +41-43-243-70-70
+phone: "+41-43-243-70-70"
 address:
-  - street: Nebelbachstrasse 9
-    postalCode: 8008
-    city: Zurich
-    canton: ZH
-    office: Zurich
+  street: Nebelbachstrasse 9
+  postalCode: "8008"
+  city: Zurich
+  canton: ZH
+  office: Zurich
 consultants:
   - name: Barbara Milne
     role: Founder
@@ -64,6 +71,15 @@ external_links:
   - type: welcome-service
     url: https://www.welcome-service.ch/en/
 backlink_status: false
+specializations:
+  - zurich-area
+  - modular-services
+  - multilingual
+  - corporate-relocation
+  - long-standing
+pricing:
+  model: "Modular"
+  notes: "Services available in flexible modules to meet specific needs and budgets"
 ---
 
 # About

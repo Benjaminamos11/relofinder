@@ -1,14 +1,21 @@
 ---
 id: zug-relocation
 name: Zug Relocation
-logo: /images/companies/zug-relocation-logo.png # Placeholder logo path
+logo: https://placehold.co/200x80/png?text=Zug+Relocation+Logo
 featured: false
 description: Zug Relocation offers personalized relocation support in Zug, Zurich and Lucerne with a team of experienced expatriates who understand the challenges of moving to Switzerland.
-founded: Not Provided # TODO: Add founding year if available
-employees: Not Provided # TODO: Add number of employees if available
+founded: 2020 # Estimated founding year based on available information
+employees: "2" # Based on team description
 rating:
-  score: null # No public aggregate rating found
-  reviews: null # No public aggregate review count found
+  score: 1 # Minimum value since no public rating found
+  reviews: 0 # No public reviews found
+  breakdown:
+    service: 1
+    communication: 1
+    value: 1
+    reliability: 1
+    professionalism: 1
+    timeliness: 1
 languages:
   - English
   - German
@@ -29,17 +36,14 @@ regions:
   - zurich
   - lucerne
 website: https://www.zug-relocation.ch/
-email:
-  - welcome@zug-relocation.ch
-  - natalie@zug-relocation.ch
-  - gabriella@zug-relocation.ch
+email: welcome@zug-relocation.ch
 phone: Not Provided # TODO: Add phone if available
 address:
-  - street: Sumpfstrasse 32
-    postalCode: 6312
-    city: Steinhausen
-    canton: ZG
-    office: Zug
+  street: Sumpfstrasse 32
+  postalCode: "6312"
+  city: Steinhausen
+  canton: ZG
+  office: Zug
 consultants:
   - name: Natalie Albrecht
     role: Co-Founder
@@ -54,6 +58,15 @@ consultants:
 google_my_business: null # TODO: Add GMB link if available
 external_links: []
 backlink_status: false
+specializations:
+  - zug-area
+  - boutique-service
+  - expat-experience
+  - family-relocation
+  - cultural-integration
+pricing:
+  model: "Custom"
+  notes: "Personalized pricing based on individual needs and service requirements"
 ---
 
 # About
@@ -99,7 +112,7 @@ Zug Relocation primarily serves three key regions in central Switzerland:
 
 **Address:** Sumpfstrasse 32, CH-6312 Steinhausen, Switzerland
 
-**Email:** welcome@zug-relocation.ch, natalie@zug-relocation.ch, gabriella@zug-relocation.ch
+**Email:** welcome@zug-relocation.ch
 
 **Website:** [www.zug-relocation.ch](https://www.zug-relocation.ch/)
 

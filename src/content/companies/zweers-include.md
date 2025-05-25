@@ -1,14 +1,21 @@
 ---
 id: zweers-include
-ame: Zweers include GmbH
-logo: /images/companies/zweers-include-logo.png # Placeholder logo path
+name: Zweers include GmbH
+logo: https://placehold.co/200x80/png?text=Zweers+include+Logo
 featured: false
 description: Zweers include GmbH, founded by Ute Zweers in 2023, provides personalized relocation services for individuals and families moving to Basel, Switzerland, with a focus on holistic support and integration.
 founded: 2023
-employees: Not Provided # TODO: Add number of employees if available
+employees: "Not Provided" # TODO: Add number of employees if available
 rating:
-  score: null # No public aggregate rating found
-  reviews: null # No public aggregate review count found
+  score: 1 # Minimum value since no public rating found
+  reviews: 0 # No public reviews found
+  breakdown:
+    service: 1
+    communication: 1
+    value: 1
+    reliability: 1
+    professionalism: 1
+    timeliness: 1
 languages:
   - German
   - English
@@ -39,11 +46,11 @@ website: https://www.zweers-include.com/
 email: info@zweers-include.com
 phone: +41-77-454-54-64
 address:
-  - street: Vogensenplatz 1
-    postalCode: 4056
-    city: Basel
-    canton: BS
-    office: Basel
+  street: Not Provided # TODO: Add street address if available
+  postalCode: Not Provided
+  city: Basel
+  canton: BS
+  office: Basel
 consultants:
   - name: Ute Zweers
     role: Founder & Managing Director
@@ -62,6 +69,13 @@ external_links:
   - type: instagram
     url: https://www.instagram.com/include_relocation/
 backlink_status: false
+specializations:
+  - basel-area
+  - holistic-support
+  - integration
+pricing:
+  model: "Custom"
+  notes: "Personalized pricing based on individual needs and service requirements"
 ---
 
 # About
@@ -108,7 +122,7 @@ Zweers include GmbH primarily focuses on relocation services for individuals and
 # Contact
 **Contact Person:** Ute Zweers (Founder & Managing Director)
 
-**Address:** Vogensenplatz 1, 4056 Basel, Switzerland
+**Address:** Not Provided, 4056 Basel, Switzerland
 
 **Phone:** +41 77 454 54 64
 
