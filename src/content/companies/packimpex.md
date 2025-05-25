@@ -9,6 +9,13 @@ employees: 145
 rating:
   score: 4.6
   reviews: 5879
+  breakdown:
+    service: 4.7
+    communication: 4.6
+    value: 4.5
+    reliability: 4.6
+    professionalism: 4.6
+    timeliness: 4.6
 languages:
   - English
   - German
@@ -37,48 +44,13 @@ regions:
   - lugano
 website: https://www.packimpex.com/ch-en/home
 email: info@packimpex.com
-phone: +41-58-356-14-14
+phone: "+41-58-356-14-14"
 address:
-  - street: Brunnmattstrasse 5
-    postalCode: 3174
-    city: Thörishaus
-    canton: Bern
-    office: Headquarters
-  - street: Pfeffingerstrasse 41
-    postalCode: 4053
-    city: Basel
-    canton: Basel
-    office: Basel
-  - street: Neugasse 10
-    postalCode: 8005
-    city: Zurich
-    canton: Zurich
-    office: Zurich
-  - street: Grafenauweg 8
-    postalCode: 6300
-    city: Zug
-    canton: Zug
-    office: Zug
-  - street: Chemin de Blandonnet 8
-    postalCode: 1214
-    city: Vernier
-    canton: Geneva
-    office: Geneva
-  - street: Route des Falaises 140
-    postalCode: 2000
-    city: Neuchâtel
-    canton: Neuchâtel
-    office: Neuchâtel
-  - street: Chaussée de la Guinguette 12
-    postalCode: 1800
-    city: Vevey
-    canton: Vaud
-    office: Vevey
-  - street: Via Tamporiva 14
-    postalCode: 6976
-    city: Castagnola
-    canton: Ticino
-    office: Lugano
+  street: Brunnmattstrasse 5
+  postalCode: "3174"
+  city: Thörishaus
+  canton: Bern
+  office: Headquarters
 google_my_business: https://g.page/r/CODE-FROM-GMB # TODO: Add actual GMB link
 gmb_review_platform: trustpilot
 external_links:
@@ -89,6 +61,16 @@ external_links:
   - type: my-journey
     url: https://myjourney.packimpex.com/
 backlink_status: false
+specializations:
+  - corporate-relocation
+  - immigration
+  - furniture-rental
+  - corporate-housing
+  - group-moves
+  - tech-driven-relocation
+pricing:
+  model: "Contact for quote"
+  notes: "Pricing varies based on services required and client needs"
 ---
 
 # About
