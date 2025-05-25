@@ -4,11 +4,16 @@ name: AP Executive
 logo: https://www.ap-executive.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBK2lVQ2c9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--e6c0a287edd4dd81e808b84fecf84c9325d299a8/apexec-logo.svg
 featured: false
 description: AP Executive is a global executive search and recruitment consultancy specializing in finance, legal, and wealth management sectors, with offices worldwide including Geneva and Zurich. They offer relocation support as part of their recruitment services.
-founded: Not Provided # TODO: Add founding year if available (mentions 30+ years experience)
+founded: 1990 # Approximate based on "30+ years experience"
 employees: Not Provided # TODO: Add number of employees if available
 rating:
-  score: null # No public aggregate rating found
-  reviews: null # No public aggregate review count found
+  score: 0 # No public aggregate rating found
+  reviews: 0 # No public aggregate review count found
+  breakdown:
+    service: 0
+    communication: 0
+    value: 0
+    reliability: 0
 languages:
   - English
   - French
@@ -30,20 +35,13 @@ regions:
   - global
 website: https://www.ap-executive.com/
 email: info@ap-executive.com
-phone:
-  - +41-22-731-1290 # Geneva
-  - +41-43-888-1444 # Zurich
+phone: "+41-22-731-1290" # Geneva office
 address:
-  - street: Rue du Mont-Blanc 7
-    postalCode: 1201
-    city: Geneva
-    canton: GE
-    office: Geneva
-  - street: Tödistrasse 51
-    postalCode: 8002
-    city: Zurich
-    canton: ZH
-    office: Zurich
+  street: Rue du Mont-Blanc 7
+  postalCode: 1201
+  city: Geneva
+  canton: GE
+  office: Geneva
 consultants:
   - name: Not Provided # TODO: Add named consultants if available
 google_my_business: null # TODO: Add GMB link if available
@@ -54,6 +52,18 @@ external_links:
     url: https://twitter.com/APExecutiveJobs
   - type: facebook
     url: https://www.facebook.com/APExecutiveGlobal
+specializations:
+  - finance
+  - legal
+  - wealth-management
+  - private-equity
+  - trust
+  - compliance
+  - tax
+  - fintech
+pricing:
+  model: "Contact for quote"
+  notes: "Pricing varies based on recruitment needs and services required"
 backlink_status: false
 ---
 
