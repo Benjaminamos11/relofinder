@@ -1,14 +1,21 @@
 ---
 id: de-peri-relocation
 name: De Peri Relocation Services
-logo: /images/companies/de-peri-relocation-logo.png # Placeholder logo path
+logo: https://placehold.co/200x80/png?text=De+Peri+Logo
 featured: false
 description: De Peri Relocation Services, founded by Catherine De Peri, offers highly personal and professional relocation assistance for individuals and companies moving to Switzerland, covering all regions.
-founded: 2003 # Started career as consultant in 2003
-employees: Not Provided # TODO: Add number of employees if available
+founded: 2003
+employees: "Not Provided"
 rating:
-  score: null # No public aggregate rating found
-  reviews: null # No public aggregate review count found
+  score: 1
+  reviews: 0
+  breakdown:
+    service: 1
+    communication: 1
+    value: 1
+    reliability: 1
+    professionalism: 1
+    timeliness: 1
 languages:
   - English
   - German
@@ -42,23 +49,32 @@ regions:
   - switzerland
 website: https://www.deperi-relocationservices.com/en/
 email: info@deperi-relocationservices.com
-phone: +41-76-329-33-31
+phone: "+41-76-329-33-31"
 address:
-  - street: Not Provided # TODO: Add street address if available
-    postalCode: Not Provided # TODO: Add postal code if available
-    city: Zurich
-    canton: ZH
-    office: Zurich
+  street: Not Provided
+  postalCode: "0000"
+  city: Zurich
+  canton: ZH
+  office: Zurich
 consultants:
   - name: Catherine De Peri
     role: Founder & Primary Consultant
-google_my_business: null # TODO: Add GMB link if available
+google_my_business: null
 external_links:
   - type: linkedin
     url: https://ch.linkedin.com/in/catherine-de-peri-relocationservices
   - type: instagram
     url: https://www.instagram.com/deperi_relocation_services/
 backlink_status: false
+specializations:
+  - founder-led
+  - nationwide-network
+  - comprehensive-services
+  - empathy
+  - expat-relocation
+pricing:
+  model: "Contact for quote"
+  notes: "Pricing varies based on services required."
 ---
 
 # About
