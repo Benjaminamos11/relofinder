@@ -7,13 +7,15 @@ description: AP Executive is a global executive search and recruitment consultan
 founded: 1990 # Approximate based on "30+ years experience"
 employees: Not Provided # TODO: Add number of employees if available
 rating:
-  score: 0 # No public aggregate rating found
+  score: 1 # No public aggregate rating found, using minimum value
   reviews: 0 # No public aggregate review count found
   breakdown:
-    service: 0
-    communication: 0
-    value: 0
-    reliability: 0
+    service: 1
+    communication: 1
+    value: 1
+    reliability: 1
+    professionalism: 1
+    timeliness: 1
 languages:
   - English
   - French
@@ -38,7 +40,7 @@ email: info@ap-executive.com
 phone: "+41-22-731-1290" # Geneva office
 address:
   street: Rue du Mont-Blanc 7
-  postalCode: 1201
+  postalCode: "1201" # Changed to string
   city: Geneva
   canton: GE
   office: Geneva
