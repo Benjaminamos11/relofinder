@@ -5,13 +5,52 @@ description: Connectiv Relocation offers personalized relocation services in Bas
 logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167564/connectiv-logo_hfwy6e.webp
 website: https://connectiv.ch/en
 email: welcome@connectiv.ch
-address: Aeschenplatz 6, 4052 Basel, Switzerland
-services: Arrival Services, Orientation Services, Housing Services, Settling-in Services, Schooling Solutions, Departure Services, Group Moves
-regions: Basel, Zurich, Zug, Geneva, Lausanne, Alsace, Switzerland
-specializations: Relocation, Corporate Relocation, Individual Relocation, Group Moves, Settling-in, Housing, Schooling
-languages: English, German
-rating: 5.0
-pricing: Contact for quote
+address:
+  street: Aeschenplatz 6
+  postalCode: "4052"
+  city: Basel
+  canton: BS
+  office: Basel
+services:
+  - Arrival Services
+  - Orientation Services
+  - Housing Services
+  - Settling-in Services
+  - Schooling Solutions
+  - Departure Services
+  - Group Moves
+regions:
+  - Basel
+  - Zurich
+  - Zug
+  - Geneva
+  - Lausanne
+  - Alsace
+  - Switzerland
+specializations:
+  - Relocation
+  - Corporate Relocation
+  - Individual Relocation
+  - Group Moves
+  - Settling-in
+  - Housing
+  - Schooling
+languages:
+  - English
+  - German
+rating:
+  score: 5.0
+  reviews: 5
+  breakdown:
+    service: 5
+    communication: 5
+    value: 5
+    reliability: 5
+    professionalism: 5
+    timeliness: 5
+pricing:
+  model: "Contact for quote"
+  notes: "Pricing varies based on services required and client needs"
 ---
 
 # About

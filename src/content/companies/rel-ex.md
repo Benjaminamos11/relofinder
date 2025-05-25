@@ -5,13 +5,41 @@ description: Rel-Ex offers tailor-made relocation services for expats moving to 
 logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167560/rel_ex_logo_avryaa.webp
 website: https://rel-ex.ch/
 email: welcome@rel-ex.ch
-address: Altweg 30 a, 8450 Andelfingen, Switzerland
-services: Home Search, Settling In, Tailor-Made Relocation
-regions: Zurich, Zug, Lucerne
-specializations: Expat Experience, Home Search Guarantee, Regional Focus
-languages: English, German, French
-rating: 1
-pricing: Contact for quote
+address:
+  street: Altweg 30 a
+  postalCode: "8450"
+  city: Andelfingen
+  canton: ZH
+  office: Andelfingen
+services:
+  - Home Search
+  - Settling In
+  - Tailor-Made Relocation
+regions:
+  - Zurich
+  - Zug
+  - Lucerne
+specializations:
+  - Expat Experience
+  - Home Search Guarantee
+  - Regional Focus
+languages:
+  - English
+  - German
+  - French
+rating:
+  score: 1
+  reviews: 0
+  breakdown:
+    service: 1
+    communication: 1
+    value: 1
+    reliability: 1
+    professionalism: 1
+    timeliness: 1
+pricing:
+  model: "Contact for quote"
+  notes: "Pricing varies based on services required."
 ---
 
 # About

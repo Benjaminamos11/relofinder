@@ -5,13 +5,62 @@ description: ReloNest offers expert relocation services across major Swiss citie
 logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167540/logo-relonest-v1_80-1725639366_1_jtctq8.webp
 website: https://www.relonest.com/
 email: info@relonest.com
-address: Not Provided, Switzerland
-services: Area Orientation, Temporary Accommodation, Home Search, Settling In, School Search, Immigration Consulting, Moving Coordination, Departure Services, All-Inclusive Package, New Tenant Search
-regions: Zurich, Basel, Geneva, Bern, Chur, Fribourg, Lausanne, Lugano, Luzern, Neuchatel, Sion, Winterthur, Wollerau-sz, Zug
-specializations: Broad Coverage, Online Platform, Modular Services, Experienced Leadership, Multilingual Team
-languages: English, German, French, Italian
-rating: 1
-pricing: Contact for quote
+address:
+  street: Not Provided
+  postalCode: "Not Provided"
+  city: Not Provided
+  canton: Not Provided
+  office: Not Provided
+services:
+  - Area Orientation
+  - Temporary Accommodation
+  - Home Search
+  - Settling In
+  - School Search
+  - Immigration Consulting
+  - Moving Coordination
+  - Departure Services
+  - All-Inclusive Package
+  - New Tenant Search
+regions:
+  - Zurich
+  - Basel
+  - Geneva
+  - Bern
+  - Chur
+  - Fribourg
+  - Lausanne
+  - Lugano
+  - Luzern
+  - Neuchatel
+  - Sion
+  - Winterthur
+  - Wollerau-sz
+  - Zug
+specializations:
+  - Broad Coverage
+  - Online Platform
+  - Modular Services
+  - Experienced Leadership
+  - Multilingual Team
+languages:
+  - English
+  - German
+  - French
+  - Italian
+rating:
+  score: 1
+  reviews: 0
+  breakdown:
+    service: 1
+    communication: 1
+    value: 1
+    reliability: 1
+    professionalism: 1
+    timeliness: 1
+pricing:
+  model: "Contact for quote"
+  notes: "Pricing varies based on services required."
 ---
 
 # About

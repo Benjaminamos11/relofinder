@@ -5,13 +5,48 @@ description: AP Executive is a global executive search and recruitment consultan
 logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167543/apexec-logo_hliyad.webp
 website: https://www.ap-executive.com/
 email: info@ap-executive.com
-address: Rue du Mont-Blanc 7, 1201 Geneva, Switzerland
-services: Executive Search, Recruitment, Industry Specialization, Relocation Support
-regions: Geneva, Zurich, Switzerland, Global
-specializations: Finance, Legal, Wealth Management, Private Equity, Trust, Compliance, Tax, Fintech
-languages: English, French, German
-rating: 1
-pricing: Contact for quote
+address:
+  street: Rue du Mont-Blanc 7
+  postalCode: "1201"
+  city: Geneva
+  canton: GE
+  office: Geneva
+services:
+  - Executive Search
+  - Recruitment
+  - Industry Specialization
+  - Relocation Support
+regions:
+  - Geneva
+  - Zurich
+  - Switzerland
+  - Global
+specializations:
+  - Finance
+  - Legal
+  - Wealth Management
+  - Private Equity
+  - Trust
+  - Compliance
+  - Tax
+  - Fintech
+languages:
+  - English
+  - French
+  - German
+rating:
+  score: 1
+  reviews: 0
+  breakdown:
+    service: 1
+    communication: 1
+    value: 1
+    reliability: 1
+    professionalism: 1
+    timeliness: 1
+pricing:
+  model: "Contact for quote"
+  notes: "Pricing varies based on recruitment needs and services required."
 ---
 
 # About

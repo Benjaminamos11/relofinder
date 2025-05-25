@@ -5,13 +5,54 @@ description: Established in 1997, Touchdown Relocation Services provides persona
 logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167559/logo-touchdown-relocation_btnyub.webp
 website: https://www.touchdown-reloc.ch/index.html?lang=en
 email: bmilne@welcome-service.ch
-address: Nebelbachstrasse 9, 8008 Zurich, Switzerland
-services: Orientation, Temporary Housing, Home Search, Administration, Immigration, Settling In, Workshops, Insurance, Post-Move Support, Corporate Services, Partner Network
-regions: Zurich, Aargau, Zug, Schwyz
-specializations: Zurich Area, Modular Services, Multilingual, Corporate Relocation, Long-Standing
-languages: English, German, French, Italian, Spanish
-rating: 1
-pricing: Modular
+address:
+  street: Nebelbachstrasse 9
+  postalCode: "8008"
+  city: Zurich
+  canton: ZH
+  office: Zurich
+services:
+  - Orientation
+  - Temporary Housing
+  - Home Search
+  - Administration
+  - Immigration
+  - Settling In
+  - Workshops
+  - Insurance
+  - Post-Move Support
+  - Corporate Services
+  - Partner Network
+regions:
+  - Zurich
+  - Aargau
+  - Zug
+  - Schwyz
+specializations:
+  - Zurich Area
+  - Modular Services
+  - Multilingual
+  - Corporate Relocation
+  - Long-Standing
+languages:
+  - English
+  - German
+  - French
+  - Italian
+  - Spanish
+rating:
+  score: 1
+  reviews: 0
+  breakdown:
+    service: 1
+    communication: 1
+    value: 1
+    reliability: 1
+    professionalism: 1
+    timeliness: 1
+pricing:
+  model: "Modular"
+  notes: "Pricing varies based on selected modules."
 ---
 
 # About
