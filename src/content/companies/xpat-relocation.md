@@ -5,10 +5,17 @@ logo: /images/companies/xpat-relocation-logo.png # Placeholder logo path
 featured: false
 description: Xpat Relocation, founded by expat Marianne Blommers, offers personalized relocation services in Zug, Luzern & Zurich. Packages & a-la-carte options available.
 founded: 2018
-employees: Not Provided # TODO: Add number of employees if available
+employees: 2 # Based on team description
 rating:
   score: 5.0
   reviews: 31
+  breakdown:
+    service: 5.0
+    communication: 5.0
+    value: 5.0
+    reliability: 5.0
+    professionalism: 5.0
+    timeliness: 5.0
 languages:
   - English
   - German
@@ -37,11 +44,13 @@ regions:
   - zurich
 website: https://xpatrelocation.com/
 email: info@xpatrelocation.com
-phone: +41-78-631-85-85
+phone: "+41-78-631-85-85"
 address:
-  - city: Zug
-    canton: ZG
-    office: Zug
+  street: Not Provided # TODO: Add street address if available
+  postalCode: "6300" # Placeholder for Zug
+  city: Zug
+  canton: ZG
+  office: Zug
 founder: Marianne Blommers-Poggio Voormolen
 google_my_business: https://g.co/kgs/VKe3fEk
 external_links:
@@ -52,6 +61,15 @@ external_links:
   - type: contact-form
     url: https://xpatrelocation.com/contact/
 backlink_status: false
+specializations:
+  - expat-relocation
+  - central-switzerland
+  - housing
+  - family-support
+  - cultural-integration
+pricing:
+  model: "Package-based and hourly"
+  notes: "Welcome Package and Executive Package available, plus a-la-carte services billed hourly"
 ---
 
 # About
