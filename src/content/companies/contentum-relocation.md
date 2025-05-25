@@ -2,23 +2,10 @@
 id: contentum-relocation
 name: Contentum Relocation
 logo: https://placehold.co/200x80/png?text=Contentum+Logo
+featured: false
 description: Placeholder description for Contentum Relocation.
-website: https://example.com
-email: info@example.com
-address:
-  street: Placeholder Street 1
-  postalCode: "1000"
-  city: Zurich
-  canton: ZH
-  office: Zurich
-services:
-  - placeholder-service
-regions:
-  - zurich
-specializations:
-  - placeholder-specialization
-languages:
-  - English
+founded: 2020
+employees: "Not Provided"
 rating:
   score: 1
   reviews: 0
@@ -29,6 +16,31 @@ rating:
     reliability: 1
     professionalism: 1
     timeliness: 1
+languages:
+  - English
+certifications:
+  - Placeholder Certification
+services:
+  - placeholder-service
+regions:
+  - zurich
+website: https://example.com
+email: info@example.com
+phone: "+41-00-000-00-00"
+address:
+  street: Placeholder Street 1
+  postalCode: "1000"
+  city: Zurich
+  canton: ZH
+  office: Zurich
+consultants:
+  - name: Placeholder Consultant
+    role: Consultant
+google_my_business: null
+external_links: []
+backlink_status: false
+specializations:
+  - placeholder-specialization
 pricing:
   model: "Contact for quote"
   notes: "Placeholder pricing notes."

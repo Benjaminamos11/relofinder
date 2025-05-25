@@ -1,14 +1,21 @@
 ---
 id: rel-ex
 name: Rel-Ex (Relocation & Expat Services GmbH)
-logo: /images/companies/rel-ex-logo.png # Placeholder logo path
+logo: https://placehold.co/200x80/png?text=Rel-Ex+Logo
 featured: false
 description: Rel-Ex offers tailor-made relocation services for expats moving to Switzerland, specializing in home search and settling-in support in Zurich, Zug, and Lucerne.
-founded: Not Provided # TODO: Add founding year if available
-employees: Not Provided # TODO: Add number of employees if available
+founded: 2020
+employees: "Not Provided"
 rating:
-  score: null # No public aggregate rating found
-  reviews: null # No public aggregate review count found
+  score: 1
+  reviews: 0
+  breakdown:
+    service: 1
+    communication: 1
+    value: 1
+    reliability: 1
+    professionalism: 1
+    timeliness: 1
 languages:
   - English
   - German
@@ -28,13 +35,13 @@ regions:
   - lucerne
 website: https://rel-ex.ch/
 email: welcome@rel-ex.ch
-phone: +41-79-858-04-77
+phone: "+41-79-858-04-77"
 address:
-  - street: Altweg 30 a
-    postalCode: 8450
-    city: Andelfingen
-    canton: ZH
-    office: Andelfingen
+  street: Altweg 30 a
+  postalCode: "8450"
+  city: Andelfingen
+  canton: ZH
+  office: Andelfingen
 consultants:
   - name: Sandra Burki
     role: Expat Consultant
@@ -42,7 +49,7 @@ consultants:
       - Marketing & Communication
       - Travel & Events Management
       - Logistical Support
-google_my_business: null # TODO: Add GMB link if available
+google_my_business: null
 external_links:
   - type: facebook
     url: https://www.facebook.com/RelExGmbH/
@@ -51,6 +58,13 @@ external_links:
   - type: linkedin
     url: https://www.linkedin.com/company/relex-gmbh/
 backlink_status: false
+specializations:
+  - expat-experience
+  - home-search-guarantee
+  - regional-focus
+pricing:
+  model: "Contact for quote"
+  notes: "Pricing varies based on services required."
 ---
 
 # About

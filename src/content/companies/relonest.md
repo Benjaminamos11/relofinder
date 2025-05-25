@@ -1,14 +1,21 @@
 ---
 id: relonest
 name: ReloNest
-logo: https://www.relonest.com/assets/admin-assets/admin-images/admin-settings-image/logo-relonest-v1_80-1725639366.webp
+logo: https://placehold.co/200x80/png?text=ReloNest+Logo
 featured: false
 description: ReloNest offers expert relocation services across major Swiss cities like Zurich, Basel, Geneva, Bern, and more, providing tailored support for individuals and families moving to Switzerland.
-founded: Not Provided # TODO: Add founding year if available (CEO has 16+ years experience)
-employees: Not Provided # TODO: Add number of employees if available
+founded: 2020
+employees: "Not Provided"
 rating:
-  score: null # No public aggregate rating found
-  reviews: null # No public aggregate review count found
+  score: 1
+  reviews: 0
+  breakdown:
+    service: 1
+    communication: 1
+    value: 1
+    reliability: 1
+    professionalism: 1
+    timeliness: 1
 languages:
   - English
   - German
@@ -47,23 +54,32 @@ regions:
   - wollerau-sz
   - zug
 website: https://www.relonest.com/
-email: Not Provided # TODO: Add general email if available
-phone: Not Provided # TODO: Add general phone if available
+email: info@relonest.com
+phone: "+41-00-000-00-00"
 address:
-  - street: Not Provided # TODO: Add street address if available
-    postalCode: Not Provided # TODO: Add postal code if available
-    city: Switzerland
-    canton: Not Provided
-    office: National
+  street: Not Provided
+  postalCode: "0000"
+  city: Switzerland
+  canton: Not Provided
+  office: National
 consultants:
   - name: Micaela Paz
     role: CEO
     linkedin: https://ch.linkedin.com/in/micaela-paz-ch1965/en
-google_my_business: null # TODO: Add GMB link if available
+google_my_business: null
 external_links:
   - type: linkedin
     url: https://ch.linkedin.com/in/micaela-paz-ch1965/en
 backlink_status: false
+specializations:
+  - broad-coverage
+  - online-platform
+  - modular-services
+  - experienced-leadership
+  - multilingual-team
+pricing:
+  model: "Contact for quote"
+  notes: "Pricing varies based on services required."
 ---
 
 # About

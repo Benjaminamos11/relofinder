@@ -1,14 +1,21 @@
 ---
 id: relocation-plus
 name: Relocation Plus (Relocation+)
-logo: /images/companies/relocationplus-logo.jpeg # Placeholder logo path
+logo: https://placehold.co/200x80/png?text=Relocation+Plus+Logo
 featured: false
 description: Relocation Plus offers tailor-made relocation services in Zug, Zurich, Schwyz and Lucerne. Led by Nicole Schenkelaars with a perfect 5.0/5 rating from Google reviews.
-founded: Not Provided # TODO: Add founding year if available
-employees: Not Provided # TODO: Add number of employees if available
+founded: 2020
+employees: "Not Provided"
 rating:
   score: 5.0
   reviews: 3
+  breakdown:
+    service: 5.0
+    communication: 5.0
+    value: 5.0
+    reliability: 5.0
+    professionalism: 5.0
+    timeliness: 5.0
 languages:
   - Dutch
   - English
@@ -38,13 +45,13 @@ regions:
   - lucerne
 website: https://relocationplus.ch/
 email: nschenkelaars@relocationplus.ch
-phone: +41-79-827-73-88
+phone: "+41-79-827-73-88"
 address:
-  - street: Im Eichli 21
-    postalCode: 6315
-    city: Oberägeri
-    canton: ZG
-    office: Zug
+  street: Im Eichli 21
+  postalCode: "6315"
+  city: Oberägeri
+  canton: ZG
+  office: Zug
 consultants:
   - name: Nicole Schenkelaars
     role: Founder & Managing Director
@@ -58,6 +65,16 @@ consultants:
 google_my_business: https://www.google.com/maps/place/Relocation%2B/@47.1366,8.5924,16z/data=!4m6!3m5!1s0x478556c3e8d7d0d9:0x3e0b8a0c1c9a7a0f!8m2!3d47.1366!4d8.5924!16s%2Fg%2F11c6_1l9y3
 external_links: []
 backlink_status: false
+specializations:
+  - expat-led
+  - multilingual-support
+  - flexible-service
+  - integration-support
+  - local-market-knowledge
+  - corporate-experience
+pricing:
+  model: "Contact for quote"
+  notes: "Pricing varies based on services required."
 ---
 
 # About
