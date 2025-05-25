@@ -1,73 +1,17 @@
 ---
 id: connectiv-relocation
 name: Connectiv Relocation AG
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167564/connectiv-logo_hfwy6e.webp
-featured: false
 description: Connectiv Relocation offers personalized relocation services in Basel, Zurich, Geneva and across Switzerland. Established in 2011 with a perfect 5.0/5 rating from Google reviews.
-founded: 2011
-employees: "Not Provided"
-rating:
-  score: 5.0
-  reviews: 5
-  breakdown:
-    service: 5
-    communication: 5
-    value: 5
-    reliability: 5
-    professionalism: 5
-    timeliness: 5
-languages:
-  - English
-  - German
-certifications:
-  - Boutique Approach
-  - Experienced Team
-  - Wide Geographic Coverage
-  - Comprehensive Service Portfolio
-  - Part of Packimpex
-  - Client-Centric Philosophy
-services:
-  - arrival-services
-  - orientation-services
-  - housing-services
-  - settling-in-services
-  - schooling-solutions
-  - departure-services
-  - group-moves
-regions:
-  - basel
-  - zurich
-  - zug
-  - geneva
-  - lausanne
-  - alsace
-  - switzerland
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167564/connectiv-logo_hfwy6e.webp
 website: https://connectiv.ch/en
 email: welcome@connectiv.ch
-phone: "+41-78-227-99-99"
-address:
-  street: Aeschenplatz 6
-  postalCode: "4052"
-  city: Basel
-  canton: BS
-  office: Basel
-consultants:
-  - name: Not Provided # TODO: Add named consultants if available
-google_my_business: https://www.google.com/maps/place/Connectiv+Relocation+AG/@47.5513,7.5947,16z/data=!4m6!3m5!1s0x4791b9b9a40f8f45:0xb8f5f67c8dad5c01!8m2!3d47.5513!4d7.5947!16s%2Fg%2F11c6_1l9y3
-external_links: []
-parent_organization: Packimpex
-specializations:
-  - relocation
-  - corporate-relocation
-  - individual-relocation
-  - group-moves
-  - settling-in
-  - housing
-  - schooling
-pricing:
-  model: "Contact for quote"
-  notes: "Pricing varies based on services required and client needs"
-backlink_status: false
+address: Aeschenplatz 6, 4052 Basel, Switzerland
+services: Arrival Services, Orientation Services, Housing Services, Settling-in Services, Schooling Solutions, Departure Services, Group Moves
+regions: Basel, Zurich, Zug, Geneva, Lausanne, Alsace, Switzerland
+specializations: Relocation, Corporate Relocation, Individual Relocation, Group Moves, Settling-in, Housing, Schooling
+languages: English, German
+rating: 5.0
+pricing: Contact for quote
 ---
 
 # About

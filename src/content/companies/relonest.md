@@ -1,85 +1,17 @@
 ---
 id: relonest
 name: ReloNest
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167540/logo-relonest-v1_80-1725639366_1_jtctq8.webp
-featured: false
 description: ReloNest offers expert relocation services across major Swiss cities like Zurich, Basel, Geneva, Bern, and more, providing tailored support for individuals and families moving to Switzerland.
-founded: 2020
-employees: "Not Provided"
-rating:
-  score: 1
-  reviews: 0
-  breakdown:
-    service: 1
-    communication: 1
-    value: 1
-    reliability: 1
-    professionalism: 1
-    timeliness: 1
-languages:
-  - English
-  - German
-  - French
-  - Italian
-certifications:
-  - Broad Geographic Coverage
-  - Online Platform
-  - Clear Service Modules
-  - Experienced Leadership
-  - Multilingual Team
-services:
-  - area-orientation
-  - temporary-accommodation
-  - home-search
-  - settling-in
-  - school-search
-  - immigration-consulting
-  - moving-coordination
-  - departure-services
-  - all-inclusive-package
-  - new-tenant-search
-regions:
-  - zurich
-  - basel
-  - geneva
-  - bern
-  - chur
-  - fribourg
-  - lausanne
-  - lugano
-  - luzern
-  - neuchatel
-  - sion
-  - winterthur
-  - wollerau-sz
-  - zug
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167540/logo-relonest-v1_80-1725639366_1_jtctq8.webp
 website: https://www.relonest.com/
 email: info@relonest.com
-phone: "+41-00-000-00-00"
-address:
-  street: Not Provided
-  postalCode: "0000"
-  city: Switzerland
-  canton: Not Provided
-  office: National
-consultants:
-  - name: Micaela Paz
-    role: CEO
-    linkedin: https://ch.linkedin.com/in/micaela-paz-ch1965/en
-google_my_business: null
-external_links:
-  - type: linkedin
-    url: https://ch.linkedin.com/in/micaela-paz-ch1965/en
-backlink_status: false
-specializations:
-  - broad-coverage
-  - online-platform
-  - modular-services
-  - experienced-leadership
-  - multilingual-team
-pricing:
-  model: "Contact for quote"
-  notes: "Pricing varies based on services required."
+address: Not Provided, Switzerland
+services: Area Orientation, Temporary Accommodation, Home Search, Settling In, School Search, Immigration Consulting, Moving Coordination, Departure Services, All-Inclusive Package, New Tenant Search
+regions: Zurich, Basel, Geneva, Bern, Chur, Fribourg, Lausanne, Lugano, Luzern, Neuchatel, Sion, Winterthur, Wollerau-sz, Zug
+specializations: Broad Coverage, Online Platform, Modular Services, Experienced Leadership, Multilingual Team
+languages: English, German, French, Italian
+rating: 1
+pricing: Contact for quote
 ---
 
 # About

@@ -1,85 +1,17 @@
 ---
 id: touchdown-relocation
 name: Touchdown Relocation Services
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167559/logo-touchdown-relocation_btnyub.webp
-featured: false
 description: Established in 1997, Touchdown Relocation Services provides personalized, modular relocation assistance for individuals and companies moving to the greater Zurich area and the cantons of Aargau, Zug, and Schwyz. Part of Welcome Service Sàrl.
-founded: 1997
-employees: "4" # Based on team description
-rating:
-  score: 1 # Minimum value since no public rating found
-  reviews: 0 # No public reviews found
-  breakdown:
-    service: 1
-    communication: 1
-    value: 1
-    reliability: 1
-    professionalism: 1
-    timeliness: 1
-languages:
-  - English
-  - German
-  - French
-  - Italian
-  - Spanish
-certifications:
-  - Longevity & Experience
-  - Personal Touch
-  - Multilingual Team
-  - Modular Services
-  - Local Expertise
-services:
-  - orientation
-  - temporary-housing
-  - home-search
-  - administration
-  - immigration
-  - settling-in
-  - workshops
-  - insurance
-  - post-move-support
-  - corporate-services
-  - partner-network
-regions:
-  - zurich
-  - aargau
-  - zug
-  - schwyz
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167559/logo-touchdown-relocation_btnyub.webp
 website: https://www.touchdown-reloc.ch/index.html?lang=en
 email: bmilne@welcome-service.ch
-phone: "+41-43-243-70-70"
-address:
-  street: Nebelbachstrasse 9
-  postalCode: "8008"
-  city: Zurich
-  canton: ZH
-  office: Zurich
-consultants:
-  - name: Barbara Milne
-    role: Founder
-    email: bmilne@welcome-service.ch
-  - name: Fiona Jungi
-    email: fjungi@welcome-service.ch
-  - name: Nicola Tschudi
-    email: ntschu@welcome-service.ch
-  - name: Angelika Steigmeier
-    email: asteigmeier@welcome-service.ch
-google_my_business: null # TODO: Add GMB link if available
-external_links:
-  - type: facebook
-    url: https://www.facebook.com/p/Touchdown-Relocation-Services-100063704444792/
-  - type: welcome-service
-    url: https://www.welcome-service.ch/en/
-backlink_status: false
-specializations:
-  - zurich-area
-  - modular-services
-  - multilingual
-  - corporate-relocation
-  - long-standing
-pricing:
-  model: "Modular"
-  notes: "Services available in flexible modules to meet specific needs and budgets"
+address: Nebelbachstrasse 9, 8008 Zurich, Switzerland
+services: Orientation, Temporary Housing, Home Search, Administration, Immigration, Settling In, Workshops, Insurance, Post-Move Support, Corporate Services, Partner Network
+regions: Zurich, Aargau, Zug, Schwyz
+specializations: Zurich Area, Modular Services, Multilingual, Corporate Relocation, Long-Standing
+languages: English, German, French, Italian, Spanish
+rating: 1
+pricing: Modular
 ---
 
 # About

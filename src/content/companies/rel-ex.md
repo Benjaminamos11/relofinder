@@ -1,70 +1,17 @@
 ---
 id: rel-ex
 name: Rel-Ex (Relocation & Expat Services GmbH)
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167560/rel_ex_logo_avryaa.webp
-featured: false
 description: Rel-Ex offers tailor-made relocation services for expats moving to Switzerland, specializing in home search and settling-in support in Zurich, Zug, and Lucerne.
-founded: 2020
-employees: "Not Provided"
-rating:
-  score: 1
-  reviews: 0
-  breakdown:
-    service: 1
-    communication: 1
-    value: 1
-    reliability: 1
-    professionalism: 1
-    timeliness: 1
-languages:
-  - English
-  - German
-  - French
-certifications:
-  - Personal Expat Experience
-  - Tailor-Made Services
-  - Regional Focus
-  - Home Search Guarantee
-services:
-  - home-search
-  - settling-in
-  - tailor-made-relocation
-regions:
-  - zurich
-  - zug
-  - lucerne
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167560/rel_ex_logo_avryaa.webp
 website: https://rel-ex.ch/
 email: welcome@rel-ex.ch
-phone: "+41-79-858-04-77"
-address:
-  street: Altweg 30 a
-  postalCode: "8450"
-  city: Andelfingen
-  canton: ZH
-  office: Andelfingen
-consultants:
-  - name: Sandra Burki
-    role: Expat Consultant
-    expertise:
-      - Marketing & Communication
-      - Travel & Events Management
-      - Logistical Support
-google_my_business: null
-external_links:
-  - type: facebook
-    url: https://www.facebook.com/RelExGmbH/
-  - type: instagram
-    url: https://www.instagram.com/relex_gmbh/
-  - type: linkedin
-    url: https://www.linkedin.com/company/relex-gmbh/
-backlink_status: false
-specializations:
-  - expat-experience
-  - home-search-guarantee
-  - regional-focus
-pricing:
-  model: "Contact for quote"
-  notes: "Pricing varies based on services required."
+address: Altweg 30 a, 8450 Andelfingen, Switzerland
+services: Home Search, Settling In, Tailor-Made Relocation
+regions: Zurich, Zug, Lucerne
+specializations: Expat Experience, Home Search Guarantee, Regional Focus
+languages: English, German, French
+rating: 1
+pricing: Contact for quote
 ---
 
 # About

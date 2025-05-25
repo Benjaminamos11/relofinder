@@ -1,65 +1,17 @@
 ---
 id: schweizer-relocation
 name: Schweizer Relocation GmbH
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166881/schweizwr-relocation_w1itkg.webp
-featured: false
 description: Schweizer Relocation provides comprehensive, tailored relocation support for companies and private individuals moving to Switzerland, featuring digital tools like the ReX communication platform.
-founded: 2010 # Estimate based on company history
-employees: "5" # Estimate based on team size
-rating:
-  score: 1 # Minimum value since no public rating found
-  reviews: 0 # No public reviews found
-  breakdown:
-    service: 1
-    communication: 1
-    value: 1
-    reliability: 1
-    professionalism: 1
-    timeliness: 1
-languages:
-  - English
-  - German
-  - French
-certifications:
-  - Professionalism
-  - Teamwork
-  - Personal Touch
-  - Direct Communication
-services:
-  - relocation-packages
-  - work-permits
-  - intercultural-training
-  - temporary-housing
-  - schooling-assistance
-  - move-organisation
-  - digital-hub
-regions:
-  - zurich
-  - switzerland
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166881/schweizwr-relocation_w1itkg.webp
 website: https://www.schweizer-relocation.ch/en/home/
 email: info@schweizer-relocation.ch
-phone: "+41-43-243-70-70"
-address:
-  street: Zentralstrasse 156
-  postalCode: "8003"
-  city: Zürich
-  canton: ZH
-  office: Zurich
-consultants: [] # TODO: Add named consultants if available
-google_my_business: null # TODO: Add GMB link if available
-external_links:
-  - type: linkedin
-    url: https://www.linkedin.com/company/schweizer-relocation-gmbh/
-backlink_status: false
-specializations:
-  - digital-relocation
-  - zurich-area
-  - intercultural-training
-  - work-permits
-  - schooling
-pricing:
-  model: "Contact for quote"
-  notes: "Packages and individual services available; contact for details"
+address: Zentralstrasse 156, 8003 Zürich, Switzerland
+services: Relocation, Work Permits, Intercultural Training, Temporary Housing, Schooling Assistance, Move Organisation, Digital Hub
+regions: Zurich, Switzerland
+specializations: Digital Relocation, Zurich Area, Intercultural Training, Work Permits, Schooling
+languages: English, German, French
+rating: 1
+pricing: Contact for quote
 ---
 
 # About

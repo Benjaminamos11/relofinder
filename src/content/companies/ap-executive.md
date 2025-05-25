@@ -1,72 +1,17 @@
 ---
 id: ap-executive
 name: AP Executive
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167543/apexec-logo_hliyad.webp
-featured: false
 description: AP Executive is a global executive search and recruitment consultancy specializing in finance, legal, and wealth management sectors, with offices worldwide including Geneva and Zurich. They offer relocation support as part of their recruitment services.
-founded: 1990 # Approximate based on "30+ years experience"
-employees: Not Provided # TODO: Add number of employees if available
-rating:
-  score: 1 # No public aggregate rating found, using minimum value
-  reviews: 0 # No public aggregate review count found
-  breakdown:
-    service: 1
-    communication: 1
-    value: 1
-    reliability: 1
-    professionalism: 1
-    timeliness: 1
-languages:
-  - English
-  - French
-  - German
-certifications:
-  - Global Network
-  - Specialist Focus (Finance, Legal, Wealth Management)
-  - 30+ Years Experience
-  - Candidate Relocation Support
-services:
-  - executive-search
-  - recruitment
-  - industry-specialization
-  - relocation-support
-regions:
-  - geneva
-  - zurich
-  - switzerland
-  - global
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167543/apexec-logo_hliyad.webp
 website: https://www.ap-executive.com/
 email: info@ap-executive.com
-phone: "+41-22-731-1290" # Geneva office
-address:
-  street: Rue du Mont-Blanc 7
-  postalCode: "1201" # Changed to string
-  city: Geneva
-  canton: GE
-  office: Geneva
-consultants:
-  - name: Not Provided # TODO: Add named consultants if available
-google_my_business: null # TODO: Add GMB link if available
-external_links:
-  - type: linkedin
-    url: https://www.linkedin.com/company/ap-executive
-  - type: twitter
-    url: https://twitter.com/APExecutiveJobs
-  - type: facebook
-    url: https://www.facebook.com/APExecutiveGlobal
-specializations:
-  - finance
-  - legal
-  - wealth-management
-  - private-equity
-  - trust
-  - compliance
-  - tax
-  - fintech
-pricing:
-  model: "Contact for quote"
-  notes: "Pricing varies based on recruitment needs and services required"
-backlink_status: false
+address: Rue du Mont-Blanc 7, 1201 Geneva, Switzerland
+services: Executive Search, Recruitment, Industry Specialization, Relocation Support
+regions: Geneva, Zurich, Switzerland, Global
+specializations: Finance, Legal, Wealth Management, Private Equity, Trust, Compliance, Tax, Fintech
+languages: English, French, German
+rating: 1
+pricing: Contact for quote
 ---
 
 # About
