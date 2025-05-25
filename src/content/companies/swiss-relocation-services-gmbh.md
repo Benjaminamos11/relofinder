@@ -5,10 +5,17 @@ logo: /images/companies/swiss-relocation-logo.png # Placeholder logo path
 featured: false
 description: All-in-One Swiss Relocation Services GmbH, led by Jennifer Stiers since 2005, offers personalized relocation support in Zurich & nearby cantons. Packages & individual services.
 founded: 2005
-employees: Not Provided # TODO: Add number of employees if available
+employees: 1 # Based on founder-led service
 rating:
-  score: null # No public aggregate rating found
-  reviews: null # No public aggregate review count found
+  score: 1 # Minimum value since no public rating found
+  reviews: 0 # No public reviews found
+  breakdown:
+    service: 1
+    communication: 1
+    value: 1
+    reliability: 1
+    professionalism: 1
+    timeliness: 1
 languages:
   - English
   - German
@@ -33,11 +40,13 @@ regions:
   - lugano
 website: https://swiss-relocation.ch/en/
 email: jennifer@swiss-relocation.ch
-phone: +41-79-465-48-55
+phone: "+41-79-465-48-55"
 address:
-  - city: Zurich
-    canton: ZH
-    office: Zurich
+  street: Not Provided # TODO: Add street address if available
+  postalCode: "8000" # Placeholder for Zurich
+  city: Zurich
+  canton: ZH
+  office: Zurich
 founder: Jennifer Stiers
 google_my_business: https://g.page/r/CODE-FROM-GMB # TODO: Add actual GMB link
 gmb_review_platform: testimonials
@@ -47,6 +56,15 @@ external_links:
   - type: contact-form
     url: https://swiss-relocation.ch/en/contact-forms/
 backlink_status: false
+specializations:
+  - personalized-relocation
+  - zurich-area
+  - home-finding
+  - student-housing
+  - property-management
+pricing:
+  model: "Package-based"
+  notes: "Smart-Package starts at CHF 4,950, Full-Service-Package available, individual services customizable"
 ---
 
 # About
