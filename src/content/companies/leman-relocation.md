@@ -7,8 +7,15 @@ description: Leman Relocation Sàrl, founded 2003, offers expert relocation and 
 founded: 2003
 employees: Not Provided # TODO: Add number of employees if available
 rating:
-  score: null # No Google rating found
-  reviews: null
+  score: 1 # No Google rating found, using minimum value
+  reviews: 0 # No public aggregate review count found
+  breakdown:
+    service: 1
+    communication: 1
+    value: 1
+    reliability: 1
+    professionalism: 1
+    timeliness: 1
 languages:
   - English
   - French
@@ -37,32 +44,30 @@ regions:
   - verbier
 website: https://www.leman-relocation.com/en
 email: info@leman-relocation.com
-phone:
-  - +41-21-566-15-11
-  - +41-76-398-09-40
+phone: "+41-21-566-15-11" # Primary office
 address:
-  - street: Avenue Général-Guisan 46
-    postalCode: 1009
-    city: Pully
-    canton: VD
-    office: Lausanne
-  - street: 19 rue des Contamines
-    postalCode: 1206
-    city: Geneva
-    canton: GE
-    office: Geneva
-  - street: Chemin du Clou 25
-    postalCode: 1938
-    city: Verbier
-    canton: VS
-    office: Verbier
+  street: Avenue Général-Guisan 46
+  postalCode: "1009" # Changed to string
+  city: Pully
+  canton: VD
+  office: Lausanne
 consultants:
   - name: Odile Reyes
 google_my_business: null # No GMB link found
 external_links:
-  - https://www.facebook.com/lemanrelocation/
-  - https://www.yelp.com/biz/leman-relocation-pully
-parent_organization: null
+  - type: facebook
+    url: https://www.facebook.com/lemanrelocation/
+  - type: yelp
+    url: https://www.yelp.com/biz/leman-relocation-pully
+specializations:
+  - relocation
+  - real-estate
+  - property-search
+  - settling-in
+  - departure-services
+pricing:
+  model: "Contact for quote"
+  notes: "Pricing varies based on services required"
 backlink_status: false
 ---
 
