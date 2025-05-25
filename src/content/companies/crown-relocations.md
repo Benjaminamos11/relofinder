@@ -9,6 +9,13 @@ employees: 5000 # Global estimate
 rating:
   score: 4.0
   reviews: 760
+  breakdown:
+    service: 4.1
+    communication: 4.0
+    value: 3.8
+    reliability: 4.0
+    professionalism: 4.2
+    timeliness: 4.0
 languages:
   - English
   - German
@@ -33,18 +40,13 @@ regions:
   - lausanne
 website: https://www.crownrelo.com/switzerland/en-ch
 email: zurich@crownrelo.com
-phone: +41 44 454 48 00
+phone: "+41 44 454 48 00"
 address:
-  - street: Industriestrasse 31
-    postalCode: 8112
-    city: Otelfingen
-    canton: Zurich
-    office: Zurich
-  - street: En Budron C 6
-    postalCode: 1052
-    city: Le Mont-sur-Lausanne
-    canton: Vaud
-    office: Lausanne
+  street: Industriestrasse 31
+  postalCode: "8112"
+  city: Otelfingen
+  canton: Zurich
+  office: Zurich
 google_my_business: https://g.page/r/CODE-FROM-GMB # TODO: Add actual GMB link
 gmb_review_platform: trustpilot
 external_links:
@@ -52,8 +54,16 @@ external_links:
     url: https://www.trustpilot.com/review/crownrelo.com
   - type: crownworldwide
     url: https://www.crownworldwide.com/
-  # TODO: Add social media links if found
 backlink_status: false
+specializations:
+  - international-moving
+  - corporate-relocation
+  - pet-relocation
+  - storage
+  - immigration
+pricing:
+  model: "Contact for quote"
+  notes: "Pricing varies based on services required and move size"
 ---
 
 # About
