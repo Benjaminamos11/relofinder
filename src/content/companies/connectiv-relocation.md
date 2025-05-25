@@ -9,6 +9,13 @@ employees: Not Provided # TODO: Add number of employees if available
 rating:
   score: 5.0
   reviews: 5
+  breakdown:
+    service: 5
+    communication: 5
+    value: 5
+    reliability: 5
+    professionalism: 5
+    timeliness: 5
 languages:
   - English
   - German
@@ -37,18 +44,29 @@ regions:
   - switzerland
 website: https://connectiv.ch/en
 email: welcome@connectiv.ch
-phone: +41-78-227-99-99
+phone: "+41-78-227-99-99"
 address:
-  - street: Aeschenplatz 6
-    postalCode: 4052
-    city: Basel
-    canton: BS
-    office: Basel
+  street: Aeschenplatz 6
+  postalCode: "4052"
+  city: Basel
+  canton: BS
+  office: Basel
 consultants:
   - name: Not Provided # TODO: Add named consultants if available
 google_my_business: https://www.google.com/maps/place/Connectiv+Relocation+AG/@47.5513,7.5947,16z/data=!4m6!3m5!1s0x4791b9b9a40f8f45:0xb8f5f67c8dad5c01!8m2!3d47.5513!4d7.5947!16s%2Fg%2F11c6_1l9y3
 external_links: []
 parent_organization: Packimpex
+specializations:
+  - relocation
+  - corporate-relocation
+  - individual-relocation
+  - group-moves
+  - settling-in
+  - housing
+  - schooling
+pricing:
+  model: "Contact for quote"
+  notes: "Pricing varies based on services required and client needs"
 backlink_status: false
 ---
 
