@@ -1,0 +1,1 @@
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166468/1_logo_La_Boutique_beige_e5yfrt.webp 

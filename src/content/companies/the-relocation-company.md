@@ -1,7 +1,7 @@
 ---
 id: the-relocation-company
 name: The Relocation Company GmbH
-logo: https://placehold.co/200x80/png?text=The+Relocation+Company+Logo
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166860/relocation_company_logo_kx651y.webp
 featured: false
 description: The Relocation Company GmbH, led by Nicole Elbel, offers personalized relocation services in Zug and surrounding areas. Local expertise since 2006.
 founded: 2006

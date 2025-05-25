@@ -1,7 +1,7 @@
 ---
 id: leman-relocation
 name: Leman Relocation Sàrl
-logo: https://placehold.co/200x80/png?text=Leman+Relocation+Logo
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166474/leman-relocation-logo_1_q5sx42.webp
 featured: false
 description: Leman Relocation Sàrl, founded 2003, offers expert relocation and real estate services in Geneva, Lausanne, Verbier, and Lake Geneva region. Personalized support for expats & locals.
 founded: 2003

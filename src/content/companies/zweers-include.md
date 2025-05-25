@@ -1,7 +1,7 @@
 ---
 id: zweers-include
 name: Zweers include GmbH
-logo: https://placehold.co/200x80/png?text=Zweers+include+Logo
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166855/include_Logo_C5_edited_edited_libokm.webp
 featured: false
 description: Zweers include GmbH, founded by Ute Zweers in 2023, provides personalized relocation services for individuals and families moving to Basel, Switzerland, with a focus on holistic support and integration.
 founded: 2023

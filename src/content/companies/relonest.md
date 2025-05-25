@@ -1,7 +1,7 @@
 ---
 id: relonest
 name: ReloNest
-logo: https://placehold.co/200x80/png?text=ReloNest+Logo
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167540/logo-relonest-v1_80-1725639366_1_jtctq8.webp
 featured: false
 description: ReloNest offers expert relocation services across major Swiss cities like Zurich, Basel, Geneva, Bern, and more, providing tailored support for individuals and families moving to Switzerland.
 founded: 2020

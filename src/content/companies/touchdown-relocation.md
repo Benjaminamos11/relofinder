@@ -1,7 +1,7 @@
 ---
 id: touchdown-relocation
 name: Touchdown Relocation Services
-logo: https://placehold.co/200x80/png?text=Touchdown+Relocation+Logo
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167559/logo-touchdown-relocation_btnyub.webp
 featured: false
 description: Established in 1997, Touchdown Relocation Services provides personalized, modular relocation assistance for individuals and companies moving to the greater Zurich area and the cantons of Aargau, Zug, and Schwyz. Part of Welcome Service Sàrl.
 founded: 1997

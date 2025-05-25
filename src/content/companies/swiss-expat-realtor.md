@@ -1,7 +1,7 @@
 ---
 id: swiss-expat-realtor
 name: Swiss Expat Realtor
-logo: https://placehold.co/200x80/png?text=Swiss+Expat+Realtor+Logo
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166880/Swiss_Expat_Realtor_Logo__edited_fuej6b.webp
 featured: false
 description: Swiss Expat Realtor offers expert relocation services in Zurich, Zug & Basel. Home search, immigration, settling-in support from former expats. High success rate.
 founded: 2018 # Based on website content and social media presence

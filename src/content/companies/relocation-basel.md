@@ -1,7 +1,7 @@
 ---
 id: relocation-basel
 name: Relocation Basel (h.o.m.e.s. GmbH)
-logo: https://placehold.co/200x80/png?text=Relocation+Basel+Logo
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166858/logo_h.o.m.e_g1xjjj.webp
 featured: false
 description: Relocation Basel (h.o.m.e.s. GmbH), led by Claudia Sutter, offers personalized corporate and private relocation services in Basel and Switzerland since 1996.
 founded: 1996

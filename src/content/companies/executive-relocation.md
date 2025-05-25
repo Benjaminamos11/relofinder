@@ -1,7 +1,7 @@
 ---
 id: executive-relocation
 name: Executive Relocation GmbH
-logo: https://placehold.co/200x80/png?text=Executive+Relocation+Logo
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166874/logo-executive-relocation_loiisi.webp
 featured: false
 description: Executive Relocation GmbH offers tailored relocation services in Zurich for individuals, companies & property owners. Home search, permits, settling-in & more.
 founded: 2015

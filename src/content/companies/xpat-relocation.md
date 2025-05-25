@@ -1,7 +1,7 @@
 ---
 id: xpat-relocation
 name: Xpat Relocation
-logo: https://placehold.co/200x80/png?text=Xpat+Relocation+Logo
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166875/xpat-relocation-logo_j8xxfd.webp
 featured: false
 description: Xpat Relocation, founded by expat Marianne Blommers, offers personalized relocation services in Zug, Luzern & Zurich. Packages & a-la-carte options available.
 founded: 2018

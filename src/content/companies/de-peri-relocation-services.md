@@ -1,0 +1,1 @@
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167507/logo-red-de-peri_glkpj6.webp 

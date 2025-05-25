@@ -1,7 +1,7 @@
 ---
 id: ap-executive
 name: AP Executive
-logo: https://www.ap-executive.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBK2lVQ2c9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--e6c0a287edd4dd81e808b84fecf84c9325d299a8/apexec-logo.svg
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167543/apexec-logo_hliyad.webp
 featured: false
 description: AP Executive is a global executive search and recruitment consultancy specializing in finance, legal, and wealth management sectors, with offices worldwide including Geneva and Zurich. They offer relocation support as part of their recruitment services.
 founded: 1990 # Approximate based on "30+ years experience"

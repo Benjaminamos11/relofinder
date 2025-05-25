@@ -1,7 +1,7 @@
 ---
 id: crane-relocation
 name: Crane Relocation GmbH
-logo: https://placehold.co/200x80/png?text=Crane+Logo
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166865/crane_logo_wqg9ds.webp
 featured: false
 description: Crane Relocation GmbH offers discrete, efficient, and reliable relocation services for expats in Zug, Zurich, and Lucerne. Perfect 5.0/5 Google rating.
 founded: 2017

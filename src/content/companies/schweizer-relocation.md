@@ -1,7 +1,7 @@
 ---
 id: schweizer-relocation
 name: Schweizer Relocation GmbH
-logo: https://placehold.co/200x80/png?text=Schweizer+Relocation+Logo
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166881/schweizwr-relocation_w1itkg.webp
 featured: false
 description: Schweizer Relocation provides comprehensive, tailored relocation support for companies and private individuals moving to Switzerland, featuring digital tools like the ReX communication platform.
 founded: 2010 # Estimate based on company history

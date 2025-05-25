@@ -1,7 +1,7 @@
 ---
 id: rel-ex
 name: Rel-Ex (Relocation & Expat Services GmbH)
-logo: https://placehold.co/200x80/png?text=Rel-Ex+Logo
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167560/rel_ex_logo_avryaa.webp
 featured: false
 description: Rel-Ex offers tailor-made relocation services for expats moving to Switzerland, specializing in home search and settling-in support in Zurich, Zug, and Lucerne.
 founded: 2020

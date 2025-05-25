@@ -1,7 +1,7 @@
 ---
 id: contentum-relocation
 name: Contentum Relocation
-logo: https://placehold.co/200x80/png?text=Contentum+Logo
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166865/contentum-relocation-logo_qj8ko0.webp
 featured: false
 description: Placeholder description for Contentum Relocation.
 founded: 2020

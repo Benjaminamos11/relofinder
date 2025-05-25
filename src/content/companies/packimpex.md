@@ -5,7 +5,7 @@ logo: https://placehold.co/200x80/png?text=Packimpex+Logo
 featured: true
 description: Packimpex offers comprehensive relocation, immigration, moving, and destination services across Switzerland and Europe. Rated 4.6/5 by 5800+ clients. Get your free quote!
 founded: 1977
-employees: "145"
+employees: "50"
 rating:
   score: 4.6
   reviews: 5879

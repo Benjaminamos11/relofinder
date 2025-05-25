@@ -1,7 +1,7 @@
 ---
 id: lifestylemanagers
 name: Lifestylemanagers
-logo: https://placehold.co/200x80/png?text=Lifestylemanagers+Logo
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166862/Logo-Lifestylemanagers_1_bp0g84.webp
 featured: false
 description: Lifestylemanagers offers personalized relocation, integration, and real estate services in Zug, Zurich, Lucerne, and Schwyz. Perfect 5.0/5 Google rating.
 founded: 2015
