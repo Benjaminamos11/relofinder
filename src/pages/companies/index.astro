@@ -1,148 +1,17 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CompanyCard from '../../components/companies/CompanyCard.astro';
-import { supabase } from '../../lib/supabase';
+import { getCollection } from 'astro:content';
 
-const mockCompanies = [
-  {
-    id: 'swiss-move',
-    name: 'SwissMove',
-    logo: 'https://images.pexels.com/photos/14936096/pexels-photo-14936096.jpeg?auto=compress&cs=tinysrgb&w=200',
-    description: 'Premium moving and logistics services for international relocations to and within Switzerland.',
-    services: ['International Moving', 'Storage Solutions', 'Pet Transport'],
-    regions: ['Nationwide'],
-    rating: 4.7,
-    reviewCount: 183
-  },
-  {
-    id: 'expat-financial',
-    name: 'Expat Financial Advisors',
-    logo: 'https://images.pexels.com/photos/14939081/pexels-photo-14939081.jpeg?auto=compress&cs=tinysrgb&w=200',
-    description: 'Specialized financial advice for expatriates covering banking, taxes, investments, and insurance.',
-    services: ['Banking Setup', 'Tax Advisory', 'Insurance Consulting'],
-    regions: ['Geneva', 'Zürich', 'Lugano'],
-    rating: 4.9,
-    reviewCount: 127
-  },
-  {
-    id: 'alpine-home',
-    name: 'Alpine Home Finders',
-    logo: 'https://images.pexels.com/photos/14936082/pexels-photo-14936082.jpeg?auto=compress&cs=tinysrgb&w=200',
-    description: 'Boutique real estate agency specializing in finding rental and purchase properties for expats.',
-    services: ['Rental Search', 'Property Purchase', 'Relocation Support'],
-    regions: ['Zürich', 'Zug', 'Lucerne'],
-    rating: 4.6,
-    reviewCount: 156
-  },
-  {
-    id: 'swisscom-living',
-    name: 'Swisscom Living Services',
-    logo: 'https://images.pexels.com/photos/14939083/pexels-photo-14939083.jpeg?auto=compress&cs=tinysrgb&w=200',
-    description: 'Telecommunications, internet, and TV setup services for new residents in Switzerland.',
-    services: ['Internet Setup', 'Mobile Plans', 'TV Packages'],
-    regions: ['Nationwide'],
-    rating: 4.5,
-    reviewCount: 312
-  },
-  {
-    id: 'swiss-insure',
-    name: 'Swiss Insure',
-    logo: 'https://images.pexels.com/photos/14936081/pexels-photo-14936081.jpeg?auto=compress&cs=tinysrgb&w=200',
-    description: 'Comprehensive insurance solutions for expats including health, home, and liability coverage.',
-    services: ['Health Insurance', 'Home Insurance', 'Liability Coverage'],
-    regions: ['Nationwide'],
-    rating: 4.7,
-    reviewCount: 189
-  },
-  {
-    id: 'alpine-language',
-    name: 'Alpine Language School',
-    logo: 'https://images.pexels.com/photos/14936100/pexels-photo-14936100.jpeg?auto=compress&cs=tinysrgb&w=200',
-    description: 'Language courses in German, French, and Italian for expatriates moving to Switzerland.',
-    services: ['Language Courses', 'Private Tutoring', 'Business Language'],
-    regions: ['Zürich', 'Basel', 'Bern', 'Geneva'],
-    rating: 4.8,
-    reviewCount: 215
-  },
-  {
-    id: 'swiss-tax-pro',
-    name: 'Swiss Tax Pro',
-    logo: 'https://images.pexels.com/photos/14936097/pexels-photo-14936097.jpeg?auto=compress&cs=tinysrgb&w=200',
-    description: 'Expert tax advisors specializing in expat taxation and international tax planning.',
-    services: ['Tax Returns', 'Tax Planning', 'International Taxation'],
-    regions: ['Zürich', 'Geneva', 'Zug'],
-    rating: 4.9,
-    reviewCount: 142
-  },
-  {
-    id: 'intercultural-swiss',
-    name: 'Intercultural Swiss',
-    logo: 'https://images.pexels.com/photos/14936131/pexels-photo-14936131.jpeg?auto=compress&cs=tinysrgb&w=200',
-    description: 'Cultural integration services and Swiss etiquette training for expats and their families.',
-    services: ['Cultural Training', 'Integration Programs', 'Business Etiquette'],
-    regions: ['Zürich', 'Geneva', 'Basel'],
-    rating: 4.7,
-    reviewCount: 98
-  },
-  {
-    id: 'pet-relocators',
-    name: 'Pet Relocators Switzerland',
-    logo: 'https://images.pexels.com/photos/14936105/pexels-photo-14936105.jpeg?auto=compress&cs=tinysrgb&w=200',
-    description: 'Specialized services for relocating pets to Switzerland including paperwork and quarantine support.',
-    services: ['Pet Transport', 'Veterinary Support', 'Documentation'],
-    regions: ['Nationwide'],
-    rating: 4.8,
-    reviewCount: 76
-  },
-  {
-    id: 'swiss-motors',
-    name: 'Swiss Motors Consultants',
-    logo: 'https://images.pexels.com/photos/14936112/pexels-photo-14936112.jpeg?auto=compress&cs=tinysrgb&w=200',
-    description: 'Vehicle import, leasing, and driving license conversion services for expatriates.',
-    services: ['Car Import', 'Leasing', 'License Conversion'],
-    regions: ['Zürich', 'Bern', 'Geneva'],
-    rating: 4.6,
-    reviewCount: 124
-  },
-  {
-    id: 'educate-swiss',
-    name: 'Educate Swiss',
-    logo: 'https://images.pexels.com/photos/14936115/pexels-photo-14936115.jpeg?auto=compress&cs=tinysrgb&w=200',
-    description: 'Education consultants helping expatriate families find the right schools for their children.',
-    services: ['School Placement', 'Education Consulting', 'University Admissions'],
-    regions: ['Zürich', 'Basel', 'Geneva', 'Lausanne'],
-    rating: 4.9,
-    reviewCount: 167
-  }
-];
+// Fetch companies from content collection
+const companies = await getCollection('companies');
 
-// Fetch companies from Supabase
-let companies = null;
-let error = null;
-
-if (supabase) {
-  try {
-    const result = await supabase
-      .from('relocators')
-      .select(`
-        id,
-        name,
-        logo,
-        description,
-        rating,
-        google_rating,
-        regions_served,
-        languages,
-        team
-      `)
-      .order('name');
-    
-    companies = result.data;
-    error = result.error;
-  } catch (err) {
-    error = err;
-  }
-}
+// Sort companies by rating (highest first), then by featured status
+const sortedCompanies = companies.sort((a, b) => {
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  return b.data.rating.score - a.data.rating.score;
+});
 
 // Page metadata
 const title = 'Relocation Companies in Switzerland | ReloFinder.ch';
@@ -219,12 +88,7 @@ const description = 'Discover top-rated relocation companies in Switzerland offe
   <section class="section bg-white">
     <div class="container">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-on-scroll">
-        {error && (
-          <div class="col-span-full bg-red-50 text-red-600 p-4 rounded-lg">
-            Error loading companies: {error.message}
-          </div>
-        )}
-        {(companies ?? mockCompanies).map(company => (
+        {sortedCompanies.map(company => (
           <CompanyCard company={company} />
         ))}
       </div>

@@ -1,23 +1,33 @@
 ---
 const { company } = Astro.props;
 
-// Convert regions_served array to string
-const regions = Array.isArray(company.regions_served) ? company.regions_served.join(', ') : 'Nationwide';
+// Handle both content collection and API data structures
+const isContentCollection = company.data;
+const companyData = isContentCollection ? company.data : company;
 
-// Get review count from team array length
-const reviewCount = company.team?.length || 0;
+// Convert regions array to string
+const regions = Array.isArray(companyData.regions) ? companyData.regions.join(', ') : 'Nationwide';
 
-// Use google_rating if available, otherwise use rating
-const rating = company.google_rating || company.rating || 0;
+// Get review count from rating object or fallback
+const reviewCount = companyData.rating?.reviews || companyData.reviewCount || 0;
+
+// Get rating score
+const rating = companyData.rating?.score || companyData.rating || companyData.google_rating || 0;
+
+// Get company ID and name
+const companyId = companyData.id || company.slug;
+const companyName = companyData.name;
+const companyLogo = companyData.logo;
+const companyDescription = companyData.description;
 ---
 
-<a href={`/companies/${company.id}`} class="card group h-full hover:shadow-card-hover transition-all duration-300">
+<a href={`/companies/${companyId}`} class="card group h-full hover:shadow-card-hover transition-all duration-300">
   <div class="p-6">
     <div class="mb-4 flex justify-between items-start">
       <div class="w-16 h-16 rounded-lg bg-accent-100 p-2 flex items-center justify-center overflow-hidden">
         <img 
-          src={company.logo} 
-          alt={`${company.name} logo`} 
+          src={companyLogo} 
+          alt={`${companyName} logo`} 
           class="w-full h-full object-contain rounded"
         />
       </div>
@@ -34,8 +44,8 @@ const rating = company.google_rating || company.rating || 0;
       </div>
     </div>
     
-    <h3 class="text-xl font-semibold mb-2 group-hover:text-secondary-600 transition-colors">{company.name}</h3>
-    <p class="text-accent-600 mb-3 text-sm line-clamp-2">{company.description}</p>
+    <h3 class="text-xl font-semibold mb-2 group-hover:text-secondary-600 transition-colors">{companyName}</h3>
+    <p class="text-accent-600 mb-3 text-sm line-clamp-2">{companyDescription}</p>
     
     <div class="space-y-2 mb-4">      
       <div class="flex items-start text-sm">
