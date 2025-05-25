@@ -58,7 +58,7 @@ function transformCompanyData(company: any) {
       };
       return regionNames[regionId] || regionId.charAt(0).toUpperCase() + regionId.slice(1);
     }),
-    established: company.data.founded.toString(),
+    established: company.data.founded ? company.data.founded.toString() : 'N/A',
     size: 'normal'
   };
 }
