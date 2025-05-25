@@ -1,14 +1,21 @@
 ---
 id: crane-relocation
 name: Crane Relocation GmbH
-logo: /images/companies/crane-relocation-logo.png # Placeholder logo path
+logo: https://placehold.co/200x80/png?text=Crane+Logo
 featured: false
 description: Crane Relocation GmbH offers discrete, efficient, and reliable relocation services for expats in Zug, Zurich, and Lucerne. Perfect 5.0/5 Google rating.
 founded: 2017
-employees: Not Provided # TODO: Add number of employees if available
+employees: "Not Provided"
 rating:
   score: 5.0
   reviews: 23
+  breakdown:
+    service: 5.0
+    communication: 5.0
+    value: 5.0
+    reliability: 5.0
+    professionalism: 5.0
+    timeliness: 5.0
 languages:
   - English
   - German
@@ -31,15 +38,13 @@ regions:
   - lucerne
 website: https://www.crane-relocation.ch/
 email: contact@crane-relocation.ch
-phone:
-  - +41-41-530-50-00
-  - +41-79-247-99-99
+phone: "+41-41-530-50-00"
 address:
-  - street: Gotthardstrasse 26
-    postalCode: 6300
-    city: Zug
-    canton: ZG
-    office: Zug
+  street: Gotthardstrasse 26
+  postalCode: "6300"
+  city: Zug
+  canton: ZG
+  office: Zug
 consultants:
   - name: Julia Kaufmann
     role: Founder & Managing Director
@@ -49,6 +54,15 @@ consultants:
 google_my_business: https://www.google.com/maps/place/Crane+Relocation+GmbH/@47.1704,8.5245,17z/data=!3m1!4b1!4m6!3m5!1s0x479aa971f0f8f0f9:0x3e0b8a0c1c9a7a0f!8m2!3d47.1704!4d8.5245!16s%2Fg%2F11c6_1l9y3
 external_links: []
 backlink_status: false
+specializations:
+  - local-network
+  - efficiency
+  - tailor-made-solutions
+  - comprehensive-support
+  - expat-relocation
+pricing:
+  model: "Contact for quote"
+  notes: "Pricing varies based on services required."
 ---
 
 # About
@@ -102,7 +116,7 @@ Crane Relocation primarily serves expatriates moving to:
 
 **Address:** Gotthardstrasse 26, 6300 Zug, Switzerland
 
-**Phone:** +41 41 530 50 00 / +41 79 247 99 99
+**Phone:** +41 41 530 50 00
 
 **Email:** contact@crane-relocation.ch
 
