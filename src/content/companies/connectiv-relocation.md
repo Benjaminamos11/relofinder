@@ -1,7 +1,7 @@
 ---
 id: connectiv-relocation
 name: Connectiv Relocation AG
-logo: /images/companies/connectiv-logo.png # Placeholder logo path
+logo: /images/companies/connectiv-logo.png
 featured: false
 description: Connectiv Relocation offers personalized relocation services in Basel, Zurich, Geneva and across Switzerland. Established in 2011 with a perfect 5.0/5 rating from Google reviews.
 founded: 2011
