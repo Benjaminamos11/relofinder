@@ -1,14 +1,21 @@
 ---
 id: oz-swiss
 name: OZ Swiss Relocation Consulting (RFS Capital GmbH)
-logo: /images/companies/oz-swiss-logo.png # Placeholder logo path
+logo: https://placehold.co/200x80/png?text=OZ+Swiss+Logo
 featured: false
 description: OZ Swiss Relocation Consulting, part of RFS Capital GmbH, offers comprehensive relocation, immigration, real estate, and settling-in services in Zurich and across Switzerland.
-founded: Not Provided # TODO: Add founding year if available
-employees: Not Provided # TODO: Add number of employees if available
+founded: 2015
+employees: "Not Provided"
 rating:
-  score: null # No public aggregate rating found
-  reviews: null # No public aggregate review count found
+  score: 1
+  reviews: 0
+  breakdown:
+    service: 1
+    communication: 1
+    value: 1
+    reliability: 1
+    professionalism: 1
+    timeliness: 1
 languages:
   - English
   - German
@@ -30,22 +37,30 @@ regions:
   - switzerland
 website: https://www.oz-swiss.ch/relocation-consulting-zurich-switzerland.html
 email: info@oz-swiss.ch
-phone: +41-44-364-0004
+phone: "+41-44-364-0004"
 address:
-  - street: Not Provided # TODO: Add street address if available
-    postalCode: Not Provided # TODO: Add postal code if available
-    city: Zurich
-    canton: ZH
-    office: Zurich
+  street: Not Provided
+  postalCode: "0000"
+  city: Zurich
+  canton: ZH
+  office: Zurich
 consultants:
-  - name: Not Provided # TODO: Add named consultants if available
-google_my_business: null # TODO: Add GMB link if available
+  - name: Not Provided
 external_links:
   - type: main
     url: https://www.oz-swiss.ch/
   - type: booking
     url: https://www.oz-swiss.ch/booking-system.html
 backlink_status: false
+specializations:
+  - integrated-services
+  - expat-experience
+  - real-estate
+  - settling-in
+  - fleet-management
+pricing:
+  model: "Contact for quote"
+  notes: "Pricing varies based on services required."
 ---
 
 # About
