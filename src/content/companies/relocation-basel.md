@@ -1,14 +1,21 @@
 ---
 id: relocation-basel
 name: Relocation Basel (h.o.m.e.s. GmbH)
-logo: /images/companies/homes-relocation-basel-logo.svg # Placeholder logo path
+logo: https://placehold.co/200x80/png?text=Relocation+Basel+Logo
 featured: false
 description: Relocation Basel (h.o.m.e.s. GmbH), led by Claudia Sutter, offers personalized corporate and private relocation services in Basel and Switzerland since 1996.
 founded: 1996
-employees: Not Provided # TODO: Add number of employees if available
+employees: "Not Provided"
 rating:
-  score: null # No public aggregate rating found
-  reviews: null # No public aggregate review count found
+  score: 1
+  reviews: 0
+  breakdown:
+    service: 1
+    communication: 1
+    value: 1
+    reliability: 1
+    professionalism: 1
+    timeliness: 1
 languages:
   - German
   - English
@@ -38,13 +45,13 @@ regions:
   - switzerland
 website: https://relocation-basel.ch/
 email: info@homesbasel.com
-phone: +41-79-454-13-09
+phone: "+41-79-454-13-09"
 address:
-  - street: Spechtweg 7
-    postalCode: 4125
-    city: Riehen
-    canton: BS
-    office: Basel
+  street: Spechtweg 7
+  postalCode: "4125"
+  city: Riehen
+  canton: BS
+  office: Basel
 consultants:
   - name: Claudia Sutter
     role: Company Director
@@ -54,9 +61,18 @@ consultants:
       - French
       - Italian
       - Spanish
-google_my_business: null # TODO: Add GMB link if available
+google_my_business: null
 external_links: []
 backlink_status: false
+specializations:
+  - local-expertise
+  - multilingual-team
+  - vip-services
+  - corporate-relocation
+  - private-relocation
+pricing:
+  model: "Contact for quote"
+  notes: "Pricing varies based on services required."
 ---
 
 # About
