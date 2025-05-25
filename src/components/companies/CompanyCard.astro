@@ -19,6 +19,40 @@ const companyId = companyData.id || company.slug;
 const companyName = companyData.name;
 const companyLogo = companyData.logo;
 const companyDescription = companyData.description;
+
+// Get services, specializations, and languages
+const services = companyData.services || [];
+const specializations = companyData.specializations || [];
+const languages = companyData.languages || [];
+
+// Convert service IDs to readable names
+const serviceNames: Record<string, string> = {
+  'home-search': 'Home Search',
+  'immigration-services': 'Immigration',
+  'move-management': 'Move Management',
+  'education': 'Education',
+  'advisory-services': 'Advisory',
+  'settling-in': 'Settling-in',
+  'departure-repatriation': 'Departure',
+  'banking': 'Banking',
+  'visa': 'Visa Services'
+};
+
+// Convert region IDs to readable names
+const regionNames: Record<string, string> = {
+  'zurich': 'Zürich',
+  'geneva': 'Geneva',
+  'basel': 'Basel',
+  'bern': 'Bern',
+  'lausanne': 'Lausanne',
+  'zug': 'Zug',
+  'lucerne': 'Lucerne'
+};
+
+// Format regions with proper names
+const formattedRegions = Array.isArray(companyData.regions) 
+  ? companyData.regions.map((region: string) => regionNames[region] || region).join(', ')
+  : 'Nationwide';
 ---
 
 <a href={`/companies/${companyId}`} class="card group h-full hover:shadow-card-hover transition-all duration-300">
@@ -53,8 +87,35 @@ const companyDescription = companyData.description;
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
-        <span><strong>Regions:</strong> {regions}</span>
+        <span><strong>Regions:</strong> {formattedRegions}</span>
       </div>
+
+      {services.length > 0 && (
+        <div class="flex items-start text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary-600 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          <span><strong>Services:</strong> {services.map((service: string) => serviceNames[service] || service).join(', ')}</span>
+        </div>
+      )}
+
+      {specializations.length > 0 && (
+        <div class="flex items-start text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary-600 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          <span><strong>Specializations:</strong> {specializations.join(', ')}</span>
+        </div>
+      )}
+
+      {languages.length > 0 && (
+        <div class="flex items-start text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary-600 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+          </svg>
+          <span><strong>Languages:</strong> {languages.join(', ')}</span>
+        </div>
+      )}
     </div>
     
     <div class="mt-auto flex items-center text-secondary-600 font-medium transition-all duration-300 group-hover:translate-x-2">

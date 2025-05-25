@@ -40,7 +40,7 @@ languages:
 founded: 2011
 employees: "5-10"
 verified: true
-featured: true
+featured: false
 rating:
   score: 5.0
   reviews: 58

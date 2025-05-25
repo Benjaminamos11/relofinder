@@ -1,110 +1,75 @@
 ---
-const featuredCompanies = [
-  {
-    id: 'prime-relocation',
-    name: 'PrimeRelocation',
-    specialty: 'Your Trusted Partner for a Smooth Transition',
-    description: 'Professional relocation services with 17+ years of experience helping expats settle in Switzerland.',
-    logo: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748055897/logoprimesmal_rb4hxo.webp',
-    rating: 4.5,
-    reviews: 312,
-    services: ['Home Search', 'Immigration Services', 'Orientation Tours', 'School Search'],
-    locations: ['Zug', 'Zürich', 'Geneva', 'Basel'],
-    established: '2008',
-    size: 'featured' // Large card
-  },
-  {
-    id: 'silver-nest-relocation',
-    name: 'Silver Nest Relocation',
-    specialty: 'Family-Owned Personal Service',
-    description: 'Family-owned relocation specialist in Zurich and German-speaking Switzerland since 2011 with perfect 5.0 rating.',
-    logo: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748131687/silvernest_vvrrjk.webp',
-    rating: 5.0,
-    reviews: 58,
-    services: ['Executive Relocations', 'Home Search', 'Immigration Services', 'VIP Services'],
-    locations: ['Zürich', 'Zug', 'Lucerne', 'Lake Zurich Region'],
-    established: '2011',
+import { getCollection } from 'astro:content';
+
+// Fetch companies from content collection
+const allCompanies = await getCollection('companies');
+
+// Sort companies: featured first, then by rating
+const sortedCompanies = allCompanies.sort((a, b) => {
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  return b.data.rating.score - a.data.rating.score;
+});
+
+// Get featured company (first one with featured: true)
+const featuredCompany = sortedCompanies.find(company => company.data.featured);
+
+// Get other companies (exclude the featured one, take next 7)
+const otherCompanies = sortedCompanies
+  .filter(company => company.data.id !== featuredCompany?.data.id)
+  .slice(0, 7);
+
+// Transform company data to match the expected format
+function transformCompanyData(company: any) {
+  return {
+    id: company.data.id,
+    name: company.data.name,
+    specialty: company.data.specializations?.[0] || 'Professional Relocation Services',
+    description: company.data.description,
+    logo: company.data.logo,
+    rating: company.data.rating.score,
+    reviews: company.data.rating.reviews,
+    services: company.data.services.slice(0, 4).map((serviceId: string) => {
+      // Convert service IDs to readable names
+      const serviceNames: Record<string, string> = {
+        'housing': 'Home Search',
+        'home-search': 'Home Search',
+        'immigration-services': 'Immigration Services',
+        'move-management': 'Move Management',
+        'education': 'School Search',
+        'advisory-services': 'Advisory Services',
+        'settling-in': 'Settling-in Support',
+        'departure-repatriation': 'Departure Support',
+        'banking': 'Banking Services',
+        'visa': 'Visa Services'
+      };
+      return serviceNames[serviceId] || serviceId.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }),
+    locations: company.data.regions.slice(0, 4).map((regionId: string) => {
+      // Convert region IDs to readable names
+      const regionNames: Record<string, string> = {
+        'zurich': 'Zürich',
+        'geneva': 'Geneva',
+        'basel': 'Basel',
+        'bern': 'Bern',
+        'lausanne': 'Lausanne',
+        'zug': 'Zug',
+        'lucerne': 'Lucerne'
+      };
+      return regionNames[regionId] || regionId.charAt(0).toUpperCase() + regionId.slice(1);
+    }),
+    established: company.data.founded.toString(),
     size: 'normal'
-  },
-  {
-    id: 'auris-relocation',
-    name: 'Auris Relocation',
-    specialty: 'Corporate Global Mobility',
-    description: 'Comprehensive advisory and relocation services for companies and individuals with 25+ years of experience.',
-    logo: 'https://www.aurisrelocation.com/cstyle/6680750/images/logo.svg',
-    rating: 4.8,
-    reviews: 124,
-    services: ['Immigration & Permits', 'Home Search', 'Cross-Cultural Training', 'Global Mobility'],
-    locations: ['Zürich', 'Geneva', 'Basel', 'Bern', 'Lausanne'],
-    established: '1998',
-    size: 'normal'
-  },
-  {
-    id: 'anchor-relocation',
-    name: 'Anchor Relocation',
-    specialty: 'Family & Corporate Relocations',
-    description: 'Professional relocation services in Zurich, Zug and across Switzerland with 20+ years of experience.',
-    logo: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748056028/anchor_logo_s1jbo3.webp',
-    rating: 4.2,
-    reviews: 87,
-    services: ['Home Search', 'Settling-in', 'Immigration Services', 'Education'],
-    locations: ['Zürich', 'Zug', 'Lucerne'],
-    established: '2001',
-    size: 'normal'
-  },
-  {
-    id: 'swiss-visa-services',
-    name: 'Swiss Visa Services',
-    specialty: 'Immigration Law',
-    description: 'Expert legal assistance for all Swiss visa and immigration matters.',
-    logo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop',
-    rating: 4.9,
-    reviews: 198,
-    services: ['Work Permits', 'Residency Applications', 'Family Visas'],
-    locations: ['Nationwide'],
-    established: '2012',
-    size: 'normal'
-  },
-  {
-    id: 'helvetia-banking',
-    name: 'Helvetia Banking Solutions',
-    specialty: 'Financial Services',
-    description: 'Comprehensive banking and financial planning for new Swiss residents.',
-    logo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop',
-    rating: 4.7,
-    reviews: 134,
-    services: ['Bank Accounts', 'Investment Advice', 'Insurance'],
-    locations: ['Zürich', 'Geneva', 'Lausanne'],
-    established: '2020',
-    size: 'normal'
-  },
-  {
-    id: 'international-schools-ch',
-    name: 'International Schools CH',
-    specialty: 'Education Consulting',
-    description: 'Helping expat families find the perfect educational opportunities.',
-    logo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop',
-    rating: 4.8,
-    reviews: 89,
-    services: ['School Placement', 'Admissions Support', 'Education Planning'],
-    locations: ['Multiple Cantons'],
-    established: '2017',
-    size: 'normal'
-  },
-  {
-    id: 'swiss-moves',
-    name: 'SwissMoves International',
-    specialty: 'Moving & Logistics',
-    description: 'Professional moving services for international relocations to Switzerland.',
-    logo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop',
-    rating: 4.6,
-    reviews: 167,
-    services: ['International Moving', 'Storage', 'Pet Transport'],
-    locations: ['Nationwide'],
-    established: '2014',
-    size: 'normal'
-  }
-];
+  };
+}
+
+// Transform the featured company and other companies
+const featuredCompanyData = featuredCompany ? transformCompanyData(featuredCompany) : null;
+const otherCompaniesData = otherCompanies.map(transformCompanyData);
+
+// If no featured company found, use the first company as featured
+const displayFeaturedCompany = featuredCompanyData || (otherCompaniesData.length > 0 ? {...otherCompaniesData[0], size: 'featured'} : null);
+const displayOtherCompanies = featuredCompanyData ? otherCompaniesData : otherCompaniesData.slice(1);
 ---
 
 <section class="py-12 lg:py-20 bg-gradient-to-br from-secondary-50 via-white to-primary-50 relative overflow-hidden">
@@ -140,13 +105,13 @@ const featuredCompanies = [
           
           <div class="flex items-start space-x-4">
             <img 
-              src={featuredCompanies[0].logo} 
-              alt={`${featuredCompanies[0].name} logo`}
+              src={displayFeaturedCompany?.logo} 
+              alt={`${displayFeaturedCompany?.name} logo`}
               class="w-16 h-16 rounded-xl object-cover border-4 border-white/20"
             />
             <div class="flex-1">
-              <h3 class="text-xl font-bold mb-2">{featuredCompanies[0].name}</h3>
-              <p class="text-white/90 text-sm mb-3">{featuredCompanies[0].description}</p>
+              <h3 class="text-xl font-bold mb-2">{displayFeaturedCompany?.name}</h3>
+              <p class="text-white/90 text-sm mb-3">{displayFeaturedCompany?.description}</p>
               
               <!-- Stats Row -->
               <div class="flex items-center space-x-4 text-sm">
@@ -158,8 +123,8 @@ const featuredCompanies = [
                       </svg>
                     ))}
                   </div>
-                  <span class="font-semibold">{featuredCompanies[0].rating}</span>
-                  <span class="text-white/70 ml-1">({featuredCompanies[0].reviews})</span>
+                  <span class="font-semibold">{displayFeaturedCompany?.rating}</span>
+                  <span class="text-white/70 ml-1">({displayFeaturedCompany?.reviews})</span>
                 </div>
               </div>
             </div>
@@ -171,7 +136,7 @@ const featuredCompanies = [
           <div class="mb-4">
             <h4 class="font-semibold text-gray-900 mb-2 text-sm">Services</h4>
             <div class="flex flex-wrap gap-1">
-              {featuredCompanies[0].services.map((service) => (
+              {displayFeaturedCompany?.services.map((service: string) => (
                 <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">
                   {service}
                 </span>
@@ -179,7 +144,7 @@ const featuredCompanies = [
             </div>
           </div>
           
-          <a href={`/companies/${featuredCompanies[0].id}`} class="btn-primary w-full text-center text-sm">
+          <a href={`/companies/${displayFeaturedCompany?.id}`} class="btn-primary w-full text-center text-sm">
             View Profile & Get Quote
           </a>
         </div>
@@ -202,13 +167,13 @@ const featuredCompanies = [
             
             <div class="flex items-start space-x-6">
               <img 
-                src={featuredCompanies[0].logo} 
-                alt={`${featuredCompanies[0].name} logo`}
+                src={displayFeaturedCompany?.logo} 
+                alt={`${displayFeaturedCompany?.name} logo`}
                 class="w-20 h-20 rounded-2xl object-cover border-4 border-white/20 group-hover:scale-110 transition-transform duration-300"
               />
               <div class="flex-1">
-                <h3 class="text-2xl font-bold mb-2">{featuredCompanies[0].name}</h3>
-                <p class="text-white/90 mb-4">{featuredCompanies[0].description}</p>
+                <h3 class="text-2xl font-bold mb-2">{displayFeaturedCompany?.name}</h3>
+                <p class="text-white/90 mb-4">{displayFeaturedCompany?.description}</p>
                 
                 <!-- Stats Row -->
                 <div class="flex items-center space-x-6 mb-4">
@@ -220,10 +185,10 @@ const featuredCompanies = [
                         </svg>
                       ))}
                     </div>
-                    <span class="font-semibold">{featuredCompanies[0].rating}</span>
-                    <span class="text-white/70 ml-1">({featuredCompanies[0].reviews} reviews)</span>
+                    <span class="font-semibold">{displayFeaturedCompany?.rating}</span>
+                    <span class="text-white/70 ml-1">({displayFeaturedCompany?.reviews} reviews)</span>
                   </div>
-                  <div class="text-white/70">Est. {featuredCompanies[0].established}</div>
+                  <div class="text-white/70">Est. {displayFeaturedCompany?.established}</div>
                 </div>
               </div>
             </div>
@@ -235,7 +200,7 @@ const featuredCompanies = [
               <div>
                 <h4 class="font-semibold text-gray-900 mb-3">Services</h4>
                 <div class="space-y-2">
-                  {featuredCompanies[0].services.map((service) => (
+                  {displayFeaturedCompany?.services.map((service: string) => (
                     <div class="flex items-center">
                       <div class="w-2 h-2 bg-primary-500 rounded-full mr-3"></div>
                       <span class="text-gray-700">{service}</span>
@@ -246,7 +211,7 @@ const featuredCompanies = [
               <div>
                 <h4 class="font-semibold text-gray-900 mb-3">Locations</h4>
                 <div class="flex flex-wrap gap-2">
-                  {featuredCompanies[0].locations.map((location) => (
+                  {displayFeaturedCompany?.locations.map((location: string) => (
                     <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
                       {location}
                     </span>
@@ -256,7 +221,7 @@ const featuredCompanies = [
             </div>
             
             <div class="mt-6 pt-6 border-t border-gray-100">
-              <a href={`/companies/${featuredCompanies[0].id}`} class="btn-primary w-full text-center group">
+              <a href={`/companies/${displayFeaturedCompany?.id}`} class="btn-primary w-full text-center group">
                 View Profile & Get Quote
                 <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -320,7 +285,7 @@ const featuredCompanies = [
 
     <!-- Other Partners Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 mb-12 lg:mb-16">
-      {featuredCompanies.slice(1).map((company, index) => (
+      {displayOtherCompanies.map((company, index) => (
         <div class="bg-white rounded-xl lg:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group animate-on-scroll" style={`animation-delay: ${(index + 1) * 0.1}s`}>
           <!-- Header -->
           <div class="p-4 lg:p-6 border-b border-gray-100">
@@ -352,7 +317,7 @@ const featuredCompanies = [
           <!-- Services -->
           <div class="p-3 lg:p-4">
             <div class="flex flex-wrap gap-1 lg:gap-2 mb-3 lg:mb-4">
-              {company.services.slice(0, 3).map((service) => (
+              {company.services.slice(0, 3).map((service: string) => (
                 <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">
                   {service}
                 </span>

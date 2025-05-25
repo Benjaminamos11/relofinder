@@ -44,7 +44,7 @@ languages:
 founded: 1998
 employees: "50-100"
 verified: true
-featured: true
+featured: false
 rating:
   score: 4.8
   reviews: 124
