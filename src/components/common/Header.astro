@@ -25,9 +25,14 @@ const mainServices = [
       <!-- Logo -->
       <a href="/" class="flex items-center space-x-3 group">
         <img 
-          src="https://res.cloudinary.com/dphbnwjtx/image/upload/c_crop,w_850,h_250/v1748257779/background_removed_image_EWXUeqkFSJqwJ3xSqQHOUQ_s3w3et.webp" 
+          src="https://res.cloudinary.com/dphbnwjtx/image/upload/c_crop,w_300,h_100,f_webp,q_auto:good/v1748257779/background_removed_image_EWXUeqkFSJqwJ3xSqQHOUQ_s3w3et.webp" 
           alt="ReloFinder.ch" 
-          class="h-10 md:h-12 transition-transform duration-300 group-hover:scale-105"
+          class="h-8 md:h-10 transition-transform duration-300 group-hover:scale-105"
+          width="300"
+          height="100"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
         />
       </a>
 
@@ -150,13 +155,18 @@ const mainServices = [
       <div class="hidden lg:flex items-center space-x-4">
       <!-- Language Selector -->
         <div class="relative">
-          <select class="appearance-none bg-white border border-gray-200 rounded-xl px-4 py-2 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200">
-            <option value="en">🇬🇧 EN</option>
-            <option value="de">🇩🇪 DE</option>
-            <option value="fr">🇫🇷 FR</option>
-            <option value="it">🇮🇹 IT</option>
+          <label for="language-select" class="sr-only">Select language</label>
+          <select 
+            id="language-select"
+            class="appearance-none bg-white border border-gray-200 rounded-xl px-4 py-2 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200"
+            aria-label="Select language"
+          >
+            <option value="en">🇬🇧 English</option>
+            <option value="de" disabled>🇩🇪 Deutsch (Coming Soon)</option>
+            <option value="fr" disabled>🇫🇷 Français (Coming Soon)</option>
+            <option value="it" disabled>🇮🇹 Italiano (Coming Soon)</option>
           </select>
-          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400" aria-hidden="true">
             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
               <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
             </svg>
