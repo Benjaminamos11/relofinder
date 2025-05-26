@@ -176,9 +176,9 @@ const mainServices = [
   </div>
 </header>
 
-<!-- Mobile Navigation Menu and Overlay -->
-<div id="mobile-menu-overlay" class="fixed inset-0 bg-black/40 z-50 transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
-<div id="mobile-menu" class="lg:hidden max-h-0 overflow-hidden transition-all duration-300 bg-white shadow-xl rounded-b-2xl fixed left-0 right-0 top-0 z-60">
+<!-- Mobile Navigation Menu and Overlay (CLEAN) -->
+<div id="mobile-menu-overlay" class="fixed inset-0 bg-black/40 z-[9999] transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
+<div id="mobile-menu" class="lg:hidden max-h-0 overflow-hidden transition-all duration-300 bg-white shadow-xl rounded-b-2xl fixed left-0 right-0 top-0 z-[9999]">
   <nav class="flex flex-col py-4 px-6 space-y-2" tabindex="-1">
     <a href="/regions" class="text-gray-700 font-medium py-2">Regions</a>
     <a href="/services" class="text-gray-700 font-medium py-2">Services</a>
@@ -199,8 +199,9 @@ const mainServices = [
     let isMenuOpen = false;
     function openMenu() {
       isMenuOpen = true;
-      mobileMenu.style.maxHeight = '500px';
-      mobileMenu.classList.add('shadow-2xl');
+      mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+      mobileMenu.style.background = '';
+      mobileMenu.style.border = '';
       overlay.classList.remove('opacity-0','pointer-events-none');
       overlay.classList.add('opacity-100');
       menuToggle.setAttribute('aria-expanded', 'true');
@@ -210,7 +211,8 @@ const mainServices = [
     function closeMenu() {
       isMenuOpen = false;
       mobileMenu.style.maxHeight = '0px';
-      mobileMenu.classList.remove('shadow-2xl');
+      mobileMenu.style.background = '';
+      mobileMenu.style.border = '';
       overlay.classList.add('opacity-0','pointer-events-none');
       overlay.classList.remove('opacity-100');
       menuToggle.setAttribute('aria-expanded', 'false');
