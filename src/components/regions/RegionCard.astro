@@ -6,7 +6,7 @@ const { region } = Astro.props;
   <div class="relative overflow-hidden h-48">
     <img 
       src={region.image} 
-      alt={`${region.name}, Switzerland`} 
+      alt={region.name + ", Switzerland"} 
       class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
     />
     <div class="absolute inset-0 bg-gradient-to-b from-transparent to-accent-900/70 flex items-end">

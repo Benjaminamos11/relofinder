@@ -150,11 +150,11 @@ const regions = [
       </a>
       <!-- Lugano and Zug - Small Squares -->
       {regions.slice(3).map(region => (
-        <a href={`/regions/${region.id}`} class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl">
+        <a href={"/regions/" + region.id} class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl">
           <div class="absolute inset-0">
             <img 
               src={region.image}
-              alt={`${region.name}, Switzerland`}
+              alt={region.name + ", Switzerland"}
               class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-accent-900/90 via-accent-900/40 to-transparent"></div>

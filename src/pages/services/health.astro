@@ -229,7 +229,7 @@ const healthcareFacts = [
           {steps.map((step, index) => (
             <div class="md:flex items-center">
               <!-- Step Number and Content -->
-              <div class={`md:w-1/2 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:order-2'}`}>
+              <div class={"md:w-1/2 " + (index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:order-2')}>
                 <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
                   <h3 class="text-xl font-semibold mb-3">{step.title}</h3>
                   <p class="text-accent-600">{step.description}</p>

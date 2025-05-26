@@ -80,12 +80,12 @@ const commonGradient = 'from-primary-600 to-primary-700';
           'row-span-1';
             
         return (
-          <a href={`/services/${service.id}`} class={`group ${colSpanClass} ${rowSpanClass} relative overflow-hidden rounded-2xl shadow-sm hover:shadow-lg transition-all duration-500 ease-in-out border border-gray-100`}>
+          <a href={"/services/" + service.id} class={"group " + colSpanClass + " " + rowSpanClass + " relative overflow-hidden rounded-2xl shadow-sm hover:shadow-lg transition-all duration-500 ease-in-out border border-gray-100"}>
             <!-- Content Container -->
             <div class="relative h-full w-full bg-white rounded-2xl p-5 flex flex-col justify-between overflow-hidden">
               <!-- Content -->
               <div class="relative z-10">
-                <div class={`w-12 h-12 rounded-full flex items-center justify-center mb-3 transition-all duration-500 group-hover:scale-110 bg-gradient-to-r ${commonGradient} shadow-lg`}>
+                <div class={"w-12 h-12 rounded-full flex items-center justify-center mb-3 transition-all duration-500 group-hover:scale-110 bg-gradient-to-r " + commonGradient + " shadow-lg"}>
                   <span class="text-white">
                     {service.icon === 'home' && (
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

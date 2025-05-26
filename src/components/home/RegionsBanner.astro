@@ -209,7 +209,7 @@ const defaultRegion = regions[0];
         <div class="region-list">
           {regions.map((region, index) => (
             <button 
-              class={`w-full text-left py-4 px-5 border-b last:border-b-0 border-gray-100 hover:bg-gray-50 transition-colors ${index === 0 ? 'bg-primary-50 text-primary-700 font-medium' : 'text-gray-700'}`}
+              class={"w-full text-left py-4 px-5 border-b last:border-b-0 border-gray-100 hover:bg-gray-50 transition-colors " + (index === 0 ? 'bg-primary-50 text-primary-700 font-medium' : 'text-gray-700')}
               data-region-id={region.id}
             >
               {region.name}
@@ -222,14 +222,14 @@ const defaultRegion = regions[0];
       <div class="lg:col-span-2">
         {regions.map((region) => (
           <div 
-            class={`region-detail bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 ${region.id === defaultRegion.id ? 'block' : 'hidden'}`}
+            class={"region-detail bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 " + (region.id === defaultRegion.id ? 'block' : 'hidden')}
             id={`region-${region.id}`}
           >
             <!-- Region Image -->
             <div class="relative h-64 overflow-hidden">
               <img 
                 src={region.image}
-                alt={`${region.name} Region`}
+                alt={region.name + " Region"}
                 class="w-full h-full object-cover"
               />
               <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">

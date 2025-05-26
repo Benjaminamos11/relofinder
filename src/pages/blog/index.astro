@@ -120,8 +120,8 @@ const categories = [
 ];
 
 // Format date helper function
-function formatDate(dateString) {
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+function formatDate(dateString: string) {
+  const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
   return new Date(dateString).toLocaleDateString('en-US', options);
 }
 
@@ -233,9 +233,9 @@ const description = 'Practical guides, news, and advice for expats relocating to
             All Categories
           </a>
           {categories.map(category => (
-            <a href={`/blog/category/${category.id}`} class={`px-4 py-2 ${category.color} text-white rounded-full text-sm font-medium hover:opacity-90 transition-colors`}>
-              {category.name}
-            </a>
+                      <a href={"/blog/category/" + category.id} class={category.color + " text-white rounded-full text-sm font-medium hover:opacity-90 transition-colors px-4 py-2"}>
+            {category.name}
+          </a>
           ))}
         </div>
       </div>

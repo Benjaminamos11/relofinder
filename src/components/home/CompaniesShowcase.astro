@@ -106,7 +106,7 @@ const displayOtherCompanies = featuredCompanyData ? otherCompaniesData : otherCo
           <div class="flex items-start space-x-4">
             <img 
               src={displayFeaturedCompany?.logo} 
-              alt={`${displayFeaturedCompany?.name} logo`}
+              alt={displayFeaturedCompany?.name + " logo"}
               class="w-16 h-16 rounded-xl object-cover border-4 border-white/20"
             />
             <div class="flex-1">
@@ -168,7 +168,7 @@ const displayOtherCompanies = featuredCompanyData ? otherCompaniesData : otherCo
             <div class="flex items-start space-x-6">
               <img 
                 src={displayFeaturedCompany?.logo} 
-                alt={`${displayFeaturedCompany?.name} logo`}
+                alt={displayFeaturedCompany?.name + " logo"}
                 class="w-20 h-20 rounded-2xl object-cover border-4 border-white/20 group-hover:scale-110 transition-transform duration-300"
               />
               <div class="flex-1">
@@ -292,7 +292,7 @@ const displayOtherCompanies = featuredCompanyData ? otherCompaniesData : otherCo
             <div class="flex items-center space-x-3 lg:space-x-4 mb-3 lg:mb-4">
               <img 
                 src={company.logo} 
-                alt={`${company.name} logo`}
+                alt={company.name + " logo"}
                 class="w-10 h-10 lg:w-12 lg:h-12 rounded-lg lg:rounded-xl object-cover group-hover:scale-110 transition-transform duration-300"
               />
               <div class="flex-1 min-w-0">

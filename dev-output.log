@@ -1,0 +1,33 @@
+
+> project@0.0.1 dev
+> astro dev
+
+10:36:36 [types] Generated 1ms
+
+ astro  v4.16.18 ready in 391 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+10:36:36 watching for file changes...
+10:36:53 [200] /companies/prime-relocation 168ms
+10:37:58 [watch] src/pages/regions/index.astro
+10:38:05 [watch] src/pages/regions/index.astro
+10:38:11 [watch] src/components/home/FeaturedCompanies.astro
+10:38:17 [watch] src/components/home/RegionsSection.astro
+10:38:58 [200] /companies/prime-relocation 148ms
+10:39:26 [200] / 11ms
+10:39:34 [200] /companies/executive-relocation 88ms
+10:39:52 [200] /companies 12ms
+10:52:31 [200] / 91ms
+10:52:53 [200] /services/housing 4ms
+10:52:55 [200] /regions/zurich 77ms
+10:53:25 [200] /regions/geneva 98ms
+Supabase environment variables not found - client not initialized
+10:53:46 [200] /chat 5ms
+(node:56491) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+10:53:47 [200] /corporate 4ms
+11:25:24 [watch] src/pages/companies/index.astro
+11:25:25 [200] /corporate 4ms
+11:26:55 [200] /companies 115ms

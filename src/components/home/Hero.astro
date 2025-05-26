@@ -83,11 +83,12 @@ import { Image } from 'astro:assets';
         <!-- Social Proof -->
         <div class="pt-6 lg:pt-8 border-t border-gray-200">
           <p class="text-xs lg:text-sm text-gray-500 mb-3 lg:mb-4">Trusted by employees at</p>
-          <div class="grid grid-cols-2 lg:flex lg:items-center gap-4 lg:gap-8 opacity-60">
-            <div class="text-lg lg:text-2xl font-bold text-gray-400 text-center lg:text-left">Google</div>
-            <div class="text-lg lg:text-2xl font-bold text-gray-400 text-center lg:text-left">Microsoft</div>
-            <div class="text-lg lg:text-2xl font-bold text-gray-400 text-center lg:text-left">Nestlé</div>
-            <div class="text-lg lg:text-2xl font-bold text-gray-400 text-center lg:text-left">UBS</div>
+          <div class="flex overflow-x-auto gap-4 lg:gap-8 opacity-60 whitespace-nowrap px-1 hide-scrollbar">
+            <div class="text-lg lg:text-2xl font-bold text-gray-400 text-center lg:text-left flex-shrink-0">Google</div>
+            <div class="text-lg lg:text-2xl font-bold text-gray-400 text-center lg:text-left flex-shrink-0">Microsoft</div>
+            <div class="text-lg lg:text-2xl font-bold text-gray-400 text-center lg:text-left flex-shrink-0">Nestlé</div>
+            <div class="text-lg lg:text-2xl font-bold text-gray-400 text-center lg:text-left flex-shrink-0">UBS</div>
+            <div class="text-lg lg:text-2xl font-bold text-gray-400 text-center lg:text-left flex-shrink-0">Roche</div>
           </div>
         </div>
       </div>
@@ -100,10 +101,10 @@ import { Image } from 'astro:assets';
           <div class="relative bg-white rounded-2xl lg:rounded-3xl shadow-2xl overflow-hidden">
             <!-- Optimized responsive hero image -->
             <picture>
-              <!-- Mobile version (smaller) -->
+              <!-- Mobile version (show full cow, object-cover, no crop) -->
               <source 
                 media="(max-width: 640px)" 
-                srcset="https://res.cloudinary.com/dphbnwjtx/image/upload/w_300,h_200,c_fill,f_webp,q_auto:good/v1748002920/a-humorous-slightly-quirky-photograph-of_E3yQygvrSj2lK35PvdcPXA_jo8EU6MaTSePalCxA1yBzA_hnzcxp.webp"
+                srcset="https://res.cloudinary.com/dphbnwjtx/image/upload/w_400,h_360,c_fit,f_webp,q_auto:good/v1748002920/a-humorous-slightly-quirky-photograph-of_E3yQygvrSj2lK35PvdcPXA_jo8EU6MaTSePalCxA1yBzA_hnzcxp.webp"
                 type="image/webp"
               >
               <!-- Tablet version -->
@@ -113,22 +114,16 @@ import { Image } from 'astro:assets';
                 type="image/webp"
               >
               <!-- Desktop version -->
-              <source 
-                media="(min-width: 1025px)" 
-                srcset="https://res.cloudinary.com/dphbnwjtx/image/upload/w_800,h_600,c_fit,f_webp,q_auto:good/v1748002920/a-humorous-slightly-quirky-photograph-of_E3yQygvrSj2lK35PvdcPXA_jo8EU6MaTSePalCxA1yBzA_hnzcxp.webp"
-                type="image/webp"
-              >
-              <!-- Fallback image -->
               <img 
-                src="https://res.cloudinary.com/dphbnwjtx/image/upload/w_500,h_350,c_fit,f_webp,q_auto:good/v1748002920/a-humorous-slightly-quirky-photograph-of_E3yQygvrSj2lK35PvdcPXA_jo8EU6MaTSePalCxA1yBzA_hnzcxp.webp" 
-                alt="Welcome to Switzerland - Swiss cow with welcome sign for expat relocation" 
-                class="w-full h-[200px] sm:h-[300px] lg:h-[400px] xl:h-[500px] object-cover rounded-2xl lg:rounded-3xl"
+                src="https://res.cloudinary.com/dphbnwjtx/image/upload/w_700,h_500,c_fit,f_webp,q_auto:good/v1748002920/a-humorous-slightly-quirky-photograph-of_E3yQygvrSj2lK35PvdcPXA_jo8EU6MaTSePalCxA1yBzA_hnzcxp.webp"
+                alt="Welcome to Switzerland - Swiss cow with welcome sign for expat relocation"
+                class="w-full h-[360px] sm:h-[400px] lg:h-[500px] xl:h-[700px] object-cover rounded-2xl lg:rounded-3xl"
                 loading="eager"
                 fetchpriority="high"
                 decoding="async"
-                width="500"
-                height="350"
-                style="aspect-ratio: 500/350"
+                width="700"
+                height="500"
+                data-astro-cid-ewxirvlt=""
               />
             </picture>
             <!-- Overlay Content -->
@@ -180,4 +175,7 @@ import { Image } from 'astro:assets';
   .animate-pulse-slow {
     animation: pulse-slow 4s ease-in-out infinite;
   }
+
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 </style>

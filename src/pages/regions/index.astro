@@ -236,7 +236,7 @@ const keywords = 'Swiss regions, Switzerland cities, expat destinations, Swiss r
                     <>
                       <img 
                         src={heroImage} 
-                        alt={`${region.data.name} Switzerland relocation guide`}
+                        alt={region.data.name + " Switzerland relocation guide"}
                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       />
                       <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
@@ -282,7 +282,7 @@ const keywords = 'Swiss regions, Switzerland cities, expat destinations, Swiss r
                     </div>
                   </div>
 
-                  <a href={`/regions/${region.data.id || region.slug}`} class="inline-flex items-center justify-center w-full py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl hover:bg-white/20 transition-all duration-300 group-hover:scale-105">
+                  <a href={"/regions/" + (region.data.id || region.slug)} class="inline-flex items-center justify-center w-full py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl hover:bg-white/20 transition-all duration-300 group-hover:scale-105">
                     Explore {region.data.name}
                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -325,7 +325,7 @@ const keywords = 'Swiss regions, Switzerland cities, expat destinations, Swiss r
                 {regionImage ? (
                   <img 
                     src={regionImage} 
-                    alt={`${region.data.name} Switzerland relocation`}
+                    alt={region.data.name + " Switzerland relocation"}
                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                 ) : (
@@ -368,7 +368,7 @@ const keywords = 'Swiss regions, Switzerland cities, expat destinations, Swiss r
                 <div class="grid grid-cols-3 gap-3 mb-4 py-3 px-4 bg-gray-50 rounded-xl">
                   <div class="text-center">
                     <div class="text-sm font-bold text-primary-600">
-                      {population > 1000 ? `${(population / 1000).toFixed(0)}k` : population || 'N/A'}
+                      {population > 1000 ? ((population / 1000).toFixed(0) + "k") : population || 'N/A'}
                     </div>
                     <div class="text-xs text-gray-500">Population</div>
                   </div>
@@ -404,7 +404,7 @@ const keywords = 'Swiss regions, Switzerland cities, expat destinations, Swiss r
 
                 <!-- CTA -->
                 <div class="flex space-x-2">
-                  <a href={`/regions/${region.data.id || region.slug}`} class="flex-1 text-center py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-medium rounded-xl hover:shadow-lg transition-all duration-300 group-hover:scale-105">
+                  <a href={"/regions/" + (region.data.id || region.slug)} class="flex-1 text-center py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-medium rounded-xl hover:shadow-lg transition-all duration-300 group-hover:scale-105">
                     Explore
                   </a>
                   <button onclick="openModal('individual-lead-modal')" class="px-4 py-3 border-2 border-primary-200 text-primary-600 rounded-xl hover:bg-primary-50 transition-all duration-300">
