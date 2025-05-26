@@ -126,28 +126,28 @@ function formatDate(dateString: string) {
 }
 
 // Page metadata
-const title = 'Expat Relocation Blog | ReloFinder.ch';
-const description = 'Practical guides, news, and advice for expats relocating to Switzerland, covering visas, housing, finance, healthcare, and more.';
+const title = 'Swiss Relocation Guides | ReloFinder.ch';
+const description = 'Expert guides, news, and advice for expats relocating to Switzerland. Visas, housing, finance, healthcare, and more—explained.';
 ---
 
 <Layout title={title} description={description}>
   <!-- Hero Section -->
-  <section class="py-16 md:py-24 bg-gradient-to-br from-accent-800 to-accent-900 text-white">
-    <div class="container">
+  <section class="py-16 md:py-24 bg-gradient-to-br from-primary-600 via-primary-400 to-secondary-600 text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23e11d48\' fill-opacity=\'0.05\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'4\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    <div class="container relative z-10">
       <div class="max-w-3xl mx-auto text-center">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-          Swiss Relocation Blog for Expats
+        <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+          Swiss Relocation <span class="bg-gradient-to-r from-white/90 via-white/60 to-white/10 bg-clip-text text-transparent">Guides</span>
         </h1>
         <p class="text-lg md:text-xl text-white/90 mb-8">
-          Stay informed with practical guides, news, and advice to make your Swiss relocation journey smooth and successful.
+          Expert guides, news, and advice to make your Swiss relocation journey smooth and successful.
         </p>
-        
-        <!-- Search Blog -->
-        <div class="bg-white p-2 rounded-lg shadow-lg flex items-center max-w-xl mx-auto">
+        <!-- Search Guides -->
+        <div class="bg-white/90 p-2 rounded-lg shadow-lg flex items-center max-w-xl mx-auto">
           <input 
             type="text" 
-            placeholder="Search articles..." 
-            class="px-4 py-2 w-full text-accent-800 focus:outline-none"
+            placeholder="Search guides..." 
+            class="px-4 py-2 w-full text-primary-800 focus:outline-none bg-transparent"
           />
           <button class="btn-primary py-2 whitespace-nowrap">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
@@ -155,6 +155,19 @@ const description = 'Practical guides, news, and advice for expats relocating to
             </svg>
             Search
           </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Featured Guides Slider Placeholder -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="mb-16">
+        <h2 class="text-3xl font-bold mb-8">Featured <span class="text-primary-600">Guides</span></h2>
+        <!-- TODO: Replace with Swiper.js or custom slider -->
+        <div class="w-full h-64 flex items-center justify-center bg-gray-100 rounded-2xl text-gray-400 text-xl font-semibold">
+          [Slider with featured guides coming soon]
         </div>
       </div>
     </div>
