@@ -289,20 +289,22 @@ const description = 'Expert guides, news, and advice for expats relocating to Sw
         </p>
         
         <div class="bg-white p-8 rounded-lg shadow-md">
-          <div class="flex flex-col md:flex-row gap-4">
+          <form action="https://formspree.io/f/mwplkpey" method="POST" class="flex flex-col md:flex-row gap-4">
             <input 
               type="email" 
+              name="email"
               placeholder="Your email address" 
               class="px-4 py-3 w-full border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-accent-500"
+              required
             />
-            <button class="btn-primary whitespace-nowrap">
+            <button class="btn-primary whitespace-nowrap" type="submit">
               Subscribe
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
               </svg>
             </button>
-          </div>
+          </form>
           <p class="text-xs text-accent-500 mt-3">
             By subscribing, you agree to our Privacy Policy. You can unsubscribe at any time.
           </p>
