@@ -53,7 +53,7 @@ address:
   canton: ZH
   office: Zurich/Zug/Basel
 consultants: [] # TODO: Add named consultants if available
-google_my_business: https://www.google.com/maps/place/Swiss+Expat+Realtor+%7C+Relocation+Agency+%7C+Zurich+%7C+Zug+%7C+Basel/@47.2341711,8.6483367,17z/data=!4m17!1m9!3m8!1s0x6a86b31ff9121b59:0xddeba5f709bcf00c!2sSwiss+Expat+Realtor+%7C+Relocation+Agency+%7C+Zurich+%7C+Zug+%7C+Basel!8m2!3d47.237158!4d8.661423!9m1!1b1!16s%2Fg%2F11v6flrfjj!3m6!1s0x6a86b31ff9121b59:0xddeba5f709bcf00c!8m2!3d47.237158!4d8.661423!10e1!16s%2Fg%2F11v6flrfjj?entry=ttu
+googleMyBusinessUrl: "https://www.google.com/maps/place/Swiss+Expat+Realtor/@47.237158,8.661423,17z/data=!4m6!3m5!1s0x6a86b31ff9121b59:0xddeba5f709bcf00c!8m2!3d47.237158!4d8.661423!16s%2Fg%2F11v6flrfjj"
 external_links:
   - type: linkedin
     url: https://www.linkedin.com/company/swiss-expat-realtor/
@@ -158,4 +158,7 @@ Yes, they have a strong 4.9/5 rating based on 36 Google Reviews, indicating high
 They offer services in English, German, French, Spanish, Italian, and Portuguese.
 
 ## Does Swiss Expat Realtor help with buying property?
-Yes, in addition to rental searches, they offer services for buying and selling properties in Switzerland. 
+Yes, in addition to rental searches, they offer services for buying and selling properties in Switzerland.
+
+# Google My Business URL
+Swiss Expat Realtor Zurich Switzerland 

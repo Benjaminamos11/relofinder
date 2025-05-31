@@ -67,7 +67,8 @@ specializations:
   - departure-services
 pricing:
   model: "Contact for quote"
-  notes: "Pricing varies based on services required"
+  notes: "Pricing varies based on services required and client needs"
+googleMyBusinessUrl: "Leman Relocation Geneva Switzerland"
 backlink_status: false
 ---
 

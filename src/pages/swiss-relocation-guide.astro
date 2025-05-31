@@ -1,0 +1,463 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SEOHead from '../components/common/SEOHead.astro';
+import SchemaMarkup from '../components/common/SchemaMarkup.astro';
+
+const title = 'Complete Swiss Relocation Guide 2024 | Moving to Switzerland';
+const description = 'The ultimate guide to relocating to Switzerland. Comprehensive coverage of visa requirements, cost of living, housing, healthcare, taxes, and cultural integration for expats.';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": "ReloFinder"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ReloFinder",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://relofinder.ch/logo.png"
+    }
+  },
+  "datePublished": "2024-01-01",
+  "dateModified": new Date().toISOString(),
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://relofinder.ch/swiss-relocation-guide"
+  }
+};
+---
+
+<SEOHead 
+  title={title}
+  description={description}
+  keywords={[
+    'moving to switzerland', 
+    'swiss relocation guide', 
+    'relocating to switzerland', 
+    'switzerland expat guide',
+    'swiss visa requirements',
+    'cost of living switzerland',
+    'swiss healthcare system',
+    'switzerland housing guide'
+  ]}
+  schema={schema}
+/>
+
+<Layout title={title} description={description}>
+  <main class="pt-20">
+    <!-- Hero Section -->
+    <section class="py-20 bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+      <div class="container">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-4xl md:text-6xl font-bold mb-6">
+            The Complete Guide to 
+            <span class="text-yellow-300">Moving to Switzerland</span>
+          </h1>
+          <p class="text-xl md:text-2xl text-white/90 mb-8">
+            Everything you need to know for a successful relocation to Switzerland in 2024
+          </p>
+          <div class="flex flex-wrap gap-4 justify-center">
+            <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+              <span class="font-semibold">📋 Complete Checklist</span>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+              <span class="font-semibold">💰 Cost Calculator</span>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+              <span class="font-semibold">🏠 Housing Guide</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Table of Contents -->
+    <section class="py-12 bg-gray-50">
+      <div class="container">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold mb-8 text-center">Complete Guide Contents</h2>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a href="#visa-requirements" class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+              <h3 class="font-bold text-lg mb-2">🛂 Visa & Legal Requirements</h3>
+              <p class="text-gray-600">Work permits, residence permits, and legal documentation</p>
+            </a>
+            <a href="#cost-of-living" class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+              <h3 class="font-bold text-lg mb-2">💰 Cost of Living</h3>
+              <p class="text-gray-600">Detailed breakdown by city and lifestyle</p>
+            </a>
+            <a href="#housing" class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+              <h3 class="font-bold text-lg mb-2">🏠 Housing & Accommodation</h3>
+              <p class="text-gray-600">Finding apartments, rental market insights</p>
+            </a>
+            <a href="#healthcare" class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+              <h3 class="font-bold text-lg mb-2">🏥 Healthcare System</h3>
+              <p class="text-gray-600">Insurance requirements and medical care</p>
+            </a>
+            <a href="#taxes" class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+              <h3 class="font-bold text-lg mb-2">📊 Tax System</h3>
+              <p class="text-gray-600">Federal, cantonal, and municipal taxes</p>
+            </a>
+            <a href="#culture" class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+              <h3 class="font-bold text-lg mb-2">🤝 Cultural Integration</h3>
+              <p class="text-gray-600">Language, customs, and social integration</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-16">
+      <div class="container">
+        <div class="max-w-4xl mx-auto prose prose-lg">
+          
+          <!-- Introduction -->
+          <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">Why Switzerland is the Perfect Relocation Destination</h2>
+            <p class="text-xl text-gray-700 mb-6">
+              Switzerland consistently ranks among the world's best countries for quality of life, economic opportunities, and natural beauty. With four official languages, stunning Alpine landscapes, and a robust economy, Switzerland offers unparalleled opportunities for international professionals and families.
+            </p>
+            <div class="bg-blue-50 p-6 rounded-xl mb-8">
+              <h3 class="font-bold text-lg mb-4">📈 Key Swiss Advantages</h3>
+              <ul class="space-y-2">
+                <li>✅ Highest average salaries in Europe</li>
+                <li>✅ World-class healthcare and education systems</li>
+                <li>✅ Political stability and low crime rates</li>
+                <li>✅ Strategic location in the heart of Europe</li>
+                <li>✅ Exceptional work-life balance culture</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Visa Requirements Section -->
+          <div id="visa-requirements" class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">🛂 Visa & Legal Requirements</h2>
+            
+            <h3 class="text-2xl font-semibold mb-4">EU/EFTA Citizens</h3>
+            <p class="mb-4">
+              Citizens of EU/EFTA countries benefit from freedom of movement agreements. You can enter Switzerland for up to 90 days to search for employment, and once you have a job offer, you can apply for a residence permit.
+            </p>
+            
+            <div class="bg-green-50 p-6 rounded-xl mb-6">
+              <h4 class="font-bold mb-3">Required Documents for EU/EFTA Citizens:</h4>
+              <ul class="space-y-1">
+                <li>• Valid passport or national ID</li>
+                <li>• Employment contract or job offer</li>
+                <li>• Proof of accommodation</li>
+                <li>• Health insurance coverage</li>
+                <li>• Criminal record extract (if requested)</li>
+              </ul>
+            </div>
+
+            <h3 class="text-2xl font-semibold mb-4">Non-EU/EFTA Citizens</h3>
+            <p class="mb-4">
+              Third-country nationals face more stringent requirements. Swiss employers must demonstrate that no suitable EU/EFTA candidate is available for the position.
+            </p>
+            
+            <div class="bg-yellow-50 p-6 rounded-xl mb-6">
+              <h4 class="font-bold mb-3">Types of Work Permits:</h4>
+              <ul class="space-y-2">
+                <li><strong>L Permit (Short-term):</strong> Up to 12 months, for specific projects</li>
+                <li><strong>B Permit (Temporary):</strong> 1-5 years, renewable</li>
+                <li><strong>C Permit (Permanent):</strong> After 5-10 years of continuous residence</li>
+                <li><strong>G Permit (Cross-border):</strong> For daily commuters from neighboring countries</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Cost of Living Section -->
+          <div id="cost-of-living" class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">💰 Cost of Living in Switzerland</h2>
+            
+            <p class="text-xl mb-6">
+              Switzerland is known for high living costs, but salaries typically compensate for this. Here's a comprehensive breakdown by major cities:
+            </p>
+
+            <div class="overflow-x-auto mb-8">
+              <table class="w-full border-collapse bg-white rounded-lg shadow-md">
+                <thead>
+                  <tr class="bg-gray-100">
+                    <th class="border p-3 text-left">Expense Category</th>
+                    <th class="border p-3 text-right">Zurich</th>
+                    <th class="border p-3 text-right">Geneva</th>
+                    <th class="border p-3 text-right">Basel</th>
+                    <th class="border p-3 text-right">Bern</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="border p-3 font-semibold">Rent (1-bed apartment)</td>
+                    <td class="border p-3 text-right">CHF 1,200-2,000</td>
+                    <td class="border p-3 text-right">CHF 1,100-1,800</td>
+                    <td class="border p-3 text-right">CHF 900-1,500</td>
+                    <td class="border p-3 text-right">CHF 800-1,300</td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="border p-3 font-semibold">Groceries (monthly)</td>
+                    <td class="border p-3 text-right">CHF 400-600</td>
+                    <td class="border p-3 text-right">CHF 380-580</td>
+                    <td class="border p-3 text-right">CHF 350-550</td>
+                    <td class="border p-3 text-right">CHF 320-520</td>
+                  </tr>
+                  <tr>
+                    <td class="border p-3 font-semibold">Public Transport</td>
+                    <td class="border p-3 text-right">CHF 85</td>
+                    <td class="border p-3 text-right">CHF 70</td>
+                    <td class="border p-3 text-right">CHF 65</td>
+                    <td class="border p-3 text-right">CHF 60</td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="border p-3 font-semibold">Health Insurance</td>
+                    <td class="border p-3 text-right">CHF 300-450</td>
+                    <td class="border p-3 text-right">CHF 300-450</td>
+                    <td class="border p-3 text-right">CHF 280-420</td>
+                    <td class="border p-3 text-right">CHF 260-400</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="bg-blue-50 p-6 rounded-xl">
+              <h4 class="font-bold mb-3">💡 Money-Saving Tips:</h4>
+              <ul class="space-y-1">
+                <li>• Shop at discount supermarkets (Aldi, Lidl)</li>
+                <li>• Use public transport instead of owning a car</li>
+                <li>• Take advantage of free outdoor activities</li>
+                <li>• Cook at home instead of dining out frequently</li>
+                <li>• Look for shared housing options</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Housing Section -->
+          <div id="housing" class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">🏠 Housing & Accommodation Guide</h2>
+            
+            <p class="text-xl mb-6">
+              Finding housing in Switzerland can be challenging due to high demand and strict landlord requirements. Here's your complete guide to securing accommodation.
+            </p>
+
+            <h3 class="text-2xl font-semibold mb-4">Rental Market Overview</h3>
+            <p class="mb-6">
+              The Swiss rental market is highly regulated and tenant-friendly once you secure a lease. However, competition is fierce, especially in major cities.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+              <div class="bg-green-50 p-6 rounded-xl">
+                <h4 class="font-bold mb-3">✅ Tenant Rights & Protections</h4>
+                <ul class="space-y-1">
+                  <li>• Strong protection against unfair rent increases</li>
+                  <li>• Standardized rental agreements</li>
+                  <li>• Deposit limited to 3 months' rent</li>
+                  <li>• Notice periods clearly defined by law</li>
+                </ul>
+              </div>
+              <div class="bg-yellow-50 p-6 rounded-xl">
+                <h4 class="font-bold mb-3">⚠️ Common Challenges</h4>
+                <ul class="space-y-1">
+                  <li>• High competition for good properties</li>
+                  <li>• Extensive documentation requirements</li>
+                  <li>• Language barriers in rental applications</li>
+                  <li>• Limited availability in city centers</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mb-4">Required Documentation</h3>
+            <div class="bg-gray-50 p-6 rounded-xl mb-6">
+              <h4 class="font-bold mb-3">📋 Complete Application Package:</h4>
+              <ul class="space-y-1">
+                <li>• Completed application form (often in German/French)</li>
+                <li>• Copy of passport and residence permit</li>
+                <li>• Employment contract and salary certificates</li>
+                <li>• Bank statements (last 3 months)</li>
+                <li>• Extract from debt enforcement register</li>
+                <li>• Previous landlord references</li>
+                <li>• Personal recommendation letters</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Healthcare Section -->
+          <div id="healthcare" class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">🏥 Swiss Healthcare System</h2>
+            
+            <p class="text-xl mb-6">
+              Switzerland has one of the world's best healthcare systems, combining universal coverage with private insurance models. Health insurance is mandatory for all residents.
+            </p>
+
+            <h3 class="text-2xl font-semibold mb-4">Mandatory Health Insurance</h3>
+            <p class="mb-4">
+              Every person residing in Switzerland must have basic health insurance within 3 months of arrival. The system is based on regulated private insurance companies offering standardized basic coverage.
+            </p>
+
+            <div class="bg-red-50 p-6 rounded-xl mb-6">
+              <h4 class="font-bold mb-3">⚠️ Important Deadlines:</h4>
+              <ul class="space-y-1">
+                <li>• Register with an insurer within 3 months of arrival</li>
+                <li>• Retroactive coverage applies from arrival date</li>
+                <li>• Late registration may result in penalties</li>
+                <li>• Annual premium changes take effect January 1st</li>
+              </ul>
+            </div>
+
+            <h3 class="text-2xl font-semibold mb-4">Choosing Insurance</h3>
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+              <div class="bg-blue-50 p-6 rounded-xl">
+                <h4 class="font-bold mb-3">🔵 Basic Insurance Features</h4>
+                <ul class="space-y-1">
+                  <li>• Standardized coverage nationwide</li>
+                  <li>• Free choice of insurer</li>
+                  <li>• Annual deductible options</li>
+                  <li>• Same benefits regardless of insurer</li>
+                </ul>
+              </div>
+              <div class="bg-purple-50 p-6 rounded-xl">
+                <h4 class="font-bold mb-3">🟣 Premium Reduction Options</h4>
+                <ul class="space-y-1">
+                  <li>• Higher deductibles (CHF 500-2,500)</li>
+                  <li>• Restricted provider networks</li>
+                  <li>• Telemedicine first models</li>
+                  <li>• HMO (Health Maintenance Organization)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tax System Section -->
+          <div id="taxes" class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">📊 Swiss Tax System</h2>
+            
+            <p class="text-xl mb-6">
+              Switzerland has a complex but generally favorable tax system with three levels: federal, cantonal, and municipal taxes. Tax rates vary significantly between cantons.
+            </p>
+
+            <h3 class="text-2xl font-semibold mb-4">Tax Levels Explained</h3>
+            <div class="space-y-4 mb-8">
+              <div class="bg-blue-50 p-4 rounded-lg">
+                <h4 class="font-bold">🇨🇭 Federal Taxes</h4>
+                <p>Uniform across Switzerland, progressive rates from 0% to 11.5%</p>
+              </div>
+              <div class="bg-green-50 p-4 rounded-lg">
+                <h4 class="font-bold">🏛️ Cantonal Taxes</h4>
+                <p>Vary by canton, typically 2-15% of federal tax amount</p>
+              </div>
+              <div class="bg-yellow-50 p-4 rounded-lg">
+                <h4 class="font-bold">🏘️ Municipal Taxes</h4>
+                <p>Local taxes set by municipalities, usually 40-120% of cantonal tax</p>
+              </div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mb-4">Tax-Friendly Cantons</h3>
+            <div class="overflow-x-auto mb-8">
+              <table class="w-full border-collapse bg-white rounded-lg shadow-md">
+                <thead>
+                  <tr class="bg-gray-100">
+                    <th class="border p-3 text-left">Canton</th>
+                    <th class="border p-3 text-right">Total Tax Rate*</th>
+                    <th class="border p-3 text-left">Key Benefits</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="border p-3 font-semibold">Zug</td>
+                    <td class="border p-3 text-right">22.4%</td>
+                    <td class="border p-3">Lowest overall tax burden</td>
+                  </tr>
+                  <tr class="bg-gray-50">
+                    <td class="border p-3 font-semibold">Schwyz</td>
+                    <td class="border p-3 text-right">23.1%</td>
+                    <td class="border p-3">No wealth tax in some municipalities</td>
+                  </tr>
+                  <tr>
+                    <td class="border p-3 font-semibold">Nidwalden</td>
+                    <td class="border p-3 text-right">23.9%</td>
+                    <td class="border p-3">Attractive for high earners</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="text-sm text-gray-600 mt-2">*Approximate total rate for CHF 100,000 annual income</p>
+            </div>
+          </div>
+
+          <!-- Cultural Integration -->
+          <div id="culture" class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">🤝 Cultural Integration Guide</h2>
+            
+            <p class="text-xl mb-6">
+              Successfully integrating into Swiss society requires understanding local customs, learning the language, and respecting the country's values of punctuality, privacy, and environmental consciousness.
+            </p>
+
+            <h3 class="text-2xl font-semibold mb-4">Language Landscape</h3>
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+              <div class="bg-blue-50 p-6 rounded-xl">
+                <h4 class="font-bold mb-3">🗣️ Official Languages</h4>
+                <ul class="space-y-2">
+                  <li><strong>German (63.5%):</strong> Zurich, Basel, Bern regions</li>
+                  <li><strong>French (22.5%):</strong> Geneva, Lausanne, western regions</li>
+                  <li><strong>Italian (8.1%):</strong> Ticino canton</li>
+                  <li><strong>Romansh (0.5%):</strong> Graubünden canton</li>
+                </ul>
+              </div>
+              <div class="bg-green-50 p-6 rounded-xl">
+                <h4 class="font-bold mb-3">📚 Language Learning Tips</h4>
+                <ul class="space-y-1">
+                  <li>• Start with local dialect basics</li>
+                  <li>• Join community language classes</li>
+                  <li>• Practice with native speakers</li>
+                  <li>• Use language exchange apps</li>
+                  <li>• Watch local TV and news</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mb-4">Swiss Social Etiquette</h3>
+            <div class="bg-gray-50 p-6 rounded-xl mb-6">
+              <h4 class="font-bold mb-3">🕐 Key Cultural Values:</h4>
+              <div class="grid md:grid-cols-2 gap-4">
+                <ul class="space-y-1">
+                  <li>• <strong>Punctuality:</strong> Always arrive on time</li>
+                  <li>• <strong>Privacy:</strong> Respect personal space</li>
+                  <li>• <strong>Quiet hours:</strong> 10 PM - 6 AM weekdays</li>
+                  <li>• <strong>Environmental care:</strong> Strict recycling rules</li>
+                </ul>
+                <ul class="space-y-1">
+                  <li>• <strong>Quality over quantity:</strong> Prefer excellent work</li>
+                  <li>• <strong>Direct communication:</strong> Honest and straightforward</li>
+                  <li>• <strong>Planning:</strong> Book appointments in advance</li>
+                  <li>• <strong>Consensus:</strong> Group decision-making</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Call to Action -->
+          <div class="bg-gradient-to-br from-primary-600 to-secondary-600 text-white p-8 rounded-xl text-center">
+            <h2 class="text-3xl font-bold mb-4">Ready to Start Your Swiss Journey?</h2>
+            <p class="text-xl mb-6">
+              Connect with trusted relocation experts who can guide you through every step of your move to Switzerland.
+            </p>
+            <a href="/companies" class="bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors inline-flex items-center">
+              Find Relocation Services
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SchemaMarkup type="service" data={{
+    name: "Swiss Relocation Guide",
+    description: "Comprehensive guide to relocating to Switzerland",
+    category: "Relocation Services"
+  }} />
+</Layout> 

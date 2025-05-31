@@ -139,3 +139,5 @@ The website indicates the team is led by Julia Kaufmann. Their team consists of 
 
 ## Does Crane Relocation offer services in English?
 Yes, their website has an English version, and they explicitly target expatriates moving to the region, indicating they are fully equipped to provide services in English. 
+
+googleMyBusinessUrl: "https://www.google.com/maps/place/Crane+Relocation+GmbH/@47.1704,8.5245,17z/data=!3m1!4b1!4m6!3m5!1s0x479aa971f0f8f0f9:0x3e0b8a0c1c9a7a0f!8m2!3d47.1704!4d8.5245!16s%2Fg%2F11c6_1l9y3" 

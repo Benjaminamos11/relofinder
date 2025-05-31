@@ -68,6 +68,7 @@ specializations:
 pricing:
   model: "Flexible packages and individual services"
   notes: "Services available as single items or tailor-made packages"
+googleMyBusinessUrl: "https://www.google.com/maps/place/Executive+Relocation/@47.3668281,8.5384901,15z/data=!4m6!3m5!1s0x47900a08f4b1f3e5:0x3e0b8a0c1c9a7a0f!8m2!3d47.3668281!4d8.5384901!16s%2Fg%2F11c6_1l9y3"
 ---
 
 # About

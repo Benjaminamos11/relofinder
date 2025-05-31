@@ -1,0 +1,169 @@
+---
+export interface Props {
+  name: string;
+  faqs?: Array<{
+    question: string;
+    answer: string;
+  }>;
+}
+
+const { name, faqs = [] } = Astro.props;
+
+// Default FAQs if none provided
+const defaultFAQs = [
+  {
+    question: "How long does the relocation process typically take?",
+    answer: "The timeline varies depending on your specific needs, but most relocations take 2-6 months from initial consultation to settlement. We work with you to create a realistic timeline based on visa requirements, housing availability, and your personal schedule."
+  },
+  {
+    question: "What documents do I need for moving to Switzerland?",
+    answer: "Required documents typically include a valid passport, work permit or visa, proof of employment, housing contract, health insurance, and various certificates (birth, marriage, education). We provide a comprehensive checklist tailored to your situation."
+  },
+  {
+    question: "Do you help with finding housing in Switzerland?",
+    answer: "Yes, we provide comprehensive housing search services. We help you understand the Swiss rental market, identify suitable properties, arrange viewings, and assist with lease negotiations and documentation."
+  },
+  {
+    question: "How much does your relocation service cost?",
+    answer: "Our fees vary based on the scope of services required. We offer both comprehensive packages and individual services. Contact us for a personalized quote based on your specific relocation needs."
+  },
+  {
+    question: "Can you help with school enrollment for my children?",
+    answer: "Absolutely! We assist with researching schools, understanding the Swiss education system, preparing applications, and coordinating enrollment. We work with both public and international schools throughout Switzerland."
+  },
+  {
+    question: "What support do you provide after I arrive in Switzerland?",
+    answer: "Our support continues after your arrival with settlement services including local orientation, assistance with administrative tasks, cultural integration support, and ongoing consultation as you adjust to life in Switzerland."
+  },
+  {
+    question: "Do you assist with tax and financial planning?",
+    answer: "Yes, we provide guidance on Swiss tax obligations, help you understand the tax system, and can connect you with qualified tax advisors and financial planners who specialize in expat situations."
+  },
+  {
+    question: "What if I need to relocate within Switzerland later?",
+    answer: "We provide ongoing support for clients who need to relocate within Switzerland. Whether it's a job change or personal preference, we can assist with internal moves and all associated administrative requirements."
+  }
+];
+
+const displayFAQs = faqs.length > 0 ? faqs : defaultFAQs;
+---
+
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <!-- Section Header -->
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Frequently Asked Questions
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Get answers to common questions about relocating to Switzerland
+        </p>
+      </div>
+
+      <!-- FAQ Accordion -->
+      <div class="space-y-4">
+        {displayFAQs.map((faq, index) => (
+          <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+            <button 
+              class="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
+              onclick={`toggleFAQ(${index})`}
+              aria-expanded="false"
+              aria-controls={`faq-answer-${index}`}
+            >
+              <h3 class="text-lg font-semibold text-gray-900 pr-8">
+                {faq.question}
+              </h3>
+              <div class="flex-shrink-0">
+                <svg 
+                  class="w-6 h-6 text-gray-400 transform transition-transform duration-200"
+                  id={`faq-icon-${index}`}
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+            </button>
+            
+            <div 
+              class="overflow-hidden transition-all duration-300 ease-in-out"
+              id={`faq-answer-${index}`}
+              style="max-height: 0;"
+            >
+              <div class="px-8 pb-6">
+                <p class="text-gray-600 leading-relaxed">
+                  {faq.answer}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Contact CTA -->
+      <div class="text-center mt-12">
+        <div class="bg-white rounded-2xl p-8 shadow-sm">
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">
+            Still Have Questions?
+          </h3>
+          <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+            Our relocation experts are here to help. Contact us for personalized answers to your specific situation.
+          </p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a 
+              href="#contact"
+              class="inline-flex items-center px-6 py-3 bg-blue-700 text-white font-semibold rounded-xl hover:bg-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              Contact Us
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </a>
+            <a 
+              href="/guides"
+              class="inline-flex items-center px-6 py-3 bg-white border-2 border-blue-700 text-blue-700 font-semibold rounded-xl hover:bg-blue-50 transition-all duration-300"
+            >
+              Browse Guides
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  function toggleFAQ(index) {
+    const answer = document.getElementById(`faq-answer-${index}`);
+    const icon = document.getElementById(`faq-icon-${index}`);
+    const button = answer.previousElementSibling;
+    
+    const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+    
+    if (isOpen) {
+      // Close
+      answer.style.maxHeight = '0px';
+      icon.style.transform = 'rotate(0deg)';
+      button.setAttribute('aria-expanded', 'false');
+    } else {
+      // Close all other FAQs first
+      document.querySelectorAll('[id^="faq-answer-"]').forEach((el, i) => {
+        if (i !== index) {
+          el.style.maxHeight = '0px';
+          document.getElementById(`faq-icon-${i}`).style.transform = 'rotate(0deg)';
+          el.previousElementSibling.setAttribute('aria-expanded', 'false');
+        }
+      });
+      
+      // Open this one
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+      icon.style.transform = 'rotate(180deg)';
+      button.setAttribute('aria-expanded', 'true');
+    }
+  }
+</script> 

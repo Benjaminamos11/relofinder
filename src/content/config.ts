@@ -13,6 +13,7 @@ const companies = defineCollection({
     website: z.string().url(),
     phone: z.string().optional(),
     email: z.string().email(),
+    googleMyBusinessUrl: z.string().optional(), // For SerpAPI Google Reviews integration - can be URL or search query
     address: z.object({
       street: z.string(),
       city: z.string(),
@@ -42,15 +43,7 @@ const companies = defineCollection({
       packagePricing: z.boolean().default(false),
       freeInitialConsult: z.boolean().default(true)
     }),
-    certifications: z.array(z.string()).optional(),
-    testimonials: z.array(z.object({
-      name: z.string(),
-      role: z.string(),
-      company: z.string().optional(),
-      rating: z.number(),
-      text: z.string(),
-      date: z.date()
-    })).optional()
+    certifications: z.array(z.string()).optional()
   })
 });
 

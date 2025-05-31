@@ -5,7 +5,18 @@ Allow: /
 # Sitemap location
 Sitemap: https://relofinder.ch/sitemap-index.xml
 
-# Disallow admin and private routes
+# Crawl delay for bots
+Crawl-delay: 1
+
+# Block access to admin areas and private files
 Disallow: /admin/
 Disallow: /private/
-Disallow: /api/ 
+Disallow: /.env
+Disallow: /node_modules/
+Disallow: /src/
+
+# Allow important SEO pages
+Allow: /companies/
+Allow: /services/
+Allow: /locations/
+Allow: /swiss-relocation-guide 

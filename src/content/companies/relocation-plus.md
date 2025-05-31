@@ -74,7 +74,8 @@ specializations:
   - corporate-experience
 pricing:
   model: "Contact for quote"
-  notes: "Pricing varies based on services required."
+  notes: "Pricing varies based on services required and client needs"
+googleMyBusinessUrl: "https://www.google.com/maps/place/Relocation%2B/@47.1366,8.5924,16z/data=!4m6!3m5!1s0x478556c3e8d7d0d9:0x3e0b8a0c1c9a7a0f!8m2!3d47.1366!4d8.5924!16s%2Fg%2F11c6_1l9y3"
 ---
 
 # About

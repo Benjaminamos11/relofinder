@@ -7,6 +7,7 @@ heroImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&
 website: "https://www.aurisrelocation.com"
 phone: "+41 44 808 60 00"
 email: "info@aurisrelocation.com"
+googleMyBusinessUrl: "https://www.google.com/maps/place/Auris+Relocation/@47.3668281,8.5384901,15z"
 address:
   street: "Sternenstrasse 12"
   city: "Zurich"
@@ -61,24 +62,6 @@ certifications:
   - "EuRA Global Quality Seal"
   - "ISO 27001"
   - "EcoVadis Silver Medal"
-testimonials:
-  - name: "Sarah Johnson"
-    role: "Finance Director"
-    company: "Global Tech Corp"
-    rating: 5
-    text: "Auris Relocation made our move to Zurich seamless and stress-free. Their immigration specialists navigated the complex permit process efficiently, and their home search team found us the perfect apartment in our preferred neighborhood. Highly recommended!"
-    date: 2024-01-10
-  - name: "Thomas Weber"
-    role: "Global Mobility Manager"
-    company: "Swiss Pharma Inc."
-    rating: 5
-    text: "As an HR manager responsible for multiple international transfers, I've found Auris Relocation to be an invaluable partner. Their comprehensive service offering, attention to detail, and proactive communication have consistently exceeded our expectations."
-    date: 2024-02-15
-  - name: "Maria Rodriguez"
-    role: "Spouse of relocated executive"
-    rating: 4
-    text: "The cross-cultural training provided by Auris was instrumental in helping our family adjust to life in Switzerland. Their ongoing support throughout our relocation journey made us feel welcome and confident in our new home."
-    date: 2024-03-05
 ---
 
 # Auris Relocation

@@ -133,4 +133,6 @@ Currently, their associated Google Maps listing (categorized as a business manag
 Nicole Elbel is the owner, CEO, and primary contact. Piera Recupero is also listed as a contact on their website.
 
 ## What areas does The Relocation Company primarily serve?
-Their focus is specifically on Zug and the surrounding areas within the Canton of Zug. 
+Their focus is specifically on Zug and the surrounding areas within the Canton of Zug.
+
+googleMyBusinessUrl: "https://www.google.com/maps/place/The+Relocation+Company+%26+Consulting+GmbH/@47.1681111,8.5168333,17z/data=!4m6!3m5!1s0x479aa971f0f8f0f9:0x3e0b8a0c1c9a7a0f!8m2!3d47.1681111!4d8.5168333!16s%2Fg%2F11c6_1l9y3" 

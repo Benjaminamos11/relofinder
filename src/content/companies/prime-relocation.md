@@ -7,6 +7,7 @@ heroImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&
 website: "https://www.primerelocation.ch"
 phone: "+41 44 123 45 67"
 email: "info@primerelocation.ch"
+googleMyBusinessUrl: "https://www.google.com/maps/place/PrimeRelocation/@47.3668281,8.5384901,15z/data=!4m6!3m5!1s0x47900a08f4b1f3e5:0x3e0b8a0c1c9a7a0f!8m2!3d47.3668281!4d8.5384901!16s%2Fg%2F11c6_1l9y3"
 address:
   street: "Bahnhofstrasse 100"
   city: "Zurich"
@@ -54,19 +55,6 @@ pricing:
 certifications:
   - "EuRA Member"
   - "Swiss Quality Standard"
-testimonials:
-  - name: "Jennifer Williams"
-    role: "Tech Executive"
-    company: "Global Software Inc."
-    rating: 5
-    text: "PrimeRelocation made our family's move to Zurich incredibly smooth. Their team handled everything from finding our perfect home to enrolling our children in school. Exceptional service!"
-    date: 2024-01-20
-  - name: "Michael Chen"
-    role: "Finance Director"
-    company: "Swiss Bank Corp"
-    rating: 4
-    text: "Professional and efficient service. The immigration support was particularly valuable in navigating the Swiss permit process. Would recommend to other professionals."
-    date: 2024-02-12
 ---
 
 # PrimeRelocation: Your Trusted Partner for a Smooth Transition

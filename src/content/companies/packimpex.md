@@ -70,7 +70,8 @@ specializations:
   - tech-driven-relocation
 pricing:
   model: "Contact for quote"
-  notes: "Pricing varies based on services required and client needs"
+  notes: "Pricing varies based on services required and move size"
+googleMyBusinessUrl: "Packimpex Zurich Switzerland"
 ---
 
 # About

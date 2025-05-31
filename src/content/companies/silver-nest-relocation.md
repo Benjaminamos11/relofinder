@@ -56,25 +56,6 @@ pricing:
 certifications:
   - "Family-Owned Business Excellence"
   - "Executive Relocation Specialist"
-testimonials:
-  - name: "Tanya"
-    role: "Relocated Family"
-    company: "International Move from Portugal"
-    rating: 5
-    text: "Right from the start, Caroline at Silver Nest was friendly, optimistic, and professional. What set Silver Nest apart from competitors was Caroline's willingness and determination to meet our criteria with confidence. She was quick to respond to our e-mails and answer any of our questions. A five star service that I would definitely recommend!"
-    date: 2024-01-15
-  - name: "Belgian Family"
-    role: "Family of 5"
-    company: "Corporate Relocation"
-    rating: 5
-    text: "Our family of four has been more than relieved and extremely pleased to have Caroline take over our move when relocating to Zurich. She proved to be an incredible worthwhile investment which really lowered our stress levels during the move. She handled the moving companies for us, gave us advice about which service provider to use and took care of importing our car. We highly recommend her to anyone moving to Zurich!"
-    date: 2024-02-10
-  - name: "UK Family"
-    role: "Family of 4"
-    company: "International Relocation"
-    rating: 5
-    text: "Excellent services, all questions answered very quickly and professionally. Silver Nest Relocation is willing to help even after the relocation if more issues arise. Overall, they make the process of moving easy and smooth!"
-    date: 2024-03-05
 ---
 
 # Silver Nest Relocation: Making Your Move to Switzerland Seamless

@@ -1,0 +1,200 @@
+---
+export interface Props {
+  name: string;
+  founded?: string;
+  employees?: string;
+  regions?: string[];
+  founder?: {
+    name: string;
+    title: string;
+    bio: string;
+    image?: string;
+  };
+  story?: string;
+  mission?: string;
+  values?: string[];
+}
+
+const { 
+  name, 
+  founded, 
+  employees, 
+  regions = [], 
+  founder, 
+  story, 
+  mission, 
+  values = [] 
+} = Astro.props;
+
+// Default values if not provided
+const defaultStory = `${name} is a trusted Swiss relocation partner dedicated to making your move to Switzerland seamless and stress-free. With deep local knowledge and extensive experience, we provide comprehensive support throughout your relocation journey.`;
+
+const defaultMission = `Our mission is to simplify the complex process of relocating to Switzerland by providing expert guidance, personalized service, and comprehensive support every step of the way.`;
+
+const defaultValues = [
+  'Expert Local Knowledge',
+  'Personalized Service',
+  'Transparent Communication',
+  'Swiss Quality Standards'
+];
+---
+
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="max-w-6xl mx-auto">
+      <!-- Section Header -->
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          About {name}
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Your trusted partner for Swiss relocation services
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Company Story -->
+        <div>
+          <div class="bg-white rounded-2xl p-8 shadow-sm">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Our Story</h3>
+            <p class="text-gray-600 leading-relaxed mb-6">
+              {story || defaultStory}
+            </p>
+            
+            <!-- Mission -->
+            <div class="border-l-4 border-blue-600 pl-6 mb-6">
+              <h4 class="font-semibold text-gray-900 mb-2">Our Mission</h4>
+              <p class="text-gray-600">
+                {mission || defaultMission}
+              </p>
+            </div>
+
+            <!-- Company Stats -->
+            <div class="grid grid-cols-2 gap-6">
+              {founded && (
+                <div>
+                  <div class="text-2xl font-bold text-blue-600">{founded}</div>
+                  <div class="text-sm text-gray-600">Founded</div>
+                </div>
+              )}
+              
+              {employees && (
+                <div>
+                  <div class="text-2xl font-bold text-blue-600">{employees}+</div>
+                  <div class="text-sm text-gray-600">Team Members</div>
+                </div>
+              )}
+              
+              {regions.length > 0 && (
+                <div class="col-span-2">
+                  <div class="text-2xl font-bold text-blue-600">{regions.length}</div>
+                  <div class="text-sm text-gray-600">Swiss Regions Covered</div>
+                  <div class="text-xs text-gray-500 mt-1">
+                    {regions.join(', ')}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <!-- Founder/Team Section -->
+        <div>
+          {founder ? (
+            <!-- Founder Profile -->
+            <div class="bg-white rounded-2xl p-8 shadow-sm">
+              <h3 class="text-2xl font-bold text-gray-900 mb-6">Meet Our Founder</h3>
+              
+              <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                <!-- Founder Image -->
+                <div class="flex-shrink-0">
+                  {founder.image ? (
+                    <img 
+                      src={founder.image} 
+                      alt={founder.name}
+                      class="w-24 h-24 rounded-full object-cover border-4 border-blue-100"
+                    />
+                  ) : (
+                    <div class="w-24 h-24 rounded-full bg-blue-100 flex items-center justify-center">
+                      <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                      </svg>
+                    </div>
+                  )}
+                </div>
+
+                <!-- Founder Info -->
+                <div class="text-center sm:text-left">
+                  <h4 class="text-xl font-bold text-gray-900">{founder.name}</h4>
+                  <p class="text-blue-600 font-medium mb-3">{founder.title}</p>
+                  <p class="text-gray-600 leading-relaxed">{founder.bio}</p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <!-- Values Section -->
+            <div class="bg-white rounded-2xl p-8 shadow-sm">
+              <h3 class="text-2xl font-bold text-gray-900 mb-6">Our Values</h3>
+              
+              <div class="space-y-4">
+                {(values.length > 0 ? values : defaultValues).map((value) => (
+                  <div class="flex items-center">
+                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                      <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                      </svg>
+                    </div>
+                    <span class="text-gray-700 font-medium">{value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Why Choose Us -->
+          <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-8 text-white mt-6">
+            <h3 class="text-2xl font-bold mb-6">Why Choose {name}?</h3>
+            
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                  <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-semibold mb-1">Local Expertise</h4>
+                  <p class="text-white/90 text-sm">Deep understanding of Swiss regulations, culture, and local markets</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                  <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-semibold mb-1">Personalized Service</h4>
+                  <p class="text-white/90 text-sm">Tailored solutions that match your unique relocation needs and timeline</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                  <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-semibold mb-1">End-to-End Support</h4>
+                  <p class="text-white/90 text-sm">Comprehensive assistance from initial planning to successful settlement</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 

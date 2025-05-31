@@ -1,7 +1,7 @@
 ---
 id: crown-relocations
 name: Crown Relocations
-logo: https://placehold.co/200x80/png?text=Crown+Logo
+logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748055897/logoprimesmal_rb4hxo.webp
 featured: false
 description: Crown Relocations offers international moving, packing, storage, pet relocation, and destination services in Zurich, Lausanne, and globally. Nearly 60 years of experience.
 founded: 1965
@@ -64,6 +64,7 @@ specializations:
 pricing:
   model: "Contact for quote"
   notes: "Pricing varies based on services required and move size"
+googleMyBusinessUrl: "Crown Relocations Zurich Switzerland"
 ---
 
 # About

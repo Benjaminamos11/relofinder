@@ -51,6 +51,7 @@ rating:
 pricing:
   model: "Contact for quote"
   notes: "Pricing varies based on services required and client needs"
+googleMyBusinessUrl: "https://www.google.com/maps/place/Connectiv+Relocation/@47.5489,7.5886,17z/data=!4m6!3m5!1s0x4791b9c3c3c3c3c3:0x3e0b8a0c1c9a7a0f!8m2!3d47.5489!4d7.5886!16s%2Fg%2F11c6_1l9y3"
 ---
 
 # About

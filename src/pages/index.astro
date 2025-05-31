@@ -1,19 +1,67 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SEOHead from '../components/common/SEOHead.astro';
+import SchemaMarkup from '../components/common/SchemaMarkup.astro';
 import Hero from '../components/home/Hero.astro';
 import RegionsShowcase from '../components/home/RegionsShowcase.astro';
 import ServicesShowcase from '../components/home/ServicesShowcase.astro';
 import CompaniesShowcase from '../components/home/CompaniesShowcase.astro';
-import TestimonialsSection from '../components/home/TestimonialsSection.astro';
+import RecentReviewsSection from '../components/home/RecentReviewsSection.astro';
 import CTASection from '../components/home/CTASection.astro';
 import Footer from '../components/common/Footer.astro';
+import { getCollection } from 'astro:content';
 
-// Page metadata
-const title = 'ReloFinder.ch | Swiss Relocation Services for Expats';
-const description = 'Connect with trusted relocation services, companies, and discover ideal regions across Switzerland to make your expat journey smooth and successful.';
+// Fetch all companies for the homepage
+const companies = await getCollection('companies');
+const featuredCompanies = companies.slice(0, 6); // Show top 6 companies
+
+const title = "ReloFinder.ch | Find Best Swiss Relocation Services & Companies 2025";
+const description = "Connect with Switzerland's top-rated relocation companies. Compare services, read reviews, and find trusted experts for moving to Zurich, Geneva, Basel & more Swiss cities.";
+
+const keywords = [
+  'swiss relocation services',
+  'moving to switzerland',
+  'switzerland relocation companies',
+  'expat services switzerland',
+  'relocation zurich',
+  'relocation geneva',
+  'international move switzerland',
+  'swiss immigration services',
+  'expat relocation switzerland'
+];
+
+// Schema markup for homepage
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ReloFinder",
+  "url": "https://relofinder.ch",
+  "description": description,
+  "logo": "https://relofinder.ch/logo.png",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "CH"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/relofinder"
+  ]
+};
 ---
 
-<Layout title={title} description={description}>
+<Layout 
+  title={title} 
+  description={description} 
+  keywords={keywords}
+  schema={schema}
+>
+  <SEOHead 
+    title={title}
+    description={description}
+    keywords={keywords}
+    schema={schema}
+  />
+  <SchemaMarkup type="homepage" />
+
 	<!-- 1. Hero - Welcome & Value Proposition -->
 	<Hero />
 	
@@ -26,8 +74,8 @@ const description = 'Connect with trusted relocation services, companies, and di
 	<!-- 4. Companies - Who can help you? -->
 	<CompaniesShowcase />
 	
-	<!-- 5. Testimonials - Social Proof -->
-	<TestimonialsSection />
+	<!-- 5. Recent Reviews - Real client feedback -->
+	<RecentReviewsSection />
 	
 	<!-- 6. CTA - How to get started -->
 	<CTASection />
@@ -54,17 +102,23 @@ const description = 'Connect with trusted relocation services, companies, and di
   });
 
   // Modal functionality
-  function openModal(modalId) {
-    document.getElementById(modalId).classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
+  function openModal(modalId: string) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
   }
 
-  function closeModal(modalId) {
-    document.getElementById(modalId).classList.add('hidden');
-    document.body.style.overflow = 'auto';
+  function closeModal(modalId: string) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
   }
 
   // Global modal functions
-  window.openModal = openModal;
-  window.closeModal = closeModal;
+  (window as any).openModal = openModal;
+  (window as any).closeModal = closeModal;
 </script>

@@ -59,25 +59,6 @@ certifications:
   - "Swiss Business Registry"
   - "30+ Years Experience"
   - "Nationwide Coverage"
-testimonials:
-  - name: "Sarah Johnson"
-    role: "Corporate Manager"
-    company: "International Consulting Ltd."
-    rating: 5
-    text: "My consultant gave me sincerely an amazing support. Service was excellent, professional, proactive and kind. She closely followed my progress and gave also useful tips for my daily life in Switzerland. I really appreciated her help."
-    date: 2024-03-15
-  - name: "David Rodriguez"
-    role: "Software Engineer"
-    company: "Tech Innovations SA"
-    rating: 5
-    text: "My consultant was extremely helpful and professional. She went above and beyond to help me find an apartment in a very difficult market. I would highly recommend her and Lodge Relocation."
-    date: 2024-02-28
-  - name: "Maria Kowalski"
-    role: "Finance Director"
-    company: "European Bank"
-    rating: 4
-    text: "Lodge Relocation provided comprehensive support for our family's move from Poland to Switzerland. Their team handled everything from work permits to school enrollment. The nationwide coverage was particularly valuable for our complex relocation."
-    date: 2024-01-10
 ---
 
 # Thinking Global, Acting Local: Why Choose Lodge Relocation for Your Swiss Move?

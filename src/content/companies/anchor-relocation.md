@@ -49,25 +49,11 @@ pricing:
   consultationFee: 0
   packagePricing: true
   freeInitialConsult: true
+  model: "Contact for quote"
+  notes: "Pricing varies based on services required and client needs"
 certifications:
   - "EuRA Quality Seal"
-testimonials:
-  - name: "Rajesh K."
-    role: "Finance Executive"
-    company: "Singapore Tech Corp"
-    rating: 5
-    text: "We moved recently from Singapore to Zurich and I must say without Anja, it would have been impossible to settle in this new location. We were so lucky to have Anja support us through the process starting with registration, housing and all other aspects of the relocation."
-    date: 2024-01-15
-  - name: "Maria L."
-    role: "Relocated from Spain"
-    rating: 4
-    text: "Stephanie from Anchor has been really helpful, friendly and professional, and she made our relocation to Switzerland as smooth as possible. I am completely satisfied with the service provided."
-    date: 2024-02-20
-  - name: "Thomas B."
-    role: "Technology Professional"
-    rating: 4
-    text: "The team at Anchor Relocation understood our unique family setup on the first call, and I never had to explain anything further. They took care of everything exactly to match our requirements."
-    date: 2024-03-10
+googleMyBusinessUrl: "https://www.google.com/maps/place/Anchor+Relocation/@47.3668281,8.5384901,15z/data=!4m6!3m5!1s0x47900a08f4b1f3e5:0x3e0b8a0c1c9a7a0f!8m2!3d47.3668281!4d8.5384901!16s%2Fg%2F11c6_1l9y3"
 ---
 
 # Making Your Move to Switzerland Easy and Smooth

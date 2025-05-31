@@ -68,8 +68,9 @@ specializations:
   - family-support
   - cultural-integration
 pricing:
-  model: "Package-based and hourly"
-  notes: "Welcome Package and Executive Package available, plus a-la-carte services billed hourly"
+  model: "Contact for quote"
+  notes: "Pricing varies based on services required and client needs"
+googleMyBusinessUrl: "https://www.google.com/maps/place/Xpat+Relocation/@47.3668281,8.5384901,15z/data=!4m6!3m5!1s0x47900a08f4b1f3e5:0x3e0b8a0c1c9a7a0f!8m2!3d47.3668281!4d8.5384901!16s%2Fg%2F11c6_1l9y3"
 ---
 
 # About

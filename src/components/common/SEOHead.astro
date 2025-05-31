@@ -1,0 +1,130 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  openGraph?: {
+    title?: string;
+    description?: string;
+    image?: string;
+    type?: string;
+  };
+  twitter?: {
+    card?: string;
+    site?: string;
+    creator?: string;
+    title?: string;
+    description?: string;
+    image?: string;
+  };
+  keywords?: string[];
+  author?: string;
+  robots?: string;
+  schema?: any;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  openGraph = {},
+  twitter = {},
+  keywords = [],
+  author = "ReloFinder Team",
+  robots = "index, follow",
+  schema
+} = Astro.props;
+
+const baseUrl = 'https://relofinder.ch';
+const currentUrl = canonical || `${baseUrl}${Astro.url.pathname}`;
+
+// Default Open Graph values
+const og = {
+  title: openGraph.title || title,
+  description: openGraph.description || description,
+  image: openGraph.image || `${baseUrl}/og-image.jpg`,
+  type: openGraph.type || 'website'
+};
+
+// Default Twitter values
+const twitterCard = {
+  card: twitter.card || 'summary_large_image',
+  site: twitter.site || '@relofinder',
+  creator: twitter.creator || '@relofinder',
+  title: twitter.title || title,
+  description: twitter.description || description,
+  image: twitter.image || og.image
+};
+
+// Generate keywords string
+const keywordsString = keywords.length > 0 ? keywords.join(', ') : 
+  'relocation switzerland, swiss relocation services, moving to switzerland, expat services switzerland, relocation companies switzerland';
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywordsString} />
+<meta name="author" content={author} />
+<meta name="robots" content={robots} />
+<meta name="language" content="en" />
+<meta name="revisit-after" content="7 days" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={currentUrl} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={og.type} />
+<meta property="og:url" content={currentUrl} />
+<meta property="og:title" content={og.title} />
+<meta property="og:description" content={og.description} />
+<meta property="og:image" content={og.image} />
+<meta property="og:site_name" content="ReloFinder" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content={twitterCard.card} />
+<meta property="twitter:url" content={currentUrl} />
+<meta property="twitter:title" content={twitterCard.title} />
+<meta property="twitter:description" content={twitterCard.description} />
+<meta property="twitter:image" content={twitterCard.image} />
+<meta property="twitter:site" content={twitterCard.site} />
+<meta property="twitter:creator" content={twitterCard.creator} />
+
+<!-- Additional SEO Meta Tags -->
+<meta name="theme-color" content="#2563eb" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="ReloFinder" />
+
+<!-- Geo Meta Tags for Swiss Focus -->
+<meta name="geo.region" content="CH" />
+<meta name="geo.placename" content="Switzerland" />
+<meta name="ICBM" content="46.8182, 8.2275" />
+
+<!-- Hreflang for International SEO -->
+<link rel="alternate" hreflang="en" href={currentUrl} />
+<link rel="alternate" hreflang="de" href={baseUrl + '/de' + Astro.url.pathname} />
+<link rel="alternate" hreflang="fr" href={baseUrl + '/fr' + Astro.url.pathname} />
+<link rel="alternate" hreflang="it" href={baseUrl + '/it' + Astro.url.pathname} />
+<link rel="alternate" hreflang="x-default" href={currentUrl} />
+
+<!-- Favicons and Icons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<!-- Preconnect to External Domains -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+<link rel="dns-prefetch" href="https://serpapi.com" />
+
+<!-- Schema.org JSON-LD -->
+{schema && (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+)} 

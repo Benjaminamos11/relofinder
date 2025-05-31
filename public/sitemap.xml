@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://relofinder.ch/</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Main pages -->
+  <url>
+    <loc>https://relofinder.ch/companies</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://relofinder.ch/services</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://relofinder.ch/regions</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Ultimate relocation guide -->
+  <url>
+    <loc>https://relofinder.ch/swiss-relocation-guide</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Location landing pages - HIGH PRIORITY SEO PAGES -->
+  <url>
+    <loc>https://relofinder.ch/locations/zurich</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://relofinder.ch/locations/geneva</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://relofinder.ch/locations/basel</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Service pages -->
+  <url>
+    <loc>https://relofinder.ch/services/home-search</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://relofinder.ch/services/settling-in</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://relofinder.ch/services/immigration-services</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://relofinder.ch/services/education</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Regional pages -->
+  <url>
+    <loc>https://relofinder.ch/regions/zurich</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://relofinder.ch/regions/geneva</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://relofinder.ch/regions/basel</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://relofinder.ch/regions/zug</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://relofinder.ch/regions/lausanne</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://relofinder.ch/regions/bern</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Static pages -->
+  <url>
+    <loc>https://relofinder.ch/about</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://relofinder.ch/contact</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://relofinder.ch/corporate</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://relofinder.ch/partners</loc>
+    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+</urlset> 

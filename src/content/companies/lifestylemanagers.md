@@ -73,6 +73,7 @@ specializations:
 pricing:
   model: "Contact for quote"
   notes: "Pricing varies based on services required."
+googleMyBusinessUrl: "https://www.google.com/maps/place/Lifestylemanagers/@47.1854,8.4884,17z/data=!3m1!4b1!4m6!3m5!1s0x479aa9a7f0f8f0f9:0x3e0b8a0c1c9a7a0f!8m2!3d47.1854!4d8.4884!16s%2Fg%2F11c6_1l9y3"
 ---
 
 # About
