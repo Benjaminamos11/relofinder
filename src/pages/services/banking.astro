@@ -1,0 +1,438 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CompanyCard from '../../components/companies/CompanyCard.astro';
+import { getCollection } from 'astro:content';
+
+// Get the banking service content
+const services = await getCollection('services');
+const bankingService = services.find(service => service.slug === 'banking');
+
+if (!bankingService) {
+  throw new Error('Banking service not found');
+}
+
+// Featured companies offering banking services
+const companies = [
+  {
+    id: 'swiss-financial-advisors',
+    name: 'Swiss Financial Advisors',
+    logo: 'https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Specialized banking and investment advisory for expats with 20+ years of Swiss market experience.',
+    services: ['Bank Account Opening', 'Investment Advisory', 'Tax Planning'],
+    regions: ['Zürich', 'Geneva', 'Basel'],
+    rating: 4.9,
+    reviewCount: 312,
+    consultationUrl: 'https://swissfinancialadvisors.ch/consultation',
+    quoteUrl: 'https://swissfinancialadvisors.ch/quote'
+  },
+  {
+    id: 'expat-banking-solutions',
+    name: 'Expat Banking Solutions',
+    logo: 'https://images.pexels.com/photos/6694543/pexels-photo-6694543.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Complete banking setup and ongoing financial management for international professionals.',
+    services: ['Multi-bank Setup', 'Investment Planning', 'Insurance Advisory'],
+    regions: ['Zürich', 'Zug', 'Basel'],
+    rating: 4.7,
+    reviewCount: 189,
+    consultationUrl: 'https://expatbanking.ch/book',
+    quoteUrl: 'https://expatbanking.ch/get-quote'
+  },
+  {
+    id: 'alpine-wealth-management',
+    name: 'Alpine Wealth Management',
+    logo: 'https://images.pexels.com/photos/7841719/pexels-photo-7841719.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Premium wealth management and private banking services for high-net-worth expats.',
+    services: ['Private Banking', 'Wealth Management', 'Estate Planning'],
+    regions: ['Geneva', 'Lausanne', 'Montreux'],
+    rating: 4.8,
+    reviewCount: 156,
+    consultationUrl: 'https://alpinewealth.ch/consultation',
+    quoteUrl: 'https://alpinewealth.ch/proposal'
+  },
+  {
+    id: 'swiss-banking-experts',
+    name: 'Swiss Banking Experts',
+    logo: 'https://images.pexels.com/photos/8112165/pexels-photo-8112165.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Comprehensive banking solutions including mortgages, investments, and pension planning.',
+    services: ['Banking Setup', 'Mortgage Advisory', 'Pension Planning'],
+    regions: ['All Swiss Regions'],
+    rating: 4.6,
+    reviewCount: 234,
+    consultationUrl: 'https://swissbankingexperts.ch/book',
+    quoteUrl: 'https://swissbankingexperts.ch/quote'
+  }
+];
+
+// Related services for internal linking
+const relatedServices = [
+  {
+    title: 'Housing & Real Estate',
+    description: 'Find your perfect home before setting up banking for mortgage applications.',
+    href: '/services/housing',
+    icon: 'home'
+  },
+  {
+    title: 'Visa & Immigration',
+    description: 'Secure your residence permit before opening Swiss bank accounts.',
+    href: '/services/visa',
+    icon: 'document'
+  },
+  {
+    title: 'Tax Advisory',
+    description: 'Optimize your tax situation with expert Swiss tax planning.',
+    href: '/services/advisory-services',
+    icon: 'calculator'
+  },
+  {
+    title: 'Property Purchase',
+    description: 'Get financing advice for buying property in Switzerland.',
+    href: '/services/property-purchase',
+    icon: 'building'
+  }
+];
+
+// Location-specific banking information
+const locationBanking = [
+  {
+    location: 'Zurich',
+    href: '/locations/zurich#banking',
+    description: 'Global financial hub with access to all major Swiss and international banks.',
+    keyBanks: ['UBS', 'Credit Suisse', 'Zürcher Kantonalbank']
+  },
+  {
+    location: 'Geneva',
+    href: '/locations/geneva#banking',
+    description: 'International banking center with multilingual services and private banking.',
+    keyBanks: ['Banque Cantonale de Genève', 'HSBC', 'BNP Paribas']
+  },
+  {
+    location: 'Basel',
+    href: '/locations/basel#banking',
+    description: 'Pharmaceutical industry banking with specialized business services.',
+    keyBanks: ['Basler Kantonalbank', 'Bank Cler', 'Raiffeisen']
+  },
+  {
+    location: 'Zug',
+    href: '/locations/zug',
+    description: 'Corporate tax-friendly canton with innovative fintech banking solutions.',
+    keyBanks: ['Zuger Kantonalbank', 'Bank Cler', 'Alternative Bank']
+  }
+];
+
+// Blog resources
+const blogResources = [
+  {
+    title: 'Complete Swiss Banking Setup Guide 2024',
+    href: '/blog/swiss-banking-setup-guide',
+    category: 'Banking',
+    readTime: '12 min'
+  },
+  {
+    title: 'Pillar 3a vs 3b: Swiss Pension Planning',
+    href: '/blog/swiss-pension-pillar-comparison',
+    category: 'Investment',
+    readTime: '8 min'
+  },
+  {
+    title: 'Tax-Efficient Investment Strategies',
+    href: '/blog/swiss-investment-tax-strategies',
+    category: 'Tax Planning',
+    readTime: '15 min'
+  },
+  {
+    title: 'Swiss Mortgage Guide for Expats',
+    href: '/blog/swiss-mortgage-expats',
+    category: 'Real Estate',
+    readTime: '10 min'
+  }
+];
+
+// Page metadata
+const title = 'Swiss Banking & Finance Services for Expats | Bank Setup & Investment Advisory';
+const description = 'Expert banking setup, investment advisory, and financial planning for expats in Switzerland. Get help with bank accounts, investments, taxes, and wealth management.';
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="relative py-20 bg-gradient-to-br from-blue-50 via-white to-indigo-50 overflow-hidden">
+    <div class="absolute inset-0 opacity-30">
+      <div class="absolute inset-0 bg-repeat" style="background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%232563eb%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%224%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E);"></div>
+    </div>
+
+    <div class="container relative z-10">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Content -->
+          <div class="space-y-8">
+            <!-- Breadcrumb -->
+            <nav class="flex items-center space-x-2 text-sm text-gray-600">
+              <a href="/" class="hover:text-primary-600 transition-colors">Home</a>
+              <span>→</span>
+              <a href="/services" class="hover:text-primary-600 transition-colors">Services</a>
+              <span>→</span>
+              <span class="text-gray-900">Banking & Finance</span>
+            </nav>
+
+            <!-- Service Badge -->
+            <div class="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-medium text-sm">
+              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+              </svg>
+              Swiss Financial Services
+            </div>
+
+            <!-- Title & Description -->
+            <div class="space-y-6">
+              <h1 class="text-4xl lg:text-6xl font-bold leading-tight">
+                Swiss Banking & <span class="gradient-text">Financial Services</span>
+              </h1>
+              <p class="text-xl text-gray-600 leading-relaxed">
+                {bankingService.data.description}
+              </p>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-6">
+              <div class="text-center">
+                <div class="text-3xl font-bold text-blue-600">{bankingService.data.stats?.providers || '80+'}</div>
+                <div class="text-sm text-gray-600">Banking Partners</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-blue-600">{bankingService.data.stats?.avgTime || '1-2 weeks'}</div>
+                <div class="text-sm text-gray-600">Setup Time</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-blue-600">{bankingService.data.stats?.satisfaction || '4.7/5'}</div>
+                <div class="text-sm text-gray-600">Client Satisfaction</div>
+              </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="flex flex-wrap gap-4">
+              <button onclick="openModal('banking-consultation-modal')" class="btn-primary px-8 py-4">
+                Get Banking Consultation
+              </button>
+              <a href="/swiss-relocation-guide#banking" class="btn-secondary px-8 py-4">
+                Complete Banking Guide
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Image -->
+          <div class="relative">
+            <img 
+              src={bankingService.data.heroImage} 
+              alt="Swiss Banking Services" 
+              class="rounded-3xl shadow-2xl"
+              loading="eager"
+            />
+            <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-blue-600/20 to-transparent"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Services Section -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Related Relocation Services</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Banking setup works best when coordinated with other essential relocation services
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {relatedServices.map((service) => (
+            <a href={service.href} class="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                {service.icon === 'home' && (
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                  </svg>
+                )}
+                {service.icon === 'document' && (
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                  </svg>
+                )}
+                {service.icon === 'calculator' && (
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                  </svg>
+                )}
+                {service.icon === 'building' && (
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                  </svg>
+                )}
+              </div>
+              <h3 class="font-bold text-lg mb-2 group-hover:text-primary-600 transition-colors">{service.title}</h3>
+              <p class="text-gray-600 text-sm">{service.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Banking by Location Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Banking Services by <span class="gradient-text">Swiss Region</span></h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Each Swiss region offers unique banking advantages and specializations
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {locationBanking.map((location) => (
+            <a href={location.href} class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 group hover:-translate-y-1">
+              <h3 class="font-bold text-xl mb-3 group-hover:text-primary-600 transition-colors">{location.location}</h3>
+              <p class="text-gray-600 text-sm mb-4 leading-relaxed">{location.description}</p>
+              <div class="space-y-2">
+                <div class="text-xs font-medium text-gray-500">Key Banks:</div>
+                <div class="flex flex-wrap gap-1">
+                  {location.keyBanks.map((bank) => (
+                    <span class="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded-full">{bank}</span>
+                  ))}
+                </div>
+              </div>
+              <div class="mt-4 flex items-center text-primary-600 text-sm font-medium">
+                Learn More
+                <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Banking Setup Works -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">How Swiss Banking Setup Works</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Our streamlined process gets your Swiss financial life organized efficiently
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          {bankingService.data.process?.map((step, index) => (
+            <div class="flex items-start space-x-6 group">
+              <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                {step.step}
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="font-bold text-xl">{step.title}</h3>
+                  <span class="text-sm text-blue-600 font-medium">{step.duration}</span>
+                </div>
+                <p class="text-gray-600 leading-relaxed">{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Banking Specialists -->
+  <section class="py-16 bg-gray-50">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Featured <span class="gradient-text">Banking Specialists</span></h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Connect with expert financial advisors who specialize in Swiss banking for expats
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          {companies.map((company) => (
+            <CompanyCard company={company} />
+          ))}
+        </div>
+
+        <div class="text-center mt-12">
+          <a href="/companies?service=banking" class="btn-primary px-8 py-4">
+            View All Banking Specialists
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Essential Reading Section -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Essential <span class="gradient-text">Banking Resources</span></h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            In-depth guides and expert insights for your Swiss banking journey
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {blogResources.map((resource) => (
+            <a href={resource.href} class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+              <div class="mb-4">
+                <span class="text-xs font-medium px-3 py-1 bg-blue-100 text-blue-700 rounded-full">{resource.category}</span>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
+                {resource.title}
+              </h3>
+              <div class="flex items-center justify-between text-xs text-gray-500">
+                <span>{resource.readTime}</span>
+                <span class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium">
+                  Read More
+                  <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Steps CTA -->
+  <section class="py-16 bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
+    <div class="container">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          Ready to Set Up Your Swiss Banking?
+        </h2>
+        <p class="text-xl text-white/90 mb-8">
+          Connect with expert financial advisors who will guide you through every step of the Swiss banking process.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <button onclick="openModal('banking-consultation-modal')" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors inline-flex items-center">
+            Get Banking Consultation
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7-7 7"/>
+            </svg>
+          </button>
+          <a href="/swiss-relocation-guide" class="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-colors inline-flex items-center">
+            Complete Switzerland Guide
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout> 

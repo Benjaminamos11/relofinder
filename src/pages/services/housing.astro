@@ -13,6 +13,118 @@ const service = {
   icon: 'home'
 };
 
+// Related services for internal linking
+const relatedServices = [
+  {
+    title: 'Property Purchase',
+    description: 'Real estate purchase support and property investment guidance.',
+    href: '/services/property-purchase',
+    icon: 'building'
+  },
+  {
+    title: 'Settling-in Services',
+    description: 'Complete settlement support including home setup assistance.',
+    href: '/services/settling-in',
+    icon: 'home'
+  },
+  {
+    title: 'Advisory Services',
+    description: 'Strategic housing planning and location advisory services.',
+    href: '/services/advisory-services',
+    icon: 'lightbulb'
+  },
+  {
+    title: 'Move Management',
+    description: 'International moving and logistics coordination services.',
+    href: '/services/move-management',
+    icon: 'truck'
+  }
+];
+
+// Location-specific housing information
+const locationHousing = [
+  {
+    location: 'Zurich',
+    href: '/locations/zurich#housing',
+    description: 'Competitive market with premium properties, financial district proximity, and excellent public transport.',
+    specialties: ['Executive Housing', 'Financial District', 'Family Properties']
+  },
+  {
+    location: 'Geneva',
+    href: '/locations/geneva#housing',
+    description: 'International community housing, lakeside properties, and diplomatic quarter residences.',
+    specialties: ['International Housing', 'Lakeside Properties', 'Diplomatic Quarter']
+  },
+  {
+    location: 'Basel',
+    href: '/locations/basel#housing',
+    description: 'Pharmaceutical sector housing, cross-border options, and traditional Swiss properties.',
+    specialties: ['Pharma Sector Housing', 'Cross-Border Living', 'Traditional Properties']
+  },
+  {
+    location: 'Zug',
+    href: '/locations/zug',
+    description: 'Business-friendly environment, tax advantages, and modern executive housing options.',
+    specialties: ['Executive Housing', 'Modern Properties', 'Business District']
+  }
+];
+
+// Housing service areas
+const housingAreas = [
+  {
+    area: 'Rental Property Search',
+    href: '/services/housing#rental',
+    description: 'Comprehensive rental property search with market access and negotiation support.',
+    components: ['Property Search', 'Market Access', 'Lease Negotiation', 'Application Support']
+  },
+  {
+    area: 'Temporary Housing',
+    href: '/services/housing#temporary',
+    description: 'Short-term and temporary housing solutions for immediate accommodation needs.',
+    components: ['Serviced Apartments', 'Extended Stay', 'Corporate Housing', 'Bridge Solutions']
+  },
+  {
+    area: 'Family Housing',
+    href: '/services/housing#family',
+    description: 'Family-focused housing search with school district and community considerations.',
+    components: ['School Districts', 'Family Neighborhoods', 'Safety Assessment', 'Community Access']
+  },
+  {
+    area: 'Luxury & Executive',
+    href: '/services/housing#luxury',
+    description: 'Premium housing solutions for executives and high-net-worth individuals.',
+    components: ['Luxury Properties', 'Executive Locations', 'Concierge Services', 'Privacy & Security']
+  }
+];
+
+// Blog resources for housing
+const blogResources = [
+  {
+    title: 'Complete Swiss Housing Guide 2024',
+    href: '/blog/swiss-housing-guide',
+    category: 'Housing Guide',
+    readTime: '20 min'
+  },
+  {
+    title: 'Rental Market Insights: Zurich vs Geneva',
+    href: '/blog/rental-market-zurich-geneva',
+    category: 'Market Analysis',
+    readTime: '15 min'
+  },
+  {
+    title: 'Understanding Swiss Rental Contracts',
+    href: '/blog/swiss-rental-contracts',
+    category: 'Legal Guide',
+    readTime: '12 min'
+  },
+  {
+    title: 'Housing Costs in Major Swiss Cities',
+    href: '/blog/housing-costs-swiss-cities',
+    category: 'Cost Analysis',
+    readTime: '10 min'
+  }
+];
+
 // Sample companies offering housing services
 const companies = [
   {
@@ -591,6 +703,170 @@ const howItWorks = {
               class="w-full h-full object-cover"
             />
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Services Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Related Housing Services</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Housing services work best when integrated with property purchase, move management, and settlement support
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {relatedServices.map((service) => (
+            <a href={service.href} class="group bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-rose-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                {service.icon === 'building' && (
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                  </svg>
+                )}
+                {service.icon === 'home' && (
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                  </svg>
+                )}
+                {service.icon === 'lightbulb' && (
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                  </svg>
+                )}
+                {service.icon === 'truck' && (
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM21 17a2 2 0 11-4 0 2 2 0 014 0zM13 16V6a1 1 0 00-1-1H4a3 3 0 00-3 3v7a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"/>
+                  </svg>
+                )}
+              </div>
+              <h3 class="font-bold text-lg mb-2 group-hover:text-red-600 transition-colors">{service.title}</h3>
+              <p class="text-gray-600 text-sm">{service.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Housing Service Areas -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Housing <span class="gradient-text">Service Areas</span></h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Comprehensive housing solutions covering all aspects of your accommodation needs in Switzerland
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          {housingAreas.map((area) => (
+            <a href={area.href} class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 group hover:-translate-y-1">
+              <h3 class="font-bold text-2xl mb-4 group-hover:text-red-600 transition-colors">{area.area}</h3>
+              <p class="text-gray-600 mb-6 leading-relaxed">{area.description}</p>
+              <div class="space-y-3">
+                <div class="text-sm font-medium text-gray-500">Service Components:</div>
+                <div class="flex flex-wrap gap-2">
+                  {area.components.map((component) => (
+                    <span class="text-sm px-3 py-1 bg-red-100 text-red-700 rounded-full">{component}</span>
+                  ))}
+                </div>
+              </div>
+              <div class="mt-6 flex items-center text-red-600 text-sm font-medium">
+                Explore Housing Area
+                <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Housing by Swiss Region -->
+  <section class="py-16 bg-gray-50">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Housing by <span class="gradient-text">Swiss Region</span></h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Regional housing markets and location-specific accommodation options across Switzerland
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {locationHousing.map((location) => (
+            <a href={location.href} class="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300 group hover:-translate-y-1">
+              <h3 class="font-bold text-xl mb-3 group-hover:text-red-600 transition-colors">{location.location}</h3>
+              <p class="text-gray-600 text-sm mb-4 leading-relaxed">{location.description}</p>
+              <div class="space-y-2">
+                <div class="text-xs font-medium text-gray-500">Housing Specialties:</div>
+                <div class="flex flex-wrap gap-1">
+                  {location.specialties.map((specialty) => (
+                    <span class="text-xs px-2 py-1 bg-red-100 text-red-700 rounded-full">{specialty}</span>
+                  ))}
+                </div>
+              </div>
+              <div class="mt-4 flex items-center text-red-600 text-sm font-medium">
+                Housing Guide
+                <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Essential Reading Section -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Essential <span class="gradient-text">Housing Resources</span></h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Expert housing guides and market insights for navigating the Swiss rental and property market
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {blogResources.map((resource) => (
+            <a href={resource.href} class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+              <div class="mb-4">
+                <span class="text-xs font-medium px-3 py-1 bg-red-100 text-red-700 rounded-full">{resource.category}</span>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3 group-hover:text-red-600 transition-colors">
+                {resource.title}
+              </h3>
+              <div class="flex items-center justify-between text-xs text-gray-500">
+                <span>{resource.readTime}</span>
+                <span class="inline-flex items-center text-red-600 hover:text-red-700 font-medium">
+                  Read More
+                  <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <div class="text-center mt-12">
+          <a href="/swiss-relocation-guide#housing" class="btn-primary px-8 py-4 bg-gradient-to-r from-red-600 to-rose-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 inline-flex items-center">
+            Complete Housing Guide
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+          </a>
         </div>
       </div>
     </div>

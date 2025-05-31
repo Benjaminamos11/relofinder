@@ -1,0 +1,393 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SEOHead from '../../components/common/SEOHead.astro';
+import SchemaMarkup from '../../components/common/SchemaMarkup.astro';
+
+const title = 'Relocation to Zug 2025 | Switzerland\'s Business Paradise & Crypto Valley';
+const description = 'Complete guide to relocating to Zug, Switzerland. Business-friendly taxation, Crypto Valley, international companies, and premium relocation services for entrepreneurs and executives.';
+
+const zugData = {
+  name: 'Zug',
+  city: 'Zug',
+  description: 'Switzerland\'s business paradise and Crypto Valley',
+  coordinates: { lat: 47.1717, lng: 8.5126 }
+};
+
+// Zug-specific services with business/tax specialization
+const zugServices = [
+  {
+    title: 'Advisory Services',
+    description: 'Business establishment, tax optimization, corporate structuring in Zug.',
+    href: '/services/advisory-services',
+    icon: 'lightbulb',
+    specialization: 'Business Setup Hub'
+  },
+  {
+    title: 'Legal Services',
+    description: 'Corporate law, business formation, compliance, crypto regulations in Zug.',
+    href: '/services/legal-services',
+    icon: 'scale',
+    specialization: 'Corporate Formation'
+  },
+  {
+    title: 'Banking & Finance Services',
+    description: 'Business banking, crypto banking, wealth management, corporate finance.',
+    href: '/services/banking',
+    icon: 'credit-card',
+    specialization: 'Crypto Banking'
+  },
+  {
+    title: 'Technology Solutions',
+    description: 'Blockchain infrastructure, fintech solutions, digital business setup.',
+    href: '/services/technology-solutions',
+    icon: 'laptop',
+    specialization: 'Crypto Valley Tech'
+  },
+  {
+    title: 'Visa & Immigration',
+    description: 'Entrepreneur visas, business permits, investor residency in Zug.',
+    href: '/services/visa-immigration',
+    icon: 'passport',
+    specialization: 'Business Visas'
+  },
+  {
+    title: 'Property Purchase',
+    description: 'Premium real estate, business properties, investment opportunities.',
+    href: '/services/property-purchase',
+    icon: 'key',
+    specialization: 'Business Real Estate'
+  },
+  {
+    title: 'Insurance Services',
+    description: 'Executive insurance, business coverage, high-value asset protection.',
+    href: '/services/insurance-services',
+    icon: 'shield',
+    specialization: 'Executive Protection'
+  },
+  {
+    title: 'Housing Services',
+    description: 'Luxury housing, executive residences, lakefront properties in Zug.',
+    href: '/services/housing',
+    icon: 'home',
+    specialization: 'Executive Housing'
+  }
+];
+
+// Additional services for business professionals
+const additionalServices = [
+  {
+    title: 'Move Management',
+    description: 'Executive relocations, international business moves, logistics support.',
+    href: '/services/move-management',
+    icon: 'truck'
+  },
+  {
+    title: 'Education Services',
+    description: 'International schools, executive education, business training programs.',
+    href: '/services/education',
+    icon: 'school'
+  },
+  {
+    title: 'Health Services',
+    description: 'Premium healthcare, executive medical services, wellness programs.',
+    href: '/services/health',
+    icon: 'heart'
+  },
+  {
+    title: 'Ongoing Support',
+    description: 'Business networking, executive support, continuous advisory services.',
+    href: '/services/ongoing-support',
+    icon: 'users'
+  }
+];
+
+// Zug business sectors and specializations
+const businessSectors = [
+  {
+    name: 'Crypto Valley',
+    description: 'World\'s leading blockchain and cryptocurrency hub with 1000+ companies',
+    services: ['Technology Solutions', 'Legal Services', 'Banking Services'],
+    companies: 'Ethereum Foundation, ConsenSys, Bitcoin Suisse, Dfinity'
+  },
+  {
+    name: 'Trading & Commodities',
+    description: 'Major commodity trading companies leveraging favorable tax environment',
+    services: ['Advisory Services', 'Corporate Formation', 'Banking'],
+    companies: 'Glencore, Trafigura, Mercuria, Gunvor'
+  },
+  {
+    name: 'International Corporates',
+    description: 'Multinational headquarters and holding companies for tax efficiency',
+    services: ['Legal Services', 'Property Purchase', 'Executive Services'],
+    companies: 'Roche, Abbott, Johnson & Johnson, Amgen'
+  }
+];
+
+// Tax benefits and business advantages
+const taxBenefits = [
+  {
+    title: 'Corporate Tax Rate',
+    value: '11.9%',
+    description: 'Effective corporate tax rate - among lowest in Europe'
+  },
+  {
+    title: 'Personal Income Tax',
+    value: '22.1%',
+    description: 'Maximum personal income tax rate including federal tax'
+  },
+  {
+    title: 'Holding Company',
+    value: '7.8%',
+    description: 'Effective tax rate for qualifying holding companies'
+  },
+  {
+    title: 'No Wealth Tax',
+    value: '0%',
+    description: 'No wealth tax for individuals and corporations'
+  }
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "Zug Relocation Guide",
+  "description": description,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Zug",
+    "addressCountry": "CH"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 47.1717,
+    "longitude": 8.5126
+  }
+};
+---
+
+<SEOHead 
+  title={title}
+  description={description}
+  keywords={[
+    'relocation zug', 
+    'moving to zug', 
+    'zug relocation services', 
+    'crypto valley zug',
+    'business setup zug',
+    'zug tax benefits',
+    'zug housing',
+    'working in zug',
+    'zug blockchain',
+    'entrepreneur visa zug'
+  ]}
+  schema={schema}
+/>
+
+<Layout title={title} description={description}>
+  <main class="pt-20">
+    <!-- Hero Section -->
+    <section class="py-20 bg-gradient-to-br from-emerald-600 to-blue-700 text-white">
+      <div class="container">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-4xl md:text-6xl font-bold mb-6">
+            Relocating to 
+            <span class="text-yellow-300">Zug</span>
+          </h1>
+          <p class="text-xl md:text-2xl text-white/90 mb-8">
+            Switzerland's business paradise and world-renowned Crypto Valley
+          </p>
+          <div class="flex flex-wrap gap-4 justify-center">
+            <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+              <span class="font-semibold">💼 Business Hub</span>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+              <span class="font-semibold">₿ Crypto Valley</span>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+              <span class="font-semibold">💰 Low Taxes</span>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+              <span class="font-semibold">🏔️ Lake Views</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="py-12 bg-gray-50">
+      <div class="container">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid md:grid-cols-4 gap-6">
+            <div class="bg-white p-6 rounded-xl text-center shadow-md">
+              <div class="text-3xl font-bold text-emerald-600 mb-2">11.9%</div>
+              <div class="text-gray-600">Corporate Tax Rate</div>
+            </div>
+            <div class="bg-white p-6 rounded-xl text-center shadow-md">
+              <div class="text-3xl font-bold text-blue-600 mb-2">1,000+</div>
+              <div class="text-gray-600">Crypto Companies</div>
+            </div>
+            <div class="bg-white p-6 rounded-xl text-center shadow-md">
+              <div class="text-3xl font-bold text-purple-600 mb-2">CHF 95k</div>
+              <div class="text-gray-600">Average Salary</div>
+            </div>
+            <div class="bg-white p-6 rounded-xl text-center shadow-md">
+              <div class="text-3xl font-bold text-orange-600 mb-2">30,000</div>
+              <div class="text-gray-600">Population</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tax Benefits Section -->
+    <section class="py-16 bg-white">
+      <div class="container">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4">Zug Tax <span class="text-emerald-600">Advantages</span></h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+              Discover why Zug is Switzerland's most business-friendly canton with exceptional tax benefits
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {taxBenefits.map((benefit) => (
+              <div class="bg-gradient-to-br from-emerald-50 to-blue-100 rounded-2xl p-6 text-center">
+                <div class="text-3xl font-bold text-emerald-600 mb-2">{benefit.value}</div>
+                <h3 class="text-lg font-bold mb-2">{benefit.title}</h3>
+                <p class="text-gray-600 text-sm">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div class="bg-gradient-to-br from-emerald-600 to-blue-700 rounded-2xl p-8 text-white text-center">
+            <h3 class="text-2xl font-bold mb-4">Ready to Establish Your Business in Zug?</h3>
+            <p class="text-white/90 mb-6">Our advisory services will guide you through the complete business setup process</p>
+            <a href="/services/advisory-services" class="bg-white text-emerald-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-colors inline-flex items-center">
+              Get Business Setup Consultation
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Zug-Specific Services -->
+    <section class="py-16 bg-gray-50">
+      <div class="container">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4">Business Services for <span class="text-emerald-600">Zug</span></h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+              Specialized services tailored to Zug's business ecosystem and entrepreneurial environment
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {zugServices.map((service) => (
+              <a href={service.href} class="group bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-xl hover:border-emerald-200 transition-all duration-300 hover:-translate-y-1">
+                <div class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-emerald-100 transition-colors">
+                  <svg class="w-7 h-7 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                </div>
+                <div class="mb-3">
+                  <span class="text-xs bg-emerald-100 text-emerald-600 px-2 py-1 rounded-full font-medium">{service.specialization}</span>
+                </div>
+                <h3 class="text-lg font-bold mb-2 group-hover:text-emerald-600 transition-colors">{service.title}</h3>
+                <p class="text-gray-600 text-sm mb-4">{service.description}</p>
+                <div class="flex items-center text-emerald-600 text-sm font-medium">
+                  <span>Learn more</span>
+                  <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7-7 7"/>
+                  </svg>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <!-- Additional Services -->
+          <h3 class="text-2xl font-bold text-center mb-8">Additional Professional Services</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {additionalServices.map((service) => (
+              <a href={service.href} class="group bg-gray-100 rounded-xl p-4 hover:bg-emerald-50 hover:shadow-md transition-all duration-300">
+                <h4 class="font-semibold mb-2 group-hover:text-emerald-600 transition-colors">{service.title}</h4>
+                <p class="text-gray-600 text-sm">{service.description}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Business Sectors -->
+    <section class="py-16 bg-white">
+      <div class="container">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4">Zug Business <span class="text-emerald-600">Sectors</span></h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+              Explore the thriving business ecosystems that make Zug a global leader in innovation
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8">
+            {businessSectors.map((sector) => (
+              <div class="bg-gradient-to-br from-emerald-50 to-blue-100 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+                <h3 class="text-xl font-bold mb-4 text-emerald-600">{sector.name}</h3>
+                <p class="text-gray-600 mb-6">{sector.description}</p>
+                
+                <div class="mb-6">
+                  <h4 class="font-semibold mb-3">Key Services:</h4>
+                  <div class="flex flex-wrap gap-2">
+                    {sector.services.map((service) => (
+                      <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm font-medium">{service}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="font-semibold mb-2">Major Companies:</h4>
+                  <p class="text-gray-600 text-sm">{sector.companies}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-gradient-to-br from-emerald-600 to-blue-700 text-white">
+      <div class="container">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            Ready to Establish Your Business in Zug?
+          </h2>
+          <p class="text-xl text-white/90 mb-8">
+            Connect with business setup experts who specialize in Zug's unique advantages and can guide you through every step.
+          </p>
+          <div class="flex flex-wrap gap-4 justify-center">
+            <a href="/companies?location=zug" class="bg-white text-emerald-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors inline-flex items-center">
+              Find Zug Business Services
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7-7 7"/>
+              </svg>
+            </a>
+            <a href="/swiss-relocation-guide" class="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-colors inline-flex items-center">
+              Complete Switzerland Guide
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <SchemaMarkup type="location" data={zugData} />
+</Layout> 

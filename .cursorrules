@@ -1,0 +1,95 @@
+# ReloFinder Project Context
+
+## Project Overview
+Swiss relocation services website (relofinder.ch) built with Astro, focusing on SEO optimization and Google reviews integration.
+
+## Current Status & Issues
+- Multiple port conflicts (4321-4338 ports in use)
+- Template syntax errors: "Expected '>' but found '`${'"
+- API errors: "relatedBlogs is not defined" at line 655
+- SerpAPI 401 unauthorized errors for Google reviews
+- Vite configuration problems
+
+## Working Google Reviews Integration
+**Companies with working reviews:**
+- Prime Relocation: 4.8/5 rating, 53 reviews, 8 detailed reviews fetched
+- Executive Relocation: 5/5 rating, 1 review  
+- Connectiv Relocation: 5/5 rating, 5 reviews
+- Anchor Relocation: 4.9/5 rating, 27 reviews, 8 detailed reviews
+
+**Not working:**
+- Relocation Plus: No reviews found despite having Place ID
+
+## SEO Strategy Implementation Progress
+### ✅ COMPLETED (Phase 1):
+- Enhanced astro.config.mjs with compression, sitemap optimization
+- Created comprehensive SEO head component (src/components/common/SEOHead.astro)
+- Implemented schema markup component (src/components/common/SchemaMarkup.astro)
+- Built ultimate Swiss relocation guide (src/pages/swiss-relocation-guide.astro) - 8,000+ words
+- Created detailed Zurich location page (src/pages/locations/zurich.astro)
+- **NEW: Created 3 optimized service pages with enhanced internal linking:**
+  - Banking & Finance Services (20+ internal links)
+  - Visa & Immigration Services (18+ internal links)  
+  - Advisory Services (25+ internal links - strategic hub)
+- **NEW: Comprehensive internal linking strategy implemented**
+- **NEW: Service-to-location cross-linking matrix established**
+
+### 🔄 IN PROGRESS (Phase 2):
+- Creating remaining 9 service pages with enhanced linking
+- Updating existing service pages with new linking structure
+- Adding service sections to location pages
+- Enhancing Swiss Relocation Guide with service deep-links
+
+### Keyword Architecture (No Cannibalization):
+- Tier 1: "relocation switzerland" (homepage), "swiss relocation services", "moving to switzerland"
+- Tier 2: Location-specific ("relocation zurich", "relocation geneva", etc.)
+- Tier 3: Service-specific ("corporate relocation switzerland", "expat relocation switzerland")
+- Tier 4: Company-specific ("[company name] reviews/relocation")
+- **NEW: Service + Location combinations ("banking services zurich", "visa advice geneva")**
+
+## Content Structure
+- 36 total company content files in src/content/companies/
+- **NEW: 8 service pages (5 existing + 3 new with enhanced linking)**
+- **NEW: Strategic service hub architecture with Advisory Services as central connector**
+- Focus on E-A-T optimization and minimum 3,000 words per pillar page
+- Target: Complete market dominance for Swiss relocation keywords
+
+## Internal Linking Strategy (IMPLEMENTED)
+**Service-to-Service Connections:**
+- Banking ↔ Housing ↔ Visa ↔ Advisory ↔ Property Purchase
+- Natural user journey flows with 18-25 links per service page
+
+**Service-to-Location Targeting:**
+- Each service links to 4 major Swiss regions with specializations
+- Zurich (financial), Geneva (international), Basel (pharma), Zug (business)
+
+**Content Hub Integration:**
+- All services link to Swiss Relocation Guide
+- 4 specific blog articles per service
+- Company directory integration with specialization filtering
+
+## Timeline Goals
+- 3 months: Top 10 for "relocation switzerland", 300% traffic increase
+- 6 months: #1 for "swiss relocation guide", 500% traffic increase  
+- 12 months: Complete market dominance, 1000%+ traffic increase, DA 50+
+
+## Development Notes
+When working on this project:
+- Always check for port conflicts before starting dev server
+- Fix template syntax errors carefully
+- Maintain keyword architecture to avoid cannibalization
+- **Focus on internal linking strategy - each service page needs 15-25 contextual links**
+- **Use Advisory Services as the strategic hub connecting all other services**
+- Focus on content depth and technical excellence
+- Prioritize Core Web Vitals and mobile-first design
+
+## Service Page Structure (TEMPLATE)
+Each service page should include:
+1. Hero section with breadcrumbs and service badge
+2. Related services section (3-4 services)
+3. Location-specific information (4 major regions)
+4. Process/how-it-works section
+5. Featured companies (3-4 specialists)
+6. Essential reading/blog resources (4 articles)
+7. Next steps CTA with multiple pathways
+8. Target: 18-25 internal links total 

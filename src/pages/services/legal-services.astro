@@ -1,0 +1,604 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CompanyCard from '../../components/companies/CompanyCard.astro';
+
+// Mock data for legal services
+const serviceData = {
+  title: 'Legal Services',
+  description: 'Professional legal support for expatriates in Switzerland. Contract review, compliance guidance, legal advisory, and specialized legal services for business setup and personal matters.',
+  heroImage: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&h=900&fit=crop',
+  stats: {
+    providers: '20+',
+    avgTime: '1-4 weeks',
+    satisfaction: '4.9/5'
+  },
+  process: [
+    {
+      step: '1',
+      title: 'Legal Consultation',
+      description: 'Initial consultation to understand your legal needs, situation, and required services.',
+      duration: '1-2 hours'
+    },
+    {
+      step: '2',
+      title: 'Legal Assessment',
+      description: 'Comprehensive review of your legal position and identification of compliance requirements.',
+      duration: '3-5 days'
+    },
+    {
+      step: '3',
+      title: 'Legal Strategy',
+      description: 'Development of tailored legal strategy and action plan for your specific needs.',
+      duration: '1-2 weeks'
+    },
+    {
+      step: '4',
+      title: 'Legal Implementation',
+      description: 'Execution of legal processes, document preparation, and regulatory compliance.',
+      duration: '2-6 weeks'
+    },
+    {
+      step: '5',
+      title: 'Ongoing Legal Support',
+      description: 'Continued legal guidance and support for evolving needs and compliance.',
+      duration: 'Ongoing'
+    }
+  ]
+};
+
+// Featured companies offering legal services
+const companies = [
+  {
+    id: 'swiss-expat-legal',
+    name: 'Swiss Expat Legal',
+    logo: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Specialized legal services for expatriates with expertise in immigration law, contract review, and business setup.',
+    services: ['Immigration Law', 'Contract Review', 'Business Setup'],
+    regions: ['Zürich', 'Geneva', 'Basel'],
+    rating: 4.9,
+    reviewCount: 267,
+    consultationUrl: 'https://swissexpatlegal.ch/consultation',
+    quoteUrl: 'https://swissexpatlegal.ch/quote'
+  },
+  {
+    id: 'international-law-partners',
+    name: 'International Law Partners',
+    logo: 'https://images.pexels.com/photos/7688334/pexels-photo-7688334.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Full-service international law firm with focus on cross-border transactions and expatriate legal needs.',
+    services: ['International Law', 'Cross-Border Transactions', 'Corporate Law'],
+    regions: ['All Swiss Regions'],
+    rating: 4.8,
+    reviewCount: 198,
+    consultationUrl: 'https://intlawpartners.ch/book',
+    quoteUrl: 'https://intlawpartners.ch/quote'
+  },
+  {
+    id: 'compliance-legal-advisory',
+    name: 'Compliance & Legal Advisory',
+    logo: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Specialized compliance and regulatory advisory with focus on Swiss legal requirements for businesses.',
+    services: ['Compliance Advisory', 'Regulatory Guidance', 'Legal Documentation'],
+    regions: ['German Switzerland', 'Zurich'],
+    rating: 4.7,
+    reviewCount: 154,
+    consultationUrl: 'https://compliancelegal.ch/consultation',
+    quoteUrl: 'https://compliancelegal.ch/proposal'
+  },
+  {
+    id: 'personal-business-law',
+    name: 'Personal & Business Law',
+    logo: 'https://images.pexels.com/photos/8112165/pexels-photo-8112165.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Comprehensive legal services covering both personal and business legal needs for expatriates.',
+    services: ['Personal Legal Matters', 'Business Law', 'Contract Negotiations'],
+    regions: ['Basel', 'Lausanne', 'Zug'],
+    rating: 4.6,
+    reviewCount: 123,
+    consultationUrl: 'https://personalbusinesslaw.ch/book',
+    quoteUrl: 'https://personalbusinesslaw.ch/quote'
+  }
+];
+
+// Related services for internal linking
+const relatedServices = [
+  {
+    title: 'Visa & Immigration',
+    description: 'Immigration legal support and visa compliance assistance.',
+    href: '/services/visa',
+    icon: 'document'
+  },
+  {
+    title: 'Advisory Services',
+    description: 'Strategic legal planning and comprehensive advisory services.',
+    href: '/services/advisory-services',
+    icon: 'lightbulb'
+  },
+  {
+    title: 'Banking & Finance',
+    description: 'Financial legal matters and banking compliance support.',
+    href: '/services/banking',
+    icon: 'credit-card'
+  },
+  {
+    title: 'Property Purchase',
+    description: 'Real estate legal support and property transaction assistance.',
+    href: '/services/property-purchase',
+    icon: 'home'
+  }
+];
+
+// Legal service areas
+const legalAreas = [
+  {
+    area: 'Immigration & Visa Law',
+    href: '/services/legal-services#immigration',
+    description: 'Comprehensive immigration legal support, visa applications, and residency compliance.',
+    components: ['Visa Applications', 'Residency Permits', 'Work Authorization', 'Family Reunification']
+  },
+  {
+    area: 'Business & Corporate Law',
+    href: '/services/legal-services#business',
+    description: 'Business formation, corporate compliance, and commercial legal services.',
+    components: ['Company Formation', 'Corporate Compliance', 'Commercial Contracts', 'Business Permits']
+  },
+  {
+    area: 'Contract & Commercial Law',
+    href: '/services/legal-services#contracts',
+    description: 'Contract drafting, review, negotiation, and commercial legal advisory.',
+    components: ['Contract Review', 'Negotiation Support', 'Legal Documentation', 'Dispute Resolution']
+  },
+  {
+    area: 'Personal & Family Law',
+    href: '/services/legal-services#personal',
+    description: 'Personal legal matters, family law, and individual legal protection.',
+    components: ['Family Law', 'Personal Rights', 'Estate Planning', 'Legal Protection']
+  }
+];
+
+// Location-specific legal considerations
+const locationLegal = [
+  {
+    location: 'Zurich',
+    href: '/locations/zurich#legal',
+    description: 'Financial sector compliance, business law, and international corporate legal services.',
+    specialties: ['Financial Compliance', 'Corporate Law', 'International Business']
+  },
+  {
+    location: 'Geneva',
+    href: '/locations/geneva#legal',
+    description: 'International law, diplomatic legal services, and cross-border legal compliance.',
+    specialties: ['International Law', 'Diplomatic Services', 'Cross-Border Compliance']
+  },
+  {
+    location: 'Basel',
+    href: '/locations/basel#legal',
+    description: 'Pharmaceutical law, cross-border employment, and regional legal specializations.',
+    specialties: ['Pharmaceutical Law', 'Cross-Border Employment', 'Regional Compliance']
+  },
+  {
+    location: 'Zug',
+    href: '/locations/zug',
+    description: 'Business formation law, tax compliance, and entrepreneurial legal support.',
+    specialties: ['Business Formation', 'Tax Compliance', 'Entrepreneurial Law']
+  }
+];
+
+// Legal service priorities
+const legalPriorities = [
+  {
+    priority: 'Immediate Legal Needs',
+    color: 'red',
+    services: ['Visa Compliance', 'Work Authorization', 'Essential Contracts', 'Regulatory Compliance']
+  },
+  {
+    priority: 'Business Legal Setup',
+    color: 'orange',
+    services: ['Company Formation', 'Business Permits', 'Commercial Contracts', 'Corporate Compliance']
+  },
+  {
+    priority: 'Personal Legal Protection',
+    color: 'blue',
+    services: ['Personal Contracts', 'Family Law Matters', 'Estate Planning', 'Legal Insurance']
+  },
+  {
+    priority: 'Ongoing Legal Support',
+    color: 'green',
+    services: ['Legal Advisory', 'Contract Management', 'Compliance Monitoring', 'Legal Updates']
+  }
+];
+
+// Blog resources
+const blogResources = [
+  {
+    title: 'Legal Requirements for Expats in Switzerland',
+    href: '/blog/legal-requirements-expats-switzerland',
+    category: 'Legal Compliance',
+    readTime: '18 min'
+  },
+  {
+    title: 'Business Formation Guide for Switzerland',
+    href: '/blog/business-formation-switzerland',
+    category: 'Business Law',
+    readTime: '22 min'
+  },
+  {
+    title: 'Contract Law Essentials in Switzerland',
+    href: '/blog/contract-law-switzerland',
+    category: 'Contract Law',
+    readTime: '15 min'
+  },
+  {
+    title: 'Immigration Law Updates 2024',
+    href: '/blog/immigration-law-updates-switzerland',
+    category: 'Immigration Law',
+    readTime: '12 min'
+  }
+];
+
+// Page metadata
+const title = 'Legal Services Switzerland | Immigration, Business & Contract Law';
+const description = 'Professional legal services for expatriates in Switzerland. Immigration law, business formation, contract review, and compliance support from expert legal advisors.';
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="relative py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50 overflow-hidden">
+    <div class="absolute inset-0 opacity-30">
+      <div class="absolute inset-0 bg-repeat" style="background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23334155%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%224%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E);"></div>
+    </div>
+
+    <div class="container relative z-10">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Content -->
+          <div class="space-y-8">
+            <!-- Breadcrumb -->
+            <nav class="flex items-center space-x-2 text-sm text-gray-600">
+              <a href="/" class="hover:text-primary-600 transition-colors">Home</a>
+              <span>→</span>
+              <a href="/services" class="hover:text-primary-600 transition-colors">Services</a>
+              <span>→</span>
+              <span class="text-gray-900">Legal Services</span>
+            </nav>
+
+            <!-- Service Badge -->
+            <div class="inline-flex items-center px-4 py-2 rounded-full bg-slate-100 text-slate-700 font-medium text-sm">
+              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/>
+              </svg>
+              Legal Expertise
+            </div>
+
+            <!-- Title & Description -->
+            <div class="space-y-6">
+              <h1 class="text-4xl lg:text-6xl font-bold leading-tight">
+                Swiss <span class="gradient-text">Legal Services</span>
+              </h1>
+              <p class="text-xl text-gray-600 leading-relaxed">
+                {serviceData.description}
+              </p>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-6">
+              <div class="text-center">
+                <div class="text-3xl font-bold text-slate-600">{serviceData.stats?.providers || '20+'}</div>
+                <div class="text-sm text-gray-600">Legal Experts</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-slate-600">{serviceData.stats?.avgTime || '1-4 weeks'}</div>
+                <div class="text-sm text-gray-600">Resolution Time</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-slate-600">{serviceData.stats?.satisfaction || '4.9/5'}</div>
+                <div class="text-sm text-gray-600">Client Success</div>
+              </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="flex flex-wrap gap-4">
+              <button onclick="openModal('legal-consultation-modal')" class="btn-primary px-8 py-4">
+                Get Legal Consultation
+              </button>
+              <a href="/swiss-relocation-guide#legal" class="btn-secondary px-8 py-4">
+                Legal Guide
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Image -->
+          <div class="relative">
+            <img 
+              src={serviceData.heroImage} 
+              alt="Swiss Legal Services" 
+              class="rounded-3xl shadow-2xl"
+              loading="eager"
+            />
+            <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-slate-600/20 to-transparent"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Legal Service Priorities -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Legal <span class="gradient-text">Service Priorities</span></h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Understanding legal priorities and when you need professional legal support in Switzerland
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {legalPriorities.map((priority) => (
+            <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100">
+              <div class={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium mb-4 ${
+                priority.color === 'red' ? 'bg-red-100 text-red-700' :
+                priority.color === 'orange' ? 'bg-orange-100 text-orange-700' :
+                priority.color === 'blue' ? 'bg-blue-100 text-blue-700' :
+                'bg-green-100 text-green-700'
+              }`}>
+                {priority.priority}
+              </div>
+              <div class="space-y-2">
+                {priority.services.map((service) => (
+                  <div class="text-sm text-gray-700 flex items-center">
+                    <div class={`w-2 h-2 rounded-full mr-2 ${
+                      priority.color === 'red' ? 'bg-red-500' :
+                      priority.color === 'orange' ? 'bg-orange-500' :
+                      priority.color === 'blue' ? 'bg-blue-500' :
+                      'bg-green-500'
+                    }`}></div>
+                    {service}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Services Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Related Legal Services</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Legal services work best when integrated with immigration, advisory, banking, and property services
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {relatedServices.map((service) => (
+            <a href={service.href} class="group bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                {service.icon === 'document' && (
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                  </svg>
+                )}
+                {service.icon === 'lightbulb' && (
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                  </svg>
+                )}
+                {service.icon === 'credit-card' && (
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                  </svg>
+                )}
+                {service.icon === 'home' && (
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                  </svg>
+                )}
+              </div>
+              <h3 class="font-bold text-lg mb-2 group-hover:text-primary-600 transition-colors">{service.title}</h3>
+              <p class="text-gray-600 text-sm">{service.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Legal Service Areas -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Complete <span class="gradient-text">Legal Coverage</span></h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Comprehensive legal services covering all essential areas for expatriates and businesses in Switzerland
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          {legalAreas.map((area) => (
+            <a href={area.href} class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 group hover:-translate-y-1">
+              <h3 class="font-bold text-2xl mb-4 group-hover:text-primary-600 transition-colors">{area.area}</h3>
+              <p class="text-gray-600 mb-6 leading-relaxed">{area.description}</p>
+              <div class="space-y-3">
+                <div class="text-sm font-medium text-gray-500">Legal Components:</div>
+                <div class="flex flex-wrap gap-2">
+                  {area.components.map((component) => (
+                    <span class="text-sm px-3 py-1 bg-slate-100 text-slate-700 rounded-full">{component}</span>
+                  ))}
+                </div>
+              </div>
+              <div class="mt-6 flex items-center text-primary-600 text-sm font-medium">
+                Explore Legal Area
+                <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Legal Services by Swiss Region -->
+  <section class="py-16 bg-gray-50">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Legal Services by <span class="gradient-text">Swiss Region</span></h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Regional legal specializations and jurisdiction-specific expertise across different Swiss locations
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {locationLegal.map((location) => (
+            <a href={location.href} class="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300 group hover:-translate-y-1">
+              <h3 class="font-bold text-xl mb-3 group-hover:text-primary-600 transition-colors">{location.location}</h3>
+              <p class="text-gray-600 text-sm mb-4 leading-relaxed">{location.description}</p>
+              <div class="space-y-2">
+                <div class="text-xs font-medium text-gray-500">Legal Specialties:</div>
+                <div class="flex flex-wrap gap-1">
+                  {location.specialties.map((specialty) => (
+                    <span class="text-xs px-2 py-1 bg-slate-100 text-slate-700 rounded-full">{specialty}</span>
+                  ))}
+                </div>
+              </div>
+              <div class="mt-4 flex items-center text-primary-600 text-sm font-medium">
+                Legal Guide
+                <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Legal Services Work -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">How Swiss Legal Services Work</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Our systematic approach ensures comprehensive legal support and successful resolution of your legal matters
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          {serviceData.process?.map((step: any, index: number) => (
+            <div class="flex items-start space-x-6 group">
+              <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-slate-500 to-slate-600 rounded-xl flex items-center justify-center text-white font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                {step.step}
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="font-bold text-xl">{step.title}</h3>
+                  <span class="text-sm text-slate-600 font-medium">{step.duration}</span>
+                </div>
+                <p class="text-gray-600 leading-relaxed">{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Legal Experts -->
+  <section class="py-16 bg-gray-50">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Featured <span class="gradient-text">Legal Experts</span></h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Connect with experienced legal professionals who specialize in expatriate and international legal matters
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          {companies.map((company) => (
+            <CompanyCard company={company} />
+          ))}
+        </div>
+
+        <div class="text-center mt-12">
+          <a href="/companies?service=legal-services" class="btn-primary px-8 py-4">
+            View All Legal Experts
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Essential Reading Section -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Essential <span class="gradient-text">Legal Resources</span></h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Expert legal guides and insights for understanding Swiss law and navigating legal requirements
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {blogResources.map((resource) => (
+            <a href={resource.href} class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+              <div class="mb-4">
+                <span class="text-xs font-medium px-3 py-1 bg-slate-100 text-slate-700 rounded-full">{resource.category}</span>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
+                {resource.title}
+              </h3>
+              <div class="flex items-center justify-between text-xs text-gray-500">
+                <span>{resource.readTime}</span>
+                <span class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium">
+                  Read More
+                  <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Steps CTA -->
+  <section class="py-16 bg-gradient-to-br from-slate-600 to-blue-700 text-white">
+    <div class="container">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          Ready for Professional Legal Support?
+        </h2>
+        <p class="text-xl text-white/90 mb-8">
+          Connect with legal experts who understand Swiss law and international legal requirements to protect your interests.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <button onclick="openModal('legal-consultation-modal')" class="bg-white text-slate-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors inline-flex items-center">
+            Get Legal Consultation
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7-7 7"/>
+            </svg>
+          </button>
+          <a href="/services/visa" class="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-colors inline-flex items-center">
+            Visa & Immigration
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout> 

@@ -13,6 +13,116 @@ const genevaData = {
   coordinates: { lat: 46.2044, lng: 6.1432 }
 };
 
+// Geneva-specific services with diplomatic/international specialization
+const genevaServices = [
+  {
+    title: 'Visa & Immigration Services',
+    description: 'Diplomatic visas, international organization permits, UN family member visas.',
+    href: '/services/visa-immigration',
+    icon: 'passport',
+    specialization: 'Diplomatic Visas'
+  },
+  {
+    title: 'Advisory Services',
+    description: 'International career transitions, diplomatic protocol, organization-specific guidance.',
+    href: '/services/advisory-services',
+    icon: 'lightbulb',
+    specialization: 'International Careers'
+  },
+  {
+    title: 'Cross-Cultural Services',
+    description: 'Multilingual integration, diplomatic etiquette, international community connections.',
+    href: '/services/cross-cultural',
+    icon: 'globe',
+    specialization: 'Diplomatic Culture'
+  },
+  {
+    title: 'Education Services',
+    description: 'International schools, IB programs, multilingual education options in Geneva.',
+    href: '/services/education',
+    icon: 'school',
+    specialization: 'International Education'
+  },
+  {
+    title: 'Housing Services',
+    description: 'Diplomatic housing, international district properties, family accommodations.',
+    href: '/services/housing',
+    icon: 'home',
+    specialization: 'Diplomatic Housing'
+  },
+  {
+    title: 'Legal Services',
+    description: 'International law, diplomatic immunity, organization-specific legal matters.',
+    href: '/services/legal-services',
+    icon: 'scale',
+    specialization: 'International Law'
+  },
+  {
+    title: 'Banking & Finance',
+    description: 'International banking, currency management, diplomatic financial services.',
+    href: '/services/banking',
+    icon: 'credit-card',
+    specialization: 'International Banking'
+  },
+  {
+    title: 'Health Services',
+    description: 'International insurance, multilingual healthcare, diplomatic medical coverage.',
+    href: '/services/health',
+    icon: 'heart',
+    specialization: 'International Healthcare'
+  }
+];
+
+// Additional services for comprehensive coverage
+const additionalServices = [
+  {
+    title: 'Move Management',
+    description: 'International relocations, diplomatic baggage, customs clearance.',
+    href: '/services/move-management',
+    icon: 'truck'
+  },
+  {
+    title: 'Insurance Services',
+    description: 'International coverage, diplomatic insurance, worldwide protection.',
+    href: '/services/insurance-services',
+    icon: 'shield'
+  },
+  {
+    title: 'Technology Solutions',
+    description: 'International connectivity, secure communications, organization IT support.',
+    href: '/services/technology-solutions',
+    icon: 'laptop'
+  },
+  {
+    title: 'Ongoing Support',
+    description: 'International community integration, continuous diplomatic support.',
+    href: '/services/ongoing-support',
+    icon: 'users'
+  }
+];
+
+// International organizations and sectors
+const internationalSectors = [
+  {
+    name: 'United Nations System',
+    description: 'UN Office, UNHCR, UNECE, ITU, WIPO, WMO and specialized agencies',
+    services: ['Diplomatic Visas', 'International Housing', 'Education'],
+    opportunities: 'Policy, humanitarian, development, technical cooperation'
+  },
+  {
+    name: 'Health & Humanitarian',
+    description: 'WHO, Red Cross, MSF, Gavi Alliance, Global Fund',
+    services: ['Health Services', 'Emergency Support', 'Visa Services'],
+    opportunities: 'Global health, emergency response, humanitarian aid'
+  },
+  {
+    name: 'Trade & Finance',
+    description: 'WTO, International Trade Centre, commodity trading companies',
+    services: ['Banking Services', 'Legal Services', 'Advisory'],
+    opportunities: 'International trade, commodities, financial services'
+  }
+];
+
 const schema = {
   "@context": "https://schema.org",
   "@type": "Place",

@@ -1,0 +1,485 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CompanyCard from '../../components/companies/CompanyCard.astro';
+import { getCollection } from 'astro:content';
+
+// Get the visa service content
+const services = await getCollection('services');
+const visaService = services.find(service => service.slug === 'visa' || service.slug === 'immigration-services');
+
+// Mock data for visa service if not found
+const serviceData = visaService?.data || {
+  title: 'Visa & Immigration Services',
+  description: 'Expert guidance for Swiss visas, work permits, and residency applications. Navigate complex immigration requirements with professional support and legal expertise.',
+  heroImage: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&h=900&fit=crop',
+  stats: {
+    providers: '20+',
+    avgTime: '3-12 weeks',
+    satisfaction: '4.8/5'
+  },
+  process: [
+    {
+      step: '1',
+      title: 'Immigration Assessment',
+      description: 'Comprehensive evaluation of your immigration options, eligibility requirements, and optimal pathway to Swiss residency.',
+      duration: '1-2 hours'
+    },
+    {
+      step: '2',
+      title: 'Document Preparation',
+      description: 'Systematic gathering, translation, and preparation of all required documentation for your specific permit type.',
+      duration: '2-4 weeks'
+    },
+    {
+      step: '3',
+      title: 'Application Submission',
+      description: 'Professional submission of applications to relevant Swiss authorities with expert representation.',
+      duration: '1-2 weeks'
+    },
+    {
+      step: '4',
+      title: 'Follow-up & Communication',
+      description: 'Ongoing monitoring of application progress and professional communication with immigration authorities.',
+      duration: '4-12 weeks'
+    },
+    {
+      step: '5',
+      title: 'Permit Collection',
+      description: 'Assistance with permit collection and guidance on next steps for your Swiss residency journey.',
+      duration: '1 week'
+    }
+  ]
+};
+
+// Featured companies offering visa services
+const companies = [
+  {
+    id: 'swiss-immigration-law',
+    name: 'Swiss Immigration Law Partners',
+    logo: 'https://images.pexels.com/photos/4427430/pexels-photo-4427430.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Specialized immigration law firm providing comprehensive visa and permit services for individuals and corporations.',
+    services: ['Work Permits', 'Family Visas', 'Corporate Immigration'],
+    regions: ['Zürich', 'Geneva', 'Basel'],
+    rating: 4.9,
+    reviewCount: 156,
+    consultationUrl: 'https://swissimmigrationlaw.ch/consultation',
+    quoteUrl: 'https://swissimmigrationlaw.ch/quote'
+  },
+  {
+    id: 'permit-specialists-switzerland',
+    name: 'Permit Specialists Switzerland',
+    logo: 'https://images.pexels.com/photos/7688334/pexels-photo-7688334.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Expert permit processing services with extensive experience in Swiss immigration procedures and requirements.',
+    services: ['Permit Processing', 'Document Services', 'Renewal Support'],
+    regions: ['All Swiss Cantons'],
+    rating: 4.7,
+    reviewCount: 234,
+    consultationUrl: 'https://permitspecialists.ch/book',
+    quoteUrl: 'https://permitspecialists.ch/quote'
+  },
+  {
+    id: 'executive-visa-services',
+    name: 'Executive Visa Services',
+    logo: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Premium immigration services for executives and high-net-worth individuals seeking Swiss residency.',
+    services: ['Executive Permits', 'Investment Visas', 'Premium Processing'],
+    regions: ['Zurich', 'Geneva', 'Zug'],
+    rating: 4.8,
+    reviewCount: 89,
+    consultationUrl: 'https://executivevisas.ch/consultation',
+    quoteUrl: 'https://executivevisas.ch/proposal'
+  },
+  {
+    id: 'family-immigration-experts',
+    name: 'Family Immigration Experts',
+    logo: 'https://images.pexels.com/photos/8112165/pexels-photo-8112165.jpeg?auto=compress&cs=tinysrgb&w=200',
+    description: 'Specialized family reunion and immigration services for bringing families to Switzerland.',
+    services: ['Family Reunification', 'Spouse Visas', 'Child Permits'],
+    regions: ['Basel', 'Lausanne', 'Bern'],
+    rating: 4.6,
+    reviewCount: 167,
+    consultationUrl: 'https://familyimmigration.ch/book',
+    quoteUrl: 'https://familyimmigration.ch/quote'
+  }
+];
+
+// Related services for internal linking
+const relatedServices = [
+  {
+    title: 'Housing Services',
+    description: 'Secure housing before your visa application for stronger documentation.',
+    href: '/services/housing',
+    icon: 'home'
+  },
+  {
+    title: 'Banking & Finance',
+    description: 'Establish Swiss banking relationships to support your permit application.',
+    href: '/services/banking',
+    icon: 'credit-card'
+  },
+  {
+    title: 'Advisory Services',
+    description: 'Strategic immigration planning and comprehensive relocation guidance.',
+    href: '/services/advisory-services',
+    icon: 'lightbulb'
+  },
+  {
+    title: 'Settling-in Support',
+    description: 'Complete integration support once your permit is approved.',
+    href: '/services/settling-in',
+    icon: 'check'
+  }
+];
+
+// Location-specific visa information
+const locationVisa = [
+  {
+    location: 'Zurich',
+    href: '/locations/zurich#immigration',
+    description: 'Major business hub with expedited processing for international professionals and corporate transfers.',
+    keyAspects: ['Business Focus', 'Fast Processing', 'Corporate Support'],
+    processingTime: '6-8 weeks'
+  },
+  {
+    location: 'Geneva',
+    href: '/locations/geneva#immigration',
+    description: 'International organizations and diplomatic community with specialized visa services and multilingual support.',
+    keyAspects: ['International Orgs', 'Diplomatic Support', 'Multilingual'],
+    processingTime: '8-10 weeks'
+  },
+  {
+    location: 'Basel',
+    href: '/locations/basel#immigration',
+    description: 'Pharmaceutical industry hub with cross-border expertise and family-friendly immigration services.',
+    keyAspects: ['Pharma Industry', 'Cross-Border', 'Family Focus'],
+    processingTime: '6-9 weeks'
+  },
+  {
+    location: 'Zug',
+    href: '/locations/zug',
+    description: 'Business-friendly canton with tax advantages and efficient processing for entrepreneurs and investors.',
+    keyAspects: ['Business Friendly', 'Tax Benefits', 'Entrepreneur Focus'],
+    processingTime: '4-6 weeks'
+  }
+];
+
+// Blog resources
+const blogResources = [
+  {
+    title: 'Complete Swiss Visa Guide 2024',
+    href: '/blog/swiss-visa-guide-2024',
+    category: 'Visa Types',
+    readTime: '20 min'
+  },
+  {
+    title: 'Work Permit Requirements for Switzerland',
+    href: '/blog/swiss-work-permit-requirements',
+    category: 'Work Permits',
+    readTime: '15 min'
+  },
+  {
+    title: 'EU vs Non-EU Immigration to Switzerland',
+    href: '/blog/eu-non-eu-immigration-switzerland',
+    category: 'Immigration',
+    readTime: '12 min'
+  },
+  {
+    title: 'Swiss Family Reunification Process',
+    href: '/blog/swiss-family-reunification',
+    category: 'Family Visas',
+    readTime: '18 min'
+  }
+];
+
+// Page metadata
+const title = 'Swiss Visa & Immigration Services | Work Permits & Residency Support';
+const description = 'Expert Swiss visa and immigration services. Professional assistance with work permits, residency applications, and family reunification for seamless Swiss relocation.';
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="relative py-20 bg-gradient-to-br from-blue-50 via-white to-indigo-50 overflow-hidden">
+    <div class="absolute inset-0 opacity-30">
+      <div class="absolute inset-0 bg-repeat" style="background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%232563eb%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%224%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E);"></div>
+    </div>
+
+    <div class="container relative z-10">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Content -->
+          <div class="space-y-8">
+            <!-- Breadcrumb -->
+            <nav class="flex items-center space-x-2 text-sm text-gray-600">
+              <a href="/" class="hover:text-primary-600 transition-colors">Home</a>
+              <span>→</span>
+              <a href="/services" class="hover:text-primary-600 transition-colors">Services</a>
+              <span>→</span>
+              <span class="text-gray-900">Visa & Immigration</span>
+            </nav>
+
+            <!-- Service Badge -->
+            <div class="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-medium text-sm">
+              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 0v12h8V4H6z" clip-rule="evenodd"/>
+              </svg>
+              Immigration Services
+            </div>
+
+            <!-- Title & Description -->
+            <div class="space-y-6">
+              <h1 class="text-4xl lg:text-6xl font-bold leading-tight">
+                Swiss Visa & <span class="gradient-text">Immigration Services</span>
+              </h1>
+              <p class="text-xl text-gray-600 leading-relaxed">
+                {serviceData.description}
+              </p>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-6">
+              <div class="text-center">
+                <div class="text-3xl font-bold text-blue-600">{serviceData.stats?.providers || '20+'}</div>
+                <div class="text-sm text-gray-600">Immigration Experts</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-blue-600">{serviceData.stats?.avgTime || '3-12 weeks'}</div>
+                <div class="text-sm text-gray-600">Processing Time</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-blue-600">{serviceData.stats?.satisfaction || '4.8/5'}</div>
+                <div class="text-sm text-gray-600">Success Rate</div>
+              </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="flex flex-wrap gap-4">
+              <button onclick="openModal('visa-consultation-modal')" class="btn-primary px-8 py-4">
+                Get Visa Consultation
+              </button>
+              <a href="/swiss-relocation-guide#immigration" class="btn-secondary px-8 py-4">
+                Immigration Guide
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Image -->
+          <div class="relative">
+            <img 
+              src={serviceData.heroImage} 
+              alt="Swiss Visa & Immigration Services" 
+              class="rounded-3xl shadow-2xl"
+              loading="eager"
+            />
+            <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-blue-600/20 to-transparent"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Services Section -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Related Immigration Services</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Visa applications work best when supported by housing, banking, and integration services
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {relatedServices.map((service) => (
+            <a href={service.href} class="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                {service.icon === 'home' && (
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                  </svg>
+                )}
+                {service.icon === 'credit-card' && (
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                  </svg>
+                )}
+                {service.icon === 'lightbulb' && (
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                  </svg>
+                )}
+                {service.icon === 'check' && (
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                )}
+              </div>
+              <h3 class="font-bold text-lg mb-2 group-hover:text-primary-600 transition-colors">{service.title}</h3>
+              <p class="text-gray-600 text-sm">{service.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Immigration by Location Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Immigration by <span class="gradient-text">Swiss Canton</span></h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Each Swiss canton has specific immigration procedures and processing times
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {locationVisa.map((location) => (
+            <a href={location.href} class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 group hover:-translate-y-1">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="font-bold text-xl group-hover:text-primary-600 transition-colors">{location.location}</h3>
+                <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">{location.processingTime}</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-4 leading-relaxed">{location.description}</p>
+              <div class="space-y-2">
+                <div class="text-xs font-medium text-gray-500">Key Aspects:</div>
+                <div class="flex flex-wrap gap-1">
+                  {location.keyAspects.map((aspect) => (
+                    <span class="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded-full">{aspect}</span>
+                  ))}
+                </div>
+              </div>
+              <div class="mt-4 flex items-center text-primary-600 text-sm font-medium">
+                Immigration Info
+                <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Immigration Works -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">How Swiss Immigration Works</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Our systematic approach ensures successful navigation of Swiss immigration requirements
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          {serviceData.process?.map((step, index) => (
+            <div class="flex items-start space-x-6 group">
+              <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                {step.step}
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="font-bold text-xl">{step.title}</h3>
+                  <span class="text-sm text-blue-600 font-medium">{step.duration}</span>
+                </div>
+                <p class="text-gray-600 leading-relaxed">{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Immigration Specialists -->
+  <section class="py-16 bg-gray-50">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Featured <span class="gradient-text">Immigration Specialists</span></h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Connect with expert immigration lawyers and specialists for successful Swiss visa applications
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          {companies.map((company) => (
+            <CompanyCard company={company} />
+          ))}
+        </div>
+
+        <div class="text-center mt-12">
+          <a href="/companies?service=visa" class="btn-primary px-8 py-4">
+            View All Immigration Specialists
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Essential Reading Section -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Essential <span class="gradient-text">Immigration Resources</span></h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Expert guides and up-to-date information for successful Swiss immigration
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {blogResources.map((resource) => (
+            <a href={resource.href} class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+              <div class="mb-4">
+                <span class="text-xs font-medium px-3 py-1 bg-blue-100 text-blue-700 rounded-full">{resource.category}</span>
+              </div>
+              <h3 class="text-lg font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
+                {resource.title}
+              </h3>
+              <div class="flex items-center justify-between text-xs text-gray-500">
+                <span>{resource.readTime}</span>
+                <span class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium">
+                  Read More
+                  <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Steps CTA -->
+  <section class="py-16 bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
+    <div class="container">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          Ready to Start Your Swiss Immigration?
+        </h2>
+        <p class="text-xl text-white/90 mb-8">
+          Connect with immigration specialists who will guide you through every step of obtaining your Swiss visa or permit.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <button onclick="openModal('visa-consultation-modal')" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors inline-flex items-center">
+            Get Visa Consultation
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7-7 7"/>
+            </svg>
+          </button>
+          <a href="/services/housing" class="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-colors inline-flex items-center">
+            Find Housing
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout> 
