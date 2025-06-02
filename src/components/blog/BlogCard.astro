@@ -11,12 +11,12 @@ const authorInfo = {
 ---
 
 <a href={`/blog/${post.id}`} class="card group h-full flex flex-col hover:shadow-card-hover transition-all duration-300">
-  <div class="relative overflow-hidden h-56">
+  <div class="relative overflow-hidden h-72">
     <CloudinaryImage
       src={post.image}
       alt={post.title}
       width={400}
-      height={240}
+      height={300}
       class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
       crop="fill"
       gravity="auto"
