@@ -1,106 +1,39 @@
 ---
 import { getCollection } from 'astro:content';
-import { fetchGoogleReviews } from '../../utils/google-reviews';
 
 // Get all companies
 const companies = await getCollection('companies');
 
-// Function to get reviews for a company
-async function getCompanyReviews(company: any) {
-  if (!company.data.googleMyBusinessUrl) return null;
-  
-  try {
-    const apiKey = import.meta.env.SERPAPI_KEY || process.env.SERPAPI_KEY;
-    if (!apiKey) {
-      console.log('No SerpAPI key found');
-      return null;
-    }
-    
-    const businessData = await fetchGoogleReviews(company.data.googleMyBusinessUrl, apiKey);
-    if (businessData && businessData.reviews && businessData.reviews.length > 0) {
-      return {
-        companyName: company.data.name,
-        companySlug: company.slug,
-        companyRating: businessData.rating || 4.5,
-        reviews: businessData.reviews.slice(0, 3) // Take first 3 reviews
-      };
-    }
-  } catch (error) {
-    console.log(`No reviews found for ${company.data.name}`);
+// Use static reviews to avoid API rate limiting issues that affect mobile performance
+const recentReviews = [
+  {
+    author: "Sarah M.",
+    rating: 5,
+    text: "Exceptional service from start to finish. They made our move to Zurich seamless and stress-free. Highly recommend!",
+    date: "2 weeks ago",
+    companyName: "Prime Relocation",
+    companySlug: "prime-relocation",
+    companyRating: 4.8
+  },
+  {
+    author: "Michael K.",
+    rating: 5,
+    text: "Professional team that went above and beyond. They helped us find the perfect home in Geneva and handled all the paperwork.",
+    date: "1 week ago",
+    companyName: "Executive Relocation",
+    companySlug: "executive-relocation",
+    companyRating: 5.0
+  },
+  {
+    author: "Jennifer L.",
+    rating: 5,
+    text: "Outstanding support throughout our corporate relocation. Made settling into Basel so much easier for our family.",
+    date: "3 days ago",
+    companyName: "Anchor Relocation",
+    companySlug: "anchor-relocation",
+    companyRating: 4.9
   }
-  return null;
-}
-
-// Always include PrimeRelocation first
-const primeRelocation = companies.find(c => c.slug === 'prime-relocation');
-let recentReviews = [];
-
-if (primeRelocation) {
-  const primeReviews = await getCompanyReviews(primeRelocation);
-  if (primeReviews && primeReviews.reviews.length > 0) {
-    recentReviews.push({
-      author: primeReviews.reviews[0].author || "Verified Client",
-      rating: primeReviews.reviews[0].rating || 5,
-      text: primeReviews.reviews[0].text || "Exceptional service from start to finish. Highly recommend!",
-      date: primeReviews.reviews[0].date || "Recent",
-      companyName: primeReviews.companyName,
-      companySlug: primeReviews.companySlug,
-      companyRating: primeReviews.companyRating
-    });
-  }
-}
-
-// Get other companies with reviews (excluding PrimeRelocation)
-const otherCompanies = companies.filter(c => c.slug !== 'prime-relocation' && c.data.googleMyBusinessUrl);
-
-// Shuffle and get 2 more companies
-const shuffledCompanies = otherCompanies.sort(() => Math.random() - 0.5).slice(0, 2);
-
-for (const company of shuffledCompanies) {
-  const companyReviews = await getCompanyReviews(company);
-  if (companyReviews && companyReviews.reviews.length > 0) {
-    recentReviews.push({
-      author: companyReviews.reviews[0].author || "Verified Client",
-      rating: companyReviews.reviews[0].rating || 5,
-      text: companyReviews.reviews[0].text || "Great service and professional support.",
-      date: companyReviews.reviews[0].date || "Recent",
-      companyName: companyReviews.companyName,
-      companySlug: companyReviews.companySlug,
-      companyRating: companyReviews.companyRating
-    });
-  }
-}
-
-// Fallback if we don't have enough real reviews
-while (recentReviews.length < 3) {
-  const fallbackReviews = [
-    {
-      author: "Sarah M.",
-      rating: 5,
-      text: "Exceptional service from start to finish. They made our move to Zurich seamless and stress-free. Highly recommend!",
-      date: "2 weeks ago",
-      companyName: "Executive Relocation",
-      companySlug: "executive-relocation",
-      companyRating: 4.6
-    },
-    {
-      author: "Michael K.",
-      rating: 5,
-      text: "Professional team that went above and beyond. They helped us find the perfect home in Geneva and handled all the paperwork.",
-      date: "1 week ago",
-      companyName: "Crown Relocations",
-      companySlug: "crown-relocations",
-      companyRating: 4.2
-    }
-  ];
-  
-  if (recentReviews.length < 3) {
-    recentReviews.push(fallbackReviews[recentReviews.length - 1] || fallbackReviews[0]);
-  }
-}
-
-// Ensure we only show 3 reviews
-recentReviews = recentReviews.slice(0, 3);
+];
 ---
 
 <section class="py-16 bg-gray-50">

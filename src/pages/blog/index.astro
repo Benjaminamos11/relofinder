@@ -33,6 +33,9 @@ const featuredPost = {
   author: 'Robert Kolar'
 };
 
+// Mobile-optimized featured image
+const featuredImageMobile = 'https://res.cloudinary.com/dphbnwjtx/image/upload/w_400,h_400,c_fill,f_webp,q_auto:good/v1748884983/realistic-photo-a-cheerful-cow-with-a-fl_eLiS4XoOSDWePDCfr1J1KA_ZyAf95qVRrOk5bxbfZoZuA_hzrhws.png';
+
 // Get other posts (excluding the featured one)
 const otherPosts = blogPosts.filter(post => post.id !== featuredPost.id);
 
@@ -151,15 +154,24 @@ const description = 'Expert guides, news, and advice for expats relocating to Sw
           <!-- Large Featured Post Image -->
           <div class="card overflow-hidden">
             <div class="relative h-[28rem] lg:h-[36rem]">
-              <img
-                src={featuredPost.image}
-                alt={featuredPost.title}
-                width="800"
-                height="600"
-                class="w-full h-full object-cover object-center"
-                loading="eager"
-                decoding="async"
-              />
+              <picture>
+                <!-- Mobile optimized image -->
+                <source 
+                  media="(max-width: 768px)" 
+                  srcset={featuredImageMobile}
+                  type="image/webp"
+                />
+                <!-- Desktop image -->
+                <img
+                  src={featuredPost.image}
+                  alt={featuredPost.title}
+                  width="800"
+                  height="600"
+                  class="w-full h-full object-cover object-center"
+                  loading="eager"
+                  decoding="async"
+                />
+              </picture>
               <div class="absolute top-4 right-4 bg-primary-600 text-white px-3 py-1 text-sm font-medium rounded-lg">
                 {featuredPost.category}
               </div>

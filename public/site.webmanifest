@@ -1,0 +1,16 @@
+{
+  "name": "ReloFinder - Swiss Relocation Services",
+  "short_name": "ReloFinder",
+  "description": "Find the best Swiss relocation services and companies. Expert guides, company reviews, and comprehensive resources for moving to Switzerland.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#e11d48",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+} 
