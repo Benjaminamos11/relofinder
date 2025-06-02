@@ -120,6 +120,21 @@
     @apply opacity-100 translate-y-0;
   }
 
+  /* Mobile-friendly animation - visible by default on mobile, animated on desktop */
+  .animate-on-scroll-desktop {
+    @apply opacity-100 translate-y-0 transition-all duration-700;
+  }
+
+  @media (min-width: 768px) {
+    .animate-on-scroll-desktop {
+      @apply opacity-0 translate-y-8;
+    }
+    
+    .animate-on-scroll-desktop.is-visible {
+      @apply opacity-100 translate-y-0;
+    }
+  }
+
   .prose {
     @apply text-current;
   }

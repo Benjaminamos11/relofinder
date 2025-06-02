@@ -251,7 +251,7 @@ const description = 'Expert guides, news, and advice for expats relocating to Sw
       <div class="mb-16">
         <h2 class="text-3xl font-bold mb-8">Latest <span class="text-accent-600">Articles</span></h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-on-scroll">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {otherPosts.map(post => (
             <BlogCard post={post} formatDate={formatDate} />
           ))}
@@ -308,23 +308,25 @@ const description = 'Expert guides, news, and advice for expats relocating to Sw
   </section>
   
   <script>
-    // Animate elements on scroll
+    // Simple scroll animations for elements that need them
     document.addEventListener('DOMContentLoaded', function() {
       const animateOnScrollElements = document.querySelectorAll('.animate-on-scroll');
       
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
+      if (animateOnScrollElements.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+            }
+          });
+        }, {
+          threshold: 0.2
         });
-      }, {
-        threshold: 0.2
-      });
-      
-      animateOnScrollElements.forEach(element => {
-        observer.observe(element);
-      });
+        
+        animateOnScrollElements.forEach(element => {
+          observer.observe(element);
+        });
+      }
     });
   </script>
 </Layout>
