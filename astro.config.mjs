@@ -16,8 +16,8 @@ export default defineConfig({
       customPages: [
         'https://relofinder.ch/swiss-relocation-guide',
         'https://relofinder.ch/cost-calculator',
-        'https://relofinder.ch/locations/zurich',
-        'https://relofinder.ch/locations/geneva',
+        'https://relofinder.ch/regions/zurich',
+        'https://relofinder.ch/regions/geneva',
         'https://relofinder.ch/services/corporate',
         'https://relofinder.ch/services/expat'
       ]

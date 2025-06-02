@@ -42,22 +42,22 @@
   
   <!-- Location landing pages - HIGH PRIORITY SEO PAGES -->
   <url>
-    <loc>https://relofinder.ch/locations/zurich</loc>
-    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <loc>https://relofinder.ch/regions/zurich</loc>
+    <lastmod>2024-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://relofinder.ch/locations/geneva</loc>
-    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <loc>https://relofinder.ch/regions/geneva</loc>
+    <lastmod>2024-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://relofinder.ch/locations/basel</loc>
-    <lastmod>2025-01-24T00:00:00.000Z</lastmod>
+    <loc>https://relofinder.ch/regions/basel</loc>
+    <lastmod>2024-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

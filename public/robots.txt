@@ -18,5 +18,5 @@ Disallow: /src/
 # Allow important SEO pages
 Allow: /companies/
 Allow: /services/
-Allow: /locations/
+Allow: /regions/
 Allow: /swiss-relocation-guide 

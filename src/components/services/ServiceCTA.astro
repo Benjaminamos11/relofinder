@@ -1,0 +1,29 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  buttonText: string;
+  buttonLink: string;
+}
+
+const { title, description, buttonText, buttonLink } = Astro.props;
+---
+
+<section class="py-16 bg-gradient-to-r from-blue-600 to-indigo-600">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-white mb-6">
+        {title}
+      </h2>
+      <p class="text-lg text-blue-100 mb-8">
+        {description}
+      </p>
+      <a
+        href={buttonLink}
+        class="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+      >
+        {buttonText}
+      </a>
+    </div>
+  </div>
+</section> 

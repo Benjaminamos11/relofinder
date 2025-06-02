@@ -134,7 +134,7 @@ const companies = [
 const regions = [
   {
     name: 'Zurich',
-    href: '/locations/zurich',
+    href: '/regions/zurich',
     description: 'Switzerland\'s largest medical hub with world-class hospitals and specialist clinics.',
     specialization: 'Medical Excellence',
     keyFocus: 'University Hospital, Private Clinics, Specialists',
@@ -143,7 +143,7 @@ const regions = [
   },
   {
     name: 'Geneva',
-    href: '/locations/geneva',
+    href: '/regions/geneva',
     description: 'International medical center with multilingual healthcare services and renowned specialists.',
     specialization: 'International Care',
     keyFocus: 'HUG Hospital, International Clinics, Multilingual Services',
@@ -152,7 +152,7 @@ const regions = [
   },
   {
     name: 'Zug',
-    href: '/locations/zug',
+    href: '/regions/zug',
     description: 'Efficient healthcare system with excellent coverage and modern medical facilities.',
     specialization: 'Efficient Care',
     keyFocus: 'Streamlined Services, Cost Efficiency, Modern Facilities',
@@ -161,7 +161,7 @@ const regions = [
   },
   {
     name: 'Basel',
-    href: '/locations/basel',
+    href: '/regions/basel',
     description: 'Pharmaceutical capital with cutting-edge medical research and specialized treatment options.',
     specialization: 'Research Hub',
     keyFocus: 'University Hospital, Research Centers, Innovative Treatments',
@@ -338,8 +338,8 @@ const keywords = 'swiss healthcare services, health insurance switzerland, docto
           <h2 class="text-3xl md:text-4xl font-bold mb-6">{aboutService.title}</h2>
           <p class="text-xl text-gray-600 leading-relaxed">
             {aboutService.description}
-          </p>
-        </div>
+        </p>
+      </div>
 
         <!-- Key Features Grid -->
         <div class="grid md:grid-cols-5 gap-6 mb-16">
@@ -351,7 +351,7 @@ const keywords = 'swiss healthcare services, health insurance switzerland, docto
               <p class="text-sm font-medium text-gray-900">{feature}</p>
             </div>
           ))}
-        </div>
+      </div>
 
         <!-- Benefits Grid -->
         <div class="grid md:grid-cols-2 gap-8">
@@ -385,7 +385,7 @@ const keywords = 'swiss healthcare services, health insurance switzerland, docto
               </div>
             </div>
           ))}
-        </div>
+          </div>
       </div>
     </div>
   </section>
@@ -455,7 +455,7 @@ const keywords = 'swiss healthcare services, health insurance switzerland, docto
                       <li class="flex items-center text-sm text-gray-600">
                         <svg class="w-4 h-4 text-primary-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                           <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                        </svg>
+                </svg>
                         {deliverable}
                       </li>
                     ))}
@@ -485,8 +485,8 @@ const keywords = 'swiss healthcare services, health insurance switzerland, docto
         {companies.map((company) => (
           <CompanyCard company={company} />
         ))}
-      </div>
-
+              </div>
+              
       <!-- CTA -->
       <div class="text-center mt-12">
         <button onclick="openModal('individual-lead-modal')" class="btn-primary px-8 py-4">
@@ -518,8 +518,8 @@ const keywords = 'swiss healthcare services, health insurance switzerland, docto
                 alt={`${region.name} healthcare system`}
                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
-            </div>
-
+        </div>
+        
             <!-- Content -->
             <div class="text-center space-y-4">
               <div>
@@ -540,13 +540,13 @@ const keywords = 'swiss healthcare services, health insurance switzerland, docto
                 Explore Healthcare
                 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
+              </svg>
               </a>
-            </div>
+              </div>
 
             <!-- Hover Effect -->
             <div class="absolute inset-0 rounded-3xl bg-gradient-to-r from-primary-400 to-secondary-400 opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none"></div>
-          </div>
+        </div>
         ))}
       </div>
     </div>
@@ -608,9 +608,9 @@ const keywords = 'swiss healthcare services, health insurance switzerland, docto
           </h2>
           <p class="text-xl text-gray-600">
             Everything you need to know about healthcare and health insurance in Switzerland.
-          </p>
-        </div>
-
+            </p>
+          </div>
+          
         <div class="space-y-4">
           {faqData.map((faq, index) => (
             <div class="bg-white rounded-2xl shadow-sm" x-data="{ open: false }">
@@ -641,8 +641,8 @@ const keywords = 'swiss healthcare services, health insurance switzerland, docto
                 style="display: none;"
               >
                 {faq.answer}
-              </div>
-            </div>
+          </div>
+          </div>
           ))}
         </div>
       </div>
@@ -658,7 +658,7 @@ const keywords = 'swiss healthcare services, health insurance switzerland, docto
         </h2>
         <p class="text-xl text-white/90 mb-8">
           Connect with our healthcare specialists to secure optimal insurance coverage and access the Swiss medical system with confidence.
-        </p>
+              </p>
         <div class="flex flex-wrap gap-4 justify-center">
           <button onclick="openModal('individual-lead-modal')" class="bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors inline-flex items-center">
             Schedule Healthcare Consultation
@@ -670,8 +670,8 @@ const keywords = 'swiss healthcare services, health insurance switzerland, docto
             View Complete Guide
             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-            </svg>
-          </a>
+                </svg>
+              </a>
         </div>
       </div>
     </div>

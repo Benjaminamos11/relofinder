@@ -1,0 +1,58 @@
+---
+interface BlogPost {
+  title: string;
+  slug: string;
+  excerpt: string;
+  category: string;
+  readTime: string;
+}
+
+interface Props {
+  title: string;
+  posts: BlogPost[];
+}
+
+const { title, posts } = Astro.props;
+---
+
+<section class="py-16 bg-white">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">
+      {title}
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {posts.map((post) => (
+        <a
+          href={`/blog/${post.slug}`}
+          class="group bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow"
+        >
+          <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-sm font-medium mb-4">
+            {post.category}
+          </span>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+            {post.title}
+          </h3>
+          <p class="text-gray-600 mb-4">
+            {post.excerpt}
+          </p>
+          <div class="flex items-center text-sm text-gray-500">
+            <svg
+              class="w-4 h-4 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            {post.readTime}
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section> 

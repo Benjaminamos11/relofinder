@@ -1,5 +1,9 @@
 ---
-const currentYear = new Date().getFullYear();
+interface Props {
+  showNewsletter?: boolean;
+}
+
+const { showNewsletter = true } = Astro.props;
 ---
 
 <footer class="bg-gray-900 relative overflow-hidden">

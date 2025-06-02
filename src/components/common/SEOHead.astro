@@ -1,59 +1,58 @@
 ---
-export interface Props {
+interface OpenGraph {
+  title: string;
+  description: string;
+  image: string;
+  type: string;
+  url?: string;
+}
+
+interface Twitter {
+  card: string;
+  site: string;
+  title: string;
+  description: string;
+  image: string;
+}
+
+interface Props {
   title: string;
   description: string;
   canonical?: string;
-  openGraph?: {
-    title?: string;
-    description?: string;
-    image?: string;
-    type?: string;
-  };
-  twitter?: {
-    card?: string;
-    site?: string;
-    creator?: string;
-    title?: string;
-    description?: string;
-    image?: string;
-  };
   keywords?: string[];
-  author?: string;
-  robots?: string;
   schema?: any;
+  openGraph?: OpenGraph;
+  twitter?: Twitter;
 }
 
 const {
   title,
   description,
   canonical,
-  openGraph = {},
-  twitter = {},
   keywords = [],
-  author = "ReloFinder Team",
-  robots = "index, follow",
-  schema
+  schema,
+  openGraph,
+  twitter
 } = Astro.props;
 
-const baseUrl = 'https://relofinder.ch';
-const currentUrl = canonical || `${baseUrl}${Astro.url.pathname}`;
+const siteUrl = 'https://relofinder.ch';
+const fullCanonical = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
 
 // Default Open Graph values
 const og = {
-  title: openGraph.title || title,
-  description: openGraph.description || description,
-  image: openGraph.image || `${baseUrl}/og-image.jpg`,
-  type: openGraph.type || 'website'
+  title: openGraph?.title || title,
+  description: openGraph?.description || description,
+  image: openGraph?.image || `${siteUrl}/og-image.jpg`,
+  type: openGraph?.type || 'website'
 };
 
 // Default Twitter values
 const twitterCard = {
-  card: twitter.card || 'summary_large_image',
-  site: twitter.site || '@relofinder',
-  creator: twitter.creator || '@relofinder',
-  title: twitter.title || title,
-  description: twitter.description || description,
-  image: twitter.image || og.image
+  card: twitter?.card || 'summary_large_image',
+  site: twitter?.site || '@relofinder',
+  title: twitter?.title || title,
+  description: twitter?.description || description,
+  image: twitter?.image || og.image
 };
 
 // Generate keywords string
@@ -65,32 +64,40 @@ const keywordsString = keywords.length > 0 ? keywords.join(', ') :
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
-<meta name="keywords" content={keywordsString} />
-<meta name="author" content={author} />
-<meta name="robots" content={robots} />
+{keywords.length > 0 && <meta name="keywords" content={keywordsString} />}
+<meta name="author" content="ReloFinder Team" />
+<meta name="robots" content="index, follow" />
 <meta name="language" content="en" />
 <meta name="revisit-after" content="7 days" />
 
 <!-- Canonical URL -->
-<link rel="canonical" href={currentUrl} />
+<link rel="canonical" href={fullCanonical} />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content={og.type} />
-<meta property="og:url" content={currentUrl} />
-<meta property="og:title" content={og.title} />
-<meta property="og:description" content={og.description} />
-<meta property="og:image" content={og.image} />
-<meta property="og:site_name" content="ReloFinder" />
-<meta property="og:locale" content="en_US" />
+{openGraph && (
+  <>
+    <meta property="og:type" content={og.type} />
+    <meta property="og:url" content={openGraph.url || fullCanonical} />
+    <meta property="og:title" content={og.title} />
+    <meta property="og:description" content={og.description} />
+    <meta property="og:image" content={og.image} />
+    <meta property="og:site_name" content="ReloFinder" />
+    <meta property="og:locale" content="en_US" />
+  </>
+)}
 
 <!-- Twitter -->
-<meta property="twitter:card" content={twitterCard.card} />
-<meta property="twitter:url" content={currentUrl} />
-<meta property="twitter:title" content={twitterCard.title} />
-<meta property="twitter:description" content={twitterCard.description} />
-<meta property="twitter:image" content={twitterCard.image} />
-<meta property="twitter:site" content={twitterCard.site} />
-<meta property="twitter:creator" content={twitterCard.creator} />
+{twitter && (
+  <>
+    <meta property="twitter:card" content={twitterCard.card} />
+    <meta property="twitter:url" content={fullCanonical} />
+    <meta property="twitter:title" content={twitterCard.title} />
+    <meta property="twitter:description" content={twitterCard.description} />
+    <meta property="twitter:image" content={twitterCard.image} />
+    <meta property="twitter:site" content={twitterCard.site} />
+    <meta property="twitter:creator" content="@relofinder" />
+  </>
+)}
 
 <!-- Additional SEO Meta Tags -->
 <meta name="theme-color" content="#2563eb" />
@@ -104,11 +111,11 @@ const keywordsString = keywords.length > 0 ? keywords.join(', ') :
 <meta name="ICBM" content="46.8182, 8.2275" />
 
 <!-- Hreflang for International SEO -->
-<link rel="alternate" hreflang="en" href={currentUrl} />
-<link rel="alternate" hreflang="de" href={baseUrl + '/de' + Astro.url.pathname} />
-<link rel="alternate" hreflang="fr" href={baseUrl + '/fr' + Astro.url.pathname} />
-<link rel="alternate" hreflang="it" href={baseUrl + '/it' + Astro.url.pathname} />
-<link rel="alternate" hreflang="x-default" href={currentUrl} />
+<link rel="alternate" hreflang="en" href={fullCanonical} />
+<link rel="alternate" hreflang="de" href={siteUrl + '/de' + Astro.url.pathname} />
+<link rel="alternate" hreflang="fr" href={siteUrl + '/fr' + Astro.url.pathname} />
+<link rel="alternate" hreflang="it" href={siteUrl + '/it' + Astro.url.pathname} />
+<link rel="alternate" hreflang="x-default" href={fullCanonical} />
 
 <!-- Favicons and Icons -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

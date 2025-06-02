@@ -1,109 +1,25 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import BlogCard from '../../components/blog/BlogCard.astro';
+import { getCollection } from 'astro:content';
 
-// Sample blog posts
-const blogPosts = [
-  {
-    id: 'swiss-visa-guide',
-    title: 'Complete Guide to Swiss Visa and Residence Permits',
-    excerpt: 'Navigate the complexities of Swiss immigration with our step-by-step guide to various permit types and application processes.',
-    image: 'https://images.pexels.com/photos/1201488/pexels-photo-1201488.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'Guides',
-    author: 'Maria Schmidt',
-    authorImage: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=100',
-    date: '2025-04-12',
-    readTime: '8 min read'
-  },
-  {
-    id: 'swiss-tax-system',
-    title: 'Understanding the Swiss Tax System for Expats',
-    excerpt: 'Learn about federal, cantonal, and municipal taxes in Switzerland, along with available deductions and how to file your first tax return.',
-    image: 'https://images.pexels.com/photos/53621/calculator-calculation-insurance-finance-53621.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'Finances',
-    author: 'Thomas Weber',
-    authorImage: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100',
-    date: '2025-04-05',
-    readTime: '10 min read'
-  },
-  {
-    id: 'renting-in-zurich',
-    title: 'Finding an Apartment in Zürich: Tips and Tricks',
-    excerpt: 'Discover strategies for navigating Zürich\'s competitive rental market, understanding rental contracts, and securing your ideal home.',
-    image: 'https://images.pexels.com/photos/15500792/pexels-photo-15500792/free-photo-of-view-of-zurich-cityscape.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'Housing',
-    author: 'Sophie Keller',
-    authorImage: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100',
-    date: '2025-03-28',
-    readTime: '7 min read'
-  },
-  {
-    id: 'swiss-healthcare-system',
-    title: 'Navigating the Swiss Healthcare System: A Comprehensive Guide',
-    excerpt: 'Everything you need to know about health insurance requirements, finding doctors, and accessing medical care in Switzerland.',
-    image: 'https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'Healthcare',
-    author: 'Dr. Andreas Müller',
-    authorImage: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=100',
-    date: '2025-03-20',
-    readTime: '9 min read'
-  },
-  {
-    id: 'public-transportation',
-    title: 'Master the Swiss Public Transportation System',
-    excerpt: 'A guide to trains, trams, buses, and passes that will help you navigate Switzerland\'s world-class public transportation network.',
-    image: 'https://images.pexels.com/photos/1209978/pexels-photo-1209978.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'Transportation',
-    author: 'Laura Blanc',
-    authorImage: 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=100',
-    date: '2025-03-15',
-    readTime: '6 min read'
-  },
-  {
-    id: 'swiss-banking-basics',
-    title: 'Swiss Banking Basics for Expats',
-    excerpt: 'Learn how to open a bank account, understand different account types, and manage your finances efficiently in Switzerland.',
-    image: 'https://images.pexels.com/photos/164501/pexels-photo-164501.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'Finances',
-    author: 'Thomas Weber',
-    authorImage: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100',
-    date: '2025-03-08',
-    readTime: '8 min read'
-  },
-  {
-    id: 'international-schools',
-    title: 'International Schools in Switzerland: Options for Expat Families',
-    excerpt: 'A comprehensive overview of international schools across Switzerland, including curricula, fees, and admission processes.',
-    image: 'https://images.pexels.com/photos/207692/pexels-photo-207692.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'Education',
-    author: 'Emma Johnson',
-    authorImage: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=100',
-    date: '2025-03-01',
-    readTime: '11 min read'
-  },
-  {
-    id: 'swiss-culture-etiquette',
-    title: 'Swiss Culture and Etiquette: What Expats Should Know',
-    excerpt: 'Understand Swiss social norms, business etiquette, and cultural practices to help you integrate smoothly into Swiss society.',
-    image: 'https://images.pexels.com/photos/2835436/pexels-photo-2835436.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'Culture',
-    author: 'Maria Schmidt',
-    authorImage: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=100',
-    date: '2025-02-22',
-    readTime: '7 min read'
-  },
-  {
-    id: 'swiss-job-market',
-    title: 'Navigating the Swiss Job Market as an Expatriate',
-    excerpt: 'Insights into finding employment, understanding work culture, and building a successful career in Switzerland.',
-    image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'Career',
-    author: 'Daniel Schmid',
-    authorImage: 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=100',
-    date: '2025-02-15',
-    readTime: '9 min read'
-  },
-];
+// Get blog posts from content collection
+const allBlogPosts = await getCollection('blog');
+
+// Sort by publish date (newest first) and format for display
+const blogPosts = allBlogPosts
+  .sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())
+  .map(post => ({
+    id: post.slug,
+    title: post.data.title,
+    excerpt: post.data.description,
+    image: 'https://images.pexels.com/photos/1201488/pexels-photo-1201488.jpeg?auto=compress&cs=tinysrgb&w=800', // Default image for now
+    category: post.data.category,
+    author: post.data.author,
+    authorImage: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=100', // Default author image
+    date: post.data.publishDate.toISOString().split('T')[0],
+    readTime: `${post.data.readingTime} min read`
+  }));
 
 // Define categories with colors
 const categories = [
@@ -117,6 +33,7 @@ const categories = [
   { id: 'career', name: 'Career', color: 'bg-blue-600' },
   { id: 'news', name: 'News', color: 'bg-secondary-600' },
   { id: 'expat-stories', name: 'Expat Stories', color: 'bg-orange-600' },
+  { id: 'relocation-guide', name: 'Relocation Guide', color: 'bg-primary-700' },
 ];
 
 // Format date helper function
