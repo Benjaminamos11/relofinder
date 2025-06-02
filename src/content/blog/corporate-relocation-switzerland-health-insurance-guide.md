@@ -1,47 +1,17 @@
 ---
-title: "Corporate Relocation to Switzerland: Health Insurance Guide for HR Managers"
-description: "Essential health insurance guide for HR managers and corporate relocation to Switzerland. Support employees with requirements, costs, and setup strategies."
-author: "ReloFinder.ch Team"
-publishDate: 2025-01-23
-updatedDate: 2025-01-23
-heroImage: "https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg?auto=compress&cs=tinysrgb&w=1600"
+title: "Corporate Relocation Switzerland: Health Insurance Guide for HR & Employees"
+description: "Complete HR guide to managing health insurance during corporate relocations to Switzerland. Learn employer responsibilities, employee requirements, compliance deadlines, and cost management strategies for seamless transitions."
+author: "Robert Kolar"
+publishDate: 2025-01-16
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748885751/a-cinematic-portrait-photograph-captures_NO393q5YSU6pc6COWl4_ag_YUCOCrDhRtOEkjGJVEr8jA_wu9hrn.png"
 category: "Corporate Relocation"
-tags:
-  - "corporate relocation"
-  - "HR management"
-  - "employee benefits"
-  - "health insurance"
-  - "switzerland relocation"
-  - "employee support"
-  - "relocation packages"
-  - "international assignments"
-  - "expat benefits"
-  - "corporate benefits"
-readingTime: 15
+tags: ["corporate relocation", "HR health insurance", "employee relocation", "Swiss health insurance", "compliance", "employer responsibilities"]
+readingTime: 16
 featured: true
-relatedRegions:
-  - "zurich"
-  - "geneva"
-  - "basel"
-  - "zug"
-relatedServices:
-  - "advisory-services"
-  - "visa"
-  - "corporate"
-seo:
-  title: "Corporate Relocation to Switzerland: Health Insurance Guide for HR Managers | ReloFinder"
-  description: "Essential health insurance guide for HR managers coordinating corporate relocation to Switzerland. Employee support strategies, costs, and setup guidance."
-  keywords:
-    - "corporate relocation Switzerland health insurance"
-    - "employee relocation Switzerland health benefits"
-    - "HR manager Switzerland health insurance"
-    - "corporate health insurance Switzerland"
-    - "international assignment health benefits"
-    - "employee relocation support Switzerland"
-    - "corporate benefits Switzerland"
-    - "HR relocation services Switzerland"
-    - "international employee benefits Switzerland"
-    - "corporate relocation packages Switzerland"
+relatedRegions: ["zurich", "geneva", "basel", "bern"]
+relatedServices: ["advisory-services", "insurance-services", "banking-finance"]
+seoKeywords: "corporate relocation Switzerland health insurance, HR health insurance guide Switzerland, employee relocation health insurance, Swiss corporate health insurance compliance"
+excerpt: "Essential HR guide for managing health insurance during corporate relocations to Switzerland. Understand employer responsibilities, compliance requirements, and strategies for smooth employee transitions."
 ---
 
 # Corporate Relocation to Switzerland: Health Insurance Guide for HR Managers

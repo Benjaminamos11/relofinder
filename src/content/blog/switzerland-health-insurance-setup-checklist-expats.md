@@ -1,51 +1,20 @@
 ---
-title: "Switzerland Health Insurance Setup: Complete Checklist for New Expats"
-description: "Step-by-step checklist for setting up health insurance in Switzerland. Complete guide for new expats with documents, providers, and enrollment process."
-author: "ReloFinder.ch Team"
-publishDate: 2025-01-24
-updatedDate: 2025-01-24
-heroImage: "https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=1600"
-category: "Expat Guide"
-tags:
-  - "health insurance setup"
-  - "expat checklist"
-  - "newcomers switzerland"
-  - "health insurance enrollment"
-  - "swiss healthcare"
-  - "insurance providers"
-  - "documentation requirements"
-  - "relocation checklist"
-  - "expat guide"
-  - "insurance application"
-readingTime: 10
+title: "Switzerland Health Insurance Setup Checklist for Expats: Step-by-Step Guide"
+description: "Complete checklist for setting up Swiss health insurance as an expat. Step-by-step guide covering KVG enrollment, document requirements, deadlines, and cost optimization strategies for new residents."
+author: "Robert Kolar"
+publishDate: 2025-01-17
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748885751/a-heartwarming-lifestyle-advertisement-f_DMNSFNRpQqSl3r-4uQSmmA_r6ym3MciQb6stfCqngXhAA_x9qngn.png"
+category: "Health Insurance"
+tags: ["health insurance setup", "expat checklist", "Swiss health insurance", "KVG enrollment", "new residents", "insurance comparison"]
+readingTime: 18
 featured: true
-relatedRegions:
-  - "zurich"
-  - "geneva"
-  - "basel"
-  - "bern"
-  - "lausanne"
-relatedServices:
-  - "advisory-services"
-  - "visa"
-  - "housing"
-seo:
-  title: "Switzerland Health Insurance Setup: Complete Checklist for New Expats | ReloFinder"
-  description: "Step-by-step health insurance setup checklist for Switzerland. Complete guide for new expats with required documents, provider selection, and enrollment process."
-  keywords:
-    - "Switzerland relocation checklist health insurance"
-    - "newcomers Switzerland health insurance"
-    - "health insurance setup checklist Switzerland"
-    - "new expats Switzerland health insurance"
-    - "Switzerland health insurance enrollment guide"
-    - "expat health insurance setup Switzerland"
-    - "Swiss health insurance documents required"
-    - "health insurance application Switzerland"
-    - "Switzerland health insurance providers"
-    - "newcomer health insurance Switzerland"
+relatedRegions: ["zurich", "geneva", "basel", "bern", "lausanne"]
+relatedServices: ["advisory-services", "insurance-services"]
+seoKeywords: "Switzerland health insurance setup checklist, expat health insurance Switzerland, KVG enrollment guide, Swiss health insurance comparison, health insurance deadlines Switzerland"
+excerpt: "Essential step-by-step checklist for expats setting up health insurance in Switzerland. Complete guide to KVG enrollment, document requirements, and cost optimization strategies."
 ---
 
-# Switzerland Health Insurance Setup: Complete Checklist for New Expats
+# Switzerland Health Insurance Setup Checklist for Expats: Step-by-Step Guide
 
 *Your step-by-step guide to successfully setting up health insurance when relocating to Switzerland*
 

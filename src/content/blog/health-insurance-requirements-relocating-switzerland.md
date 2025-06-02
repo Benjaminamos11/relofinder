@@ -1,47 +1,17 @@
 ---
-title: "Health Insurance Requirements When Relocating to Switzerland: Essential Timeline for New Arrivals"
-description: "Complete guide to Swiss health insurance requirements when relocating. Understand the 90-day deadline, setup process, and essential timeline for new arrivals to Switzerland."
-author: "ReloFinder.ch Team"
-publishDate: 2025-01-22
-updatedDate: 2025-01-22
-heroImage: "https://images.pexels.com/photos/5452268/pexels-photo-5452268.jpeg?auto=compress&cs=tinysrgb&w=1600"
+title: "Health Insurance Requirements When Relocating to Switzerland: A Complete Guide"
+description: "Essential guide to mandatory Swiss health insurance requirements for expats and relocating professionals. Learn about KVG basic coverage, supplemental options, enrollment deadlines, and cost-saving strategies for 2025."
+author: "Robert Kolar"
+publishDate: 2025-01-15
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748885750/a-humorous-product-advertisement-for-swi_k6XrPMhfRuWoahj1I5qpJA_eWnILr4CTTiQJn16LPxwlw_y2oltt.png"
 category: "Health Insurance"
-tags:
-  - "health insurance"
-  - "relocating to switzerland"
-  - "swiss healthcare"
-  - "90-day deadline"
-  - "new arrivals"
-  - "expat health insurance"
-  - "mandatory insurance"
-  - "residence permit"
-  - "healthcare timeline"
-  - "swiss bureaucracy"
-readingTime: 12
+tags: ["health insurance", "Swiss health insurance", "KVG", "mandatory insurance", "expat health coverage", "relocation requirements"]
+readingTime: 14
 featured: true
-relatedRegions:
-  - "zurich"
-  - "geneva"
-  - "basel"
-  - "bern"
-relatedServices:
-  - "visa"
-  - "advisory-services"
-  - "housing"
-seo:
-  title: "Health Insurance Requirements When Relocating to Switzerland: Essential Timeline | ReloFinder"
-  description: "Complete guide to Swiss health insurance requirements when relocating. Understand the 90-day deadline, setup process, and essential timeline for new arrivals to Switzerland."
-  keywords:
-    - "relocating to Switzerland health insurance"
-    - "Switzerland health insurance 90 days deadline"
-    - "new arrivals Switzerland health insurance"
-    - "Swiss healthcare requirements relocation"
-    - "mandatory health insurance Switzerland expats"
-    - "relocating Swiss health insurance timeline"
-    - "Switzerland residency health insurance"
-    - "expat health insurance Switzerland"
-    - "Swiss healthcare system newcomers"
-    - "health insurance setup Switzerland relocation"
+relatedRegions: ["zurich", "geneva", "basel", "bern", "lausanne"]
+relatedServices: ["advisory-services", "insurance-services"]
+seoKeywords: "Swiss health insurance requirements, mandatory health insurance Switzerland, KVG health insurance, expat health insurance Switzerland, health insurance relocation Switzerland"
+excerpt: "Navigate Switzerland's mandatory health insurance system with confidence. This comprehensive guide covers KVG requirements, enrollment deadlines, costs, and essential tips for expats relocating to Switzerland."
 ---
 
 # Health Insurance Requirements When Relocating to Switzerland: Essential Timeline for New Arrivals

@@ -2,7 +2,7 @@
 title: "Cost of Relocating to Switzerland: A Comprehensive Budgeting Guide"
 description: "Complete guide to relocation costs Switzerland. Plan your budget for moving to Switzerland with detailed expense breakdowns, sample scenarios, and money-saving tips for 2025."
 publishDate: 2025-01-18
-heroImage: "https://images.pexels.com/photos/164652/pexels-photo-164652.jpeg?auto=compress&cs=tinysrgb&w=800"
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748884983/a-whimsical-product-advertisement-for-al_RHzQvnmuQZuAXYdnLi-eAA_fo6VA3RiRgG7yx5EgUrQ8Q_en3ega.png"
 featured: true
 category: "Relocation Guide"
 tags: ["relocation costs", "budgeting", "moving expenses", "financial planning", "expat finances"]

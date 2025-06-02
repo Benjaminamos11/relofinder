@@ -1,0 +1,106 @@
+---
+export interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+  quality?: 'auto' | number;
+  format?: 'auto' | 'webp' | 'jpg' | 'png';
+  crop?: 'fill' | 'fit' | 'scale' | 'crop';
+  gravity?: 'auto' | 'face' | 'center';
+}
+
+const {
+  src,
+  alt,
+  class: className = '',
+  width = 800,
+  height,
+  loading = 'lazy',
+  quality = 'auto',
+  format = 'auto',
+  crop = 'fill',
+  gravity = 'auto'
+} = Astro.props;
+
+// Check if it's a Cloudinary URL
+const isCloudinaryUrl = src.includes('cloudinary.com') || src.includes('res.cloudinary.com');
+
+let optimizedSrc = src;
+let srcSet = '';
+
+if (isCloudinaryUrl) {
+  try {
+    // Extract base URL and public ID from Cloudinary URL
+    const urlParts = src.split('/upload/');
+    if (urlParts.length === 2) {
+      const baseUrl = urlParts[0] + '/upload/';
+      const pathAfterUpload = urlParts[1];
+      
+      // Remove any existing transformations (if they exist)
+      const publicIdParts = pathAfterUpload.split('/');
+      const publicId = publicIdParts[publicIdParts.length - 1];
+      
+      // Build transformation parameters
+      const transforms: string[] = [];
+      
+      // Quality and format optimization
+      transforms.push(`q_${quality}`);
+      transforms.push(`f_${format}`);
+      
+      // Responsive sizing with crop
+      if (height) {
+        transforms.push(`w_${width},h_${height},c_${crop}`);
+      } else {
+        transforms.push(`w_${width},c_${crop}`);
+      }
+      
+      // Gravity for smart cropping
+      if (gravity && gravity !== 'auto') {
+        transforms.push(`g_${gravity}`);
+      }
+      
+      // DPR (Device Pixel Ratio) for retina displays
+      transforms.push('dpr_auto');
+      
+      const transformString = transforms.join(',');
+      optimizedSrc = `${baseUrl}${transformString}/${publicId}`;
+      
+      // Create responsive srcSet for different screen sizes
+      const sizes = [320, 480, 640, 768, 1024, 1280];
+      srcSet = sizes.map(size => {
+        const responsiveTransforms = transforms.map((t: string) => {
+          if (t.startsWith('w_')) {
+            return `w_${size}`;
+          }
+          return t;
+        }).join(',');
+        return `${baseUrl}${responsiveTransforms}/${publicId} ${size}w`;
+      }).join(', ');
+    }
+  } catch (error) {
+    // Fallback to original URL if transformation fails
+    console.warn('Cloudinary transformation failed, using original URL:', error);
+    optimizedSrc = src;
+    srcSet = '';
+  }
+}
+
+// Default sizes attribute for responsive images
+const responsiveSizes = '(max-width: 480px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 70vw';
+---
+
+<img
+  src={optimizedSrc}
+  srcset={srcSet || undefined}
+  sizes={srcSet ? responsiveSizes : undefined}
+  alt={alt}
+  class={className}
+  loading={loading}
+  width={width}
+  height={height}
+  decoding="async"
+  onerror="this.src='https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=800&q=80'"
+/> 

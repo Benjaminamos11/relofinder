@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import BlogCard from '../../components/blog/BlogCard.astro';
+import CloudinaryImage from '../../components/common/CloudinaryImage.astro';
 import { getCollection } from 'astro:content';
 
 // Get blog posts from content collection
@@ -13,13 +14,16 @@ const blogPosts = allBlogPosts
     id: post.slug,
     title: post.data.title,
     excerpt: post.data.description,
-    image: 'https://images.pexels.com/photos/1201488/pexels-photo-1201488.jpeg?auto=compress&cs=tinysrgb&w=800', // Default image for now
+    image: post.data.heroImage, // Use actual heroImage from post
     category: post.data.category,
     author: post.data.author,
     authorImage: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=100', // Default author image
     date: post.data.publishDate.toISOString().split('T')[0],
     readTime: `${post.data.readingTime} min read`
   }));
+
+// Get featured post (first/newest post)
+const featuredPost = blogPosts[0];
 
 // Define categories with colors
 const categories = [
@@ -99,29 +103,43 @@ const description = 'Expert guides, news, and advice for expats relocating to Sw
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div class="card overflow-hidden">
             <div class="relative h-64 lg:h-full">
-              <img 
-                src="https://images.pexels.com/photos/1201488/pexels-photo-1201488.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Complete Guide to Swiss Visa and Residence Permits" 
+              <CloudinaryImage
+                src={featuredPost.image}
+                alt={featuredPost.title}
+                width={600}
+                height={400}
                 class="w-full h-full object-cover"
+                crop="fill"
+                gravity="auto"
+                loading="eager"
               />
               <div class="absolute top-0 right-0 bg-primary-600 text-white px-3 py-1 text-sm font-medium">
-                Guides
+                {featuredPost.category}
               </div>
             </div>
           </div>
           
           <div class="p-6 lg:p-8 flex flex-col">
             <div class="flex items-center mb-4">
-              <img src="https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Maria Schmidt" class="w-10 h-10 rounded-full mr-3 object-cover" />
+              <CloudinaryImage
+                src="https://res.cloudinary.com/dphbnwjtx/image/upload/v1747501071/6758848048b5cdaf6ebe884f_WhatsApp_Image_2024-12-11_at_01.55.01_oruhjs.webp"
+                alt="Robert Kolar"
+                width={40}
+                height={40}
+                class="w-10 h-10 rounded-full mr-3 object-cover"
+                crop="fill"
+                gravity="face"
+                loading="eager"
+              />
               <div>
-                <p class="text-sm font-medium">Maria Schmidt</p>
-                <p class="text-xs text-accent-500">April 12, 2025 · 8 min read</p>
+                <p class="text-sm font-medium">Robert Kolar</p>
+                <p class="text-xs text-accent-500">{formatDate(featuredPost.date)} · {featuredPost.readTime}</p>
               </div>
             </div>
             
-            <h3 class="text-2xl md:text-3xl font-bold mb-4">Complete Guide to Swiss Visa and Residence Permits</h3>
+            <h3 class="text-2xl md:text-3xl font-bold mb-4">{featuredPost.title}</h3>
             <p class="text-accent-600 mb-6 text-lg">
-              Navigate the complexities of Swiss immigration with our step-by-step guide to various permit types and application processes. Learn about requirements, documentation, and important timelines for different permit categories.
+              {featuredPost.excerpt}
             </p>
             
             <ul class="space-y-3 mb-6">
@@ -129,23 +147,23 @@ const description = 'Expert guides, news, and advice for expats relocating to Sw
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                 </svg>
-                <span>Different permit types (B, C, G, L) explained</span>
+                <span>Expert insights and practical advice</span>
               </li>
               <li class="flex items-start">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                 </svg>
-                <span>Application process and required documents</span>
+                <span>Step-by-step guidance and checklists</span>
               </li>
               <li class="flex items-start">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                 </svg>
-                <span>Timeline expectations and renewal procedures</span>
+                <span>Updated for 2025 requirements</span>
               </li>
             </ul>
             
-            <a href="/blog/swiss-visa-guide" class="btn-primary mt-auto self-start">
+            <a href={`/blog/${featuredPost.id}`} class="btn-primary mt-auto self-start">
               Read Full Article
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />

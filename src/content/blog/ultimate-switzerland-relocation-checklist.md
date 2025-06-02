@@ -4,7 +4,7 @@ description: "Your comprehensive checklist for moving to Switzerland. Covers pre
 author: "ReloFinder.ch Team"
 publishDate: 2025-01-20
 updatedDate: 2025-01-20
-heroImage: "https://images.pexels.com/photos/1661546/pexels-photo-1661546.jpeg?auto=compress&cs=tinysrgb&w=1600"
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748884983/realistic-photo-a-cheerful-cow-with-a-fl_eLiS4XoOSDWePDCfr1J1KA_ZyAf95qVRrOk5bxbfZoZuA_hzrhws.png"
 category: "Relocation Guide"
 tags:
   - "relocation checklist"
