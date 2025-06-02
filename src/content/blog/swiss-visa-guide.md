@@ -1,8 +1,8 @@
 ---
 title: "Complete Guide to Swiss Visa and Residence Permits"
 description: "Navigate the complexities of Swiss immigration with our step-by-step guide to various permit types and application processes."
-author: "Maria Schmidt"
-publishDate: 2024-02-12
+author: "Robert Kolar"
+publishDate: 2025-06-01
 updatedDate: 2024-02-12
 heroImage: "https://images.pexels.com/photos/1201488/pexels-photo-1201488.jpeg?auto=compress&cs=tinysrgb&w=800"
 category: "Immigration"

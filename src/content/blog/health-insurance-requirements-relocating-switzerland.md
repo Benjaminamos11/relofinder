@@ -1,17 +1,13 @@
 ---
-title: "Health Insurance Requirements When Relocating to Switzerland: A Complete Guide"
-description: "Essential guide to mandatory Swiss health insurance requirements for expats and relocating professionals. Learn about KVG basic coverage, supplemental options, enrollment deadlines, and cost-saving strategies for 2025."
-author: "Robert Kolar"
-publishDate: 2025-01-15
-heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748885750/a-humorous-product-advertisement-for-swi_k6XrPMhfRuWoahj1I5qpJA_eWnILr4CTTiQJn16LPxwlw_y2oltt.png"
+title: "Health Insurance Requirements When Relocating to Switzerland"
+description: "Complete guide to Swiss health insurance requirements when relocating. Understand the 90-day deadline, setup process, and essential timeline for new arrivals."
 category: "Health Insurance"
-tags: ["health insurance", "Swiss health insurance", "KVG", "mandatory insurance", "expat health coverage", "relocation requirements"]
-readingTime: 14
-featured: true
-relatedRegions: ["zurich", "geneva", "basel", "bern", "lausanne"]
-relatedServices: ["advisory-services", "insurance-services"]
-seoKeywords: "Swiss health insurance requirements, mandatory health insurance Switzerland, KVG health insurance, expat health insurance Switzerland, health insurance relocation Switzerland"
-excerpt: "Navigate Switzerland's mandatory health insurance system with confidence. This comprehensive guide covers KVG requirements, enrollment deadlines, costs, and essential tips for expats relocating to Switzerland."
+publishDate: 2025-06-01
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748885750/a-humorous-product-advertisement-for-swi_k6XrPMhfRuWoahj1I5qpJA_eWnILr4CTTiQJn16LPxwlw_y2oltt.png"
+readingTime: 12
+tags: ["health insurance switzerland", "swiss insurance requirements", "relocation health insurance", "swiss healthcare system", "mandatory insurance"]
+author: "Robert Kolar"
+excerpt: "Complete guide to Swiss health insurance requirements when relocating. Understand the 90-day deadline, setup process, and essential timeline for new arrivals."
 ---
 
 # Health Insurance Requirements When Relocating to Switzerland: Essential Timeline for New Arrivals

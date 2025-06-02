@@ -161,10 +161,8 @@ const currentUrl = `https://relofinder.ch/blog/${post.slug}`;
                 src={post.data.heroImage}
                 alt={post.data.title}
                 width={600}
-                height={400}
-                class="w-full h-64 lg:h-80 object-cover rounded-2xl shadow-2xl"
-                crop="fill"
-                gravity="auto"
+                height={450}
+                class="w-full h-[22rem] lg:h-[26rem] object-cover rounded-2xl shadow-2xl"
                 loading="eager"
               />
               <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-gray-900">
@@ -238,14 +236,12 @@ const currentUrl = `https://relofinder.ch/blog/${post.slug}`;
           <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-white/50 p-8 lg:p-12">
             <div class="flex flex-col lg:flex-row items-center gap-8">
               <div class="flex-shrink-0">
-                <CloudinaryImage
+                <img
                   src={authorInfo.image}
                   alt={authorInfo.name}
-                  width={120}
-                  height={120}
+                  width="120"
+                  height="120"
                   class="w-24 h-24 md:w-30 md:h-30 rounded-full object-cover border-4 border-primary-200"
-                  crop="fill"
-                  gravity="face"
                   loading="lazy"
                 />
               </div>

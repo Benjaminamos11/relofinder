@@ -12,15 +12,14 @@ const authorInfo = {
 
 <a href={`/blog/${post.id}`} class="card group h-full flex flex-col hover:shadow-card-hover transition-all duration-300">
   <div class="relative overflow-hidden h-72">
-    <CloudinaryImage
+    <img
       src={post.image}
       alt={post.title}
-      width={400}
-      height={300}
+      width="400"
+      height="300"
       class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
-      crop="fill"
-      gravity="auto"
       loading="lazy"
+      decoding="async"
     />
     <div class="absolute top-0 right-0 bg-primary-600 text-white px-3 py-1 text-sm font-medium rounded-bl-lg">
       {post.category}
@@ -29,15 +28,14 @@ const authorInfo = {
   
   <div class="p-6 flex flex-col flex-grow">
     <div class="flex items-center mb-4">
-      <CloudinaryImage
+      <img
         src={authorInfo.image}
         alt={authorInfo.name}
-        width={32}
-        height={32}
+        width="32"
+        height="32"
         class="w-8 h-8 rounded-full mr-3 object-cover"
-        crop="fill"
-        gravity="face"
         loading="lazy"
+        decoding="async"
       />
       <div>
         <p class="text-sm font-medium">{authorInfo.name}</p>

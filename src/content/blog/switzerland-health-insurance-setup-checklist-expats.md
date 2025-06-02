@@ -2,7 +2,7 @@
 title: "Switzerland Health Insurance Setup Checklist for Expats: Step-by-Step Guide"
 description: "Complete checklist for setting up Swiss health insurance as an expat. Step-by-step guide covering KVG enrollment, document requirements, deadlines, and cost optimization strategies for new residents."
 author: "Robert Kolar"
-publishDate: 2025-01-17
+publishDate: 2025-06-01
 heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748885751/a-heartwarming-lifestyle-advertisement-f_DMNSFNRpQqSl3r-4uQSmmA_r6ym3MciQb6stfCqngXhAA_x9qngn.png"
 category: "Health Insurance"
 tags: ["health insurance setup", "expat checklist", "Swiss health insurance", "KVG enrollment", "new residents", "insurance comparison"]

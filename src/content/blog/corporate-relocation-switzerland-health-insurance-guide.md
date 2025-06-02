@@ -1,17 +1,13 @@
 ---
-title: "Corporate Relocation Switzerland: Health Insurance Guide for HR & Employees"
-description: "Complete HR guide to managing health insurance during corporate relocations to Switzerland. Learn employer responsibilities, employee requirements, compliance deadlines, and cost management strategies for seamless transitions."
-author: "Robert Kolar"
-publishDate: 2025-01-16
-heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748885751/a-cinematic-portrait-photograph-captures_NO393q5YSU6pc6COWl4_ag_YUCOCrDhRtOEkjGJVEr8jA_wu9hrn.png"
+title: "Corporate Relocation to Switzerland: Health Insurance Guide for Companies"
+description: "Essential guide for companies relocating employees to Switzerland. Learn about Swiss health insurance requirements, employer responsibilities, and how to ensure compliance for corporate relocations."
 category: "Corporate Relocation"
-tags: ["corporate relocation", "HR health insurance", "employee relocation", "Swiss health insurance", "compliance", "employer responsibilities"]
-readingTime: 16
-featured: true
-relatedRegions: ["zurich", "geneva", "basel", "bern"]
-relatedServices: ["advisory-services", "insurance-services", "banking-finance"]
-seoKeywords: "corporate relocation Switzerland health insurance, HR health insurance guide Switzerland, employee relocation health insurance, Swiss corporate health insurance compliance"
-excerpt: "Essential HR guide for managing health insurance during corporate relocations to Switzerland. Understand employer responsibilities, compliance requirements, and strategies for smooth employee transitions."
+publishDate: 2025-06-01
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748885751/a-cinematic-portrait-photograph-captures_NO393q5YSU6pc6COWl4_ag_YUCOCrDhRtOEkjGJVEr8jA_wu9hrn.png"
+readingTime: 12
+tags: ["corporate relocation Switzerland", "company health insurance", "employee relocation", "Swiss business insurance", "HR relocation guide"]
+author: "Robert Kolar"
+excerpt: "Essential guide for companies relocating employees to Switzerland. Understand health insurance obligations, compliance requirements, and best practices for successful corporate relocations."
 ---
 
 # Corporate Relocation to Switzerland: Health Insurance Guide for HR Managers

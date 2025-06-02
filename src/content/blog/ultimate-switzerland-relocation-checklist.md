@@ -1,23 +1,23 @@
 ---
-title: "The Ultimate Switzerland Relocation Checklist: Your Step-by-Step Guide"
-description: "Your comprehensive checklist for moving to Switzerland. Covers pre-move planning (6-12 months), visas, housing, registration, health insurance, banking, and settling in. Essential for expats, professionals, and HR."
-author: "ReloFinder.ch Team"
-publishDate: 2025-01-20
+title: "Ultimate Switzerland Relocation Checklist: Complete Moving Guide 2025"
+description: "Your comprehensive Switzerland relocation checklist with everything you need to know. From visa applications to housing, banking, and settling in - this ultimate guide covers every step of your Swiss relocation journey."
+author: "Robert Kolar"
+publishDate: 2025-06-01
 updatedDate: 2025-01-20
 heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748884983/realistic-photo-a-cheerful-cow-with-a-fl_eLiS4XoOSDWePDCfr1J1KA_ZyAf95qVRrOk5bxbfZoZuA_hzrhws.png"
 category: "Relocation Guide"
 tags:
-  - "relocation checklist"
+  - "Switzerland relocation checklist"
+  - "moving to Switzerland checklist"
+  - "Swiss relocation guide"
+  - "expat checklist Switzerland"
+  - "relocation timeline"
+  - "switzerland relocation"
   - "moving to switzerland"
-  - "swiss relocation"
-  - "expat guide"
-  - "pre-move planning"
-  - "swiss visa"
-  - "anmeldung"
-  - "health insurance"
-  - "banking"
-  - "settling in"
-readingTime: 25
+  - "swiss relocation checklist"
+  - "expat guide switzerland"
+  - "switzerland immigration guide"
+readingTime: 18
 featured: true
 relatedRegions:
   - "zurich"
@@ -53,6 +53,7 @@ seo:
     - "anmeldung Switzerland"
     - "Swiss bureaucracy tips"
     - "family relocation Switzerland"
+excerpt: "Your comprehensive Switzerland relocation checklist with everything you need to know. From visa applications to housing, banking, and settling in - this ultimate guide covers every step of your Swiss relocation journey."
 ---
 
 # The Ultimate Switzerland Relocation Checklist: Your Step-by-Step Guide
