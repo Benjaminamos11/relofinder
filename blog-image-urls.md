@@ -22,6 +22,11 @@
 - **Image URL:** `https://res.cloudinary.com/dphbnwjtx/image/upload/v1748929437/realistic-photo-a-friendly-brown-swiss-c_Ti5oibwGRHKewLaUXHVpDA_k4KH2QIjS_mHpsKEkh7XYg_kjhedi.png`
 - **Description:** Friendly brown Swiss cow for address registration guide
 
+### Swiss Bureaucracy Tips for Expats
+- **File:** `swiss-bureaucracy-tips-expats.md`
+- **Image URL:** `https://res.cloudinary.com/dphbnwjtx/image/upload/v1748930450/a-photograph-of-a-noble-brown-cow-its-ey_4h9t7K7aSc-tAsawNUcXpQ_9yEzRZ2mRwGDexI_9e2sdg_tpm6af.png`
+- **Description:** Noble brown cow with eyes for bureaucracy guide
+
 ## Notes
 - These URLs have been verified as working
 - DO NOT replace with random working URLs from other blog posts
