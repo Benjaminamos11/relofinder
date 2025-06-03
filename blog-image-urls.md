@@ -27,6 +27,11 @@
 - **Image URL:** `https://res.cloudinary.com/dphbnwjtx/image/upload/v1748930450/a-photograph-of-a-noble-brown-cow-its-ey_4h9t7K7aSc-tAsawNUcXpQ_9yEzRZ2mRwGDexI_9e2sdg_tpm6af.png`
 - **Description:** Noble brown cow with eyes for bureaucracy guide
 
+### How to Find an Apartment in Switzerland Guide
+- **File:** `find-apartment-switzerland-renters-guide.md`
+- **Image URL:** `https://res.cloudinary.com/dphbnwjtx/image/upload/v1748930682/realistic-photo-a-friendly-cow-with-a-fl_GXhk4w9_RMOJTPNExqn96A_ipTaz2QqRZKPqSW3I89hKQ_rlncn5.png`
+- **Description:** Friendly cow with flowers for apartment hunting guide
+
 ## Notes
 - These URLs have been verified as working
 - DO NOT replace with random working URLs from other blog posts
