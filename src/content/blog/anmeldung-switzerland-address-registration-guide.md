@@ -5,7 +5,7 @@ publishDate: 2025-01-02
 heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748929437/realistic-photo-a-friendly-brown-swiss-c_Ti5oibwGRHKewLaUXHVpDA_k4KH2QIjS_mHpsKEkh7XYg_kjhedi.png"
 category: "Legal & Administrative"
 tags: ["anmeldung switzerland", "address registration", "kreisbüro registration", "swiss administration", "new arrivals", "legal requirements"]
-readingTime: "12 min read"
+readingTime: 12
 author: "ReloFinder Team"
 featured: false
 ---

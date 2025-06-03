@@ -1,11 +1,11 @@
 ---
-title: "Opening a Swiss Bank Account: A Guide for New Arrivals"
-description: "Complete guide to opening a Swiss bank account for expats and new arrivals. Learn about the best banks, required documents, and step-by-step process to get your account set up."
+title: "Opening a Swiss Bank Account: Complete Guide for New Residents"
+description: "Step-by-step guide to opening a Swiss bank account. Learn requirements, bank options, account types, and essential tips for new residents and expats in Switzerland."
 publishDate: 2025-01-02
-heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748928992/a-photograph-of-a-distinguished-brown-sw_ymGHF4nMSFW-QpaZyaQA6A__5DoZ3O-RJymNACV36FkIg_nxhdj3.png"
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748929437/realistic-photo-a-distinguished-brown-s_o7pLJHzNQnO2Fg-bPYlAZA_FTAGdXpiTxmQJ8oDKqEP9Q_xskq3q.png"
 category: "Banking & Finance"
-tags: ["swiss bank account", "banking switzerland", "expat banking", "best banks switzerland", "financial setup", "new arrivals"]
-readingTime: "13 min read"
+tags: ["swiss bank account", "opening bank account switzerland", "swiss banking", "banking for expats", "credit suisse", "ubs banking"]
+readingTime: 13
 author: "ReloFinder Team"
 featured: false
 ---

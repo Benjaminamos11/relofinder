@@ -1,11 +1,11 @@
 ---
-title: "Navigating Swiss Visa Requirements for Non-EU/EFTA Citizens"
-description: "Complete guide to Switzerland visa requirements for third-country nationals. Learn about National Type D visas, application process, and immigration requirements for non-EU citizens moving to Switzerland."
+title: "Swiss Visa Requirements for Non-EU/EFTA Citizens: Complete Immigration Guide"
+description: "Complete guide to Swiss visa requirements for non-EU/EFTA citizens. Learn about Type D visas, permit applications, required documents, and step-by-step immigration process for Switzerland."
 publishDate: 2025-01-02
-heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748928623/realistic-photo-a-jubilant-friendly-cow-_RHPZutegQPCcaYqhxEVgag_d8iFJz5fQCmGf4wcRU9NJQ_ngrqti.png"
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748929437/realistic-photo-a-jubilant-cow-wearing-a_qQ-7PcJcTI2Qq6OQZTIcuQ_Xe7v9BjjQ4CQKnKi-cVRCQ_qh2ggd.png"
 category: "Immigration & Visas"
-tags: ["switzerland visa requirements", "non-EU visa", "immigration switzerland", "third-country nationals", "type D visa", "national visa"]
-readingTime: "11 min read"
+tags: ["swiss visa requirements", "non-eu immigration", "type d visa", "permit application", "swiss immigration guide", "work visa switzerland"]
+readingTime: 11
 author: "ReloFinder Team"
 featured: false
 ---

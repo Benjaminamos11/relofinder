@@ -1,11 +1,11 @@
 ---
-title: "Swiss Work Permits Explained: B, L, G Permits and How to Apply"
-description: "Complete guide to Swiss work permits including B permit, L permit, and G permit requirements. Learn how to apply for work permits in Switzerland as EU/EFTA and non-EU nationals."
+title: "Swiss Work Permits Guide: Complete Guide to Employment Authorization"
+description: "Complete guide to Swiss work permits for international professionals. Learn about B, L, G permits, application process, requirements, and tips for successful Swiss employment authorization."
 publishDate: 2025-01-02
-heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748927965/realistic-photo-a-slightly-stressed-but-_3KNYxzgZTiKKvFKFYU0fnQ_lhPHRpmiTUu_13aU_0i2fw_bekqlo.png"
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748929437/realistic-photo-a-stressed-cow-wearing-s_9TTEMP5CQJSW0NJp5RHG3Q_QQjTJW9uTB-Tn1yMGfXhJQ_f3rqng.png"
 category: "Immigration & Visas"
-tags: ["swiss work permit", "B permit", "L permit", "immigration", "visa guide", "work authorization"]
-readingTime: "12 min read"
+tags: ["swiss work permits", "employment authorization switzerland", "work permit application", "b permit", "l permit", "swiss employment", "work visa"]
+readingTime: 12
 author: "ReloFinder Team"
 featured: false
 ---
