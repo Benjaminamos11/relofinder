@@ -2,7 +2,7 @@
 title: "Swiss Visa Requirements for Non-EU/EFTA Citizens: Complete Immigration Guide"
 description: "Complete guide to Swiss visa requirements for non-EU/EFTA citizens. Learn about Type D visas, permit applications, required documents, and step-by-step immigration process for Switzerland."
 publishDate: 2025-01-02
-heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748884975/realistic-photo-a-thoughtful-friendly-co_QV7DoXVxTCieuy4fCOO8Cg_VODB9gaGQO6Y_hp0wTJ2pg_vczlzk.png"
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748928623/realistic-photo-a-jubilant-friendly-cow-_RHPZutegQPCcaYqhxEVgag_d8iFJz5fQCmGf4wcRU9NJQ_ngrqti.png"
 category: "Immigration & Visas"
 tags: ["swiss visa requirements", "non-eu immigration", "type d visa", "permit application", "swiss immigration guide", "work visa switzerland"]
 readingTime: 11
