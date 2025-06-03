@@ -2,7 +2,7 @@
 title: "Opening a Swiss Bank Account: Complete Guide for New Residents"
 description: "Step-by-step guide to opening a Swiss bank account. Learn requirements, bank options, account types, and essential tips for new residents and expats in Switzerland."
 publishDate: 2025-01-02
-heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748929437/realistic-photo-a-distinguished-brown-s_o7pLJHzNQnO2Fg-bPYlAZA_FTAGdXpiTxmQJ8oDKqEP9Q_xskq3q.png"
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748884973/realistic-photo-a-cheerful-cow-wearing-a_AFnbBus2Roy67sXqcaZlbg_z1Av14UXS9STI6lar2XSzw_dfs5oe.png"
 category: "Banking & Finance"
 tags: ["swiss bank account", "opening bank account switzerland", "swiss banking", "banking for expats", "credit suisse", "ubs banking"]
 readingTime: 13
