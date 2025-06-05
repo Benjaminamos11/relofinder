@@ -3,50 +3,55 @@ import Layout from '../layouts/Layout.astro';
 
 // Page metadata
 const title = 'About Us | ReloFinder.ch';
-const description = 'Meet the ReloFinder team led by Robert Kolar (Consultations), with 10+ years of experience helping internationals relocate to Switzerland, and our mission to create transparency in the Swiss relocation market.';
+const description = 'Meet the ReloFinder team led by Robert Kolar (Chief Cow Whisperer), with 10+ years of experience helping internationals relocate to Switzerland, and our mission to create transparency in the Swiss relocation market.';
 ---
 
 <Layout title={title} description={description}>
   <!-- Hero Section with Background Image -->
-  <section class="relative py-16 md:py-24 overflow-hidden">
+  <section class="relative py-20 md:py-32 overflow-hidden min-h-[70vh]">
     <!-- Background Image -->
     <div class="absolute inset-0 z-0">
       <img 
         src="https://res.cloudinary.com/dphbnwjtx/image/upload/c_scale,f_webp,q_auto:best,w_1920/v1749144078/a-whimsical-lifestyle-advertisement-for-_fQN4JxbhTW2wM6sarh5HUA_4q2BK7r9SGijUd1UCHxOMw_hgvin6.png"
         alt="Swiss Relocation Lifestyle"
-        class="w-full h-full object-cover"
+        class="w-full h-full object-contain bg-gradient-to-br from-blue-50 to-green-50"
         loading="eager"
       />
-      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/50"></div>
     </div>
     
     <!-- Content -->
-    <div class="container relative z-10">
-      <div class="max-w-3xl">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+    <div class="container relative z-10 flex items-center min-h-[70vh]">
+      <div class="max-w-4xl">
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight">
           About ReloFinder
         </h1>
-        <p class="text-xl text-white/90 mb-8 leading-relaxed">
-          We are a team of experienced consultants dedicated to helping international professionals navigate the complex world of Swiss relocation.
+        <p class="text-2xl text-white/95 mb-12 leading-relaxed max-w-3xl">
+          We are a team of experienced consultants dedicated to helping international professionals navigate the complex world of Swiss relocation. 🐄🇨🇭
         </p>
+        <div class="flex gap-4">
+          <a href="#team" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold shadow-lg hover:bg-primary-700 transition text-lg">Meet Our Herd</a>
+          <a href="#mission" class="btn-white-outline px-8 py-4 rounded-lg font-semibold transition text-lg">Our Mission</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Leadership Section - Robert Kolar -->
+  <!-- Leadership Section - Robert Kolar (slightly bigger) -->
   <section class="section bg-white">
     <div class="container">
-      <div class="max-w-4xl mx-auto text-center mb-16">
+      <div class="max-w-5xl mx-auto text-center mb-16">
         <h2 class="text-3xl font-bold mb-12">Leadership</h2>
         
-        <!-- Robert Kolar - Featured prominently -->
+        <!-- Robert Kolar - Featured slightly larger -->
         <div class="bg-gradient-to-br from-primary-50 to-accent-50 rounded-2xl p-12 shadow-xl">
-          <div class="w-48 h-48 rounded-full overflow-hidden shadow-2xl mx-auto mb-8">
+          <div class="w-36 h-36 rounded-full overflow-hidden shadow-2xl mx-auto mb-8 border-4 border-primary-200">
             <img src="https://res.cloudinary.com/dphbnwjtx/image/upload/v1747501071/6758848048b5cdaf6ebe884f_WhatsApp_Image_2024-12-11_at_01.55.01_oruhjs.webp" alt="Robert Kolar" class="w-full h-full object-cover" />
           </div>
-          <h3 class="text-3xl font-bold mb-3">Robert Kolar</h3>
-          <p class="text-xl text-primary-600 font-semibold mb-4">Head of Consultations</p>
-          <p class="text-lg text-accent-600 mb-6 max-w-2xl mx-auto">
+          <h3 class="text-2xl font-bold mb-2">Robert Kolar</h3>
+          <p class="text-lg text-primary-600 font-semibold mb-1">Chief Cow Whisperer 🐄👑</p>
+          <p class="text-base text-accent-500 font-medium mb-4">Head of Consultations</p>
+          <p class="text-base text-accent-600 mb-6 max-w-2xl mx-auto">
             With over 10 years of experience in Swiss relocation and insurance services, Robert leads our consultation team and understands the unique challenges faced by international professionals and corporations moving to Switzerland.
           </p>
           <a href="https://www.linkedin.com/in/robert-kolar-9bb889152/" target="_blank" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold">
@@ -60,48 +65,80 @@ const description = 'Meet the ReloFinder team led by Robert Kolar (Consultations
     </div>
   </section>
 
-  <!-- Our Team Section -->
-  <section class="section bg-accent-50">
+  <!-- Our Team Section with Rotating Carousel -->
+  <section id="team" class="section bg-gradient-to-br from-accent-50 to-primary-50 relative overflow-hidden">
     <div class="container">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <h2 class="text-3xl font-bold mb-4">Our Team</h2>
-        <p class="text-lg text-accent-600">
+      <div class="max-w-3xl mx-auto text-center mb-20">
+        <h2 class="text-4xl font-bold mb-6">Our Swiss Herd 🐄</h2>
+        <p class="text-xl text-accent-600">
           Meet the dedicated professionals who make ReloFinder your trusted partner for Swiss relocation success.
         </p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center max-w-5xl mx-auto">
-        <!-- Benjamin Wagner -->
-        <div class="card p-6 text-center">
-          <div class="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4">
-            <img src="https://res.cloudinary.com/dphbnwjtx/image/upload/v1747850395/DSC_7067_l2xm3b.webp" alt="Benjamin Wagner" class="w-full h-full object-cover" />
-          </div>
-          <h3 class="text-lg font-bold mb-1">Benjamin Wagner</h3>
-          <p class="text-accent-600 text-sm mb-2">Partnerships</p>
-          <a href="https://www.linkedin.com/in/benjamin-amos-wagner-5a7888a5/" target="_blank" class="text-blue-600 text-sm underline">LinkedIn</a>
+      <!-- Circular Carousel Container -->
+      <div class="relative w-96 h-96 mx-auto mb-16">
+        <!-- Center Circle -->
+        <div class="absolute inset-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-gradient-to-br from-primary-400 to-accent-400 rounded-full flex items-center justify-center shadow-xl z-10">
+          <span class="text-white text-2xl">🐄</span>
         </div>
         
-        <!-- Maksim Amos Wagner -->
-        <div class="card p-6 text-center">
-          <div class="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 bg-accent-100 flex items-center justify-center">
-            <span class="text-2xl text-accent-500 font-bold">MW</span>
+        <!-- Rotating Team Cards -->
+        <div class="absolute inset-0 animate-spin-slow">
+          <!-- Benjamin Wagner -->
+          <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 team-card">
+            <div class="card p-6 text-center bg-white shadow-xl rounded-xl w-48 border-2 border-primary-100">
+              <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-3">
+                <img src="https://res.cloudinary.com/dphbnwjtx/image/upload/v1747850395/DSC_7067_l2xm3b.webp" alt="Benjamin Wagner" class="w-full h-full object-cover" />
+              </div>
+              <h3 class="text-sm font-bold mb-1">Benjamin Wagner</h3>
+              <p class="text-primary-600 text-xs font-semibold mb-1">Cow-nnection Master 🐄🤝</p>
+              <p class="text-accent-600 text-xs mb-2">Partnerships</p>
+              <a href="https://www.linkedin.com/in/benjamin-amos-wagner-5a7888a5/" target="_blank" class="text-blue-600 text-xs underline">LinkedIn</a>
+            </div>
           </div>
-          <h3 class="text-lg font-bold mb-1">Maksim Amos Wagner</h3>
-          <p class="text-accent-600 text-sm">Web Designer</p>
-        </div>
-        
-        <!-- Karina Ilina -->
-        <div class="card p-6 text-center">
-          <div class="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 bg-accent-100 flex items-center justify-center">
-            <span class="text-2xl text-accent-500 font-bold">KI</span>
+          
+          <!-- Maksim Amos Wagner -->
+          <div class="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 team-card">
+            <div class="card p-6 text-center bg-white shadow-xl rounded-xl w-48 border-2 border-primary-100">
+              <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-3 bg-accent-100 flex items-center justify-center">
+                <span class="text-lg text-accent-500 font-bold">MW</span>
+              </div>
+              <h3 class="text-sm font-bold mb-1">Maksim Amos Wagner</h3>
+              <p class="text-primary-600 text-xs font-semibold mb-1">Pixel Cow-boy 🐄🎨</p>
+              <p class="text-accent-600 text-xs">Web Designer</p>
+            </div>
           </div>
-          <h3 class="text-lg font-bold mb-1">Karina Ilina</h3>
-          <p class="text-accent-600 text-sm">Social Media and Consultations</p>
+          
+          <!-- Karina Ilina -->
+          <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 team-card">
+            <div class="card p-6 text-center bg-white shadow-xl rounded-xl w-48 border-2 border-primary-100">
+              <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-3 bg-accent-100 flex items-center justify-center">
+                <span class="text-lg text-accent-500 font-bold">KI</span>
+              </div>
+              <h3 class="text-sm font-bold mb-1">Karina Ilina</h3>
+              <p class="text-primary-600 text-xs font-semibold mb-1">Social Media Moo-nager 🐄📱</p>
+              <p class="text-accent-600 text-xs">Social Media & Consultations</p>
+            </div>
+          </div>
+          
+          <!-- Future Team Member Slot -->
+          <div class="absolute left-0 top-1/2 transform -translate-x-1/2 -translate-y-1/2 team-card">
+            <div class="card p-6 text-center bg-gradient-to-br from-gray-50 to-gray-100 shadow-xl rounded-xl w-48 border-2 border-dashed border-gray-300">
+              <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-3 bg-gray-200 flex items-center justify-center">
+                <span class="text-2xl">🐄</span>
+              </div>
+              <h3 class="text-sm font-bold mb-1 text-gray-600">Join Our Herd!</h3>
+              <p class="text-gray-500 text-xs font-semibold mb-1">Future Cow-lleague 🐄✨</p>
+              <p class="text-gray-500 text-xs">Your Role Here</p>
+            </div>
+          </div>
         </div>
       </div>
       
-      <div class="mt-12 text-center">
-        <a href="/careers" class="btn-primary text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-primary-700 transition">Join Our Team</a>
+      <div class="text-center">
+        <a href="/careers" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold shadow-lg hover:bg-primary-700 transition text-lg">
+          Join Our Swiss Herd 🐄
+        </a>
       </div>
     </div>
   </section>
@@ -111,19 +148,19 @@ const description = 'Meet the ReloFinder team led by Robert Kolar (Consultations
     <div class="container">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 class="text-3xl font-bold mb-6">Our Story</h2>
+          <h2 class="text-3xl font-bold mb-6">Our Story 📖</h2>
           <p class="text-lg text-accent-600 mb-4">
             ReloFinder was created to give an overview of relocation services in Switzerland and connect users with the right relocation agency. With over 10 years of experience working with expats and international professionals—especially in insurance—we've had countless interactions with people planning to move to Switzerland in the next 3–9 months, still looking for help with relocation.
           </p>
           <p class="text-lg text-accent-600">
-            We decided to create this directory so international professionals and HR departments can get a clear overview and connect with trusted agencies that best match their specific needs and requirements.
+            We decided to create this directory so international professionals and HR departments can get a clear overview and connect with trusted agencies that best match their specific needs and requirements. Think of us as your Swiss relocation matchmakers! 🐄💕
           </p>
         </div>
         <div class="flex justify-center">
           <img 
             src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2" 
             alt="Swiss Relocation Story" 
-            class="rounded-xl shadow-xl w-full max-w-md"
+            class="rounded-xl shadow-xl w-full max-w-md transform hover:scale-105 transition-transform duration-300"
           />
         </div>
       </div>
@@ -131,46 +168,38 @@ const description = 'Meet the ReloFinder team led by Robert Kolar (Consultations
   </section>
   
   <!-- Our Mission Section -->
-  <section class="section bg-accent-50">
+  <section id="mission" class="section bg-accent-50">
     <div class="container">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div class="order-2 lg:order-1">
           <img 
             src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2" 
             alt="Our Mission" 
-            class="rounded-xl shadow-xl w-full"
+            class="rounded-xl shadow-xl w-full transform hover:scale-105 transition-transform duration-300"
           />
         </div>
         
         <div class="order-1 lg:order-2">
-          <h2 class="text-3xl font-bold mb-6">Our Mission</h2>
+          <h2 class="text-3xl font-bold mb-6">Our Mission 🎯</h2>
           <p class="text-lg text-accent-600 mb-4">
             We believe that relocating to Switzerland should be a transparent, informed, and positive experience. Our mission is to:
           </p>
           
           <ul class="space-y-4 mb-6">
             <li class="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
+              <span class="text-2xl mr-3 mt-1">🐄</span>
               <span class="text-lg text-accent-600">Provide comprehensive, accurate information about living and relocating to Switzerland's diverse regions</span>
             </li>
             <li class="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
+              <span class="text-2xl mr-3 mt-1">🏔️</span>
               <span class="text-lg text-accent-600">Create transparency in the Swiss relocation market by objectively showcasing service providers</span>
             </li>
             <li class="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
+              <span class="text-2xl mr-3 mt-1">🤝</span>
               <span class="text-lg text-accent-600">Connect individuals and companies with relocation partners that best fit their unique needs</span>
             </li>
             <li class="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
+              <span class="text-2xl mr-3 mt-1">✨</span>
               <span class="text-lg text-accent-600">Offer expert guidance to both individuals and corporations throughout their relocation journey</span>
             </li>
           </ul>
@@ -183,29 +212,29 @@ const description = 'Meet the ReloFinder team led by Robert Kolar (Consultations
   <section class="section bg-gradient-to-r from-accent-900 to-primary-900 text-white">
     <div class="container">
       <div class="max-w-3xl mx-auto text-center mb-12">
-        <h2 class="text-3xl font-bold mb-4">Specialized Services for High-Net-Worth Individuals</h2>
+        <h2 class="text-3xl font-bold mb-4">Specialized Services for High-Net-Worth Individuals 💎</h2>
         <p class="text-xl opacity-90">
           We understand the unique requirements of high-net-worth individuals relocating to Switzerland's most prestigious locations.
         </p>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8">
-          <h3 class="text-xl font-bold mb-4">Luxury Property Acquisition</h3>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 hover:bg-white/20 transition-all duration-300">
+          <h3 class="text-xl font-bold mb-4">Luxury Property Acquisition 🏰</h3>
           <p class="opacity-90 mb-4">
             We connect you with specialists in navigating Lex Koller regulations, structuring optimal ownership arrangements, and accessing exclusive off-market properties in Switzerland's most prestigious locations.
           </p>
         </div>
         
-        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8">
-          <h3 class="text-xl font-bold mb-4">Fiscal Optimization</h3>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 hover:bg-white/20 transition-all duration-300">
+          <h3 class="text-xl font-bold mb-4">Fiscal Optimization 💰</h3>
           <p class="opacity-90 mb-4">
             Our network includes experts in lump-sum taxation (Pauschalbesteuerung) arrangements, helping you navigate the application process and structure your affairs for optimal outcomes.
           </p>
         </div>
         
-        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8">
-          <h3 class="text-xl font-bold mb-4">Concierge Lifestyle</h3>
+        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 hover:bg-white/20 transition-all duration-300">
+          <h3 class="text-xl font-bold mb-4">Concierge Lifestyle 🎩</h3>
           <p class="opacity-90 mb-4">
             From private staffing to security arrangements, asset management to exclusive community introductions, we facilitate all aspects of establishing your life in Switzerland.
           </p>
@@ -227,13 +256,13 @@ const description = 'Meet the ReloFinder team led by Robert Kolar (Consultations
   <section class="section bg-white">
     <div class="container">
       <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl font-bold mb-4 text-center">Corporate Solutions</h2>
+        <h2 class="text-3xl font-bold mb-4 text-center">Corporate Solutions 🏢</h2>
         <p class="text-lg text-accent-600 mb-12 text-center">
           We help companies optimize their relocation programs through objective assessment and comparison of service providers.
         </p>
         
-        <div class="card p-8 mb-8">
-          <h3 class="text-xl font-bold mb-4">Anonymous Vendor Evaluation</h3>
+        <div class="card p-8 mb-8 hover:shadow-xl transition-shadow duration-300">
+          <h3 class="text-xl font-bold mb-4">Anonymous Vendor Evaluation 🔍</h3>
           <p class="text-accent-600 mb-4">
             We help your organization anonymously evaluate and compare relocation agencies based on your specific needs and requirements. Our process includes:
           </p>
@@ -266,35 +295,27 @@ const description = 'Meet the ReloFinder team led by Robert Kolar (Consultations
           </ul>
         </div>
         
-        <div class="card p-8">
-          <h3 class="text-xl font-bold mb-4">Program Optimization</h3>
+        <div class="card p-8 hover:shadow-xl transition-shadow duration-300">
+          <h3 class="text-xl font-bold mb-4">Program Optimization 📈</h3>
           <p class="text-accent-600 mb-4">
             We help multinational companies optimize their relocation programs through:
           </p>
           
           <ul class="space-y-3">
             <li class="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
+              <span class="text-xl mr-3 mt-1">✅</span>
               <span class="text-accent-600">Policy review and benchmarking against industry standards</span>
             </li>
             <li class="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
+              <span class="text-xl mr-3 mt-1">💡</span>
               <span class="text-accent-600">Cost analysis and efficiency improvement recommendations</span>
             </li>
             <li class="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
+              <span class="text-xl mr-3 mt-1">🚀</span>
               <span class="text-accent-600">Expatriate experience enhancement strategies</span>
             </li>
             <li class="flex items-start">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
+              <span class="text-xl mr-3 mt-1">👑</span>
               <span class="text-accent-600">Specialized solutions for executive-level relocations</span>
             </li>
           </ul>
@@ -313,17 +334,17 @@ const description = 'Meet the ReloFinder team led by Robert Kolar (Consultations
   </section>
   
   <!-- CTA Section -->
-  <section class="section bg-accent-50">
+  <section class="section bg-gradient-to-br from-accent-50 to-primary-50">
     <div class="container">
-      <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden">
+      <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
         <div class="grid grid-cols-1 md:grid-cols-2">
           <div class="p-8 md:p-12">
-            <h2 class="text-2xl md:text-3xl font-bold mb-4">Ready to Start Your Swiss Journey?</h2>
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">Ready to Start Your Swiss Journey? 🇨🇭</h2>
             <p class="text-accent-600 mb-6">
-              Schedule a free consultation to discuss your unique needs and learn how we can help make your relocation to Switzerland seamless and successful.
+              Schedule a free consultation to discuss your unique needs and learn how our Swiss herd can help make your relocation to Switzerland seamless and successful.
             </p>
             <a href="/contact" class="btn-primary">
-              Schedule Your Free Call
+              Schedule Your Free Moo-ting 🐄
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
               </svg>
@@ -345,5 +366,51 @@ const description = 'Meet the ReloFinder team led by Robert Kolar (Consultations
 <style>
   .btn-white-outline {
     @apply inline-flex items-center px-6 py-3 border-2 border-white text-white font-medium rounded-lg hover:bg-white hover:text-accent-900 transition-colors;
+  }
+  
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+  
+  .team-card {
+    animation: counter-spin 20s linear infinite;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes counter-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+  
+  .section {
+    @apply py-16 md:py-20;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-md;
+  }
+  
+  .btn-primary {
+    @apply inline-flex items-center px-6 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors;
+  }
+  
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  html {
+    scroll-behavior: smooth;
   }
 </style> 
