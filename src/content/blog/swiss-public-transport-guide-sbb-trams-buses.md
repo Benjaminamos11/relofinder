@@ -7,6 +7,35 @@ heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748939696/realis
 category: "Transportation"
 tags: ["Swiss public transport", "SBB", "travel pass", "Switzerland", "transportation", "expat guide"]
 readingTime: 16
+seo:
+  title: "Swiss Public Transport Guide: SBB Trains, Passes & Expert Tips 2024"
+  description: "Master Switzerland's world-class public transport system. Complete guide to SBB trains, travel passes, trams, buses, tickets, and insider tips for efficient Swiss travel."
+  keywords:
+    - "Swiss public transport"
+    - "SBB travel pass"
+    - "Switzerland transport guide"
+    - "SBB trains Switzerland"
+    - "Swiss train system"
+    - "Half-Fare Travelcard"
+    - "GA travelcard Switzerland"
+    - "Swiss trams buses"
+    - "ZVV Zurich transport"
+    - "Swiss transport tickets"
+    - "Switzerland travel passes"
+    - "Swiss railway system"
+faqs:
+  - question: "What's the best travel pass for expats living in Switzerland?"
+    answer: "The Half-Fare Travelcard (Halbtax-Abo) is essential for most expats, costing CHF 185 annually and providing 50% discount on ALL Swiss public transport. It typically pays for itself within 2-3 medium-distance journeys. For daily long-distance commuters, the GA Travelcard offers unlimited travel for CHF 3,860."
+  - question: "How punctual is Swiss public transport really?"
+    answer: "Swiss public transport achieves 99%+ on-time performance. Trains, buses, and trams operate with exceptional precision, making the system highly reliable for daily commuting and travel planning. Delays over 3 minutes are considered significant and often compensated."
+  - question: "Can I use one ticket for trains, trams, and buses in Switzerland?"
+    answer: "Yes! Switzerland has an integrated transport system where one ticket covers trains (SBB), trams, buses (PostBus), and even boats within validity zones. Travel passes like Half-Fare or GA work across all operators nationwide, making Swiss transport seamlessly connected."
+  - question: "How do I buy tickets for Swiss public transport?"
+    answer: "Buy tickets through the SBB Mobile app (recommended), ticket machines at stations, online at sbb.ch, or station counters. Most accept cash, cards, and mobile payments. The app offers real-time schedules, journey planning, and mobile tickets - essential for expats."
+  - question: "Is Swiss public transport expensive compared to other countries?"
+    answer: "Swiss public transport has high upfront costs but offers excellent value considering the quality, punctuality, and comprehensive coverage. The Half-Fare Travelcard significantly reduces costs. For residents making regular journeys, it's often more economical than car ownership."
+  - question: "What should expats know about Swiss transport etiquette?"
+    answer: "Key etiquette includes: validate tickets before boarding, offer priority seats to elderly/pregnant/disabled passengers, speak quietly on phones, keep conversations low in quiet carriages, stand right on escalators, and let passengers exit before boarding. Remove backpacks in crowded areas."
 ---
 
 # Getting Around Switzerland: Complete Guide to Swiss Public Transport

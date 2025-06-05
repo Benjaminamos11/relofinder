@@ -8,6 +8,35 @@ readingTime: 12
 tags: ["health insurance switzerland", "swiss insurance requirements", "relocation health insurance", "swiss healthcare system", "mandatory insurance"]
 author: "Robert Kolar"
 excerpt: "Complete guide to Swiss health insurance requirements when relocating. Understand the 90-day deadline, setup process, and essential timeline for new arrivals."
+seo:
+  title: "Swiss Health Insurance Requirements: Complete Relocation Guide 2024"
+  description: "Master Swiss health insurance requirements when relocating. Complete guide to 90-day deadline, mandatory coverage, setup process, and timeline for successful relocation to Switzerland."
+  keywords:
+    - "health insurance requirements Switzerland"
+    - "Swiss health insurance relocation"
+    - "90 day health insurance deadline Switzerland"
+    - "mandatory health insurance Switzerland"
+    - "Swiss healthcare requirements"
+    - "health insurance setup Switzerland"
+    - "relocating to Switzerland insurance"
+    - "Swiss insurance obligations"
+    - "health insurance timeline Switzerland"
+    - "Swiss health insurance compliance"
+    - "new arrivals health insurance"
+    - "Switzerland healthcare system"
+faqs:
+  - question: "How long do I have to get health insurance after moving to Switzerland?"
+    answer: "You must secure Swiss health insurance within 90 days of establishing official residency. This deadline begins from your residency registration date, not your arrival date. The countdown typically starts when you register with local authorities and receive your residence permit."
+  - question: "What happens if I miss the 90-day health insurance deadline in Switzerland?"
+    answer: "Missing the deadline can result in retroactive premium payments from your residency start date, potential penalties, and complications with residence permit renewals. Swiss authorities take health insurance compliance seriously, and non-compliance can affect your legal status in Switzerland."
+  - question: "Do all family members need separate health insurance in Switzerland?"
+    answer: "Yes, every family member requires individual health insurance coverage, including spouses and children. Each person must be enrolled separately within 90 days of establishing residency. However, families can coordinate enrollment to access family discounts and simplify administrative management."
+  - question: "Can I use international health insurance instead of Swiss mandatory coverage?"
+    answer: "No, international health insurance cannot replace Swiss mandatory health insurance (Grundversicherung) for residents. Switzerland requires all residents to have Swiss basic health insurance from approved providers. You may keep international coverage as supplementary insurance if desired."
+  - question: "When does the 90-day countdown for health insurance begin?"
+    answer: "The 90-day deadline begins from your official residency date, typically when you register with local authorities (Anmeldung) and receive your residence permit. This may be different from your arrival date in Switzerland, especially if you're conducting preliminary visits before establishing permanent residency."
+  - question: "What documents do I need to apply for Swiss health insurance?"
+    answer: "Required documents typically include: valid passport or ID, residence permit or permit confirmation, proof of address registration (Anmeldung), employment contract (if applicable), and civil status documents for family members. Specific requirements may vary by insurer and coverage type."
 ---
 
 # Health Insurance Requirements When Relocating to Switzerland: Essential Timeline for New Arrivals

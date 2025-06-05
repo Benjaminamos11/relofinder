@@ -8,6 +8,35 @@ readingTime: 14
 tags: ["shipping to switzerland", "customs switzerland", "international moving", "relocation switzerland", "moving belongings"]
 author: "Robert Kolar"
 excerpt: "Complete guide to shipping personal belongings to Switzerland including customs regulations, required documentation, costs, and step-by-step process for international relocation."
+seo:
+  title: "Shipping Belongings to Switzerland: Complete Customs & Moving Guide 2024"
+  description: "Master international shipping to Switzerland. Complete guide to customs regulations, Form 18.44, container shipping costs, documentation, and step-by-step moving process for smooth relocation."
+  keywords:
+    - "shipping belongings to Switzerland"
+    - "container shipping Switzerland"
+    - "customs requirements moving Switzerland"
+    - "Form 18.44 Switzerland"
+    - "international moving Switzerland"
+    - "household goods shipping Switzerland"
+    - "Swiss customs regulations"
+    - "moving to Switzerland guide"
+    - "shipping costs Switzerland"
+    - "duty free import Switzerland"
+    - "international relocation Switzerland"
+    - "Swiss border customs"
+faqs:
+  - question: "What documents do I need to ship belongings duty-free to Switzerland?"
+    answer: "Essential documents include completed Form 18.44, detailed inventory list with values in CHF, copy of Swiss residence permit (or permit assurance), passport copy, rental agreement/property purchase contract, and proof of deregistration from previous country. Your mover typically handles submission."
+  - question: "How much does container shipping to Switzerland cost?"
+    answer: "A 20ft container typically costs $2,000-5,000+ USD from North America, 40ft containers $3,500-8,000+ USD, excluding local services and customs. LCL (shared container) is more economical for smaller shipments. Road freight from Europe is often most cost-effective for European relocations."
+  - question: "How long does sea freight take to reach Switzerland?"
+    answer: "Door-to-door sea freight typically takes 6-12 weeks including ocean voyage (3-6 weeks), port handling, consolidation for LCL shipments, and customs clearance. Air freight is much faster (5-14 days) but significantly more expensive."
+  - question: "Can I import my household goods duty-free when moving to Switzerland?"
+    answer: "Yes, used household goods can be imported duty-free if: you're transferring residence to Switzerland, goods were owned/used for 6+ months prior, you intend continued personal use, and timing aligns with your relocation (within 2-year window). Form 18.44 is required."
+  - question: "What items are prohibited when shipping to Switzerland?"
+    answer: "Prohibited items include narcotics, dangerous dogs, counterfeit goods, and certain animal products. Restricted items requiring permits/limits include firearms, excess alcohol/tobacco, meat/dairy products, plants/seeds, medications in large quantities, and cultural assets. Always check current FOCBS regulations."
+  - question: "Do I need to be present for Swiss customs clearance?"
+    answer: "No, you don't need physical presence at customs. Your moving company acts as customs agent with power of attorney, handling Form 18.44 submission and clearance. However, you must have officially transferred residence or be in the relocation process for duty-free status."
 ---
 
 So, you're moving to Switzerland! Once the initial excitement settles, the practical question of **shipping household goods to Switzerland** comes to the forefront. How do you get your cherished belongings, furniture, and memories safely to your new Swiss home? This guide will walk you through international shipping options, help you understand potential costs like **container shipping to Switzerland**, and demystify the crucial **customs requirements for moving to Switzerland** process.

@@ -7,6 +7,35 @@ heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748940514/realis
 category: "Living in Switzerland"
 tags: ["grocery shopping", "supermarkets", "food costs", "shopping tips", "Swiss living"]
 readingTime: 15
+seo:
+  title: "Grocery Shopping in Switzerland: Complete Supermarket Guide & Cost Tips 2024"
+  description: "Master grocery shopping in Switzerland with our complete guide. Learn about Migros, Coop, discounters, food costs, shopping tips, and how to save money on groceries."
+  keywords:
+    - "grocery shopping Switzerland"
+    - "supermarkets Switzerland"
+    - "food costs Switzerland"
+    - "Migros supermarket"
+    - "Coop Switzerland"
+    - "Swiss supermarket guide"
+    - "food shopping tips Switzerland"
+    - "grocery store Switzerland"
+    - "Swiss shopping culture"
+    - "food prices Switzerland"
+    - "Aldi Lidl Switzerland"
+    - "Swiss grocery budget"
+faqs:
+  - question: "What are the main supermarket chains in Switzerland?"
+    answer: "The two dominant chains are Migros (orange branding, no alcohol/tobacco in most stores) and Coop (sells alcohol/tobacco). Budget options include Aldi, Lidl, and Denner. Premium options include Manor Food and Globus Delicatessa in department stores."
+  - question: "Are Swiss supermarkets open on Sundays?"
+    answer: "No, most Swiss supermarkets are closed on Sundays and public holidays. Only some shops at major train stations, airports, or gas stations may be open. Plan your weekend shopping for Saturday or earlier in the week."
+  - question: "How can I save money on groceries in Switzerland?"
+    answer: "Use loyalty cards (Cumulus at Migros, Supercard at Coop), shop weekly promotions ('Aktionen'), buy supermarket own brands (M-Budget, Prix Garantie), shop at discounters (Aldi, Lidl), buy seasonal local produce, and use apps like 'Too Good To Go' for discounted surplus food."
+  - question: "Do I need to bring my own shopping bags in Switzerland?"
+    answer: "Yes, plastic bags cost extra (small fee), so most people bring reusable shopping bags. This is part of Switzerland's environmental consciousness and waste reduction efforts."
+  - question: "Why doesn't Migros sell alcohol or cigarettes?"
+    answer: "This dates back to Migros founder Gottlieb Duttweiler's principles about public health and addiction. Most standard Migros stores maintain this policy, though Denner (owned by Migros) and some larger Migros formats may sell these products in separate sections."
+  - question: "How much should I budget for groceries in Switzerland?"
+    answer: "Food costs are high in Switzerland. A single person might spend CHF 400-700+ monthly on groceries, families much more. Shopping smart with discounters, loyalty programs, and seasonal produce can help reduce costs significantly."
 ---
 
 # Grocery Shopping in Switzerland: Your Complete Guide to Supermarkets and Smart Shopping

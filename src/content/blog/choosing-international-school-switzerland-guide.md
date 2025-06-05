@@ -11,9 +11,34 @@ featured: true
 relatedRegions: ["zurich", "geneva", "basel", "lausanne"]
 relatedServices: ["school-search", "family-relocation", "settling-in-support"]
 seo:
-  title: "Best International Schools Switzerland: Complete Guide for Expat Families"
-  description: "Find the perfect international school in Switzerland. Compare top schools in Zurich, Geneva & more. Includes fees, curricula, and application tips for expat families."
-  keywords: ["international schools switzerland", "expats with kids switzerland", "school fees switzerland", "best schools zurich expats", "geneva international schools", "ib schools switzerland"]
+  title: "Best International Schools Switzerland: Complete Guide for Expat Families 2024"
+  description: "Find the perfect international school in Switzerland. Compare top schools in Zurich, Geneva & more. Includes fees, curricula, application tips & waiting lists for expat families."
+  keywords:
+    - "international schools Switzerland"
+    - "best international schools Zurich"
+    - "Geneva international schools"
+    - "expat children education Switzerland"
+    - "IB schools Switzerland"
+    - "school fees Switzerland"
+    - "international school application"
+    - "bilingual schools Switzerland"
+    - "British schools Switzerland"
+    - "American schools Switzerland"
+    - "school choice Switzerland"
+    - "expat families education"
+faqs:
+  - question: "How much do international schools cost in Switzerland?"
+    answer: "International school fees in Switzerland typically range from CHF 20,000 to CHF 40,000+ per year for day students. Boarding schools can cost CHF 50,000-80,000+. Additional costs include application fees, capital fees, uniforms, transport, and extracurricular activities."
+  - question: "When should I apply for international schools in Switzerland?"
+    answer: "Apply as early as possible, ideally 12-18 months before you need a place. Popular schools often have waiting lists, especially for certain year groups. Some schools accept rolling admissions while others have specific application deadlines."
+  - question: "What are the best international schools in Zurich for expats?"
+    answer: "Top international schools in Zurich include Zurich International School (ZIS), Inter-Community School Zurich (ICS), Swiss International School (SIS), and International School Zurich North (ISZN). Each offers different curricula and has unique strengths."
+  - question: "Do international schools in Switzerland teach in English?"
+    answer: "Many international schools use English as the primary language of instruction, though bilingual programs (English + German/French) are increasingly popular. Some schools also offer instruction in other languages depending on their curriculum focus."
+  - question: "What curricula do international schools in Switzerland offer?"
+    answer: "Common curricula include International Baccalaureate (IB), British (IGCSE/A-Levels), American (High School Diploma/AP), French Baccalauréat, and German Abitur. Many schools also offer bilingual programs combining curricula."
+  - question: "How do I choose between an international school and Swiss public school?"
+    answer: "Consider factors like language of instruction, curriculum continuity, length of stay in Switzerland, your child's adaptability, and budget. International schools offer easier transitions but are expensive, while Swiss public schools provide excellent education and integration opportunities."
 ---
 
 For **expats with kids Switzerland**-bound, selecting the right school is one of the most critical decisions influencing a smooth and successful relocation. While the Swiss public school system is excellent, many international families opt for one of the numerous **international schools Switzerland** has to offer, particularly in globally-connected cities like Zurich and Geneva. This guide will help you navigate the options, understand key considerations like **school fees Switzerland**, and point you to resources for finding the **best schools Zurich expats** might choose, as well as options elsewhere.

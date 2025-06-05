@@ -1,0 +1,283 @@
+import SEOHead from '../components/common/SEOHead.astro';
+import CloudinaryImage from '../components/common/CloudinaryImage.astro';
+import TableOfContents from '../components/blog/TableOfContents.astro';
+import { getCollection } from 'astro:content';
+
+export interface Props {
+  frontmatter: {
+    title: string;
+    description: string;
+    publishDate: string;
+    heroImage: string;
+    category: string;
+    tags?: string[];
+    readingTime: number;
+    author?: string;
+    seo?: {
+      title?: string;
+      description?: string;
+      keywords?: string[];
+    };
+    faqs?: Array<{
+      question: string;
+      answer: string;
+    }>;
+  };
+}
+
+const { frontmatter } = Astro.props;
+const { title, description, publishDate, heroImage, category, tags = [], readingTime, author = "ReloFinder Team", seo, faqs } = frontmatter;
+
+// Preload critical resources
+const preloadResources = {
+  heroImage: heroImage,
+  // Preload key fonts
+  fonts: [
+    '/fonts/inter-var.woff2'
+  ],
+  // Preload critical CSS
+  styles: [
+    '/assets/critical.css'
+  ]
+};
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <SEOHead 
+    title={seo?.title || title}
+    description={seo?.description || description}
+    keywords={seo?.keywords}
+    image={heroImage}
+    type="article"
+    publishedTime={publishDate}
+    modifiedTime={publishDate}
+    author={author}
+    section={category}
+    tags={tags}
+  />
+  
+  <!-- Critical Resource Preloading for Performance -->
+  {heroImage && (
+    <link 
+      rel="preload" 
+      as="image" 
+      href={heroImage.includes('cloudinary') 
+        ? heroImage.replace('/upload/', '/upload/f_avif,q_auto:best,w_1200,h_600,c_fill,dpr_auto,fl_progressive/')
+        : heroImage
+      }
+      fetchpriority="high"
+    />
+  )}
+  
+  <!-- Preload critical fonts -->
+  <link 
+    rel="preload" 
+    href="/fonts/inter-var.woff2" 
+    as="font" 
+    type="font/woff2" 
+    crossorigin="anonymous"
+  />
+  
+  <!-- DNS prefetch for external resources -->
+  <link rel="dns-prefetch" href="//res.cloudinary.com">
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  
+  <!-- Preconnect to speed up font loading -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Early hints for critical resources -->
+  <link rel="modulepreload" href="/src/utils/performance.js">
+  
+  <!-- Critical CSS inlined for faster rendering -->
+  <style>
+    /* Critical above-the-fold styles */
+    .hero-section {
+      contain: layout style paint;
+      will-change: transform;
+    }
+    
+    .toc-container {
+      contain: layout style;
+    }
+    
+    /* Optimize font display */
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url('/fonts/inter-var.woff2') format('woff2');
+    }
+  </style>
+  
+  <!-- Performance monitoring -->
+  <script>
+    // Critical performance measurements
+    if ('performance' in window) {
+      // Mark critical timing
+      performance.mark('blog-start');
+      
+      // Measure LCP
+      if ('PerformanceObserver' in window) {
+        const lcp = new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            console.log('LCP:', entry.startTime);
+          }
+        });
+        lcp.observe({ entryTypes: ['largest-contentful-paint'] });
+        
+        // Measure CLS
+        const cls = new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            if (!entry.hadRecentInput) {
+              console.log('CLS shift:', entry.value);
+            }
+          }
+        });
+        cls.observe({ entryTypes: ['layout-shift'] });
+      }
+    }
+  </script>
+</head>
+
+<body class="font-sans antialiased">
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Hero Section with optimized image -->
+    <div class="hero-section mb-8">
+      <CloudinaryImage
+        src={heroImage}
+        alt={title}
+        width={1200}
+        height={600}
+        priority={true}
+        class="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-lg"
+      />
+    </div>
+    
+    <!-- Article Header -->
+    <header class="mb-8">
+      <div class="flex items-center gap-2 text-sm text-gray-600 mb-4">
+        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">{category}</span>
+        <span>•</span>
+        <time datetime={publishDate}>{new Date(publishDate).toLocaleDateString()}</time>
+        <span>•</span>
+        <span>{readingTime} min read</span>
+      </div>
+      
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+        {title}
+      </h1>
+      
+      <p class="text-xl text-gray-600 mb-6">
+        {description}
+      </p>
+      
+      <div class="flex items-center gap-4 text-sm text-gray-500">
+        <span>By {author}</span>
+        {tags.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded-sm">{tag}</span>
+            ))}
+          </div>
+        )}
+      </div>
+    </header>
+    
+    <!-- Table of Contents -->
+    <div class="toc-container mb-8">
+      <TableOfContents />
+    </div>
+    
+    <!-- Article Content -->
+    <article class="prose prose-lg max-w-none">
+      <slot />
+    </article>
+    
+    <!-- FAQs Section -->
+    {faqs && faqs.length > 0 && (
+      <section class="mt-12 p-6 bg-gray-50 rounded-lg">
+        <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          {faqs.map((faq, index) => (
+            <details class="group">
+              <summary class="flex justify-between items-center cursor-pointer p-4 bg-white rounded border hover:bg-gray-50">
+                <h3 class="font-semibold text-gray-900">{faq.question}</h3>
+                <svg class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="p-4 pt-0">
+                <p class="text-gray-700 leading-relaxed">{faq.answer}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+    )}
+  </main>
+  
+  <!-- Performance optimizations -->
+  <script>
+    // Lazy load non-critical images after page load
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+              img.removeAttribute('data-src');
+              imageObserver.unobserve(img);
+            }
+          }
+        });
+      }, {
+        rootMargin: '50px 0px',
+        threshold: 0.01
+      });
+      
+      document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+      });
+    }
+    
+    // Prefetch next/related articles
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => {
+        const relatedLinks = document.querySelectorAll('a[href^="/blog/"]');
+        relatedLinks.forEach(link => {
+          link.addEventListener('mouseenter', () => {
+            const linkEl = document.createElement('link');
+            linkEl.rel = 'prefetch';
+            linkEl.href = link.href;
+            document.head.appendChild(linkEl);
+          }, { once: true });
+        });
+      });
+    }
+    
+    // Performance mark for blog loaded
+    if ('performance' in window) {
+      performance.mark('blog-loaded');
+      performance.measure('blog-load-time', 'blog-start', 'blog-loaded');
+    }
+  </script>
+  
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('SW registered: ', registration);
+          })
+          .catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+  </script>
+</body>
+</html> 

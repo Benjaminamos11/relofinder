@@ -1,6 +1,7 @@
 {
   "name": "project",
   "dependencies": {
+    "@astrojs/prefetch": "^0.4.1",
     "@astrojs/react": "^3.0.10",
     "@astrojs/sitemap": "^3.4.0",
     "@astrojs/tailwind": "^5.1.0",

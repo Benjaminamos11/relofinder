@@ -7,6 +7,35 @@ heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748938015/a-phot
 category: "Legal"
 tags: ["Swiss rental contracts", "tenant rights", "Mietvertrag", "Switzerland", "expats", "legal guide", "renting"]
 readingTime: 18
+seo:
+  title: "Swiss Rental Contracts & Tenant Rights: Complete Legal Guide 2024"
+  description: "Master Swiss rental contracts (Mietvertrag) and tenant rights. Complete guide to deposits, termination, rent increases, legal protections, and obligations for expats in Switzerland."
+  keywords:
+    - "Swiss rental contracts"
+    - "tenant rights Switzerland"
+    - "Mietvertrag Switzerland"
+    - "Swiss rental deposit"
+    - "Switzerland rental laws"
+    - "Swiss tenancy agreement"
+    - "rental contract termination Switzerland"
+    - "Swiss rent increase laws"
+    - "tenant protection Switzerland"
+    - "rental deposit Switzerland"
+    - "Swiss housing laws"
+    - "expat rental rights Switzerland"
+faqs:
+  - question: "What is the maximum rental deposit landlords can charge in Switzerland?"
+    answer: "Swiss law limits rental deposits to a maximum of 3 months' net rent. The deposit must be held in a special bank account in the tenant's name, requiring both parties' signatures for fund release. Interest accrued belongs to the tenant. Landlords cannot legally demand more than this amount."
+  - question: "How much notice do I need to give to terminate my Swiss rental contract?"
+    answer: "The legal minimum notice period for Swiss residential rental contracts is 3 months. Termination must be in writing, sent via registered mail, and respect official termination dates (usually end of March, June, September). All tenants listed on the contract must sign the termination notice."
+  - question: "Can my Swiss landlord increase my rent arbitrarily?"
+    answer: "No, Swiss tenant protection laws restrict rent increases to justified reasons only: mortgage reference rate changes, inflation adjustments within legal limits, or significant property improvements. Landlords must use official cantonal forms and provide 30 days for tenants to contest increases through the Conciliation Authority."
+  - question: "What are my responsibilities as a tenant for minor repairs in Switzerland?"
+    answer: "Swiss tenants are responsible for minor repairs (kleiner Unterhalt) typically costing CHF 150-200 per instance that don't require specialist knowledge: light bulbs, fuses, shower hoses, door handles, and basic maintenance. Major repairs remain the landlord's responsibility."
+  - question: "Do I need house rules (Hausordnung) to be part of my rental contract?"
+    answer: "House rules are only legally binding if specifically referenced in or attached to your rental contract. They typically cover quiet hours (22:00-06:00), laundry schedules, garbage disposal, pet policies, and common area usage. Always request a copy before signing your contract."
+  - question: "What happens if I want to terminate my lease early in Switzerland?"
+    answer: "Early termination requires either landlord agreement or finding a suitable replacement tenant (with landlord approval). Some contracts include early termination clauses with penalties. Otherwise, you remain liable for rent until the legal termination date. Subletting may be an option with landlord consent."
 ---
 
 # Understanding Swiss Rental Contracts and Tenant Rights: Complete Guide for Expats

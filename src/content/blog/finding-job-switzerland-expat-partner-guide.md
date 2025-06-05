@@ -10,9 +10,35 @@ readingTime: 24
 featured: true
 relatedRegions: ["zurich", "geneva", "basel", "zug"]
 relatedServices: ["advisory-services", "visa-services"]
-seoTitle: "Finding a Job in Switzerland as an Expat Partner: Complete Guide 2025"
-seoDescription: "Everything expat partners need to know about finding employment in Switzerland - permits, job search strategies, networking, and overcoming challenges."
-keywords: ["job search switzerland expat spouse", "partner job switzerland", "working switzerland", "expat partner employment", "swiss work permits"]
+seo:
+  title: "Jobs for Expat Partners Switzerland: Complete Employment Guide 2024"
+  description: "Find jobs as an expat spouse in Switzerland. Complete guide to work permits, job search strategies, CV tips, networking, and employment challenges for trailing partners."
+  keywords:
+    - "jobs for expat partners Switzerland"
+    - "expat spouse employment Switzerland"
+    - "trailing partner jobs Switzerland"
+    - "working as expat spouse Switzerland"
+    - "Switzerland job search expat partner"
+    - "expat wife jobs Switzerland"
+    - "dependent visa work rights Switzerland"
+    - "partner employment Zurich"
+    - "expat career Switzerland"
+    - "spouse work permit Switzerland"
+    - "international spouse jobs Switzerland"
+    - "expat family employment"
+faqs:
+  - question: "Can I work in Switzerland as an expat spouse on a dependent permit?"
+    answer: "Yes, but it depends on your permit type and nationality. EU/EFTA spouses generally have work rights. Non-EU spouses need their permit to explicitly state 'Erwerbstätigkeit gestattet' (employment permitted). Always check your specific permit conditions and consult authorities if unclear."
+  - question: "Do I need to speak German/French to find a job as an expat partner in Switzerland?"
+    answer: "While some multinational companies operate in English, local language skills dramatically increase your job prospects. Most roles requiring client contact or in smaller Swiss companies require German, French, or Italian proficiency. Even basic skills demonstrate commitment and open more opportunities."
+  - question: "How long does it typically take to find a job as an expat spouse in Switzerland?"
+    answer: "Job search duration varies widely based on industry, language skills, qualifications, and market conditions. It can range from 2-3 months for in-demand skills to 12+ months for specialized roles or those requiring local language proficiency. Networking significantly speeds up the process."
+  - question: "What are the best job search websites for expat partners in Switzerland?"
+    answer: "Top job portals include jobs.ch, jobscout24.ch, LinkedIn, indeed.ch, and experteer.com for senior roles. English-focused sites include thelocal.ch/jobs and englishforum.ch. Also check company websites directly and consider recruitment agencies specializing in international placements."
+  - question: "Can I claim unemployment benefits in Switzerland as an expat spouse?"
+    answer: "If you've been employed and contributed to Swiss unemployment insurance (ALV/AC) for at least 12 months within the past 2 years, you may be eligible for benefits regardless of your dependent permit status. Register with your local RAV/ORP employment office to apply."
+  - question: "Should I include a photo on my Swiss CV as an expat partner?"
+    answer: "Professional photos on CVs are still common in Switzerland but becoming less mandatory. Including one is generally acceptable but not required. Focus more on a well-structured, error-free CV that clearly states your permit status and work authorization."
 ---
 
 # Finding a Job in Switzerland as an Expat Partner: A Practical Guide

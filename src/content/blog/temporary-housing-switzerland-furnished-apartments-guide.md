@@ -7,6 +7,35 @@ heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748936635/realis
 category: "Housing"
 tags: ["temporary housing", "furnished apartments", "Zurich", "Geneva", "relocation", "housing guide"]
 readingTime: 16
+seo:
+  title: "Temporary Housing Switzerland: Best Furnished Apartments & Short-Term Rentals 2024"
+  description: "Find perfect temporary housing in Switzerland. Complete guide to furnished apartments, serviced apartments, sublets & co-living spaces in Zurich, Geneva & beyond for expats."
+  keywords:
+    - "temporary housing Switzerland"
+    - "furnished apartments Zurich"
+    - "short-term rentals Geneva"
+    - "serviced apartments Switzerland"
+    - "furnished housing Switzerland"
+    - "temporary accommodation Switzerland"
+    - "sublets Switzerland"
+    - "co-living spaces Switzerland"
+    - "UMS Switzerland housing"
+    - "furnished apartments Basel"
+    - "temporary housing expats"
+    - "housing relocation Switzerland"
+faqs:
+  - question: "How much does temporary housing cost in Switzerland?"
+    answer: "Temporary furnished housing in Switzerland typically costs 30-60% more than long-term unfurnished rentals. Expect CHF 1,500-3,000+ per month for studios, CHF 2,500-5,000+ for 1-2 bedrooms in major cities. Serviced apartments are usually the most expensive, while sublets can be more affordable."
+  - question: "How far in advance should I book temporary housing in Switzerland?"
+    answer: "Book 2-3 months in advance, especially for moves during peak seasons (May-September, December-January). Popular locations like Zurich and Geneva fill up quickly. Last-minute bookings are possible but with limited choices and higher prices."
+  - question: "What's included in furnished apartment rentals in Switzerland?"
+    answer: "Most furnished apartments include furniture, kitchenware, linens, and basic utilities. Many include Wi-Fi, TV licenses, and cleaning services. Always confirm what's included - some may charge extra for utilities, parking, or additional services like weekly cleaning."
+  - question: "Can I register my address at a temporary housing location?"
+    answer: "Yes, you can usually register your address (Anmeldung) at temporary housing. However, inform the provider beforehand and ensure they provide the necessary documentation. Some short-term Airbnb-style rentals may not be suitable for official registration."
+  - question: "What's the minimum stay for furnished apartments in Switzerland?"
+    answer: "Minimum stays vary by provider: serviced apartments often require 7-30 days, furnished apartment agencies typically 1-3 months, and sublets can be flexible. Vacation rentals may have shorter minimums but aren't cost-effective for extended stays."
+  - question: "How do I find the best temporary housing deals in Switzerland?"
+    answer: "Use reputable platforms like UMS.ch for local options, compare multiple providers, book during off-peak seasons, consider locations slightly outside city centers, and negotiate for longer stays. Corporate housing providers often offer better rates for extended periods."
 ---
 
 # Temporary Housing Solutions in Switzerland: Your Complete Guide to Furnished Apartments

@@ -1,0 +1,137 @@
+/* Advanced Font Loading Optimization - ReloFinder */
+
+/* Primary font with optimal loading strategy */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-var.woff2') format('woff2-variations'),
+       url('/fonts/inter-var.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Fallback fonts optimized for performance */
+@font-face {
+  font-family: 'Inter-fallback';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: block;
+  src: local('Arial'), local('Helvetica'), local('sans-serif');
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+/* Critical font loading hints */
+:root {
+  --font-primary: Inter, 'Inter-fallback', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Performance-optimized body font loading */
+body {
+  font-family: var(--font-primary);
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+  font-variant-ligatures: common-ligatures;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize text rendering for different content types */
+.prose {
+  text-rendering: optimizeLegibility;
+  font-variant-numeric: oldstyle-nums;
+}
+
+.code, .mono {
+  font-family: var(--font-mono);
+  font-variant-ligatures: none;
+  text-rendering: optimizeSpeed;
+}
+
+/* Font loading performance classes */
+.font-loaded {
+  font-family: var(--font-primary);
+}
+
+.font-loading {
+  font-family: 'Inter-fallback', system-ui, sans-serif;
+  visibility: visible;
+}
+
+/* Prevent invisible text during font swap */
+.no-font-loading .font-loading {
+  visibility: hidden;
+}
+
+/* Connection-aware font loading */
+.slow-connection {
+  --font-primary: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.slow-connection .font-loading {
+  font-family: var(--font-primary);
+}
+
+/* Font weight optimizations */
+.font-thin { font-weight: 100; }
+.font-extralight { font-weight: 200; }
+.font-light { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
+.font-black { font-weight: 900; }
+
+/* Responsive font sizes with optimal loading */
+.text-xs { font-size: 0.75rem; line-height: 1rem; }
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.text-base { font-size: 1rem; line-height: 1.5rem; }
+.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.text-2xl { font-size: 1.5rem; line-height: 2rem; }
+.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+.text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+.text-5xl { font-size: 3rem; line-height: 1; }
+
+/* Performance-optimized media queries */
+@media (min-width: 640px) {
+  .sm\\:text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+  .sm\\:text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+  .sm\\:text-2xl { font-size: 1.5rem; line-height: 2rem; }
+  .sm\\:text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+  .sm\\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+}
+
+@media (min-width: 1024px) {
+  .lg\\:text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+  .lg\\:text-2xl { font-size: 1.5rem; line-height: 2rem; }
+  .lg\\:text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+  .lg\\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+  .lg\\:text-5xl { font-size: 3rem; line-height: 1; }
+}
+
+/* Font loading animation */
+@keyframes font-loading {
+  0% { opacity: 0.6; }
+  50% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+.font-loading-animation {
+  animation: font-loading 1.5s ease-in-out infinite;
+}
+
+/* Preload critical fonts for better performance */
+.preload-fonts::before {
+  content: '';
+  position: absolute;
+  left: -9999px;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-weight: 600;
+  font-weight: 700;
+} 
