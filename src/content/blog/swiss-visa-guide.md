@@ -29,6 +29,21 @@ seo:
     - "residence permit"
     - "immigration"
     - "switzerland"
+    - "work permit"
+    - "EU citizens"
+    - "non-EU citizens"
+    - "permit application"
+faqs:
+  - question: "How long does it take to get a Swiss visa?"
+    answer: "Processing times vary depending on your nationality and permit type. EU/EFTA citizens can typically get permits within 2-4 weeks after arrival, while non-EU citizens may wait 2-12 weeks depending on quotas and canton workload."
+  - question: "Can I work in Switzerland with a tourist visa?"
+    answer: "No, tourist visas (short-stay Schengen visas) do not allow you to work in Switzerland. You need a proper work permit and residence permit to be employed legally."
+  - question: "Do I need a visa if I'm an EU citizen?"
+    answer: "EU/EFTA citizens don't need a visa to enter Switzerland, but they must register with local authorities within 14 days of arrival and apply for a residence permit if staying longer than 3 months."
+  - question: "What's the difference between L, B, and C permits?"
+    answer: "L permits are for short-term stays (up to 1 year), B permits are for initial residence (5 years), and C permits are permanent settlement permits granted after 5-10 years of continuous residence."
+  - question: "Can my family join me on my Swiss permit?"
+    answer: "Yes, family reunification is possible. EU/EFTA citizens can bring spouses, children under 21, and dependent parents. Non-EU citizens can typically bring spouses and children under 18, subject to certain conditions like adequate housing and income."
 ---
 
 # Complete Guide to Swiss Visa and Residence Permits

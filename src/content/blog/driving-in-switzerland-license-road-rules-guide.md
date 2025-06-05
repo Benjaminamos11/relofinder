@@ -7,6 +7,35 @@ heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748940154/a-phot
 category: "Transportation"
 tags: ["driving license Switzerland", "Swiss road rules", "importing car Switzerland", "expat driving", "Switzerland transportation", "license exchange"]
 readingTime: 18
+seo:
+  title: "Driving in Switzerland: License Exchange & Road Rules Guide for Expats 2024"
+  description: "Complete guide to driving in Switzerland for expats. Learn license exchange process, road rules, vignette requirements, and essential driving tips for Switzerland."
+  keywords:
+    - "driving in Switzerland"
+    - "Swiss driving license exchange"
+    - "Switzerland driving license expat"
+    - "Swiss road rules"
+    - "vignette Switzerland"
+    - "driving license Switzerland"
+    - "Swiss driving guide"
+    - "Kontrollfahrt Switzerland"
+    - "importing car Switzerland"
+    - "Swiss speed limits"
+    - "Swiss driving laws"
+    - "expat driving Switzerland"
+faqs:
+  - question: "How long can I drive in Switzerland with my foreign license?"
+    answer: "You can drive in Switzerland with a valid foreign driving license for 12 months from the date you establish residency. After this period, you must exchange it for a Swiss license or face legal penalties."
+  - question: "Do I need to take a driving test to get a Swiss license?"
+    answer: "It depends on your license origin. EU/EFTA citizens and several other countries can exchange directly without a test. Other countries require a 'Kontrollfahrt' (control drive) to assess compliance with Swiss driving standards."
+  - question: "What is a vignette and do I need one?"
+    answer: "A vignette is an annual toll sticker (CHF 40) required to use Swiss motorways and expressways. It's mandatory for all vehicles and must be properly affixed to your windshield. Driving without one results in a CHF 200 fine."
+  - question: "What are the speed limits in Switzerland?"
+    answer: "Speed limits are: 120 km/h on motorways, 100 km/h on expressways, 80 km/h outside built-up areas, and 50 km/h in towns/cities. Special zones may have lower limits (30 km/h or 20 km/h areas)."
+  - question: "What documents do I need to exchange my driving license?"
+    answer: "You need your original foreign license, eye test certificate from a Swiss optician, passport photo, residence permit, passport copy, completed application form, and the exchange fee (CHF 100-200 depending on canton)."
+  - question: "Can I import my car to Switzerland?"
+    answer: "Yes, you can import your car within one year of establishing residency. The process involves customs clearance, technical inspection, registration, and paying import duties. Consider costs carefully as it may be more expensive than buying locally."
 ---
 
 # Driving in Switzerland: Getting Your License and Understanding Road Rules

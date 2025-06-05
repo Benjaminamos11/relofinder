@@ -174,6 +174,10 @@ const blog = defineCollection({
     featured: z.boolean().default(false),
     relatedRegions: z.array(z.string()).optional(),
     relatedServices: z.array(z.string()).optional(),
+    faqs: z.array(z.object({
+      question: z.string(),
+      answer: z.string()
+    })).optional(),
     seo: z.object({
       title: z.string().optional(),
       description: z.string().optional(),

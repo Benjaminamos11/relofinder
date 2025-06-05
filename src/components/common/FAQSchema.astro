@@ -1,0 +1,109 @@
+---
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  faqs: FAQ[];
+}
+
+const { faqs } = Astro.props;
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+---
+
+<!-- FAQ Schema.org JSON-LD -->
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<!-- FAQ Section -->
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4 lg:px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+        <p class="text-xl text-gray-600">Get answers to common questions about Swiss relocation</p>
+      </div>
+      
+      <div class="space-y-6" itemscope itemtype="https://schema.org/FAQPage">
+        {faqs.map((faq, index) => (
+          <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <button 
+              class="w-full px-6 py-6 text-left focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset"
+              onclick={`toggleFAQ(${index})`}
+              aria-expanded="false"
+              aria-controls={`faq-answer-${index}`}
+              id={`faq-question-${index}`}
+            >
+              <div class="flex justify-between items-center">
+                <h3 class="text-lg font-semibold text-gray-900 pr-4" itemprop="name">
+                  {faq.question}
+                </h3>
+                <div class="faq-icon flex-shrink-0 transform transition-transform duration-200">
+                  <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </div>
+              </div>
+            </button>
+            <div 
+              class="faq-content px-6 pb-6 hidden"
+              id={`faq-answer-${index}`}
+              aria-labelledby={`faq-question-${index}`}
+              itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"
+            >
+              <div class="text-gray-700 leading-relaxed prose prose-lg max-w-none prose-a:text-primary-600" itemprop="text" set:html={faq.answer} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function toggleFAQ(index: number) {
+    const content = document.getElementById(`faq-answer-${index}`);
+    const button = document.getElementById(`faq-question-${index}`);
+    const icon = button?.querySelector('.faq-icon');
+    
+    if (content && button && icon) {
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      
+      // Toggle content visibility
+      if (isExpanded) {
+        content.classList.add('hidden');
+        button.setAttribute('aria-expanded', 'false');
+        icon.classList.remove('rotate-180');
+      } else {
+        content.classList.remove('hidden');
+        button.setAttribute('aria-expanded', 'true');
+        icon.classList.add('rotate-180');
+      }
+    }
+  }
+  
+  // Make function available globally
+  (window as any).toggleFAQ = toggleFAQ;
+</script>
+
+<style>
+  .faq-content {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .faq-icon {
+    transition: transform 0.2s ease-in-out;
+  }
+</style> 

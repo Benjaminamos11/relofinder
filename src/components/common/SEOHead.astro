@@ -20,7 +20,7 @@ interface Props {
   description: string;
   canonical?: string;
   keywords?: string[];
-  schema?: any;
+  schema?: any | any[];
   openGraph?: OpenGraph;
   twitter?: Twitter;
 }
@@ -58,6 +58,9 @@ const twitterCard = {
 // Generate keywords string
 const keywordsString = keywords.length > 0 ? keywords.join(', ') : 
   'relocation switzerland, swiss relocation services, moving to switzerland, expat services switzerland, relocation companies switzerland';
+
+// Handle schema - can be single object or array
+const schemas = Array.isArray(schema) ? schema : (schema ? [schema] : []);
 ---
 
 <!-- Primary Meta Tags -->
@@ -132,6 +135,6 @@ const keywordsString = keywords.length > 0 ? keywords.join(', ') :
 <link rel="dns-prefetch" href="https://serpapi.com" />
 
 <!-- Schema.org JSON-LD -->
-{schema && (
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-)} 
+{schemas.map(schemaObj => (
+  <script type="application/ld+json" set:html={JSON.stringify(schemaObj)} />
+))} 

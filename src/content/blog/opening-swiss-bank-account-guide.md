@@ -8,6 +8,18 @@ tags: ["swiss bank account", "opening bank account switzerland", "swiss banking"
 readingTime: 13
 author: "ReloFinder Team"
 featured: false
+seo:
+  title: "How to Open a Swiss Bank Account: Complete Guide for Expats 2024"
+  description: "Complete step-by-step guide to opening a Swiss bank account for new residents and expats. Learn requirements, best banks, account types, fees, and FATCA requirements."
+  keywords:
+    - "open swiss bank account"
+    - "swiss banking guide"
+    - "bank account switzerland expats"
+    - "swiss banking requirements"
+    - "UBS account opening"
+    - "PostFinance account"
+    - "swiss bank fees"
+    - "FATCA requirements"
 ---
 
 # Opening a Swiss Bank Account: A Guide for New Arrivals

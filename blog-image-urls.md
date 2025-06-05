@@ -69,6 +69,11 @@
 - **Image URL:** `https://res.cloudinary.com/dphbnwjtx/image/upload/v1748939696/realistic-photo-a-happy-relaxed-friendly_IapdshO9Q2a0UePfG8UV3A_FcxxnIErRvyk1rWV5jSaGg_y35mxn.png`
 - **Description:** Happy relaxed friendly cow for Swiss public transport guide
 
+### Swiss Public School System Guide for Expat Parents
+- **File:** `swiss-public-school-system-guide-expat-parents.md`
+- **Image URL:** `https://res.cloudinary.com/dphbnwjtx/image/upload/v1748949146/realistic-photo-a-studious-friendly-cow-_ykedqhzrRLSdx4yzH8eKcA_wW5s98a1Q7CF6S0iwjFQ6Q_getfty.png`
+- **Description:** Studious friendly cow for Swiss education system guide (CORRECTED URL - added missing dash)
+
 ## IMPORTANT NOTES
 - Do NOT change these URLs without explicit user confirmation
 - Each blog post has a specific assigned image

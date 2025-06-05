@@ -10,6 +10,7 @@ export interface Props {
   format?: 'auto' | 'webp' | 'jpg' | 'png';
   crop?: 'fill' | 'fit' | 'scale' | 'crop';
   gravity?: 'auto' | 'face' | 'center';
+  priority?: boolean; // For LCP optimization
 }
 
 const {
@@ -22,7 +23,8 @@ const {
   quality = 'auto',
   format = 'auto',
   crop = 'fill',
-  gravity = 'auto'
+  gravity = 'auto',
+  priority = false
 } = Astro.props;
 
 // Check if it's a Cloudinary URL
@@ -30,6 +32,8 @@ const isCloudinaryUrl = src.includes('cloudinary.com') || src.includes('res.clou
 
 let optimizedSrc = src;
 let srcSet = '';
+let avifSrcSet = '';
+let webpSrcSet = '';
 
 if (isCloudinaryUrl) {
   try {
@@ -43,12 +47,11 @@ if (isCloudinaryUrl) {
       const publicIdParts = pathAfterUpload.split('/');
       const publicId = publicIdParts[publicIdParts.length - 1];
       
-      // Build transformation parameters
+      // Build transformation parameters with advanced compression
       const transforms: string[] = [];
       
-      // Quality and format optimization
-      transforms.push(`q_${quality}`);
-      transforms.push(`f_${format}`);
+      // Enhanced quality and format optimization
+      transforms.push(`q_${quality === 'auto' ? 'auto:best' : quality}`);
       
       // Responsive sizing with crop
       if (height) {
@@ -65,20 +68,53 @@ if (isCloudinaryUrl) {
       // DPR (Device Pixel Ratio) for retina displays
       transforms.push('dpr_auto');
       
-      const transformString = transforms.join(',');
-      optimizedSrc = `${baseUrl}${transformString}/${publicId}`;
+      // Additional performance optimizations
+      transforms.push('fl_progressive'); // Progressive JPEG
+      transforms.push('fl_immutable_cache'); // Better caching
       
-      // Create responsive srcSet for different screen sizes
-      const sizes = [320, 480, 640, 768, 1024, 1280];
-      srcSet = sizes.map(size => {
-        const responsiveTransforms = transforms.map((t: string) => {
+      const baseTransformString = transforms.join(',');
+      
+      // Create optimized srcSets for different formats
+      const sizes = [320, 480, 640, 768, 1024, 1280, 1920];
+      const relevantSizes = sizes.filter(size => size <= width * 2); // Only include relevant sizes
+      
+      // AVIF format (best compression, modern browsers)
+      avifSrcSet = relevantSizes.map(size => {
+        const sizeTransforms = transforms.map((t: string) => {
           if (t.startsWith('w_')) {
             return `w_${size}`;
           }
           return t;
-        }).join(',');
-        return `${baseUrl}${responsiveTransforms}/${publicId} ${size}w`;
+        });
+        return `${baseUrl}f_avif,${sizeTransforms.join(',')}/${publicId} ${size}w`;
       }).join(', ');
+      
+      // WebP format (good compression, wide support)
+      webpSrcSet = relevantSizes.map(size => {
+        const sizeTransforms = transforms.map((t: string) => {
+          if (t.startsWith('w_')) {
+            return `w_${size}`;
+          }
+          return t;
+        });
+        return `${baseUrl}f_webp,${sizeTransforms.join(',')}/${publicId} ${size}w`;
+      }).join(', ');
+      
+      // Default format srcSet
+      srcSet = relevantSizes.map(size => {
+        const sizeTransforms = transforms.map((t: string) => {
+          if (t.startsWith('w_')) {
+            return `w_${size}`;
+          }
+          return t;
+        });
+        const formatParam = format === 'auto' ? 'f_auto' : `f_${format}`;
+        return `${baseUrl}${formatParam},${sizeTransforms.join(',')}/${publicId} ${size}w`;
+      }).join(', ');
+      
+      // Main optimized source
+      const formatParam = format === 'auto' ? 'f_auto' : `f_${format}`;
+      optimizedSrc = `${baseUrl}${formatParam},${baseTransformString}/${publicId}`;
     }
   } catch (error) {
     // Fallback to original URL if transformation fails
@@ -88,19 +124,63 @@ if (isCloudinaryUrl) {
   }
 }
 
-// Default sizes attribute for responsive images
-const responsiveSizes = '(max-width: 480px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 70vw';
+// Enhanced sizes attribute for better responsive loading
+const responsiveSizes = priority 
+  ? '(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 80vw'
+  : '(max-width: 480px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 70vw';
+
+// Determine optimal loading strategy
+const finalLoading = priority ? 'eager' : loading;
+const fetchPriority = priority ? 'high' : 'auto';
 ---
 
-<img
-  src={optimizedSrc}
-  srcset={srcSet || undefined}
-  sizes={srcSet ? responsiveSizes : undefined}
-  alt={alt}
-  class={className}
-  loading={loading}
-  width={width}
-  height={height}
-  decoding="async"
-  onerror="this.src='https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=800&q=80'"
-/> 
+<!-- Enhanced picture element for better format support and performance -->
+{isCloudinaryUrl ? (
+  <picture>
+    <!-- AVIF format for modern browsers (best compression) -->
+    {avifSrcSet && (
+      <source 
+        srcset={avifSrcSet} 
+        sizes={responsiveSizes}
+        type="image/avif"
+      />
+    )}
+    
+    <!-- WebP format for wide browser support -->
+    {webpSrcSet && (
+      <source 
+        srcset={webpSrcSet} 
+        sizes={responsiveSizes}
+        type="image/webp"
+      />
+    )}
+    
+    <!-- Fallback image with optimized srcset -->
+    <img
+      src={optimizedSrc}
+      srcset={srcSet || undefined}
+      sizes={srcSet ? responsiveSizes : undefined}
+      alt={alt}
+      class={className}
+      loading={finalLoading}
+      fetchpriority={fetchPriority}
+      width={width}
+      height={height}
+      decoding="async"
+      onerror="this.src='https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=800&q=80'"
+    />
+  </picture>
+) : (
+  <!-- Non-Cloudinary images -->
+  <img
+    src={optimizedSrc}
+    alt={alt}
+    class={className}
+    loading={finalLoading}
+    fetchpriority={fetchPriority}
+    width={width}
+    height={height}
+    decoding="async"
+    onerror="this.src='https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=800&q=80'"
+  />
+)} 
