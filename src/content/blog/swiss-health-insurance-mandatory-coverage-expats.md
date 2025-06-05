@@ -7,6 +7,35 @@ heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748939355/realis
 category: "Healthcare"
 tags: ["Swiss health insurance", "expats", "Krankenkasse", "healthcare", "Switzerland", "mandatory coverage"]
 readingTime: 18
+seo:
+  title: "Swiss Health Insurance for Expats: Complete KVG/LaMal Coverage Guide 2024"
+  description: "Essential guide to Swiss mandatory health insurance for expats. Learn about KVG coverage, Krankenkasse options, premiums, franchise choices, and the 3-month deadline rule."
+  keywords:
+    - "Swiss health insurance"
+    - "health insurance Switzerland expats"
+    - "Krankenkasse Switzerland"
+    - "mandatory health insurance Switzerland"
+    - "KVG health insurance"
+    - "Swiss healthcare system"
+    - "health insurance franchise Switzerland"
+    - "Swiss health insurance premium"
+    - "expat health insurance Switzerland"
+    - "LaMal insurance"
+    - "Switzerland healthcare for foreigners"
+    - "health insurance coverage Switzerland"
+faqs:
+  - question: "Is health insurance mandatory for expats in Switzerland?"
+    answer: "Yes, health insurance is mandatory for all residents in Switzerland, including expats. You must sign up within 3 months of arrival and registration. Coverage is backdated to your arrival date, and failure to register can result in cantonal assignment and penalties."
+  - question: "How much does health insurance cost in Switzerland?"
+    answer: "Health insurance premiums vary by canton, age, and insurer. Adults typically pay CHF 300-600+ monthly for basic coverage. Premiums are lowest with higher franchise (deductible) options. Children receive subsidized rates, and income-based premium reductions are available for qualifying residents."
+  - question: "What is a franchise in Swiss health insurance?"
+    answer: "A franchise is your annual deductible (CHF 300-2,500 for adults). You pay all medical costs up to your franchise amount, then 10% of additional costs up to CHF 700 annually. Higher franchise = lower monthly premiums but higher out-of-pocket costs when you need care."
+  - question: "Can I choose any health insurance company in Switzerland?"
+    answer: "Yes, you can choose any recognized health insurance company (Krankenkasse) operating in your canton. All must accept you regardless of age or health status for basic coverage. Benefits are standardized, but premiums and service levels vary between insurers."
+  - question: "What does Swiss basic health insurance cover?"
+    answer: "Basic insurance covers doctor visits, hospital treatment (general ward), prescription medications, maternity care, preventive care, and emergency treatment. It does NOT cover routine dental care, glasses, private hospital rooms, or most alternative therapies."
+  - question: "What happens if I miss the 3-month health insurance deadline?"
+    answer: "If you miss the deadline, the canton will assign you to an insurer, often with higher premiums. You'll face late registration surcharges and have limited choice of providers. Always register within 3 months of arrival to avoid penalties and maintain your freedom of choice."
 ---
 
 # Swiss Health Insurance Explained: Complete Guide to Mandatory Coverage for Expats

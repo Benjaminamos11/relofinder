@@ -11,9 +11,34 @@ featured: true
 relatedRegions: ["zurich", "geneva", "basel", "lausanne"]
 relatedServices: ["family-relocation", "settling-in-support", "school-search"]
 seo:
-  title: "Swiss Childcare Guide: Krippe, Tagesmutter & Costs for Expat Families"
+  title: "Swiss Childcare Guide: Krippe, Tagesmutter & Costs for Expat Families 2024"
   description: "Navigate Swiss childcare options as an expat. Complete guide to Krippe costs, daycare, subsidies & finding quality childcare in Switzerland for working parents."
-  keywords: ["childcare switzerland", "krippe costs switzerland", "expats with kids switzerland", "daycare geneva", "tagesmutter switzerland", "swiss childcare subsidies"]
+  keywords: 
+    - "childcare switzerland"
+    - "krippe costs switzerland"
+    - "expats with kids switzerland"
+    - "daycare geneva"
+    - "tagesmutter switzerland"
+    - "swiss childcare subsidies"
+    - "nanny switzerland"
+    - "childcare zurich"
+    - "swiss daycare centers"
+    - "family life switzerland"
+    - "working parents switzerland"
+    - "early childhood education switzerland"
+faqs:
+  - question: "How much does childcare cost in Switzerland?"
+    answer: "Childcare in Switzerland is very expensive. Krippe (daycare) costs CHF 100-150+ per day before subsidies, meaning CHF 2,000-3,500+ monthly for full-time care. Tagesmutter costs CHF 8-15 per hour. Cities like Geneva and Zurich are most expensive, but income-based subsidies are available."
+  - question: "When should I start looking for childcare in Switzerland?"
+    answer: "Start your search as early as possible, ideally 6-12 months before you need care. Waiting lists for quality childcare facilities in major Swiss cities are extremely long. Some parents register even before their child is born."
+  - question: "What is a Tagesmutter in Switzerland?"
+    answer: "A Tagesmutter (day mother) is a registered childminder who provides care in their own home for small groups of children (3-5 max). They offer a family-like environment, more flexibility, and are often more affordable than formal daycare centers."
+  - question: "Are there childcare subsidies available for expats in Switzerland?"
+    answer: "Yes, most cantons and communes offer income-based childcare subsidies to all residents, including expats. Subsidies can significantly reduce costs. Contact your local commune to apply - you'll need proof of income and residency status."
+  - question: "What documents do I need to enroll my child in Swiss childcare?"
+    answer: "Typically you need: child's birth certificate, vaccination records, proof of address in Switzerland, residence permits for the family, proof of income (for subsidies), and emergency contact information. Requirements may vary by facility and canton."
+  - question: "Can my child attend Swiss childcare if they don't speak the local language?"
+    answer: "Yes, Swiss childcare facilities welcome children who don't speak the local language. This is actually one of the best ways for children to learn German, French, or Italian through immersion. Staff are experienced with multilingual children and integration."
 ---
 
 For **expats with kids Switzerland**-bound, arranging suitable **childcare Switzerland** is a top priority, whether you're planning to work, study, or simply want your child to socialize and integrate. Switzerland offers high-quality childcare options, but it's also known for its significant costs and often long waiting lists, especially in urban areas. This guide explores the main types of childcare, including typical **Krippe costs Switzerland** and what to expect for **daycare Geneva**, to help you make informed decisions for your family.

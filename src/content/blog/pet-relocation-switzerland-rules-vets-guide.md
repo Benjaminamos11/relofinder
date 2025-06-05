@@ -11,9 +11,34 @@ featured: true
 relatedRegions: ["zurich", "geneva", "basel", "bern"]
 relatedServices: ["family-relocation", "settling-in-support", "advisory-services"]
 seo:
-  title: "Pet Relocation Switzerland: Complete Guide to Bringing Dogs & Cats"
+  title: "Pet Relocation to Switzerland: Complete Guide for Dogs & Cats Import 2024"
   description: "Expert guide to pet relocation to Switzerland. Import regulations, vet requirements, breed restrictions & tips for bringing your dog or cat to Switzerland safely."
-  keywords: ["pet relocation switzerland", "bring dog switzerland", "import cat switzerland", "swiss pet regulations", "pet import requirements", "veterinary switzerland"]
+  keywords: 
+    - "pet relocation switzerland"
+    - "bring dog switzerland"
+    - "import cat switzerland"
+    - "swiss pet regulations"
+    - "pet import requirements switzerland"
+    - "veterinary requirements switzerland"
+    - "relocating with pets switzerland"
+    - "swiss pet import rules"
+    - "dog breed restrictions switzerland"
+    - "pet health certificate switzerland"
+    - "moving pets to switzerland"
+    - "switzerland animal import"
+faqs:
+  - question: "What are the basic requirements to bring my pet to Switzerland?"
+    answer: "Essential requirements include: ISO-standard microchip implanted before vaccinations, valid rabies vaccination (21+ days old), health certificate issued within 10 days of travel, and sometimes blood tests depending on your origin country. All documentation must be from licensed veterinarians."
+  - question: "How long does the pet import process take for Switzerland?"
+    answer: "The process typically takes 2-4 months from start to finish. Key timelines include: 21-day waiting period after rabies vaccination, blood tests (if required) take 2-4 weeks for results, and health certificates must be issued within 10 days of travel. Start planning early."
+  - question: "Are certain dog breeds banned in Switzerland?"
+    answer: "Yes, breed restrictions vary by canton. Basel-Stadt, Geneva, and Valais have comprehensive breed ban lists including Pit Bulls, Staffordshire Terriers, and Rottweilers. Some cantons require permits, insurance, and competency certificates for restricted breeds. Check your specific canton's regulations."
+  - question: "Do I need a quarantine period for my pet in Switzerland?"
+    answer: "No quarantine is required if all import conditions are met and you're coming from a 'listed' low-rabies-risk country (EU, USA, Canada, Australia, etc.). However, pets from high-risk countries may face quarantine if documentation is incomplete or antibody levels are insufficient."
+  - question: "How much does it cost to bring a pet to Switzerland?"
+    answer: "Costs vary but typically include: veterinary exams and certificates (€100-300), blood tests if required (€100-200), travel arrangements (€200-2000+ depending on method), and potential professional pet relocation services (€500-2000+). Budget for ongoing costs like annual dog tax (CHF 50-200)."
+  - question: "Can I bring my pet on the plane to Switzerland?"
+    answer: "Yes, but requirements depend on pet size and airline policies. Small pets (under 8kg total with carrier) can often travel in-cabin. Larger pets travel in cargo holds with special climate-controlled containers. Some airlines don't transport pets, so research and book early."
 ---
 
 Switzerland is one of the most **pet-friendly countries in Europe**, making it an excellent destination for families relocating with their beloved animals. However, **pet relocation Switzerland** involves navigating complex **Swiss pet import** requirements, strict documentation, and understanding local regulations. This comprehensive guide covers everything you need to know for a successful **pet import Switzerland** experience.

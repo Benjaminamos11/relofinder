@@ -11,9 +11,34 @@ featured: true
 relatedRegions: ["zurich", "geneva", "basel", "lausanne"]
 relatedServices: ["school-search", "family-relocation", "settling-in-support"]
 seo:
-  title: "Swiss Public Schools Guide: Complete Education System for Expat Parents"
-  description: "Everything expat parents need to know about Swiss public schools. Enrollment process, language support, curriculum structure & integration tips for family relocation."
-  keywords: ["public schools switzerland", "swiss education system", "moving to switzerland with family", "schooling switzerland", "expat children education", "swiss school enrollment"]
+  title: "Swiss Public Schools Guide: Complete Education System for Expat Parents 2024"
+  description: "Everything expat parents need to know about Swiss public schools. Enrollment process, language support, curriculum structure & integration tips for family relocation to Switzerland."
+  keywords: 
+    - "public schools switzerland"
+    - "swiss education system"
+    - "moving to switzerland with family"
+    - "schooling switzerland"
+    - "expat children education"
+    - "swiss school enrollment"
+    - "international families switzerland"
+    - "swiss kindergarten"
+    - "language support schools"
+    - "canton school system"
+    - "swiss primary school"
+    - "expat family education"
+faqs:
+  - question: "How do I enroll my child in a Swiss public school as an expat?"
+    answer: "First register your address (Anmeldung) with your local commune, then contact school authorities. You'll need documents like birth certificate, residence permits, health records, and proof of address. Children are typically placed by age with language assessments for non-native speakers."
+  - question: "Are Swiss public schools free for expat children?"
+    answer: "Yes, Swiss public schools are completely free for all children residing in Switzerland, regardless of nationality. This includes tuition, basic school materials, and most school activities. Only optional items like school trips or special equipment may have costs."
+  - question: "What language will my child learn in Swiss public schools?"
+    answer: "Your child will learn in the official language of your canton: German, French, Italian, or Romansh. They'll also learn a second national language and English. Swiss public schools provide excellent language immersion for integration."
+  - question: "At what age does school start in Switzerland?"
+    answer: "Kindergarten typically starts at age 4-5 and is now compulsory for at least one year in most cantons. Primary school follows at age 6-7. The Swiss education system provides 11 years of compulsory education including kindergarten."
+  - question: "What is the streaming system in Swiss secondary schools?"
+    answer: "After primary school, students are placed into different tracks (streams) based on academic performance. This varies by canton but typically includes academic tracks leading to university and practical tracks leading to vocational training. Both paths offer excellent opportunities."
+  - question: "Do Swiss public schools provide language support for expat children?"
+    answer: "Yes, most Swiss public schools offer integration classes and additional language support for non-native speakers. This includes specialized classes (DaZ, FLE) and extra tutoring to help children adapt to the local language and curriculum."
 ---
 
 For expat families **moving to Switzerland with family**, choosing the right educational path for their children is a paramount concern. While international schools are a popular option, the **public schools Switzerland** offers are renowned for their high quality, integration focus, and offer an unparalleled opportunity for children to become fluent in the local language and truly immerse themselves in Swiss culture. This guide provides an overview of the **Swiss education system** to help expat parents make informed decisions about their children's **schooling Switzerland**.
