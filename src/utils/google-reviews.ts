@@ -1,3 +1,20 @@
+import { createClient } from '@supabase/supabase-js';
+
+// Initialize Supabase client (only if environment variables are available)
+let supabase: any = null;
+if (typeof window === 'undefined') { // Server-side only
+  try {
+    if (import.meta.env.SUPABASE_URL && import.meta.env.SUPABASE_ANON_KEY) {
+      supabase = createClient(
+        import.meta.env.SUPABASE_URL,
+        import.meta.env.SUPABASE_ANON_KEY
+      );
+    }
+  } catch (error) {
+    console.log('Supabase not available:', error);
+  }
+}
+
 interface GoogleReview {
   position: number;
   author: {
@@ -44,15 +61,9 @@ interface SerpApiResponse {
 export interface FormattedReview {
   author: string;
   rating: number;
-  date: string;
   text: string;
-  verified: boolean;
-  avatar?: string;
-  likes?: number;
-  response?: {
-    date: string;
-    text: string;
-  };
+  date?: string;
+  source: string;
 }
 
 export interface BusinessReviewData {
@@ -65,138 +76,155 @@ export interface BusinessReviewData {
   };
 }
 
+export interface RawGoogleReview {
+  author: {
+    name: string;
+  };
+  rating: number;
+  text: string;
+  time_description: string;
+}
+
 /**
  * Fetches Google My Business reviews using SerpAPI
- * @param googleMapsUrl - The Google Maps URL or business search query
+ * @param googleMyBusinessUrl - The Google Maps URL or business search query
  * @param apiKey - SerpAPI key
  * @returns Promise<BusinessReviewData>
  */
 export async function fetchGoogleReviews(
-  googleMapsUrl: string,
+  googleMyBusinessUrl: string, 
   apiKey: string
 ): Promise<BusinessReviewData | null> {
   try {
-    // Extract place data from Google Maps URL or use as search query
-    const searchQuery = extractSearchQuery(googleMapsUrl);
-    if (!searchQuery) {
-      console.warn('Could not extract search query from:', googleMapsUrl);
-      return null;
+    console.log('Fetching reviews from SerpAPI:', googleMyBusinessUrl);
+    
+    // Extract place ID or search query from URL
+    let searchQuery = '';
+    
+    if (googleMyBusinessUrl.includes('place/')) {
+      // Extract business name from place URL
+      const placeName = googleMyBusinessUrl.split('place/')[1]?.split('/')[0];
+      searchQuery = decodeURIComponent(placeName || '').replace(/\+/g, ' ');
+    } else if (googleMyBusinessUrl.includes('q=')) {
+      // Direct search query
+      searchQuery = googleMyBusinessUrl.split('q=')[1]?.split('&')[0];
+      searchQuery = decodeURIComponent(searchQuery || '').replace(/\+/g, ' ');
+    } else {
+      // Use the URL as-is
+      searchQuery = googleMyBusinessUrl;
     }
 
-    // SerpAPI endpoint for Google Maps reviews
-    const serpApiUrl = new URL('https://serpapi.com/search');
-    serpApiUrl.searchParams.append('engine', 'google_maps');
-    serpApiUrl.searchParams.append('q', searchQuery);
-    serpApiUrl.searchParams.append('type', 'search');
-    serpApiUrl.searchParams.append('api_key', apiKey);
-    serpApiUrl.searchParams.append('hl', 'en'); // Language
-    serpApiUrl.searchParams.append('gl', 'ch'); // Country (Switzerland)
-
-    console.log('Fetching reviews from SerpAPI:', serpApiUrl.toString());
-
-    const response = await fetch(serpApiUrl.toString());
+    const serpApiUrl = `https://serpapi.com/search?engine=google_maps&q=${encodeURIComponent(searchQuery)}&type=search&api_key=${apiKey}&hl=en&gl=ch`;
+    
+    const response = await fetch(serpApiUrl);
     
     if (!response.ok) {
       throw new Error(`SerpAPI request failed: ${response.status} ${response.statusText}`);
     }
-
-    const data: any = await response.json();
     
-    // Debug: Log the full response structure
-    console.log('SerpAPI Response Structure:', {
-      hasPlaceResults: !!data.place_results,
-      hasLocalResults: !!data.local_results,
-      topLevelKeys: Object.keys(data),
-      placeResultsKeys: data.place_results ? Object.keys(data.place_results) : null,
-      localResultsLength: data.local_results ? data.local_results.length : 0
-    });
-
-    // Try different response structures
-    let placeData = null;
+    const data = await response.json();
     
-    if (data.place_results) {
-      placeData = data.place_results;
-      console.log('Using place_results data');
-    } else if (data.local_results && data.local_results.length > 0) {
-      placeData = data.local_results[0];
-      console.log('Using first local_results entry');
-    } else {
-      console.warn('No place or local results found in SerpAPI response');
-      console.log('Available keys:', Object.keys(data));
+    if (data.error) {
+      throw new Error(`SerpAPI error: ${data.error}`);
+    }
+
+    // Find the first local result with reviews
+    const localResults = data.local_results || [];
+    let businessData = null;
+    
+    for (const result of localResults) {
+      if (result.reviews && result.reviews.length > 0) {
+        businessData = result;
+        break;
+      }
+    }
+
+    if (!businessData) {
+      console.log('No reviews found in SerpAPI response');
       return null;
     }
 
-    // Debug: Log the place data structure
-    console.log('Place Data Structure:', {
-      hasReviews: !!placeData.reviews,
-      reviewsType: typeof placeData.reviews,
-      reviewsLength: Array.isArray(placeData.reviews) ? placeData.reviews.length : 'not array',
-      hasUserReviews: !!placeData.user_reviews,
-      userReviewsType: typeof placeData.user_reviews,
-      userReviewsLength: Array.isArray(placeData.user_reviews) ? placeData.user_reviews.length : 'not array',
-      rating: placeData.rating || placeData.reviews_rating,
-      reviewCount: placeData.review_count || placeData.reviews_count || placeData.reviews,
-      placeDataKeys: Object.keys(placeData)
-    });
+    // Format the reviews
+    const formattedReviews: FormattedReview[] = businessData.reviews.map((review: RawGoogleReview) => ({
+      author: review.author?.name || 'Anonymous',
+      rating: review.rating || 5,
+      text: review.text || '',
+      date: review.time_description || '',
+      source: 'google'
+    }));
 
-    // Format the response data with better error handling
-    const businessData: BusinessReviewData = {
-      rating: placeData.rating || placeData.reviews_rating || 0,
-      reviewCount: placeData.review_count || placeData.reviews_count || (typeof placeData.reviews === 'number' ? placeData.reviews : 0),
-      reviews: [],
+    const reviewData: BusinessReviewData = {
+      rating: businessData.rating || 4.5,
+      reviewCount: businessData.reviews_original || businessData.reviews.length,
+      reviews: formattedReviews,
       businessInfo: {
-        address: placeData.address || '',
-        placeId: placeData.place_id || ''
+        address: businessData.address || '',
+        placeId: businessData.place_id || ''
       }
     };
 
-    // Handle reviews data safely - check multiple possible fields
-    let reviewsArray = null;
+    // Save reviews to Supabase if available
+    if (supabase && formattedReviews.length > 0) {
+      await saveReviewsToSupabase(searchQuery, formattedReviews);
+    }
+
+    return reviewData;
     
-    if (placeData.user_reviews && Array.isArray(placeData.user_reviews)) {
-      reviewsArray = placeData.user_reviews;
-      console.log('Using user_reviews array');
-    } else if (placeData.reviews && Array.isArray(placeData.reviews)) {
-      reviewsArray = placeData.reviews;
-      console.log('Using reviews array');
-    } else {
-      console.log('No reviews array found. Available review fields:', {
-        reviews: typeof placeData.reviews,
-        user_reviews: typeof placeData.user_reviews,
-        reviewsValue: placeData.reviews,
-        userReviewsValue: placeData.user_reviews
-      });
-    }
-
-    if (reviewsArray && reviewsArray.length > 0) {
-      try {
-        businessData.reviews = formatReviews(reviewsArray);
-        console.log(`Successfully formatted ${businessData.reviews.length} reviews`);
-      } catch (formatError) {
-        console.error('Error formatting reviews:', formatError);
-        console.log('Sample review data:', reviewsArray[0]);
-        businessData.reviews = [];
-      }
-    } else if (placeData.place_id) {
-      // If no reviews in initial response, try fetching detailed reviews
-      console.log('No reviews in initial response, trying detailed reviews fetch...');
-      try {
-        const detailedReviews = await fetchDetailedReviews(placeData.place_id, apiKey);
-        if (detailedReviews && detailedReviews.length > 0) {
-          businessData.reviews = detailedReviews;
-          console.log(`Successfully fetched ${detailedReviews.length} detailed reviews`);
-        }
-      } catch (detailError) {
-        console.error('Error fetching detailed reviews:', detailError);
-      }
-    }
-
-    console.log(`Final business data: ${businessData.reviews.length} reviews, rating: ${businessData.rating}`);
-    return businessData;
-
   } catch (error) {
     console.error('Error fetching Google reviews:', error);
     return null;
+  }
+}
+
+async function saveReviewsToSupabase(companyId: string, reviews: FormattedReview[]) {
+  if (!supabase) return;
+
+  try {
+    // Convert company name to ID format
+    const cleanCompanyId = companyId.toLowerCase()
+      .replace(/[^a-z0-9\s]/g, '')
+      .replace(/\s+/g, '-')
+      .substring(0, 50);
+
+    // Check which reviews we already have
+    const { data: existingReviews } = await supabase
+      .from('company_reviews')
+      .select('author, text')
+      .eq('company_id', cleanCompanyId);
+
+    const existingSet = new Set(
+      existingReviews?.map((r: any) => `${r.author}-${r.text.substring(0, 50)}`) || []
+    );
+
+    // Filter out duplicates and prepare for insert
+    const newReviews = reviews
+      .filter(review => {
+        const key = `${review.author}-${review.text.substring(0, 50)}`;
+        return !existingSet.has(key);
+      })
+      .map(review => ({
+        company_id: cleanCompanyId,
+        author: review.author,
+        rating: review.rating,
+        text: review.text,
+        date: review.date ? new Date(review.date).toISOString() : new Date().toISOString(),
+        source: review.source,
+        fetched_at: new Date().toISOString()
+      }));
+
+    if (newReviews.length > 0) {
+      const { error } = await supabase
+        .from('company_reviews')
+        .insert(newReviews);
+
+      if (error) {
+        console.error('Error saving reviews to Supabase:', error);
+      } else {
+        console.log(`Saved ${newReviews.length} new reviews to Supabase for ${cleanCompanyId}`);
+      }
+    }
+  } catch (error) {
+    console.error('Error in saveReviewsToSupabase:', error);
   }
 }
 
@@ -273,6 +301,7 @@ function formatReviews(reviews: any[]): FormattedReview[] {
         rating,
         date: formatReviewDate(date),
         text,
+        source: 'google',
         verified,
         avatar,
         likes: review.likes || 0,
@@ -291,6 +320,7 @@ function formatReviews(reviews: any[]): FormattedReview[] {
         rating: 5,
         date: 'Recently',
         text: 'Review content unavailable',
+        source: 'google',
         verified: false
       };
     }
@@ -380,25 +410,39 @@ async function fetchDetailedReviews(placeId: string, apiKey: string): Promise<Fo
 export function getMockReviews(): FormattedReview[] {
   return [
     {
-      author: "Sarah M.",
+      author: "Sarah Johnson",
       rating: 5,
+      text: "Excellent service from start to finish! The team made our relocation to Switzerland seamless and stress-free.",
       date: "2 weeks ago",
-      text: "Exceptional service from start to finish. The team made our move to Switzerland seamless and stress-free.",
-      verified: true
+      source: "google"
     },
     {
-      author: "Michael R.",
-      rating: 5,
+      author: "Michael Chen",
+      rating: 4,
+      text: "Very professional and helpful throughout the process. Would definitely recommend to other expats.",
       date: "1 month ago", 
-      text: "Professional, knowledgeable, and incredibly helpful. Highly recommend for anyone relocating to Switzerland.",
-      verified: true
+      source: "google"
     },
     {
-      author: "Lisa K.",
+      author: "Emma Wilson",
       rating: 5,
+      text: "Outstanding support with visa applications and housing search. Couldn't have done it without them!",
+      date: "3 weeks ago",
+      source: "google"
+    },
+    {
+      author: "David Rodriguez",
+      rating: 4,
+      text: "Great local knowledge and connections. Made settling in much easier than expected.",
       date: "2 months ago",
-      text: "Outstanding support throughout our relocation. They went above and beyond our expectations.",
-      verified: true
+      source: "google"
+    },
+    {
+      author: "Lisa Thompson",
+      rating: 5,
+      text: "Professional, efficient, and genuinely caring team. They went above and beyond for our family.",
+      date: "1 month ago",
+      source: "google"
     }
   ];
 } 
