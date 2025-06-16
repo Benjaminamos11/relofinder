@@ -3,6 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import compress from 'astro-compress';
+import mdx from '@astrojs/mdx';
 
 export default defineConfig({
   prefetch: {
@@ -16,6 +17,7 @@ export default defineConfig({
       }
     }), 
     react(), 
+    mdx(),
     sitemap({
       filter: (page) => !page.includes('/admin') && !page.includes('/private') && !page.includes('/api'),
       changefreq: 'weekly',

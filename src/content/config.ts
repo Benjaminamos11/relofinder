@@ -8,11 +8,11 @@ const companies = defineCollection({
     id: z.string(),
     name: z.string(),
     description: z.string(),
-    logo: z.string().url(),
+    logo: z.string(),
     heroImage: z.string().url().optional(),
     website: z.string().url(),
     phone: z.string().optional(),
-    email: z.string().email(),
+    email: z.string(),
     googleMyBusinessUrl: z.string().optional(), // For SerpAPI Google Reviews integration - can be URL or search query
     address: z.object({
       street: z.string(),
@@ -45,7 +45,39 @@ const companies = defineCollection({
     }),
     certifications: z.array(z.string()).optional(),
     seoTitle: z.string().optional(),
-    seoDescription: z.string().optional()
+    seoDescription: z.string().optional(),
+    // Enhanced content blocks
+    highlights: z.array(z.object({
+      title: z.string(),
+      icon: z.string().optional(),
+      points: z.array(z.string())
+    })).optional(),
+    milestones: z.array(z.object({
+      year: z.number(),
+      event: z.string()
+    })).optional(),
+    process: z.array(z.object({
+      step: z.number(),
+      title: z.string(),
+      duration: z.string(),
+      description: z.string(),
+      icon: z.string().optional()
+    })).optional(),
+    testimonials: z.array(z.object({
+      author: z.string(),
+      role: z.string(),
+      rating: z.number(),
+      quote: z.string()
+    })).optional(),
+    stats: z.array(z.object({
+      label: z.string(),
+      value: z.string(),
+      icon: z.string().optional()
+    })).optional(),
+    faqs: z.array(z.object({
+      question: z.string(),
+      answer: z.string()
+    })).optional()
   })
 });
 
