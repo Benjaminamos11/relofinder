@@ -43,7 +43,9 @@ const companies = defineCollection({
       packagePricing: z.boolean().default(false),
       freeInitialConsult: z.boolean().default(true)
     }),
-    certifications: z.array(z.string()).optional()
+    certifications: z.array(z.string()).optional(),
+    seoTitle: z.string().optional(),
+    seoDescription: z.string().optional()
   })
 });
 
