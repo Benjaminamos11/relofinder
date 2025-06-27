@@ -815,12 +815,15 @@ const faqSchema = {
           Connect with our expert advisors for personalized strategic guidance and comprehensive financial management planning
         </p>
         <div class="flex flex-wrap gap-4 justify-center">
-          <a href="/contact?service=banking" class="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 rounded-xl font-semibold transition-all duration-300 inline-flex items-center shadow-lg hover:shadow-xl hover:scale-105">
+          <button 
+            onclick="openModal({page: 'service', service: 'Banking & Finance'})" 
+            class="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 rounded-xl font-semibold transition-all duration-300 inline-flex items-center shadow-lg hover:shadow-xl hover:scale-105"
+          >
             Book Free Consultation
             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
             </svg>
-          </a>
+          </button>
           <a href="/companies?service=banking" class="bg-white/10 backdrop-blur-sm border border-white/30 text-white hover:bg-white/20 hover:border-white/50 px-8 py-4 rounded-xl font-semibold transition-all duration-300 inline-flex items-center hover:scale-105">
             Browse All Specialists
             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

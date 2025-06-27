@@ -84,12 +84,19 @@ const {
     <UniversalContactModal client:only="react" />
     
     <!-- Global Modal Functions -->
-    <script>
-      import { openModal, closeModal } from '../stores/modal';
+    <script is:inline>
+      // Import the modal store functions and make them globally available
+      window.openModal = function(context = {}) {
+        // Dispatch a custom event that the React component can listen to
+        window.dispatchEvent(new CustomEvent('openModal', { 
+          detail: context 
+        }));
+      };
       
-      // Make modal functions globally available
-      (window as any).openModal = openModal;
-      (window as any).closeModal = closeModal;
+      window.closeModal = function() {
+        // Dispatch a custom event that the React component can listen to
+        window.dispatchEvent(new CustomEvent('closeModal'));
+      };
     </script>
   </body>
 </html>

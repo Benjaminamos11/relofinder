@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useStore } from '@nanostores/react';
-import { isModalOpen, modalContext, closeModal, type ModalContext } from '../../stores/modal';
+import { isModalOpen, modalContext, type ModalContext } from '../../stores/modal';
 
 // Swiss cities for autocomplete
 const SWISS_CITIES = [
@@ -100,6 +100,35 @@ const UniversalContactModal: React.FC<ModalContentProps> = ({
 }) => {
   const modalOpen = useStore(isModalOpen);
   const context = useStore(modalContext);
+  
+  // Local modal control functions
+  const openModalWithContext = (ctx: ModalContext) => {
+    modalContext.set(ctx);
+    isModalOpen.set(true);
+  };
+  
+  const closeModal = () => {
+    isModalOpen.set(false);
+  };
+  
+  // Listen for global modal events
+  useEffect(() => {
+    const handleOpenModal = (event: CustomEvent) => {
+      openModalWithContext(event.detail || {});
+    };
+    
+    const handleCloseModal = () => {
+      closeModal();
+    };
+    
+    window.addEventListener('openModal', handleOpenModal as EventListener);
+    window.addEventListener('closeModal', handleCloseModal);
+    
+    return () => {
+      window.removeEventListener('openModal', handleOpenModal as EventListener);
+      window.removeEventListener('closeModal', handleCloseModal);
+    };
+  }, []);
   
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
