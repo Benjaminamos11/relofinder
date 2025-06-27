@@ -1,0 +1,233 @@
+---
+import CTATrigger from '../common/CTATrigger.astro';
+---
+
+<!-- Example integrations for the Universal Contact Modal -->
+
+<!-- Homepage Hero Section -->
+<section class="hero-section">
+  <div class="container mx-auto px-4 py-16">
+    <h1 class="text-4xl font-bold text-center mb-8">
+      Your Swiss Relocation Journey Starts Here
+    </h1>
+    <div class="text-center">
+      <CTATrigger 
+        text="Start Your Journey"
+        variant="primary"
+        size="lg"
+        context={{ page: 'home' }}
+      />
+    </div>
+  </div>
+</section>
+
+<!-- Blog Article CTA -->
+<article class="blog-article">
+  <div class="article-content">
+    <h2>Swiss Banking Guide for Expats</h2>
+    <p>Everything you need to know about opening a bank account in Switzerland...</p>
+    
+    <!-- Context-aware CTA -->
+    <div class="mt-8 p-6 bg-blue-50 rounded-xl">
+      <h3 class="font-semibold mb-4">Ready to open your Swiss bank account?</h3>
+      <CTATrigger 
+        text="Get Banking Expert Help"
+        variant="primary"
+        context={{
+          page: 'blog',
+          topic: 'Swiss Banking Guide',
+          service: 'Banking & Finance'
+        }}
+      />
+    </div>
+  </div>
+</article>
+
+<!-- Service Page Integration -->
+<section class="service-page">
+  <div class="container mx-auto px-4">
+    <h1>Housing & Accommodation Services</h1>
+    <p>Find your perfect home in Switzerland with our expert guidance...</p>
+    
+    <div class="cta-section mt-12">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white p-6 rounded-xl shadow-lg">
+          <h3 class="font-semibold mb-2">Need Housing Help?</h3>
+          <p class="text-gray-600 mb-4">Connect with housing specialists in your area</p>
+          <CTATrigger 
+            text="Find Housing Experts"
+            variant="primary"
+            context={{
+              page: 'service',
+              service: 'Housing & Accommodation'
+            }}
+          />
+        </div>
+        
+        <div class="bg-white p-6 rounded-xl shadow-lg">
+          <h3 class="font-semibold mb-2">Corporate Relocation?</h3>
+          <p class="text-gray-600 mb-4">Streamlined solutions for employee relocations</p>
+          <CTATrigger 
+            text="Get Corporate Quote"
+            variant="secondary"
+            context={{
+              page: 'corporate',
+              service: 'Housing & Accommodation'
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Region Page Integration -->
+<section class="region-page">
+  <div class="container mx-auto px-4">
+    <h1>Relocating to Zurich</h1>
+    <p>Switzerland's financial capital offers incredible opportunities...</p>
+    
+    <div class="local-experts-cta bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl mt-12">
+      <div class="text-center">
+        <h3 class="text-2xl font-bold mb-4">Connect with Zurich Experts</h3>
+        <p class="text-gray-600 mb-6">Get personalized guidance from local relocation specialists</p>
+        <CTATrigger 
+          text="Find Zurich Specialists"
+          variant="primary"
+          size="lg"
+          context={{
+            page: 'region',
+            region: 'Zurich'
+          }}
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Corporate Page Integration -->
+<section class="corporate-page">
+  <div class="container mx-auto px-4">
+    <h1>Corporate Relocation Solutions</h1>
+    <p>Streamline your employee relocations with our enterprise services...</p>
+    
+    <div class="corporate-cta-grid grid md:grid-cols-3 gap-6 mt-12">
+      <div class="text-center p-6 bg-white rounded-xl shadow-lg">
+        <div class="text-4xl mb-4">📊</div>
+        <h3 class="font-semibold mb-2">Get Quote</h3>
+        <p class="text-sm text-gray-600 mb-4">Custom pricing for your needs</p>
+        <CTATrigger 
+          text="Request Quote"
+          variant="outline"
+          context={{ page: 'corporate' }}
+        />
+      </div>
+      
+      <div class="text-center p-6 bg-white rounded-xl shadow-lg">
+        <div class="text-4xl mb-4">📞</div>
+        <h3 class="font-semibold mb-2">Schedule Call</h3>
+        <p class="text-sm text-gray-600 mb-4">Discuss your requirements</p>
+        <CTATrigger 
+          text="Book Consultation"
+          variant="primary"
+          context={{ page: 'corporate' }}
+        />
+      </div>
+      
+      <div class="text-center p-6 bg-white rounded-xl shadow-lg">
+        <div class="text-4xl mb-4">⚡</div>
+        <h3 class="font-semibold mb-2">Instant Match</h3>
+        <p class="text-sm text-gray-600 mb-4">AI-powered recommendations</p>
+        <CTATrigger 
+          text="Get Instant Match"
+          variant="secondary"
+          context={{ page: 'corporate' }}
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Floating Action Button (Optional) -->
+<div class="fixed bottom-6 right-6 z-40">
+  <CTATrigger 
+    text="💬 Get Help"
+    variant="primary"
+    className="rounded-full px-6 py-4 shadow-2xl hover:shadow-3xl"
+    context={{ page: 'floating' }}
+  />
+</div>
+
+<!-- Inline Content CTAs -->
+<div class="inline-cta-examples">
+  <!-- Within text content -->
+  <p>
+    If you're planning to move to Switzerland, 
+    <CTATrigger 
+      text="get personalized guidance"
+      variant="outline"
+      size="sm"
+      className="mx-2"
+      context={{ page: 'inline' }}
+    />
+    from our experts.
+  </p>
+  
+  <!-- After testimonial -->
+  <blockquote class="testimonial">
+    <p>"ReloFinder made our move to Switzerland seamless and stress-free!"</p>
+    <cite>- Sarah M., relocated to Geneva</cite>
+  </blockquote>
+  
+  <div class="mt-4 text-center">
+    <CTATrigger 
+      text="Start Your Success Story"
+      variant="primary"
+      context={{
+        page: 'testimonial',
+        region: 'Geneva'
+      }}
+    />
+  </div>
+</div>
+
+<!-- Footer CTA -->
+<footer class="footer-cta bg-gray-900 text-white py-16">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold mb-4">Ready to Begin Your Swiss Adventure?</h2>
+    <p class="text-xl text-gray-300 mb-8">Join thousands of successful relocations</p>
+    <CTATrigger 
+      text="Start Your Relocation"
+      variant="primary"
+      size="lg"
+      context={{ page: 'footer' }}
+    />
+  </div>
+</footer>
+
+<!-- Emergency/Urgent Help CTA -->
+<div class="urgent-help-banner bg-red-50 border-l-4 border-red-500 p-4 mb-8">
+  <div class="flex items-center">
+    <div class="flex-shrink-0">
+      <svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+      </svg>
+    </div>
+    <div class="ml-3 flex-1">
+      <p class="text-sm text-red-700">
+        <strong>Urgent relocation needed?</strong> Get immediate assistance from our experts.
+      </p>
+    </div>
+    <div class="ml-4">
+      <CTATrigger 
+        text="Get Urgent Help"
+        variant="primary"
+        size="sm"
+        context={{
+          page: 'urgent',
+          timeline: 'immediate'
+        }}
+      />
+    </div>
+  </div>
+</div> 

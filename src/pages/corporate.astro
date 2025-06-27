@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { openModal } from '../stores/modal';
 
 // Page metadata
 const title = 'Corporate Relocation Solutions | ReloFinder - Transparent Relocation Services';
@@ -47,7 +48,7 @@ const description = 'ReloFinder brings transparency to corporate relocation. Get
         </div>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button onclick="openModal('consultation-modal')" class="bg-white text-gray-900 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 shadow-xl">
+          <button id="corporate-hero-cta" class="bg-white text-gray-900 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 shadow-xl">
             Get Anonymous Quotes
           </button>
           <a href="#how-it-works" class="bg-transparent border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300">
@@ -325,7 +326,7 @@ const description = 'ReloFinder brings transparency to corporate relocation. Get
                 We partner with leading Swiss insurance brokers to provide free consultations for all your relocating employees - ensuring they get the best health insurance coverage at competitive rates.
               </p>
             </div>
-            <button onclick="openModal('consultation-modal')" class="bg-white text-primary-600 px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 whitespace-nowrap">
+            <button id="corporate-insurance-cta" class="bg-white text-primary-600 px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 whitespace-nowrap">
               Learn More
             </button>
           </div>
@@ -599,7 +600,7 @@ const description = 'ReloFinder brings transparency to corporate relocation. Get
           Join leading Swiss companies who are saving time and money with ReloFinder's transparent marketplace
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-          <button onclick="openModal('consultation-modal')" class="bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 shadow-xl">
+          <button id="corporate-footer-cta" class="bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 shadow-xl">
             Get Started Today
           </button>
           <a href="#how-it-works" class="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300">
@@ -616,6 +617,22 @@ const description = 'ReloFinder brings transparency to corporate relocation. Get
     </div>
   </section>
 </Layout>
+
+<script>
+    import { openModal } from '../stores/modal';
+    
+    document.getElementById('corporate-hero-cta')?.addEventListener('click', () => {
+        openModal({ page: 'corporate' });
+    });
+
+    document.getElementById('corporate-insurance-cta')?.addEventListener('click', () => {
+        openModal({ page: 'corporate' });
+    });
+
+    document.getElementById('corporate-footer-cta')?.addEventListener('click', () => {
+        openModal({ page: 'corporate' });
+    });
+</script>
 
 <style>
   .btn-white {

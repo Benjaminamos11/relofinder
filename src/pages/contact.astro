@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { openModal } from '../stores/modal';
 
 // Page metadata
 const title = 'Contact Us | ReloFinder.ch';
@@ -278,11 +279,29 @@ const description = 'Get in touch with ReloFinder.ch for personalized assistance
           <div class="card p-6">
             <h3 class="text-xl font-semibold mb-3">How can companies partner with ReloFinder?</h3>
             <p class="text-accent-600">
-              If you provide relocation services in Switzerland and would like to be featured on our platform, please contact us using the form above or email us at partners@relofinder.ch.
+              If you provide relocation services in Switzerland and would like to be featured on our platform, you can get in touch with our partnerships team.
             </p>
+            <div class="mt-4">
+                <button class="btn-primary" id="corporateQuoteBtn">
+                  Get Personalized Quote
+                </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 </Layout>
+
+<script>
+  import { openModal } from '../stores/modal.js';
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    const corporateBtn = document.getElementById('corporateQuoteBtn');
+    if (corporateBtn) {
+      corporateBtn.addEventListener('click', () => {
+        openModal({ page: 'corporate' });
+      });
+    }
+  });
+</script>

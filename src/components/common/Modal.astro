@@ -1,0 +1,867 @@
+<!-- Professional Swiss Relocation Modal - Clean Implementation -->
+---
+---
+
+<div id="global-modal" class="modal-overlay hidden">
+  <!-- Backdrop -->
+  <div class="modal-backdrop" data-close></div>
+  
+  <!-- Modal Container -->
+  <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    
+    <!-- Header -->
+    <header class="modal-header">
+      <button class="modal-close" data-close aria-label="Close modal">
+        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+      
+      <div class="header-content">
+        <h1 id="modal-title" class="modal-title">Find Your Perfect Swiss Relocation Partner</h1>
+        <p id="modal-subtitle" class="modal-subtitle">Connect with vetted specialists who understand your unique needs</p>
+      </div>
+    </header>
+
+    <!-- Body -->
+    <div class="modal-body">
+      <div class="content-grid">
+        
+        <!-- Main Content -->
+        <div class="main-content">
+          
+          <!-- Trust Signal -->
+          <div class="trust-banner">
+            <div class="trust-content">
+              <svg class="trust-icon" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              <span class="trust-text">127 people found their perfect specialist this week</span>
+            </div>
+          </div>
+
+          <!-- Service Options -->
+          <div class="service-options">
+            
+            <!-- Option 1: Personalized Quotes -->
+            <div class="service-card" data-service="quotes">
+              <div class="card-header">
+                <div class="card-icon">
+                  <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10m-10 4h5m5-11v16l-4-2-4 2V1z"/>
+                  </svg>
+                </div>
+                <h3 class="card-title">Compare Relocation Service Quotes</h3>
+              </div>
+              
+              <p class="card-description">
+                Receive personalized quotes from 3-5 vetted specialists tailored to your specific needs
+              </p>
+              
+              <ul class="card-benefits">
+                <li>Free, no-obligation quotes</li>
+                <li>Compare services and pricing</li>
+                <li>Vetted, licensed professionals only</li>
+                <li>Response within 24 hours</li>
+              </ul>
+              
+              <button class="card-cta" data-action="select-quotes">
+                Get My Quotes
+                <span class="cta-subtext">Takes 2 minutes</span>
+              </button>
+            </div>
+
+            <!-- Option 2: Free Consultation -->
+            <div class="service-card" data-service="consultation">
+              <div class="card-header">
+                <div class="card-icon">
+                  <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                  </svg>
+                </div>
+                <h3 class="card-title">Free Relocation Strategy Session</h3>
+              </div>
+              
+              <p class="card-description">
+                30-minute consultation to understand your needs and recommend the perfect specialist
+              </p>
+              
+              <ul class="card-benefits">
+                <li>Expert guidance on choosing specialists</li>
+                <li>Personalized recommendations</li>
+                <li>No sales pressure</li>
+                <li>Available via video call or phone</li>
+              </ul>
+              
+              <button class="card-cta secondary" data-action="select-consultation">
+                Schedule Consultation
+                <span class="cta-subtext">No commitment required</span>
+              </button>
+              
+              <p class="disclaimer">
+                We specialize in helping you find the right relocation specialist. We do not provide job search assistance or direct relocation services.
+              </p>
+            </div>
+
+            <!-- Option 3: Instant Matching -->
+            <div class="service-card" data-service="matching">
+              <div class="card-header">
+                <div class="card-icon">
+                  <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                </div>
+                <h3 class="card-title">Instant Specialist Matching</h3>
+              </div>
+              
+              <p class="card-description">
+                Answer 3 quick questions and get immediate recommendations for your situation
+              </p>
+              
+              <ul class="card-benefits">
+                <li>Immediate results</li>
+                <li>AI-powered matching</li>
+                <li>No personal information required</li>
+                <li>Start your search right away</li>
+              </ul>
+              
+              <button class="card-cta secondary" data-action="select-matching">
+                Find My Match
+                <span class="cta-subtext">3 questions only</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Consultant Sidebar -->
+        <div class="consultant-sidebar">
+          <div class="consultant-profile">
+            <div class="consultant-header">
+              <img 
+                src="https://res.cloudinary.com/dphbnwjtx/image/upload/v1747501071/6758848048b5cdaf6ebe884f_WhatsApp_Image_2024-12-11_at_01.55.01_oruhjs.webp" 
+                alt="Robert Kolar - Swiss Relocation Consultant" 
+                class="consultant-avatar"
+              />
+              <div class="consultant-info">
+                <h3 class="consultant-name">Robert Kolar</h3>
+                <p class="consultant-title">Senior Relocation Consultant</p>
+                
+                <div class="language-badges">
+                  <span class="lang-badge">DE</span>
+                  <span class="lang-badge">EN</span>
+                  <span class="lang-badge">FR</span>
+                  <span class="lang-badge">IT</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="consultant-credentials">
+              <div class="credential-item">
+                <svg class="credential-icon" width="16" height="16" fill="currentColor">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span>Swiss Licensed</span>
+              </div>
+              <div class="credential-item">
+                <svg class="credential-icon" width="16" height="16" fill="currentColor">
+                  <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                </svg>
+                <span>8+ Years Experience</span>
+              </div>
+              <div class="credential-item">
+                <svg class="credential-icon" width="16" height="16" fill="currentColor">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                <span>500+ Successful Relocations</span>
+              </div>
+            </div>
+            
+            <blockquote class="consultant-quote">
+              "I enjoy helping each client find their perfect relocation specialist. My goal is to make your Swiss move as smooth as possible."
+            </blockquote>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="modal-footer">
+      <div class="footer-content">
+        <div class="footer-left">
+          <div class="rating-display">
+            <div class="stars">
+              <svg class="star filled" width="16" height="16" fill="currentColor">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+              </svg>
+              <span class="rating-text">4.9/5 from 1,200+ reviews</span>
+            </div>
+          </div>
+          
+          <div class="trust-badges">
+            <div class="trust-badge">
+              <svg class="badge-icon" width="16" height="16" fill="currentColor">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span>Swiss Licensed & Insured</span>
+            </div>
+            <div class="trust-badge">
+              <svg class="badge-icon" width="16" height="16" fill="currentColor">
+                <path d="M12 15v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2a2 2 0 012-2h5a2 2 0 012 2zm6-6a2 2 0 012 2v6a2 2 0 01-2 2h-5a2 2 0 01-2-2V9a2 2 0 012-2h5z"/>
+              </svg>
+              <span>GDPR Compliant</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="footer-right">
+          <p class="privacy-note">Your information is secure and never shared</p>
+          <p class="company-trust">Trusted by employees of Google • Microsoft • Nestlé • UBS • OpenAI</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+</div>
+
+<style>
+  /* ===== MODAL OVERLAY & CONTAINER ===== */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    animation: modalFadeIn 0.3s ease-out;
+  }
+
+  .modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+  }
+
+  .modal-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 32px 64px rgba(0, 0, 0, 0.15);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    animation: modalSlideIn 0.3s ease-out;
+  }
+
+  /* ===== HEADER ===== */
+  .modal-header {
+    position: relative;
+    padding: 32px 32px 24px;
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.02) 0%, rgba(168, 85, 247, 0.02) 100%);
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    padding: 8px;
+    background: none;
+    border: none;
+    border-radius: 8px;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .modal-close:hover {
+    background: #f1f5f9;
+    color: #374151;
+  }
+
+  .header-content {
+    padding-right: 60px;
+  }
+
+  .modal-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1f2937;
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+  }
+
+  .modal-subtitle {
+    font-size: 18px;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* ===== BODY ===== */
+  .modal-body {
+    padding: 0 32px 24px;
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  /* ===== TRUST BANNER ===== */
+  .trust-banner {
+    background: linear-gradient(135deg, #dcfdf7 0%, #f0fdf4 100%);
+    border: 1px solid #a7f3d0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+  }
+
+  .trust-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .trust-icon {
+    color: #059669;
+    flex-shrink: 0;
+  }
+
+  .trust-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #065f46;
+  }
+
+  /* ===== SERVICE OPTIONS ===== */
+  .service-options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .service-card {
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .service-card:hover {
+    border-color: #dc2626;
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .card-icon {
+    padding: 12px;
+    background: #fef2f2;
+    border-radius: 8px;
+    color: #dc2626;
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .card-description {
+    color: #64748b;
+    margin: 0 0 16px 0;
+    line-height: 1.5;
+  }
+
+  .card-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+  }
+
+  .card-benefits li {
+    position: relative;
+    padding: 4px 0 4px 20px;
+    color: #374151;
+    font-size: 14px;
+  }
+
+  .card-benefits li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    background: #22c55e;
+    border-radius: 50%;
+  }
+
+  .card-cta {
+    width: 100%;
+    background: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .card-cta:hover {
+    background: #b91c1c;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+  }
+
+  .card-cta.secondary {
+    background: white;
+    color: #dc2626;
+    border: 2px solid #dc2626;
+  }
+
+  .card-cta.secondary:hover {
+    background: #fef2f2;
+    border-color: #b91c1c;
+    color: #b91c1c;
+  }
+
+  .cta-subtext {
+    font-size: 12px;
+    font-weight: 400;
+    opacity: 0.8;
+  }
+
+  .disclaimer {
+    margin: 16px 0 0 0;
+    font-size: 12px;
+    color: #64748b;
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  /* ===== CONSULTANT SIDEBAR ===== */
+  .consultant-sidebar {
+    position: sticky;
+    top: 0;
+  }
+
+  .consultant-profile {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .consultant-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .consultant-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 12px;
+  }
+
+  .consultant-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 4px 0;
+  }
+
+  .consultant-title {
+    color: #64748b;
+    margin: 0 0 12px 0;
+    font-size: 14px;
+  }
+
+  .language-badges {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .lang-badge {
+    background: #1e40af;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+
+  .consultant-credentials {
+    margin-bottom: 20px;
+  }
+
+  .credential-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #374151;
+  }
+
+  .credential-icon {
+    color: #059669;
+    flex-shrink: 0;
+  }
+
+  .consultant-quote {
+    font-style: italic;
+    color: #64748b;
+    text-align: center;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    border-left: none;
+    padding: 0;
+  }
+
+  /* ===== FOOTER ===== */
+  .modal-footer {
+    background: #f8fafc;
+    padding: 20px 32px;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .rating-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .star.filled {
+    color: #fbbf24;
+  }
+
+  .rating-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  .trust-badges {
+    display: flex;
+    gap: 16px;
+  }
+
+  .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #374151;
+  }
+
+  .badge-icon {
+    color: #059669;
+  }
+
+  .footer-right {
+    text-align: right;
+  }
+
+  .privacy-note {
+    font-size: 12px;
+    color: #64748b;
+    margin: 0 0 4px 0;
+  }
+
+  .company-trust {
+    font-size: 11px;
+    color: #9ca3af;
+    margin: 0;
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes modalSlideIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  /* ===== RESPONSIVE DESIGN ===== */
+  @media (max-width: 768px) {
+    .modal-container {
+      margin: 0;
+      border-radius: 0;
+      height: 100vh;
+      max-height: none;
+    }
+
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .consultant-sidebar {
+      order: -1;
+    }
+
+    .footer-content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .footer-right {
+      text-align: left;
+    }
+
+    .modal-title {
+      font-size: 24px;
+    }
+
+    .modal-subtitle {
+      font-size: 16px;
+    }
+  }
+
+  /* ===== UTILITY CLASSES ===== */
+  .hidden {
+    display: none !important;
+  }
+</style>
+
+<script type="module">
+  // ===== MODAL FUNCTIONALITY =====
+  const modal = document.getElementById('global-modal');
+  const closeElements = modal.querySelectorAll('[data-close]');
+  const serviceCards = modal.querySelectorAll('.service-card');
+  const title = document.getElementById('modal-title');
+  const subtitle = document.getElementById('modal-subtitle');
+
+  // Dynamic content based on page context
+  function getPageContext() {
+    const path = window.location.pathname;
+    if (path.includes('/zurich')) return 'zurich';
+    if (path.includes('/geneva')) return 'geneva';
+    if (path.includes('/basel')) return 'basel';
+    if (path.includes('/housing')) return 'housing';
+    if (path.includes('/visa')) return 'visa';
+    if (path.includes('/banking')) return 'banking';
+    if (path.includes('/corporate')) return 'corporate';
+    if (path.includes('/companies/')) return 'company';
+    if (path.includes('/blog/')) return 'blog';
+    return 'home';
+  }
+
+  function getContextContent(context) {
+    const contentMap = {
+      home: {
+        title: "Find Your Perfect Swiss Relocation Partner",
+        subtitle: "Connect with vetted specialists who understand your unique needs"
+      },
+      zurich: {
+        title: "Relocating to Zurich? We'll Find Your Perfect Match",
+        subtitle: "Local specialists who know Zurich inside and out"
+      },
+      geneva: {
+        title: "Relocating to Geneva? We'll Find Your Perfect Match", 
+        subtitle: "Local specialists who know Geneva inside and out"
+      },
+      basel: {
+        title: "Relocating to Basel? We'll Find Your Perfect Match",
+        subtitle: "Local specialists who know Basel inside and out"
+      },
+      housing: {
+        title: "Need Help with Housing? Get Expert Guidance",
+        subtitle: "Specialists who excel in housing search for smooth relocations"
+      },
+      visa: {
+        title: "Need Help with Visa Services? Get Expert Guidance",
+        subtitle: "Specialists who excel in visa support for smooth relocations"
+      },
+      banking: {
+        title: "Need Help with Banking? Get Expert Guidance", 
+        subtitle: "Specialists who excel in banking services for smooth relocations"
+      },
+      corporate: {
+        title: "Streamline Your Employee Relocations",
+        subtitle: "Corporate relocation solutions that keep your team focused on work"
+      },
+      company: {
+        title: "Compare Swiss Relocation Providers",
+        subtitle: "Find the perfect specialist match for your needs"
+      },
+      blog: {
+        title: "Swiss Relocation Insights",
+        subtitle: "Get expert guidance for your Swiss relocation journey"
+      }
+    };
+    
+    return contentMap[context] || contentMap.home;
+  }
+
+  // Open modal function
+  function openModal(options = {}) {
+    const context = options.context || getPageContext();
+    const content = getContextContent(context);
+    
+    title.textContent = options.title || content.title;
+    subtitle.textContent = options.subtitle || content.subtitle;
+    
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    
+    // Focus management
+    modal.focus();
+    
+    console.log('[Modal] Opened with context:', context);
+  }
+
+  // Close modal function
+  function closeModal() {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+    console.log('[Modal] Closed');
+  }
+
+  // Event listeners
+  closeElements.forEach(el => {
+    el.addEventListener('click', closeModal);
+  });
+
+  // Close on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+
+  // Service card interactions
+  serviceCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const service = card.dataset.service;
+      console.log('[Modal] Service selected:', service);
+      
+      // Here you would implement the specific flow for each service
+      // For now, we'll just log the selection
+    });
+  });
+
+  // Button actions
+  modal.addEventListener('click', (e) => {
+    if (e.target.dataset.action) {
+      const action = e.target.dataset.action;
+      console.log('[Modal] Action triggered:', action);
+      
+      // Implement specific actions here
+      switch (action) {
+        case 'select-quotes':
+          // Start quote request flow
+          break;
+        case 'select-consultation':
+          // Start consultation booking flow
+          break;
+        case 'select-matching':
+          // Start instant matching flow
+          break;
+      }
+    }
+  });
+
+  // Global modal functions
+  window.openModal = openModal;
+  window.closeModal = closeModal;
+
+  // Auto-open modal for elements with data-open-modal
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('[data-open-modal]');
+    if (trigger) {
+      e.preventDefault();
+      const options = {
+        title: trigger.dataset.modalTitle,
+        subtitle: trigger.dataset.modalSubtitle,
+        context: trigger.dataset.modalContext
+      };
+      openModal(options);
+    }
+  });
+
+  console.log('[Modal] Professional Swiss relocation modal initialized');
+</script> 

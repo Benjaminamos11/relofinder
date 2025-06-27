@@ -191,8 +191,8 @@ const services = [
           Most relocations require 3-5 different services. Let us create a personalized package that covers all your needs with coordinated timing and competitive pricing.
         </p>
         <div class="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center">
-          <button onclick="openModal('consultation-modal')" class="btn-primary">
-            Get Free Consultation
+          <button class="btn-primary" id="servicesConsultationBtn">
+            Book Free Consultation
           </button>
           <a href="/services" class="btn-outline">
             Browse All Services
@@ -201,4 +201,17 @@ const services = [
       </div>
     </div>
   </div>
-</section> 
+</section>
+
+<script>
+  import { openModal } from '../../stores/modal.js';
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    const consultationBtn = document.getElementById('servicesConsultationBtn');
+    if (consultationBtn) {
+      consultationBtn.addEventListener('click', () => {
+        openModal({ page: 'service' });
+      });
+    }
+  });
+</script> 

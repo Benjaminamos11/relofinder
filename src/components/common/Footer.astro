@@ -103,8 +103,11 @@ const { showNewsletter = true } = Astro.props;
               placeholder="Enter your email address" 
               class="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             >
-            <button class="px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 whitespace-nowrap">
-              Subscribe
+            <button
+              class="w-full sm:w-auto px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
+              data-open-modal data-modal-tab="individual" onclick="openModal({tab:'individual'})"
+            >
+              Get Started
             </button>
           </div>
         </div>
@@ -162,7 +165,7 @@ const { showNewsletter = true } = Astro.props;
   <!-- Floating Action Button for Mobile -->
   <div class="fixed bottom-6 right-6 lg:hidden z-40">
     <button 
-      onclick="openModal('individual-lead-modal')" 
+      data-open-modal data-modal-tab="individual" onclick="openModal({tab:'individual'})"
       class="w-14 h-14 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
       aria-label="Start relocation process"
     >

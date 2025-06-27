@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
+// import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
 import compress from 'astro-compress';
 import mdx from '@astrojs/mdx';
@@ -16,7 +17,10 @@ export default defineConfig({
         content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
       }
     }), 
-    react(), 
+    react(),
+    // preact({
+    //   include: 'src/components/common/InteractiveCTAModal.tsx'
+    // }),
     mdx(),
     sitemap({
       filter: (page) => !page.includes('/admin') && !page.includes('/private') && !page.includes('/api'),

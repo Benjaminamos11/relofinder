@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { openModal } from '../../stores/modal';
 
 export async function getStaticPaths() {
   const services = await getCollection('services');
@@ -99,7 +100,7 @@ const faq = service.data.faq || [
 
           <!-- CTA Buttons -->
           <div class="flex flex-col sm:flex-row gap-4">
-            <button onclick="openModal('individual-lead-modal')" class="btn-primary px-8 py-4">
+            <button data-service-id={service.data.id || service.slug} class="cta-button btn-primary px-8 py-4">
               Get Started Today
             </button>
             <a href="/companies" class="btn-outline px-8 py-4">
@@ -197,11 +198,11 @@ const faq = service.data.faq || [
                 <div class="flex items-center space-x-2 text-sm text-gray-600">
                   <div class="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
                   <span>{req}</span>
-            </div>
-          ))}
+                </div>
+              ))}
             </div>
 
-            <button onclick="openModal('individual-lead-modal')" class="w-full btn-primary py-4">
+            <button data-service-id={service.data.id || service.slug} class="cta-button w-full btn-primary py-4">
               Request Free Consultation
             </button>
           </div>
@@ -275,8 +276,8 @@ const faq = service.data.faq || [
           {faq.map((item, index) => (
             <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
               <button 
-                class="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
-                onclick={`toggleFAQ(${index})`}
+                class="faq-toggle w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+                data-faq-index={index}
               >
                 <h3 class="text-lg font-semibold text-gray-900 pr-4">{item.question}</h3>
                 <svg class="w-5 h-5 text-gray-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -305,13 +306,13 @@ const faq = service.data.faq || [
         </p>
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button onclick="openModal('individual-lead-modal')" class="btn-white px-8 py-4">
+          <button data-service-id={service.data.id || service.slug} class="cta-button btn-white px-8 py-4">
             Get Free Consultation
           </button>
           <a href="/companies" class="btn-outline-white px-8 py-4">
             Browse Service Providers
-              </a>
-            </div>
+          </a>
+        </div>
 
         <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div>
@@ -333,17 +334,28 @@ const faq = service.data.faq || [
 </Layout>
 
 <script>
-  function toggleFAQ(index) {
-    const faq = document.getElementById(`faq-${index}`);
-    const button = faq?.previousElementSibling;
-    const icon = button?.querySelector('svg');
-    
-    if (faq?.classList.contains('hidden')) {
-      faq.classList.remove('hidden');
-      icon?.classList.add('rotate-180');
-    } else {
-      faq?.classList.add('hidden');
-      icon?.classList.remove('rotate-180');
-    }
-  }
+  import { openModal } from '../../stores/modal';
+
+  document.querySelectorAll('.cta-button').forEach(button => {
+    button.addEventListener('click', () => {
+      const serviceId = button.getAttribute('data-service-id') ?? undefined;
+      openModal({ page: 'service', service: serviceId });
+    });
+  });
+
+  document.querySelectorAll('.faq-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const index = button.getAttribute('data-faq-index');
+      const faq = document.getElementById(`faq-${index}`);
+      const icon = button.querySelector('svg');
+      
+      if (faq?.classList.contains('hidden')) {
+        faq.classList.remove('hidden');
+        icon?.classList.add('rotate-180');
+      } else {
+        faq?.classList.add('hidden');
+        icon?.classList.remove('rotate-180');
+      }
+    });
+  });
 </script>
