@@ -319,7 +319,7 @@ const keywords = 'swiss healthcare services, health insurance switzerland, docto
 
         <!-- CTA Buttons -->
         <div class="flex flex-wrap gap-4 justify-center">
-          <button onclick="openModal('individual-lead-modal')" class="btn-primary px-8 py-4">
+          <button onclick="openModal({page: 'service', service: 'Health Services'})" class="btn-primary px-8 py-4">
             Get Healthcare Guidance
           </button>
           <a href="#companies" class="btn-secondary px-8 py-4">
@@ -489,7 +489,7 @@ const keywords = 'swiss healthcare services, health insurance switzerland, docto
               
       <!-- CTA -->
       <div class="text-center mt-12">
-        <button onclick="openModal('individual-lead-modal')" class="btn-primary px-8 py-4">
+        <button onclick="openModal({page: 'service', service: 'Health Services'})" class="btn-primary px-8 py-4">
           Get Matched with Healthcare Specialists
         </button>
       </div>
@@ -660,7 +660,7 @@ const keywords = 'swiss healthcare services, health insurance switzerland, docto
           Connect with our healthcare specialists to secure optimal insurance coverage and access the Swiss medical system with confidence.
               </p>
         <div class="flex flex-wrap gap-4 justify-center">
-          <button onclick="openModal('individual-lead-modal')" class="bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors inline-flex items-center">
+          <button onclick="openModal({page: 'service', service: 'Health Services'})" class="bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors inline-flex items-center">
             Schedule Healthcare Consultation
             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
@@ -699,10 +699,10 @@ const keywords = 'swiss healthcare services, health insurance switzerland, docto
       <p class="text-sm font-medium">Need healthcare guidance?</p>
     </div>
     <div class="flex items-center space-x-2">
-      <button onclick="openModal('individual-lead-modal')" class="bg-white text-primary-600 px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition-colors">
+      <button onclick="openModal({page: 'service', service: 'Health Services'})" class="bg-white text-primary-600 px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition-colors">
         Schedule Consultation
       </button>
-      <button onclick="openModal('corporate-lead-modal')" class="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-white/30 transition-colors">
+      <button onclick="openModal({page: 'service', service: 'Health Services', tab: 'corporate'})" class="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-white/30 transition-colors">
         Get Rate
       </button>
       <button 

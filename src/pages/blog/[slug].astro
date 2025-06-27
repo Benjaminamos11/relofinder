@@ -469,9 +469,14 @@ const faqs = post.data.faqs || [];
                   <a href={authorInfo.link} target="_blank" rel="noopener noreferrer" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-medium transition-colors" aria-label="Get expert relocation advice from Robert Kolar">
                     Get Expert Advice
                   </a>
-                  <a href="/contact" class="bg-white hover:bg-gray-50 text-primary-600 px-6 py-3 rounded-lg font-medium border border-primary-200 transition-colors" aria-label="Schedule a relocation consultation">
+                  <button 
+                    data-open-modal 
+                    onclick="openModal({page: 'blog', topic: post.data.title})" 
+                    class="bg-white hover:bg-gray-50 text-primary-600 px-6 py-3 rounded-lg font-medium border border-primary-200 transition-colors" 
+                    aria-label="Schedule a relocation consultation"
+                  >
                     Schedule Consultation
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -624,9 +629,13 @@ const faqs = post.data.faqs || [];
             <a href="/services" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-lg font-medium transition-colors">
               Explore Our Services
             </a>
-            <a href="/contact" class="bg-white hover:bg-gray-100 text-primary-600 px-6 py-3 rounded-lg font-medium transition-colors">
+            <button 
+              data-open-modal 
+              onclick="openModal({page: 'blog', topic: post.data.title})" 
+              class="bg-white hover:bg-gray-100 text-primary-600 px-6 py-3 rounded-lg font-medium transition-colors"
+            >
               Get Free Consultation
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -640,9 +649,13 @@ const faqs = post.data.faqs || [];
             <h3 class="font-bold text-sm mb-1">Need Expert Help?</h3>
             <p class="text-xs text-red-100 mb-3">Get personalized relocation advice from our Switzerland experts</p>
             <div class="flex gap-2">
-              <a href="/contact" class="bg-white text-red-600 px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-red-50 transition-colors">
+              <button 
+                data-open-modal 
+                onclick="openModal({page: 'blog', topic: post.data.title})" 
+                class="bg-white text-red-600 px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-red-50 transition-colors"
+              >
                 Free Consultation
-              </a>
+              </button>
               <a href="tel:+41443222888" class="bg-red-800 text-white px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-red-900 transition-colors">
                 Call Now
               </a>

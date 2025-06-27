@@ -82,5 +82,14 @@ const {
     
     <Footer />
     <UniversalContactModal client:only="react" />
+    
+    <!-- Global Modal Functions -->
+    <script>
+      import { openModal, closeModal } from '../stores/modal';
+      
+      // Make modal functions globally available
+      (window as any).openModal = openModal;
+      (window as any).closeModal = closeModal;
+    </script>
   </body>
 </html>
