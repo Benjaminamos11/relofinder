@@ -32,7 +32,7 @@ const PRIORITY_OPTIONS = [
   { id: 'legal', label: 'Legal Services', icon: '⚖️' }
 ];
 
-// Service flow options - clean, neutral design
+// Service flow options - premium design
 const SERVICE_FLOWS = {
   quotes: {
     title: 'Custom Quotes',
@@ -44,7 +44,8 @@ const SERVICE_FLOWS = {
       'No hidden fees or commissions'
     ],
     cta: 'Get My Quotes',
-    timeframe: '24-48 hours'
+    timeframe: '24-48 hours',
+    icon: '💼'
   },
   session: {
     title: 'Expert Consultation',
@@ -56,7 +57,8 @@ const SERVICE_FLOWS = {
       'Priority planning guidance'
     ],
     cta: 'Book Free Session',
-    timeframe: 'Same day'
+    timeframe: 'Same day',
+    icon: '🎯'
   },
   match: {
     title: 'Instant Match',
@@ -68,7 +70,8 @@ const SERVICE_FLOWS = {
       'Fast-track introduction'
     ],
     cta: 'Find My Match',
-    timeframe: '60 seconds'
+    timeframe: '60 seconds',
+    icon: '⚡'
   }
 };
 
@@ -82,7 +85,19 @@ interface FormData {
   selectedFlow: 'quotes' | 'session' | 'match';
 }
 
-const UniversalContactModal: React.FC = () => {
+interface ModalContentProps {
+  headline?: string;
+  subheadline?: string;
+  successBadge?: string;
+  eligibilityNotice?: string;
+}
+
+const UniversalContactModal: React.FC<ModalContentProps> = ({
+  headline = "Find the Right Swiss Relocation Specialist",
+  subheadline = "We help expats and HR teams compare the best Swiss relocation services – for every move, every budget.",
+  successBadge = "156 successful matches this month",
+  eligibilityNotice = "Note: We do not provide job search assistance or direct relocation services. Our mission is to help you find and compare the right relocation providers in Switzerland."
+}) => {
   const modalOpen = useStore(isModalOpen);
   const context = useStore(modalContext);
   
@@ -104,35 +119,35 @@ const UniversalContactModal: React.FC = () => {
   // Generate dynamic content based on context
   const getContextualContent = (context: ModalContext) => {
     const baseContent = {
-      headline: "Find Your Perfect Swiss Relocation Specialist",
-      subtext: "Get expert guidance tailored to your unique situation",
-      trustSignal: "127 people found their perfect specialist this week"
+      headline: headline,
+      subheadline: subheadline,
+      successBadge: successBadge
     };
 
     switch (context.page) {
       case 'blog':
         return {
           headline: `Ready to Apply This ${context.topic || 'Guide'}?`,
-          subtext: "Connect with experts who can help you implement these insights",
-          trustSignal: "89 readers got expert help this week"
+          subheadline: "Connect with experts who can help you implement these insights",
+          successBadge: "89 readers got expert help this week"
         };
       case 'service':
         return {
           headline: `Find ${context.service || 'Relocation'} Specialists`,
-          subtext: "Connect with verified experts in this service area",
-          trustSignal: "156 successful matches this month"
+          subheadline: "Connect with verified experts in this service area",
+          successBadge: "156 successful matches this month"
         };
       case 'corporate':
         return {
           headline: "Enterprise Relocation Solutions",
-          subtext: "Streamlined services for employee relocations",
-          trustSignal: "42 companies upgraded their relocation program"
+          subheadline: "Streamlined services for employee relocations",
+          successBadge: "42 companies upgraded their relocation program"
         };
       case 'region':
         return {
           headline: `${context.region || 'Swiss'} Relocation Experts`,
-          subtext: "Local specialists with deep regional knowledge",
-          trustSignal: "73 families relocated successfully this month"
+          subheadline: "Local specialists with deep regional knowledge",
+          successBadge: "73 families relocated successfully this month"
         };
       default:
         return baseContent;
@@ -202,8 +217,8 @@ const UniversalContactModal: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      // Submit to Formspree or your backend
-      const response = await fetch('https://formspree.io/f/your-form-id', {
+      // Submit to Formspree
+      const response = await fetch('https://formspree.io/f/mwplkpey', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -211,18 +226,25 @@ const UniversalContactModal: React.FC = () => {
         body: JSON.stringify({
           ...formData,
           context,
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
+          source: 'Universal Contact Modal'
         }),
       });
 
       if (response.ok) {
         setIsSuccess(true);
         setCurrentStep(5); // Success step
+        
+        // Auto-close after 3 seconds
+        setTimeout(() => {
+          handleClose();
+        }, 3000);
       } else {
         throw new Error('Submission failed');
       }
     } catch (error) {
       console.error('Submission error:', error);
+      alert('There was an error submitting your request. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -235,135 +257,175 @@ const UniversalContactModal: React.FC = () => {
   if (!modalOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[95vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl shadow-2xl max-w-5xl w-full max-h-[95vh] overflow-y-auto border border-gray-100">
         
         {/* Progress Bar */}
-        <div className="h-1 bg-gray-200">
+        <div className="h-2 bg-gray-100">
           <div 
-            className="h-1 bg-gradient-to-r from-primary-600 to-secondary-600 transition-all duration-500"
+            className="h-2 bg-gradient-to-r from-primary-600 to-secondary-600 transition-all duration-500 rounded-full"
             style={{ width: `${getStepProgress()}%` }}
           />
         </div>
 
         {/* Header */}
-        <div className="p-6 pb-4 border-b border-gray-100">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-1">{contextContent.headline}</h2>
-              <p className="text-gray-600">{contextContent.subtext}</p>
+        <div className="p-8 pb-6">
+          <div className="flex items-start justify-between mb-6">
+            <div className="flex-1 pr-8">
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent mb-3">
+                {contextContent.headline}
+              </h2>
+              <p className="text-gray-600 text-lg leading-relaxed">{contextContent.subheadline}</p>
             </div>
             <button
               onClick={handleClose}
-              className="text-gray-400 hover:text-gray-600 transition-colors p-2"
+              className="text-gray-400 hover:text-gray-600 transition-colors p-3 hover:bg-gray-100 rounded-full"
               aria-label="Close modal"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
           
-          {/* Trust Signal */}
-          <div className="inline-flex items-center px-3 py-1 bg-gray-50 rounded-full text-sm text-gray-600">
-            <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-            {contextContent.trustSignal}
+          {/* Success Badge */}
+          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 rounded-full text-sm text-emerald-700 font-medium mb-4">
+            <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3 animate-pulse"></div>
+            ✅ {contextContent.successBadge}
+          </div>
+
+          {/* Eligibility Notice */}
+          <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
+            <div className="flex items-start">
+              <div className="flex-shrink-0 mt-1">
+                <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div className="ml-3">
+                <p className="text-sm text-blue-800 leading-relaxed">{eligibilityNotice}</p>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="p-6">
+        <div className="px-8 pb-8">
           {currentStep === 0 && (
-            <div className="grid lg:grid-cols-2 gap-8">
-              {/* Left: Service Selection */}
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Choose Your Path</h3>
+            <div className="grid lg:grid-cols-5 gap-8">
+              {/* Left: Service Selection (3 columns) */}
+              <div className="lg:col-span-3">
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">Choose Your Path</h3>
                 
                 {/* Service Flow Tabs */}
-                <div className="flex space-x-1 mb-6 bg-gray-100 p-1 rounded-lg">
+                <div className="flex space-x-1 mb-8 bg-gray-100 p-1 rounded-xl">
                   {Object.entries(SERVICE_FLOWS).map(([key, flow]) => (
                     <button
                       key={key}
                       onClick={() => handleFlowSelect(key as 'quotes' | 'session' | 'match')}
-                      className={`flex-1 px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                      className={`flex-1 px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
                         formData.selectedFlow === key
-                          ? 'bg-white text-gray-900 shadow-sm'
-                          : 'text-gray-600 hover:text-gray-900'
+                          ? 'bg-white text-gray-900 shadow-md border border-gray-200'
+                          : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                       }`}
                     >
-                      {flow.title}
+                      <div className="flex items-center justify-center space-x-2">
+                        <span>{flow.icon}</span>
+                        <span>{flow.title}</span>
+                      </div>
                     </button>
                   ))}
                 </div>
 
-                {/* Selected Service Details */}
-                <div className="bg-gray-50 rounded-xl p-6">
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-gray-900 mb-2">
-                      {SERVICE_FLOWS[formData.selectedFlow].title}
-                    </h4>
-                    <p className="text-gray-600 text-sm mb-3">
+                {/* Selected Service Details Card */}
+                <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                  <div className="mb-6">
+                    <div className="flex items-center mb-4">
+                      <span className="text-2xl mr-3">{SERVICE_FLOWS[formData.selectedFlow].icon}</span>
+                      <h4 className="text-xl font-bold text-gray-900">
+                        {SERVICE_FLOWS[formData.selectedFlow].title}
+                      </h4>
+                    </div>
+                    <p className="text-gray-600 text-base mb-4 leading-relaxed">
                       {SERVICE_FLOWS[formData.selectedFlow].description}
                     </p>
-                    <div className="text-xs text-gray-500 mb-4">
+                    <div className="inline-flex items-center px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600">
                       ⏱️ Response time: {SERVICE_FLOWS[formData.selectedFlow].timeframe}
                     </div>
                   </div>
 
-                  <ul className="space-y-2 mb-6">
+                  <ul className="space-y-3 mb-8">
                     {SERVICE_FLOWS[formData.selectedFlow].benefits.map((benefit, index) => (
-                      <li key={index} className="flex items-start text-sm text-gray-700">
-                        <svg className="w-4 h-4 text-gray-400 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <li key={index} className="flex items-start text-gray-700">
+                        <svg className="w-5 h-5 text-emerald-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
-                        {benefit}
+                        <span className="leading-relaxed">{benefit}</span>
                       </li>
                     ))}
                   </ul>
 
                   <button
                     onClick={handleNext}
-                    className="w-full bg-gradient-to-r from-primary-600 to-secondary-600 text-white py-3 px-6 rounded-lg font-medium hover:from-primary-700 hover:to-secondary-700 transition-all"
+                    className="w-full bg-gradient-to-r from-primary-600 to-secondary-600 text-white py-4 px-8 rounded-xl font-semibold hover:from-primary-700 hover:to-secondary-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                   >
-                    {SERVICE_FLOWS[formData.selectedFlow].cta}
+                    {SERVICE_FLOWS[formData.selectedFlow].cta} →
                   </button>
                 </div>
               </div>
 
-              {/* Right: Consultant Card */}
-              <div className="bg-gray-50 rounded-xl p-6">
-                <div className="text-center">
-                  <img
-                    src="https://res.cloudinary.com/dphbnwjtx/image/upload/v1747501071/6758848048b5cdaf6ebe884f_WhatsApp_Image_2024-12-11_at_01.55.01_oruhjs.webp"
-                    alt="Robert Kolar - Swiss Relocation Expert"
-                    className="w-20 h-20 rounded-full object-cover mx-auto mb-4 border-4 border-white shadow-lg"
-                  />
-                  <h4 className="font-semibold text-gray-900 mb-1">Robert Kolar</h4>
-                  <p className="text-sm text-gray-600 mb-4">Senior Relocation Expert</p>
-                  
-                  {/* Language Badges */}
-                  <div className="flex justify-center space-x-2 mb-4">
-                    <span className="px-2 py-1 bg-white text-xs text-gray-600 rounded border">🇩🇪 German</span>
-                    <span className="px-2 py-1 bg-white text-xs text-gray-600 rounded border">🇬🇧 English</span>
-                    <span className="px-2 py-1 bg-white text-xs text-gray-600 rounded border">🇫🇷 French</span>
-                  </div>
-
-                  {/* Stats */}
-                  <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div className="text-center">
-                      <div className="text-lg font-bold text-gray-900">500+</div>
-                      <div className="text-xs text-gray-600">Relocations</div>
+              {/* Right: Robert Kolar Profile (2 columns) */}
+              <div className="lg:col-span-2">
+                <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 h-fit">
+                  <div className="text-center">
+                    {/* Large Profile Photo */}
+                    <div className="relative mb-6">
+                      <img
+                        src="https://res.cloudinary.com/dphbnwjtx/image/upload/v1747501071/6758848048b5cdaf6ebe884f_WhatsApp_Image_2024-12-11_at_01.55.01_oruhjs.webp"
+                        alt="Robert Kolar - Swiss Relocation Expert"
+                        className="w-24 h-24 rounded-full object-cover mx-auto shadow-lg border-4 border-white"
+                      />
+                      <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full flex items-center justify-center shadow-lg">
+                        <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
                     </div>
-                    <div className="text-center">
-                      <div className="text-lg font-bold text-gray-900">10+</div>
-                      <div className="text-xs text-gray-600">Years Exp.</div>
+                    
+                    <h4 className="text-xl font-bold text-gray-900 mb-1">Robert Kolar</h4>
+                    <p className="text-gray-600 mb-2">Chief Relocation Expert</p>
+                    <p className="text-sm text-gray-500 mb-6">Chief Cow Whisperer 🐄</p>
+                    
+                    {/* Language Badges */}
+                    <div className="flex justify-center flex-wrap gap-2 mb-6">
+                      <span className="px-3 py-1 bg-gradient-to-r from-gray-50 to-gray-100 text-xs text-gray-700 rounded-full border border-gray-200 font-medium">🇩🇪 German</span>
+                      <span className="px-3 py-1 bg-gradient-to-r from-gray-50 to-gray-100 text-xs text-gray-700 rounded-full border border-gray-200 font-medium">🇬🇧 English</span>
+                      <span className="px-3 py-1 bg-gradient-to-r from-gray-50 to-gray-100 text-xs text-gray-700 rounded-full border border-gray-200 font-medium">🇫🇷 French</span>
+                    </div>
+
+                    {/* Key Stats */}
+                    <div className="grid grid-cols-3 gap-4 mb-6">
+                      <div className="text-center">
+                        <div className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">500+</div>
+                        <div className="text-xs text-gray-600">Relocations</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">10+</div>
+                        <div className="text-xs text-gray-600">Years Exp.</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">2K+</div>
+                        <div className="text-xs text-gray-600">Clients Helped</div>
+                      </div>
+                    </div>
+
+                    {/* Personal Quote */}
+                    <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-4 border border-gray-200">
+                      <blockquote className="text-sm text-gray-700 italic leading-relaxed">
+                        "Every relocation is unique. I ensure each family gets the personalized guidance they deserve to make Switzerland feel like home."
+                      </blockquote>
                     </div>
                   </div>
-
-                  {/* Quote */}
-                  <blockquote className="text-sm text-gray-600 italic border-l-2 border-gray-300 pl-3 text-left">
-                    "Every relocation is unique. I ensure each family gets the personalized guidance they deserve."
-                  </blockquote>
                 </div>
               </div>
             </div>
@@ -371,342 +433,340 @@ const UniversalContactModal: React.FC = () => {
 
           {/* Step 1: Name */}
           {currentStep === 1 && (
-            <div className="max-w-md mx-auto">
-              <div className="text-center mb-8">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Let's get started</h3>
-                <p className="text-gray-600">What should we call you?</p>
-              </div>
-              
-              <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  First name *
-                </label>
-                <input
-                  type="text"
-                  value={formData.firstName}
-                  onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  placeholder="Enter your first name"
-                  autoFocus
-                />
-              </div>
+            <div className="max-w-lg mx-auto">
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">Let's get started</h3>
+                  <p className="text-gray-600">What should we call you?</p>
+                </div>
+                
+                <div className="mb-8">
+                  <label className="block text-sm font-semibold text-gray-700 mb-3">
+                    First name *
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                    className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-lg"
+                    placeholder="Enter your first name"
+                    autoFocus
+                  />
+                </div>
 
-              <div className="flex justify-between">
-                <button
-                  onClick={handleBack}
-                  className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
-                >
-                  ← Back
-                </button>
-                <button
-                  onClick={handleNext}
-                  disabled={!formData.firstName.trim()}
-                  className="px-6 py-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:from-primary-700 hover:to-secondary-700 transition-all"
-                >
-                  Continue
-                </button>
+                <div className="flex justify-between items-center">
+                  <button
+                    onClick={handleBack}
+                    className="px-6 py-3 text-gray-600 hover:text-gray-800 transition-colors font-medium"
+                  >
+                    ← Back
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    disabled={!formData.firstName.trim()}
+                    className="px-8 py-3 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:from-primary-700 hover:to-secondary-700 transition-all shadow-lg"
+                  >
+                    Continue →
+                  </button>
+                </div>
               </div>
             </div>
           )}
 
           {/* Step 2: Destination */}
           {currentStep === 2 && (
-            <div className="max-w-md mx-auto">
-              <div className="text-center mb-8">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Great, {formData.firstName}! 👋
-                </h3>
-                <p className="text-gray-600">Where are you planning to relocate?</p>
-              </div>
-              
-              <div className="relative mb-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Destination city *
-                </label>
-                <input
-                  type="text"
-                  value={formData.destination}
-                  onChange={(e) => {
-                    setFormData({ ...formData, destination: e.target.value });
-                    setCityFilter(e.target.value);
-                  }}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  placeholder="Type a Swiss city..."
-                  autoFocus
-                />
+            <div className="max-w-lg mx-auto">
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                    Great, {formData.firstName}! 👋
+                  </h3>
+                  <p className="text-gray-600">Where are you planning to relocate?</p>
+                </div>
                 
-                {filteredCities.length > 0 && (
-                  <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg mt-1 shadow-lg z-10 max-h-48 overflow-y-auto">
-                    {filteredCities.map((city) => (
-                      <button
-                        key={city}
-                        onClick={() => {
-                          setFormData({ ...formData, destination: city });
-                          setFilteredCities([]);
-                          setCityFilter('');
-                        }}
-                        className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors"
-                      >
-                        {city}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
+                <div className="relative mb-8">
+                  <label className="block text-sm font-semibold text-gray-700 mb-3">
+                    Destination city *
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.destination}
+                    onChange={(e) => {
+                      setFormData({ ...formData, destination: e.target.value });
+                      setCityFilter(e.target.value);
+                    }}
+                    className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-lg"
+                    placeholder="Type a Swiss city..."
+                    autoFocus
+                  />
+                  
+                  {filteredCities.length > 0 && (
+                    <div className="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-xl mt-2 shadow-xl z-10 max-h-64 overflow-y-auto">
+                      {filteredCities.map((city) => (
+                        <button
+                          key={city}
+                          onClick={() => {
+                            setFormData({ ...formData, destination: city });
+                            setFilteredCities([]);
+                            setCityFilter('');
+                          }}
+                          className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0"
+                        >
+                          <span className="font-medium">{city}</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
 
-              <div className="flex justify-between">
-                <button
-                  onClick={handleBack}
-                  className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
-                >
-                  ← Back
-                </button>
-                <button
-                  onClick={handleNext}
-                  disabled={!formData.destination.trim()}
-                  className="px-6 py-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:from-primary-700 hover:to-secondary-700 transition-all"
-                >
-                  Continue
-                </button>
+                <div className="flex justify-between items-center">
+                  <button
+                    onClick={handleBack}
+                    className="px-6 py-3 text-gray-600 hover:text-gray-800 transition-colors font-medium"
+                  >
+                    ← Back
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    disabled={!formData.destination.trim()}
+                    className="px-8 py-3 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:from-primary-700 hover:to-secondary-700 transition-all shadow-lg"
+                  >
+                    Continue →
+                  </button>
+                </div>
               </div>
             </div>
           )}
 
           {/* Step 3: Timeline */}
           {currentStep === 3 && (
-            <div className="max-w-2xl mx-auto">
-              <div className="text-center mb-8">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  When are you planning to move to {formData.destination}?
-                </h3>
-                <p className="text-gray-600">This helps us prioritize your needs</p>
-              </div>
-              
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
-                {TIMELINE_OPTIONS.map((option) => (
-                  <button
-                    key={option.value}
-                    onClick={() => setFormData({ ...formData, timeline: option.value })}
-                    className={`p-4 border rounded-lg transition-all text-left ${
-                      formData.timeline === option.value
-                        ? 'border-primary-500 bg-primary-50 text-primary-700'
-                        : 'border-gray-200 hover:border-gray-300 text-gray-700'
-                    }`}
-                  >
-                    <div className="text-lg mb-1">{option.icon}</div>
-                    <div className="text-sm font-medium">{option.label}</div>
-                  </button>
-                ))}
-              </div>
+            <div className="max-w-3xl mx-auto">
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                    When are you planning to move to {formData.destination}?
+                  </h3>
+                  <p className="text-gray-600">This helps us prioritize your needs</p>
+                </div>
+                
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+                  {TIMELINE_OPTIONS.map((option) => (
+                    <button
+                      key={option.value}
+                      onClick={() => setFormData({ ...formData, timeline: option.value })}
+                      className={`p-4 border-2 rounded-xl transition-all text-left hover:shadow-md ${
+                        formData.timeline === option.value
+                          ? 'border-primary-500 bg-gradient-to-br from-primary-50 to-secondary-50 text-primary-700 shadow-lg'
+                          : 'border-gray-200 hover:border-gray-300 text-gray-700 bg-white'
+                      }`}
+                    >
+                      <div className="text-2xl mb-2">{option.icon}</div>
+                      <div className="text-sm font-semibold">{option.label}</div>
+                    </button>
+                  ))}
+                </div>
 
-              <div className="flex justify-between">
-                <button
-                  onClick={handleBack}
-                  className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
-                >
-                  ← Back
-                </button>
-                <button
-                  onClick={handleNext}
-                  disabled={!formData.timeline}
-                  className="px-6 py-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:from-primary-700 hover:to-secondary-700 transition-all"
-                >
-                  Continue
-                </button>
+                <div className="flex justify-between items-center">
+                  <button
+                    onClick={handleBack}
+                    className="px-6 py-3 text-gray-600 hover:text-gray-800 transition-colors font-medium"
+                  >
+                    ← Back
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    disabled={!formData.timeline}
+                    className="px-8 py-3 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:from-primary-700 hover:to-secondary-700 transition-all shadow-lg"
+                  >
+                    Continue →
+                  </button>
+                </div>
               </div>
             </div>
           )}
 
           {/* Step 4: Priorities */}
           {currentStep === 4 && (
-            <div className="max-w-2xl mx-auto">
-              <div className="text-center mb-8">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  What are your main priorities?
-                </h3>
-                <p className="text-gray-600">Select all that apply</p>
-              </div>
-              
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-                {PRIORITY_OPTIONS.map((priority) => (
-                  <button
-                    key={priority.id}
-                    onClick={() => handlePriorityToggle(priority.id)}
-                    className={`p-4 border rounded-lg transition-all text-center ${
-                      formData.priorities.includes(priority.id)
-                        ? 'border-primary-500 bg-primary-50 text-primary-700'
-                        : 'border-gray-200 hover:border-gray-300 text-gray-700'
-                    }`}
-                  >
-                    <div className="text-2xl mb-2">{priority.icon}</div>
-                    <div className="text-xs font-medium">{priority.label}</div>
-                  </button>
-                ))}
-              </div>
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                    What are your main priorities?
+                  </h3>
+                  <p className="text-gray-600">Select all that apply (optional)</p>
+                </div>
+                
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                  {PRIORITY_OPTIONS.map((option) => (
+                    <button
+                      key={option.id}
+                      onClick={() => handlePriorityToggle(option.id)}
+                      className={`p-4 border-2 rounded-xl transition-all text-center hover:shadow-md ${
+                        formData.priorities.includes(option.id)
+                          ? 'border-primary-500 bg-gradient-to-br from-primary-50 to-secondary-50 text-primary-700 shadow-lg'
+                          : 'border-gray-200 hover:border-gray-300 text-gray-700 bg-white'
+                      }`}
+                    >
+                      <div className="text-2xl mb-2">{option.icon}</div>
+                      <div className="text-sm font-semibold">{option.label}</div>
+                    </button>
+                  ))}
+                </div>
 
-              <div className="flex justify-between">
-                <button
-                  onClick={handleBack}
-                  className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
-                >
-                  ← Back
-                </button>
-                <button
-                  onClick={handleNext}
-                  disabled={formData.priorities.length === 0}
-                  className="px-6 py-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:from-primary-700 hover:to-secondary-700 transition-all"
-                >
-                  Continue ({formData.priorities.length} selected)
-                </button>
+                <div className="flex justify-between items-center">
+                  <button
+                    onClick={handleBack}
+                    className="px-6 py-3 text-gray-600 hover:text-gray-800 transition-colors font-medium"
+                  >
+                    ← Back
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    className="px-8 py-3 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-xl font-semibold hover:from-primary-700 hover:to-secondary-700 transition-all shadow-lg"
+                  >
+                    Continue →
+                  </button>
+                </div>
               </div>
             </div>
           )}
 
-          {/* Step 5: Contact Info & Submit */}
-          {currentStep === 5 && !isSuccess && (
-            <div className="max-w-md mx-auto">
-              <div className="text-center mb-8">
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Almost done, {formData.firstName}!
-                </h3>
-                <p className="text-gray-600">How can we reach you with your recommendations?</p>
-              </div>
-              
-              <div className="space-y-4 mb-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Email address *
-                  </label>
-                  <input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                    placeholder="your.email@example.com"
-                    autoFocus
-                  />
+          {/* Step 5: Contact Info */}
+          {currentStep === 5 && (
+            <div className="max-w-lg mx-auto">
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                    Almost done! 🎉
+                  </h3>
+                  <p className="text-gray-600">How can we reach you with your matches?</p>
                 </div>
+                
+                <div className="space-y-6 mb-8">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-3">
+                      Email address *
+                    </label>
+                    <input
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-lg"
+                      placeholder="your@email.com"
+                      autoFocus
+                    />
+                  </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Phone number (optional)
-                  </label>
-                  <input
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                    placeholder="+41 XX XXX XX XX"
-                  />
-                </div>
-
-                <div className="bg-gray-50 rounded-lg p-4 text-sm text-gray-600">
-                  <div className="flex items-start space-x-2">
-                    <svg className="w-4 h-4 mt-0.5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                    <div>
-                      <p className="font-medium text-gray-700 mb-1">Your privacy is protected</p>
-                      <p>GDPR compliant. We'll never share your information.</p>
-                    </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-3">
+                      Phone number (optional)
+                    </label>
+                    <input
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all text-lg"
+                      placeholder="+41 XX XXX XX XX"
+                    />
                   </div>
                 </div>
-              </div>
 
-              <div className="flex justify-between">
-                <button
-                  onClick={handleBack}
-                  className="px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
-                >
-                  ← Back
-                </button>
-                <button
-                  onClick={handleSubmit}
-                  disabled={!formData.email.trim() || isSubmitting}
-                  className="px-6 py-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:from-primary-700 hover:to-secondary-700 transition-all flex items-center space-x-2"
-                >
-                  {isSubmitting && (
-                    <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                  )}
-                  <span>{isSubmitting ? 'Submitting...' : SERVICE_FLOWS[formData.selectedFlow].cta}</span>
-                </button>
+                <div className="flex justify-between items-center">
+                  <button
+                    onClick={handleBack}
+                    className="px-6 py-3 text-gray-600 hover:text-gray-800 transition-colors font-medium"
+                  >
+                    ← Back
+                  </button>
+                  <button
+                    onClick={handleSubmit}
+                    disabled={!formData.email.trim() || isSubmitting}
+                    className="px-8 py-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:from-primary-700 hover:to-secondary-700 transition-all shadow-lg transform hover:-translate-y-0.5"
+                  >
+                    {isSubmitting ? (
+                      <div className="flex items-center space-x-2">
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        <span>Submitting...</span>
+                      </div>
+                    ) : (
+                      `${SERVICE_FLOWS[formData.selectedFlow].cta} 🚀`
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
           )}
 
           {/* Success Step */}
-          {currentStep === 5 && isSuccess && (
-            <div className="text-center max-w-md mx-auto">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
-                Thank you, {formData.firstName}! 🎉
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Your {formData.destination} relocation journey begins now
-              </p>
-              
-              <div className="bg-gray-50 rounded-lg p-6 text-left mb-6">
-                <h4 className="font-semibold text-gray-900 mb-3">What happens next:</h4>
-                <ul className="space-y-2 text-sm text-gray-700">
-                  <li className="flex items-start space-x-2">
-                    <span className="w-1.5 h-1.5 bg-primary-600 rounded-full mt-2 flex-shrink-0"></span>
-                    <span>Robert reviews your requirements personally</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <span className="w-1.5 h-1.5 bg-primary-600 rounded-full mt-2 flex-shrink-0"></span>
-                    <span>Personalized recommendations within {SERVICE_FLOWS[formData.selectedFlow].timeframe}</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <span className="w-1.5 h-1.5 bg-primary-600 rounded-full mt-2 flex-shrink-0"></span>
-                    <span>Direct connection with your matched specialists</span>
-                  </li>
-                </ul>
-              </div>
+          {currentStep === 6 && isSuccess && (
+            <div className="max-w-2xl mx-auto text-center">
+              <div className="bg-white rounded-2xl p-12 shadow-lg border border-gray-100">
+                <div className="w-20 h-20 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                
+                <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                  Thank you, {formData.firstName}! 🎉
+                </h3>
+                <p className="text-xl text-gray-600 mb-6 leading-relaxed">
+                  Your request has been submitted successfully. Our team will connect you with the perfect Swiss relocation specialists for your move to <span className="font-semibold text-primary-600">{formData.destination}</span>.
+                </p>
+                
+                <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-6 mb-6 border border-gray-200">
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2">What happens next?</h4>
+                  <ul className="text-left text-gray-700 space-y-2">
+                    <li className="flex items-start">
+                      <span className="text-emerald-500 mr-2">1.</span>
+                      We'll review your requirements within 2 hours
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-emerald-500 mr-2">2.</span>
+                      You'll receive your personalized matches via email
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-emerald-500 mr-2">3.</span>
+                      Connect directly with specialists that fit your needs
+                    </li>
+                  </ul>
+                </div>
 
-              <button
-                onClick={handleClose}
-                className="px-6 py-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white rounded-lg font-medium hover:from-primary-700 hover:to-secondary-700 transition-all"
-              >
-                Close
-              </button>
+                <p className="text-sm text-gray-500">
+                  This window will close automatically in 3 seconds...
+                </p>
+              </div>
             </div>
           )}
         </div>
 
-        {/* Trust Row Footer */}
-        <div className="border-t border-gray-100 px-6 py-4 bg-gray-50">
-          <div className="flex items-center justify-center space-x-6 text-sm text-gray-600">
-            <div className="flex items-center space-x-1">
-              <svg className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        {/* Footer with Trust Icons */}
+        <div className="border-t border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100 px-8 py-6 rounded-b-3xl">
+          <div className="flex flex-wrap items-center justify-center space-x-8 text-sm text-gray-600">
+            <div className="flex items-center space-x-2">
+              <svg className="w-5 h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
               </svg>
-              <span>4.9/5 Rating</span>
+              <span className="font-semibold">4.9/5 Rating</span>
             </div>
-            <div className="flex items-center space-x-1">
-              <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            <div className="flex items-center space-x-2">
+              <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
               </svg>
-              <span>GDPR Compliant</span>
+              <span className="font-semibold">GDPR Compliant</span>
             </div>
-            <div className="flex items-center space-x-1">
-              <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            <div className="flex items-center space-x-2">
+              <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
               </svg>
-              <span>Swiss Licensed</span>
+              <span className="font-semibold">Swiss Licensed</span>
             </div>
-            <div className="flex items-center space-x-1">
-              <svg className="w-4 h-4 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            <div className="flex items-center space-x-2">
+              <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
-              <span>Verified Experts</span>
+              <span className="font-semibold">Verified Experts</span>
             </div>
           </div>
         </div>
