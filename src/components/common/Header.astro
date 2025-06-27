@@ -51,14 +51,14 @@ import { openModal } from '../../stores/modal';
 
 <header class={`fixed w-full z-50 transition-colors duration-300 ${transparent ? 'bg-transparent' : 'bg-white shadow-sm'}`}>
   <div class="container mx-auto px-4">
-    <div class="flex items-center justify-between h-32">
-      <!-- Logo - Top left, prominently sized for brand visibility -->
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo - Optimized size that fills the header space efficiently -->
       <a href="/" class="flex items-center px-5" style="display: flex; align-items: center;">
         <img 
           src="https://res.cloudinary.com/dphbnwjtx/image/upload/v1751047383/SVG_sdmxdo.svg" 
           alt="ReloFinder Logo" 
-          class="h-30 w-auto md:h-30 sm:h-20"
-          style="height: 120px; width: auto; display: block; min-height: 80px;"
+          class="h-16 w-auto md:h-16 sm:h-12"
+          style="height: 64px; width: auto; display: block; min-height: 48px; max-height: 64px;"
         />
       </a>
       
@@ -152,7 +152,7 @@ import { openModal } from '../../stores/modal';
   </div>
 </header>
 
-<div class="h-32"></div>
+<div class="h-20"></div>
 
 <!-- Mobile Navigation Menu -->
 <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/40 z-[9999] transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
