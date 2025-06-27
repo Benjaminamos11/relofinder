@@ -103,8 +103,10 @@ const UniversalContactModal: React.FC<ModalContentProps> = ({
   
   // Local modal control functions
   const openModalWithContext = (ctx: ModalContext) => {
+    console.log('🔥 openModalWithContext called with:', ctx);
     modalContext.set(ctx);
     isModalOpen.set(true);
+    console.log('🎉 Modal state set to open!');
   };
   
   const closeModal = () => {
@@ -113,11 +115,15 @@ const UniversalContactModal: React.FC<ModalContentProps> = ({
   
   // Listen for global modal events
   useEffect(() => {
+    console.log('🎯 UniversalContactModal mounted! Setting up event listeners...');
+    
     const handleOpenModal = (event: CustomEvent) => {
+      console.log('📨 Received openModal event:', event.detail);
       openModalWithContext(event.detail || {});
     };
     
     const handleCloseModal = () => {
+      console.log('📨 Received closeModal event');
       closeModal();
     };
     
@@ -126,10 +132,14 @@ const UniversalContactModal: React.FC<ModalContentProps> = ({
     
     // Process any queued modal events now that we're ready
     if (typeof (window as any).processModalQueue === 'function') {
+      console.log('🔄 Processing queued modal events...');
       (window as any).processModalQueue();
+    } else {
+      console.log('❌ processModalQueue function not found');
     }
     
     return () => {
+      console.log('🔄 UniversalContactModal unmounting...');
       window.removeEventListener('openModal', handleOpenModal as EventListener);
       window.removeEventListener('closeModal', handleCloseModal);
       // Mark modal as not ready when component unmounts
