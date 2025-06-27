@@ -124,9 +124,16 @@ const UniversalContactModal: React.FC<ModalContentProps> = ({
     window.addEventListener('openModal', handleOpenModal as EventListener);
     window.addEventListener('closeModal', handleCloseModal);
     
+    // Process any queued modal events now that we're ready
+    if (typeof (window as any).processModalQueue === 'function') {
+      (window as any).processModalQueue();
+    }
+    
     return () => {
       window.removeEventListener('openModal', handleOpenModal as EventListener);
       window.removeEventListener('closeModal', handleCloseModal);
+      // Mark modal as not ready when component unmounts
+      (window as any).modalReady = false;
     };
   }, []);
   

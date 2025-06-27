@@ -81,21 +81,49 @@ const {
     </main>
     
     <Footer />
-    <UniversalContactModal client:only="react" />
+    <UniversalContactModal client:load />
     
-    <!-- Global Modal Functions -->
+    <!-- Global Modal Functions with Event Queue -->
     <script is:inline>
-      // Import the modal store functions and make them globally available
+      // Event queue for modal events before React component loads
+      window.modalEventQueue = [];
+      window.modalReady = false;
+      
+      // Global modal functions that queue events if React component isn't ready
       window.openModal = function(context = {}) {
-        // Dispatch a custom event that the React component can listen to
-        window.dispatchEvent(new CustomEvent('openModal', { 
-          detail: context 
-        }));
+        const event = new CustomEvent('openModal', { detail: context });
+        
+        if (window.modalReady) {
+          // React component is ready, dispatch immediately
+          window.dispatchEvent(event);
+        } else {
+          // Queue the event for when React component loads
+          window.modalEventQueue.push(event);
+          console.log('Modal not ready, queuing open event:', context);
+        }
       };
       
       window.closeModal = function() {
-        // Dispatch a custom event that the React component can listen to
-        window.dispatchEvent(new CustomEvent('closeModal'));
+        const event = new CustomEvent('closeModal');
+        
+        if (window.modalReady) {
+          window.dispatchEvent(event);
+        } else {
+          window.modalEventQueue.push(event);
+          console.log('Modal not ready, queuing close event');
+        }
+      };
+      
+      // Function to process queued events when React component is ready
+      window.processModalQueue = function() {
+        window.modalReady = true;
+        console.log('Processing', window.modalEventQueue.length, 'queued modal events');
+        
+        window.modalEventQueue.forEach(event => {
+          window.dispatchEvent(event);
+        });
+        
+        window.modalEventQueue = [];
       };
     </script>
   </body>
