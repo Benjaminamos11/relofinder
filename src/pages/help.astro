@@ -1,0 +1,229 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = 'Help Center | ReloFinder.ch - Support & FAQs';
+const description = 'Find answers to common questions about using ReloFinder.ch, connecting with relocation services, and planning your move to Switzerland.';
+---
+
+<Layout title={title} description={description}>
+  <main class="pt-20">
+    <!-- Hero Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-4xl md:text-5xl font-bold mb-6">Help Center</h1>
+          <p class="text-xl text-gray-600 mb-8">
+            Find answers to common questions and get support for your Swiss relocation journey.
+          </p>
+          <div class="flex flex-wrap gap-4 justify-center">
+            <a href="#getting-started" class="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors">
+              Getting Started
+            </a>
+            <a href="#using-platform" class="bg-white text-primary-600 border border-primary-600 px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors">
+              Using Our Platform
+            </a>
+            <a href="#contact-support" class="bg-white text-primary-600 border border-primary-600 px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors">
+              Contact Support
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-16">
+      <div class="container">
+        <div class="max-w-4xl mx-auto">
+          
+          <!-- Getting Started -->
+          <div id="getting-started" class="mb-16">
+            <h2 class="text-3xl font-bold mb-8">Getting Started</h2>
+            
+            <div class="space-y-6">
+              <div class="bg-white border border-gray-200 rounded-lg p-6">
+                <h3 class="text-xl font-semibold mb-3">What is ReloFinder.ch?</h3>
+                <p class="text-gray-600">
+                  ReloFinder.ch is Switzerland's leading platform for connecting individuals and companies with verified relocation service providers. We help match you with the right professionals for your specific relocation needs.
+                </p>
+              </div>
+
+              <div class="bg-white border border-gray-200 rounded-lg p-6">
+                <h3 class="text-xl font-semibold mb-3">How does the matching process work?</h3>
+                <p class="text-gray-600 mb-3">
+                  Our matching process is simple and effective:
+                </p>
+                <ol class="list-decimal list-inside text-gray-600 space-y-1">
+                  <li>Fill out our detailed relocation requirements form</li>
+                  <li>Our system matches you with suitable service providers</li>
+                  <li>Verified providers contact you directly with tailored proposals</li>
+                  <li>Compare offers and choose the best fit for your needs</li>
+                </ol>
+              </div>
+
+              <div class="bg-white border border-gray-200 rounded-lg p-6">
+                <h3 class="text-xl font-semibold mb-3">Is ReloFinder.ch free to use?</h3>
+                <p class="text-gray-600">
+                  Yes! ReloFinder.ch is completely free for individuals and companies seeking relocation services. We earn revenue from our partner service providers, not from users.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Using the Platform -->
+          <div id="using-platform" class="mb-16">
+            <h2 class="text-3xl font-bold mb-8">Using Our Platform</h2>
+            
+            <div class="space-y-6">
+              <div class="bg-white border border-gray-200 rounded-lg p-6">
+                <h3 class="text-xl font-semibold mb-3">How do I submit a relocation request?</h3>
+                <p class="text-gray-600 mb-3">
+                  You can submit a request in several ways:
+                </p>
+                <ul class="list-disc list-inside text-gray-600 space-y-1">
+                  <li>Click "Get Started" on our homepage</li>
+                  <li>Use the contact forms on any service page</li>
+                  <li>Browse our company directory and contact providers directly</li>
+                  <li>Use our AI chat assistant for personalized recommendations</li>
+                </ul>
+              </div>
+
+              <div class="bg-white border border-gray-200 rounded-lg p-6">
+                <h3 class="text-xl font-semibold mb-3">What information should I provide?</h3>
+                <p class="text-gray-600 mb-3">
+                  To get the best matches, please provide:
+                </p>
+                <ul class="list-disc list-inside text-gray-600 space-y-1">
+                  <li>Your current location and destination in Switzerland</li>
+                  <li>Timeline for your move</li>
+                  <li>Type of services needed (housing, visa, banking, etc.)</li>
+                  <li>Budget range and specific requirements</li>
+                  <li>Family size and special considerations</li>
+                </ul>
+              </div>
+
+              <div class="bg-white border border-gray-200 rounded-lg p-6">
+                <h3 class="text-xl font-semibold mb-3">How quickly will I hear from service providers?</h3>
+                <p class="text-gray-600">
+                  Most verified providers respond within 24-48 hours. During busy periods or for complex requests, it may take up to 72 hours. You'll typically receive 3-5 relevant proposals.
+                </p>
+              </div>
+
+              <div class="bg-white border border-gray-200 rounded-lg p-6">
+                <h3 class="text-xl font-semibold mb-3">Can I contact providers directly?</h3>
+                <p class="text-gray-600">
+                  Absolutely! You can browse our company directory and contact any provider directly. Each company page includes contact information, services offered, and client reviews.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Service Providers -->
+          <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-8">About Service Providers</h2>
+            
+            <div class="space-y-6">
+              <div class="bg-white border border-gray-200 rounded-lg p-6">
+                <h3 class="text-xl font-semibold mb-3">Are all service providers verified?</h3>
+                <p class="text-gray-600">
+                  Yes, we verify all service providers before they join our platform. Our verification process includes business registration checks, insurance verification, and reference validation.
+                </p>
+              </div>
+
+              <div class="bg-white border border-gray-200 rounded-lg p-6">
+                <h3 class="text-xl font-semibold mb-3">What if I have issues with a service provider?</h3>
+                <p class="text-gray-600">
+                  While we facilitate introductions, all services are provided directly by independent companies. If you have issues, first contact the provider directly. For serious concerns, you can reach our support team.
+                </p>
+              </div>
+
+              <div class="bg-white border border-gray-200 rounded-lg p-6">
+                <h3 class="text-xl font-semibold mb-3">Can I leave reviews for service providers?</h3>
+                <p class="text-gray-600">
+                  Yes! We encourage clients to leave honest reviews of their experiences. Reviews help other users make informed decisions and help us maintain service quality standards.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Technical Support -->
+          <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-8">Technical Support</h2>
+            
+            <div class="space-y-6">
+              <div class="bg-white border border-gray-200 rounded-lg p-6">
+                <h3 class="text-xl font-semibold mb-3">I'm having trouble with the website. What should I do?</h3>
+                <p class="text-gray-600 mb-3">
+                  Try these troubleshooting steps:
+                </p>
+                <ul class="list-disc list-inside text-gray-600 space-y-1">
+                  <li>Clear your browser cache and cookies</li>
+                  <li>Try using a different browser or incognito mode</li>
+                  <li>Check your internet connection</li>
+                  <li>Disable browser extensions temporarily</li>
+                  <li>If issues persist, contact our technical support</li>
+                </ul>
+              </div>
+
+              <div class="bg-white border border-gray-200 rounded-lg p-6">
+                <h3 class="text-xl font-semibold mb-3">I didn't receive a confirmation email. What now?</h3>
+                <p class="text-gray-600">
+                  Check your spam/junk folder first. If you still don't see it, the email may have been delayed. Wait 10-15 minutes and check again. If still missing, contact support with your submission details.
+                </p>
+              </div>
+
+              <div class="bg-white border border-gray-200 rounded-lg p-6">
+                <h3 class="text-xl font-semibold mb-3">Can I update my submitted information?</h3>
+                <p class="text-gray-600">
+                  Yes, you can submit an updated request or contact our support team to modify your existing submission. Include your original request details for faster processing.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Support -->
+          <div id="contact-support" class="bg-gray-50 p-8 rounded-lg">
+            <h2 class="text-3xl font-bold mb-6">Still Need Help?</h2>
+            <p class="text-gray-600 mb-6">
+              Our support team is here to help with any questions not covered in this help center.
+            </p>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="bg-white p-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-3">General Support</h3>
+                <p class="text-gray-600 mb-3">
+                  For general questions about our platform, services, or Swiss relocation information.
+                </p>
+                <p class="font-medium">
+                  <a href="mailto:support@relofinder.ch" class="text-primary-600 hover:text-primary-700">
+                    support@relofinder.ch
+                  </a>
+                </p>
+                <p class="text-sm text-gray-500 mt-2">Response time: 24-48 hours</p>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg">
+                <h3 class="text-xl font-semibold mb-3">Technical Issues</h3>
+                <p class="text-gray-600 mb-3">
+                  For website problems, technical difficulties, or account-related issues.
+                </p>
+                <p class="font-medium">
+                  <a href="mailto:tech@relofinder.ch" class="text-primary-600 hover:text-primary-700">
+                    tech@relofinder.ch
+                  </a>
+                </p>
+                <p class="text-sm text-gray-500 mt-2">Response time: 12-24 hours</p>
+              </div>
+            </div>
+
+            <div class="mt-6 text-center">
+              <button onclick="universalOpenModal({page: 'help'})" class="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors">
+                Contact Support Now
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout> 
