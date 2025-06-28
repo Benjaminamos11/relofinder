@@ -85,9 +85,15 @@ const {
     
     <!-- Global Modal Functions with Event Queue -->
     <script is:inline>
+      // BASIC TEST - Check if script loads at all
+      console.log('🟢 Layout.astro script is loading...');
+      console.log('🟢 window object:', typeof window);
+      
       // Event queue for modal events before React component loads
       window.modalEventQueue = [];
       window.modalReady = false;
+      
+      console.log('🟢 Modal variables initialized successfully');
       
       // Global modal functions that queue events if React component isn't ready
       window.openModal = function(context = {}) {

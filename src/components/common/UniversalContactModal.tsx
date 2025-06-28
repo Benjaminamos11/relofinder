@@ -98,6 +98,8 @@ const UniversalContactModal: React.FC<ModalContentProps> = ({
   successBadge = "156 successful matches this month",
   eligibilityNotice = "Note: We do not provide job search assistance or direct relocation services. Our mission is to help you find and compare the right relocation providers in Switzerland."
 }) => {
+  // BASIC TEST - Check if React component loads
+  console.log('🟢 UniversalContactModal component is being rendered!');
   const modalOpen = useStore(isModalOpen);
   const context = useStore(modalContext);
   
