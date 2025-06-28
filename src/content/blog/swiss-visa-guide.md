@@ -4,7 +4,7 @@ description: "Navigate the complexities of Swiss immigration with our step-by-st
 author: "Robert Kolar"
 publishDate: 2025-06-01
 updatedDate: 2024-02-12
-heroImage: "https://images.pexels.com/photos/1201488/pexels-photo-1201488.jpeg?auto=compress&cs=tinysrgb&w=800"
+heroImage: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 category: "Immigration"
 tags:
   - "visa"

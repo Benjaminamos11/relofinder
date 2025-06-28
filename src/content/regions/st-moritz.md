@@ -1,7 +1,7 @@
 ---
 name: "St. Moritz"
 description: "Legendary alpine destination synonymous with luxury, offering world-class skiing, prestigious events, exceptional wellness facilities, and a sophisticated international community."
-image: "https://images.pexels.com/photos/9754/mountains-clouds-forest-fog.jpg?auto=compress&cs=tinysrgb&w=1920"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 longDescription: |
   St. Moritz stands as the original Alpine luxury destination, with a heritage dating back to 1864 when it began attracting European aristocracy. This iconic resort in the Engadin Valley has maintained its position as one of the world's most exclusive addresses, blending exceptional natural beauty with sophisticated infrastructure and an unrivaled social calendar.
 

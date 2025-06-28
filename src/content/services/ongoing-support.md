@@ -2,7 +2,7 @@
 title: "Ongoing Support Services"
 description: "Continued assistance after relocation with property management, administrative help, and emergency support for expatriates in Switzerland."
 icon: "life-buoy"
-image: "https://images.pexels.com/photos/3153198/pexels-photo-3153198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 customSlug: "ongoing-support"
 featured: false
 displayOrder: 8

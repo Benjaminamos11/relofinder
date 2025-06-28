@@ -2,7 +2,7 @@
 title: "Specialized Relocation Services"
 description: "Tailored services for unique relocation needs, including executive VIP relocations, group moves, digital nomads, and specialized travel arrangements."
 icon: "star"
-image: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 customSlug: "specialized-services"
 featured: false
 displayOrder: 9

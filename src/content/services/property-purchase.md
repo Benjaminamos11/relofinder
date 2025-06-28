@@ -1,7 +1,7 @@
 ---
 title: "Swiss Property Acquisition for HNWIs"
 description: "Expert guidance on navigating Lex Koller restrictions, structuring optimal property ownership, and leveraging lump-sum taxation benefits for high-net-worth individuals."
-image: "https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=1920"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 icon: "home"
 displayOrder: 11
 featured: true

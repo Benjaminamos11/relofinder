@@ -2,7 +2,7 @@
 title: "Immigration Services"
 description: "Comprehensive visa and permit assistance for smooth entry and legal residence in Switzerland."
 icon: "document-check"
-image: "https://images.pexels.com/photos/4386370/pexels-photo-4386370.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 customSlug: "immigration"
 featured: true
 displayOrder: 2

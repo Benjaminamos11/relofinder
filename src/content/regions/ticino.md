@@ -1,7 +1,7 @@
 ---
 name: "Ticino"
 description: "Switzerland's Mediterranean soul with Italian language, palm-lined lakes, stunning mountains, and a distinctive blend of Swiss efficiency and southern European lifestyle."
-image: "https://images.pexels.com/photos/11605470/pexels-photo-11605470.jpeg?auto=compress&cs=tinysrgb&w=1920"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 longDescription: |
   Ticino is Switzerland's southernmost canton, offering a unique Italian-speaking enclave with Mediterranean climate and culture. Nestled between Alpine peaks and palm-lined lakes, it provides a distinctive lifestyle that combines Swiss precision with Italian joie de vivre.
 

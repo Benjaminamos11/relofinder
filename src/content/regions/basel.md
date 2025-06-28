@@ -6,7 +6,7 @@ canton: "Basel-Stadt"
 population: 173232
 area: 37
 language: "German"
-image: "https://images.pexels.com/photos/13412713/pexels-photo-13412713.jpeg?auto=compress&cs=tinysrgb&w=1920"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 heroImage: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&h=600&fit=crop"
 featured: true
 coordinates:

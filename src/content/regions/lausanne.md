@@ -1,7 +1,7 @@
 ---
 name: "Lausanne"
 description: "Switzerland's Olympic capital and academic powerhouse with stunning lakeside views, vibrant cultural scene, and French-speaking Swiss lifestyle."
-image: "https://images.pexels.com/photos/6382476/pexels-photo-6382476.jpeg?auto=compress&cs=tinysrgb&w=1920"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 longDescription: |
   Lausanne is Switzerland's fourth-largest city and the capital of the canton of Vaud. Situated on the shores of Lake Geneva with spectacular views of the Alps, it combines academic excellence, international sports governance, and a Mediterranean-influenced lifestyle.
 

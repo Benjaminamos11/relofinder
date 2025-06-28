@@ -3,185 +3,199 @@
 const regions = [
   {
     id: "zurich",
-    name: "Zurich",
-    description: "Switzerland's largest city and a global financial center with vibrant culture and high quality of living. Zurich offers excellent infrastructure, international schools, and a thriving expat community.",
-    image: "https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    cities: ["Zurich", "Winterthur", "Uster"],
-    services: [
-      "Home Search",
-      "School Selection",
-      "Immigration Support",
-      "Settling-in Services"
-    ]
+    name: "Zürich",
+    title: "Switzerland's Financial Capital",
+    description: "Dynamic business hub with lake views and Alpine backdrop",
+    image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Zurich",
+    href: "/regions/zurich",
+    stats: {
+      population: "402,762",
+      avgRent: "CHF 2,200",
+      language: "German",
+      industry: "Finance & Tech"
+    }
   },
   {
     id: "geneva",
     name: "Geneva",
-    description: "International hub with the United Nations and Red Cross headquarters. Geneva features a cosmopolitan atmosphere, beautiful lake views, and excellent public services for international professionals.",
-    image: "https://images.pexels.com/photos/6209567/pexels-photo-6209567.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    cities: ["Geneva", "Versoix", "Carouge"],
-    services: [
-      "International Organization Support",
-      "Home Search",
-      "Banking Setup",
-      "Family Integration"
-    ]
+    title: "International Diplomacy Center",
+    description: "Sophisticated lakeside city with global organizations",
+    image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Geneva",
+    href: "/regions/geneva",
+    stats: {
+      population: "201,818",
+      avgRent: "CHF 2,500",
+      language: "French",
+      industry: "International Orgs"
+    }
   },
   {
     id: "basel",
     name: "Basel",
-    description: "Cultural center at the border of France and Germany known for pharmaceuticals and art. Basel offers a strategic location, rich cultural heritage, and excellent transportation connections.",
-    image: "https://images.pexels.com/photos/15307184/pexels-photo-15307184.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    cities: ["Basel", "Riehen", "Muttenz"],
-    services: [
-      "Cross-border Commuting",
-      "Home Search",
-      "Healthcare Setup",
-      "Cultural Integration"
-    ]
+    title: "Cultural & Pharmaceutical Hub",
+    description: "Rhine-side city known for art, culture, and life sciences",
+    image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Basel",
+    href: "/regions/basel",
+    stats: {
+      population: "173,232",
+      avgRent: "CHF 1,800",
+      language: "German",
+      industry: "Pharmaceuticals"
+    }
   },
   {
     id: "bern",
     name: "Bern",
-    description: "Switzerland's capital city with a UNESCO World Heritage Old Town. Bern combines historic charm with modern amenities, offering a relaxed lifestyle and excellent connections to all parts of the country.",
-    image: "https://images.pexels.com/photos/11086135/pexels-photo-11086135.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    cities: ["Bern", "Köniz", "Ostermundigen"],
-    services: [
-      "Government Liaison",
-      "Home Search",
-      "Cultural Integration",
-      "Relocation Services"
-    ]
+    title: "Federal Capital",
+    description: "Historic UNESCO heritage city with government institutions",
+    image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Bern",
+    href: "/regions/bern",
+    stats: {
+      population: "133,883",
+      avgRent: "CHF 1,600",
+      language: "German",
+      industry: "Government"
+    }
   },
   {
     id: "lausanne",
     name: "Lausanne",
-    description: "Olympic capital on the shores of Lake Geneva with a vibrant university atmosphere. Lausanne offers spectacular lake views, excellent educational institutions, and a high quality of life.",
-    image: "https://images.pexels.com/photos/6155909/pexels-photo-6155909.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    cities: ["Lausanne", "Renens", "Pully"],
-    services: [
-      "Academic Placement",
-      "Home Search",
-      "Sports Integration",
-      "Family Services"
-    ]
-  },
-  {
-    id: "lugano",
-    name: "Lugano",
-    description: "Italian-speaking region with Mediterranean flair, nestled between beautiful lakes and mountains. Lugano blends Swiss efficiency with Italian lifestyle, creating a unique cultural experience.",
-    image: "https://images.pexels.com/photos/10250224/pexels-photo-10250224.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    cities: ["Lugano", "Bellinzona", "Locarno"],
-    services: [
-      "Italian Language Support",
-      "Home Search",
-      "Cross-border Services",
-      "Lifestyle Integration"
-    ]
+    title: "Olympic Capital",
+    description: "Vibrant university city on Lake Geneva's shores",
+    image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Lausanne",
+    href: "/regions/lausanne",
+    stats: {
+      population: "139,111",
+      avgRent: "CHF 1,700",
+      language: "French",
+      industry: "Education & Sports"
+    }
   },
   {
     id: "lucerne",
     name: "Lucerne",
-    description: "Picturesque city with a beautiful lake and mountains, offering a perfect blend of urban and natural environments. Lucerne provides excellent quality of life with stunning Alpine views.",
-    image: "https://images.pexels.com/photos/1119972/pexels-photo-1119972.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    cities: ["Lucerne", "Kriens", "Emmen"],
-    services: [
-      "Tourism Industry Support",
-      "Home Search",
-      "Cultural Integration",
-      "Family Services"
-    ]
+    title: "Gateway to Central Switzerland",
+    description: "Picturesque lakeside town with mountain access",
+    image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Lucerne",
+    href: "/regions/lucerne",
+    stats: {
+      population: "82,620",
+      avgRent: "CHF 1,500",
+      language: "German",
+      industry: "Tourism"
+    }
   },
   {
     id: "zug",
     name: "Zug",
-    description: "Business-friendly canton with low taxes and a high quality of life. Zug has become a magnet for international businesses and offers excellent services for expatriates relocating to Switzerland.",
-    image: "https://images.pexels.com/photos/13284755/pexels-photo-13284755.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    cities: ["Zug", "Baar", "Cham"],
-    services: [
-      "Corporate Relocation",
-      "Tax Advisory",
-      "Executive Housing",
-      "Family Services"
-    ]
+    title: "Crypto Valley",
+    description: "Business-friendly canton with blockchain innovation",
+    image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Zug",
+    href: "/regions/zug",
+    stats: {
+      population: "30,542",
+      avgRent: "CHF 2,000",
+      language: "German",
+      industry: "Blockchain & Finance"
+    }
+  },
+  {
+    id: "winterthur",
+    name: "Winterthur",
+    title: "Industrial Heritage City",
+    description: "Technology and cultural center near Zürich",
+    image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Winterthur",
+    href: "/regions/winterthur",
+    stats: {
+      population: "114,220",
+      avgRent: "CHF 1,400",
+      language: "German",
+      industry: "Technology"
+    }
   },
   {
     id: "neuchatel",
     name: "Neuchâtel",
-    description: "Historic watchmaking region with a beautiful lakeside setting and French cultural influence. Neuchâtel offers affordable living, prestigious educational institutions, and a strong innovation ecosystem.",
-    image: "https://images.pexels.com/photos/6465965/pexels-photo-6465965.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    cities: ["Neuchâtel", "La Chaux-de-Fonds", "Le Locle"],
-    services: [
-      "Watchmaking Industry Support",
-      "Home Search",
-      "Cultural Integration",
-      "Education Services"
-    ]
+    title: "Watchmaking Capital",
+    description: "Historic city famous for precision timepieces",
+    image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Neuchatel",
+    href: "/regions/neuchatel",
+    stats: {
+      population: "33,455",
+      avgRent: "CHF 1,300",
+      language: "French",
+      industry: "Watchmaking"
+    }
   },
   {
     id: "fribourg",
     name: "Fribourg",
-    description: "Bilingual medieval city bridging French and German Switzerland. Fribourg offers a rich cultural heritage, prestigious university, and excellent connectivity to major Swiss cities.",
-    image: "https://images.pexels.com/photos/16398399/pexels-photo-16398399.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    cities: ["Fribourg", "Bulle", "Murten/Morat"],
-    services: [
-      "Language Services",
-      "Academic Placement",
-      "Home Search",
-      "Cultural Integration"
-    ]
+    title: "Bilingual Heritage City",
+    description: "Medieval town bridging German and French cultures",
+    image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Fribourg",
+    href: "/regions/fribourg",
+    stats: {
+      population: "38,039",
+      avgRent: "CHF 1,200",
+      language: "German/French",
+      industry: "Education"
+    }
   },
   {
     id: "valais",
     name: "Valais",
-    description: "Alpine paradise with iconic mountain peaks, world-class ski resorts, and unique wine culture. Valais offers spectacular natural beauty, bilingual culture, and outstanding recreational opportunities.",
-    image: "https://images.pexels.com/photos/19043454/pexels-photo-19043454/free-photo-of-matterhorn-mountain-in-zermatt-switzerland.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    cities: ["Sion", "Zermatt", "Verbier"],
-    services: [
-      "Mountain Lifestyle Support",
-      "Seasonal Housing",
-      "Tourism Industry Placement",
-      "Outdoor Recreation"
-    ]
+    title: "Alpine Paradise",
+    description: "Stunning mountain region with world-class skiing",
+    image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Valais",
+    href: "/regions/valais",
+    stats: {
+      population: "348,503",
+      avgRent: "CHF 1,100",
+      language: "French/German",
+      industry: "Tourism"
+    }
   },
   {
     id: "gstaad",
     name: "Gstaad",
-    description: "Exclusive alpine village renowned for its discretion, pristine slopes, and community of global elites. Gstaad offers exceptional luxury real estate, prestigious education, and sophisticated lifestyle.",
-    image: "https://images.pexels.com/photos/1484776/pexels-photo-1484776.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    cities: ["Gstaad", "Saanen", "Schönried"],
-    services: [
-      "Luxury Property Acquisition",
-      "Lump-Sum Taxation Advisory",
-      "Concierge Living",
-      "Private Staff Recruitment"
-    ]
+    title: "Luxury Alpine Resort",
+    description: "Exclusive mountain destination for discerning residents",
+    image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Gstaad",
+    href: "/regions/gstaad",
+    stats: {
+      population: "3,400",
+      avgRent: "CHF 3,500",
+      language: "German",
+      industry: "Luxury Tourism"
+    }
   },
   {
     id: "st-moritz",
     name: "St. Moritz",
-    description: "Legendary alpine destination synonymous with luxury and prestige. St. Moritz offers world-class skiing, prestigious social events, exceptional wellness facilities, and a sophisticated international community.",
-    image: "https://images.pexels.com/photos/9754/mountains-clouds-forest-fog.jpg?auto=compress&cs=tinysrgb&w=1200",
-    cities: ["St. Moritz", "Celerina", "Pontresina"],
-    services: [
-      "Elite Property Investment",
-      "Private Banking Introduction",
-      "Luxury Lifestyle Management",
-      "Alpine Asset Portfolio"
-    ]
+    title: "Alpine Luxury Destination",
+    description: "World-renowned resort town in the Engadin Valley",
+    image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=St+Moritz",
+    href: "/regions/st-moritz",
+    stats: {
+      population: "5,067",
+      avgRent: "CHF 4,000",
+      language: "German/Romansh",
+      industry: "Luxury Tourism"
+    }
   },
   {
     id: "andermatt",
     name: "Andermatt",
-    description: "Emerging Alpine luxury destination with exceptional investment opportunities. Andermatt combines historic charm with visionary development, offering Lex Koller exemptions and year-round recreation.",
-    image: "https://images.pexels.com/photos/8100784/pexels-photo-8100784.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    cities: ["Andermatt", "Hospental", "Sedrun"],
-    services: [
-      "Foreign Investment Property",
-      "Development Opportunities",
-      "Lex Koller Navigation",
-      "Investment Advisory"
-    ]
+    title: "Alpine Village Resort",
+    description: "Charming mountain village with year-round recreation",
+    image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Andermatt",
+    href: "/regions/andermatt",
+    stats: {
+      population: "1,550",
+      avgRent: "CHF 2,800",
+      language: "German",
+      industry: "Tourism"
+    }
   }
 ];
 

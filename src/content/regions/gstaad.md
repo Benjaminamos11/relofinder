@@ -1,7 +1,7 @@
 ---
 name: "Gstaad"
 description: "Exclusive alpine village renowned for its discretion, pristine slopes, international boarding schools, and community of global elites seeking privacy and luxury."
-image: "https://images.pexels.com/photos/1484776/pexels-photo-1484776.jpeg?auto=compress&cs=tinysrgb&w=1920"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 longDescription: |
   Gstaad is one of Switzerland's most prestigious alpine retreats, attracting a discreet international clientele of celebrities, royalty, and business leaders. This charming village in the Bernese Oberland offers an unparalleled combination of exclusivity, natural beauty, and luxury amenities while maintaining its authentic Swiss character.
 

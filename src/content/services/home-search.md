@@ -1,8 +1,9 @@
 ---
-title: "Home Search & Property Services"
-description: "Find your ideal home in Switzerland with expert property search, viewing accompaniment, and lease negotiation assistance."
+title: "Home Search Services"
+description: "Professional property search and rental assistance for your Swiss relocation"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Home+Search+Service"
 icon: "home"
-image: "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750"
+features: ["Property Search", "Rental Negotiations", "Market Analysis", "Viewings Coordination"]
 customSlug: "home-search"
 featured: true
 displayOrder: 3

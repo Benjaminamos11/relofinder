@@ -1,7 +1,7 @@
 ---
 name: "Lucerne"
 description: "Picturesque lakeside city at the heart of Switzerland with stunning mountain views, rich cultural heritage, and excellent quality of life."
-image: "https://images.pexels.com/photos/11451823/pexels-photo-11451823.jpeg?auto=compress&cs=tinysrgb&w=1920"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 longDescription: |
   Lucerne (Luzern) sits at the heart of Switzerland, offering an enchanting blend of urban amenities and natural beauty. Located on the shores of Lake Lucerne and surrounded by mountains, it combines traditional Swiss charm with a progressive outlook.
 

@@ -1,10 +1,11 @@
 ---
 id: "advisory-services"
 title: "Advisory Services"
-description: "Expert guidance and strategy for your relocation to Switzerland, from planning to implementation."
+description: "Strategic relocation planning and personalized consulting for complex Swiss moves"
+slug: "advisory-services"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Advisory+Services"
+heroImage: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Advisory+Services"
 icon: "lightbulb"
-image: "https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750"
-heroImage: "https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750"
 featured: true
 category: "business"
 pricing:

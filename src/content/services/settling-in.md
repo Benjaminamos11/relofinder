@@ -2,7 +2,7 @@
 title: "Settling-in Services"
 description: "Comprehensive assistance with daily essentials like banking, insurance, healthcare, and local registrations for a smooth start in Switzerland."
 icon: "check-circle"
-image: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 customSlug: "settling-in"
 featured: true
 displayOrder: 4

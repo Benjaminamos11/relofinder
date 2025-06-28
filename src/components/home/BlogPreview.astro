@@ -3,43 +3,46 @@
 const blogPosts = [
   {
     id: 'swiss-visa-guide',
-    title: 'Complete Guide to Swiss Visa and Residence Permits',
-    excerpt: 'Navigate the complexities of Swiss immigration with our step-by-step guide to various permit types and application processes.',
-    image: 'https://images.pexels.com/photos/1201488/pexels-photo-1201488.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'Guides',
-    author: 'Maria Schmidt',
-    authorImage: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=100',
-    date: '2025-04-12',
+    title: 'Complete Guide to Swiss Visa Requirements',
+    excerpt: 'Everything you need to know about obtaining a Swiss visa for your relocation.',
+    image: 'https://via.placeholder.com/800x600/e5e7eb/6b7280?text=Blog+Image',
+    category: 'Immigration',
+    author: 'Sarah Johnson',
+    authorImage: 'https://via.placeholder.com/100x100/e5e7eb/6b7280?text=Author',
+    date: '2025-01-15',
     readTime: '8 min read'
   },
   {
     id: 'swiss-tax-system',
-    title: 'Understanding the Swiss Tax System for Expats',
-    excerpt: 'Learn about federal, cantonal, and municipal taxes in Switzerland, along with available deductions and how to file your first tax return.',
-    image: 'https://images.pexels.com/photos/53621/calculator-calculation-insurance-finance-53621.jpeg?auto=compress&cs=tinysrgb&w=800',
-    category: 'Finances',
-    author: 'Thomas Weber',
-    authorImage: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100',
-    date: '2025-04-05',
-    readTime: '10 min read'
+    title: 'Swiss Health Insurance: A Complete Overview',
+    excerpt: 'Understanding mandatory health insurance requirements and options for expatriates.',
+    image: 'https://via.placeholder.com/800x600/e5e7eb/6b7280?text=Blog+Image',
+    category: 'Healthcare',
+    author: 'Michael Chen',
+    authorImage: 'https://via.placeholder.com/100x100/e5e7eb/6b7280?text=Author',
+    date: '2025-01-12',
+    readTime: '12 min read'
   },
   {
     id: 'renting-in-zurich',
-    title: 'Finding an Apartment in Zürich: Tips and Tricks',
-    excerpt: 'Discover strategies for navigating Zürich\'s competitive rental market, understanding rental contracts, and securing your ideal home.',
-    image: 'https://images.pexels.com/photos/15500792/pexels-photo-15500792/free-photo-of-view-of-zurich-cityscape.jpeg?auto=compress&cs=tinysrgb&w=800',
+    title: 'Best Neighborhoods in Zurich for Expats',
+    excerpt: 'Discover the most popular residential areas for international professionals in Zurich.',
+    image: 'https://via.placeholder.com/800x600/e5e7eb/6b7280?text=Blog+Image',
     category: 'Housing',
-    author: 'Sophie Keller',
-    authorImage: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100',
-    date: '2025-03-28',
-    readTime: '7 min read'
+    author: 'Emma Rodriguez',
+    authorImage: 'https://via.placeholder.com/100x100/e5e7eb/6b7280?text=Author',
+    date: '2025-01-10',
+    readTime: '15 min read'
   },
 ];
 
-// Format date
-function formatDate(dateString) {
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  return new Date(dateString).toLocaleDateString('en-US', options);
+// Format date for display
+function formatDate(dateString: string): string {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
 }
 ---
 

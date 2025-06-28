@@ -1,7 +1,7 @@
 ---
 name: "Neuchâtel"
 description: "Picturesque lakeside region with a rich watchmaking heritage, bilingual culture, and a perfect blend of urban amenities and natural beauty."
-image: "https://images.pexels.com/photos/6465965/pexels-photo-6465965.jpeg?auto=compress&cs=tinysrgb&w=1920"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 longDescription: |
   Neuchâtel, located in western Switzerland, offers a unique blend of French-speaking culture, watchmaking heritage, and stunning natural landscapes. Situated along Lake Neuchâtel with views of the Jura Mountains, this region combines historical charm with modern innovation.
 

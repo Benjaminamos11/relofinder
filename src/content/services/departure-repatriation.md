@@ -2,7 +2,7 @@
 title: "Departure & Repatriation Services"
 description: "Comprehensive support for leaving Switzerland, including lease terminations, property handovers, deregistration, and repatriation assistance."
 icon: "arrow-right-circle"
-image: "https://images.pexels.com/photos/2385477/pexels-photo-2385477.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 customSlug: "departure-repatriation"
 featured: false
 displayOrder: 7

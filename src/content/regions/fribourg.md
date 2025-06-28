@@ -1,7 +1,7 @@
 ---
 name: "Fribourg"
 description: "Bilingual medieval city and canton bridging German and French Switzerland, with a rich cultural heritage, prestigious university, and excellent quality of life."
-image: "https://images.pexels.com/photos/16398399/pexels-photo-16398399.jpeg?auto=compress&cs=tinysrgb&w=1920"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 longDescription: |
   Fribourg (Freiburg in German) is a unique bilingual canton that forms a cultural bridge between French and German-speaking Switzerland. With its well-preserved medieval old town, prestigious university, and strategic location between major Swiss cities, it offers authentic Swiss living with excellent connectivity.
 

@@ -6,8 +6,8 @@ canton: "Bern"
 population: 133883
 area: 51.6
 language: "German"
-image: "https://images.pexels.com/photos/3860029/pexels-photo-3860029.jpeg?auto=compress&cs=tinysrgb&w=1920"
-heroImage: "https://images.pexels.com/photos/3860029/pexels-photo-3860029.jpeg?auto=compress&cs=tinysrgb&w=1920"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
+heroImage: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 featured: true
 coordinates:
   lat: 46.9480

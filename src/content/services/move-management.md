@@ -1,8 +1,9 @@
 ---
-title: "Move Management"
-description: "Comprehensive coordination of household goods shipping, customs clearance, and physical relocation services to Switzerland."
+title: "Move Management Services"
+description: "Complete international moving coordination and logistics management for Swiss relocations"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Move+Management+Service"
 icon: "truck"
-image: "https://images.pexels.com/photos/4246196/pexels-photo-4246196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750"
+features: ["International Moving", "Customs Clearance", "Packing Services", "Logistics Coordination"]
 customSlug: "move-management"
 featured: false
 displayOrder: 6

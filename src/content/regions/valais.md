@@ -1,7 +1,7 @@
 ---
 name: "Valais"
 description: "Alpine paradise in southern Switzerland with dramatic mountain landscapes, world-class ski resorts, vineyards, and a unique blend of Swiss and Mediterranean influences."
-image: "https://images.pexels.com/photos/19043454/pexels-photo-19043454/free-photo-of-matterhorn-mountain-in-zermatt-switzerland.jpeg?auto=compress&cs=tinysrgb&w=1920"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 longDescription: |
   Valais (Wallis in German) is a spectacular Alpine canton in southern Switzerland, home to some of Europe's highest peaks including the iconic Matterhorn. This bilingual region offers an exceptional quality of life with dramatic mountain landscapes, renowned ski resorts, historic towns, and a unique microclimate that supports vineyards and Mediterranean-like valleys.
 

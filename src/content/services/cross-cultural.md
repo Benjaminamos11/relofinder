@@ -2,7 +2,7 @@
 title: "Cross-Cultural Services"
 description: "Training and support to help you understand Swiss culture, business practices, and social norms for successful integration."
 icon: "globe"
-image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 customSlug: "cross-cultural"
 featured: true
 displayOrder: 5

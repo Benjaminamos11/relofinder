@@ -1,7 +1,7 @@
 ---
 name: "Zug"
 description: "Switzerland's tax-friendly business hub with exceptional quality of life, international community, and picturesque lakeside setting."
-image: "https://images.pexels.com/photos/4215113/pexels-photo-4215113.jpeg?auto=compress&cs=tinysrgb&w=1920"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 longDescription: |
   Zug is a small but globally significant business center known for its favorable tax system, high quality of life, and international business community. Located between Zurich and Lucerne, it offers a perfect balance of business opportunities and lakeside living.
 

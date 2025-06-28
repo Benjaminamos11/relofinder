@@ -2,7 +2,7 @@
 title: "Relocation Technology Solutions"
 description: "Digital tools and platforms to streamline the relocation process, including online portals, virtual tours, and digital document management."
 icon: "device-mobile"
-image: "https://images.pexels.com/photos/3183165/pexels-photo-3183165.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750"
+image: "https://via.placeholder.com/1260x750/e5e7eb/6b7280?text=Placeholder+Image"
 customSlug: "technology-solutions"
 featured: false
 displayOrder: 10
