@@ -103,29 +103,11 @@ const {
       }, 2000);
       
       // Global modal functions that queue events if React component isn't ready
-      window.openModal = function(context = {}) {
-        try {
-          console.log('🚀 openModal FUNCTION START - called with context:', context);
-          console.log('📱 modalReady status:', window.modalReady);
-          
-          console.log('🔄 Creating CustomEvent...');
-          const event = new CustomEvent('openModal', { detail: context });
-          console.log('✅ CustomEvent created:', event);
-          
-          if (window.modalReady) {
-            // React component is ready, dispatch immediately
-            console.log('✅ Dispatching event immediately');
-            window.dispatchEvent(event);
-            console.log('✅ Event dispatched successfully');
-          } else {
-            // Queue the event for when React component loads
-            window.modalEventQueue.push(event);
-            console.log('⏳ Modal not ready, queuing open event. Queue length:', window.modalEventQueue.length);
-          }
-          console.log('🎉 openModal FUNCTION END');
-        } catch (error) {
-          console.error('❌ Error in openModal function:', error);
-        }
+      window.openModal = function(context) {
+        console.log('🚀 SIMPLE openModal called with:', context);
+        const event = new CustomEvent('openModal', { detail: context });
+        window.dispatchEvent(event);
+        console.log('🚀 SIMPLE openModal dispatched event');
       };
       
       window.closeModal = function() {
