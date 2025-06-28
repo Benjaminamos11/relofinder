@@ -95,16 +95,12 @@ const {
       
       console.log('🟢 Modal variables initialized successfully');
       
-      // TEST: Try calling openModal function directly after a short delay
+      // Simple test
       setTimeout(() => {
-        console.log('🧪 Testing openModal function directly...');
-        if (typeof window.openModal === 'function') {
-          console.log('🧪 Function exists, calling it...');
-          window.openModal({test: 'direct call'});
-        } else {
-          console.log('🧪 Function does not exist');
-        }
-      }, 1000);
+        console.log('🧪 AUTO TEST START');
+        window.openModal({test: 'auto'});
+        console.log('🧪 AUTO TEST END');
+      }, 2000);
       
       // Global modal functions that queue events if React component isn't ready
       window.openModal = function(context = {}) {
