@@ -98,17 +98,14 @@ const UniversalContactModal: React.FC<ModalContentProps> = ({
   successBadge = "156 successful matches this month",
   eligibilityNotice = "Note: We do not provide job search assistance or direct relocation services. Our mission is to help you find and compare the right relocation providers in Switzerland."
 }) => {
-  // BASIC TEST - Check if React component loads
-  console.log('🟢 UniversalContactModal component is being rendered!');
+
   const modalOpen = useStore(isModalOpen);
   const context = useStore(modalContext);
   
   // Local modal control functions
   const openModalWithContext = (ctx: ModalContext) => {
-    console.log('🔥 openModalWithContext called with:', ctx);
     modalContext.set(ctx);
     isModalOpen.set(true);
-    console.log('🎉 Modal state set to open!');
   };
   
   const closeModal = () => {
@@ -117,15 +114,11 @@ const UniversalContactModal: React.FC<ModalContentProps> = ({
   
   // Listen for global modal events
   useEffect(() => {
-    console.log('🎯 UniversalContactModal mounted! Setting up event listeners...');
-    
     const handleOpenModal = (event: CustomEvent) => {
-      console.log('📨 Received openModal event:', event.detail);
       openModalWithContext(event.detail || {});
     };
     
     const handleCloseModal = () => {
-      console.log('📨 Received closeModal event');
       closeModal();
     };
     
@@ -134,14 +127,10 @@ const UniversalContactModal: React.FC<ModalContentProps> = ({
     
     // Process any queued modal events now that we're ready
     if (typeof (window as any).processModalQueue === 'function') {
-      console.log('🔄 Processing queued modal events...');
       (window as any).processModalQueue();
-    } else {
-      console.log('❌ processModalQueue function not found');
     }
     
     return () => {
-      console.log('🔄 UniversalContactModal unmounting...');
       window.removeEventListener('openModal', handleOpenModal as EventListener);
       window.removeEventListener('closeModal', handleCloseModal);
       // Mark modal as not ready when component unmounts

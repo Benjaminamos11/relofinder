@@ -85,37 +85,21 @@ const {
     
     <!-- Global Modal Functions with Event Queue -->
     <script is:inline>
-      // BASIC TEST - Check if script loads at all
-      console.log('🟢 Layout.astro script is loading...');
-      console.log('🟢 window object:', typeof window);
-      
       // Event queue for modal events before React component loads
       window.modalEventQueue = [];
       window.modalReady = false;
       
-      console.log('🟢 Modal variables initialized successfully');
-      
-      // Simple test
-      setTimeout(() => {
-        console.log('🧪 AUTO TEST START');
-        console.log('🔍 universalOpenModal function type:', typeof window.universalOpenModal);
-        console.log('🔍 universalOpenModal function source:', window.universalOpenModal.toString().substring(0, 100));
-        window.universalOpenModal({test: 'auto'});
-        console.log('🧪 AUTO TEST END');
-      }, 2000);
-      
-      // Check if function gets overwritten
-      setTimeout(() => {
-        console.log('🔍 LATE CHECK - universalOpenModal type:', typeof window.universalOpenModal);
-        console.log('🔍 LATE CHECK - universalOpenModal source:', window.universalOpenModal.toString().substring(0, 100));
-      }, 5000);
-      
       // Global modal functions that queue events if React component isn't ready
       window.universalOpenModal = function(context) {
-        console.log('🚀 SIMPLE universalOpenModal called with:', context);
         const event = new CustomEvent('openModal', { detail: context });
-        window.dispatchEvent(event);
-        console.log('🚀 SIMPLE universalOpenModal dispatched event');
+        
+        if (window.modalReady) {
+          // React component is ready, dispatch immediately
+          window.dispatchEvent(event);
+        } else {
+          // Queue the event for when React component loads
+          window.modalEventQueue.push(event);
+        }
       };
       
       window.closeModal = function() {
@@ -131,18 +115,13 @@ const {
       
       // Function to process queued events when React component is ready
       window.processModalQueue = function() {
-        console.log('🔧 processModalQueue called');
         window.modalReady = true;
-        console.log('✅ modalReady set to true');
-        console.log('📋 Processing', window.modalEventQueue.length, 'queued modal events');
         
-        window.modalEventQueue.forEach((event, index) => {
-          console.log(`🚀 Dispatching queued event ${index + 1}:`, event.detail);
+        window.modalEventQueue.forEach(event => {
           window.dispatchEvent(event);
         });
         
         window.modalEventQueue = [];
-        console.log('🧹 Queue cleared');
       };
     </script>
   </body>
