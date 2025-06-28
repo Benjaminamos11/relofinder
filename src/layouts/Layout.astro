@@ -95,21 +95,40 @@ const {
       
       console.log('🟢 Modal variables initialized successfully');
       
+      // TEST: Try calling openModal function directly after a short delay
+      setTimeout(() => {
+        console.log('🧪 Testing openModal function directly...');
+        if (typeof window.openModal === 'function') {
+          console.log('🧪 Function exists, calling it...');
+          window.openModal({test: 'direct call'});
+        } else {
+          console.log('🧪 Function does not exist');
+        }
+      }, 1000);
+      
       // Global modal functions that queue events if React component isn't ready
       window.openModal = function(context = {}) {
-        console.log('🚀 openModal called with context:', context);
-        console.log('📱 modalReady status:', window.modalReady);
-        
-        const event = new CustomEvent('openModal', { detail: context });
-        
-        if (window.modalReady) {
-          // React component is ready, dispatch immediately
-          console.log('✅ Dispatching event immediately');
-          window.dispatchEvent(event);
-        } else {
-          // Queue the event for when React component loads
-          window.modalEventQueue.push(event);
-          console.log('⏳ Modal not ready, queuing open event. Queue length:', window.modalEventQueue.length);
+        try {
+          console.log('🚀 openModal FUNCTION START - called with context:', context);
+          console.log('📱 modalReady status:', window.modalReady);
+          
+          console.log('🔄 Creating CustomEvent...');
+          const event = new CustomEvent('openModal', { detail: context });
+          console.log('✅ CustomEvent created:', event);
+          
+          if (window.modalReady) {
+            // React component is ready, dispatch immediately
+            console.log('✅ Dispatching event immediately');
+            window.dispatchEvent(event);
+            console.log('✅ Event dispatched successfully');
+          } else {
+            // Queue the event for when React component loads
+            window.modalEventQueue.push(event);
+            console.log('⏳ Modal not ready, queuing open event. Queue length:', window.modalEventQueue.length);
+          }
+          console.log('🎉 openModal FUNCTION END');
+        } catch (error) {
+          console.error('❌ Error in openModal function:', error);
         }
       };
       
