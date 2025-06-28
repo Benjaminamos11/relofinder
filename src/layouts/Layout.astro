@@ -98,24 +98,24 @@ const {
       // Simple test
       setTimeout(() => {
         console.log('🧪 AUTO TEST START');
-        console.log('🔍 openModal function type:', typeof window.openModal);
-        console.log('🔍 openModal function source:', window.openModal.toString().substring(0, 100));
-        window.openModal({test: 'auto'});
+        console.log('🔍 universalOpenModal function type:', typeof window.universalOpenModal);
+        console.log('🔍 universalOpenModal function source:', window.universalOpenModal.toString().substring(0, 100));
+        window.universalOpenModal({test: 'auto'});
         console.log('🧪 AUTO TEST END');
       }, 2000);
       
       // Check if function gets overwritten
       setTimeout(() => {
-        console.log('🔍 LATE CHECK - openModal type:', typeof window.openModal);
-        console.log('🔍 LATE CHECK - openModal source:', window.openModal.toString().substring(0, 100));
+        console.log('🔍 LATE CHECK - universalOpenModal type:', typeof window.universalOpenModal);
+        console.log('🔍 LATE CHECK - universalOpenModal source:', window.universalOpenModal.toString().substring(0, 100));
       }, 5000);
       
       // Global modal functions that queue events if React component isn't ready
-      window.openModal = function(context) {
-        console.log('🚀 SIMPLE openModal called with:', context);
+      window.universalOpenModal = function(context) {
+        console.log('🚀 SIMPLE universalOpenModal called with:', context);
         const event = new CustomEvent('openModal', { detail: context });
         window.dispatchEvent(event);
-        console.log('🚀 SIMPLE openModal dispatched event');
+        console.log('🚀 SIMPLE universalOpenModal dispatched event');
       };
       
       window.closeModal = function() {
