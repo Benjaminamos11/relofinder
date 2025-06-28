@@ -98,9 +98,17 @@ const {
       // Simple test
       setTimeout(() => {
         console.log('🧪 AUTO TEST START');
+        console.log('🔍 openModal function type:', typeof window.openModal);
+        console.log('🔍 openModal function source:', window.openModal.toString().substring(0, 100));
         window.openModal({test: 'auto'});
         console.log('🧪 AUTO TEST END');
       }, 2000);
+      
+      // Check if function gets overwritten
+      setTimeout(() => {
+        console.log('🔍 LATE CHECK - openModal type:', typeof window.openModal);
+        console.log('🔍 LATE CHECK - openModal source:', window.openModal.toString().substring(0, 100));
+      }, 5000);
       
       // Global modal functions that queue events if React component isn't ready
       window.openModal = function(context) {
