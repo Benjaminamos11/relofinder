@@ -10,6 +10,9 @@ const blogPosts = await getCollection('blog');
 ---
 
 <Layout title="Content Collections Test">
+  <head>
+    <meta name="robots" content="noindex, nofollow" />
+  </head>
   <div class="container py-12">
     <h1 class="text-3xl font-bold mb-8">Content Collections Test</h1>
     
@@ -73,7 +76,7 @@ const blogPosts = await getCollection('blog');
               <h3 class="text-xl font-bold">{post.data.title}</h3>
               <p class="text-accent-600">{post.data.description}</p>
               <p class="text-sm text-accent-500 mt-2">
-                By {post.data.author} | {new Date(post.data.date).toLocaleDateString()}
+                By {post.data.author} | {new Date(post.data.publishDate).toLocaleDateString()}
               </p>
             </div>
           </div>
