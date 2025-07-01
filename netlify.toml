@@ -5,10 +5,4 @@
 # Environment variable configuration
 [build.environment]
   NODE_VERSION = "18"
-  NPM_FLAGS = "--production=false"
-
-# Handle SPA routing - serve index.html for all routes
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200 
+  NPM_FLAGS = "--production=false" 
