@@ -117,6 +117,10 @@ const faq = service.data.faq || [
               src={service.data.image} 
               alt={service.data.title + " services in Switzerland"}
               class="w-full h-96 lg:h-[500px] object-cover"
+              width="1200"
+              height="800"
+              loading="eager"
+              fetchpriority="high"
             />
             <!-- Overlay -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end">

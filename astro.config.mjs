@@ -23,17 +23,14 @@ export default defineConfig({
     // }),
     mdx(),
     sitemap({
-      filter: (page) => !page.includes('/admin') && !page.includes('/private') && !page.includes('/api'),
+      filter: (page) => !page.includes('/admin') 
+        && !page.includes('/private') 
+        && !page.includes('/api')
+        && !page.includes('/services/banking')
+        && !page.includes('/services/immigration-services'),
       changefreq: 'weekly',
       priority: 0.7,
-      lastmod: new Date(),
-      customPages: [
-        'https://relofinder.ch/swiss-relocation-guide',
-        'https://relofinder.ch/regions/zurich',
-        'https://relofinder.ch/regions/geneva',
-        'https://relofinder.ch/services/corporate',
-        'https://relofinder.ch/services/expat'
-      ]
+      lastmod: new Date()
     }),
     compress({
       CSS: {
@@ -87,6 +84,7 @@ export default defineConfig({
   ],
   output: 'static',
   site: 'https://relofinder.ch',
+  trailingSlash: 'never',
   build: {
     inlineStylesheets: 'auto',
     assets: 'assets'

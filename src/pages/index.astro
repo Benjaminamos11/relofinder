@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import SEOHead from '../components/common/SEOHead.astro';
 import Hero from '../components/home/Hero.astro';
 import RegionsShowcase from '../components/home/RegionsShowcase.astro';
 import ServicesShowcase from '../components/home/ServicesShowcase.astro';
@@ -53,12 +52,6 @@ const schema = {
   keywords={keywords}
   schema={schema}
 >
-  <SEOHead 
-    title={title}
-    description={description}
-    keywords={keywords}
-    schema={schema}
-  />
 
 	<!-- 1. Hero - Welcome & Value Proposition -->
 	<Hero />

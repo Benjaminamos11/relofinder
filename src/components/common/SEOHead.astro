@@ -36,7 +36,10 @@ const {
 } = Astro.props;
 
 const siteUrl = 'https://relofinder.ch';
-const fullCanonical = canonical ? `${siteUrl}${canonical}` : Astro.url.href;
+const isAbsolute = canonical?.startsWith('http://') || canonical?.startsWith('https://');
+const fullCanonical = canonical
+  ? (isAbsolute ? canonical : `${siteUrl}${canonical}`)
+  : Astro.url.href;
 
 // Default Open Graph values
 const og = {
@@ -85,7 +88,7 @@ const schemas = Array.isArray(schema) ? schema : (schema ? [schema] : []);
     <meta property="og:description" content={og.description} />
     <meta property="og:image" content={og.image} />
     <meta property="og:site_name" content="ReloFinder" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content="en_CH" />
   </>
 )}
 
@@ -115,9 +118,6 @@ const schemas = Array.isArray(schema) ? schema : (schema ? [schema] : []);
 
 <!-- Hreflang for International SEO -->
 <link rel="alternate" hreflang="en" href={fullCanonical} />
-<link rel="alternate" hreflang="de" href={siteUrl + '/de' + Astro.url.pathname} />
-<link rel="alternate" hreflang="fr" href={siteUrl + '/fr' + Astro.url.pathname} />
-<link rel="alternate" hreflang="it" href={siteUrl + '/it' + Astro.url.pathname} />
 <link rel="alternate" hreflang="x-default" href={fullCanonical} />
 
 <!-- Favicons and Icons -->

@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import SEOHead from '../../components/common/SEOHead.astro';
 import SchemaMarkup from '../../components/common/SchemaMarkup.astro';
 import ServiceHero from '../../components/services/ServiceHero.astro';
 import ServiceProcess from '../../components/services/ServiceProcess.astro';
@@ -176,12 +175,11 @@ const relatedServices: RelatedService[] = [
 
 ---
 
-<Layout>
-  <SEOHead
-    title="Advisory Services for Swiss Relocation | Strategic Consulting | ReloFinder"
-    description="Expert advisory services for Swiss relocation. Strategic planning, risk management, and comprehensive consulting for successful moves to Switzerland."
-    canonical="https://relofinder.ch/services/advisory-services"
-  />
+<Layout
+  title="Advisory Services for Swiss Relocation | Strategic Consulting | ReloFinder"
+  description="Expert advisory services for Swiss relocation. Strategic planning, risk management, and comprehensive consulting for successful moves to Switzerland."
+  canonical="/services/advisory-services"
+>
 
   <SchemaMarkup
     type="service"

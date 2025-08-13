@@ -13,6 +13,20 @@ export interface Props {
   canonical?: string;
   keywords?: string[];
   schema?: any;
+  openGraph?: {
+    title?: string;
+    description?: string;
+    image?: string;
+    type?: string;
+    url?: string;
+  };
+  twitter?: {
+    card?: string;
+    site?: string;
+    title?: string;
+    description?: string;
+    image?: string;
+  };
 }
 
 const { 
@@ -21,7 +35,9 @@ const {
   image = '/images/relofinder-og.jpg',
   canonical,
   keywords = ['relocation switzerland', 'swiss relocation services', 'moving to switzerland', 'expat services switzerland'],
-  schema
+  schema,
+  openGraph,
+  twitter
 } = Astro.props;
 ---
 
@@ -43,17 +59,18 @@ const {
       keywords={keywords}
       schema={schema}
       openGraph={{
-        title: title,
-        description: description,
-        image: image,
-        type: 'website'
+        title: openGraph?.title ?? title,
+        description: openGraph?.description ?? description,
+        image: openGraph?.image ?? image,
+        type: openGraph?.type ?? 'website',
+        url: openGraph?.url
       }}
       twitter={{
-        card: 'summary_large_image',
-        site: '@relofinder',
-        title: title,
-        description: description,
-        image: image
+        card: twitter?.card ?? 'summary_large_image',
+        site: twitter?.site ?? '@relofinder',
+        title: twitter?.title ?? title,
+        description: twitter?.description ?? description,
+        image: twitter?.image ?? image
       }}
     />
     

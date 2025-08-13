@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import SEOHead from '../../components/common/SEOHead.astro';
 import SchemaMarkup from '../../components/common/SchemaMarkup.astro';
 import { getCollection } from 'astro:content';
 import { marked } from 'marked';
@@ -104,30 +103,24 @@ const faqs = [
 ];
 ---
 
-<Layout>
-  <SEOHead 
-    title={title}
-    description={description}
-    canonical={`https://relofinder.ch/companies/${companyData.id}`}
-    openGraph={{
-      title: title,
-      description: description,
-      image: companyData.logo,
-      type: "article"
-    }}
-    keywords={[
-      `${companyData.name.toLowerCase()} reviews`,
-      `${companyData.name.toLowerCase()} analysis`,
-      `${companyData.name.toLowerCase()} vs competitors`,
-      'swiss relocation expert review',
-      'switzerland moving services comparison',
-      `${companyData.name.toLowerCase()} pricing`,
-      `${companyData.name.toLowerCase()} relocation costs`,
-      ...companyData.specializations.map((s: string) => `${s.toLowerCase()} ${companyData.name.toLowerCase()}`),
-      ...companyData.services.map((s: string) => `${s} review switzerland`),
-      ...companyData.regions.map((r: string) => `relocation ${r} ${companyData.name.toLowerCase()}`)
-    ]}
-  />
+<Layout
+  title={title}
+  description={description}
+  canonical={`https://relofinder.ch/companies/${companyData.id}`}
+  image={companyData.logo}
+  keywords={[
+    `${companyData.name.toLowerCase()} reviews`,
+    `${companyData.name.toLowerCase()} analysis`,
+    `${companyData.name.toLowerCase()} vs competitors`,
+    'swiss relocation expert review',
+    'switzerland moving services comparison',
+    `${companyData.name.toLowerCase()} pricing`,
+    `${companyData.name.toLowerCase()} relocation costs`,
+    ...companyData.specializations.map((s: string) => `${s.toLowerCase()} ${companyData.name.toLowerCase()}`),
+    ...companyData.services.map((s: string) => `${s} review switzerland`),
+    ...companyData.regions.map((r: string) => `relocation ${r} ${companyData.name.toLowerCase()}`)
+  ]}
+>
 
   <SchemaMarkup 
     type="company"

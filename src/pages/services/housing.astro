@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import SEOHead from '../../components/common/SEOHead.astro';
 import SchemaMarkup from '../../components/common/SchemaMarkup.astro';
 import ServiceHero from '../../components/services/ServiceHero.astro';
 import ServiceProcess from '../../components/services/ServiceProcess.astro';
@@ -175,12 +174,11 @@ const relatedServices: RelatedService[] = [
 ];
 ---
 
-<Layout>
-  <SEOHead
-    title="Housing Services in Switzerland | Property Search & Rental Assistance | ReloFinder"
-    description="Expert housing services for Switzerland. Professional property search, lease negotiation, and rental assistance for expats and relocating families."
-    canonical="https://relofinder.ch/services/housing"
-  />
+<Layout
+  title="Housing Services in Switzerland | Property Search & Rental Assistance | ReloFinder"
+  description="Expert housing services for Switzerland. Professional property search, lease negotiation, and rental assistance for expats and relocating families."
+  canonical="/services/housing"
+>
 
   <SchemaMarkup
     type="service"

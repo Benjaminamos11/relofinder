@@ -119,108 +119,84 @@ const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
 const faqs = post.data.faqs || [];
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    
-    <!-- Enhanced SEO Head with full Article optimization -->
-    <SEOHead 
-      title={seoTitle}
-      description={seoDescription}
-      canonical={`/blog/${post.slug}`}
-      keywords={seoKeywords}
-      schema={[articleSchema, breadcrumbSchema]}
-      openGraph={{
-        title: seoTitle,
-        description: seoDescription,
-        image: post.data.heroImage,
-        type: 'article',
-        url: currentUrl
-      }}
-      twitter={{
-        card: 'summary_large_image',
-        site: '@relofinder',
-        title: seoTitle,
-        description: seoDescription,
-        image: post.data.heroImage
-      }}
-    />
-    
-    <!-- Article-specific meta tags -->
-    <meta property="article:published_time" content={post.data.publishDate.toISOString()} />
-    {post.data.updatedDate && <meta property="article:modified_time" content={post.data.updatedDate.toISOString()} />}
-    <meta property="article:author" content={authorInfo.name} />
-    <meta property="article:section" content={post.data.category} />
-    {post.data.tags?.map(tag => <meta property="article:tag" content={tag} />)}
-    
-    <!-- Preload hero image for better LCP -->
-    <link rel="preload" as="image" href={post.data.heroImage} />
-    
-    <!-- Table of Contents Script -->
-    <script>
-      // Enhanced scroll progress and TOC highlighting
-      document.addEventListener('DOMContentLoaded', function() {
-        const progressBar = document.getElementById('progress-bar') as HTMLElement | null;
-        const tocLinks = document.querySelectorAll('.toc-link');
-        
-        function updateProgress() {
-          if (!progressBar) return;
-          const scrollTop = window.pageYOffset;
-          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-          const scrollPercent = (scrollTop / docHeight) * 100;
-          progressBar.style.width = scrollPercent + '%';
-        }
-        
-        function highlightTOC() {
-          const headings = document.querySelectorAll('h2, h3');
-          let current = '';
-          
-          headings.forEach(heading => {
-            const rect = heading.getBoundingClientRect();
-            if (rect.top <= 100) {
-              current = heading.id;
-            }
-          });
-          
-          tocLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '#' + current) {
-              link.classList.add('active');
-            }
-          });
-        }
-        
-        window.addEventListener('scroll', () => {
-          updateProgress();
-          highlightTOC();
+<Layout 
+  title={seoTitle} 
+  description={seoDescription}
+  canonical={`/blog/${post.slug}`}
+  openGraph={{
+    title: seoTitle,
+    description: seoDescription,
+    image: post.data.heroImage,
+    type: 'article',
+    url: currentUrl
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    site: '@relofinder',
+    title: seoTitle,
+    description: seoDescription,
+    image: post.data.heroImage
+  }}
+>
+  <!-- Article-specific meta tags -->
+  <meta property="article:published_time" content={post.data.publishDate.toISOString()} slot="head" />
+  {post.data.updatedDate && <meta property="article:modified_time" content={post.data.updatedDate.toISOString()} slot="head" />}
+  <meta property="article:author" content={authorInfo.name} slot="head" />
+  <meta property="article:section" content={post.data.category} slot="head" />
+  {post.data.tags?.map(tag => <meta property="article:tag" content={tag} slot="head" />)}
+  <!-- Preload hero image for better LCP -->
+  <link rel="preload" as="image" href={post.data.heroImage} slot="head" />
+  <!-- Table of Contents Script -->
+  <script slot="head">
+    // Enhanced scroll progress and TOC highlighting
+    document.addEventListener('DOMContentLoaded', function() {
+      const progressBar = document.getElementById('progress-bar');
+      const tocLinks = document.querySelectorAll('.toc-link');
+      function updateProgress() {
+        if (!progressBar) return;
+        const scrollTop = window.pageYOffset;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        (progressBar as HTMLElement).style.width = scrollPercent + '%';
+      }
+      function highlightTOC() {
+        const headings = document.querySelectorAll('h2, h3');
+        let current = '';
+        headings.forEach(heading => {
+          const rect = (heading as HTMLElement).getBoundingClientRect();
+          if (rect.top <= 100) {
+            current = (heading as HTMLElement).id;
+          }
         });
-        
-        // Smooth scroll for TOC links
         tocLinks.forEach(link => {
-          link.addEventListener('click', function(this: HTMLElement, e: Event) {
-            e.preventDefault();
-            const href = this.getAttribute('href');
-            if (href) {
-              const target = document.querySelector(href);
-              if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+      }
+      window.addEventListener('scroll', () => {
+        updateProgress();
+        highlightTOC();
+      });
+      tocLinks.forEach(link => {
+        link.addEventListener('click', function(this: HTMLElement, e: Event) {
+          e.preventDefault();
+          const href = this.getAttribute('href');
+          if (href) {
+            const target = document.querySelector(href);
+            if (target) {
+              (target as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-          });
+          }
         });
       });
-    </script>
-  </head>
-
-<body class="bg-gray-50">
+    });
+  </script>
   <!-- Progress Bar -->
   <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 transition-all duration-300 z-50" style="width: 0%"></div>
   
-  <Layout title={seoTitle} description={seoDescription}>
+  
     <!-- Hero Section -->
     <section class="relative bg-gradient-to-br from-primary-600 via-primary-700 to-secondary-600 text-white py-16 lg:py-24">
       <div class="absolute inset-0 bg-black/20"></div>
@@ -670,8 +646,6 @@ const faqs = post.data.faqs || [];
       </div>
     </div>
 
-  </Layout>
-
   <script>
     // Progress bar functionality
     function updateProgressBar() {
@@ -843,4 +817,4 @@ const faqs = post.data.faqs || [];
     // Update progress bar on scroll
     window.addEventListener('scroll', updateProgressBar);
   </script>
-</body> 
+</Layout>

@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import SEOHead from '../../components/common/SEOHead.astro';
 import SchemaMarkup from '../../components/common/SchemaMarkup.astro';
 import ServiceHero from '../../components/services/ServiceHero.astro';
 import ServiceProcess from '../../components/services/ServiceProcess.astro';
@@ -176,12 +175,11 @@ const relatedServices: RelatedService[] = [
 
 ---
 
-<Layout>
-  <SEOHead
-    title="Visa & Immigration Services in Switzerland | ReloFinder"
-    description="Expert visa and immigration services for Switzerland. From work permits to family reunification, we guide you through the Swiss immigration process with specialized support."
-    canonical="https://relofinder.ch/services/visa"
-  />
+<Layout
+  title="Visa & Immigration Services in Switzerland | ReloFinder"
+  description="Expert visa and immigration services for Switzerland. From work permits to family reunification, we guide you through the Swiss immigration process with specialized support."
+  canonical="/services/visa"
+>
 
   <SchemaMarkup
     type="service"

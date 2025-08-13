@@ -1,0 +1,6 @@
+url,template,in_sitemap,canonical,indexable,internal_links,title_len,meta_desc_len,h1_text,jsonld_types,notes
+/,pages/index.astro,yes,https://relofinder.ch/,yes,20+,64,168,"ReloFinder.ch | Find Best Swiss Relocation Services & Companies 2025","Organization",Home good; add WebSite schema if desired
+/regions/zurich,pages/regions/[id].astro,yes,https://relofinder.ch/regions/zurich,yes,15,96,173,"Relocation to Zurich",Article,Add width/height on hero image to reduce CLS
+/services/housing,pages/services/[id].astro or static,yes,https://relofinder.ch/services/housing,yes,12,68,160,"Housing Services",Service,Ensure single canonical route; avoid duplicate static page
+/companies/prime-relocation,pages/companies/[id].astro,yes,https://relofinder.ch/companies/prime-relocation,yes,10,86,210,"Prime Relocation Reviews & Analysis 2025","LocalBusiness",Fix LocalBusiness JSON-LD address mapping
+/blog/opening-swiss-bank-account-guide,pages/blog/[slug].astro,yes,https://relofinder.ch/blog/opening-swiss-bank-account-guide,yes,15,43,160,"Opening a Swiss Bank Account Guide","Article|BreadcrumbList",OK 

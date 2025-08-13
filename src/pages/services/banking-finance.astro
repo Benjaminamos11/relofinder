@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import SEOHead from '../../components/common/SEOHead.astro';
 import SchemaMarkup from '../../components/common/SchemaMarkup.astro';
 import ServiceHero from '../../components/services/ServiceHero.astro';
 import ServiceProcess from '../../components/services/ServiceProcess.astro';
@@ -175,12 +174,11 @@ const relatedServices: RelatedService[] = [
 ];
 ---
 
-<Layout>
-  <SEOHead
-    title="Banking & Finance Services in Switzerland | ReloFinder"
-    description="Expert banking and financial services for expatriates in Switzerland. From account opening to investment management, we connect you with the best financial solutions."
-    canonical="https://relofinder.ch/services/banking-finance"
-  />
+<Layout
+  title="Banking & Finance Services in Switzerland | ReloFinder"
+  description="Expert banking and financial services for expatriates in Switzerland. From account opening to investment management, we connect you with the best financial solutions."
+  canonical="/services/banking-finance"
+>
 
   <SchemaMarkup
     type="service"
