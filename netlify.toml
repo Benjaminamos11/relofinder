@@ -1,27 +1,26 @@
 [build]
   command = "npm run build"
   publish = "dist"
-[redirects]
-  # Normalize legacy service URLs to consolidated slugs
-  [[redirects]]
-    from = "/services/visa-immigration"
-    to = "/services/visa"
-    status = 301
-    force = true
 
-  [[redirects]]
-    from = "/services/banking"
-    to = "/services/banking-finance"
-    status = 301
-    force = true
-
-  [[redirects]]
-    from = "/services/immigration-services"
-    to = "/services/visa"
-    status = 301
-    force = true
-
-# Environment variable configuration
 [build.environment]
   NODE_VERSION = "18"
-  NPM_FLAGS = "--production=false" 
+  NPM_FLAGS = "--production=false"
+
+# Normalize legacy service URLs to consolidated slugs
+[[redirects]]
+  from = "/services/visa-immigration"
+  to = "/services/visa"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/banking"
+  to = "/services/banking-finance"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/immigration-services"
+  to = "/services/visa"
+  status = 301
+  force = true
