@@ -7,35 +7,35 @@ const description = 'Get in touch with Lang + Partner for personalized assistanc
 
 <Layout title={title} description={description}>
   <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-blue-50 via-white to-green-50 py-20">
+  <section class="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20">
     <div class="container max-w-4xl mx-auto px-4 text-center">
       <h1 class="text-4xl lg:text-5xl font-bold mb-6 text-gray-900">Get in Touch</h1>
       <p class="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
         Have questions about relocating to Switzerland? Looking for specific services? Our team at Lang + Partner is here to help you with professional relocation solutions.
       </p>
-      <div class="mt-8 inline-flex items-center gap-2 bg-white rounded-full px-6 py-3 shadow-sm border border-gray-100">
-        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="mt-8 inline-flex items-center gap-2 bg-white rounded-full px-6 py-3 shadow-lg border border-gray-200">
+        <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
         </svg>
         <span class="text-gray-700 font-medium">Response within 24 hours</span>
       </div>
     </div>
   </section>
-  
+
   <!-- Main Content -->
   <section class="py-16 bg-white">
     <div class="container max-w-6xl mx-auto px-4">
       <div class="grid lg:grid-cols-2 gap-12">
         
         <!-- Contact Form -->
-        <div class="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-8 border border-gray-100">
+        <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 border border-gray-200 shadow-lg">
           <div class="flex items-center gap-3 mb-8">
-            <div class="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center">
+            <div class="w-12 h-12 bg-gradient-to-br from-red-600 to-red-700 rounded-xl flex items-center justify-center shadow-lg">
               <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
               </svg>
             </div>
-        <div>
+            <div>
               <h2 class="text-2xl font-bold text-gray-900">Send Us a Message</h2>
               <p class="text-gray-600">We'll respond within 24 hours</p>
             </div>
@@ -50,7 +50,7 @@ const description = 'Get in touch with Lang + Partner for personalized assistanc
                   id="firstName" 
                   name="firstName" 
                   required 
-                  class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
+                  class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 shadow-sm"
                   placeholder="Enter your first name"
                 />
               </div>
@@ -61,7 +61,7 @@ const description = 'Get in touch with Lang + Partner for personalized assistanc
                   id="lastName" 
                   name="lastName" 
                   required 
-                  class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
+                  class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 shadow-sm"
                   placeholder="Enter your last name"
                 />
               </div>
@@ -74,7 +74,7 @@ const description = 'Get in touch with Lang + Partner for personalized assistanc
                 id="email" 
                 name="email" 
                 required 
-                class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
+                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 shadow-sm"
                 placeholder="your.email@example.com"
               />
             </div>
@@ -85,7 +85,7 @@ const description = 'Get in touch with Lang + Partner for personalized assistanc
                 type="tel" 
                 id="phone" 
                 name="phone" 
-                class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"
+                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 shadow-sm"
                 placeholder="+41 XX XXX XX XX"
               />
             </div>
@@ -96,7 +96,7 @@ const description = 'Get in touch with Lang + Partner for personalized assistanc
                 id="inquiryType" 
                 name="inquiryType" 
                 required 
-                class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 appearance-none"
+                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 appearance-none shadow-sm"
               >
                 <option value="">Select an inquiry type</option>
                 <option value="general">General Information</option>
@@ -114,7 +114,7 @@ const description = 'Get in touch with Lang + Partner for personalized assistanc
                 name="message" 
                 rows="5" 
                 required 
-                class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 resize-none"
+                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 resize-none shadow-sm"
                 placeholder="Please describe how we can help you with your Swiss relocation..."
               ></textarea>
             </div>
@@ -137,7 +137,7 @@ const description = 'Get in touch with Lang + Partner for personalized assistanc
             </div>
             
             <div>
-              <button type="submit" class="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-4 px-6 rounded-xl font-bold text-lg hover:from-red-700 hover:to-red-800 transition-all duration-300 flex items-center justify-center gap-2">
+              <button type="submit" class="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-4 px-6 rounded-xl font-bold text-lg hover:from-red-700 hover:to-red-800 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg">
                 Send Message
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
@@ -151,9 +151,9 @@ const description = 'Get in touch with Lang + Partner for personalized assistanc
         <div class="space-y-8">
           
           <!-- Company Information -->
-          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border border-gray-100">
+          <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
             <div class="flex items-center gap-3 mb-6">
-              <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
+              <div class="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-700 rounded-xl flex items-center justify-center shadow-lg">
                 <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h1a1 1 0 011 1v5m-4 0h4"/>
                 </svg>
@@ -164,57 +164,57 @@ const description = 'Get in touch with Lang + Partner for personalized assistanc
               </div>
             </div>
             
-            <div class="bg-white rounded-xl p-6 shadow-sm mb-6">
+            <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 shadow-sm mb-6">
               <h3 class="text-lg font-semibold text-gray-900 mb-4">Lang + Partner | Finanzdienstleistungen GmbH</h3>
               
               <div class="space-y-4">
                 <div class="flex items-start gap-3">
-                  <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                    <span class="text-blue-600 text-lg">📍</span>
-              </div>
-              <div>
+                  <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center flex-shrink-0 mt-1 shadow-sm border border-gray-200">
+                    <span class="text-gray-600 text-lg">📍</span>
+                  </div>
+                  <div>
                     <h4 class="font-semibold text-gray-900 mb-1">Address</h4>
                     <p class="text-gray-700 leading-relaxed">
                       Chilegässli 12a<br/>
                       8904 Aesch ZH<br/>
                       Switzerland
-                </p>
-              </div>
-            </div>
-            
+                    </p>
+                  </div>
+                </div>
+
                 <div class="flex items-start gap-3">
-                  <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                    <span class="text-blue-600 text-lg">☎</span>
+                  <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center flex-shrink-0 mt-1 shadow-sm border border-gray-200">
+                    <span class="text-gray-600 text-lg">☎</span>
                   </div>
                   <div>
                     <h4 class="font-semibold text-gray-900 mb-1">Phone</h4>
-                    <a href="tel:+41763648888" class="text-blue-600 hover:text-blue-700 font-medium">
+                    <a href="tel:+41763648888" class="text-red-600 hover:text-red-700 font-medium">
                       +41 76 364 88 88
                     </a>
                   </div>
                 </div>
 
                 <div class="flex items-start gap-3">
-                  <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                    <span class="text-blue-600 text-lg">✉</span>
-              </div>
-              <div>
+                  <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center flex-shrink-0 mt-1 shadow-sm border border-gray-200">
+                    <span class="text-gray-600 text-lg">✉</span>
+                  </div>
+                  <div>
                     <h4 class="font-semibold text-gray-900 mb-1">Email</h4>
-                    <a href="mailto:hello@expat-savvy.ch" class="text-blue-600 hover:text-blue-700 font-medium">
+                    <a href="mailto:hello@expat-savvy.ch" class="text-red-600 hover:text-red-700 font-medium">
                       hello@expat-savvy.ch
                     </a>
                   </div>
                 </div>
               </div>
             </div>
-            
+
             <!-- Business Hours -->
-            <div class="bg-white rounded-xl p-6 shadow-sm">
+            <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 shadow-sm">
               <div class="flex items-center gap-3 mb-4">
-                <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                  <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm border border-gray-200">
+                  <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
+                  </svg>
                 </div>
                 <h4 class="font-semibold text-gray-900">Business Hours</h4>
               </div>
@@ -236,29 +236,29 @@ const description = 'Get in touch with Lang + Partner for personalized assistanc
           </div>
 
           <!-- Quick Stats -->
-          <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border border-gray-100">
+          <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
             <h3 class="text-xl font-bold text-gray-900 mb-6">Why Choose ReloFinder?</h3>
             
             <div class="grid grid-cols-2 gap-6">
               <div class="text-center">
-                <div class="text-2xl font-bold text-green-600 mb-1">500+</div>
+                <div class="text-2xl font-bold text-red-600 mb-1">500+</div>
                 <div class="text-sm text-gray-700">Partner Companies</div>
               </div>
               <div class="text-center">
-                <div class="text-2xl font-bold text-green-600 mb-1">26</div>
+                <div class="text-2xl font-bold text-gray-600 mb-1">26</div>
                 <div class="text-sm text-gray-700">Swiss Cantons</div>
               </div>
               <div class="text-center">
-                <div class="text-2xl font-bold text-green-600 mb-1">5,000+</div>
+                <div class="text-2xl font-bold text-red-600 mb-1">5,000+</div>
                 <div class="text-sm text-gray-700">Happy Expats</div>
               </div>
               <div class="text-center">
-                <div class="text-2xl font-bold text-green-600 mb-1">98%</div>
+                <div class="text-2xl font-bold text-gray-600 mb-1">98%</div>
                 <div class="text-sm text-gray-700">Success Rate</div>
               </div>
             </div>
 
-            <div class="mt-6 pt-6 border-t border-green-200">
+            <div class="mt-6 pt-6 border-t border-gray-200">
               <p class="text-center text-gray-700 text-sm">
                 <strong>Professional relocation support</strong> across all Swiss regions since 2023
               </p>
@@ -271,7 +271,7 @@ const description = 'Get in touch with Lang + Partner for personalized assistanc
   </section>
   
   <!-- FAQ Section -->
-  <section class="py-16 bg-gray-50">
+  <section class="py-16 bg-gradient-to-br from-gray-50 to-gray-100">
     <div class="container max-w-4xl mx-auto px-4">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
@@ -279,24 +279,24 @@ const description = 'Get in touch with Lang + Partner for personalized assistanc
       </div>
       
       <div class="space-y-6">
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+        <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
           <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-            <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-              <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-8 h-8 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center shadow-sm">
+              <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
-      </div>
+            </div>
             How quickly can you respond to my inquiry?
           </h3>
           <p class="text-gray-700 leading-relaxed">
-            We aim to respond to all inquiries within 24 hours during business days. For urgent matters, please call our office directly at <a href="tel:+41763648888" class="text-blue-600 hover:text-blue-700 font-semibold">+41 76 364 88 88</a>.
-            </p>
-          </div>
-          
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+            We aim to respond to all inquiries within 24 hours during business days. For urgent matters, please call our office directly at <a href="tel:+41763648888" class="text-red-600 hover:text-red-700 font-semibold">+41 76 364 88 88</a>.
+          </p>
+        </div>
+        
+        <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
           <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-            <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-              <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-8 h-8 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center shadow-sm">
+              <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
               </svg>
@@ -305,13 +305,13 @@ const description = 'Get in touch with Lang + Partner for personalized assistanc
           </h3>
           <p class="text-gray-700 leading-relaxed">
             Yes, we connect expats with relocation services throughout Switzerland, covering all 26 cantons and major cities. Our network includes specialists in every region from Zurich to Geneva, Basel to Bern.
-            </p>
-          </div>
-          
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+          </p>
+        </div>
+        
+        <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
           <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-            <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-              <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-8 h-8 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center shadow-sm">
+              <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
               </svg>
             </div>
@@ -319,13 +319,13 @@ const description = 'Get in touch with Lang + Partner for personalized assistanc
           </h3>
           <p class="text-gray-700 leading-relaxed">
             Basic information and connections to service providers are free for expats. Some specialized consulting services may involve fees, which will be clearly communicated in advance. Our goal is to make Swiss relocation accessible and transparent.
-            </p>
-          </div>
-          
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
+          </p>
+        </div>
+        
+        <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
           <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-            <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
-              <svg class="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-8 h-8 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center shadow-sm">
+              <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
               </svg>
             </div>
@@ -334,12 +334,12 @@ const description = 'Get in touch with Lang + Partner for personalized assistanc
           <p class="text-gray-700 leading-relaxed mb-4">
             If you provide relocation services in Switzerland and would like to be featured on our platform, we'd love to hear from you. Our partnerships team can help you reach more clients and grow your business.
           </p>
-          <button onclick="openModal('corporate-lead-modal')" class="bg-gradient-to-r from-orange-600 to-orange-700 text-white py-3 px-6 rounded-lg font-semibold hover:from-orange-700 hover:to-orange-800 transition-all duration-300">
+          <button onclick="openModal('corporate-lead-modal')" class="bg-gradient-to-r from-red-600 to-red-700 text-white py-3 px-6 rounded-lg font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 shadow-lg">
             Become a Partner
-                </button>
-            </div>
-          </div>
+          </button>
         </div>
+      </div>
+    </div>
   </section>
 
   <!-- CTA Section -->
@@ -350,10 +350,10 @@ const description = 'Get in touch with Lang + Partner for personalized assistanc
         Join thousands of successful expats who found their perfect Swiss life through our platform.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button onclick="openModal('individual-lead-modal')" class="bg-white text-red-600 py-4 px-8 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors">
+        <button onclick="openModal('individual-lead-modal')" class="bg-white text-red-600 py-4 px-8 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg">
           Get Started Today
         </button>
-        <a href="/swiss-relocation-guide" class="border-2 border-white text-white py-4 px-8 rounded-lg font-bold text-lg hover:bg-white hover:text-red-600 transition-colors">
+        <a href="/swiss-relocation-guide" class="border-2 border-white text-white py-4 px-8 rounded-lg font-bold text-lg hover:bg-white hover:text-red-600 transition-colors shadow-lg">
           Read Our Guide
         </a>
       </div>
