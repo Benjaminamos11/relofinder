@@ -95,7 +95,7 @@ const displayOtherCompanies = featuredCompanyData ? otherCompaniesData : otherCo
     <!-- Mobile: Featured Company in Simple Layout -->
     <div class="block lg:hidden mb-8 animate-on-scroll">
       <div class="bg-white rounded-2xl shadow-xl overflow-hidden group">
-        <div class="relative bg-gradient-to-br from-primary-500 to-secondary-500 p-6 text-white">
+        <div class="relative bg-gradient-to-br from-[#00b4db] to-[#0083b0] p-6 text-white">
           <!-- Featured Badge -->
           <div class="flex justify-between items-start mb-4">
             <span class="bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold">
@@ -144,7 +144,7 @@ const displayOtherCompanies = featuredCompanyData ? otherCompaniesData : otherCo
             </div>
           </div>
           
-          <a href={`/companies/${displayFeaturedCompany?.id}`} class="btn-primary w-full text-center text-sm">
+          <a href={`/companies/${displayFeaturedCompany?.id}`} class="inline-flex items-center justify-center px-6 py-3 font-semibold text-white bg-gradient-to-r from-[#00b4db] to-[#0083b0] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 w-full text-center text-sm">
             View Profile & Get Quote
           </a>
         </div>
@@ -157,7 +157,7 @@ const displayOtherCompanies = featuredCompanyData ? otherCompaniesData : otherCo
       <!-- Featured Company (Takes 2 columns) -->
       <div class="lg:col-span-2 animate-on-scroll">
         <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 group">
-          <div class="relative bg-gradient-to-br from-primary-500 to-secondary-500 p-8 text-white">
+          <div class="relative bg-gradient-to-br from-[#00b4db] to-[#0083b0] p-8 text-white">
             <!-- Featured Badge -->
             <div class="absolute top-4 right-4">
               <span class="bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-sm font-bold">
@@ -216,7 +216,7 @@ const displayOtherCompanies = featuredCompanyData ? otherCompaniesData : otherCo
             </div>
             
             <div class="mt-6 pt-6 border-t border-gray-100">
-              <a href={`/companies/${displayFeaturedCompany?.id}`} class="btn-primary w-full text-center group">
+              <a href={`/companies/${displayFeaturedCompany?.id}`} class="inline-flex items-center justify-center px-6 py-3 font-semibold text-white bg-gradient-to-r from-[#00b4db] to-[#0083b0] rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 w-full text-center group">
                 View Profile & Get Quote
                 <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
