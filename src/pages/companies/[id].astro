@@ -163,17 +163,9 @@ const faqs = [
         <!-- Left: Company Identity -->
         <div class="lg:col-span-2">
           <div class="flex flex-col md:flex-row items-start gap-8">
-            <!-- Horizontal Logo -->
+            <!-- Company Name -->
             <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-              <img 
-                src={companyData.logo || '/images/placeholder-logo.svg'} 
-                alt={`${companyData.name} logo`} 
-                class="max-w-[200px] max-h-[80px] w-auto h-auto object-contain"
-                onerror="this.src='/images/placeholder-logo.svg'; this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              />
-              <div class="hidden max-w-[200px] max-h-[80px] w-auto h-auto bg-gray-100 rounded-lg items-center justify-center">
-                <span class="text-gray-600 font-bold text-lg">{companyData.name.substring(0, 2).toUpperCase()}</span>
-              </div>
+              <h1 class="text-2xl font-bold text-gray-900">{companyData.name}</h1>
             </div>
             
             <!-- Company Info -->

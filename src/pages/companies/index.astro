@@ -94,11 +94,9 @@ const description = 'Browse our directory of verified relocation companies in Sw
           {featuredCompanies.map((company) => (
             <div class="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 border-2 border-primary-200">
               <div class="flex items-center justify-between mb-6">
-                <img 
-                  src={company.data.logo} 
-                  alt={company.data.name + " logo"}
-                  class="w-20 h-20 object-contain"
-                />
+                <div class="flex-1">
+                  <h3 class="text-xl font-bold">{company.data.name}</h3>
+                </div>
                 <span class="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 px-3 py-1 rounded-full text-sm font-bold">
                   ⭐ Featured
                 </span>
@@ -267,11 +265,9 @@ const description = 'Browse our directory of verified relocation companies in Sw
               >
                 <div class="p-6">
                   <div class="flex items-start justify-between mb-4">
-                    <img 
-                      src={company.data.logo} 
-                      alt={company.data.name + " logo"}
-                      class="w-16 h-16 object-contain mr-4"
-                    />
+                    <div class="flex-1">
+                      <h3 class="text-xl font-bold mb-2">{company.data.name}</h3>
+                    </div>
                     {company.data.verified && (
                       <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
                         ✓ Verified
