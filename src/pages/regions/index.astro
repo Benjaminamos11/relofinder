@@ -2,7 +2,16 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const regions = await getCollection('regions');
+const allRegions = await getCollection('regions');
+
+// Regional images mapping (same as individual region pages)
+const availableRegionKeys = ['zurich', 'geneva', 'basel', 'bern', 'lausanne', 'zug'];
+
+// Filter to only show regions that have actual images (not placeholders)
+const regions = allRegions.filter(region => {
+  const regionKey = (region.data.id || region.slug).toLowerCase();
+  return availableRegionKeys.includes(regionKey);
+});
 
 // Sort regions by featured first, then by population
 const sortedRegions = regions.sort((a, b) => {
@@ -76,7 +85,7 @@ const keywords = 'Swiss regions, Switzerland cities, expat destinations, Swiss r
         </nav>
 
         <!-- Badge -->
-        <div class="inline-flex items-center px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 font-medium text-sm mb-8">
+        <div class="inline-flex items-center px-6 py-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-gray-800 font-medium text-sm mb-8 shadow-lg">
           <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
           </svg>
