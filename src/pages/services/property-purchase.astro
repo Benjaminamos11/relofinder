@@ -596,9 +596,6 @@ const faqSchema = {
           {companies.map((company) => (
             <div class="bg-white rounded-2xl p-8 border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
               <div class="flex items-center mb-6">
-                <div class="w-20 h-20 bg-white rounded-xl border border-gray-200 p-2 mr-4 flex-shrink-0">
-                  <img src={company.logo} alt={`${company.name} - Swiss relocation advisory specialist`} class="w-full h-full object-contain" />
-                </div>
                 <div class="min-w-0 flex-1">
                   <h4 class="text-lg font-bold truncate">{company.name}</h4>
                   <div class="flex items-center text-sm text-gray-600">

@@ -717,13 +717,6 @@ const keywords = region.data.name + " relocation, move to " + region.data.name +
           {availableRelocators.map((relocator) => (
             <div class="bg-white rounded-2xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-300 group">
               <div class="text-center mb-6">
-                <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 overflow-hidden shadow-sm">
-                  <img 
-                    src={relocator.logo} 
-                    alt={relocator.name + " - " + region.data.name + " relocation services"}
-                    class="w-12 h-12 object-contain"
-                  />
-                </div>
                 <h3 class="text-xl font-bold text-gray-900 mb-2">{relocator.name}</h3>
                 <p class="text-gray-600 text-sm">{relocator.specialty}</p>
               </div>
