@@ -1,0 +1,35 @@
+---
+interface Props {
+  tier: 'preferred' | 'partner' | 'regular';
+}
+
+const { tier } = Astro.props;
+
+const badgeConfig = {
+  preferred: {
+    label: '🏆 Preferred',
+    classes: 'bg-gradient-to-r from-primary-600 to-primary-700 text-white',
+    ariaLabel: 'Preferred Partner'
+  },
+  partner: {
+    label: 'Partner',
+    classes: 'bg-white text-primary-700 border-2 border-primary-600',
+    ariaLabel: 'Partner Agency'
+  },
+  regular: {
+    label: 'Listed',
+    classes: 'bg-gray-100 text-gray-700 border border-gray-300',
+    ariaLabel: 'Listed Agency'
+  }
+};
+
+const config = badgeConfig[tier];
+---
+
+<span 
+  class={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${config.classes}`}
+  aria-label={config.ariaLabel}
+>
+  {config.label}
+</span>
+

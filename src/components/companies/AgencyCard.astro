@@ -1,0 +1,145 @@
+---
+import AgencyBadge from './AgencyBadge.astro';
+
+interface Props {
+  id: string;
+  name: string;
+  slug: string;
+  logoUrl?: string;
+  services: string[];
+  tier: 'preferred' | 'partner' | 'regular';
+  schedulingUrl?: string;
+  contactEmail?: string;
+  website?: string;
+  rating?: number;
+  reviewCount?: number;
+  description?: string;
+}
+
+const { 
+  id,
+  name, 
+  slug, 
+  logoUrl, 
+  services, 
+  tier, 
+  schedulingUrl, 
+  contactEmail, 
+  website,
+  rating,
+  reviewCount,
+  description
+} = Astro.props;
+
+// Service display names mapping
+const serviceLabels: Record<string, string> = {
+  'housing': 'Housing',
+  'immigration': 'Immigration',
+  'education': 'Education',
+  'finance': 'Finance',
+  'advisory': 'Advisory',
+  'settling-in': 'Settling-In',
+  'moving-logistics': 'Moving',
+  'departure': 'Departure',
+  'corporate-relocation': 'Corporate'
+};
+
+// Primary CTA logic based on tier
+const getPrimaryCTA = () => {
+  if (tier === 'preferred' && schedulingUrl) {
+    return {
+      label: `Book Meeting with ${name}`,
+      href: schedulingUrl,
+      action: 'external',
+      classes: 'bg-gradient-to-r from-primary-600 to-primary-700 text-white hover:from-primary-700 hover:to-primary-800'
+    };
+  }
+  if (tier === 'partner' && contactEmail) {
+    return {
+      label: `Contact ${name}`,
+      href: `mailto:${contactEmail}`,
+      action: 'email',
+      classes: 'bg-primary-600 text-white hover:bg-primary-700'
+    };
+  }
+  // Regular tier - request introduction via modal
+  return {
+    label: 'Request Introduction',
+    href: '#',
+    action: 'modal',
+    classes: 'bg-gray-700 text-white hover:bg-gray-800'
+  };
+};
+
+const primaryCTA = getPrimaryCTA();
+---
+
+<div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow duration-300">
+  <div class="flex items-start justify-between mb-4">
+    <div class="flex-1">
+      {logoUrl && (
+        <img src={logoUrl} alt={`${name} logo`} class="h-8 mb-3 object-contain" />
+      )}
+      <h3 class="text-xl font-bold text-gray-900 mb-1">{name}</h3>
+      <AgencyBadge tier={tier} />
+    </div>
+  </div>
+
+  {(rating && reviewCount) && (
+    <div class="flex items-center gap-2 mb-3">
+      <div class="flex text-yellow-500 text-sm">
+        {Array.from({ length: 5 }, (_, i) => i < Math.round(rating)).map(() => '★').join('')}
+      </div>
+      <span class="text-gray-600 text-sm">{rating} / 5 • {reviewCount} reviews</span>
+    </div>
+  )}
+
+  {description && (
+    <p class="text-gray-700 text-sm mb-4 leading-relaxed">{description}</p>
+  )}
+
+  {services.length > 0 && (
+    <div class="flex flex-wrap gap-2 mb-4">
+      {services.slice(0, 4).map((service: string) => (
+        <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-md text-xs">
+          {serviceLabels[service] || service}
+        </span>
+      ))}
+      {services.length > 4 && (
+        <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded-md text-xs">
+          +{services.length - 4} more
+        </span>
+      )}
+    </div>
+  )}
+
+  <div class="flex gap-3">
+    {primaryCTA.action === 'modal' ? (
+      <button
+        onclick={`universalOpenModal({page: 'agency_intro', agency: '${slug}'})`}
+        class={`flex-1 px-4 py-2 rounded-lg font-semibold text-sm transition-colors ${primaryCTA.classes}`}
+        aria-label={primaryCTA.label}
+      >
+        {primaryCTA.label}
+      </button>
+    ) : (
+      <a
+        href={primaryCTA.href}
+        target={primaryCTA.action === 'external' ? '_blank' : undefined}
+        rel={primaryCTA.action === 'external' ? 'noopener noreferrer' : undefined}
+        class={`flex-1 px-4 py-2 rounded-lg font-semibold text-sm text-center transition-colors ${primaryCTA.classes}`}
+        aria-label={primaryCTA.label}
+      >
+        {primaryCTA.label}
+      </a>
+    )}
+    <a
+      href={`/companies/${slug}`}
+      class="px-4 py-2 rounded-lg font-semibold text-sm text-gray-700 border border-gray-300 hover:bg-gray-50 transition-colors"
+      aria-label={`View ${name} profile`}
+    >
+      View Profile
+    </a>
+  </div>
+</div>
+

@@ -1,416 +1,278 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import SchemaMarkup from '../../components/common/SchemaMarkup.astro';
+import PlatformDisclaimer from '../../components/common/PlatformDisclaimer.astro';
 
-const services = await getCollection('services');
+const title = "Relocation Services — Compare Swiss Agencies | ReloFinder";
+const description = "Compare relocation services in Switzerland. ReloFinder helps you evaluate providers and choose the right agency for housing, immigration, education, finance and more.";
+const canonicalURL = "https://relofinder.ch/services";
 
-// Sort services by featured first, then alphabetically
-const sortedServices = services.sort((a, b) => {
-  if (a.data.featured && !b.data.featured) return -1;
-  if (!a.data.featured && b.data.featured) return 1;
-  return a.data.title.localeCompare(b.data.title);
-});
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://relofinder.ch"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://relofinder.ch/services"
+    }
+  ]
+};
 
-const featuredServices = services.filter(service => service.data.featured);
-// Remove featured services from the all services list to avoid duplication
-const nonFeaturedServices = services.filter(service => !service.data.featured);
-
-// All actual service pages in the services directory
-const allServices = [
-  {
-    title: 'Advisory Services',
-    description: 'Strategic relocation consulting and expert guidance for complex Swiss moves.',
-    href: '/services/advisory',
-    icon: 'lightbulb',
-    category: 'Strategy',
-    featured: true
-  },
-  {
-    title: 'Property Purchase',
-    description: 'Expert guidance for purchasing property in Switzerland as a foreigner.',
-    href: '/services/property-purchase',
-    icon: 'home',
-    category: 'Real Estate',
-    featured: true
-  },
-  {
-    title: 'Banking & Finance',
-    description: 'Swiss banking setup, account opening, and financial advisory services.',
-    href: '/services/finance',
-    icon: 'credit-card',
-    category: 'Finance',
-    featured: true
-  },
+const coreServices = [
   {
     title: 'Housing Services',
-    description: 'Comprehensive housing search, rental assistance, and accommodation services.',
-    href: '/services/housing',
-    icon: 'home',
-    category: 'Housing',
-    featured: true
+    slug: 'housing',
+    description: 'Find apartments and navigate Swiss rental requirements with expert agency support including viewings, negotiations, and lease signing.',
+    icon: '🏠'
   },
   {
-    title: 'Visa & Immigration',
-    description: 'Complete visa application support and immigration guidance for Switzerland.',
-    href: '/services/immigration',
-    icon: 'document',
-    category: 'Legal',
-    featured: true
+    title: 'Immigration Services',
+    slug: 'immigration',
+    description: 'Work permits, visa applications, and residence permits handled by specialized agencies with Swiss immigration expertise.',
+    icon: '🛂'
   },
   {
     title: 'Education Services',
-    description: 'School selection, enrollment support, and educational guidance for families.',
-    href: '/services/education',
-    icon: 'academic-cap',
-    category: 'Family',
-    featured: true
+    slug: 'education',
+    description: 'International school search, applications, and enrollment support for expat families relocating to Switzerland.',
+    icon: '🎓'
   },
   {
-    title: 'Healthcare Services',
-    description: 'Navigate the Swiss healthcare system with expert insurance and provider guidance.',
-    href: '/services/health',
-    icon: 'heart',
-    category: 'Healthcare'
+    title: 'Finance Services',
+    slug: 'finance',
+    description: 'Swiss banking, wealth management, tax planning, and financial setup coordinated by expert relocation agencies.',
+    icon: '💰'
   },
   {
-    title: 'Legal Services',
-    description: 'Swiss legal compliance, contract review, and regulatory guidance.',
-    href: '/services/legal-services',
-    icon: 'scale',
-    category: 'Legal'
-  },
-  {
-    title: 'Insurance Services',
-    description: 'Comprehensive insurance selection and coverage optimization.',
-    href: '/services/insurance-services',
-    icon: 'shield',
-    category: 'Protection'
-  },
-  {
-    title: 'Move Management',
-    description: 'End-to-end moving logistics and international shipping coordination.',
-    href: '/services/move-management',
-    icon: 'truck',
-    category: 'Logistics'
-  },
-  {
-    title: 'Cross-Cultural Training',
-    description: 'Cultural integration and adaptation support for Swiss business culture.',
-    href: '/services/cross-cultural',
-    icon: 'globe',
-    category: 'Integration'
-  },
-  {
-    title: 'Settling-In Services',
-    description: 'Comprehensive support for the first weeks and months in Switzerland.',
-    href: '/services/settling-in',
-    icon: 'check',
-    category: 'Support'
-  },
-  {
-    title: 'Home Search',
-    description: 'Dedicated property search and rental assistance services.',
-    href: '/services/home-search',
-    icon: 'search',
-    category: 'Housing'
-  },
-  {
-    title: 'Technology Solutions',
-    description: 'Digital integration, internet setup, and technology support services.',
-    href: '/services/technology-solutions',
-    icon: 'computer',
-    category: 'Technology'
-  },
-  {
-    title: 'Ongoing Support',
-    description: 'Continuous assistance and support throughout your Swiss residency.',
-    href: '/services/ongoing-support',
-    icon: 'support',
-    category: 'Support'
-  },
-  {
-    title: 'Departure & Repatriation',
-    description: 'Complete support for leaving Switzerland and repatriation services.',
-    href: '/services/departure-repatriation',
-    icon: 'airplane',
-    category: 'Departure'
-  },
-  {
-    title: 'Specialized Services',
-    description: 'Unique and specialized relocation services for specific needs.',
-    href: '/services/specialized-services',
-    icon: 'star',
-    category: 'Specialized'
+    title: 'Advisory Services',
+    slug: 'advisory',
+    description: 'Strategic relocation planning for HNWI, entrepreneurs, and executives with personalized agency consultation.',
+    icon: '🎯'
   }
 ];
 
-const featuredServicesList = allServices.filter(service => service.featured);
-const nonFeaturedServicesList = allServices.filter(service => !service.featured);
+const supportingServices = [
+  {
+    title: 'Settling-In Services',
+    slug: 'settling-in',
+    description: 'Municipality registration, health insurance, utilities, and complete administrative setup after arrival.',
+    icon: '✅'
+  },
+  {
+    title: 'Moving & Logistics',
+    slug: 'moving-logistics',
+    description: 'International shipping, customs clearance, pet relocation, and complete moving coordination.',
+    icon: '📦'
+  },
+  {
+    title: 'Departure Services',
+    slug: 'departure',
+    description: 'Lease termination, deregistration, deposit recovery, and smooth exit from Switzerland.',
+    icon: '🚪'
+  },
+  {
+    title: 'Corporate Relocation',
+    slug: 'corporate-relocation',
+    description: 'HR programs, employee mobility, and comprehensive corporate transfer support through specialized agencies.',
+    icon: '🏢'
+  }
+];
 
-// Page metadata
-const title = 'Relocation Services in Switzerland | ReloFinder.ch';
-const description = 'Explore specialized relocation services for expats moving to Switzerland, from housing and legal assistance to education and healthcare support.';
+const locationGuides = [
+  { name: 'Zürich', href: '/locations/zurich', icon: '🏙️' },
+  { name: 'Geneva', href: '/locations/geneva', icon: '🌍' },
+  { name: 'Basel', href: '/locations/basel', icon: '🏛️' },
+  { name: 'Zug', href: '/locations/zug', icon: '💼' },
+  { name: 'Lausanne', href: '/locations/lausanne', icon: '🎓' },
+  { name: 'Bern', href: '/locations/bern', icon: '🏛️' }
+];
 ---
 
 <Layout title={title} description={description}>
+  <SchemaMarkup schema={breadcrumbSchema} />
+
   <!-- Hero Section -->
-  <section class="relative py-20 bg-gradient-to-br from-primary-50 via-white to-secondary-50 overflow-hidden">
-    <div class="absolute inset-0 opacity-30">
-      <div class="absolute inset-0 bg-repeat" style="background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23e11d48%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%224%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E);"></div>
-    </div>
-
-    <div class="container relative z-10">
-      <div class="text-center max-w-4xl mx-auto">
-        <!-- Breadcrumb -->
-        <nav class="flex items-center justify-center space-x-2 text-sm text-gray-600 mb-8">
-          <a href="/" class="hover:text-primary-600 transition-colors">Home</a>
-          <span>→</span>
-          <span class="text-gray-900">Services</span>
-        </nav>
-
-        <!-- Badge -->
-        <div class="inline-flex items-center px-4 py-2 rounded-full bg-secondary-100 text-secondary-700 font-medium text-sm mb-8">
-          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-          </svg>
-          Complete Service Directory
+  <section class="relative bg-gradient-to-br from-gray-50 via-white to-primary-50 py-16 md:py-24">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-6">
+          All Services
         </div>
-
-        <!-- Title & Description -->
-        <h1 class="text-4xl md:text-6xl font-bold mb-6">
-          Swiss Relocation <span class="gradient-text">Services</span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+          Relocation Services in Switzerland
         </h1>
-        <p class="text-xl text-gray-600 leading-relaxed mb-8">
-          From housing and immigration to banking and education, find expert professionals for every aspect of your Swiss relocation journey.
+        <p class="text-xl md:text-2xl bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent font-semibold mb-6">
+          Compare & Choose the Right Agency
         </p>
-
-        <!-- Stats -->
-        <div class="grid grid-cols-3 gap-8 max-w-2xl mx-auto mb-8">
-          <div class="text-center">
-            <div class="text-3xl font-bold text-primary-600">17</div>
-            <div class="text-sm text-gray-600">Service Categories</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold text-primary-600">500+</div>
-            <div class="text-sm text-gray-600">Expert Providers</div>
-          </div>
-          <div class="text-center">
-            <div class="text-3xl font-bold text-primary-600">4.8/5</div>
-            <div class="text-sm text-gray-600">Average Rating</div>
-          </div>
-        </div>
-
-        <!-- CTA -->
-        <button onclick="openModal('individual-lead-modal')" class="btn-primary px-8 py-4">
-          Get Personalized Recommendations
+        <p class="text-lg text-gray-700 mb-8 leading-relaxed max-w-3xl mx-auto">
+          ReloFinder is a platform that helps you compare Swiss relocation providers and choose the best partner for your needs. We don't deliver the services ourselves — we connect you with trusted agencies.
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'services_overview', service: 'all'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Book Free Consultation → Prime Relocation
         </button>
       </div>
     </div>
   </section>
 
-  <!-- Featured Services -->
-  <section class="py-20 bg-white">
-    <div class="container">
-      <div class="text-center mb-16">
-        <span class="inline-block px-4 py-2 rounded-full bg-primary-100 text-primary-700 font-medium text-sm mb-4">
-          Most Popular
-        </span>
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">
-          Essential <span class="gradient-text">Services</span>
-        </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          The core services that most expatriates need when relocating to Switzerland.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {featuredServicesList.map((service, index) => (
-          <div class="group relative bg-gradient-to-br from-white to-gray-50 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
-            <!-- Service Icon -->
-            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              {service.icon === 'lightbulb' && (
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-                </svg>
-              )}
-              {service.icon === 'home' && (
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                </svg>
-              )}
-              {service.icon === 'credit-card' && (
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-                </svg>
-              )}
-              {service.icon === 'document' && (
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                </svg>
-              )}
-              {service.icon === 'academic-cap' && (
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 14l9-5-9-5-9 5 9 5z"/>
-                  <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/>
-                </svg>
-              )}
-            </div>
-
-            <!-- Service Content -->
-            <div class="space-y-4 mb-6">
-              <div class="flex items-center justify-between">
-                <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary-600 transition-colors duration-300">
-                  {service.title}
-                </h3>
-                <span class="text-xs px-2 py-1 bg-primary-100 text-primary-700 rounded-full font-medium">
-                  {service.category}
-                </span>
-              </div>
-              <p class="text-gray-600 leading-relaxed text-sm">
-                {service.description}
-              </p>
-            </div>
-
-            <!-- CTA -->
-            <a href={service.href} class="block w-full text-center py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-medium rounded-xl hover:shadow-lg transition-all duration-300 group-hover:scale-105">
-              Learn More
-            </a>
-
-            <!-- Hover Glow Effect -->
-            <div class="absolute inset-0 rounded-3xl bg-gradient-to-r from-primary-400 to-secondary-400 opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none"></div>
-          </div>
-        ))}
+  <!-- Platform Disclaimer -->
+  <section class="py-8 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer />
       </div>
     </div>
   </section>
 
-  <!-- All Services Grid -->
-  <section class="py-20 bg-gray-50">
-    <div class="container">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">
-          Additional <span class="gradient-text">Services</span>
-        </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          Explore more specialized relocation services for your Swiss move.
-        </p>
-      </div>
+  <!-- Core Services Grid -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Core Relocation <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Services</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Essential services for every Swiss relocation
+          </p>
+        </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {nonFeaturedServicesList.map((service) => (
-          <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 group hover:-translate-y-1">
-            <!-- Header -->
-            <div class="flex items-start space-x-4 mb-4">
-              <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                {service.icon === 'heart' && (
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {coreServices.map((service) => (
+            <div class="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+              <div class="text-4xl mb-4">{service.icon}</div>
+              <h3 class="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+              <p class="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
+              <div class="flex flex-col gap-3">
+                <a
+                  href={`/services/${service.slug}`}
+                  class="inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-lg font-semibold hover:from-primary-700 hover:to-primary-800 transition-colors"
+                >
+                  Learn More
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                   </svg>
-                )}
-                {service.icon === 'scale' && (
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
+                </a>
+                <a
+                  href={`/companies?service=${service.slug}`}
+                  class="inline-flex items-center justify-center px-4 py-2 bg-white text-primary-700 border-2 border-primary-600 rounded-lg font-semibold hover:bg-primary-50 transition-colors"
+                >
+                  Browse All Agencies
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
-                )}
-                {service.icon === 'shield' && (
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                  </svg>
-                )}
-                {service.icon === 'truck' && (
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                  </svg>
-                )}
-                {service.icon === 'globe' && (
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg>
-                )}
-                {service.icon === 'check' && (
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg>
-                )}
-                {service.icon === 'search' && (
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                  </svg>
-                )}
-                {service.icon === 'computer' && (
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                  </svg>
-                )}
-                {service.icon === 'support' && (
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
-                  </svg>
-                )}
-                {service.icon === 'airplane' && (
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                  </svg>
-                )}
-                {service.icon === 'star' && (
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
-                  </svg>
-                )}
-              </div>
-              
-              <div class="flex-1">
-                <div class="flex items-center justify-between mb-2">
-                  <h3 class="text-lg font-bold text-gray-900 group-hover:text-primary-600 transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <span class="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-full font-medium">
-                    {service.category}
-                  </span>
-                </div>
-                <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                  {service.description}
-                </p>
+                </a>
               </div>
             </div>
-
-            <!-- CTA -->
-            <a href={service.href} class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium text-sm group-hover:translate-x-1 transition-all duration-300">
-              Learn More
-              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Next Steps CTA -->
-  <section class="py-20 bg-gradient-to-br from-primary-600 to-secondary-700 text-white">
-    <div class="container">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">
-          Ready to Start Your Swiss Move?
-        </h2>
-        <p class="text-xl text-white/90 mb-8">
-          Connect with our expert consultants to get personalized service recommendations for your unique relocation needs.
-        </p>
-        <div class="flex flex-wrap gap-4 justify-center">
-          <button onclick="openModal('individual-lead-modal')" class="bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors inline-flex items-center">
-            Get Personal Consultation
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-            </svg>
+  <!-- Supporting Services Grid -->
+  <section class="py-16 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Supporting <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Services</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Complete your relocation with specialized support
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          {supportingServices.map((service) => (
+            <div class="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+              <div class="text-4xl mb-4">{service.icon}</div>
+              <h3 class="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+              <p class="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
+              <div class="flex flex-col gap-3">
+                <a
+                  href={`/services/${service.slug}`}
+                  class="inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-lg font-semibold hover:from-primary-700 hover:to-primary-800 transition-colors"
+                >
+                  Learn More
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+                <a
+                  href={`/companies?service=${service.slug}`}
+                  class="inline-flex items-center justify-center px-4 py-2 bg-white text-primary-700 border-2 border-primary-600 rounded-lg font-semibold hover:bg-primary-50 transition-colors"
+                >
+                  Browse All Agencies
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Local Expertise Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Need Local <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Expertise?</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Explore our city-specific relocation guides
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {locationGuides.map((location) => (
+            <a
+              href={location.href}
+              class="flex flex-col items-center justify-center p-6 bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 rounded-xl hover:border-primary-300 hover:shadow-lg transition-all duration-300"
+            >
+              <div class="text-3xl mb-2">{location.icon}</div>
+              <span class="text-sm font-semibold text-gray-900">{location.name}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom Disclaimer + CTA -->
+  <section class="py-16 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto space-y-8">
+        <PlatformDisclaimer />
+        
+        <div class="text-center">
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+            Ready to Start Your Swiss Relocation?
+          </h2>
+          <p class="text-lg text-gray-600 mb-6">
+            Get connected with the right relocation agency for your specific needs
+          </p>
+          <button
+            onclick="universalOpenModal({page: 'services_cta', service: 'all'})"
+            class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            Book Free Consultation
           </button>
-          <a href="/swiss-relocation-guide" class="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-colors inline-flex items-center">
-            View Complete Guide
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-            </svg>
-          </a>
         </div>
       </div>
     </div>
