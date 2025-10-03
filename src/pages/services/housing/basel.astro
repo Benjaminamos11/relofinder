@@ -1,0 +1,861 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SchemaMarkup from '../../../components/common/SchemaMarkup.astro';
+import PlatformDisclaimer from '../../../components/common/PlatformDisclaimer.astro';
+import ServiceHero from '../../../components/services/ServiceHero.astro';
+
+const title = "Housing in Basel | Compare Relocation Agencies | ReloFinder";
+const description = "Compare relocation providers in Basel. ReloFinder helps you evaluate agencies and find apartments in Gundeli, Kleinbasel, St. Johann & beyond.";
+const canonicalURL = "https://relofinder.ch/services/housing/basel";
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://relofinder.ch"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://relofinder.ch/services"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Housing",
+      "item": "https://relofinder.ch/services/housing"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Basel",
+      "item": "https://relofinder.ch/services/housing/basel"
+    }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Housing Services in Basel",
+  "description": "Compare housing providers and relocation agencies for apartment search in Basel, Switzerland including Gundeli, Kleinbasel, St. Johann, and cross-border options",
+  "provider": {
+    "@type": "Organization",
+    "name": "ReloFinder",
+    "url": "https://relofinder.ch"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Basel",
+    "containedIn": {
+      "@type": "Country",
+      "name": "Switzerland"
+    }
+  },
+  "serviceType": "Housing Search Services"
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How competitive is the Basel housing market?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Basel's housing market is competitive but more accessible than Zurich or Geneva. The pharma and life sciences industry (Novartis, Roche, Lonza) drives demand from international professionals. Central Basel and neighborhoods near pharma campuses (St. Johann) are most competitive with 5-15 applications per apartment. However, Basel benefits from cross-border options - many expats live in nearby France (Saint-Louis, Huningue) or Germany (Weil am Rhein, Lörrach) with 15-30 minute commutes, which relieves pressure on Swiss housing stock."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the best neighborhoods in Basel for expats?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Best Basel neighborhoods for expats: Gundeli/Gundeldingen (vibrant, affordable, excellent public transport, young professionals), St. Johann (near Novartis campus, international community, pharma professionals), Kleinbasel (multicultural, lower rents, artistic vibe), Grossbasel Old Town (historic, central, premium), Iselin (family-friendly, quiet residential), and suburban Binningen/Allschwil (gardens, schools, family-oriented). For lower costs, consider cross-border: Weil am Rhein/Lörrach (Germany) or Saint-Louis/Huningue (France) with excellent train/tram connections."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I live in France or Germany and work in Basel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, cross-border commuting is very common in Basel. Germany: Weil am Rhein and Lörrach offer 15-30 minute commutes via train/tram with rents 30-50% lower than Basel. France: Saint-Louis, Huningue, and surrounding Alsace towns provide similar commute times and cost savings. You'll need cross-border worker permits, understand tax implications (typically taxed in Switzerland), and navigate different rental systems. Many Basel employers actively support cross-border employees. Relocation agencies help with cross-border setup, permit applications, and housing search in border regions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are typical rents in Basel for a 2.5-room apartment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Basel rents are more moderate than Zurich/Geneva/Zug. Basel city center (Grossbasel, near SBB): CHF 1,900-2,600/month for 2.5 rooms. Gundeli: CHF 1,700-2,300/month. Kleinbasel: CHF 1,500-2,100/month. St. Johann (near Novartis): CHF 1,800-2,400/month. Suburban (Binningen, Allschwil): CHF 1,600-2,200/month. Plus Nebenkosten CHF 150-250. Cross-border significantly cheaper: Germany CHF 800-1,400, France CHF 700-1,300 for comparable apartments. 3.5-room apartments typically CHF 400-600 more per category."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What documents do I need for a Basel rental application?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Required documents for Basel rentals: valid passport/ID, Swiss residence/work permit (or cross-border worker permit), employment contract, last 3 months salary slips, Betreibungsregisterauszug (debt collection certificate from Basel or current canton), previous landlord reference, completed application form. Contracts typically in German; some landlords accept English for international professionals. Professional dossier preparation improves success rates. Cross-border applicants may need additional documentation proving work authorization and German/French rental references."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are temporary furnished apartments common in Basel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, furnished temporary housing is readily available in Basel due to pharma industry short-term assignments and international professionals. Corporate apartments and serviced housing cost CHF 1,800-3,500/month depending on size and location. Many located near Novartis/Roche campuses or central Basel. Agencies coordinate temporary housing during 4-8 week permanent search. Cross-border temporary options (Weil am Rhein, Saint-Louis) available at CHF 1,200-2,500/month as lower-cost alternatives while searching for permanent Swiss or cross-border housing."
+      }
+    }
+  ]
+};
+
+const siblingCities = [
+  { name: 'Zurich', slug: 'zurich' },
+  { name: 'Zug', slug: 'zug' },
+  { name: 'Geneva', slug: 'geneva' },
+  { name: 'Lausanne', slug: 'lausanne' }
+];
+---
+
+<Layout title={title} description={description}>
+  <SchemaMarkup schema={breadcrumbSchema} />
+  <SchemaMarkup schema={serviceSchema} />
+  <SchemaMarkup schema={faqSchema} />
+
+  <ServiceHero
+    title="Find an Apartment in Basel"
+    subtitle="Housing Help for Expats"
+    description="Basel is a unique city at the crossroads of Switzerland, France, and Germany. ReloFinder helps you compare relocation providers in Basel and connect with the right housing agency. We don't deliver the services ourselves — we connect you with trusted partners."
+    badge="Housing in Basel"
+  />
+
+  <!-- Platform Disclaimer -->
+  <section class="py-8 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer compact={true} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Primary CTA after Hero -->
+  <section class="py-12 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Need Help Finding Your Basel Home?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get expert support for Basel city apartments and cross-border housing options
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'housing_basel', service: 'housing'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Housing in Basel Is Challenging -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            The Challenge
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Why Housing in Basel Is <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Challenging</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Basel's unique location and pharma industry create specific housing market dynamics
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Pharma & Life Sciences Demand</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Basel is Switzerland's pharma capital with Novartis, Roche, Lonza, and numerous biotech firms. International professionals relocating for pharma jobs create constant housing demand, especially in St. Johann (near Novartis campus) and areas with good commuter access. Corporate relocations often secure apartments months in advance. Competition is highest near pharma campuses and along excellent public transport routes to Basel SBB and Badischer Bahnhof.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Cross-Border Commuter Pressure</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Basel's tri-national location means thousands of cross-border workers from France (Alsace) and Germany (Baden) commute daily. This creates complex housing dynamics: limited Swiss housing stock faces demand from local residents, expats, and those preferring Swiss living despite cross-border alternatives. Popular Swiss neighborhoods like Gundeli and Kleinbasel compete with cross-border options that offer 30-50% lower rents in nearby Weil am Rhein (Germany) or Saint-Louis (France).
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Moderate Rents, High Standards</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Basel rents are more moderate than Zurich/Geneva/Zug (CHF 1,500-2,600 for 2.5-3.5 rooms in city) but landlords maintain high documentation standards. Expect complete dossiers with Betreibungsregisterauszug, employment contracts, salary slips, and references. Contracts typically in German, though English increasingly accepted for international pharma professionals. Central Basel and Grossbasel command premium prices; Kleinbasel and suburbs offer better value. Cross-border living (Germany/France) significantly reduces costs.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Limited Central Availability</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Central Basel (Grossbasel Old Town, areas near SBB) has limited housing stock with most buildings historic and protected. New construction concentrates in outer districts and suburbs. Gundeli near the train station sees high turnover due to young professionals and students. St. Johann near Novartis has pharma-specific demand. Kleinbasel offers more availability at lower price points. Families often choose suburban Binningen, Allschwil, or Riehen for space and schools, but face longer commutes.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Cross-Border Decision Complexity</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Expats must decide between Swiss housing (higher costs, Swiss quality/convenience, easier administrative processes) versus cross-border living (30-50% lower rents in France/Germany, different rental laws, tax implications, permit requirements). Many start in Swiss housing then explore cross-border after settling. Understanding tri-national dynamics, transport connections (S-Bahn, tram lines to Germany/France), and permit processes requires local expertise. Agencies provide essential cross-border guidance and housing comparison.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-12 p-8 bg-gradient-to-br from-primary-50 via-white to-red-50 rounded-2xl border-2 border-primary-100">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <svg class="w-8 h-8 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-4">
+              <h4 class="text-xl font-bold text-gray-900 mb-2">Expert Insight</h4>
+              <p class="text-gray-700 leading-relaxed">
+                <strong>Basel offers more accessible housing than Zurich or Geneva</strong>, but navigating Swiss vs. cross-border options requires local expertise. Pharma professionals often benefit from corporate housing support. Search time typically 4-8 weeks for Swiss housing with agency support, or 2-4 weeks for cross-border options. Understanding tri-national dynamics, transport connections, and tax implications is essential for optimal housing decisions in the Basel region.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Agencies Help -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Our Solution
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            How Agencies <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Help in Basel</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            ReloFinder connects you with agencies specializing in Basel and cross-border housing
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  1
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Basel City & Suburban Search Support</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Comprehensive apartment search across Basel neighborhoods: Gundeli (vibrant, near SBB), St. Johann (Novartis campus, pharma professionals), Kleinbasel (multicultural, affordable), Grossbasel (historic center), and suburbs like Binningen, Allschwil, Riehen. Agencies provide off-market access through pharma relocations, departing expats, and landlord networks. Understand neighborhood characteristics, commute times to pharma campuses, proximity to international schools, and public transport connections.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Basel City</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Pharma Hubs</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Suburban Options</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  2
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Cross-Border Housing Advice</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Expert guidance on living in France (Saint-Louis, Huningue, Alsace) or Germany (Weil am Rhein, Lörrach, Freiburg) while working in Basel. Compare costs, commute times, tax implications, and quality of life. Agencies help with cross-border worker permits (Grenzgänger), understand French and German rental markets, navigate different documentation requirements, and identify properties with excellent train/tram connections to Basel. Save 30-50% on rent while maintaining 15-30 minute commutes.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">France Options</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Germany Options</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Permit Support</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  3
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Application & Documentation Support</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Professional dossier preparation with all required Basel documents: ID, residence permit, employment contract, 3 salary slips, Betreibungsregisterauszug (from Basel or current canton), landlord references, and application forms. Contracts typically in German; agencies provide translation and explanation services. Present applications professionally to Basel landlords, improving approval rates. For cross-border housing, navigate French and German documentation requirements, rental customs, and legal differences. Comprehensive support throughout application process.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Complete Dossier</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">German Contracts</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Cross-Border Docs</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  4
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Temporary Furnished Housing</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Furnished temporary apartments in Basel (CHF 1,800-3,500/month) or cross-border locations (CHF 1,200-2,500/month) during your housing search. Many pharma companies provide temporary housing allowances for relocating employees. Locations near Novartis/Roche campuses, Basel SBB, or with easy cross-border commutes. Agencies coordinate temporary and permanent housing timing, ensuring smooth transition without gaps or expensive hotel stays during the 4-8 week search period. Flexible short-term contracts available.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Corporate Housing</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Pharma-Friendly</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Flexible Terms</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA after How We Help -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Ready to Find Your Basel Apartment?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get expert support for Basel housing and cross-border options in France and Germany
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'housing_basel_mid', service: 'housing'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Neighborhoods Section -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Neighborhoods
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Basel <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Neighborhoods</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Popular areas for expats and pharma professionals, plus cross-border options
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gradient-to-r from-primary-500 to-primary-600 p-6">
+              <h3 class="text-2xl font-bold text-white mb-2">Gundeli (Gundeldingen)</h3>
+              <p class="text-primary-100">Vibrant, Affordable, Central</p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-600 leading-relaxed mb-4">
+                Popular neighborhood near Basel SBB station with excellent public transport. CHF 1,700-2,300/month for 2.5 rooms. Vibrant atmosphere with cafes, restaurants, and young professionals. Mix of students and expats. Good value for central location. Quick access to Novartis and Roche campuses. Multicultural and dynamic area. Some streets can be noisy; quieter side streets offer better living quality.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">🚉 Near SBB</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">☕ Cafes</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">👥 Young Crowd</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gradient-to-r from-primary-500 to-primary-600 p-6">
+              <h3 class="text-2xl font-bold text-white mb-2">St. Johann</h3>
+              <p class="text-primary-100">Novartis Campus, Pharma Hub</p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-600 leading-relaxed mb-4">
+                Neighborhood adjacent to Novartis campus with high concentration of pharma professionals. CHF 1,800-2,400/month for 2.5 rooms. International community and English-speaking environment. Modern apartments and renovated buildings. Excellent for Novartis employees (walking/cycling distance). Good restaurants and amenities. Family-friendly areas near the Rhine. Popular with corporate relocations; off-market access important.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">💊 Pharma Hub</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">🌍 International</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">🏢 Corporate</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Kleinbasel</h4>
+            <p class="text-gray-600 text-sm">Multicultural, lower rents, artistic vibe. CHF 1,500-2,100 for 2.5 rooms. More availability.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Grossbasel (Old Town)</h4>
+            <p class="text-gray-600 text-sm">Historic center, premium location, limited availability. CHF 1,900-2,600 for 2.5 rooms.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Binningen & Allschwil</h4>
+            <p class="text-gray-600 text-sm">Suburban, family-oriented, gardens. CHF 1,600-2,200 for 2.5 rooms. Good schools.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Cross-Border (Germany/France)</h4>
+            <p class="text-gray-600 text-sm">Weil am Rhein, Lörrach, Saint-Louis. CHF 800-1,400 (Germany), CHF 700-1,300 (France). 15-30 min commute.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step-by-Step Process -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Step-by-Step Guide
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Your Basel Housing <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Process</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Follow this proven process for finding housing in Basel
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              1
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Define Location Preference</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Work with agency to define location strategy: Basel city (Gundeli, St. Johann, Kleinbasel) vs. suburbs (Binningen, Allschwil, Riehen) vs. cross-border (Germany: Weil am Rhein, Lörrach; France: Saint-Louis, Huningue). Consider budget (CHF 1,500-2,600 Swiss, CHF 700-1,400 cross-border), commute to workplace (pharma campuses, city center), family needs (schools, space), and lifestyle preferences. Agency provides cost-benefit analysis of all options including tax implications.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1 consultation call, 1-2 hours</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              2
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Shortlist & Viewings</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Receive apartment listings for Basel neighborhoods and/or cross-border options. Schedule viewings quickly (popular Basel properties rent within days). Be prepared to apply same-day for competitive apartments in Gundeli, St. Johann, or central Basel. Cross-border viewings may require multiple trips to Germany/France. Agency coordinates logistics, provides neighborhood tours, explains transport connections, and prepares you for landlord meetings. Consider visiting during commute times to assess travel.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 3-8 weeks of active searching and viewings</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              3
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Dossier Preparation & Application</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Complete dossier with ID, residence/work permit (or cross-border permit), employment contract, 3 salary slips, Betreibungsregisterauszug (from Basel or current canton), landlord references, and application forms. For Swiss housing, contracts typically in German; agency provides translation. For cross-border, navigate French or German rental systems with different documentation requirements. Agency presents application professionally, improving approval odds against competing applicants. Follow-up communication handled by agency.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Same-day or next-day application for competitive properties</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold border-4 border-white">
+              4
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Lease Negotiation & Review</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Review lease contract (German for Swiss, French for France, German for Germany regions). Clarify all terms, Nebenkosten, deposit requirements (typically 3 months for Swiss, 2-3 months for cross-border), notice periods, and tenant rights. Attend move-in handover (Übergabeprotokoll/état des lieux) to document defects and protect deposit. For cross-border, understand different rental laws, tenant protections, and termination procedures. Agency ensures full comprehension before signing.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1-2 weeks from approval to handover</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              5
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Municipality Registration & Settling-In</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Register with Basel municipality (Einwohnerkontrolle) within 14 days of move-in (Swiss housing). For cross-border, register with French mairie or German Einwohnermeldeamt and obtain cross-border worker permit. Set up utilities, internet, health insurance, and Basel public transport pass (TNW). Agency provides ongoing support for administrative questions, service providers, school enrollment, and community integration. Understand tri-national lifestyle benefits.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Complete within 14 days of move-in</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center">
+          <button
+            onclick="universalOpenModal({page: 'housing_basel_steps', service: 'housing'})"
+            class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            Book Your Free Housing Consultation
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Facts -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Essential Information
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Key Facts for <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Basel Housing</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Pharma Industry Demand</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>Novartis, Roche, biotech</strong> drive expat housing needs
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Average Rent (2.5-room)</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>CHF 1,800-2,400/month</strong> Basel city + Nebenkosten
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Cross-Border Options</h3>
+            <p class="text-gray-600 leading-relaxed">
+              France/Germany: <strong>30-50% lower</strong> rents, 15-30 min commute
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Kleinbasel Value</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>Lower rents, more availability</strong> than central Basel
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">St. Johann = Novartis</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>Close to campus</strong>, popular with pharma professionals
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Temporary Housing</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>CHF 1,800-3,500/month</strong> furnished, pharma-friendly
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            FAQ
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Frequently Asked <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Questions</span>
+          </h2>
+        </div>
+
+        <div class="space-y-6">
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              How competitive is the Basel housing market?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Basel's housing market is competitive but more accessible than Zurich or Geneva. The pharma and life sciences industry (Novartis, Roche, Lonza) drives demand from international professionals. Central Basel and neighborhoods near pharma campuses (St. Johann) are most competitive with 5-15 applications per apartment. However, Basel benefits from cross-border options - many expats live in nearby France (Saint-Louis, Huningue) or Germany (Weil am Rhein, Lörrach) with 15-30 minute commutes, which relieves pressure on Swiss housing stock.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              What are the best neighborhoods in Basel for expats?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Best Basel neighborhoods for expats: Gundeli/Gundeldingen (vibrant, affordable, excellent public transport, young professionals), St. Johann (near Novartis campus, international community, pharma professionals), Kleinbasel (multicultural, lower rents, artistic vibe), Grossbasel Old Town (historic, central, premium), Iselin (family-friendly, quiet residential), and suburban Binningen/Allschwil (gardens, schools, family-oriented). For lower costs, consider cross-border: Weil am Rhein/Lörrach (Germany) or Saint-Louis/Huningue (France) with excellent train/tram connections.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Can I live in France or Germany and work in Basel?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Yes, cross-border commuting is very common in Basel. Germany: Weil am Rhein and Lörrach offer 15-30 minute commutes via train/tram with rents 30-50% lower than Basel. France: Saint-Louis, Huningue, and surrounding Alsace towns provide similar commute times and cost savings. You'll need cross-border worker permits, understand tax implications (typically taxed in Switzerland), and navigate different rental systems. Many Basel employers actively support cross-border employees. Relocation agencies help with cross-border setup, permit applications, and housing search in border regions.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              What are typical rents in Basel for a 2.5-room apartment?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Basel rents are more moderate than Zurich/Geneva/Zug. Basel city center (Grossbasel, near SBB): CHF 1,900-2,600/month for 2.5 rooms. Gundeli: CHF 1,700-2,300/month. Kleinbasel: CHF 1,500-2,100/month. St. Johann (near Novartis): CHF 1,800-2,400/month. Suburban (Binningen, Allschwil): CHF 1,600-2,200/month. Plus Nebenkosten CHF 150-250. Cross-border significantly cheaper: Germany CHF 800-1,400, France CHF 700-1,300 for comparable apartments. 3.5-room apartments typically CHF 400-600 more per category.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              What documents do I need for a Basel rental application?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Required documents for Basel rentals: valid passport/ID, Swiss residence/work permit (or cross-border worker permit), employment contract, last 3 months salary slips, Betreibungsregisterauszug (debt collection certificate from Basel or current canton), previous landlord reference, completed application form. Contracts typically in German; some landlords accept English for international professionals. Professional dossier preparation improves success rates. Cross-border applicants may need additional documentation proving work authorization and German/French rental references.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Are temporary furnished apartments common in Basel?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Yes, furnished temporary housing is readily available in Basel due to pharma industry short-term assignments and international professionals. Corporate apartments and serviced housing cost CHF 1,800-3,500/month depending on size and location. Many located near Novartis/Roche campuses or central Basel. Agencies coordinate temporary housing during 4-8 week permanent search. Cross-border temporary options (Weil am Rhein, Saint-Louis) available at CHF 1,200-2,500/month as lower-cost alternatives while searching for permanent Swiss or cross-border housing.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Parent Link -->
+  <section class="py-8 bg-white border-t border-gray-200">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <a href="/services/housing" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Housing Services (All Switzerland)
+        </a>
+        
+        <div class="mt-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-3">Explore Other Cities:</h3>
+          <div class="flex flex-wrap gap-3">
+            {siblingCities.map((city) => (
+              <a
+                href={`/services/housing/${city.slug}`}
+                class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-primary-50 hover:text-primary-700 transition-colors"
+              >
+                {city.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="py-16 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-2 text-center">Trusted Basel Housing Partners</h2>
+        <p class="text-gray-600 text-center mb-8">Expert agencies with Basel and cross-border housing expertise</p>
+
+        <div class="space-y-8">
+          <!-- Prime Relocation - Preferred Partner -->
+          <div class="bg-gradient-to-br from-primary-50 via-white to-red-50 border-2 border-primary-200 rounded-2xl p-8">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-2xl font-bold text-gray-900">Prime Relocation</h3>
+              <span class="px-3 py-1 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full text-xs font-bold uppercase tracking-wide">
+                🏆 Preferred Partner
+              </span>
+            </div>
+            
+            <div class="flex items-center gap-2 mb-4">
+              <div class="flex text-yellow-500">
+                ★★★★★
+              </div>
+              <span class="text-gray-600 text-sm">4.8 / 5 • 53 reviews</span>
+            </div>
+            
+            <p class="text-gray-700 text-lg mb-6">
+              <strong>Comprehensive Basel housing support</strong> including apartments in Gundeli, St. Johann, Kleinbasel, and surrounding areas. Prime Relocation provides cross-border guidance for France and Germany options, pharma-focused relocation services, and expert navigation of Basel's tri-national housing landscape.
+            </p>
+            
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🏠 Basel City & Suburbs</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🌍 Cross-Border Options</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">💊 Pharma Specialists</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🚉 Transport Access</span>
+            </div>
+            
+            <button 
+              onclick="universalOpenModal({page: 'housing_basel_partner', service: 'housing'})"
+              class="inline-flex items-center justify-center bg-gradient-to-r from-primary-600 to-primary-700 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105"
+            >
+              Get a Free Consultation with our Preferred Partner
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </button>
+            <p class="text-xs text-gray-500 mt-3">Our relocation partners work with us and provide free consultations</p>
+          </div>
+
+          <!-- Other Housing Specialists -->
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Other Trusted Basel Specialists</h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Connectiv Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">5.0 / 5 • 5 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Basel market expertise with pharma industry focus and cross-border housing support</p>
+            </div>
+            
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Auris Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">4.8 / 5 • 98 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Comprehensive relocation services helping expats find homes in Basel region</p>
+            </div>
+          </div>
+
+          <!-- Browse All Agencies Button -->
+          <div class="mt-8 text-center">
+            <a
+              href="/companies?service=housing"
+              class="inline-flex items-center px-6 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-semibold hover:border-primary-600 hover:text-primary-700 hover:shadow-md transition-all duration-300"
+            >
+              Browse All Agencies for Housing Services
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Disclaimer Before Final CTA -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer />
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-transparent"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          Ready to Find Your New Home in Basel?
+        </h2>
+        <p class="text-xl text-primary-100 mb-8 leading-relaxed">
+          Get expert support for Basel housing and cross-border options. Our trusted agencies provide comprehensive relocation services for pharma professionals and expat families.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onclick="universalOpenModal({page: 'housing_basel_final', service: 'housing'})"
+            class="px-10 py-5 bg-white text-primary-700 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl"
+          >
+            Book Free Consultation
+          </button>
+          <a
+            href="/services/housing"
+            class="px-10 py-5 bg-white/10 backdrop-blur-sm text-white border-2 border-white rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
+          >
+            View All Switzerland
+          </a>
+        </div>
+        <p class="text-sm text-primary-100 mt-6">
+          ✓ Basel city & cross-border  •  ✓ Pharma industry expertise  •  ✓ France & Germany options
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div style="display:none;" data-ai-summary>
+    Housing services in Basel, Switzerland. Compare relocation agencies and find apartments in Basel including Gundeli/Gundeldingen, St. Johann, Kleinbasel, Grossbasel, Binningen, Allschwil, plus cross-border options in France (Saint-Louis, Huningue) and Germany (Weil am Rhein, Lörrach). Pharma industry demand from Novartis, Roche, Lonza drives housing market. Average rent Basel city CHF 1,800-2,400/month for 2.5 rooms, Gundeli CHF 1,700-2,300, Kleinbasel CHF 1,500-2,100, St. Johann (Novartis campus) CHF 1,800-2,400, suburbs CHF 1,600-2,200 plus Nebenkosten. Cross-border significantly cheaper: Germany CHF 800-1,400, France CHF 700-1,300 with 15-30 minute commutes. Required documents: Betreibungsregisterauszug, employment contract, salary slips, residence/work permit. Contracts typically in German. Gundeli popular with young professionals near SBB station. St. Johann international community near pharma campuses. Kleinbasel multicultural with lower rents. Cross-border commuting common with excellent train/tram connections. Cross-border worker permits (Grenzgänger) required. Tax typically in Switzerland. Temporary furnished housing CHF 1,800-3,500/month Basel, CHF 1,200-2,500 cross-border. Professional dossier preparation essential. Pharma corporate relocations common. Search time 4-8 weeks with agency support. Cross-border guidance critical for cost-benefit analysis. Tri-national location unique housing dynamics. Prime Relocation preferred partner with Basel and cross-border expertise.
+  </div>
+</Layout>
+
