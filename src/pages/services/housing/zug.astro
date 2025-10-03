@@ -1,0 +1,861 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SchemaMarkup from '../../../components/common/SchemaMarkup.astro';
+import PlatformDisclaimer from '../../../components/common/PlatformDisclaimer.astro';
+import ServiceHero from '../../../components/services/ServiceHero.astro';
+
+const title = "Housing in Zug | Compare Relocation Agencies | ReloFinder";
+const description = "Compare housing providers in Zug. ReloFinder helps you evaluate agencies and connect with trusted partners like Prime Relocation, based in Zug.";
+const canonicalURL = "https://relofinder.ch/services/housing/zug";
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://relofinder.ch"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://relofinder.ch/services"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Housing",
+      "item": "https://relofinder.ch/services/housing"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Zug",
+      "item": "https://relofinder.ch/services/housing/zug"
+    }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Housing Services in Zug",
+  "description": "Compare housing providers and relocation agencies for apartment search in Zug, Switzerland including lakeside properties and executive housing",
+  "provider": {
+    "@type": "Organization",
+    "name": "ReloFinder",
+    "url": "https://relofinder.ch"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Zug",
+    "containedIn": {
+      "@type": "Country",
+      "name": "Switzerland"
+    }
+  },
+  "serviceType": "Housing Search Services"
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How competitive is the Zug housing market for expats?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zug's housing market is extremely competitive with vacancy rates often below 0.5%. The canton attracts executives, crypto professionals, and international families due to low taxes and excellent quality of life. Lakeside apartments in Zug city and Walchwil (Gold Coast of Zug) are especially competitive, often renting within 2-3 days of listing with multiple qualified applicants. Using a relocation agency with off-market access significantly improves success rates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Zug neighborhoods are best for families?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Best family neighborhoods in Zug: Baar (excellent international schools, family-friendly, great train connections), Cham (lakeside, quieter, still international), Rotkreuz (growing business hub, more housing availability, family-oriented), and parts of Zug city near schools. Walchwil offers premium family living with lake views but at higher prices. Consider proximity to international schools like the International School of Zug and Luzern (ISZL) when choosing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are average rents for apartments in Zug city?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zug city apartments are among Switzerland's most expensive. Average rents: 2.5-room apartments CHF 2,200-3,000/month, 3.5-room CHF 2,800-4,200/month, 4.5-room CHF 3,500-5,500/month plus Nebenkosten (CHF 150-300). Lakeside properties and Gold Coast of Zug (Walchwil) command premium prices of CHF 4,000-7,000+ for larger apartments. Baar and Rotkreuz offer slightly more moderate pricing at CHF 1,900-3,500 for 2.5-3.5 rooms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What documents do landlords in Zug typically request?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Required documents for Zug rentals: valid passport/ID, Swiss residence/work permit, employment contract (permanent contracts strongly preferred), last 3 months salary slips, Betreibungsregisterauszug (debt collection certificate) from Zug or current canton, employer reference letter, completed rental application form, and sometimes proof of assets for premium properties. Zug landlords are particularly selective given high demand. Professional dossier preparation through agencies improves approval rates significantly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is temporary housing common in Zug?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, temporary furnished housing is very common in Zug due to the large corporate and expat community. Executive apartments and serviced housing are readily available at CHF 2,500-6,000/month depending on size and location. Many international companies use temporary housing for relocating employees during the 4-8 week permanent housing search. Agencies can coordinate both temporary and permanent housing to ensure smooth transition without gaps."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Prime Relocation help me find a home in Zug quickly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Prime Relocation is headquartered in Zug and specializes in the local housing market. They provide off-market access to apartments before public listing, professional dossier preparation, landlord connections, and comprehensive support throughout the search and move-in process. Their local expertise and relationships with landlords in Zug city, Baar, Cham, Walchwil, and Rotkreuz significantly reduce search time from 3-6 months (solo) to 4-8 weeks with agency support."
+      }
+    }
+  ]
+};
+
+const siblingCities = [
+  { name: 'Zurich', slug: 'zurich' },
+  { name: 'Geneva', slug: 'geneva' },
+  { name: 'Basel', slug: 'basel' },
+  { name: 'Lausanne', slug: 'lausanne' }
+];
+---
+
+<Layout title={title} description={description}>
+  <SchemaMarkup schema={breadcrumbSchema} />
+  <SchemaMarkup schema={serviceSchema} />
+  <SchemaMarkup schema={faqSchema} />
+
+  <ServiceHero
+    title="Find an Apartment in Zug"
+    subtitle="Housing Help for Expats"
+    description="Zug is one of Switzerland's most desirable places to live, but with extremely low vacancy rates and premium rents, finding housing can be challenging. ReloFinder helps you compare relocation providers in Zug and connect with the right agency. We don't deliver the services ourselves — we connect you to the ideal partner."
+    badge="Housing in Zug"
+  />
+
+  <!-- Platform Disclaimer -->
+  <section class="py-8 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer compact={true} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Primary CTA after Hero -->
+  <section class="py-12 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Need Help Finding Your Zug Home?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get exclusive insider access to Zug's premium lakeside apartments and executive housing
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'housing_zug', service: 'housing'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Housing in Zug Is Challenging -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            The Challenge
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Why Housing in Zug Is <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Challenging</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Zug's low taxes, high quality of life, and international business hub status create intense housing demand
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Extremely Low Vacancy Rates</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Zug consistently has one of Switzerland's lowest vacancy rates, often below 0.5%. The canton's attractive tax rates and excellent quality of life draw executives, crypto professionals, and international families. Lakeside properties in Zug city and Walchwil (the "Gold Coast of Zug") are especially competitive, with apartments renting within days and premium properties often pre-leased through networks.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Corporate & Executive Competition</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Zug hosts numerous multinational headquarters, crypto companies, and financial services firms. Corporate relocations create constant demand for premium housing, with companies often securing apartments for incoming executives months in advance. Individual applicants compete against corporate budgets and pre-established landlord relationships. Expect 5-20 applications for desirable properties within 48 hours of listing.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Premium Pricing & High Standards</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Zug city apartments are among Switzerland's most expensive, with lakeside properties commanding CHF 3,000-7,000/month for 3-4 rooms. Landlords expect impeccable documentation: permanent employment contracts, strong references, clean Betreibungsregisterauszug, and often proof of liquid assets. Deposits typically equal 3 months' rent. The market favors financially strong, stable tenants with long-term commitment potential.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Off-Market Properties Dominate</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Many premium Zug apartments never appear on public platforms like Homegate or ImmoScout24. Landlords prefer filling vacancies through relocation agencies, word-of-mouth, and corporate channels to ensure quality tenants. Without agency connections, you'll miss 30-50% of available properties, especially in sought-after areas like lakeside Zug city, Walchwil, and newer developments in Baar. Timing and insider access are critical.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Fast Application Required</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Zug apartments rent quickly. You must view properties within 24 hours of listing and submit complete dossiers same-day or next-day to remain competitive. Landlords rarely wait for incomplete applications. Prepare all documents (Betreibungsregisterauszug, employer references, financial statements) before starting your search. Hesitation or slow response means losing to competitors with ready-to-go applications. Professional agency support streamlines this process.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-12 p-8 bg-gradient-to-br from-primary-50 via-white to-red-50 rounded-2xl border-2 border-primary-100">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <svg class="w-8 h-8 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-4">
+              <h4 class="text-xl font-bold text-gray-900 mb-2">Expert Insight</h4>
+              <p class="text-gray-700 leading-relaxed">
+                <strong>Without agency support, Zug apartment searches typically take 4-8 months</strong> with many expats settling for suboptimal locations or temporary housing long-term. Relocation agencies with Zug market expertise and off-market access reduce search time to 4-8 weeks and secure better properties through landlord relationships, corporate networks, and professional application presentation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Agencies Help -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Our Solution
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            How Agencies <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Help in Zug</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            ReloFinder connects you with agencies specializing in Zug's premium housing market
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  1
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Off-Market & Insider Access</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Agencies connect you with departing executives and corporate housing before properties hit public platforms. This includes lakeside apartments in Zug city, premium hillside properties in Walchwil (Gold Coast of Zug), family homes in Baar, and new developments in Rotkreuz. Off-market access eliminates competition from 10-20 public applicants and gives you first-look advantage on the best properties.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Lakeside Properties</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Gold Coast Zug</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Corporate Networks</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  2
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Application Dossier & Landlord Presentation</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Professional dossier preparation with all required Zug documents: Betreibungsregisterauszug, permanent employment contract, salary statements, financial references, employer letter, and previous landlord recommendations. Agencies present your application with credibility and context, positioning you as an ideal long-term tenant. They navigate Zug landlord preferences (stability, financial strength, professional background) and significantly improve approval rates in competitive situations.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Complete Dossier</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Landlord Relations</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Executive Profile</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  3
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Lease Review & Negotiation</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Review Zug lease contracts for fair terms, clarify Nebenkosten calculations, and negotiate when possible. Arrange 3-month deposit in blocked account (CHF 6,000-12,000+ for premium properties). Attend move-in handover (Übergabeprotokoll) to document defects and protect your deposit. Agencies ensure you understand Swiss tenant rights, notice periods, and Zug-specific regulations including cantonal rent control mechanisms.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Contract Review</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Negotiation Support</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Deposit Protection</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  4
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Executive Temporary Housing</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Furnished executive apartments and serviced housing in Zug (CHF 2,500-6,000/month) while you search for permanent housing. Locations in Zug city center, lakeside properties, or business-friendly Rotkreuz. Agencies coordinate overlap between temporary and permanent housing, ensuring smooth transition. Many corporate relocations include temporary housing allowances, which agencies help maximize. Avoid expensive hotel stays during the 4-8 week search period.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Executive Housing</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Serviced Apartments</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Corporate Packages</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA after How We Help -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Ready to Find Your Zug Apartment?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get insider access to lakeside properties and executive housing with expert agency support
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'housing_zug_mid', service: 'housing'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Neighborhoods Section -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Neighborhoods
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Zug <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Neighborhoods</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Popular areas for expats, executives, and international families
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6">
+              <h3 class="text-2xl font-bold text-white mb-2">City of Zug</h3>
+              <p class="text-blue-100">Lakeside Living, City Center</p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-600 leading-relaxed mb-4">
+                Premium lakeside apartments with excellent amenities and international community. CHF 2,500-5,500/month for 2.5-4.5 rooms. Walking distance to train station, old town, and lake. Highly competitive market with corporate demand. Excellent restaurants, cultural life, and expat networks. Perfect for professionals and couples seeking urban lakeside lifestyle.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">🏖️ Lake Access</span>
+                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">🏙️ Urban Living</span>
+                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">🌍 International</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gradient-to-r from-yellow-500 to-yellow-600 p-6">
+              <h3 class="text-2xl font-bold text-white mb-2">Walchwil (Gold Coast)</h3>
+              <p class="text-yellow-100">Hillside Premium Properties</p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-600 leading-relaxed mb-4">
+                The "Gold Coast of Zug" with stunning lake views from hillside properties. CHF 3,500-7,000+/month for 3.5-5.5 room houses and apartments. Premium residential area with privacy, nature, and exclusivity. Popular with executives and families seeking luxury living. Limited availability with properties rarely publicly listed. Requires car for daily commuting to Zug city.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-yellow-50 text-yellow-700 rounded-full text-sm">⛰️ Lake Views</span>
+                <span class="px-3 py-1 bg-yellow-50 text-yellow-700 rounded-full text-sm">🏡 Luxury Homes</span>
+                <span class="px-3 py-1 bg-yellow-50 text-yellow-700 rounded-full text-sm">🌲 Nature</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Baar</h4>
+            <p class="text-gray-600 text-sm">Family-friendly, excellent international schools (ISZL), great train connections. CHF 2,000-3,800 for 2.5-4.5 rooms.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Cham</h4>
+            <p class="text-gray-600 text-sm">Lakeside, quieter lifestyle, still very international. CHF 2,000-3,500 for 2.5-4.5 rooms. Popular with families.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Rotkreuz</h4>
+            <p class="text-gray-600 text-sm">Growing business hub, more availability, modern apartments. CHF 1,900-3,200 for 2.5-4.5 rooms. Family-oriented.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Steinhausen</h4>
+            <p class="text-gray-600 text-sm">Residential, close to Zug city, good schools. CHF 1,900-3,400 for 2.5-4.5 rooms. Mix of families and professionals.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step-by-Step Process -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Step-by-Step Guide
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Your Zug Housing <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Process</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Follow this proven process for finding an apartment in Zug
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              1
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Define Needs & Budget</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Work with agency to define budget (CHF 2,000-7,000 typical range depending on size/location), preferred areas (lakefront Zug city vs. hillside Walchwil vs. family-friendly Baar), lifestyle preferences (executive urban living vs. suburban family home), proximity to workplace/schools, and must-haves. Agency assesses your profile strength and prepares competitive strategy for Zug's premium market.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1 consultation call, 1-2 hours</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              2
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Off-Market Shortlist & Viewings</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Receive off-market leads from departing executives, corporate relocations, and landlord networks before public listing. Schedule viewings within 24-48 hours. Be prepared to apply same-day for premium properties in Zug city, Walchwil, or Baar. Agency coordinates logistics, provides neighborhood insights, and prepares you with landlord background and property history.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 3-8 weeks of active searching and viewings</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              3
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Dossier Prep & Application</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Complete executive-level dossier with ID, residence permit, permanent employment contract, 3 salary slips, Betreibungsregisterauszug (debt register from Zug or current canton), employer reference letter, financial statements, and previous landlord recommendations. Agency presents application professionally with context, highlighting your stability and suitability. Follow-up and communication handled expertly.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Same-day or next-day application for competitive properties</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold border-4 border-white">
+              4
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Lease Review, Negotiation & Handover</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Review lease contract for fair terms, clarify all Nebenkosten (utilities, building fees), understand rent adjustment clauses, and negotiate when possible. Arrange 3-month deposit in blocked bank account (CHF 6,000-15,000 for premium properties). Attend move-in handover (Übergabeprotokoll) with agency to meticulously document every defect, protecting your substantial deposit. Receive keys and move-in checklist.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1-2 weeks from application approval to handover</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              5
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Municipality Registration & Settling-In</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Register with Zug municipality (Einwohnerkontrolle) within 14 days of move-in. Set up utilities, internet, Swiss health insurance, and cantonal services. Connect with expat communities, international clubs, and school networks. Agency provides ongoing support for questions about Swiss living, Zug-specific regulations, tax optimization, and community integration.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Complete within 14 days of move-in</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center">
+          <button
+            onclick="universalOpenModal({page: 'housing_zug_steps', service: 'housing'})"
+            class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            Book Your Free Housing Consultation
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Facts -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Essential Information
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Key Facts for <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Zug Housing</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Vacancy Rate</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Often <strong><0.5%</strong>, one of the lowest in Switzerland
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Zug City Rents</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>CHF 2,500-5,500/month</strong> for 2.5-4.5 rooms + Nebenkosten
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Gold Coast Premium</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Walchwil: <strong>CHF 3,500-7,000+</strong> for hillside lake view properties
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">International Community</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>Large expat presence</strong> driven by corporate HQs and tax advantages
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Documentation</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>Betreibungsregisterauszug</strong> and employer references essential
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Temporary Housing</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>Executive apartments</strong> readily available at CHF 2,500-6,000/month
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            FAQ
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Frequently Asked <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Questions</span>
+          </h2>
+        </div>
+
+        <div class="space-y-6">
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              How competitive is the Zug housing market for expats?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Zug's housing market is extremely competitive with vacancy rates often below 0.5%. The canton attracts executives, crypto professionals, and international families due to low taxes and excellent quality of life. Lakeside apartments in Zug city and Walchwil (Gold Coast of Zug) are especially competitive, often renting within 2-3 days of listing with multiple qualified applicants. Using a relocation agency with off-market access significantly improves success rates.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Which Zug neighborhoods are best for families?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Best family neighborhoods in Zug: Baar (excellent international schools, family-friendly, great train connections), Cham (lakeside, quieter, still international), Rotkreuz (growing business hub, more housing availability, family-oriented), and parts of Zug city near schools. Walchwil offers premium family living with lake views but at higher prices. Consider proximity to international schools like the International School of Zug and Luzern (ISZL) when choosing.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              What are average rents for apartments in Zug city?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Zug city apartments are among Switzerland's most expensive. Average rents: 2.5-room apartments CHF 2,200-3,000/month, 3.5-room CHF 2,800-4,200/month, 4.5-room CHF 3,500-5,500/month plus Nebenkosten (CHF 150-300). Lakeside properties and Gold Coast of Zug (Walchwil) command premium prices of CHF 4,000-7,000+ for larger apartments. Baar and Rotkreuz offer slightly more moderate pricing at CHF 1,900-3,500 for 2.5-3.5 rooms.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              What documents do landlords in Zug typically request?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Required documents for Zug rentals: valid passport/ID, Swiss residence/work permit, employment contract (permanent contracts strongly preferred), last 3 months salary slips, Betreibungsregisterauszug (debt collection certificate) from Zug or current canton, employer reference letter, completed rental application form, and sometimes proof of assets for premium properties. Zug landlords are particularly selective given high demand. Professional dossier preparation through agencies improves approval rates significantly.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Is temporary housing common in Zug?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Yes, temporary furnished housing is very common in Zug due to the large corporate and expat community. Executive apartments and serviced housing are readily available at CHF 2,500-6,000/month depending on size and location. Many international companies use temporary housing for relocating employees during the 4-8 week permanent housing search. Agencies can coordinate both temporary and permanent housing to ensure smooth transition without gaps.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Can Prime Relocation help me find a home in Zug quickly?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Yes, Prime Relocation is headquartered in Zug and specializes in the local housing market. They provide off-market access to apartments before public listing, professional dossier preparation, landlord connections, and comprehensive support throughout the search and move-in process. Their local expertise and relationships with landlords in Zug city, Baar, Cham, Walchwil, and Rotkreuz significantly reduce search time from 3-6 months (solo) to 4-8 weeks with agency support.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Parent Link -->
+  <section class="py-8 bg-white border-t border-gray-200">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <a href="/services/housing" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Housing Services (All Switzerland)
+        </a>
+        
+        <div class="mt-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-3">Explore Other Cities:</h3>
+          <div class="flex flex-wrap gap-3">
+            {siblingCities.map((city) => (
+              <a
+                href={`/services/housing/${city.slug}`}
+                class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-primary-50 hover:text-primary-700 transition-colors"
+              >
+                {city.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="py-16 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-2 text-center">Trusted Zug Housing Partners</h2>
+        <p class="text-gray-600 text-center mb-8">Expert agencies with off-market access to Zug apartments</p>
+
+        <div class="space-y-8">
+          <!-- Prime Relocation - Preferred Partner -->
+          <div class="bg-gradient-to-br from-primary-50 via-white to-red-50 border-2 border-primary-200 rounded-2xl p-8">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-2xl font-bold text-gray-900">Prime Relocation</h3>
+              <span class="px-3 py-1 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full text-xs font-bold uppercase tracking-wide">
+                🏆 Preferred Partner
+              </span>
+            </div>
+            
+            <div class="flex items-center gap-2 mb-4">
+              <div class="flex text-yellow-500">
+                ★★★★★
+              </div>
+              <span class="text-gray-600 text-sm">4.8 / 5 • 53 reviews</span>
+            </div>
+            
+            <p class="text-gray-700 text-lg mb-6">
+              <strong><a href="https://primerelocation.ch" target="_blank" rel="noopener" class="text-primary-700 hover:text-primary-800 underline">Prime Relocation</a>, based in Zug, is our leading preferred partner to help you find your dream home in no time.</strong> They provide exclusive off-market access to lakeside apartments in Zug city, premium properties in Walchwil (Gold Coast of Zug), and family homes in Baar, Cham, and Rotkreuz with comprehensive executive relocation support.
+            </p>
+            
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🏠 Off-Market Apartments</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🏖️ Lakeside Properties</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">⛰️ Gold Coast Zug</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">👔 Executive Housing</span>
+            </div>
+            
+            <button 
+              onclick="universalOpenModal({page: 'housing_zug_partner', service: 'housing'})"
+              class="inline-flex items-center justify-center bg-gradient-to-r from-primary-600 to-primary-700 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105"
+            >
+              Get a Free Consultation with our Preferred Partner
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </button>
+            <p class="text-xs text-gray-500 mt-3">Our relocation partners work with us and provide free consultations</p>
+          </div>
+
+          <!-- Other Housing Specialists -->
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Other Trusted Zug Specialists</h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Connectiv Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">5.0 / 5 • 5 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Specialized executive relocation support with strong Zug market presence and corporate connections</p>
+            </div>
+            
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Anchor Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">4.9 / 5 • 27 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Comprehensive housing services helping international families find homes in Zug canton</p>
+            </div>
+          </div>
+
+          <!-- Browse All Agencies Button -->
+          <div class="mt-8 text-center">
+            <a
+              href="/companies?service=housing"
+              class="inline-flex items-center px-6 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-semibold hover:border-primary-600 hover:text-primary-700 hover:shadow-md transition-all duration-300"
+            >
+              Browse All Agencies for Housing Services
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Disclaimer Before Final CTA -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer />
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-transparent"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          Ready to Find Your New Home in Zug?
+        </h2>
+        <p class="text-xl text-primary-100 mb-8 leading-relaxed">
+          Get expert support finding your perfect lakeside apartment, executive housing, or family home in Zug. Our trusted agencies provide off-market access and professional relocation support.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onclick="universalOpenModal({page: 'housing_zug_final', service: 'housing'})"
+            class="px-10 py-5 bg-white text-primary-700 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl"
+          >
+            Book Free Consultation
+          </button>
+          <a
+            href="/services/housing"
+            class="px-10 py-5 bg-white/10 backdrop-blur-sm text-white border-2 border-white rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
+          >
+            View All Switzerland
+          </a>
+        </div>
+        <p class="text-sm text-primary-100 mt-6">
+          ✓ Lakeside & Gold Coast access  •  ✓ Executive housing specialists  •  ✓ Prime Relocation based in Zug
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div style="display:none;" data-ai-summary>
+    Housing services in Zug, Switzerland. Compare relocation agencies and find apartments in Zug including lakeside Zug city, Walchwil (Gold Coast of Zug), Baar, Cham, Rotkreuz, Steinhausen. Vacancy rates below 0.5%. Zug city rents CHF 2,500-5,500/month for 2.5-4.5 rooms plus Nebenkosten. Gold Coast of Zug (Walchwil) premium CHF 3,500-7,000+ for hillside lake view properties. Baar family-friendly CHF 2,000-3,800. Cham lakeside CHF 2,000-3,500. Rotkreuz growing business hub CHF 1,900-3,200. Large international expat community driven by corporate headquarters and tax advantages. Required documents: Betreibungsregisterauszug, permanent employment contract, salary slips, employer reference. Executive temporary housing common CHF 2,500-6,000/month. Off-market access through relocation agencies reduces search time from 3-6 months to 4-8 weeks. Professional dossier preparation critical for landlord approval. Corporate competition high for lakeside properties. Prime Relocation headquartered in Zug, preferred partner with local market expertise. Lease review, handover support, deposit protection (3 months rent). Municipality registration required within 14 days. International School of Zug and Luzern (ISZL) popular for families. Fast application required (same-day to next-day).
+  </div>
+</Layout>
+
