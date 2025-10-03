@@ -1,0 +1,790 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SchemaMarkup from '../../../components/common/SchemaMarkup.astro';
+import PlatformDisclaimer from '../../../components/common/PlatformDisclaimer.astro';
+import ServiceHero from '../../../components/services/ServiceHero.astro';
+
+const title = "Housing in Zurich | Compare Relocation Agencies | ReloFinder";
+const description = "Compare housing providers in Zurich. ReloFinder helps you evaluate agencies and find apartments on the Gold Coast, Silver Coast, Horgen & beyond.";
+const canonicalURL = "https://relofinder.ch/services/housing/zurich";
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://relofinder.ch"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://relofinder.ch/services"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Housing",
+      "item": "https://relofinder.ch/services/housing"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Zurich",
+      "item": "https://relofinder.ch/services/housing/zurich"
+    }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Housing Services in Zurich",
+  "description": "Compare housing providers and relocation agencies for apartment search in Zurich, Switzerland including Gold Coast and Silver Coast areas",
+  "provider": {
+    "@type": "Organization",
+    "name": "ReloFinder",
+    "url": "https://relofinder.ch"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Zurich",
+    "containedIn": {
+      "@type": "Country",
+      "name": "Switzerland"
+    }
+  },
+  "serviceType": "Housing Search Services"
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How hard is it to find an apartment in Zurich?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Finding an apartment in Zurich is extremely competitive with vacancy rates often under 0.5%. Apartments receive multiple applications within 24 hours of listing. The average search takes 2-4 months without agency support. Using a relocation agency gives you access to off-market listings from expats leaving Switzerland, significantly reducing search time to 4-8 weeks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between Zurich's Gold Coast and Silver Coast?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Gold Coast (Goldküste) is on the right side of Lake Zurich with sunny south-facing exposure, including Küsnacht, Meilen, and Zollikon. Premium rents and high demand make it very competitive. The Silver Coast (Silberküste) is on the left side with towns like Thalwil, Horgen, and Rüschlikon. It's more family-friendly with slightly better availability and more moderate pricing, though still expensive by international standards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are average rents in Küsnacht, Horgen, and Thalwil?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Küsnacht (Gold Coast): 2.5-room apartments CHF 2,400-3,200/month, 3.5-room CHF 3,200-4,500. Horgen (Silver Coast): 2.5-room CHF 1,900-2,500/month, 3.5-room CHF 2,500-3,500. Thalwil (Silver Coast): 2.5-room CHF 2,000-2,600/month, 3.5-room CHF 2,600-3,600. All require additional Nebenkosten (utilities, building fees) of CHF 150-300/month."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Zurich neighborhoods are best for expats?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Top expat neighborhoods: Wiedikon (family-friendly, central, international community), Enge (lake access, premium apartments near CBD, walkable), Oerlikon (new builds, transport hub, more availability), Seefeld (highly desirable, limited supply, lakeside living), Küsnacht/Zollikon (Gold Coast, international schools nearby), and Horgen/Thalwil (Silver Coast, family-oriented with gardens). Consider proximity to your workplace, international schools, and transport connections."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What documents do I need for a Zurich rental application?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Required documents for Zurich: valid ID/passport, Swiss residence/work permit, employment contract, last 3 salary slips, debt collection certificate (Betreibungsregisterauszug) from your current canton, previous landlord reference if available, completed application form, and sometimes a credit check. Zurich landlords are particularly strict about documentation completeness. Having all documents ready in a professional dossier significantly improves application success."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are Zurich apartments usually furnished?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, standard Zurich rentals are unfurnished and often come without light fixtures, kitchen appliances (except sometimes a stove), or even kitchen cabinets in older buildings. You'll need to budget CHF 5,000-15,000 for furnishing a typical apartment. Furnished apartments exist but are rare, more expensive (30-50% premium), and typically have shorter lease terms. Temporary furnished housing is available during your search through corporate housing providers."
+      }
+    }
+  ]
+};
+
+const siblingCities = [
+  { name: 'Geneva', slug: 'geneva' },
+  { name: 'Zug', slug: 'zug' },
+  { name: 'Basel', slug: 'basel' },
+  { name: 'Lausanne', slug: 'lausanne' }
+];
+---
+
+<Layout title={title} description={description}>
+  <SchemaMarkup schema={breadcrumbSchema} />
+  <SchemaMarkup schema={serviceSchema} />
+  <SchemaMarkup schema={faqSchema} />
+
+  <ServiceHero
+    title="Find an Apartment in Zurich"
+    subtitle="Housing Help for Expats"
+    description="Zurich has Switzerland's most competitive housing market. ReloFinder helps you compare relocation providers and choose the right agency for your search in Zurich. We don't deliver the services ourselves — we connect you to the ideal partner."
+    badge="Housing in Zurich"
+  />
+
+  <!-- Platform Disclaimer -->
+  <section class="py-8 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer compact={true} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Primary CTA after Hero -->
+  <section class="py-12 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Need Help Finding Your Zurich Home?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get exclusive insider access to off-market flats on the Gold Coast, Silver Coast, and throughout Zurich
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'housing_zurich', service: 'housing'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Housing in Zurich Is Challenging -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            The Challenge
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Why Housing in Zurich Is <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Challenging</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Zurich has one of Europe's most competitive rental markets with unique challenges for expats
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Vacancy Rates Under 0.5%</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Zurich consistently has the lowest vacancy rates in Switzerland, often under 0.5%. Apartments receive 10-30 applications within 24 hours of listing. Lakeside districts like the Gold Coast (Küsnacht, Meilen, Zollikon) and desirable neighborhoods (Seefeld, Enge) are even more competitive with wait lists common for quality properties.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Multiple Applications Within 24 Hours</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Good apartments list and rent within one day. You must be ready to view immediately, apply same-day, and compete with 10-30 other qualified applicants. Landlords prioritize Swiss nationals, long-term employment contracts, and perfect documentation. Hesitation means losing the apartment to someone with a complete dossier ready to submit.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Strict Documentation Requirements</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Zurich landlords require: Betreibungsregisterauszug (debt collection certificate), Swiss work contract, last 3 salary slips, residence permit, ID, and often previous landlord references. Missing any document disqualifies your application. The Betreibungsregisterauszug must be obtained from your current canton and is unfamiliar to new arrivals. Professional dossier preparation is essential.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Unfurnished Rentals Without Fixtures</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Standard Zurich rentals are unfurnished, often without light fixtures, kitchen appliances (except stove), or kitchen cabinets in older buildings. Budget CHF 5,000-15,000 for furnishing. Furnished apartments are rare, expensive (30-50% premium), and have shorter leases. Temporary corporate housing fills the gap but costs CHF 3,000-5,000/month for a basic apartment.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Gold Coast vs Silver Coast Competition</h3>
+            <p class="text-gray-600 leading-relaxed">
+              The Gold Coast (Goldküste) - Küsnacht, Meilen, Zollikon - has sunny south-facing exposure and premium rents (CHF 2,400-4,500 for 2.5-3.5 rooms). Extremely competitive with long wait lists. The Silver Coast (Silberküste) - Horgen, Thalwil, Rüschlikon - is more family-friendly with slightly better availability (CHF 1,900-3,600) but still competitive. Both require insider connections for the best properties.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-12 p-8 bg-gradient-to-br from-primary-50 via-white to-red-50 rounded-2xl border-2 border-primary-100">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <svg class="w-8 h-8 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-4">
+              <h4 class="text-xl font-bold text-gray-900 mb-2">Expert Insight</h4>
+              <p class="text-gray-700 leading-relaxed">
+                <strong>Without agency support, Zurich apartment searches typically take 3-6 months</strong> with high frustration levels. Many expats settle for suboptimal locations or overpay for temporary housing. Relocation agencies with off-market access (apartments from departing expats) reduce search time to 4-8 weeks and secure better properties through landlord relationships and professional presentation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Agencies Help -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Our Solution
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            How Agencies <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Help in Zurich</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            ReloFinder connects you with agencies specializing in Zurich's competitive housing market
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  1
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Off-Market & Insider Access</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Agencies connect you with departing expats before apartments hit the public market. This includes Gold Coast properties in Küsnacht and Zollikon, Silver Coast homes in Horgen and Thalwil, and desirable city neighborhoods like Seefeld and Enge. Off-market access bypasses the 10-30 applicant competition, giving you first-look advantage before listings appear on Homegate or ImmoScout24.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Gold Coast Access</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Silver Coast Properties</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Expat Network</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  2
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Application Dossier & Landlord Presentation</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Professional dossier preparation with all required Zurich documents: Betreibungsregisterauszug, work contract, salary slips, residence permit, ID, and landlord references. Agencies present your application with context and credibility, significantly improving approval rates. They navigate Zurich landlord preferences and position you as an ideal tenant among the 10-30 competing applications.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Complete Dossier</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Landlord Relations</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Application Success</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  3
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Lease Review & Handover Support</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Review Zurich lease contracts for unfair terms, rent increases, and deposit requirements (typically 3 months rent in blocked account). Attend move-in handover (Übergabeprotokoll) to document every defect, protecting your deposit. Agencies ensure you understand Swiss tenant rights, Nebenkosten (utility costs), and cancellation procedures specific to Zurich canton regulations.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Contract Review</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Handover Protocol</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Deposit Protection</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  4
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Temporary Housing During Search</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Furnished temporary apartments in Zurich (CHF 2,500-5,000/month) while you search for permanent housing. Locations near transport hubs (Oerlikon, Altstetten) or short-term corporate housing in central districts. Agencies coordinate overlap between temporary and permanent housing, ensuring smooth transition and avoiding expensive hotel stays during the 4-8 week search period.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Furnished Options</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Central Locations</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Flexible Terms</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA after How We Help -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Ready to Find Your Zurich Apartment?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get insider access to Gold Coast and Silver Coast properties with expert agency support
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'housing_zurich_mid', service: 'housing'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+
+  <!-- Neighborhoods Section -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Neighborhoods
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Zurich <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Neighborhoods</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Popular areas for expats including the famous Gold Coast and Silver Coast
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gradient-to-r from-yellow-500 to-yellow-600 p-6">
+              <h3 class="text-2xl font-bold text-white mb-2">Gold Coast (Goldküste)</h3>
+              <p class="text-yellow-100">Küsnacht, Meilen, Zollikon</p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-600 leading-relaxed mb-4">
+                Right side of Lake Zurich with sunny south-facing exposure. Premium area with CHF 2,400-4,500/month for 2.5-3.5 room apartments. International schools nearby (Inter-Community School, Zurich International School). Extremely competitive with long wait lists for quality properties. Excellent for families seeking lakeside living.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-yellow-50 text-yellow-700 rounded-full text-sm">☀️ Sunny Exposure</span>
+                <span class="px-3 py-1 bg-yellow-50 text-yellow-700 rounded-full text-sm">🏫 International Schools</span>
+                <span class="px-3 py-1 bg-yellow-50 text-yellow-700 rounded-full text-sm">🏖️ Lake Access</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gradient-to-r from-gray-500 to-gray-600 p-6">
+              <h3 class="text-2xl font-bold text-white mb-2">Silver Coast (Silberküste)</h3>
+              <p class="text-gray-100">Horgen, Thalwil, Rüschlikon</p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-600 leading-relaxed mb-4">
+                Left side of Lake Zurich. More family-friendly with gardens and quieter atmosphere. CHF 1,900-3,600/month for 2.5-3.5 rooms. Slightly better availability than Gold Coast but still competitive. Good train connections to Zurich HB (15-25 minutes). Popular with families seeking space and lake proximity at more moderate prices.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">👨‍👩‍👧‍👦 Family-Friendly</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">🌳 Gardens</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">🚂 Transit Access</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Wiedikon</h4>
+            <p class="text-gray-600 text-sm">Family-friendly, central, international community. CHF 2,200-3,200 for 2.5-3.5 rooms.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Enge</h4>
+            <p class="text-gray-600 text-sm">Lake access, premium apartments near CBD, walkable. CHF 2,500-3,800 for 2.5-3.5 rooms.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Oerlikon</h4>
+            <p class="text-gray-600 text-sm">New builds, transport hub, more availability. CHF 1,900-2,800 for 2.5-3.5 rooms.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Seefeld</h4>
+            <p class="text-gray-600 text-sm">Highly desirable, limited supply, lakeside living. CHF 2,600-4,000 for 2.5-3.5 rooms.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step-by-Step Process -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Step-by-Step Guide
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Your Zurich Housing <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Process</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Follow this proven process for finding an apartment in Zurich
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              1
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Discovery Call: Define Criteria</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Work with agency to define budget (CHF 2,000-4,500 typical for 2.5-3.5 rooms), preferred districts (Gold Coast vs Silver Coast vs city), lake vs city preference, proximity to work/schools, and must-haves (balcony, parking, garden). Agency assesses your application strength and prepares strategy for Zurich's competitive market.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1 consultation call, 1-2 hours</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              2
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Shortlist & Fast Viewings</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Receive off-market leads and public listings matching your criteria. Schedule viewings within 24 hours of listing. Be ready to apply same-day for desirable properties on Gold Coast, Silver Coast, or Seefeld. Agency coordinates logistics and prepares you with neighborhood insights and landlord background.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 2-6 weeks of active searching and viewings</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              3
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Dossier Prep & Application</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Complete dossier with ID, residence permit, work contract, 3 salary slips, Betreibungsregisterauszug (debt register), and references. Agency presents application professionally to landlord, improving approval odds against 10-30 competing applicants. Follow-up and communication handled by agency.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Same-day application for hot properties</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              4
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Lease Negotiation & Handover</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Review lease contract for unfair terms, negotiate rent if possible, understand Nebenkosten costs, and arrange 3-month deposit in blocked account. Attend move-in handover (Übergabeprotokoll) with agency to document defects and protect deposit. Receive keys and move-in checklist.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1-2 weeks from application approval to handover</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              5
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Move-In & Municipality Registration</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Register with Zurich municipality (Kreisbüro) within 14 days of move-in. Set up utilities, internet, and insurance. Connect with neighborhood resources and expat communities. Agency provides ongoing support for questions about Swiss living, local services, and community integration.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Complete within 14 days of move-in</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center">
+          <button
+            onclick="universalOpenModal({page: 'housing_zurich_steps', service: 'housing'})"
+            class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            Book Your Free Housing Consultation
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Facts -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Essential Information
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Key Facts for <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Zurich Housing</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Vacancy Rates</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Often <strong>under 0.5%</strong>, one of the lowest in Europe
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Average Rent (2.5-room)</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>CHF 2,000-2,600/month</strong> + Nebenkosten CHF 150-250
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Gold Coast Premium</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Sunny exposure, <strong>CHF 2,400-4,500</strong> for lakeside properties
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Silver Coast Value</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Family-friendly, <strong>CHF 1,900-3,600</strong> with better availability
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Required Documents</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>Betreibungsregisterauszug</strong> mandatory for all applications
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Furnishing</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Most rentals <strong>unfurnished</strong>, often without light fixtures
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Parent Link -->
+  <section class="py-8 bg-white border-t border-gray-200">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <a href="/services/housing" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Housing Services (All Switzerland)
+        </a>
+        
+        <div class="mt-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-3">Explore Other Cities:</h3>
+          <div class="flex flex-wrap gap-3">
+            {siblingCities.map((city) => (
+              <a
+                href={`/services/housing/${city.slug}`}
+                class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-primary-50 hover:text-primary-700 transition-colors"
+              >
+                {city.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="py-16 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-2 text-center">Trusted Zurich Housing Partners</h2>
+        <p class="text-gray-600 text-center mb-8">Expert agencies with off-market access to Zurich apartments</p>
+
+        <div class="space-y-8">
+          <!-- Prime Relocation - Preferred Partner -->
+          <div class="bg-gradient-to-br from-primary-50 via-white to-red-50 border-2 border-primary-200 rounded-2xl p-8">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-2xl font-bold text-gray-900">Prime Relocation</h3>
+              <span class="px-3 py-1 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full text-xs font-bold uppercase tracking-wide">
+                🏆 Preferred Partner
+              </span>
+            </div>
+            
+            <div class="flex items-center gap-2 mb-4">
+              <div class="flex text-yellow-500">
+                ★★★★★
+              </div>
+              <span class="text-gray-600 text-sm">4.8 / 5 • 53 reviews</span>
+            </div>
+            
+            <p class="text-gray-700 text-lg mb-6">
+              <strong>Exclusive Gold Coast and Silver Coast access</strong> in Zurich. Prime Relocation provides expert home hunting support including off-market apartments in Küsnacht, Horgen, and throughout greater Zurich with comprehensive rental guidance for expats.
+            </p>
+            
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🏠 Off-Market Apartments</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">☀️ Gold Coast Access</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🏖️ Silver Coast Properties</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">📋 Complete Dossier Support</span>
+            </div>
+            
+            <button 
+              onclick="universalOpenModal({page: 'housing_zurich_partner', service: 'housing'})"
+              class="inline-flex items-center justify-center bg-gradient-to-r from-primary-600 to-primary-700 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105"
+            >
+              Get a Free Consultation with our Preferred Partner
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </button>
+            <p class="text-xs text-gray-500 mt-3">Our relocation partners work with us and provide free consultations</p>
+          </div>
+
+          <!-- Other Housing Specialists -->
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Other Trusted Zurich Specialists</h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Lodge Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">4.8 / 5 • 134 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Comprehensive housing services with 25+ years experience in Zurich rental markets</p>
+            </div>
+            
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Auris Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">4.8 / 5 • 98 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Expert housing specialists helping expats navigate Zurich's competitive rental market</p>
+            </div>
+          </div>
+
+          <!-- Browse All Agencies Button -->
+          <div class="mt-8 text-center">
+            <a
+              href="/companies?service=housing"
+              class="inline-flex items-center px-6 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-semibold hover:border-primary-600 hover:text-primary-700 hover:shadow-md transition-all duration-300"
+            >
+              Browse All Agencies for Housing Services
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Disclaimer Before Final CTA -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer />
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-transparent"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          Ready to Start Your Housing Search in Zurich?
+        </h2>
+        <p class="text-xl text-primary-100 mb-8 leading-relaxed">
+          Get expert support finding your perfect apartment on the Gold Coast, Silver Coast, or in Zurich city. Our trusted agencies provide off-market access and professional application support.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onclick="universalOpenModal({page: 'housing_zurich_final', service: 'housing'})"
+            class="px-10 py-5 bg-white text-primary-700 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl"
+          >
+            Book Free Consultation
+          </button>
+          <a
+            href="/services/housing"
+            class="px-10 py-5 bg-white/10 backdrop-blur-sm text-white border-2 border-white rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
+          >
+            View All Switzerland
+          </a>
+        </div>
+        <p class="text-sm text-primary-100 mt-6">
+          ✓ Gold Coast & Silver Coast access  •  ✓ Off-market apartments  •  ✓ Professional dossier support
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div style="display:none;" data-ai-summary>
+    Housing services in Zurich, Switzerland. Compare relocation agencies and find apartments in Zurich including Gold Coast (Goldküste: Küsnacht, Meilen, Zollikon) and Silver Coast (Silberküste: Horgen, Thalwil, Rüschlikon). Vacancy rates under 0.5%. Average rent 2.5-room CHF 2,000-2,600/month, 3.5-room CHF 2,600-3,600/month plus Nebenkosten. Gold Coast premium CHF 2,400-4,500 with sunny south-facing exposure. Silver Coast more family-friendly CHF 1,900-3,600 with better availability. Required documents: Betreibungsregisterauszug, work contract, salary slips, residence permit, ID. Most rentals unfurnished without light fixtures or kitchen appliances. Apartments receive 10-30 applications within 24 hours. Top expat neighborhoods: Wiedikon, Enge, Oerlikon, Seefeld, Küsnacht, Zollikon, Horgen, Thalwil. Off-market access through departing expats reduces search time from 3-6 months to 4-8 weeks. Professional dossier preparation and landlord presentation increases approval rates. Lease review, handover support (Übergabeprotokoll), deposit protection (3 months rent in blocked account). Temporary furnished housing CHF 2,500-5,000/month during search. Municipality registration required within 14 days of move-in. Prime Relocation preferred partner with Gold Coast and Silver Coast access.
+  </div>
+</Layout>
