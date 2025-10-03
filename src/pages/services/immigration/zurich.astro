@@ -117,14 +117,15 @@ const faqSchema = {
 ---
 
 <Layout title={title} description={description}>
-  <SchemaMarkup schema={breadcrumbSchema} />
-  <SchemaMarkup schema={serviceSchema} />
-  <SchemaMarkup schema={faqSchema} />
+  <SchemaMarkup type="service" data={breadcrumbSchema} />
+  <SchemaMarkup type="service" data={serviceSchema} />
+  <SchemaMarkup type="service" data={faqSchema} />
 
   <ServiceHero
     title="Immigration in Zurich"
     subtitle="Work & Residence Permits for Expats"
     description="Zurich attracts thousands of expats every year, but navigating residence and work permits can be complex. ReloFinder helps you compare relocation providers in Zurich and connect with the right agency for immigration support. We don't deliver the services ourselves — we connect you to trusted partners."
+    icon="passport"
     badge="Immigration in Zurich"
   />
 
