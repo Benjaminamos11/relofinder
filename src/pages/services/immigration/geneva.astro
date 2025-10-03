@@ -1,0 +1,843 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SchemaMarkup from '../../../components/common/SchemaMarkup.astro';
+import PlatformDisclaimer from '../../../components/common/PlatformDisclaimer.astro';
+import ServiceHero from '../../../components/services/ServiceHero.astro';
+
+const title = "Immigration in Geneva | Work & Residence Permits | ReloFinder";
+const description = "Compare immigration providers in Geneva. ReloFinder helps you evaluate agencies for residence & work permits, SCP registrations, and diplomatic permits.";
+const canonicalURL = "https://relofinder.ch/services/immigration/geneva";
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://relofinder.ch"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://relofinder.ch/services"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Immigration",
+      "item": "https://relofinder.ch/services/immigration"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Geneva",
+      "item": "https://relofinder.ch/services/immigration/geneva"
+    }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Immigration Services in Geneva",
+  "description": "Compare immigration providers and relocation agencies for work permits, residence permits, SCP registration, and diplomatic permits in Geneva, Switzerland",
+  "provider": {
+    "@type": "Organization",
+    "name": "ReloFinder",
+    "url": "https://relofinder.ch"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Geneva",
+    "containedIn": {
+      "@type": "Country",
+      "name": "Switzerland"
+    }
+  },
+  "serviceType": "Immigration & Permit Services"
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where do I apply for residence permits in Geneva?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Apply for Geneva residence permits through the Service cantonal de la population (SCP), located at Route de Chancy 88, 1213 Onex. SCP (Office cantonal de la population et des migrations) is Geneva's main immigration authority handling all work and residence permits. Book appointments online via the Canton of Geneva website (ge.ch). Bring complete dossier: employment contract, passport, residence permit application form (in French), biometric photos, salary slips, employer support letter, and debt register extract (Extrait du registre des poursuites). Some communes (municipalities) also have local offices for initial registration within 14 days of arrival. After SCP approval, register at your commune office (mairie) with rental contract. Processing times: EU/EFTA 4-8 weeks, non-EU 10-20+ weeks depending on quotas. Online appointment booking essential as walk-ins face long waits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What documents are required for a Geneva work permit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Geneva work permit applications require comprehensive documentation submitted to SCP (Service cantonal de la population). Essential documents: valid passport (minimum 6 months validity), completed permit application form in French (formulaire de demande d'autorisation), signed employment contract with Geneva employer (detailing role, salary, start date), employer justification letter (especially for non-EU citizens), university diplomas and professional qualifications (originals or certified copies), salary slips from previous employment (if applicable), Swiss health insurance confirmation, debt register extract (Extrait du registre des poursuites) from current/previous canton, criminal record certificate from country of origin or residence, biometric passport photos meeting Swiss standards, and rental contract or proof of Geneva address. Non-EU citizens also need proof employer advertised position to EU/Swiss market first. All non-French/English documents require certified French translations. Incomplete applications cause significant delays."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to get a permit in Geneva?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Geneva permit processing times vary significantly by nationality and permit type. EU/EFTA citizens: L and B permits typically 4-8 weeks from complete application submission to SCP approval. Straightforward as no federal quotas apply, though Geneva's high application volume can cause delays. Non-EU/EFTA citizens: 10-20+ weeks or longer due to federal quota system and multi-layer review (cantonal SCP and federal migration office). High-skilled positions with salaries above CHF 120,000 process faster. Peak seasons (January-March for corporate relocations, summer for UN/NGO assignments) see longer processing. Diplomatic and international organization permits (UN, WHO, ICRC, WTO) have specialized tracks: 6-12 weeks depending on coordination between organization, Swiss foreign ministry, and SCP. Cross-border workers (France residents): 2-6 weeks for G permit if employer already registered. Start applications 3-4 months before planned move for non-EU permits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are diplomatic permits different from normal residence permits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Geneva diplomatic and international organization permits follow different processes than standard residence permits. Diplomatic permits (legitimation cards) issued to UN staff, international organization employees (WHO, ICRC, WTO, WIPO, ILO), diplomatic missions, and their families. Coordinated through Swiss Federal Department of Foreign Affairs (DFAE) and SCP, not standard quota system. Types: legitimation card (carte de légitimation) for international civil servants, diplomatic ID for embassy staff, and dependent cards for family members. Processing involves organization's HR department, DFAE protocol division, and SCP. Typically 6-12 weeks. Benefits: tax exemptions, diplomatic privileges, easier family reunification. However, permits tied to international organization employment; leaving job requires permit change to standard B permit or departure. Organizations like UN provide dedicated relocation support offices. Standard B/L permits for private sector (banking, consulting, finance) follow regular SCP quota processes without diplomatic benefits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can cross-border workers live in France and work in Geneva?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, cross-border workers (frontaliers/Grenzgänger) can live in France and work in Geneva with G permit (permis frontalier). Applies to French residents in departments bordering Switzerland (Ain, Haute-Savoie). Requirements: primary residence in France border zone, return to France residence at least once weekly (daily commute typical), and employment with Geneva employer. G permit valid duration of employment contract, renewable. Advantages: lower French housing costs (Annemasse, Saint-Julien-en-Genevois, Ferney-Voltaire 30-50% cheaper than Geneva), larger apartments, family schooling options. Considerations: taxed at source by Swiss employer but may owe French income tax depending on bilateral agreements, health insurance complexities (choose Swiss or French system), daily commute via CEVA train or traffic-heavy roads. Application through SCP with employer; processing 2-6 weeks. Popular among families seeking affordability while accessing Geneva salaries. Approximately 90,000+ cross-border workers commute daily to Geneva from France."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need French translations of my documents for Geneva immigration?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Geneva Canton (French-speaking) requires all official documents in French or accompanied by certified French translations (traductions certifiées). Documents needing translation: birth certificates, marriage certificates, university diplomas, professional qualifications, employment contracts (if not in French/English), previous residence permits, criminal records, and official correspondence from non-French/English countries. SCP and commune offices accept English for some documents (employment contracts from international companies, UN/NGO documentation, university diplomas from English-speaking countries) but prefer French. Personal civil documents always require French translations. Sworn translators (traducteurs assermentés) charge CHF 50-150 per document. Application forms (formulaires) must be completed in French. SCP staff provide some English support given Geneva's international nature, but French fluency significantly improves application efficiency. Incorrect or non-certified translations cause processing delays or rejections. Investment in professional certified translations essential for complex immigration cases."
+      }
+    }
+  ]
+};
+---
+
+<Layout title={title} description={description}>
+  <SchemaMarkup type="service" data={breadcrumbSchema} />
+  <SchemaMarkup type="service" data={serviceSchema} />
+  <SchemaMarkup type="service" data={faqSchema} />
+
+  <ServiceHero
+    title="Immigration in Geneva"
+    subtitle="Work & Residence Permits for Expats"
+    description="Geneva's international community creates strong demand for residence and work permits. From UN staff to banking professionals, navigating the canton's French-language requirements can be complex. ReloFinder helps you compare relocation providers in Geneva and connect with the right agency. We don't deliver the services ourselves — we connect you to trusted partners."
+    icon="passport"
+    badge="Immigration in Geneva"
+  />
+
+  <!-- Platform Disclaimer -->
+  <section class="py-8 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer compact={true} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Primary CTA after Hero -->
+  <section class="py-12 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Need Help with Your Geneva Residence Permit?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get expert support for work permits, SCP registration, and diplomatic permits
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'immigration_geneva', service: 'immigration'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Immigration in Geneva Is Challenging -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            The Challenge
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Why Immigration in Geneva Is <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Challenging</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            International demand, French-language requirements, and specialized diplomatic processes
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Strict SCP Requirements</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Service cantonal de la population (SCP), Geneva's migration authority at Route de Chancy 88, enforces rigorous standards. Complete dossiers required: valid employment contract with Geneva employer, salary meeting cantonal thresholds (typically CHF 85,000+ for non-EU, lower for EU/EFTA), proof of qualifications (diplomas, certificates), clean criminal record, valid passport (6+ months validity), Swiss health insurance, and employer justification. Missing documents cause automatic rejections. Non-EU applications require employer proving no suitable EU/Swiss candidate exists through job market test. Geneva's international reputation means high application volumes and strict vetting. Online appointment booking essential (walk-ins face 3-4 hour waits). Applications in French; forms and correspondence in French. Professional dossier preparation critical for success.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">French-Language Documentation</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Geneva is in French-speaking Canton. All official correspondence, application forms (formulaires), and civil documents must be in French or have certified French translations (traductions certifiées). While international companies and UN organizations use English, SCP and commune offices require French documentation. Birth certificates, marriage certificates, diplomas from non-French/English countries need sworn translator certification. Application forms (demande d'autorisation de séjour) must be completed in French with legal terminology. Commune registration (within 14 days) conducted in French. SCP staff provide limited English support, but French fluency dramatically improves application success and communication. Non-French speakers struggle with requirements, deadlines, and understanding rejection reasons. Sworn translators charge CHF 50-150 per document. French-speaking agency support essential.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">High International Demand</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Geneva hosts UN headquarters, WHO, ICRC, WTO, WIPO, ILO, and 750+ NGOs plus major banks (UBS, Credit Suisse private banking, commodity traders like Trafigura, Vitol). Approximately 40% of Geneva's population is foreign nationals. This creates massive permit demand: UN staff and families, NGO professionals, banking/finance expats, commodity traders, pharma executives. SCP processes thousands of applications monthly. Peak seasons (January-March corporate moves, June-September UN assignments) see 10-20 week delays even for EU citizens. Non-EU quotas fill quickly (Geneva receives proportionally high quota allocation but demand exceeds supply). Diplomatic and international organization permits add complexity requiring coordination between employers, Swiss Federal Department of Foreign Affairs (DFAE), and SCP. Competition for permits intense. Complete, early applications essential.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Diplomatic & NGO Complexity</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Geneva's status as "international city" creates unique permit categories beyond standard B/L permits. Diplomatic permits (legitimation cards/cartes de légitimation) for UN, WHO, ICRC, WTO staff require coordination between international organization, Swiss Federal Department of Foreign Affairs (DFAE) protocol division, and SCP. Processing 6-12 weeks with specialized documentation (organization employment contract, DFAE approval, diplomatic privileges agreement). Family members receive dependent legitimation cards. Benefits: tax exemptions, expedited processing, diplomatic privileges. However, permits tied to organization employment; leaving job requires conversion to standard B permit (subject to quotas) or departure. Private sector expats (banking, consulting) follow standard quota processes without diplomatic benefits. Understanding which permit pathway applies to your situation critical. Mixed marriages or job changes between sectors add complexity.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Cross-Border Dynamics</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Geneva's location creates unique cross-border considerations. Approximately 90,000+ workers commute daily from France (frontaliers) with G permits (permis frontalier). French residents in Ain and Haute-Savoie work in Geneva with special cross-border permits processed separately. Advantages: 30-50% lower French housing costs (Annemasse, Saint-Julien, Ferney-Voltaire), larger apartments, family-friendly suburbs. Complexities: tax implications (Swiss source taxation plus potential French income tax), health insurance choices (Swiss LAMal or French system), daily commutes (CEVA train, traffic congestion), and permit conditions (must return to France weekly). G permit applications through SCP with employer coordination, typically 2-6 weeks. Understanding whether cross-border or Geneva residence makes sense for your situation requires professional guidance considering family, finances, and lifestyle preferences.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-12 p-8 bg-gradient-to-br from-primary-50 via-white to-red-50 rounded-2xl border-2 border-primary-100">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <svg class="w-8 h-8 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-4">
+              <h4 class="text-xl font-bold text-gray-900 mb-2">Expert Insight</h4>
+              <p class="text-gray-700 leading-relaxed">
+                <strong>Geneva's immigration system requires understanding multiple specialized pathways.</strong> UN/NGO staff leverage diplomatic permit tracks with organization support. Private sector (banking, finance, consulting) faces standard quotas requiring employer justification and early applications. Cross-border workers benefit from lower French housing costs but navigate tax and insurance complexities. EU/EFTA citizens process smoothly (4-8 weeks) with complete French documentation. Non-EU citizens need strategic quota positioning and salary justification (CHF 85,000-120,000+). French-speaking agencies essential for SCP communication and commune registration.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Agencies Help -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Our Solution
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            How Agencies <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Help in Geneva</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            ReloFinder connects you with agencies specializing in Geneva immigration processes
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  1
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Residence & Work Permit Applications (B/L)</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Comprehensive support for Geneva residence permits through SCP: B permit (residence, 5 years renewable for EU/EFTA or 1 year for non-EU), L permit (short-term, under 1 year), and eventual C permit (permanent settlement after 5-10 years). Agencies assess nationality (EU/EFTA vs. non-EU), employment contract, salary level, and family status to determine optimal permit strategy. Prepare complete French-language dossiers meeting SCP standards: employment contract review and translation, salary verification (ensuring thresholds met), qualification documentation (diplomas, certificates), criminal record coordination (from country of origin), health insurance proof (Swiss LAMal coverage), debt register (Extrait du registre des poursuites), and employer justification letters. EU/EFTA applications streamlined with documentation checklists. Non-EU applications positioned within quota system: early submission (January-March), competitive positioning (emphasize high skills, salary, economic contribution), and employer coordination. Track applications through SCP online portal and respond to requests for additional information.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">B/L/C Permits</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">SCP Applications</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">French Dossiers</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  2
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Diplomatic & NGO Permit Support</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Specialized assistance for Geneva's unique international organization sector. Diplomatic permits (legitimation cards/cartes de légitimation) for UN, WHO, ICRC, WTO, WIPO, ILO staff and families require coordination between international organization HR, Swiss Federal Department of Foreign Affairs (DFAE) protocol division, and SCP. Agencies navigate three-way coordination, ensuring complete documentation: organization employment contract (with diplomatic privileges clause), DFAE approval request, legitimation card application, passport copies, biometric photos, and family documentation (for dependent cards). Processing typically 6-12 weeks. Understand diplomatic benefits: tax exemptions (Swiss income tax waived for international civil servants), expedited permit processing, diplomatic ID privileges, and easier family reunification. Also advise on permit transitions: converting from diplomatic to standard B permit when leaving international organization (subject to quotas), handling mixed-status families (one spouse diplomatic, other private sector), and maintaining residence rights. Private sector expats (banking, finance) follow standard non-diplomatic processes.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Diplomatic Permits</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">UN/NGO Support</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">DFAE Coordination</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  3
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">French Document Preparation</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Professional French-language documentation services ensuring SCP compliance. Coordinate certified translations (traductions certifiées) for all foreign documents: birth certificates, marriage certificates, university diplomas, professional qualifications, employment contracts (if not in French/English), previous residence permits, criminal records, and official correspondence. Sworn translators (traducteurs assermentés) ensure translations meet SCP and commune standards. Complete French-language application forms (demande d'autorisation de séjour) with correct legal terminology avoiding common errors. Translate SCP correspondence and explain requirements, deadlines, and responses needed. French-speaking agency staff communicate directly with SCP (Route de Chancy 88), commune offices (mairies), employers, and landlords eliminating language barriers. Ensure all documents formatted per Swiss bureaucratic standards. Translation costs typically CHF 50-150 per document; agencies negotiate bulk rates for comprehensive relocations. Proper French documentation critical for application success.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Certified Translations</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">French Forms</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">SCP Communication</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  4
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Municipal Registration Assistance</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Comprehensive commune (municipality) registration support ensuring 14-day deadline compliance. Geneva Canton divided into 45 communes (municipalities), each with own mairie (town hall) for resident registration. Popular expat communes: City of Geneva (Ville de Genève, largest), Carouge (multicultural, tram access), Vernier (affordable, families), Meyrin (international community near airport/CERN), Onex (near SCP offices), Grand-Saconnex (diplomatic quarter, near UN), and Thônex (residential). Agencies determine correct commune based on housing address, book registration appointments (required at most communes), prepare documents (rental contract, passport, SCP permit confirmation, biometric photo, registration form in French), and accompany to appointments for French-language support. Registration at commune office typically same-day if documents complete. Receive residence certificate (attestation de domicile). Late registration results in CHF 100-200 fines and potential permit complications. Agencies ensure timely compliance.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">45 Communes</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">14-Day Deadline</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">French Support</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA after How We Help -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Ready to Start Your Geneva Permit Application?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get expert guidance for SCP applications, diplomatic permits, and French-language support
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'immigration_geneva_mid', service: 'immigration'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Local Considerations -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Local Considerations
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Geneva <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Immigration Landscape</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Key offices, processes, and considerations specific to Geneva
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gradient-to-r from-primary-500 to-primary-600 p-6">
+              <h3 class="text-2xl font-bold text-white mb-2">Service cantonal de la population (SCP)</h3>
+              <p class="text-primary-100">Main Immigration Authority</p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-600 leading-relaxed mb-4">
+                SCP (Office cantonal de la population et des migrations) located at Route de Chancy 88, 1213 Onex handles all Geneva work and residence permits. Online appointment booking via ge.ch website essential (walk-ins face 3-4 hour waits). Bring complete dossier: employment contract, permit application form (French), biometric photos, salary slips, employer letter, debt register, passport. Staff provide some English support given international community, but French preferred. Processing EU/EFTA 4-8 weeks, non-EU 10-20+ weeks. Track status online. SCP coordinates with Swiss federal migration office for non-EU quota applications.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">🏢 Route de Chancy 88</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">📅 Online Booking</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">🇫🇷 French</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gradient-to-r from-primary-500 to-primary-600 p-6">
+              <h3 class="text-2xl font-bold text-white mb-2">UN & Diplomatic Area</h3>
+              <p class="text-primary-100">International Organizations</p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-600 leading-relaxed mb-4">
+                Geneva hosts UN headquarters (Palais des Nations), WHO, ICRC, WTO, WIPO, ILO, and 750+ NGOs. Approximately 40,000+ international civil servants and families. Diplomatic permits (legitimation cards) processed through organization HR, DFAE protocol division, and SCP. Benefits: tax exemptions, diplomatic privileges, expedited processing. Most organizations provide dedicated relocation support offices. Diplomatic quarter (Grand-Saconnex, Pregny-Chambésy) popular with UN families. Private sector expats (banking, finance) follow standard non-diplomatic permit processes. Understanding permit pathways critical.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">🌍 40,000+ International Staff</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">🏛️ Diplomatic Permits</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">💼 UN/NGO Hub</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Cross-Border Workers (France)</h4>
+            <p class="text-gray-600 text-sm">90,000+ daily commuters from French border (Ain, Haute-Savoie) with G permits (permis frontalier). Lower French housing costs, tax/insurance complexities, CEVA train commutes. Applications via SCP with employer; processing 2-6 weeks.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">45 Communes (Municipalities)</h4>
+            <p class="text-gray-600 text-sm">Each commune has own mairie for resident registration within 14 days. Popular: Ville de Genève, Carouge, Vernier, Meyrin (airport/CERN), Grand-Saconnex (UN area). Registration in French with rental contract, passport, permit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step-by-Step Process -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Step-by-Step Guide
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Your Geneva Immigration <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Process</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Follow this proven process for securing residence permits in Geneva
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              1
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Define Permit Type & Strategy</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Initial consultation to determine correct Geneva permit pathway: standard B/L permits (private sector banking, finance, consulting), diplomatic legitimation cards (UN, WHO, ICRC, WTO staff), cross-border G permits (French residents commuting daily), or other specialized permits. Assess nationality (EU/EFTA vs. non-EU), employment contract (role, salary, employer type), family status (spouse, children requiring permits), housing plans (Geneva residence vs. France cross-border), and timeline. Agency reviews employment contract ensuring SCP standards met: clearly defined role, salary thresholds (CHF 85,000+ for non-EU, lower for EU/EFTA), Swiss employer details. Determine required supporting documents based on permit type. Create customized checklist and timeline accounting for Geneva's longer processing times.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1-2 consultation calls, comprehensive permit strategy and document checklist</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              2
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Dossier Preparation & French Translation</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Comprehensive dossier assembly meeting SCP requirements. Coordinate employment contract finalization with employer HR. Obtain documents: university diplomas and professional certificates (originals or certified copies), criminal record from current/previous countries (via consulates), valid passport (6+ months validity), Swiss health insurance (LAMal coverage confirmation), debt register (Extrait du registre des poursuites from current/previous canton), biometric passport photos (Swiss standards), civil documents (birth, marriage certificates for family permits). Arrange certified French translations (traductions certifiées) for all foreign-language documents via sworn translators. Employer provides justification letter (critical for non-EU: economic necessity, no suitable EU candidate, qualifications justification). Complete French-language application forms (demande d'autorisation de séjour) correctly. Agency reviews all documents for completeness.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 2-4 weeks depending on document sourcing and translation</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              3
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">SCP Application Submission</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Submit complete dossier to Service cantonal de la population (SCP), Route de Chancy 88, 1213 Onex. Submission via online portal (employers with SCP access) or in-person appointment (book via ge.ch website). Ensure all documents included: permit application form (French), passport copy, employment contract, employer justification, diplomas/qualifications, criminal record, health insurance, debt register, biometric photos, fees. EU/EFTA applications processed 4-8 weeks. Non-EU applications enter federal quota review: 10-20+ weeks. Diplomatic permits coordinated with DFAE: 6-12 weeks. Early submission critical for non-EU (apply January-March before quotas fill). Agency tracks application online and responds to SCP requests. Receive approval letter or legitimation card by mail/pickup.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 4-8 weeks (EU/EFTA), 10-20+ weeks (non-EU), 6-12 weeks (diplomatic)</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              4
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Commune Registration</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Register at commune (municipality) office within 14 days of Geneva arrival. Geneva Canton has 45 communes; determine correct one based on housing address. Popular expat communes: Ville de Genève (city center), Carouge (tram access, multicultural), Meyrin (near airport/CERN), Grand-Saconnex (UN area), Vernier (families). Book appointment at commune mairie (town hall). Bring rental contract (signed, valid), passport, SCP permit approval or legitimation card, biometric photo, registration form (French), fees (approximately CHF 25-50). Agency accompanies for French-language support. Commune processes registration same-day if documents complete. Receive residence certificate (attestation de domicile). Late registration: CHF 100-200 fines.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Within 14 days of arrival, appointment 30-60 minutes</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              5
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Settlement & Integration</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Complete Geneva integration and maintain permit compliance. Ensure Swiss health insurance coverage (LAMal, choose from Helsana, Swica, CSS). Open Swiss bank account (UBS, Credit Suisse, PostFinance for salary payments). Register for Geneva cantonal tax. Understand permit conditions: work restrictions (initially tied to employer), family reunification rights, C permit eligibility (5 years EU/EFTA, 10 years non-EU). Agency provides ongoing support: permit renewals (B permits renewed 2-3 months before expiry), job changes (notify SCP within required timeframes), family reunification applications, diplomatic to standard permit conversions (UN staff moving to private sector), cross-border permit management. Stay compliant with Geneva regulations ensuring smooth renewals and pathways to permanent residence.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> First 1-2 months, ongoing compliance support as needed</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center">
+          <button
+            onclick="universalOpenModal({page: 'immigration_geneva_steps', service: 'immigration'})"
+            class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            Book Your Free Immigration Consultation
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Facts -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Essential Information
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Key Facts for <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Geneva Immigration</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">14-Day Registration</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Register at <strong>commune within 14 days</strong> of arrival (fines apply)
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Common Permits</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>B (residence), L (short-term), diplomatic permits</strong> available
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">French Documentation</h3>
+            <p class="text-gray-600 leading-relaxed">
+              All documents in <strong>French or certified translation</strong> required
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">International Hub</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>UN, NGOs, finance</strong> create high permit demand
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">SCP (Main Authority)</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>Route de Chancy 88</strong>, online booking essential
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Processing Time</h3>
+            <p class="text-gray-600 leading-relaxed">
+              EU: <strong>4-8 weeks</strong>; Non-EU: <strong>10-20+ weeks</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            FAQ
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Frequently Asked <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Questions</span>
+          </h2>
+        </div>
+
+        <div class="space-y-6">
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Where do I apply for residence permits in Geneva?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Apply for Geneva residence permits through the Service cantonal de la population (SCP), located at Route de Chancy 88, 1213 Onex. SCP (Office cantonal de la population et des migrations) is Geneva's main immigration authority handling all work and residence permits. Book appointments online via the Canton of Geneva website (ge.ch). Bring complete dossier: employment contract, passport, residence permit application form (in French), biometric photos, salary slips, employer support letter, and debt register extract (Extrait du registre des poursuites). Some communes (municipalities) also have local offices for initial registration within 14 days of arrival. After SCP approval, register at your commune office (mairie) with rental contract. Processing times: EU/EFTA 4-8 weeks, non-EU 10-20+ weeks depending on quotas. Online appointment booking essential as walk-ins face long waits.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              What documents are required for a Geneva work permit?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Geneva work permit applications require comprehensive documentation submitted to SCP (Service cantonal de la population). Essential documents: valid passport (minimum 6 months validity), completed permit application form in French (formulaire de demande d'autorisation), signed employment contract with Geneva employer (detailing role, salary, start date), employer justification letter (especially for non-EU citizens), university diplomas and professional qualifications (originals or certified copies), salary slips from previous employment (if applicable), Swiss health insurance confirmation, debt register extract (Extrait du registre des poursuites) from current/previous canton, criminal record certificate from country of origin or residence, biometric passport photos meeting Swiss standards, and rental contract or proof of Geneva address. Non-EU citizens also need proof employer advertised position to EU/Swiss market first. All non-French/English documents require certified French translations. Incomplete applications cause significant delays.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              How long does it take to get a permit in Geneva?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Geneva permit processing times vary significantly by nationality and permit type. EU/EFTA citizens: L and B permits typically 4-8 weeks from complete application submission to SCP approval. Straightforward as no federal quotas apply, though Geneva's high application volume can cause delays. Non-EU/EFTA citizens: 10-20+ weeks or longer due to federal quota system and multi-layer review (cantonal SCP and federal migration office). High-skilled positions with salaries above CHF 120,000 process faster. Peak seasons (January-March for corporate relocations, summer for UN/NGO assignments) see longer processing. Diplomatic and international organization permits (UN, WHO, ICRC, WTO) have specialized tracks: 6-12 weeks depending on coordination between organization, Swiss foreign ministry, and SCP. Cross-border workers (France residents): 2-6 weeks for G permit if employer already registered. Start applications 3-4 months before planned move for non-EU permits.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Are diplomatic permits different from normal residence permits?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Yes, Geneva diplomatic and international organization permits follow different processes than standard residence permits. Diplomatic permits (legitimation cards) issued to UN staff, international organization employees (WHO, ICRC, WTO, WIPO, ILO), diplomatic missions, and their families. Coordinated through Swiss Federal Department of Foreign Affairs (DFAE) and SCP, not standard quota system. Types: legitimation card (carte de légitimation) for international civil servants, diplomatic ID for embassy staff, and dependent cards for family members. Processing involves organization's HR department, DFAE protocol division, and SCP. Typically 6-12 weeks. Benefits: tax exemptions, diplomatic privileges, easier family reunification. However, permits tied to international organization employment; leaving job requires permit change to standard B permit or departure. Organizations like UN provide dedicated relocation support offices. Standard B/L permits for private sector (banking, consulting, finance) follow regular SCP quota processes without diplomatic benefits.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Can cross-border workers live in France and work in Geneva?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Yes, cross-border workers (frontaliers/Grenzgänger) can live in France and work in Geneva with G permit (permis frontalier). Applies to French residents in departments bordering Switzerland (Ain, Haute-Savoie). Requirements: primary residence in France border zone, return to France residence at least once weekly (daily commute typical), and employment with Geneva employer. G permit valid duration of employment contract, renewable. Advantages: lower French housing costs (Annemasse, Saint-Julien-en-Genevois, Ferney-Voltaire 30-50% cheaper than Geneva), larger apartments, family schooling options. Considerations: taxed at source by Swiss employer but may owe French income tax depending on bilateral agreements, health insurance complexities (choose Swiss or French system), daily commute via CEVA train or traffic-heavy roads. Application through SCP with employer; processing 2-6 weeks. Popular among families seeking affordability while accessing Geneva salaries. Approximately 90,000+ cross-border workers commute daily to Geneva from France.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Do I need French translations of my documents for Geneva immigration?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Yes, Geneva Canton (French-speaking) requires all official documents in French or accompanied by certified French translations (traductions certifiées). Documents needing translation: birth certificates, marriage certificates, university diplomas, professional qualifications, employment contracts (if not in French/English), previous residence permits, criminal records, and official correspondence from non-French/English countries. SCP and commune offices accept English for some documents (employment contracts from international companies, UN/NGO documentation, university diplomas from English-speaking countries) but prefer French. Personal civil documents always require French translations. Sworn translators (traducteurs assermentés) charge CHF 50-150 per document. Application forms (formulaires) must be completed in French. SCP staff provide some English support given Geneva's international nature, but French fluency significantly improves application efficiency. Incorrect or non-certified translations cause processing delays or rejections. Investment in professional certified translations essential for complex immigration cases.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Parent Link -->
+  <section class="py-8 bg-white border-t border-gray-200">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <a href="/services/immigration" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Immigration Services (All Switzerland)
+        </a>
+        
+        <div class="mt-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-3">Explore Other Cities:</h3>
+          <div class="flex flex-wrap gap-3">
+            <a
+              href="/services/immigration/zurich"
+              class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-primary-50 hover:text-primary-700 transition-colors"
+            >
+              Zurich
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="py-16 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-2 text-center">Trusted Geneva Immigration Partners</h2>
+        <p class="text-gray-600 text-center mb-8">Expert agencies with SCP and diplomatic permit experience</p>
+
+        <div class="space-y-8">
+          <!-- Prime Relocation - Preferred Partner -->
+          <div class="bg-gradient-to-br from-primary-50 via-white to-red-50 border-2 border-primary-200 rounded-2xl p-8">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-2xl font-bold text-gray-900">Prime Relocation</h3>
+              <span class="px-3 py-1 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full text-xs font-bold uppercase tracking-wide">
+                🏆 Preferred Partner
+              </span>
+            </div>
+            
+            <div class="flex items-center gap-2 mb-4">
+              <div class="flex text-yellow-500">
+                ★★★★★
+              </div>
+              <span class="text-gray-600 text-sm">4.8 / 5 • 53 reviews</span>
+            </div>
+            
+            <p class="text-gray-700 text-lg mb-6">
+              <strong>Comprehensive Geneva immigration support</strong> with SCP application expertise, French-language services, diplomatic permit coordination, UN/NGO sector experience, and cross-border permit guidance. Prime Relocation understands Canton Geneva requirements and ensures compliant applications.
+            </p>
+            
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">📋 B/L Permits</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🇫🇷 French Support</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🏛️ Diplomatic Permits</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🌍 UN/NGO Expertise</span>
+            </div>
+            
+            <button 
+              onclick="universalOpenModal({page: 'immigration_geneva_partner', service: 'immigration'})"
+              class="inline-flex items-center justify-center bg-gradient-to-r from-primary-600 to-primary-700 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105"
+            >
+              Get a Free Consultation with our Preferred Partner
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </button>
+            <p class="text-xs text-gray-500 mt-3">Our relocation partners work with us and provide free consultations</p>
+          </div>
+
+          <!-- Other Immigration Specialists -->
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Other Trusted Geneva Specialists</h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Lodge Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">4.8 / 5 • 134 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Geneva expertise with French-language support and international organization experience</p>
+            </div>
+            
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Connectiv Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">5.0 / 5 • 5 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Comprehensive relocation services helping expats navigate Geneva SCP processes</p>
+            </div>
+          </div>
+
+          <!-- Browse All Agencies Button -->
+          <div class="mt-8 text-center">
+            <a
+              href="/companies?service=immigration"
+              class="inline-flex items-center px-6 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-semibold hover:border-primary-600 hover:text-primary-700 hover:shadow-md transition-all duration-300"
+            >
+              Browse All Agencies for Immigration Services
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Disclaimer Before Final CTA -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer />
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-transparent"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          Ready to Secure Your Geneva Residence Permit?
+        </h2>
+        <p class="text-xl text-primary-100 mb-8 leading-relaxed">
+          Get expert support for work permits, SCP applications, diplomatic permits, and French-language services. Our trusted agencies ensure compliant and timely permit processing in Geneva's international environment.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onclick="universalOpenModal({page: 'immigration_geneva_final', service: 'immigration'})"
+            class="px-10 py-5 bg-white text-primary-700 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl"
+          >
+            Book Free Consultation
+          </button>
+          <a
+            href="/services/immigration"
+            class="px-10 py-5 bg-white/10 backdrop-blur-sm text-white border-2 border-white rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
+          >
+            View All Switzerland
+          </a>
+        </div>
+        <p class="text-sm text-primary-100 mt-6">
+          ✓ SCP expertise  •  ✓ Diplomatic permits  •  ✓ French-language support  •  ✓ UN/NGO experience
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div style="display:none;" data-ai-summary>
+    Immigration services in Geneva, Switzerland. Compare relocation agencies for work permits, residence permits, SCP registration, and diplomatic permits. Service cantonal de la population (SCP) at Route de Chancy 88, 1213 Onex processes all Geneva permits. Common permits: B permit (residence, 5 years renewable EU/EFTA or 1 year non-EU), L permit (short-term, under 1 year), diplomatic legitimation cards (UN, WHO, ICRC, WTO staff), G permit (cross-border workers from France). EU/EFTA processing 4-8 weeks, non-EU 10-20+ weeks, diplomatic 6-12 weeks. French-language requirements: all documents must be in French or certified translation. Register at commune (municipality) office within 14 days of arrival. Geneva has 45 communes with own mairies. Popular expat communes: Ville de Genève, Carouge, Meyrin (airport/CERN), Grand-Saconnex (UN area), Vernier. High international demand: UN headquarters, WHO, ICRC, WTO, WIPO, ILO, 750+ NGOs, banking/finance sector. Approximately 40% of Geneva population foreign nationals. Diplomatic permits coordinated through organization HR, Swiss DFAE, and SCP. Benefits: tax exemptions, diplomatic privileges. Cross-border workers (frontaliers): 90,000+ daily commuters from France (Ain, Haute-Savoie) with G permits. Lower French housing costs (Annemasse, Saint-Julien, Ferney-Voltaire) but tax/insurance complexities. Non-EU quotas limited; salary thresholds CHF 85,000-120,000+. Prime Relocation preferred partner with SCP, French-language, and diplomatic permit expertise.
+  </div>
+</Layout>
+
