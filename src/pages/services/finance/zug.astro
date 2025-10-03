@@ -1,0 +1,1022 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SchemaMarkup from '../../../components/common/SchemaMarkup.astro';
+import PlatformDisclaimer from '../../../components/common/PlatformDisclaimer.astro';
+import ServiceHero from '../../../components/services/ServiceHero.astro';
+
+const title = "Finance in Zug | Banking, Crypto & Tax Advantages | ReloFinder";
+const description = "Compare finance providers in Zug. Banking, neobanks, and crypto-friendly services in Switzerland's Crypto Valley. Tax benefits for expats. Insurance via Expat-Savvy.ch.";
+const canonicalURL = "https://relofinder.ch/services/finance/zug";
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://relofinder.ch"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://relofinder.ch/services"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Finance",
+      "item": "https://relofinder.ch/services/finance"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Zug",
+      "item": "https://relofinder.ch/services/finance/zug"
+    }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Finance Services in Zug",
+  "description": "Compare banking and finance providers for expats in Zug, Switzerland including neobanks, traditional banks, and crypto-friendly services in Crypto Valley",
+  "provider": {
+    "@type": "Organization",
+    "name": "ReloFinder",
+    "url": "https://relofinder.ch"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Zug",
+    "containedIn": {
+      "@type": "Country",
+      "name": "Switzerland"
+    }
+  },
+  "serviceType": "Banking & Finance Services"
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why is Zug called Crypto Valley?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zug hosts 1,000+ blockchain companies including Ethereum Foundation, Cardano, Tezos, and Bitcoin Suisse. The canton's low taxes, crypto-friendly regulations, and Crypto Valley Association created the world's leading blockchain ecosystem. Banks increasingly offer crypto custody and fintech services."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the tax advantages of living in Zug?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zug has Switzerland's lowest cantonal tax rates: ~15-22% combined income tax (federal + cantonal + municipal) vs 25-35% in Zurich or Geneva. Wealth tax is 0.1-0.3%. Corporate tax ~12% attracts entrepreneurs and holding companies. Ideal for high earners and business founders."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which banks are most expat-friendly in Zug?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most expat-friendly: Neobanks (Yapeal, Neon) for fast setup in 1-3 days; Revolut for multi-currency and crypto. Traditional: Zuger Kantonalbank for local presence; UBS for corporate expats and crypto custody pilots. All require Swiss residence permit and address proof."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can expats open accounts with Zuger Kantonalbank?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Zuger Kantonalbank (ZKB) serves expats with Swiss permits. Requires: passport, B/L/C permit, Zug address proof, employment contract. Account opens in 1-2 weeks. Offers mortgages, savings, investment accounts. Conservative approach; less crypto-friendly than neobanks but strong local presence."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are neobanks like Yapeal and Neon available in Zug?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Yapeal and Neon work throughout Switzerland including Zug. Provide Swiss IBAN (CH), English interfaces, 1-3 day onboarding, no minimum balance. Revolut also popular for multi-currency (30+ currencies), crypto payments, and real-time FX. Hybrid approach common: Swiss neobank for salary + Revolut for international."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I manage crypto with Swiss banks in Zug?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Zug has crypto-friendly banking. Bitcoin Suisse offers custody and trading; UBS runs crypto custody pilots; smaller banks partner with blockchain firms. Most traditional banks remain conservative. Revolut provides crypto trading (BTC, ETH, 80+ coins). Zug-based Crypto Finance AG offers institutional crypto banking."
+      }
+    }
+  ]
+};
+
+const siblingCities = [
+  { name: 'Zurich', slug: 'zurich' },
+  { name: 'Geneva', slug: 'geneva' }
+];
+---
+
+<Layout title={title} description={description}>
+  <SchemaMarkup type="service" data={breadcrumbSchema} />
+  <SchemaMarkup type="service" data={serviceSchema} />
+  <SchemaMarkup type="service" data={faqSchema} />
+
+  <ServiceHero
+    title="Finance in Zug"
+    subtitle="Banking & Crypto Valley for Expats"
+    description="Zug is Switzerland's 'Crypto Valley' and one of the most tax-friendly cantons. From neobanks to private wealth management, Zug attracts expats, entrepreneurs, and fintech professionals. ReloFinder helps you compare relocation providers and banking partners in Zug. We don't deliver the services ourselves — we connect you to trusted partners."
+    icon="bank"
+    badge="Finance in Zug"
+  />
+
+  <!-- Platform Disclaimer -->
+  <section class="py-8 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer compact={true} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Primary CTA after Hero -->
+  <section class="py-12 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Need Help Setting Up Your Zug Finances?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get expert support for banking, crypto services, and tax optimization
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'finance_zug', service: 'finance'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- InfoCard Grid: Why Finance in Zug Matters -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Why It Matters
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Why Finance in Zug <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Matters for Expats</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Card 1: Crypto Valley -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Crypto Valley & Fintech Hub</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              Zug hosts 1,000+ blockchain companies including Ethereum Foundation, Cardano, Bitcoin Suisse. World's leading crypto ecosystem with progressive regulations.
+            </p>
+            <a href="#deep-dive-accordion" class="text-primary-600 hover:text-primary-700 text-sm font-semibold inline-flex items-center">
+              Explore Crypto Valley
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Card 2: Low Taxes -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Low Cantonal Taxes</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              Zug has Switzerland's lowest income tax rates (15-22% combined) and minimal wealth tax (0.1-0.3%). Corporate tax ~12% attracts entrepreneurs and holding companies.
+            </p>
+            <a href="#deep-dive-accordion" class="text-primary-600 hover:text-primary-700 text-sm font-semibold inline-flex items-center">
+              Tax advantages
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Card 3: Expat Banking -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Expat Banking Challenges</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              Traditional banks require permits, address proof, and Gemeinde registration. Neobanks simplify onboarding (1-3 days). Relocation agencies navigate the process.
+            </p>
+            <a href="#docs-checklist" class="text-primary-600 hover:text-primary-700 text-sm font-semibold inline-flex items-center">
+              See requirements
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Card 4: Neobanks -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Neobank Options</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              Yapeal, Neon, and Revolut offer fast onboarding (1-3 days), English interfaces, and crypto-friendly features — ideal for fintech professionals and startup founders.
+            </p>
+            <a href="#comparison-table" class="text-primary-600 hover:text-primary-700 text-sm font-semibold inline-flex items-center">
+              Compare options
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Card 5: Private Banking -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Private Banking & HNWI Services</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              UBS and private banks serve HNWI in Zug. Low taxes attract wealthy entrepreneurs. Portfolio management, holding company structures, and tax-efficient investing available.
+            </p>
+            <a href="#deep-dive-accordion" class="text-primary-600 hover:text-primary-700 text-sm font-semibold inline-flex items-center">
+              Private banking details
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Card 6: Insurance -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Insurance & Compliance</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              Health insurance mandatory within 3 months (CHF 300-500/month). Expert guidance via <a href="https://expat-savvy.ch" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700 font-semibold underline">Expat-Savvy.ch</a>.
+            </p>
+            <a href="https://expat-savvy.ch" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700 text-sm font-semibold inline-flex items-center">
+              Get insurance help
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table: Neobanks vs Traditional Banks -->
+  <section id="comparison-table" class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Compare Options
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Neobanks vs <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Traditional Banks</span>
+          </h2>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-gray-50 border-b border-gray-200">
+                  <th class="px-4 py-3 text-left font-bold text-gray-900">Provider</th>
+                  <th class="px-4 py-3 text-left font-bold text-gray-900">Swiss IBAN</th>
+                  <th class="px-4 py-3 text-left font-bold text-gray-900">Onboarding</th>
+                  <th class="px-4 py-3 text-left font-bold text-gray-900">Crypto/Fintech</th>
+                  <th class="px-4 py-3 text-left font-bold text-gray-900">Min. Balance</th>
+                  <th class="px-4 py-3 text-left font-bold text-gray-900">Best For</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="px-4 py-3 font-semibold text-gray-900">Yapeal</td>
+                  <td class="px-4 py-3 text-gray-700">✅ Yes (CH)</td>
+                  <td class="px-4 py-3 text-gray-700">1-3 days</td>
+                  <td class="px-4 py-3 text-gray-700">✅ Yes</td>
+                  <td class="px-4 py-3 text-gray-700">None</td>
+                  <td class="px-4 py-3 text-gray-700">Expats, startups</td>
+                </tr>
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="px-4 py-3 font-semibold text-gray-900">Neon</td>
+                  <td class="px-4 py-3 text-gray-700">✅ Yes (CH)</td>
+                  <td class="px-4 py-3 text-gray-700">1-3 days</td>
+                  <td class="px-4 py-3 text-gray-700">Limited</td>
+                  <td class="px-4 py-3 text-gray-700">None</td>
+                  <td class="px-4 py-3 text-gray-700">Everyday banking</td>
+                </tr>
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="px-4 py-3 font-semibold text-gray-900">Revolut</td>
+                  <td class="px-4 py-3 text-gray-700">⚠️ Partial</td>
+                  <td class="px-4 py-3 text-gray-700">Instant</td>
+                  <td class="px-4 py-3 text-gray-700">✅ Yes (FX/crypto)</td>
+                  <td class="px-4 py-3 text-gray-700">None</td>
+                  <td class="px-4 py-3 text-gray-700">Multi-currency + intl.</td>
+                </tr>
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="px-4 py-3 font-semibold text-gray-900">Zuger Kantonalbank</td>
+                  <td class="px-4 py-3 text-gray-700">✅ Yes (CH)</td>
+                  <td class="px-4 py-3 text-gray-700">1-2 weeks</td>
+                  <td class="px-4 py-3 text-gray-700">Conservative</td>
+                  <td class="px-4 py-3 text-gray-700">Low</td>
+                  <td class="px-4 py-3 text-gray-700">Local residents/business</td>
+                </tr>
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="px-4 py-3 font-semibold text-gray-900">UBS</td>
+                  <td class="px-4 py-3 text-gray-700">✅ Yes (CH)</td>
+                  <td class="px-4 py-3 text-gray-700">1-3 weeks</td>
+                  <td class="px-4 py-3 text-gray-700">✅ Crypto custody pilots</td>
+                  <td class="px-4 py-3 text-gray-700">High</td>
+                  <td class="px-4 py-3 text-gray-700">Corporate expats, HNWI</td>
+                </tr>
+                <tr class="hover:bg-gray-50">
+                  <td class="px-4 py-3 font-semibold text-gray-900">Credit Suisse</td>
+                  <td class="px-4 py-3 text-gray-700">✅ Yes (CH)</td>
+                  <td class="px-4 py-3 text-gray-700">1-3 weeks</td>
+                  <td class="px-4 py-3 text-gray-700">Limited</td>
+                  <td class="px-4 py-3 text-gray-700">High</td>
+                  <td class="px-4 py-3 text-gray-700">Private banking</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="mt-6 p-6 bg-white rounded-xl border border-gray-200">
+          <p class="text-gray-700 leading-relaxed">
+            <strong>Recommended strategy:</strong> Zug expats often combine a neobank (Yapeal/Neon) for speed and salary with a traditional bank (Zuger Kantonalbank/UBS) for mortgages, investments, or business accounts as needs grow.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Documents Checklist -->
+  <section id="docs-checklist" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Preparation
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Documents <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Checklist</span>
+          </h2>
+        </div>
+
+        <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border-2 border-gray-200">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                <svg class="w-5 h-5 text-primary-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Essential for All Banks
+              </h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Valid passport (6+ months validity)</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Swiss residence/work permit (B, L, C, or legitimation card)</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Proof of Zug address (rental contract or Gemeinde registration)</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                <svg class="w-5 h-5 text-primary-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                Additional (Business/Private Banking)
+              </h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Employment contract / salary slips</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Company documents (Handelsregister extract for business banking)</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Wealth/tax statements (for private banking)</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Business plan (for startup/crypto founders)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-8 p-4 bg-primary-50 rounded-lg border border-primary-200">
+            <p class="text-gray-700 text-sm">
+              <strong>💡 Pro tip:</strong> Register with Gemeinde (municipality) within 14 days of arrival for address confirmation. Neobanks accept English docs; traditional banks may require German translations. Crypto founders: prepare business model documentation.
+            </p>
+          </div>
+
+          <div class="mt-6 flex gap-4">
+            <button
+              onclick="universalOpenModal({page: 'finance_zug_docs', service: 'finance'})"
+              class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-lg font-semibold hover:from-primary-700 hover:to-primary-800 transition-all"
+            >
+              Get Help with Documents
+            </button>
+            <button class="inline-flex items-center px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:border-primary-600 hover:text-primary-700 transition-all">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Download PDF Checklist
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Stepper: 5-Step Process -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Step-by-Step
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Your Zug Finance <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Setup Process</span>
+          </h2>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Step 1 -->
+          <div class="bg-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              1
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Define Banking Strategy</h3>
+              <p class="text-gray-600">
+                Employees: Neobank (Yapeal/Neon) + Revolut. Entrepreneurs: Add business banking (Zuger Kantonalbank/UBS). HNWI: Private banking via agency introductions. Crypto founders: Consider Bitcoin Suisse or Revolut.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="bg-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              2
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Gather Required Documents</h3>
+              <p class="text-gray-600">
+                Passport, Swiss permit (B/L/C), proof of Zug address (rental contract, Gemeinde registration). Business banking: Handelsregister extract. Private banking: wealth statements, tax returns.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="bg-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              3
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Open Account & Activate</h3>
+              <p class="text-gray-600">
+                Neobanks: App-based, activate in 1-3 days. Zuger Kantonalbank: 1-2 weeks. UBS/private banks: 1-3 weeks, introductions helpful. Register at Gemeinde within 14 days for address confirmation.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="bg-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              4
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Tax Planning (Optimize Zug's Low Rates)</h3>
+              <p class="text-gray-600">
+                Arrange tax consultation to leverage Zug's 15-22% combined rates (vs 25-35% in Zurich/Geneva). Wealth tax 0.1-0.3%. Pillar 3a retirement savings tax-deductible. Agencies coordinate with Zug tax advisors.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="bg-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              5
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Insurance Setup via Expat-Savvy.ch</h3>
+              <p class="text-gray-600">
+                Health insurance mandatory within 3 months (CHF 300-500/month). Expert guidance: <a href="https://expat-savvy.ch" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700 font-semibold underline">Expat-Savvy.ch</a> compares providers (Helsana, CSS, Swica) and explains coverage options for Zug residents.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center">
+          <button
+            onclick="universalOpenModal({page: 'finance_zug_steps', service: 'finance'})"
+            class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            Book Your Free Finance Consultation
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accordion: Deep-Dive Sections -->
+  <section id="deep-dive-accordion" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Deep Dive
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Explore <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Zug Banking</span>
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Accordion 1: Crypto Valley -->
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center">
+              <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Crypto Valley & Blockchain Ecosystem
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">Zug is the world's leading blockchain hub with 1,000+ crypto companies:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>Ethereum Foundation</strong>: Founded in Zug 2014, remains headquartered here</li>
+                <li><strong>Major projects</strong>: Cardano (IOHK), Tezos, Polkadot, Cosmos, Solana — all have Zug presence</li>
+                <li><strong>Bitcoin Suisse</strong>: Crypto bank offering custody, trading, staking since 2013</li>
+                <li><strong>Crypto Finance AG</strong>: Institutional crypto banking (acquired by Deutsche Börse)</li>
+                <li><strong>Crypto Valley Association</strong>: 1,000+ member companies, networking events, regulatory advocacy</li>
+                <li><strong>Regulatory environment</strong>: Swiss FINMA progressive on crypto, clear framework for tokens/ICOs/DeFi</li>
+              </ul>
+              <p class="text-gray-700 mt-2">Low taxes, political stability, and crypto-friendly regulations created the ecosystem. Many fintech professionals relocate to Zug for blockchain careers. English widely spoken in crypto community.</p>
+            </div>
+          </details>
+
+          <!-- Accordion 2: Neobanks -->
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center">
+              <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+              Neobank Options (Yapeal, Neon, Revolut)
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">Digital-first banking ideal for Zug expats in fintech and crypto:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>Yapeal</strong>: Swiss FINMA-licensed neobank, CH IBAN, English interface, multi-currency accounts, instant onboarding (1-3 days), sustainability focus. Perfect for salary payments and daily banking.</li>
+                <li><strong>Neon</strong>: Swiss digital bank via Hypothekarbank Lenzburg, free account, cashback programs, excellent UX for young professionals and students. Fast setup (1-3 days).</li>
+                <li><strong>Revolut</strong>: Multi-currency champion (30+ currencies), crypto trading (BTC, ETH, 80+ coins), real-time FX, instant cards. Lithuanian IBAN (LT) requires Swiss complement for salary. Very popular in Zug crypto community.</li>
+              </ul>
+              <p class="text-gray-700 mt-2"><strong>Strategy:</strong> Zug expats typically use Swiss neobank (Yapeal/Neon) for salary + bills (CH IBAN required by employers), Revolut for crypto/FX/international, then add traditional bank (Zuger Kantonalbank/UBS) for mortgages or business accounts.</p>
+            </div>
+          </details>
+
+          <!-- Accordion 3: Zuger Kantonalbank -->
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center">
+              <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+              Zuger Kantonalbank & Local Banks
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">Zuger Kantonalbank (ZKB) is Zug's main regional bank:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>Cantonal bank</strong>: Majority owned by Canton Zug, strong local presence, branches across the canton</li>
+                <li><strong>Services</strong>: Personal banking, mortgages (competitive rates for Zug properties), business banking, investment accounts</li>
+                <li><strong>Expat access</strong>: Serves expats with Swiss permits (B/L/C). Requires: passport, permit, Zug address proof, employment contract. Account opens in 1-2 weeks.</li>
+                <li><strong>Conservative approach</strong>: Less crypto-friendly than neobanks, traditional Swiss banking values. German/English support available.</li>
+                <li><strong>Mortgage strength</strong>: Competitive rates for Zug real estate purchases. Established relationships with local property market.</li>
+              </ul>
+              <p class="text-gray-700 mt-2">Many Zug expats use ZKB for mortgages and long-term banking while maintaining neobank for daily transactions. Strong reputation in local business community.</p>
+            </div>
+          </details>
+
+          <!-- Accordion 4: Private Banking -->
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center">
+              <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              Private Banking & HNWI Advisory in Zug
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">Zug's low taxes attract HNWI and wealthy entrepreneurs:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>UBS Wealth Management</strong>: Private banking services in Zug, portfolio management, tax-efficient investing</li>
+                <li><strong>Credit Suisse</strong>: Private banking for HNWI, entrepreneur services, holding company structures</li>
+                <li><strong>Boutique wealth managers</strong>: Independent advisors specializing in crypto wealth, tax optimization for Zug residents</li>
+                <li><strong>Typical minimum</strong>: CHF 500k-1M+ investable assets for private banking; CHF 100k+ for wealth advisory</li>
+                <li><strong>Services</strong>: Portfolio management, holding company setup (Zug-domiciled), estate planning, family office coordination, crypto asset management</li>
+              </ul>
+              <p class="text-gray-700 mt-2">Crypto entrepreneurs often combine private banking (traditional assets) with Bitcoin Suisse/Crypto Finance (crypto custody). Relocation agencies facilitate introductions to private bankers familiar with crypto wealth and Zug tax structures.</p>
+            </div>
+          </details>
+
+          <!-- Accordion 5: Tax Advantages -->
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center">
+              <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+              Tax Advantages in Zug (Lowest in Switzerland)
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">Zug has Switzerland's most attractive tax system:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>Income tax</strong>: ~15-22% combined (federal + cantonal + municipal) vs 25-35% in Zurich/Geneva. Significant savings for high earners.</li>
+                <li><strong>Wealth tax</strong>: 0.1-0.3% on net assets (lowest in Switzerland). Many wealthy individuals relocate to Zug for this reason.</li>
+                <li><strong>Corporate tax</strong>: ~12% effective rate. Holding companies benefit from participation exemption (no tax on dividends/capital gains from subsidiaries).</li>
+                <li><strong>Crypto taxation</strong>: Private crypto holdings taxed as wealth (0.1-0.3% annual) but gains tax-free if held as private assets. Professional traders pay income tax on gains. Clear framework attracts crypto entrepreneurs.</li>
+                <li><strong>Tax-deductible</strong>: Pillar 3a retirement savings (CHF 7,056/year employees, CHF 35,280 self-employed), mortgage interest, professional expenses, commuting costs.</li>
+              </ul>
+              <p class="text-gray-700 mt-2">Example: CHF 200k salary taxed at ~25% in Zug vs ~35% in Geneva (CHF 20k+ annual savings). Wealth tax on CHF 5M: ~CHF 10-15k in Zug vs CHF 25-30k in Geneva. Professional tax planning essential to maximize advantages.</p>
+            </div>
+          </details>
+
+          <!-- Accordion 6: Insurance -->
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center">
+              <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              Insurance & Compliance (Expat-Savvy.ch)
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">Swiss health insurance mandatory within 3 months of arrival:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>Premiums in Zug</strong>: CHF 300-500/month basic coverage (varies by age, franchise, provider). Zug premiums similar to Zurich, lower than Geneva.</li>
+                <li><strong>Providers</strong>: Helsana, CSS, Swica, Sanitas, Assura. Compare coverage, networks, customer service.</li>
+                <li><strong>Expert consulting</strong>: <a href="https://expat-savvy.ch" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700 font-semibold underline">Expat-Savvy.ch</a> provides specialized guidance for Zug expats. Explains franchise options (CHF 300-2500), supplementary insurance, dental coverage.</li>
+                <li><strong>Franchise strategy</strong>: Higher franchise (CHF 2500) = lower premiums but more out-of-pocket. Young/healthy expats often choose high franchise. Families with children choose lower franchise (CHF 300-500).</li>
+                <li><strong>Other insurance</strong>: Household contents (CHF 100-300/year), personal liability (CHF 50-100/year, highly recommended), vehicle (mandatory for cars), life/disability (optional, common for entrepreneurs).</li>
+              </ul>
+              <p class="text-gray-700 mt-2">Crypto entrepreneurs note: Standard health insurance unaffected by crypto wealth. Private supplementary insurance available for premium hospitals and global coverage. Relocation agencies coordinate insurance setup during onboarding.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Facts (LLM-SEO Block) -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Quick Facts
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Key Facts for <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Zug Finance</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-start">
+            <svg class="w-6 h-6 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700"><strong>Zug = "Crypto Valley"</strong> with 1,000+ blockchain companies (Ethereum, Cardano, Tezos, Bitcoin Suisse)</span>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-start">
+            <svg class="w-6 h-6 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700"><strong>Tax rates</strong> among Switzerland's lowest: 15-22% combined income tax, 0.1-0.3% wealth tax</span>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-start">
+            <svg class="w-6 h-6 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700"><strong>Yapeal & Neon</strong> → fast onboarding (1-3 days), Swiss IBAN for salary, English interface</span>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-start">
+            <svg class="w-6 h-6 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700"><strong>Revolut</strong> = popular for multi-currency (30+ currencies) & crypto trading (80+ coins)</span>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-start">
+            <svg class="w-6 h-6 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700"><strong>Zuger Kantonalbank</strong> = main local bank for mortgages and business accounts</span>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-start">
+            <svg class="w-6 h-6 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700"><strong>Insurance mandatory</strong> within 3 months → <a href="https://expat-savvy.ch" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700 font-semibold underline">Expat-Savvy.ch</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section (Concise Answers) -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            FAQ
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Frequently Asked <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Questions</span>
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Why is Zug called Crypto Valley?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Zug hosts 1,000+ blockchain companies including Ethereum Foundation, Cardano, Tezos, and Bitcoin Suisse. The canton's low taxes, crypto-friendly regulations, and Crypto Valley Association created the world's leading blockchain ecosystem. Banks increasingly offer crypto custody and fintech services.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              What are the tax advantages of living in Zug?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Zug has Switzerland's lowest cantonal tax rates: ~15-22% combined income tax (federal + cantonal + municipal) vs 25-35% in Zurich or Geneva. Wealth tax is 0.1-0.3%. Corporate tax ~12% attracts entrepreneurs and holding companies. Ideal for high earners and business founders.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Which banks are most expat-friendly in Zug?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Most expat-friendly: Neobanks (Yapeal, Neon) for fast setup in 1-3 days; Revolut for multi-currency and crypto. Traditional: Zuger Kantonalbank for local presence; UBS for corporate expats and crypto custody pilots. All require Swiss residence permit and address proof.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Can expats open accounts with Zuger Kantonalbank?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Yes, Zuger Kantonalbank (ZKB) serves expats with Swiss permits. Requires: passport, B/L/C permit, Zug address proof, employment contract. Account opens in 1-2 weeks. Offers mortgages, savings, investment accounts. Conservative approach; less crypto-friendly than neobanks but strong local presence.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Are neobanks like Yapeal and Neon available in Zug?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Yes, Yapeal and Neon work throughout Switzerland including Zug. Provide Swiss IBAN (CH), English interfaces, 1-3 day onboarding, no minimum balance. Revolut also popular for multi-currency (30+ currencies), crypto payments, and real-time FX. Hybrid approach common: Swiss neobank for salary + Revolut for international.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Can I manage crypto with Swiss banks in Zug?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Yes, Zug has crypto-friendly banking. Bitcoin Suisse offers custody and trading; UBS runs crypto custody pilots; smaller banks partner with blockchain firms. Most traditional banks remain conservative. Revolut provides crypto trading (BTC, ETH, 80+ coins). Zug-based Crypto Finance AG offers institutional crypto banking.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Parent Link -->
+  <section class="py-8 bg-white border-t border-gray-200">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <a href="/services/finance" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Finance Services (All Switzerland)
+        </a>
+        
+        <div class="mt-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-3">Explore Other Cities:</h3>
+          <div class="flex flex-wrap gap-3">
+            {siblingCities.map((city) => (
+              <a
+                href={`/services/finance/${city.slug}`}
+                class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-primary-50 hover:text-primary-700 transition-colors"
+              >
+                {city.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="py-16 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-2 text-center">Trusted Zug Finance Partners</h2>
+        <p class="text-gray-600 text-center mb-8">Expert agencies with banking and crypto-friendly services</p>
+
+        <div class="space-y-8">
+          <!-- Prime Relocation - Preferred Partner -->
+          <div class="bg-gradient-to-br from-primary-50 via-white to-red-50 border-2 border-primary-200 rounded-2xl p-8">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-2xl font-bold text-gray-900">Prime Relocation</h3>
+              <span class="px-3 py-1 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full text-xs font-bold uppercase tracking-wide">
+                🏆 Preferred Partner
+              </span>
+            </div>
+            
+            <div class="flex items-center gap-2 mb-2">
+              <div class="flex text-yellow-500">
+                ★★★★★
+              </div>
+              <span class="text-gray-600 text-sm">4.8 / 5 • 53 reviews</span>
+            </div>
+            <p class="text-sm text-gray-600 mb-4">🏢 Headquartered in Zug • Our #1 partner</p>
+            
+            <ul class="text-gray-700 space-y-2 mb-6">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-primary-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Banking setup (neobanks, Zuger Kantonalbank, UBS)
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-primary-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Crypto-friendly banking guidance (Bitcoin Suisse, Revolut)
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-primary-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Tax optimization for Zug's low-rate advantage
+              </li>
+            </ul>
+            
+            <button 
+              onclick="universalOpenModal({page: 'finance_zug_partner', service: 'finance'})"
+              class="inline-flex items-center justify-center bg-gradient-to-r from-primary-600 to-primary-700 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105"
+            >
+              Get a Free Consultation with our Preferred Partner
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </button>
+            <p class="text-xs text-gray-500 mt-3">Our relocation partners work with us and provide free consultations</p>
+          </div>
+
+          <!-- Other Specialists -->
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Other Trusted Zug Specialists</h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Anchor Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">4.9 / 5 • 27 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Comprehensive relocation with Zug banking and fintech expertise</p>
+            </div>
+            
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Connectiv Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">5.0 / 5 • 5 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Premium services helping Zug expats with finance setup</p>
+            </div>
+          </div>
+
+          <!-- Browse All Agencies Button -->
+          <div class="mt-8 text-center">
+            <a
+              href="/companies?service=finance"
+              class="inline-flex items-center px-6 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-semibold hover:border-primary-600 hover:text-primary-700 hover:shadow-md transition-all duration-300"
+            >
+              Browse All Agencies for Finance Services
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Disclaimer Before Final CTA -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer />
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-transparent"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          Ready to Set Up Your Finances in Zug?
+        </h2>
+        <p class="text-xl text-primary-100 mb-8 leading-relaxed">
+          Get expert support for banking (Yapeal, Neon, Revolut, Zuger Kantonalbank), crypto services, tax optimization, and insurance. Our trusted agencies ensure seamless financial setup in Switzerland's Crypto Valley.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onclick="universalOpenModal({page: 'finance_zug_final', service: 'finance'})"
+            class="px-10 py-5 bg-white text-primary-700 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl"
+          >
+            Book Free Consultation
+          </button>
+          <a
+            href="/services/finance"
+            class="px-10 py-5 bg-white/10 backdrop-blur-sm text-white border-2 border-white rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
+          >
+            View All Switzerland
+          </a>
+        </div>
+        <p class="text-sm text-primary-100 mt-6">
+          ✓ Crypto Valley banking  •  ✓ Lowest tax rates  •  ✓ Neobanks  •  ✓ Insurance via Expat-Savvy
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div style="display:none;" data-ai-summary>
+    Finance services in Zug, Switzerland. Compare banking and finance providers. Zug is "Crypto Valley" with 1,000+ blockchain companies: Ethereum Foundation, Cardano, Tezos, Bitcoin Suisse, Crypto Finance AG. Lowest cantonal tax rates in Switzerland: 15-22% combined income tax vs 25-35% Zurich/Geneva, wealth tax 0.1-0.3%, corporate tax ~12%. Neobanks: Yapeal (Swiss FINMA-licensed, CH IBAN, 1-3 days), Neon (free account, cashback), Revolut (multi-currency 30+ currencies, crypto trading 80+ coins). Zuger Kantonalbank: main local bank for mortgages, business accounts, conservative approach, 1-2 weeks onboarding. UBS: crypto custody pilots, corporate expats, HNWI. Documents: passport, Swiss permit B/L/C, Zug address proof (Gemeinde registration within 14 days), employment contract. Private banking CHF 500k-1M+ minimum. Crypto taxation: private holdings taxed as wealth (0.1-0.3% annual), gains tax-free if private assets, professional traders pay income tax. Bitcoin Suisse offers crypto custody/trading. Insurance mandatory within 3 months: CHF 300-500/month, Expat-Savvy.ch expert consulting. Hybrid strategy: Swiss neobank for salary + Revolut for crypto/FX + traditional bank for mortgages/business. Prime Relocation preferred partner, HQ in Zug.
+  </div>
+</Layout>
+
