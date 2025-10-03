@@ -26,36 +26,55 @@ const breadcrumbSchema = {
   ]
 };
 
+// Lucide icon SVG paths
+const iconPaths: Record<string, string> = {
+  'home': 'M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z M9 22V12h6v10',
+  'passport': 'M2 6a2 2 0 012-2h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6z M9 12h6 M9 16h6 M12 9a1 1 0 100-2 1 1 0 000 2z',
+  'graduation-cap': 'M22 10v6M2 10l10-5 10 5-10 5z M6 12v5c3 3 9 3 12 0v-5',
+  'banknote': 'M2 8h20v8H2z M6 12h.01 M18 12h.01 M10 12a2 2 0 104 0 2 2 0 00-4 0z',
+  'lightbulb': 'M9 18h6 M10 22h4 M15 8a5 5 0 10-6 4.9V17h6v-4.1A5 5 0 0015 8z',
+  'check-circle': 'M22 11.08V12a10 10 0 11-5.93-9.14 M22 4L12 14.01l-3-3',
+  'package': 'M16.5 9.4l-9-5.19M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12',
+  'log-out': 'M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9',
+  'building-2': 'M3 21h18M5 21V7l8-4v18M19 21V11l-6-4M9 9v.01M9 12v.01M9 15v.01M9 18v.01',
+  'building': 'M3 21h18M4 21V5a2 2 0 012-2h12a2 2 0 012 2v16M9 9h.01M15 9h.01M9 13h.01M15 13h.01M9 17h6',
+  'globe': 'M12 2a10 10 0 100 20 10 10 0 000-20z M2 12h20 M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z',
+  'landmark': 'M3 21h18M6 18v-6M10 18v-6M14 18v-6M18 18v-6M12 2l9 5H3l9-5z',
+  'briefcase': 'M16 20V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v16M8 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2h-4',
+  'school': 'M3 21h4v-7h10v7h4V10.5L12 3 3 10.5V21z M9 14h.01 M15 14h.01 M12 17h.01',
+  'map-pin': 'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z M12 13a3 3 0 100-6 3 3 0 000 6z'
+};
+
 const coreServices = [
   {
     title: 'Housing Services',
     slug: 'housing',
     description: 'Find apartments and navigate Swiss rental requirements with expert agency support including viewings, negotiations, and lease signing.',
-    icon: '🏠'
+    icon: 'home'
   },
   {
     title: 'Immigration Services',
     slug: 'immigration',
     description: 'Work permits, visa applications, and residence permits handled by specialized agencies with Swiss immigration expertise.',
-    icon: '🛂'
+    icon: 'passport'
   },
   {
     title: 'Education Services',
     slug: 'education',
     description: 'International school search, applications, and enrollment support for expat families relocating to Switzerland.',
-    icon: '🎓'
+    icon: 'graduation-cap'
   },
   {
     title: 'Finance Services',
     slug: 'finance',
     description: 'Swiss banking, wealth management, tax planning, and financial setup coordinated by expert relocation agencies.',
-    icon: '💰'
+    icon: 'banknote'
   },
   {
     title: 'Advisory Services',
     slug: 'advisory',
     description: 'Strategic relocation planning for HNWI, entrepreneurs, and executives with personalized agency consultation.',
-    icon: '🎯'
+    icon: 'lightbulb'
   }
 ];
 
@@ -64,35 +83,35 @@ const supportingServices = [
     title: 'Settling-In Services',
     slug: 'settling-in',
     description: 'Municipality registration, health insurance, utilities, and complete administrative setup after arrival.',
-    icon: '✅'
+    icon: 'check-circle'
   },
   {
     title: 'Moving & Logistics',
     slug: 'moving-logistics',
     description: 'International shipping, customs clearance, pet relocation, and complete moving coordination.',
-    icon: '📦'
+    icon: 'package'
   },
   {
     title: 'Departure Services',
     slug: 'departure',
     description: 'Lease termination, deregistration, deposit recovery, and smooth exit from Switzerland.',
-    icon: '🚪'
+    icon: 'log-out'
   },
   {
     title: 'Corporate Relocation',
     slug: 'corporate-relocation',
     description: 'HR programs, employee mobility, and comprehensive corporate transfer support through specialized agencies.',
-    icon: '🏢'
+    icon: 'building-2'
   }
 ];
 
 const locationGuides = [
-  { name: 'Zürich', href: '/locations/zurich', icon: '🏙️' },
-  { name: 'Geneva', href: '/locations/geneva', icon: '🌍' },
-  { name: 'Basel', href: '/locations/basel', icon: '🏛️' },
-  { name: 'Zug', href: '/locations/zug', icon: '💼' },
-  { name: 'Lausanne', href: '/locations/lausanne', icon: '🎓' },
-  { name: 'Bern', href: '/locations/bern', icon: '🏛️' }
+  { name: 'Zürich', href: '/locations/zurich', icon: 'building' },
+  { name: 'Geneva', href: '/locations/geneva', icon: 'globe' },
+  { name: 'Basel', href: '/locations/basel', icon: 'landmark' },
+  { name: 'Zug', href: '/locations/zug', icon: 'briefcase' },
+  { name: 'Lausanne', href: '/locations/lausanne', icon: 'school' },
+  { name: 'Bern', href: '/locations/bern', icon: 'map-pin' }
 ];
 ---
 
@@ -129,7 +148,7 @@ const locationGuides = [
   <section class="py-8 bg-white">
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
-        <PlatformDisclaimer />
+        <PlatformDisclaimer compact={true} />
       </div>
     </div>
   </section>
@@ -150,7 +169,11 @@ const locationGuides = [
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {coreServices.map((service) => (
             <div class="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
-              <div class="text-4xl mb-4">{service.icon}</div>
+              <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <path d={iconPaths[service.icon]} />
+                </svg>
+              </div>
               <h3 class="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
               <p class="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
               <div class="flex flex-col gap-3">
@@ -196,7 +219,11 @@ const locationGuides = [
         <div class="grid md:grid-cols-2 gap-6">
           {supportingServices.map((service) => (
             <div class="bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
-              <div class="text-4xl mb-4">{service.icon}</div>
+              <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <path d={iconPaths[service.icon]} />
+                </svg>
+              </div>
               <h3 class="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
               <p class="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
               <div class="flex flex-col gap-3">
@@ -245,7 +272,11 @@ const locationGuides = [
               href={location.href}
               class="flex flex-col items-center justify-center p-6 bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 rounded-xl hover:border-primary-300 hover:shadow-lg transition-all duration-300"
             >
-              <div class="text-3xl mb-2">{location.icon}</div>
+              <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center mb-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <path d={iconPaths[location.icon]} />
+                </svg>
+              </div>
               <span class="text-sm font-semibold text-gray-900">{location.name}</span>
             </a>
           ))}
