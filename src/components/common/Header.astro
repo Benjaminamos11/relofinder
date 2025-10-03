@@ -9,8 +9,7 @@ const popularRegions = [
   { id: 'zurich', name: 'Zürich', subtitle: 'Financial Capital' },
   { id: 'geneva', name: 'Geneva', subtitle: 'International Hub' },
   { id: 'basel', name: 'Basel', subtitle: 'Pharma Center' },
-  { id: 'bern', name: 'Bern', subtitle: 'Swiss Capital' },
-  { id: 'lausanne', name: 'Lausanne', subtitle: 'Olympic City' }
+  { id: 'zug', name: 'Zug', subtitle: 'Crypto Valley' }
 ];
 
 const mainServices = [
@@ -82,7 +81,7 @@ import { openModal } from '../../stores/modal';
               <p class="text-gray-600 mb-4 text-sm">Discover Swiss destinations for expats</p>
               <div class="space-y-2">
                 {popularRegions.map((region) => (
-                  <a href={`/regions/${region.id}`} class="flex items-center justify-between p-3 rounded-lg hover:bg-gradient-to-r hover:from-primary-50 hover:to-red-50 transition-all duration-200 group/item border border-transparent hover:border-primary-100">
+                  <a href={`/locations/${region.id}`} class="flex items-center justify-between p-3 rounded-lg hover:bg-gradient-to-r hover:from-primary-50 hover:to-red-50 transition-all duration-200 group/item border border-transparent hover:border-primary-100">
                     <div>
                       <div class="font-semibold text-gray-900 group-hover/item:text-primary-700 transition-colors">{region.name}</div>
                       <div class="text-xs text-gray-500 group-hover/item:text-primary-600 transition-colors">{region.subtitle}</div>
@@ -94,8 +93,8 @@ import { openModal } from '../../stores/modal';
                 ))}
               </div>
               <div class="mt-4 pt-4 border-t border-gray-100">
-                <a href="/regions" class="block w-full text-center px-4 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-bold rounded-lg hover:from-primary-700 hover:to-primary-800 hover:scale-105 hover:shadow-lg transition-all duration-300 transform text-sm">
-                  View All 26 Cantons →
+                <a href="/companies" class="block w-full text-center px-4 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-bold rounded-lg hover:from-primary-700 hover:to-primary-800 hover:scale-105 hover:shadow-lg transition-all duration-300 transform text-sm">
+                  Browse All Agencies →
                 </a>
               </div>
             </div>
@@ -158,7 +157,7 @@ import { openModal } from '../../stores/modal';
 <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/40 z-[9999] transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
 <div id="mobile-menu" class="lg:hidden max-h-0 overflow-hidden transition-all duration-300 bg-white shadow-xl rounded-b-2xl fixed left-0 right-0 top-0 z-[9999]">
   <nav class="flex flex-col py-4 px-6 space-y-2" tabindex="-1">
-    <a href="/regions" class="text-gray-700 font-medium py-2">Regions</a>
+    <a href="/locations/zurich" class="text-gray-700 font-medium py-2">Regions</a>
     <a href="/services" class="text-gray-700 font-medium py-2">Services</a>
     <a href="/companies" class="text-gray-700 font-medium py-2">Directory</a>
     <a href="/blog" class="text-gray-700 font-medium py-2">Blog</a>

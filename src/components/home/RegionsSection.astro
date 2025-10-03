@@ -2,39 +2,36 @@
 // Featured Swiss regions
 const regions = [
   {
+    id: 'zurich',
     name: 'Zurich',
     description: 'Switzerland\'s economic hub with international flair',
     image: 'https://via.placeholder.com/800x600/e5e7eb/6b7280?text=Zurich',
-    href: '/regions/zurich',
+    href: '/locations/zurich',
     highlights: ['Financial District', 'International Schools', 'Lake Views']
   },
   {
+    id: 'geneva',
     name: 'Geneva',
     description: 'International center for diplomacy and business',
     image: 'https://via.placeholder.com/800x600/e5e7eb/6b7280?text=Geneva',
-    href: '/regions/geneva',
+    href: '/locations/geneva',
     highlights: ['UN Headquarters', 'Luxury Living', 'French Culture']
   },
   {
+    id: 'basel',
     name: 'Basel',
     description: 'Cultural capital with pharmaceutical industry',
     image: 'https://via.placeholder.com/800x600/e5e7eb/6b7280?text=Basel',
-    href: '/regions/basel',
+    href: '/locations/basel',
     highlights: ['Pharma Hub', 'Art Scene', 'Rhine River']
   },
   {
-    name: 'Bern',
-    description: 'Historic capital with government institutions',
-    image: 'https://via.placeholder.com/800x600/e5e7eb/6b7280?text=Bern',
-    href: '/regions/bern',
-    highlights: ['Federal Capital', 'UNESCO Heritage', 'Bear Park']
-  },
-  {
-    name: 'Lausanne',
-    description: 'Olympic capital on beautiful Lake Geneva',
-    image: 'https://via.placeholder.com/800x600/e5e7eb/6b7280?text=Lausanne',
-    href: '/regions/lausanne',
-    highlights: ['Olympic Museum', 'Lake Geneva', 'Universities']
+    id: 'zug',
+    name: 'Zug',
+    description: 'Business-friendly canton with blockchain innovation',
+    image: 'https://via.placeholder.com/800x600/e5e7eb/6b7280?text=Zug',
+    href: '/locations/zug',
+    highlights: ['Crypto Valley', 'Low Taxes', 'Blockchain Hub']
   }
 ];
 ---
@@ -50,7 +47,7 @@ const regions = [
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[200px]">
       <!-- Zürich - Large Feature -->
-      <a href="/regions/zurich" class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl md:col-span-2 md:row-span-2">
+      <a href="/locations/zurich" class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl md:col-span-2 md:row-span-2">
         <div class="absolute inset-0">
           <img 
             src={regions[0].image}
@@ -80,7 +77,7 @@ const regions = [
       </a>
 
       <!-- Geneva - Tall -->
-      <a href="/regions/geneva" class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl md:row-span-2">
+      <a href="/locations/geneva" class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl md:row-span-2">
         <div class="absolute inset-0">
           <img 
             src={regions[1].image}
@@ -110,7 +107,7 @@ const regions = [
       </a>
 
       <!-- Basel - Wide -->
-      <a href="/regions/basel" class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl md:col-span-2">
+      <a href="/locations/basel" class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl md:col-span-2">
         <div class="absolute inset-0">
           <img 
             src={regions[2].image}
@@ -138,9 +135,9 @@ const regions = [
           </div>
         </div>
       </a>
-      <!-- Lugano and Zug - Small Squares -->
+      <!-- Zug - Small Square -->
       {regions.slice(3).map(region => (
-        <a href={"/regions/" + region.id} class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl">
+        <a href={region.href} class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl">
           <div class="absolute inset-0">
             <img 
               src={region.image}
@@ -172,8 +169,8 @@ const regions = [
     </div>
     
     <div class="mt-12 text-center">
-      <a href="/regions" class="btn-primary">
-        View All Regions
+      <a href="/companies" class="btn-primary">
+        Browse All Agencies
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
         </svg>
