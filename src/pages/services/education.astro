@@ -1,895 +1,1085 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import CompanyCard from '../../components/companies/CompanyCard.astro';
+import SchemaMarkup from '../../components/common/SchemaMarkup.astro';
+import ServiceHero from '../../components/services/ServiceHero.astro';
+import ServiceRelated from '../../components/services/ServiceRelated.astro';
+import ServiceBlog from '../../components/services/ServiceBlog.astro';
 
-// Service-specific data
-const service = {
-  name: 'Education Services',
-  subtitle: 'Expert Swiss Education Solutions',
-  description: 'Comprehensive education and school placement services for Swiss families. Navigate the complex education system, secure quality schooling, and optimize educational opportunities with expert guidance.',
-  heroImage: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748682698/a-brightly-lit-humorous-photograph-showc_MdHQek0RRPK4QE9WG8qmIQ_zIWROimTTl2Xc9VdDTc8OA_rv4w3m.webp',
-  stats: {
-    specialists: '18+',
-    avgProject: '2-6 weeks',
-    satisfaction: '4.9/5',
-    savedCosts: '35%'
+interface BlogPost {
+  title: string;
+  slug: string;
+  excerpt: string;
+  category: string;
+  readTime: string;
+}
+
+interface ServiceCompany {
+  name: string;
+  description: string;
+  rating: number;
+  reviews: number;
+  featured?: boolean;
+}
+
+interface RelatedService {
+  title: string;
+  description: string;
+  link: string;
+}
+
+const relatedBlogs: BlogPost[] = [
+  {
+    title: "Swiss Education System Guide 2025",
+    slug: "swiss-education-system-guide",
+    excerpt: "Complete overview of Switzerland's education system including public schools, international schools, universities, and academic pathways for expat families.",
+    category: "Education",
+    readTime: "15 min read"
   },
-  keyFeatures: [
-    'International and local school placement',
-    'Swiss education system navigation',
-    'University and higher education guidance',
-    'Language program coordination',
-    'Educational transition support'
-  ]
-};
+  {
+    title: "International Schools in Switzerland",
+    slug: "international-schools-switzerland",
+    excerpt: "Comprehensive guide to international schools across Switzerland including admission requirements, costs, curricula, and application timelines.",
+    category: "School Search",
+    readTime: "18 min read"
+  },
+  {
+    title: "Swiss University Admission Guide",
+    slug: "swiss-university-admission",
+    excerpt: "Everything you need to know about applying to Swiss universities including language requirements, recognized diplomas, and admission procedures.",
+    category: "Higher Education",
+    readTime: "12 min read"
+  },
+  {
+    title: "Language Learning for Expat Children",
+    slug: "language-learning-switzerland",
+    excerpt: "Strategies for helping your children adapt to Swiss schools and learn German, French, or Italian while maintaining their native language.",
+    category: "Integration",
+    readTime: "10 min read"
+  }
+];
 
-// About the service - detailed explanation
-const aboutService = {
-  title: 'What Are Swiss Education Services?',
-  description: 'Swiss education services provide expert guidance for navigating the complex Swiss education system, securing quality schooling, and optimizing educational opportunities for all ages.',
-  benefits: [
+const companies: ServiceCompany[] = [
+  {
+    name: "Prime Relocation",
+    description: "Official ReloFinder partner providing expert school placement, education advisory, and family integration support across Switzerland",
+    rating: 4.8,
+    reviews: 53,
+    featured: true
+  },
+  {
+    name: "Auris Relocation",
+    description: "Comprehensive education advisory services helping expat families navigate Swiss school systems",
+    rating: 4.8,
+    reviews: 98
+  },
+  {
+    name: "Lodge Relocation",
+    description: "Expert school search and placement services with 25+ years experience in Swiss education",
+    rating: 4.8,
+    reviews: 134
+  }
+];
+
+const relatedServices: RelatedService[] = [
+  {
+    title: "Housing Services",
+    description: "Find family-friendly housing in top school districts across Switzerland",
+    link: "/services/housing"
+  },
+  {
+    title: "Visa & Immigration",
+    description: "Secure residence permits needed for school enrollment in Switzerland",
+    link: "/services/immigration"
+  },
+  {
+    title: "Advisory Services",
+    description: "Comprehensive family relocation planning and strategic guidance",
+    link: "/services/advisory"
+  },
+  {
+    title: "Settling-In Services",
+    description: "Complete family integration support including school transition assistance",
+    link: "/services/settling-in"
+  }
+];
+
+const title = "Education & School Search Services Switzerland | Expert Help for Families | ReloFinder";
+const description = "Expert school placement, international & local education guidance for expat families in Switzerland. ReloFinder & Prime Relocation help with admissions & integration. Book free consultation.";
+const canonicalURL = "https://relofinder.ch/services/education";
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
     {
-      title: 'School Placement',
-      description: 'Expert assistance with international and local school applications, admissions processes, and placement optimization.',
-      icon: 'lightbulb'
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://relofinder.ch"
     },
     {
-      title: 'System Navigation', 
-      description: 'Strategic guidance for understanding Swiss education systems, requirements, and academic pathways.',
-      icon: 'shield'
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://relofinder.ch/services"
     },
     {
-      title: 'Educational Planning',
-      description: 'Comprehensive educational planning and pathway optimization for long-term academic success.',
-      icon: 'chart'
-    },
-    {
-      title: 'Transition Support',
-      description: 'Ongoing support for educational transitions, language integration, and academic adaptation.',
-      icon: 'calculator'
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Education Services",
+      "item": "https://relofinder.ch/services/education"
     }
   ]
 };
 
-// How relocators help process
-const relocatorProcess = [
-  {
-    step: 1,
-    title: 'Educational Assessment',
-    description: 'Comprehensive evaluation of educational needs, academic background, and schooling preferences.',
-    duration: '3-5 days',
-    deliverables: ['Educational needs analysis', 'School options overview', 'Academic pathway planning'],
-    icon: 'search'
-  },
-  {
-    step: 2,
-    title: 'School Research & Selection',
-    description: 'Strategic school research with curated options matching academic requirements and family preferences.',
-    duration: '1-2 weeks',
-    deliverables: ['School shortlist', 'Admission requirements', 'Application timeline'],
-    icon: 'document'
-  },
-  {
-    step: 3,
-    title: 'Application Support',
-    description: 'Professional application assistance, documentation preparation, and admission process coordination.',
-    duration: '2-4 weeks',
-    deliverables: ['Application support', 'Document preparation', 'Interview coaching'],
-    icon: 'support'
-  },
-  {
-    step: 4,
-    title: 'Enrollment & Integration',
-    description: 'Final enrollment coordination and ongoing educational integration support.',
-    duration: '1-2 weeks',
-    deliverables: ['Enrollment completion', 'Integration support', 'Academic monitoring'],
-    icon: 'check'
-  }
-];
-
-// Featured education specialists
-const companies = [
-  {
-    id: 'auris-relocation',
-    name: 'Auris Relocation',
-    logo: 'https://www.aurisrelocation.com/cstyle/6680750/images/logo.svg',
-    description: 'Comprehensive education services with 25+ years experience. Expert school placement and educational guidance across Switzerland.',
-    services: ['School Placement', 'Education Consulting', 'Academic Support'],
-    regions: ['Zurich', 'Geneva', 'Basel', 'Bern'],
-    rating: 4.8,
-    reviewCount: 142,
-    specialties: ['International Schools', 'Local Integration', 'Higher Education'],
-    consultationUrl: '/companies/auris-relocation',
-    quoteUrl: 'https://www.aurisrelocation.com'
-  },
-  {
-    id: 'lodge-relocation',
-    name: 'Lodge Relocation',
-    logo: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748138993/logo-lodge-relocation-2017_xqtsfl.webp',
-    description: 'Expert education support with multicultural team and comprehensive school placement services.',
-    services: ['Education Services', 'School Search', 'Academic Planning'],
-    regions: ['Geneva', 'Zurich', 'Basel', 'Zug'],
-    rating: 4.8,
-    reviewCount: 118,
-    specialties: ['Multilingual Education', 'Cultural Integration', 'Academic Transitions'],
-    consultationUrl: '/companies/lodge-relocation',
-    quoteUrl: 'https://www.lodge-relocation.com'
-  },
-  {
-    id: 'lifestylemanagers',
-    name: 'Lifestylemanagers',
-    logo: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166878/lifestylemnagers_qhgcxf.webp',
-    description: 'Premium education services with personalized school placement and exclusive educational opportunities.',
-    services: ['Premium Education', 'Private Schools', 'Educational Consulting'],
-    regions: ['Zug', 'Zurich', 'Lucerne', 'Schwyz'],
-    rating: 4.9,
-    reviewCount: 84,
-    specialties: ['Premium Schools', 'Personalized Service', 'Elite Education'],
-    consultationUrl: '/companies/lifestylemanagers',
-    quoteUrl: 'https://www.lifestylemanagers.ch/'
-  }
-];
-
-// Regional specializations
-const regions = [
-  {
-    name: 'Zurich',
-    href: '/regions/zurich',
-    description: 'Diverse educational landscape with top international schools, universities, and multilingual programs.',
-    specialization: 'International Education',
-    keyFocus: 'International Schools, Universities, Multilingual Programs',
-    complexity: 'High',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748054305/a-whimsical-slightly-quirky-photograph-d_zq8vecXuSUm5G0iW2zVS2A_ahKrzbyPSHujmZTV4weezQ_fefkl9.webp'
-  },
-  {
-    name: 'Geneva',
-    href: '/regions/geneva',
-    description: 'International education hub with diplomatic schools, UN programs, and multilingual excellence.',
-    specialization: 'Diplomatic Education',
-    keyFocus: 'Diplomatic Schools, UN Programs, International Curricula',
-    complexity: 'High',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748054305/a-photograph-of-a-friendly-typical-swiss_jygtMk7MRVCGIR4b-pXn1w_u_7qRvYXQmqaQVXTr4FhIQ_exkzuu.webp'
-  },
-  {
-    name: 'Zug',
-    href: '/regions/zug',
-    description: 'Modern educational environment with innovative schools and business-focused programs.',
-    specialization: 'Modern Education',
-    keyFocus: 'Innovation Schools, Business Programs, Modern Curricula',
-    complexity: 'Medium',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748054307/a-whimsical-slightly-quirky-photograph-c_ESZqUcnqSiCNpGzcV89dBw_o-YAUo9-RbC7oy5d4C2v2Q_ehpyba.webp'
-  },
-  {
-    name: 'Basel',
-    href: '/regions/basel',
-    description: 'Cross-border educational opportunities with German integration and pharmaceutical industry focus.',
-    specialization: 'Cross-Border Education',
-    keyFocus: 'German Integration, Science Programs, Cross-Border Schools',
-    complexity: 'Medium',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748054305/a-photograph-of-a-friendly-typical-swiss_byvGP0Q4RKyeAN-ygL2jbg_aTPr-BU2TWSrb4xXReYWMw_tw5r7l.webp'
-  }
-];
-
-// Blog resources
-const blogResources = [
-  {
-    title: 'Swiss Education System Guide 2025',
-    href: '/blog/swiss-education-system-guide',
-    category: 'Education',
-    readTime: '20 min',
-    excerpt: 'Complete guide to Switzerland\'s education system including public, private, and international options.',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748138993/swiss-education-guide_xqtsfl.webp'
-  },
-  {
-    title: 'International Schools in Switzerland',
-    href: '/blog/international-schools-switzerland',
-    category: 'Schools',
-    readTime: '15 min',
-    excerpt: 'Comprehensive overview of international schools in Switzerland with admission requirements and curricula.',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748138993/international-schools-swiss_xqtsfl.webp'
-  },
-  {
-    title: 'Swiss University Admission Guide',
-    href: '/blog/swiss-university-admission',
-    category: 'Higher Education',
-    readTime: '18 min',
-    excerpt: 'Essential guide to Swiss university admissions, requirements, and application procedures.',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748138993/university-admission-swiss_xqtsfl.webp'
-  },
-  {
-    title: 'Language Learning in Switzerland',
-    href: '/blog/language-learning-switzerland',
-    category: 'Languages',
-    readTime: '12 min',
-    excerpt: 'Guide to language learning opportunities and multilingual education in Switzerland.',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748138993/language-learning-swiss_xqtsfl.webp'
-  }
-];
-
-// FAQ Section for SEO
-const faqItems = [
-  {
-    question: "What types of schools are available in Switzerland?",
-    answer: "Switzerland offers public schools (free, taught in local languages), private schools (fee-based with various curricula), and international schools (English/multilingual instruction). Options include Swiss curriculum, International Baccalaureate (IB), British, American, and French systems."
-  },
-  {
-    question: "How do I choose between public and international schools?",
-    answer: "Consider factors like language of instruction, curriculum type, duration of stay, university plans, and budget. Public schools offer excellent education and local integration, while international schools provide continuity for mobile families and English-language instruction."
-  },
-  {
-    question: "What are the admission requirements for Swiss schools?",
-    answer: "Requirements vary by school type and level. Generally needed: academic transcripts, language proficiency proof, entrance exams (for some schools), recommendation letters, and application forms. International schools may have additional requirements like interviews or assessments."
-  },
-  {
-    question: "How much do international schools cost in Switzerland?",
-    answer: "International school fees range from CHF 15,000-40,000+ annually, varying by school, location, and grade level. Additional costs include registration fees, uniforms, books, and extracurricular activities. Some employers offer education allowances."
-  },
-  {
-    question: "Can children attend Swiss schools without speaking the local language?",
-    answer: "Yes, but preparation helps. Public schools often provide language support programs. International schools offer instruction in English or other languages. Many schools have integration programs to help non-native speakers adapt to the local language and curriculum."
-  },
-  {
-    question: "How early should I start the school application process?",
-    answer: "Start 6-12 months before intended enrollment, especially for international schools with limited spaces. Popular schools may have waiting lists. Public school enrollment is typically easier but still requires advance planning for documentation and registration."
-  }
-];
-
-// Page metadata with enhanced meta description
-const title = 'Swiss Education Services | Expert School Placement & Academic Solutions | ReloFinder.ch';
-const description = 'Expert Swiss education services for school placement, academic planning, and educational transitions. Professional guidance for international schools, universities, and Swiss education system navigation.';
-const keywords = [
-  'swiss education services',
-  'international schools switzerland',
-  'swiss school placement',
-  'education consultation switzerland',
-  'swiss university admission',
-  'school search switzerland',
-  'educational planning switzerland',
-  'multilingual education switzerland',
-  'swiss academic support',
-  'education relocation switzerland'
-];
-
-// Enhanced schema markup for better SEO
-const schema = {
+const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Swiss Education Services",
-  "description": description,
+  "name": "Swiss Education & School Search Services",
+  "description": "Professional school placement, education advisory, and family integration services for expats relocating to Switzerland",
   "provider": {
     "@type": "Organization",
     "name": "ReloFinder",
     "url": "https://relofinder.ch"
   },
-  "serviceType": "Education and School Placement Services",
   "areaServed": {
     "@type": "Country",
     "name": "Switzerland"
   },
-  "offers": {
-    "@type": "Offer",
-    "description": "Comprehensive education consulting and school placement services",
-    "priceCurrency": "CHF",
-    "priceRange": "1500-5000"
-  }
+  "serviceType": "Education Services"
 };
 
-// FAQ Schema for featured snippets
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": faqItems.map(faq => ({
-    "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.answer
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What types of schools are available in Switzerland for expats?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Switzerland offers three main school types: Public schools (free, excellent quality, taught in local language - German, French, Italian), International schools (CHF 20,000-40,000/year, English or multilingual, IB/British/American curricula), and Private schools (Swiss curriculum, often bilingual). Choice depends on language proficiency, budget, and length of stay."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I apply to an international school in Zurich or Geneva?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Application process: 1) Research schools 6-12 months before desired start date, 2) Submit application with academic records, passport copies, recommendation letters, 3) Attend entrance assessment and interview, 4) Receive admission decision (2-6 weeks), 5) Pay registration fees and confirm enrollment. Popular schools have waiting lists; early application is critical."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are Swiss public schools suitable for non-German/French speaking children?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, with preparation. Swiss public schools are excellent but require language proficiency. Many cantons offer integration classes and language support for newcomers. Children under 10 typically adapt within 6-12 months. For older children or short-term stays (under 3 years), international schools may be better. Consider language immersion programs before school starts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much do international schools cost in Switzerland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Annual tuition ranges: Primary school CHF 20,000-30,000, Secondary school CHF 25,000-35,000, High school CHF 30,000-40,000. Additional costs include registration fees (CHF 2,000-5,000), lunch programs (CHF 2,000-3,000/year), extracurriculars, uniforms, and field trips. Some employers offer education allowances as part of relocation packages."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When should I start the school application process?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start 6-12 months before your desired start date. Top international schools have application deadlines 9-12 months in advance, with waiting lists for popular age groups. Public schools require 2-3 months notice. Begin researching schools as soon as your Switzerland move is confirmed. Early planning is essential for securing spots."
+      }
     }
-  }))
+  ]
 };
-
 ---
 
-<Layout title={title} description={description} keywords={keywords} schema={[schema, faqSchema]}>
-  <!-- Hero Section -->
-  <section class="relative py-24 bg-white overflow-hidden">
-    <!-- Subtle Background Elements -->
-    <div class="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-red-100 via-purple-50 to-blue-100 rounded-full opacity-30 blur-3xl transform translate-x-1/4 -translate-y-1/4"></div>
-    <div class="absolute bottom-0 left-0 w-1/4 h-1/4 bg-gradient-to-tr from-blue-100 via-purple-50 to-red-100 rounded-full opacity-20 blur-2xl transform -translate-x-1/4 translate-y-1/4"></div>
-    
-    <div class="container relative z-10">
-      <div class="max-w-7xl mx-auto">
-        <!-- Breadcrumb -->
-        <nav class="flex items-center space-x-2 text-sm text-gray-500 mb-8">
-          <a href="/" class="hover:text-gray-700 transition-colors">Home</a>
-          <span>→</span>
-          <a href="/services" class="hover:text-gray-700 transition-colors">Services</a>
-          <span>→</span>
-          <span class="text-gray-700 font-medium">Education Services</span>
-        </nav>
+<Layout title={title} description={description}>
+  <SchemaMarkup schema={breadcrumbSchema} />
+  <SchemaMarkup schema={serviceSchema} />
+  <SchemaMarkup schema={faqSchema} />
 
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <!-- Content -->
-          <div class="space-y-8">
-            <!-- Service Badge -->
-            <div class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-red-50 to-blue-50 border border-gray-200 text-gray-700 font-medium text-sm">
-              <svg class="w-4 h-4 mr-2 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-              </svg>
-              {service.subtitle}
-            </div>
+  <ServiceHero
+    title="Education & School Search Services in Switzerland"
+    subtitle="Expert Help for Families – Find the Perfect School"
+    description="Finding the right school is one of the biggest challenges for expat families. Our advisors help you choose between public, private, and international schools – ensuring your children thrive academically and socially."
+    badge="Education Services"
+  />
 
-            <!-- Main Title -->
-            <div class="space-y-6">
-              <h1 class="text-5xl lg:text-7xl font-bold leading-tight text-gray-900">
-                Swiss Education
-                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-purple-600 to-blue-600">
-                  Services
-                </span>
-              </h1>
-              <p class="text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-2xl">
-                {service.description}
+  <section class="py-12 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Ready to Find the Perfect School for Your Children?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get expert guidance on school selection, admissions, and family integration from education specialists
         </p>
-      </div>
-
-            <!-- Key Features -->
-            <div class="space-y-4">
-              {service.keyFeatures.slice(0, 3).map((feature) => (
-                <div class="flex items-center text-gray-700">
-                  <div class="w-6 h-6 bg-gradient-to-r from-green-400 to-green-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                    </svg>
-                  </div>
-                  <span>{feature}</span>
-                </div>
-              ))}
-            </div>
-
-            <!-- CTA Buttons -->
-            <div class="flex flex-wrap gap-4 pt-4">
-              <a href="#consultation" class="bg-gradient-to-r from-primary-600 to-primary-700 text-white hover:shadow-lg px-8 py-4 rounded-xl font-semibold transition-all duration-300 inline-flex items-center shadow-lg hover:shadow-xl">
-                Get Free Consultation
-                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                </svg>
-              </a>
-              <a href="#specialists" class="bg-white border-2 border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50 px-8 py-4 rounded-xl font-semibold transition-all duration-300 inline-flex items-center">
-                Browse Specialists
-                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-              </svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- Hero Image -->
-          <div class="relative">
-            <div class="relative rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 ease-out hover:scale-105 group will-change-transform" style="border-radius: 1.5rem;">
-              <img 
-                src={service.heroImage} 
-                alt="Swiss Education Services" 
-                class="w-full h-[600px] object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-                loading="eager"
-                style="border-radius: 1.5rem;"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" style="border-radius: 1.5rem;"></div>
-              
-              <!-- Stats Overlay -->
-              <div class="absolute bottom-6 left-6 right-6 z-10">
-                <div class="bg-white/20 backdrop-blur-xl rounded-2xl p-6 border border-white/30 shadow-lg transition-all duration-500 ease-out">
-                  <div class="grid grid-cols-2 gap-4">
-                    <div class="text-center">
-                      <div class="text-2xl font-bold text-white drop-shadow-lg">{service.stats.specialists}</div>
-                      <div class="text-sm text-white/90 drop-shadow">Expert Advisors</div>
-                    </div>
-                    <div class="text-center">
-                      <div class="text-2xl font-bold text-white drop-shadow-lg">{service.stats.satisfaction}</div>
-                      <div class="text-sm text-white/90 drop-shadow">Client Rating</div>
-                    </div>
-                    <div class="text-center">
-                      <div class="text-2xl font-bold text-white drop-shadow-lg">{service.stats.avgProject}</div>
-                      <div class="text-sm text-white/90 drop-shadow">Avg Timeline</div>
-                    </div>
-                    <div class="text-center">
-                      <div class="text-2xl font-bold text-white drop-shadow-lg">{service.stats.savedCosts}</div>
-                      <div class="text-sm text-white/90 drop-shadow">Cost Savings</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <button
+          onclick="universalOpenModal({page: 'education_service', service: 'education'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- About the Service Section - Enhanced with H3 structure -->
   <section class="py-20 bg-white">
-    <div class="container">
-      <div class="max-w-7xl mx-auto">
-        <div class="grid lg:grid-cols-2 gap-16 items-start">
-          <div>
-            <h2 class="text-4xl font-bold mb-6">
-              What Are Swiss Education Services?
-            </h2>
-            
-            <h3 class="text-2xl font-semibold mb-4 text-gray-800">Strategic Approach to International Education</h3>
-            <div class="prose prose-lg text-gray-600 space-y-6">
-              <p class="text-xl leading-relaxed">
-                Swiss education services represent a strategic approach to international education, focusing on expert consultation, comprehensive planning, and decision-making support rather than hands-on task execution.
-              </p>
-              <p>
-                Unlike traditional full-service education providers that handle every detail of your education journey, advisory services empower you with expert knowledge, strategic guidance, and professional networks while maintaining control over your educational decisions and budget.
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            The Challenge
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Why Education Is a Major Challenge for <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Expat Families</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Switzerland's education system is world-class, but navigating school options as a newcomer is complex
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Language Barriers</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Public schools teach in local languages (German, French, Italian). Excellent quality but requires language proficiency. Children need time to adapt, especially if starting mid-academic year.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">High Costs of International Schools</h3>
+            <p class="text-gray-600 leading-relaxed">
+              International schools cost CHF 20,000-40,000 per child annually. Registration fees, lunch, activities add CHF 5,000-10,000 more. Family budgets must account for multiple children over several years.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Competitive Admissions & Waiting Lists</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Top international schools have long waiting lists (1-2 years for some age groups). Application deadlines are 6-12 months before start dates. Late applications may not secure spots in preferred schools.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Complex Admission Requirements</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Each school has different requirements: academic records, entrance exams, interviews, recommendation letters, language assessments. Documentation must be translated and apostilled. Process is time-consuming without guidance.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-12 p-8 bg-gradient-to-br from-primary-50 via-white to-red-50 rounded-2xl border-2 border-primary-100">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <svg class="w-8 h-8 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-4">
+              <h4 class="text-xl font-bold text-gray-900 mb-2">Expert Insight</h4>
+              <p class="text-gray-700 leading-relaxed">
+                <strong>Without proper guidance, families often:</strong> Miss application deadlines causing enrollment delays, choose unsuitable schools for their child's needs, overpay for services without understanding alternatives, struggle with language integration, or select housing in wrong school districts. Education advisory prevents these costly mistakes.
               </p>
             </div>
-
-            <h3 class="text-2xl font-semibold mb-4 mt-8 text-gray-800">Your Strategic Partners</h3>
-            <div class="prose prose-lg text-gray-600 space-y-6">
-              <p>
-                Our advisors serve as your strategic partners, combining deep Swiss market knowledge with personalized guidance to help you navigate complex regulations, optimize costs, mitigate risks, and make informed decisions throughout your education journey.
-              </p>
-              <p>
-                This approach is particularly valuable for students, parents, and educators who prefer a consultative partnership over a fully managed service, offering flexibility, cost efficiency, and educational value that extends beyond your initial education move.
-        </p>
-      </div>
-
-            <!-- Key Differentiators -->
-            <div class="mt-8 bg-gradient-to-br from-red-50 to-blue-50 rounded-2xl p-6 border border-gray-100">
-              <h3 class="text-xl font-bold mb-4">Why Choose Advisory Over Full-Service?</h3>
-              <div class="grid md:grid-cols-2 gap-4">
-                <div class="space-y-3">
-                  <div class="flex items-center">
-                    <svg class="w-5 h-5 text-red-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                    </svg>
-                    <span class="text-sm font-medium">40-60% cost savings</span>
-                  </div>
-                  <div class="flex items-center">
-                    <svg class="w-5 h-5 text-red-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                    </svg>
-                    <span class="text-sm font-medium">Maintain full control</span>
-                  </div>
-                  <div class="flex items-center">
-                    <svg class="w-5 h-5 text-red-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                    </svg>
-                    <span class="text-sm font-medium">Educational value</span>
-                  </div>
-                </div>
-                <div class="space-y-3">
-                  <div class="flex items-center">
-                    <svg class="w-5 h-5 text-red-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                    </svg>
-                    <span class="text-sm font-medium">Flexible timeline</span>
-                  </div>
-                  <div class="flex items-center">
-                    <svg class="w-5 h-5 text-red-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                    </svg>
-                    <span class="text-sm font-medium">Strategic focus</span>
-                  </div>
-                  <div class="flex items-center">
-                    <svg class="w-5 h-5 text-red-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                    </svg>
-                    <span class="text-sm font-medium">Expert networks</span>
-                  </div>
-              </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <h3 class="text-2xl font-semibold mb-6 text-gray-800 md:col-span-2">Core Advisory Benefits</h3>
-            {aboutService.benefits.map((benefit) => (
-              <div class="bg-white p-6 rounded-2xl border border-gray-100 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                <div class="w-16 h-16 bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl flex items-center justify-center mb-4">
-                  {benefit.icon === 'lightbulb' && (
-                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-                    </svg>
-                  )}
-                  {benefit.icon === 'shield' && (
-                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                    </svg>
-                  )}
-                  {benefit.icon === 'chart' && (
-                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                    </svg>
-                  )}
-                  {benefit.icon === 'calculator' && (
-                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-                    </svg>
-                  )}
-                </div>
-                <h4 class="text-lg font-bold mb-2 flex-shrink-0">{benefit.title}</h4>
-                <p class="text-sm text-gray-600 flex-grow">{benefit.description}</p>
-          </div>
-        ))}
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- How Relocators Help Section - Enhanced with H3 structure -->
-  <section class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-    <div class="container">
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Our Solution
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            How <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">ReloFinder</span> Helps With School Search & Placement
+          </h2>
+          <p class="text-xl text-gray-600">
+            We connect you with education experts who understand both Swiss and international education systems
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  1
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">International & Local School Placement</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Expert guidance on choosing between public, private, and international schools based on your family's needs. We help with applications, entrance exams, interviews, and securing enrollment in competitive schools.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">School Research</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Application Support</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Admission Strategy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  2
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Swiss Education System Navigation</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Understand Switzerland's unique education pathways including academic vs. vocational tracks, cantonal differences, and transition points. We explain public school integration programs and bilingual options.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">System Overview</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Pathway Planning</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Curriculum Guidance</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  3
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">University & Higher Education Guidance</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Advisory for older students on Swiss university admissions, ETH/EPFL applications, recognized diplomas, language requirements, and maturité suisse preparation. We guide students through Swiss higher education choices.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">University Admission</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Language Tests</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Career Planning</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  4
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Transition & Integration Support</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Help your children adapt successfully with language immersion programs, cultural integration support, tutoring services, and social integration strategies. We ensure smooth transitions for all age groups.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Language Programs</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Tutoring Support</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Cultural Integration</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Talk to an Education Expert
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get personalized school recommendations and admission support from specialists
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'education_service', service: 'education'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold mb-6">How Our Advisory <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-blue-600">Process Works</span></h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Our systematic approach ensures comprehensive planning, risk mitigation, and optimal outcomes for your Swiss education
-        </p>
-      </div>
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Regional Insights
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Education Services Across <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Switzerland</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            School options and education quality vary significantly by region
+          </p>
+        </div>
 
-        <h3 class="text-2xl font-semibold mb-12 text-center text-gray-800">Four-Step Strategic Process</h3>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {relocatorProcess.map((step, index) => (
-            <div class="relative h-full">
-              {index < relocatorProcess.length - 1 && (
-                <div class="hidden lg:block absolute top-16 left-full w-full h-0.5 bg-gradient-to-r from-red-400 to-blue-400 transform translate-x-4 z-0"></div>
-              )}
-              <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 relative z-10 h-full flex flex-col">
-                <div class="flex items-center mb-6">
-                  <div class="w-16 h-16 bg-gradient-to-br from-primary-600 to-primary-700 text-white rounded-2xl flex items-center justify-center font-bold text-xl mr-4">
-                    {step.step}
-                  </div>
-                  <div class="flex-1">
-                    <div class="text-sm text-gray-500 font-medium">{step.duration}</div>
-                  </div>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gradient-to-r from-primary-600 to-primary-700 p-6">
+              <h3 class="text-2xl font-bold text-white mb-2">Zürich</h3>
+              <p class="text-primary-100">Diverse International Schools & Top Universities</p>
+            </div>
+            <div class="p-8">
+              <div class="space-y-4">
+                <div>
+                  <h4 class="font-bold text-gray-900 mb-2 flex items-center">
+                    <svg class="w-5 h-5 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    International School Options
+                  </h4>
+                  <p class="text-gray-600 leading-relaxed ml-7">
+                    ZIS (Zurich International School), ISZL, Inter-Community School, Lyceum Alpinum. Strong IB programs, American, British curricula. Wide range of language programs including German immersion.
+                  </p>
                 </div>
-                <h4 class="text-xl font-bold mb-3 flex-shrink-0">{step.title}</h4>
-                <p class="text-gray-600 mb-4 flex-grow">{step.description}</p>
-                <div class="space-y-2 flex-shrink-0">
-                  <div class="text-sm font-medium text-gray-700">Key Deliverables:</div>
-                  {step.deliverables.map((deliverable) => (
-                    <div class="flex items-center text-sm text-gray-600">
-                      <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-                      <span>{deliverable}</span>
-                    </div>
-                  ))}
+                <div>
+                  <h4 class="font-bold text-gray-900 mb-2 flex items-center">
+                    <svg class="w-5 h-5 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    Higher Education
+                  </h4>
+                  <p class="text-gray-600 leading-relaxed ml-7">
+                    ETH Zurich (world-renowned technical university), University of Zurich, Zurich University of Applied Sciences. Excellent academic pathways for university-bound students.
+                  </p>
+                </div>
+                <div>
+                  <h4 class="font-bold text-gray-900 mb-2 flex items-center">
+                    <svg class="w-5 h-5 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    Best For
+                  </h4>
+                  <p class="text-gray-600 leading-relaxed ml-7">
+                    Corporate families, finance professionals, tech workers. Multilingual environment, excellent public transport access to schools, strong extracurricular programs.
+                  </p>
                 </div>
               </div>
             </div>
-          ))}
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gradient-to-r from-primary-600 to-primary-700 p-6">
+              <h3 class="text-2xl font-bold text-white mb-2">Geneva</h3>
+              <p class="text-primary-100">UN & Diplomatic Schools, International Curricula</p>
+            </div>
+            <div class="p-8">
+              <div class="space-y-4">
+                <div>
+                  <h4 class="font-bold text-gray-900 mb-2 flex items-center">
+                    <svg class="w-5 h-5 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    Elite International Schools
+                  </h4>
+                  <p class="text-gray-600 leading-relaxed ml-7">
+                    International School of Geneva (La Grande Boissière, La Châtaigneraie, Campus des Nations), Collège du Léman, Institut International de Lancy. Strong IB tradition, multilingual programs.
+                  </p>
+                </div>
+                <div>
+                  <h4 class="font-bold text-gray-900 mb-2 flex items-center">
+                    <svg class="w-5 h-5 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    Bilingual Excellence
+                  </h4>
+                  <p class="text-gray-600 leading-relaxed ml-7">
+                    French-English bilingual programs widespread. University of Geneva and Graduate Institute offer excellent academic pathways. Strong focus on international relations and diplomacy.
+                  </p>
+                </div>
+                <div>
+                  <h4 class="font-bold text-gray-900 mb-2 flex items-center">
+                    <svg class="w-5 h-5 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    Best For
+                  </h4>
+                  <p class="text-gray-600 leading-relaxed ml-7">
+                    Diplomatic families, UN/NGO staff, international organization employees. Most cosmopolitan city, largest expat community, exceptional cultural diversity in schools.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gradient-to-r from-primary-600 to-primary-700 p-6">
+              <h3 class="text-2xl font-bold text-white mb-2">Zug</h3>
+              <p class="text-primary-100">Modern Schools & Innovation Programs</p>
+            </div>
+            <div class="p-8">
+              <div class="space-y-4">
+                <div>
+                  <h4 class="font-bold text-gray-900 mb-2 flex items-center">
+                    <svg class="w-5 h-5 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    International School of Zug
+                  </h4>
+                  <p class="text-gray-600 leading-relaxed ml-7">
+                    International School of Zug and Luzern (ISZL) offers IB curriculum with strong STEM focus. Modern facilities, technology integration, entrepreneurship programs popular with business families.
+                  </p>
+                </div>
+                <div>
+                  <h4 class="font-bold text-gray-900 mb-2 flex items-center">
+                    <svg class="w-5 h-5 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    Public School Quality
+                  </h4>
+                  <p class="text-gray-600 leading-relaxed ml-7">
+                    Excellent German-language public schools with smaller class sizes. Integration classes for non-German speakers. Close proximity to Zurich's international schools for additional options.
+                  </p>
+                </div>
+                <div>
+                  <h4 class="font-bold text-gray-900 mb-2 flex items-center">
+                    <svg class="w-5 h-5 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    Best For
+                  </h4>
+                  <p class="text-gray-600 leading-relaxed ml-7">
+                    Entrepreneur families, business owners, tech professionals. Lower cost of living than Zurich/Geneva, family-friendly environment, strong community feel, excellent tax benefits.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gradient-to-r from-primary-600 to-primary-700 p-6">
+              <h3 class="text-2xl font-bold text-white mb-2">Basel</h3>
+              <p class="text-primary-100">Science Focus & Cross-Border Options</p>
+            </div>
+            <div class="p-8">
+              <div class="space-y-4">
+                <div>
+                  <h4 class="font-bold text-gray-900 mb-2 flex items-center">
+                    <svg class="w-5 h-5 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    International School Basel
+                  </h4>
+                  <p class="text-gray-600 leading-relaxed ml-7">
+                    ISB offers IB program with strong science curriculum. Ideal for pharma industry families (Roche, Novartis employees). Access to German international schools across border (Lörrach, Weil am Rhein).
+                  </p>
+                </div>
+                <div>
+                  <h4 class="font-bold text-gray-900 mb-2 flex items-center">
+                    <svg class="w-5 h-5 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    Trilingual Advantage
+                  </h4>
+                  <p class="text-gray-600 leading-relaxed ml-7">
+                    German-Swiss, French, and English language exposure. University of Basel strong in life sciences. Cross-border opportunities for education in Germany and France.
+                  </p>
+                </div>
+                <div>
+                  <h4 class="font-bold text-gray-900 mb-2 flex items-center">
+                    <svg class="w-5 h-5 text-primary-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    Best For
+                  </h4>
+                  <p class="text-gray-600 leading-relaxed ml-7">
+                    Pharma and life sciences professionals, cross-border workers, families seeking trilingual education. Strong STEM focus ideal for science-oriented students.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Step-by-Step Guide
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Your Education Advisory <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Journey</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Follow this proven process to secure the perfect school for your children
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              1
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Educational Needs Assessment</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Comprehensive consultation to understand your children's academic background, language proficiency, special needs, learning style, extracurricular interests, and family preferences. Discuss budget, location, and length of stay in Switzerland.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1-2 consultation sessions (2-3 hours total)</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              2
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">School Research & Shortlist</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Our advisors research and curate a personalized shortlist of 3-5 schools matching your criteria. Includes detailed comparisons of curricula, facilities, admission requirements, costs, and school culture. Arrange virtual tours and info sessions.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1-2 weeks for research and recommendations</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              3
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Application Support & Coordination</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Complete application assistance including document preparation, translation, test scheduling, interview coaching, and deadline management. We coordinate with schools on your behalf and follow up on application status.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 4-12 weeks depending on school requirements</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              4
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Enrollment & Integration Support</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Final enrollment assistance including registration, fee payment, uniform ordering, and orientation. Ongoing support with language programs, tutoring, cultural integration, and parent networking to ensure smooth transitions.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Initial 2-4 weeks, then ongoing as needed</p>
+            </div>
+          </div>
         </div>
 
         <div class="mt-12 text-center">
-          <h3 class="text-xl font-semibold mb-4 text-gray-800">Timeline Expectations</h3>
-          <p class="text-gray-600 max-w-2xl mx-auto">
-            Most advisory engagements span 6-12 weeks, with intensive planning in weeks 1-2, implementation support in weeks 3-10, and optimization review in the final weeks.
-          </p>
+          <button
+            onclick="universalOpenModal({page: 'education_steps', service: 'education'})"
+            class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            Book Your Free School Consultation
+          </button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Featured Specialists Section - Enhanced with H3 structure -->
-  <section id="specialists" class="py-20 bg-white">
-    <div class="container">
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold mb-6">Featured Advisory <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-blue-600">Specialists</span></h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Connect with Switzerland's top education advisors who specialize in strategic planning and expert consultation
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Essential Information
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Key Facts for <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Expat Families</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Critical information every family should know about Swiss education
           </p>
         </div>
 
-        <h3 class="text-2xl font-semibold mb-8 text-center text-gray-800">Certified Advisory Partners</h3>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Public Schools</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Free, high-quality education taught in local language (German, French, Italian). Excellent for long-term residents with young children who can adapt quickly.
+            </p>
+          </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {companies.map((company) => (
-            <div class="bg-white rounded-2xl p-8 border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
-              <div class="flex items-center mb-6">
-                <div class="min-w-0 flex-1">
-                  <h4 class="text-lg font-bold truncate">{company.name}</h4>
-                  <div class="flex items-center text-sm text-gray-600">
-                    <span class="text-yellow-400 mr-1">★</span>
-                    <span>{company.rating}</span>
-                    <span class="ml-2">({company.reviewCount} reviews)</span>
-                  </div>
-                </div>
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">International School Costs</h3>
+            <p class="text-gray-600 leading-relaxed">
+              CHF 20,000-40,000 per child annually. Additional costs: registration (CHF 2,000-5,000), lunch, activities, transport. Many employers provide education allowances.
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Application Deadlines</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Start 6-12 months before desired start date. Top schools have deadlines 9-12 months in advance. Waiting lists for popular age groups. Early planning is critical.
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Bilingual Programs</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Available in Zurich, Geneva, Basel. German-English, French-English common. Bridge between local integration and international education. Growing in popularity.
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">University Requirements</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Recognized diplomas required (IB, Maturité, A-levels). Language proficiency: German for German universities, French for French universities. Some programs in English.
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Class Sizes</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Public schools: 15-25 students. International schools: 12-18 students typical. Private schools: 10-15 students. Smaller sizes allow more individual attention and support.
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Curricula Offered</h3>
+            <p class="text-gray-600 leading-relaxed">
+              International Baccalaureate (IB), British (IGCSE, A-levels), American (AP), French Baccalauréat, Swiss Maturité. Choose based on future university plans and home country.
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Integration Support</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Most schools offer language support, cultural integration programs, buddy systems, and parent networks. Younger children (under 10) typically adapt within 6-12 months.
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Extracurriculars</h3>
+            <p class="text-gray-600 leading-relaxed">
+              International schools offer extensive activities: sports, arts, music, drama, robotics, Model UN. Public schools rely more on external clubs. Factor into total costs and schedules.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto">
+        <div class="bg-gradient-to-br from-primary-50 via-white to-red-50 rounded-3xl shadow-2xl border-2 border-primary-100 overflow-hidden">
+          <div class="p-12">
+            <div class="flex items-center justify-center mb-6">
+              <span class="px-6 py-2 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full text-sm font-bold uppercase tracking-wide">
+                🏆 OFFICIAL RELOFINDER PARTNER
+              </span>
+            </div>
+            
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-4">
+              Prime Relocation
+            </h2>
+            <p class="text-xl text-center text-gray-600 mb-8">
+              Expert School Placement & Education Advisory for Expat Families
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+              <div>
+                <h3 class="text-lg font-bold text-gray-900 mb-4">✓ School Placement Services</h3>
+                <ul class="space-y-2 text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    Personalized school research and shortlist creation
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    Application assistance and documentation support
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    School tour coordination and interview preparation
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    Insider access to schools and admissions offices
+                  </li>
+                </ul>
               </div>
-              
-              <p class="text-gray-600 mb-6 flex-grow">{company.description}</p>
-              
-              <div class="mb-6 flex-shrink-0">
-                <div class="text-sm font-medium text-gray-700 mb-2">Advisory Specialties:</div>
-                <div class="flex flex-wrap gap-2">
-                  {company.specialties.map((specialty) => (
-                    <span class="text-xs bg-red-50 text-red-700 px-3 py-1 rounded-full border border-red-200">{specialty}</span>
-                  ))}
-                </div>
-              </div>
-              
-              <div class="flex gap-3 flex-shrink-0">
-                <a href={company.consultationUrl} class="flex-1 bg-gradient-to-r from-primary-600 to-primary-700 text-white text-center py-3 rounded-xl font-medium hover:shadow-lg transition-all duration-300">
-                  Consultation
-                </a>
-                <a href={company.quoteUrl} class="flex-1 border border-gray-300 text-gray-700 text-center py-3 rounded-xl font-medium hover:bg-gray-50 transition-all duration-300">
-                  Get Quote
-                </a>
+
+              <div>
+                <h3 class="text-lg font-bold text-gray-900 mb-4">✓ Family Integration Support</h3>
+                <ul class="space-y-2 text-gray-600">
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    Language program recommendations and setup
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    Tutoring and academic support coordination
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    Cultural integration and transition support
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-5 h-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    Parent networking and community connections
+                  </li>
+                </ul>
               </div>
             </div>
-          ))}
-        </div>
-        
-        <div class="text-center">
-          <h3 class="text-xl font-semibold mb-4 text-gray-800">Explore All Advisory Specialists</h3>
-          <a href="/companies?service=education" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300">
-            View All Education Specialists
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-              </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Regional Expertise Section - Enhanced with H3 structure -->
-  <section class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-    <div class="container">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold mb-6">Regional <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-blue-600">Expertise</span></h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Specialized advisory knowledge for Switzerland's major business and cultural centers
-          </p>
-        </div>
-
-        <h3 class="text-2xl font-semibold mb-12 text-center text-gray-800">Advisory Specializations by Swiss Region</h3>
-
-        <div class="grid lg:grid-cols-2 gap-8">
-          {regions.map((region) => (
-            <a href={region.href} class="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 hover:border-blue-200 h-full block">
-              <!-- Long Cow Image -->
-              <div class="h-64 relative overflow-hidden">
-                <img 
-                  src={region.image} 
-                  alt={`Swiss education advisory services in ${region.name} - ${region.specialization} expertise`}
-                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div class="absolute bottom-4 left-6 right-6">
-                  <div class="flex items-center justify-between">
-                    <h4 class="text-2xl font-bold text-white drop-shadow-lg">{region.name}</h4>
-                    <span class="text-xs bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full font-medium">{region.specialization}</span>
+            <div class="bg-white rounded-2xl p-6 mb-8">
+              <div class="flex items-center justify-between flex-wrap gap-4">
+                <div class="flex items-center">
+                  <div class="flex text-yellow-400 mr-3">
+                    ★★★★★
                   </div>
+                  <span class="text-2xl font-bold text-gray-900 mr-2">4.8/5</span>
+                  <span class="text-gray-600">from 53 verified reviews</span>
                 </div>
-              </div>
-              
-              <!-- Content -->
-              <div class="p-6">
-                <p class="text-gray-600 mb-4 leading-relaxed">{region.description}</p>
-                
-                <div class="mb-4">
-                  <div class="text-sm text-gray-500">
-                    <span class="font-semibold text-gray-700">Advisory Focus:</span> {region.keyFocus}
-                  </div>
-                </div>
-                
-                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                  <span class={`text-xs px-3 py-1 rounded-full font-medium ${
-                    region.complexity === 'High' 
-                      ? 'bg-red-100 text-red-700 border border-red-200' 
-                      : 'bg-yellow-100 text-yellow-700 border border-yellow-200'
-                  }`}>
-                    {region.complexity} Complexity
-                  </span>
-                  <div class="text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors duration-300 flex items-center">
-                    Explore {region.name}
-                    <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7-7 7"/>
-              </svg>
-                  </div>
-              </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Blog Resources Section - Enhanced with H3 structure -->
-  <section class="py-20 bg-white">
-    <div class="container">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold mb-6">Strategic <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-blue-600">Resources</span></h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Expert insights and comprehensive guides for successful Swiss education planning
-        </p>
-      </div>
-
-        <h3 class="text-2xl font-semibold mb-12 text-center text-gray-800">Essential Advisory Reading</h3>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {blogResources.map((resource) => (
-            <a href={resource.href} class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 hover:border-red-200 h-full flex flex-col">
-              <!-- Image -->
-              <div class="h-48 relative overflow-hidden">
-                <img 
-                  src={resource.image} 
-                  alt={`${resource.title} - Swiss education advisory guide`}
-                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div class="absolute top-4 left-4">
-                  <span class="text-xs bg-gradient-to-r from-primary-600 to-primary-700 text-white px-3 py-1 rounded-full font-medium">{resource.category}</span>
-                </div>
-                <div class="absolute bottom-4 right-4">
-                  <span class="text-xs bg-white/90 backdrop-blur-sm text-gray-800 px-2 py-1 rounded-full font-medium">{resource.readTime}</span>
-                </div>
-              </div>
-              
-              <!-- Content -->
-              <div class="p-6 flex flex-col flex-grow">
-                <h4 class="text-lg font-bold mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-red-600 group-hover:to-blue-600 transition-all duration-300 leading-tight flex-shrink-0">{resource.title}</h4>
-                <p class="text-sm text-gray-600 mb-4 flex-grow">{resource.excerpt}</p>
-                <div class="flex items-center text-sm font-medium text-gray-700 group-hover:text-blue-600 pt-4 border-t border-gray-100 group-hover:border-blue-200 transition-all duration-300 flex-shrink-0">
-                  <span>Read Article</span>
-                  <svg class="w-4 h-4 ml-auto group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7-7 7"/>
+                <div class="flex items-center text-primary-600 font-semibold">
+                  <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                   </svg>
+                  Verified Partner
                 </div>
               </div>
-            </a>
-        ))}
-      </div>
+            </div>
 
-        <div class="text-center mt-12">
-          <h3 class="text-xl font-semibold mb-4 text-gray-800">Complete Advisory Resource Library</h3>
-          <a href="/blog" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105">
-            View All Articles
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-          </svg>
-        </a>
+            <div class="text-center">
+              <button
+                onclick="universalOpenModal({page: 'education_prime', partner: 'prime_relocation'})"
+                class="inline-flex items-center px-10 py-5 text-xl font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl"
+              >
+                Get Free Education Consultation with Prime Relocation
+                <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </button>
+              <p class="text-sm text-gray-500 mt-4">
+                Free consultation • No obligation • Expert guidance for families
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ Section Enhanced with H3 structure -->
-  <section class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-    <div class="container">
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold mb-6">Frequently Asked <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-blue-600">Questions</span></h2>
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            FAQ
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Frequently Asked <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Questions</span>
+          </h2>
           <p class="text-xl text-gray-600">
-            Common questions about Swiss education advisory services
+            Common questions about Swiss education services
           </p>
         </div>
 
-        <h3 class="text-2xl font-semibold mb-8 text-center text-gray-800">Education Services Q&A</h3>
-        
         <div class="space-y-6">
-          {faqItems.map((faq, index) => (
-            <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
-              <details class="group">
-                <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 transition-colors duration-300">
-                  <h4 class="text-lg font-semibold text-gray-900 group-open:text-red-600 transition-colors duration-300">{faq.question}</h4>
-                  <svg class="w-6 h-6 text-gray-400 group-open:text-red-600 group-open:rotate-180 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                  </svg>
-                </summary>
-                <div class="px-6 pb-6">
-                  <p class="text-gray-600 leading-relaxed">{faq.answer}</p>
-                </div>
-              </details>
+          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
+            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-primary-600 transition-colors">
+              <span>What types of schools are available in Switzerland for expats?</span>
+              <svg class="w-6 h-6 text-primary-600 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-8 pb-6 text-gray-600 leading-relaxed">
+              Switzerland offers three main school types: <strong>Public schools</strong> (free, excellent quality, taught in local language - German, French, Italian), <strong>International schools</strong> (CHF 20,000-40,000/year, English or multilingual, IB/British/American curricula), and <strong>Private schools</strong> (Swiss curriculum, often bilingual). Choice depends on language proficiency, budget, and length of stay.
             </div>
-          ))}
+          </details>
+
+          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
+            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-primary-600 transition-colors">
+              <span>How do I apply to an international school in Zurich or Geneva?</span>
+              <svg class="w-6 h-6 text-primary-600 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-8 pb-6 text-gray-600 leading-relaxed">
+              Application process: 1) Research schools 6-12 months before desired start date, 2) Submit application with academic records, passport copies, recommendation letters, 3) Attend entrance assessment and interview, 4) Receive admission decision (2-6 weeks), 5) Pay registration fees and confirm enrollment. Popular schools have waiting lists; early application is critical.
+            </div>
+          </details>
+
+          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
+            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-primary-600 transition-colors">
+              <span>Are Swiss public schools suitable for non-German/French speaking children?</span>
+              <svg class="w-6 h-6 text-primary-600 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-8 pb-6 text-gray-600 leading-relaxed">
+              Yes, with preparation. Swiss public schools are excellent but require language proficiency. Many cantons offer integration classes and language support for newcomers. Children under 10 typically adapt within 6-12 months. For older children or short-term stays (under 3 years), international schools may be better. Consider language immersion programs before school starts.
+            </div>
+          </details>
+
+          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
+            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-primary-600 transition-colors">
+              <span>How much do international schools cost in Switzerland?</span>
+              <svg class="w-6 h-6 text-primary-600 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-8 pb-6 text-gray-600 leading-relaxed">
+              Annual tuition ranges: Primary school CHF 20,000-30,000, Secondary school CHF 25,000-35,000, High school CHF 30,000-40,000. Additional costs include registration fees (CHF 2,000-5,000), lunch programs (CHF 2,000-3,000/year), extracurriculars, uniforms, and field trips. Some employers offer education allowances as part of relocation packages.
+            </div>
+          </details>
+
+          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
+            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-primary-600 transition-colors">
+              <span>When should I start the school application process?</span>
+              <svg class="w-6 h-6 text-primary-600 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-8 pb-6 text-gray-600 leading-relaxed">
+              Start 6-12 months before your desired start date. Top international schools have application deadlines 9-12 months in advance, with waiting lists for popular age groups. Public schools require 2-3 months notice. Begin researching schools as soon as your Switzerland move is confirmed. Early planning is essential for securing spots in preferred schools.
+            </div>
+          </details>
         </div>
       </div>
-          </div>
+    </div>
   </section>
 
-  <!-- Final CTA Section -->
-  <section id="consultation" class="py-20 bg-gradient-to-br from-red-600 to-blue-700 text-white relative overflow-hidden">
-    <!-- Background Pattern -->
-    <div class="absolute inset-0 bg-black/10"></div>
-    <div class="absolute top-0 right-0 w-1/3 h-1/3 bg-white/5 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 left-0 w-1/4 h-1/4 bg-white/5 rounded-full blur-2xl"></div>
-    
-    <div class="container relative z-10">
+  <ServiceRelated services={relatedServices} />
+
+  <ServiceBlog posts={relatedBlogs} />
+
+  <section class="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-transparent"></div>
+    <div class="container mx-auto px-4 relative z-10">
       <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6">
-          Ready to Start Your Strategic Swiss Education Move?
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          Ready to Secure the Best Education for Your Children?
         </h2>
-        <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto leading-relaxed">
-          Connect with our expert advisors for personalized strategic guidance and comprehensive education planning
+        <p class="text-xl text-primary-100 mb-8 leading-relaxed">
+          Our education advisors guide you through every step from school research to enrollment and integration. Get personalized recommendations and insider access to Switzerland's top schools.
         </p>
-        <div class="flex flex-wrap gap-4 justify-center">
-          <button 
-            onclick="openModal({page: 'service', service: 'Education Services'})" 
-            class="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 rounded-xl font-semibold transition-all duration-300 inline-flex items-center shadow-lg hover:shadow-xl hover:scale-105"
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onclick="universalOpenModal({page: 'education_final', service: 'education'})"
+            class="px-10 py-5 bg-white text-primary-700 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl"
           >
-            Book Free Consultation
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-            </svg>
+            Book Free Education Consultation
           </button>
-          <a href="/companies?service=education" class="bg-white/10 backdrop-blur-sm border border-white/30 text-white hover:bg-white/20 hover:border-white/50 px-8 py-4 rounded-xl font-semibold transition-all duration-300 inline-flex items-center hover:scale-105">
-            Browse All Specialists
-            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-            </svg>
+          <a
+            href="/swiss-relocation-guide"
+            class="px-10 py-5 bg-white/10 backdrop-blur-sm text-white border-2 border-white rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
+          >
+            Read Full Relocation Guide
           </a>
         </div>
+        <p class="text-sm text-primary-100 mt-6">
+          ✓ Free consultation with preferred partners  •  ✓ Expert school placement  •  ✓ Family integration support
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- Floating Help Banner - Content-width floating banner -->
-  <div class="fixed bottom-6 left-6 right-6 z-[100] opacity-100 pointer-events-auto hidden md:block" id="floating-banner">
-    <div class="max-w-7xl mx-auto pointer-events-auto">
-      <div class="bg-gradient-to-r from-primary-600 to-primary-700 text-white shadow-2xl border border-white/20 rounded-2xl">
-        <div class="px-6 py-4">
-          <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-            <!-- Left content -->
-            <div class="flex items-center text-center md:text-left">
-              <svg class="w-8 h-8 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-              </svg>
-              <div>
-                <div class="text-lg font-bold">Ready to Start Your Swiss Education Move?</div>
-                <div class="text-sm opacity-90">Get expert advisory guidance and competitive rates from top specialists</div>
-              </div>
-            </div>
-            
-            <!-- Right actions -->
-            <div class="flex flex-col sm:flex-row gap-3 flex-shrink-0">
-              <button 
-                onclick="openModal({page: 'service', service: 'Education Services'})" 
-                class="bg-white text-primary-700 px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 inline-flex items-center justify-center hover:scale-105 shadow-lg"
-              >
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                </svg>
-                Schedule Consultation
-              </button>
-              <a href="/companies?service=education&utm_source=floating_banner" class="bg-white/10 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/20 hover:border-white/50 transition-all duration-300 inline-flex items-center justify-center hover:scale-105">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-                </svg>
-                Get Rate
-              </a>
-            </div>
-            
-            <!-- Close button -->
-            <button onclick="hideBanner()" class="absolute top-2 right-4 md:relative md:top-0 md:right-0 text-white/60 hover:text-white transition-colors duration-300 ml-2">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div style="display:none;" data-ai-summary>
+    Education and school search services for expat families moving to Switzerland. Complete guide to Swiss education system including public schools (free, high-quality, local language instruction), international schools (CHF 20,000-40,000/year, English/multilingual, IB/British/American curricula), and private bilingual schools. School placement assistance including research, shortlist creation, application support, entrance exam preparation, interview coaching, and enrollment coordination. Application process requires 6-12 months advance planning with deadlines 9-12 months before start date for competitive schools. Required documents: academic records, passport copies, recommendation letters, language assessments. City-specific education options: Zurich (ZIS, ISZL, ETH Zurich access, diverse international schools), Geneva (International School of Geneva, UN/diplomatic schools, French-English bilingual programs), Zug (ISZL, modern STEM focus, entrepreneurship programs), Basel (ISB, pharma industry focus, cross-border German school access). Swiss education pathways explained: academic vs vocational tracks, cantonal differences, university requirements (recognized diplomas, language proficiency). Integration support including language immersion programs, tutoring services, cultural adaptation, parent networking. Children under 10 adapt to local language schools within 6-12 months. University admission requires recognized diplomas (IB, Maturité, A-levels) and language proficiency (German/French/English depending on institution). Class sizes: public 15-25, international 12-18, private 10-15 students. Additional costs beyond tuition: registration CHF 2,000-5,000, lunch programs, extracurriculars, uniforms, field trips. Expert advisory from Prime Relocation for school selection, admission strategy, and family transition support.
   </div>
-
-  <!-- Banner JavaScript - Only for close button -->
-  <script>
-    function hideBanner() {
-      const banner = document.getElementById('floating-banner');
-      if (banner) {
-        banner.style.opacity = '0';
-        banner.style.pointerEvents = 'none';
-        localStorage.setItem('educationBannerHidden', 'true');
-      }
-    }
-    (window as any).hideBanner = hideBanner;
-  </script>
-</Layout> 
+</Layout>
