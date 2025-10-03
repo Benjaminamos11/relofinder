@@ -1,119 +1,88 @@
 ---
-// CTA Section for lead generation
+// Final CTA Section
 ---
 
-<section class="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-secondary-600 relative overflow-hidden">
-  <!-- Background Elements -->
-  <div class="absolute inset-0">
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-primary-600/50 to-secondary-600/50"></div>
-  </div>
-
-  <!-- Pattern Overlay -->
+<section class="py-24 bg-gradient-to-br from-primary-600 via-primary-700 to-red-600 relative overflow-hidden">
+  <!-- Subtle Background Pattern -->
   <div class="absolute inset-0 opacity-10">
     <div class="absolute inset-0 bg-repeat" style="background-image: url('data:image/svg+xml,%3Csvg width=%22100%22 height=%22100%22 viewBox=%220 0 100 100%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22white%22 fill-opacity=%220.1%22%3E%3Cpath d=%22M50 50m-20 0a20 20 0 1 1 40 0a20 20 0 1 1 -40 0%22/%3E%3C/g%3E%3C/svg%3E');"></div>
   </div>
 
   <div class="container relative z-10">
-    <div class="text-center text-white animate-on-scroll">
+    <div class="text-center text-white">
       <!-- Main Heading -->
-      <div class="mb-8">
-        <span class="inline-block px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm font-medium text-sm mb-6">
-          Ready to Start Your Swiss Journey?
-        </span>
-        <h2 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-          Let's Make Your Swiss
-          <br class="hidden md:block">
-          <span class="bg-gradient-to-r from-yellow-300 to-yellow-100 bg-clip-text text-transparent">
-            Relocation Simple
-          </span>
-        </h2>
-        <p class="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-          Join thousands of successful expats who found their perfect Swiss life through our platform. 
-          Get personalized assistance from day one to settlement.
-        </p>
-      </div>
-
-      <!-- Value Props -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-        <div class="flex flex-col items-center animate-on-scroll" style="animation-delay: 0.1s">
-          <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-2">Fast Setup</h3>
-          <p class="text-white/80">Get matched with partners in 24 hours</p>
-        </div>
-
-        <div class="flex flex-col items-center animate-on-scroll" style="animation-delay: 0.2s">
-          <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-2">Verified Partners</h3>
-          <p class="text-white/80">Only trusted, pre-screened professionals</p>
-        </div>
-
-        <div class="flex flex-col items-center animate-on-scroll" style="animation-delay: 0.3s">
-          <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold mb-2">No Hidden Costs</h3>
-          <p class="text-white/80">Transparent pricing, no surprises</p>
-        </div>
-      </div>
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+        Ready to Relocate to Switzerland?
+      </h2>
+      <p class="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-12">
+        Compare providers, explore regions, and book free consultations — all in one place.
+      </p>
 
       <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12 animate-on-scroll">
-        <!-- Individual CTA -->
-        <div class="flex flex-col items-center text-center">
-          <h3 class="text-2xl font-bold mb-3 text-white">Individual Moves</h3>
-          <p class="text-white/90 mb-6 max-w-sm">
-            Join thousands of successful expats who found their perfect Swiss life through our platform. 
-            Get personalized assistance from day one to settlement.
-          </p>
-          <button 
-            class="btn-primary px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-            data-open-modal data-modal-tab="individual" onclick="universalOpenModal({tab:'individual'})"
-          >
-            Get Started Today
-          </button>
-        </div>
-
-        <!-- Corporate CTA -->
-        <div class="flex flex-col items-center text-center">
-          <h3 class="text-2xl font-bold mb-3 text-white">Corporate Moves</h3>
-          <p class="text-white/90 mb-6 max-w-sm">
-            Streamline your employee relocations with our corporate services
-          </p>
-          <button 
-            class="btn-outline px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-            data-open-modal data-modal-tab="corporate" onclick="universalOpenModal({tab:'corporate'})"
-          >
-            Request Corporate Quote
-          </button>
-        </div>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+        <button
+          onclick="universalOpenModal({page: 'home'})"
+          class="inline-flex items-center justify-center px-8 py-4 font-bold text-primary-700 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-102"
+        >
+          Get Matched with Partners
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+        </button>
+        <a
+          href="/regions"
+          class="inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-white/10 backdrop-blur-sm border-2 border-white/30 rounded-xl hover:bg-white/20 transition-all duration-200"
+        >
+          Browse All Regions
+        </a>
       </div>
 
-      <!-- Trust Indicators -->
-      <div class="border-t border-white/20 pt-8 animate-on-scroll">
-        <p class="text-white/70 text-sm mb-4">Trusted by employees at</p>
-        <div class="flex flex-wrap justify-center items-center gap-8 opacity-70">
-          <div class="text-xl font-bold text-white">Google</div>
-          <div class="text-xl font-bold text-white">Microsoft</div>
-          <div class="text-xl font-bold text-white">Nestlé</div>
-          <div class="text-xl font-bold text-white">UBS</div>
-          <div class="text-xl font-bold text-white">Credit Suisse</div>
-          <div class="text-xl font-bold text-white">Roche</div>
+      <!-- Trust Badges Row -->
+      <div class="border-t border-white/20 pt-12">
+        <div class="flex flex-wrap gap-12 justify-center">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div class="text-left">
+              <div class="text-2xl font-bold">1000+</div>
+              <div class="text-sm text-white/80">Successful Relocations</div>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <div class="text-left">
+              <div class="text-2xl font-bold">50+</div>
+              <div class="text-sm text-white/80">Vetted Agencies</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+              </svg>
+            </div>
+            <div class="text-left">
+              <div class="text-2xl font-bold">26</div>
+              <div class="text-sm text-white/80">Cantons Covered</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Old modal code removed - now using UniversalContactModal --> 
+<style>
+  .hover\:scale-102:hover {
+    transform: scale(1.02);
+  }
+</style>

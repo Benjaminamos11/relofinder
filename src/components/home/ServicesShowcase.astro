@@ -3,198 +3,139 @@ const services = [
   {
     id: 'housing',
     title: 'Housing & Real Estate',
-    description: 'Find your perfect Swiss home with our network of trusted real estate professionals. From luxury apartments in Zurich to cozy chalets in the Alps.',
-    features: ['Apartment Search', 'Property Viewing', 'Lease Negotiation', 'Relocation Support'],
-    icon: 'home',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/w_600,h_400,c_fill,f_webp,q_auto:good/v1748008123/a-humorous-slightly-quirky-photograph-of_WL6sfp_DQZuAY5SOUQ6zkg_VPyMSfVwR1uw9Wd0nvlUsA_bytggv.webp',
-    imageMobile: 'https://res.cloudinary.com/dphbnwjtx/image/upload/w_400,h_250,c_fill,f_webp,q_auto:good/v1748008123/a-humorous-slightly-quirky-photograph-of_WL6sfp_DQZuAY5SOUQ6zkg_VPyMSfVwR1uw9Wd0nvlUsA_bytggv.webp',
-    stats: { providers: '150+', avgTime: '2 weeks', satisfaction: '4.8/5' }
+    description: 'Apartment search, lease support, off-market access.',
+    icon: 'home'
   },
   {
-    id: 'visa',
+    id: 'immigration',
     title: 'Visa & Immigration',
-    description: 'Navigate Swiss immigration with expert guidance. Work permits, residency applications, and legal support to make your move seamless.',
-    features: ['Work Permits', 'Residency Applications', 'Family Visas', 'Legal Consultation'],
-    icon: 'document',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/w_600,h_400,c_fill,f_webp,q_auto:good/v1748008123/a-humorous-brightly-lit-photograph-depic_8N6jRqvGSMSGbsVuTrOKrQ_zw_r9uUsRqK4YUAK_D_nFQ_ggthvz.webp',
-    imageMobile: 'https://res.cloudinary.com/dphbnwjtx/image/upload/w_400,h_250,c_fill,f_webp,q_auto:good/v1748008123/a-humorous-brightly-lit-photograph-depic_8N6jRqvGSMSGbsVuTrOKrQ_zw_r9uUsRqK4YUAK_D_nFQ_ggthvz.webp',
-    stats: { providers: '50+', avgTime: '6-12 weeks', satisfaction: '4.9/5' }
+    description: 'Permits, compliance, application support.',
+    icon: 'document'
   },
   {
-    id: 'banking',
+    id: 'finance',
     title: 'Banking & Finance',
-    description: 'Set up your Swiss financial life effortlessly. Bank accounts, investment advice, insurance, and tax planning from trusted financial experts.',
-    features: ['Bank Account Setup', 'Investment Advice', 'Insurance Planning', 'Tax Consultation'],
-    icon: 'credit-card',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/w_600,h_400,c_fill,f_webp,q_auto:good/v1748008124/a-whimsical-lifestyle-advertisement-for-_t7RIjCZcSZe6Nh25cw7NIQ_t9GHZqKxRTCTOFGsivntJw_ww93y2.webp',
-    imageMobile: 'https://res.cloudinary.com/dphbnwjtx/image/upload/w_400,h_250,c_fill,f_webp,q_auto:good/v1748008124/a-whimsical-lifestyle-advertisement-for-_t7RIjCZcSZe6Nh25cw7NIQ_t9GHZqKxRTCTOFGsivntJw_ww93y2.webp',
-    stats: { providers: '80+', avgTime: '1 week', satisfaction: '4.7/5' }
+    description: 'Accounts (incl. neobanks), tax planning, wealth.',
+    icon: 'credit-card'
+  },
+  {
+    id: 'advisory',
+    title: 'Advisory (HNWI/Corporate)',
+    description: 'Strategy, lump-sum tax deals, vendor selection.',
+    icon: 'briefcase'
   },
   {
     id: 'education',
     title: 'Education & Schools',
-    description: 'Find the best educational opportunities for your family. International schools, language courses, and university admissions support.',
-    features: ['School Search', 'Enrollment Support', 'Language Courses', 'University Guidance'],
-    icon: 'academic-cap',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/w_600,h_400,c_fill,f_webp,q_auto:good/v1748008124/a-humorous-slightly-quirky-photograph-of_Zp2MB5AESz6K4P5dKPA3iw_1V5urjskTk2CGfEbc3f_8g_sgcb5c.webp',
-    imageMobile: 'https://res.cloudinary.com/dphbnwjtx/image/upload/w_400,h_250,c_fill,f_webp,q_auto:good/v1748008124/a-humorous-slightly-quirky-photograph-of_Zp2MB5AESz6K4P5dKPA3iw_1V5urjskTk2CGfEbc3f_8g_sgcb5c.webp',
-    stats: { providers: '120+', avgTime: '3-4 weeks', satisfaction: '4.8/5' }
+    description: 'International and Swiss school search, admissions.',
+    icon: 'academic-cap'
+  },
+  {
+    id: 'settling-in',
+    title: 'Settling-In',
+    description: 'Orientation, registrations, utilities.',
+    icon: 'check-circle'
   }
 ];
 ---
 
-<section class="py-12 lg:py-20 bg-white relative overflow-hidden">
-  <!-- Background Elements -->
-  <div class="absolute top-20 left-10 w-72 h-72 bg-primary-100 rounded-full opacity-10 blur-3xl"></div>
-  <div class="absolute bottom-20 right-10 w-96 h-96 bg-secondary-100 rounded-full opacity-10 blur-3xl"></div>
-
+<section class="py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
   <div class="container relative z-10">
     <!-- Section Header -->
-    <div class="text-center mb-12 lg:mb-20 animate-on-scroll">
-      <span class="inline-block px-3 py-1 lg:px-4 lg:py-2 rounded-full bg-secondary-100 text-secondary-700 font-medium text-xs lg:text-sm mb-3 lg:mb-4">
+    <div class="text-center mb-16">
+      <span class="inline-block px-4 py-2 rounded-full bg-gray-100 text-gray-700 font-semibold text-sm mb-4">
         Step 2: Choose Your Services
       </span>
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 lg:mb-6">
-        What Do You Need <span class="gradient-text">Help</span> With?
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
+        Build Your Move from Core Services
       </h2>
-      <p class="text-base lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 lg:px-0">
-        From finding your dream home to navigating Swiss paperwork, our verified partners provide comprehensive relocation services tailored to your needs.
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        Agencies tailor packages to your needs
       </p>
     </div>
 
-    <!-- Services List -->
-    <div class="space-y-12 lg:space-y-20">
-      {services.map((service, index) => {
-        const isEven = index % 2 === 0;
-        return (
-          <!-- Mobile: Stack Layout, Desktop: Alternating -->
-          <div class={"flex flex-col lg:flex-row " + (!isEven ? 'lg:flex-row-reverse' : '') + " items-center gap-6 lg:gap-12 xl:gap-16 animate-on-scroll"} style={"animation-delay: " + (index * 0.2) + "s"}>
-            
-            <!-- Image Side -->
-            <div class="w-full lg:w-1/2">
-              <div class="relative group">
-                <div class="absolute inset-0 bg-gradient-to-br from-primary-400 to-secondary-400 rounded-2xl lg:rounded-3xl transform rotate-2 group-hover:rotate-3 lg:group-hover:rotate-6 transition-transform duration-500 opacity-20"></div>
-                <div class="relative bg-white rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl lg:shadow-2xl group-hover:shadow-3xl transition-all duration-500">
-                  <!-- Responsive optimized service image -->
-                  <picture>
-                    <!-- Mobile version -->
-                    <source 
-                      media="(max-width: 768px)" 
-                      srcset={service.imageMobile}
-                    >
-                    <!-- Desktop version -->
-                    <source 
-                      media="(min-width: 769px)" 
-                      srcset={service.image}
-                    >
-                    <!-- Fallback image -->
-                    <img 
-                      src={service.image} 
-                      alt={service.title + " relocation services in Switzerland"}
-                      class="w-full h-[250px] lg:h-80 object-cover group-hover:scale-105 transition-transform duration-700"
-                      loading="lazy"
-                      decoding="async"
-                      width="600"
-                      height="400"
-                    />
-                  </picture>
-                  
-                  <!-- Stats Overlay -->
-                  <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 lg:p-6">
-                    <div class="grid grid-cols-3 gap-2 lg:gap-4 text-white text-center">
-                      <div>
-                        <div class="text-lg lg:text-2xl font-bold">{service.stats.providers}</div>
-                        <div class="text-xs lg:text-sm opacity-90">Partners</div>
-                      </div>
-                      <div>
-                        <div class="text-lg lg:text-2xl font-bold">{service.stats.avgTime}</div>
-                        <div class="text-xs lg:text-sm opacity-90">Avg. Time</div>
-                      </div>
-                      <div>
-                        <div class="text-lg lg:text-2xl font-bold">{service.stats.satisfaction}</div>
-                        <div class="text-xs lg:text-sm opacity-90">Rating</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Content Side -->
-            <div class="w-full lg:w-1/2">
-              <div class="space-y-4 lg:space-y-6 text-center lg:text-left">
-                <!-- Icon & Title -->
-                <div class="flex items-center justify-center lg:justify-start space-x-3 lg:space-x-4">
-                  <div class="w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl lg:rounded-2xl flex items-center justify-center shadow-lg">
-                    {service.icon === 'home' && (
-                      <svg class="w-6 h-6 lg:w-8 lg:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                      </svg>
-                    )}
-                    {service.icon === 'document' && (
-                      <svg class="w-6 h-6 lg:w-8 lg:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                      </svg>
-                    )}
-                    {service.icon === 'credit-card' && (
-                      <svg class="w-6 h-6 lg:w-8 lg:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
-                      </svg>
-                    )}
-                    {service.icon === 'academic-cap' && (
-                      <svg class="w-6 h-6 lg:w-8 lg:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 14l9-5-9-5-9 5 9 5z"/>
-                        <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/>
-                      </svg>
-                    )}
-                  </div>
-                  <h3 class="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900">{service.title}</h3>
-                </div>
-
-                <!-- Description -->
-                <p class="text-base lg:text-lg text-gray-600 leading-relaxed">
-                  {service.description}
-                </p>
-
-                <!-- Features Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 lg:gap-4 max-w-md mx-auto lg:mx-0">
-                  {service.features.map((feature) => (
-                    <div class="flex items-center justify-center lg:justify-start space-x-2 lg:space-x-3">
-                      <div class="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex-shrink-0"></div>
-                      <span class="text-sm lg:text-base text-gray-700 font-medium">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <!-- CTA Button -->
-                <div class="pt-2 lg:pt-4">
-                  <a href={`/services/${service.id}`} class="group inline-flex items-center px-6 py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                    Explore {service.title}
-                    <svg class="w-4 h-4 lg:w-5 lg:h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
+    <!-- 6-Service Grid (2×3) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      {services.map((service) => (
+        <a 
+          href={`/services/${service.id}`}
+          class="group bg-white border-2 border-gray-200 rounded-2xl p-6 hover:border-primary-300 hover:shadow-lg transition-all duration-200 flex flex-col h-full"
+        >
+          <!-- Icon -->
+          <div class="w-14 h-14 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+            {service.icon === 'home' && (
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+              </svg>
+            )}
+            {service.icon === 'document' && (
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+            )}
+            {service.icon === 'credit-card' && (
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+              </svg>
+            )}
+            {service.icon === 'briefcase' && (
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            )}
+            {service.icon === 'academic-cap' && (
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M12 14l9-5-9-5-9 5 9 5z"/>
+                <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/>
+              </svg>
+            )}
+            {service.icon === 'check-circle' && (
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            )}
           </div>
-        );
-      })}
+
+          <!-- Content -->
+          <div class="flex-1">
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+              {service.title}
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              {service.description}
+            </p>
+          </div>
+
+          <!-- Arrow Icon -->
+          <div class="mt-4 flex items-center text-primary-600 text-sm font-semibold">
+            Learn More
+            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </a>
+      ))}
     </div>
 
-    <!-- Bottom CTA -->
-    <div class="mt-12 lg:mt-20 text-center animate-on-scroll">
-      <div class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl lg:rounded-3xl p-6 lg:p-8 xl:p-12">
-        <h3 class="text-xl lg:text-2xl xl:text-3xl font-bold mb-3 lg:mb-4">Need Multiple Services?</h3>
-        <p class="text-sm lg:text-lg text-gray-600 mb-4 lg:mb-6 max-w-2xl mx-auto">
-          Most relocations require 3-5 different services. Let us create a personalized package that covers all your needs with coordinated timing and competitive pricing.
+    <!-- Inline Panel -->
+    <div class="bg-gradient-to-br from-primary-50 to-red-50 rounded-2xl p-8 border-2 border-primary-100 mb-12">
+      <div class="text-center max-w-3xl mx-auto">
+        <h3 class="text-2xl font-bold text-gray-900 mb-3">Need Multiple Services?</h3>
+        <p class="text-gray-700 mb-6 leading-relaxed">
+          Most relocations combine 3–5 services. We'll match you with the right providers.
         </p>
-        <div class="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center">
-          <button class="btn-primary" id="servicesConsultationBtn">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onclick="universalOpenModal({page: 'service'})"
+            class="inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-102"
+          >
             Book Free Consultation
           </button>
-          <a href="/services" class="btn-outline">
+          <a
+            href="/services"
+            class="inline-flex items-center justify-center px-8 py-4 font-bold text-primary-700 bg-white border-2 border-gray-200 rounded-xl hover:border-primary-300 hover:bg-gray-50 transition-all duration-200"
+          >
             Browse All Services
           </a>
         </div>
@@ -203,15 +144,8 @@ const services = [
   </div>
 </section>
 
-<script>
-  import { openModal } from '../../stores/modal.js';
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    const consultationBtn = document.getElementById('servicesConsultationBtn');
-    if (consultationBtn) {
-      consultationBtn.addEventListener('click', () => {
-        openModal({ page: 'service' });
-      });
-    }
-  });
-</script> 
+<style>
+  .hover\:scale-102:hover {
+    transform: scale(1.02);
+  }
+</style>
