@@ -1,0 +1,861 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SchemaMarkup from '../../../components/common/SchemaMarkup.astro';
+import PlatformDisclaimer from '../../../components/common/PlatformDisclaimer.astro';
+import ServiceHero from '../../../components/services/ServiceHero.astro';
+
+const title = "Housing in Geneva | Compare Relocation Agencies | ReloFinder";
+const description = "Compare housing providers in Geneva. ReloFinder helps you evaluate relocation agencies and find apartments in neighborhoods like Eaux-Vives, Champel, Carouge & Nations.";
+const canonicalURL = "https://relofinder.ch/services/housing/geneva";
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://relofinder.ch"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://relofinder.ch/services"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Housing",
+      "item": "https://relofinder.ch/services/housing"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Geneva",
+      "item": "https://relofinder.ch/services/housing/geneva"
+    }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Housing Services in Geneva",
+  "description": "Compare housing providers and relocation agencies for apartment search in Geneva, Switzerland including Eaux-Vives, Champel, Carouge, and Nations neighborhoods",
+  "provider": {
+    "@type": "Organization",
+    "name": "ReloFinder",
+    "url": "https://relofinder.ch"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Geneva",
+    "containedIn": {
+      "@type": "Country",
+      "name": "Switzerland"
+    }
+  },
+  "serviceType": "Housing Search Services"
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How hard is it to find an apartment in Geneva?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Finding an apartment in Geneva is extremely difficult with vacancy rates often between 0.3-0.5%, among the lowest in Europe. Constant demand from international organizations (UN, WHO, WTO), multinational banks, NGOs, and expat families creates intense competition. Apartments in desirable neighborhoods like Eaux-Vives, Champel, and Nations rent within hours of listing with 10-30 applications. Without agency support and off-market access, searches typically take 4-8 months."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are average rents in Geneva for expats?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Geneva has some of Switzerland's highest rents. Average prices: 2-room apartments CHF 2,200-3,000/month, 3-room CHF 2,800-3,800/month, 4-room CHF 3,500-5,000/month plus Nebenkosten (CHF 150-300). Prime neighborhoods like Eaux-Vives, Champel, and lakeside properties command CHF 3,500-6,000+ for 3-4 rooms. International Area (Nations/UN) ranges CHF 2,500-4,500. Carouge and Plainpalais offer slightly more moderate CHF 2,200-3,500 for 2-3 rooms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Geneva neighborhoods are best for international professionals?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Best Geneva neighborhoods for expats: Eaux-Vives (lakeside, central, highly desirable, near parks and restaurants), Nations/International Area (near UN, WHO, diplomats, international schools), Champel (upscale residential, quiet, excellent schools), Carouge (artsy Mediterranean-style, young professionals, vibrant), Plainpalais (diverse, university area, central), and Pâquis (diverse, waterfront, affordable by Geneva standards). Consider proximity to workplace, international schools (International School of Geneva), and public transport (TPG trams/buses)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What documents are required for a Geneva rental application?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Required documents for Geneva rentals: valid passport/ID, Swiss residence/work permit (or diplomatic status), employment contract, last 3 months salary slips, Betreibungsregisterauszug (debt collection certificate) from current canton, previous landlord reference (often required in French), completed rental application, and sometimes employer reference letter. Geneva landlords expect complete French-language dossiers or professional translations. Missing documents or language barriers significantly reduce approval chances in the competitive market."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are Geneva apartments furnished or unfurnished?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most Geneva long-term rentals are unfurnished, typically including only kitchen appliances (stove, sometimes dishwasher). Light fixtures, curtains, and furniture are tenant responsibility. Budget CHF 5,000-15,000 for basic furnishing. Furnished apartments exist but are rare in the regular market, more expensive (30-50% premium), and usually available through corporate housing providers. Temporary furnished housing for new arrivals costs CHF 2,500-5,000/month and is common during the permanent housing search."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can relocation agencies provide access to off-market apartments in Geneva?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, relocation agencies are essential for Geneva housing success. They provide off-market access to apartments from departing diplomats, expats, and international professionals before public listing. Many Geneva landlords prefer filling vacancies through trusted agencies to ensure quality tenants and avoid managing dozens of applications. Agencies also prepare French-language dossiers, translate contracts, handle landlord communication, and navigate Geneva's complex rental regulations. This typically reduces search time from 4-8 months (solo) to 6-10 weeks with professional support."
+      }
+    }
+  ]
+};
+
+const siblingCities = [
+  { name: 'Zurich', slug: 'zurich' },
+  { name: 'Zug', slug: 'zug' },
+  { name: 'Basel', slug: 'basel' },
+  { name: 'Lausanne', slug: 'lausanne' }
+];
+---
+
+<Layout title={title} description={description}>
+  <SchemaMarkup schema={breadcrumbSchema} />
+  <SchemaMarkup schema={serviceSchema} />
+  <SchemaMarkup schema={faqSchema} />
+
+  <ServiceHero
+    title="Find an Apartment in Geneva"
+    subtitle="Housing Help for Expats"
+    description="Geneva's international housing market is one of the toughest in Europe, with demand from NGOs, banks, and multinational HQs. ReloFinder helps you compare relocation providers in Geneva and connect with the right agency. We don't deliver the services ourselves — we connect you to trusted partners."
+    badge="Housing in Geneva"
+  />
+
+  <!-- Platform Disclaimer -->
+  <section class="py-8 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer compact={true} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Primary CTA after Hero -->
+  <section class="py-12 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Need Help Finding Your Geneva Home?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get exclusive access to off-market apartments in Eaux-Vives, Champel, Nations, and beyond
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'housing_geneva', service: 'housing'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Housing in Geneva Is Challenging -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            The Challenge
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Why Housing in Geneva Is <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Challenging</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Geneva's international status creates one of Europe's most competitive housing markets
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Europe's Lowest Vacancy Rates</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Geneva consistently records vacancy rates between 0.3-0.5%, among the absolute lowest in Europe. Apartments in prime neighborhoods like Eaux-Vives, Champel, and Nations receive 15-30 applications within hours of listing. Lakeside properties and areas near international organizations are especially competitive. Wait lists for quality apartments are common, and many properties never reach public platforms like ImmoScout24 or Homegate.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">International Organization Demand</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Constant demand from United Nations, World Health Organization, World Trade Organization, International Committee of the Red Cross, and 40+ international organizations creates permanent housing pressure. Add multinational banks (HSBC Private Bank, Lombard Odier, Pictet), NGOs, and diplomatic missions, and you have thousands of international professionals competing for the same limited stock. Corporate and diplomatic relocations often secure apartments months in advance.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Switzerland's Highest Rents</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Geneva has Switzerland's highest average rents alongside Zurich. Expect CHF 2,500-3,500+ for a basic 2-3 room apartment, CHF 3,500-5,000+ for 3-4 rooms, and CHF 5,000-8,000+ for premium lakeside or Champel properties. Nebenkosten (utilities, building fees) add CHF 150-300/month. Deposits equal 3 months rent in blocked accounts (CHF 7,500-15,000 typical). International demand keeps prices high despite economic fluctuations.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">French-Language Documentation</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Rental contracts in Geneva are typically in French with strict legal terminology. Landlords expect French-language application dossiers including: ID, residence permit, employment contract, salary slips, Betreibungsregisterauszug, and landlord references. Non-French speakers face significant disadvantage without professional translation and local support. Misunderstanding contract terms (notice periods, rent increases, deposit return) can be costly. Agencies provide essential translation and cultural navigation.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Immediate Decision Required</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Good Geneva apartments rent within hours, not days. You must view properties immediately upon listing and submit complete dossiers same-day to remain competitive. Landlords prioritize long-term stable tenants with perfect documentation. Any delay or missing document means losing to other applicants. The French-language barrier adds time pressure for non-speakers. Having a pre-prepared professional dossier and agency representation is essential for success in Geneva's fast-moving market.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-12 p-8 bg-gradient-to-br from-primary-50 via-white to-red-50 rounded-2xl border-2 border-primary-100">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <svg class="w-8 h-8 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-4">
+              <h4 class="text-xl font-bold text-gray-900 mb-2">Expert Insight</h4>
+              <p class="text-gray-700 leading-relaxed">
+                <strong>Without agency support, Geneva apartment searches typically take 4-8 months</strong> with many expats accepting suboptimal locations, long commutes, or expensive temporary housing long-term. Relocation agencies with Geneva expertise, off-market access, French-language support, and landlord relationships reduce search time to 6-10 weeks and secure better properties through professional presentation and insider connections.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Agencies Help -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Our Solution
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            How Agencies <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Help in Geneva</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            ReloFinder connects you with agencies specializing in Geneva's international housing market
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  1
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Off-Market & Expat Network Access</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Agencies connect you with departing diplomats, international organization staff, and expats before apartments hit public platforms. This includes properties in Eaux-Vives, Champel, Nations/International Area, Carouge, and lakeside locations. Off-market access is critical in Geneva where many landlords prefer filling vacancies through trusted agencies to avoid managing 20-30 applications. Get first-look advantage before listings appear on Homegate or ImmoScout24.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Diplomatic Networks</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">UN/NGO Connections</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Expat Departures</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  2
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">French-Language Dossier Preparation</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Professional preparation of French-language application dossiers with all required documents: ID, residence/diplomatic permit, employment contract, 3 salary slips, Betreibungsregisterauszug, landlord references, and application forms. Agencies translate documents, ensure terminology accuracy, and present applications professionally to Geneva landlords. This eliminates language barriers and significantly improves approval rates against 15-30 competing applicants. French-language communication with landlords handled throughout process.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">French Documents</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Translation Services</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Landlord Communication</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  3
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Lease Review & Contract Translation</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Review and translate French-language lease contracts explaining all terms, conditions, and legal obligations. Clarify Nebenkosten calculations, rent increase mechanisms, notice periods (typically 3 months in Geneva), deposit arrangements (3 months in blocked account), and tenant rights under Geneva cantonal law. Attend move-in handover (état des lieux/Übergabeprotokoll) to document every defect and protect your deposit. Ensure you fully understand all contractual obligations before signing.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Contract Translation</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Legal Review</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Deposit Protection</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  4
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Short-Term Furnished Housing</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Furnished temporary apartments and corporate housing in Geneva (CHF 2,500-5,000/month) while you search for permanent accommodation. Locations in city center, near international organizations, or well-connected suburbs. Agencies coordinate overlap between temporary and permanent housing, ensuring smooth transition without gaps or expensive hotel stays. Many international organizations and companies include temporary housing allowances, which agencies help optimize during the 6-10 week search period.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Furnished Options</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Corporate Housing</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Central Locations</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA after How We Help -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Ready to Find Your Geneva Apartment?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get insider access to Eaux-Vives, Champel, and Nations properties with expert French-language support
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'housing_geneva_mid', service: 'housing'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Neighborhoods Section -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Neighborhoods
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Geneva <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Neighborhoods</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Popular areas for international professionals, diplomats, and expat families
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6">
+              <h3 class="text-2xl font-bold text-white mb-2">Eaux-Vives</h3>
+              <p class="text-blue-100">Lakeside, Central, Highly Desirable</p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-600 leading-relaxed mb-4">
+                Premium lakeside neighborhood with parks, restaurants, and excellent amenities. CHF 2,800-5,000/month for 2-4 rooms. Walking distance to city center, lake promenade, and parks (Grange, Eaux-Vives). Extremely competitive with wait lists for quality properties. Popular with international professionals and families. Excellent schools, transport, and quality of life. High demand makes off-market access essential.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">🏖️ Lake Access</span>
+                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">🌳 Parks</span>
+                <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">🍽️ Restaurants</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gradient-to-r from-green-500 to-green-600 p-6">
+              <h3 class="text-2xl font-bold text-white mb-2">Champel</h3>
+              <p class="text-green-100">Upscale, Quiet, Residential</p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-600 leading-relaxed mb-4">
+                Prestigious residential area near city center with green spaces and tranquility. CHF 2,800-5,500/month for 2-4 rooms. Popular with families, diplomats, and senior professionals. Excellent international schools nearby. Well-maintained buildings with high-quality apartments. Limited availability due to stable tenant base. Quiet atmosphere while remaining central and well-connected by public transport.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-green-50 text-green-700 rounded-full text-sm">🏡 Residential</span>
+                <span class="px-3 py-1 bg-green-50 text-green-700 rounded-full text-sm">🤫 Quiet</span>
+                <span class="px-3 py-1 bg-green-50 text-green-700 rounded-full text-sm">🏫 Schools</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Carouge</h4>
+            <p class="text-gray-600 text-sm">Artsy Mediterranean-style neighborhood, young professionals, vibrant atmosphere. CHF 2,200-3,500 for 2-3 rooms.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Nations / International Area</h4>
+            <p class="text-gray-600 text-sm">Near UN, WHO, international organizations. Diplomats, expat families. CHF 2,500-4,500 for 2-4 rooms.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Plainpalais</h4>
+            <p class="text-gray-600 text-sm">Diverse, university area, central, vibrant. Popular with young professionals. CHF 2,200-3,300 for 2-3 rooms.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Pâquis</h4>
+            <p class="text-gray-600 text-sm">Diverse waterfront neighborhood, more affordable by Geneva standards. CHF 2,000-3,200 for 2-3 rooms.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step-by-Step Process -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Step-by-Step Guide
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Your Geneva Housing <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Process</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Follow this proven process for finding an apartment in Geneva
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              1
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Define Needs & Budget</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Work with agency to define budget (CHF 2,500-5,500 typical range depending on size/location), preferred neighborhoods (Eaux-Vives lakeside vs. Champel quiet vs. Nations international vs. Carouge vibrant), proximity to workplace (UN, WHO, banks, NGOs), international schools (International School of Geneva locations), and lifestyle preferences. Agency assesses your profile strength for Geneva's competitive market and prepares French-language strategy.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1 consultation call, 1-2 hours</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              2
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Off-Market Shortlist & Viewings</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Receive off-market leads from departing diplomats, international organization staff, and expat networks before public listing. Schedule viewings within hours of notification. Be prepared to apply same-day for desirable properties in Eaux-Vives, Champel, or Nations. Agency coordinates logistics, provides neighborhood context, and prepares you with landlord preferences. French-language communication handled by agency.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 4-10 weeks of active searching and viewings</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              3
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">French-Language Dossier & Application</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Complete French-language dossier with ID, residence/diplomatic permit, employment contract, 3 salary slips, Betreibungsregisterauszug (from Geneva or current canton), landlord references, application forms, and any required translations. Agency prepares and presents application professionally in French, positioning you as ideal long-term tenant among 15-30 competing applicants. All landlord communication handled in French by agency.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Same-day application submission for competitive properties</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              4
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Lease Review, Translation & Handover</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Review and translate French lease contract explaining all terms, Nebenkosten, 3-month notice period, deposit arrangement (3 months rent in blocked account), rent adjustment clauses, and tenant rights under Geneva law. Attend move-in handover (état des lieux) with agency to meticulously document every defect in French and protect your deposit (typically CHF 7,500-15,000). Receive keys and comprehensive move-in checklist.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1-2 weeks from application approval to handover</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              5
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Municipality Registration & Settling-In</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Register with Geneva municipality (Office cantonal de la population et des migrations) within 14 days of move-in. Set up utilities, internet, Swiss health insurance, and cantonal services. Connect with international community, expat networks, and international schools. Agency provides ongoing French-language support for administrative questions, service providers, and integration into Geneva's international community.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Complete within 14 days of move-in</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center">
+          <button
+            onclick="universalOpenModal({page: 'housing_geneva_steps', service: 'housing'})"
+            class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            Book Your Free Housing Consultation
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Facts -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Essential Information
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Key Facts for <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Geneva Housing</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Vacancy Rate</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Often <strong>0.3–0.5%</strong>, among Europe's absolute lowest
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Average Rent (2-3 rooms)</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>CHF 2,500-3,500+/month</strong> + Nebenkosten CHF 150-300
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Contracts in French</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>French-language</strong> dossiers and contracts typical
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">International Demand</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>UN, NGOs, banks</strong> create constant housing pressure
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Documentation</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>Betreibungsregisterauszug</strong> and French references essential
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Temporary Housing</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>CHF 2,500-5,000/month</strong> for furnished short-term options
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            FAQ
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Frequently Asked <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Questions</span>
+          </h2>
+        </div>
+
+        <div class="space-y-6">
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              How hard is it to find an apartment in Geneva?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Finding an apartment in Geneva is extremely difficult with vacancy rates often between 0.3-0.5%, among the lowest in Europe. Constant demand from international organizations (UN, WHO, WTO), multinational banks, NGOs, and expat families creates intense competition. Apartments in desirable neighborhoods like Eaux-Vives, Champel, and Nations rent within hours of listing with 10-30 applications. Without agency support and off-market access, searches typically take 4-8 months.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              What are average rents in Geneva for expats?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Geneva has some of Switzerland's highest rents. Average prices: 2-room apartments CHF 2,200-3,000/month, 3-room CHF 2,800-3,800/month, 4-room CHF 3,500-5,000/month plus Nebenkosten (CHF 150-300). Prime neighborhoods like Eaux-Vives, Champel, and lakeside properties command CHF 3,500-6,000+ for 3-4 rooms. International Area (Nations/UN) ranges CHF 2,500-4,500. Carouge and Plainpalais offer slightly more moderate CHF 2,200-3,500 for 2-3 rooms.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Which Geneva neighborhoods are best for international professionals?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Best Geneva neighborhoods for expats: Eaux-Vives (lakeside, central, highly desirable, near parks and restaurants), Nations/International Area (near UN, WHO, diplomats, international schools), Champel (upscale residential, quiet, excellent schools), Carouge (artsy Mediterranean-style, young professionals, vibrant), Plainpalais (diverse, university area, central), and Pâquis (diverse, waterfront, affordable by Geneva standards). Consider proximity to workplace, international schools (International School of Geneva), and public transport (TPG trams/buses).
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              What documents are required for a Geneva rental application?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Required documents for Geneva rentals: valid passport/ID, Swiss residence/work permit (or diplomatic status), employment contract, last 3 months salary slips, Betreibungsregisterauszug (debt collection certificate) from current canton, previous landlord reference (often required in French), completed rental application, and sometimes employer reference letter. Geneva landlords expect complete French-language dossiers or professional translations. Missing documents or language barriers significantly reduce approval chances in the competitive market.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Are Geneva apartments furnished or unfurnished?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Most Geneva long-term rentals are unfurnished, typically including only kitchen appliances (stove, sometimes dishwasher). Light fixtures, curtains, and furniture are tenant responsibility. Budget CHF 5,000-15,000 for basic furnishing. Furnished apartments exist but are rare in the regular market, more expensive (30-50% premium), and usually available through corporate housing providers. Temporary furnished housing for new arrivals costs CHF 2,500-5,000/month and is common during the permanent housing search.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Can relocation agencies provide access to off-market apartments in Geneva?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Yes, relocation agencies are essential for Geneva housing success. They provide off-market access to apartments from departing diplomats, expats, and international professionals before public listing. Many Geneva landlords prefer filling vacancies through trusted agencies to ensure quality tenants and avoid managing dozens of applications. Agencies also prepare French-language dossiers, translate contracts, handle landlord communication, and navigate Geneva's complex rental regulations. This typically reduces search time from 4-8 months (solo) to 6-10 weeks with professional support.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Parent Link -->
+  <section class="py-8 bg-white border-t border-gray-200">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <a href="/services/housing" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Housing Services (All Switzerland)
+        </a>
+        
+        <div class="mt-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-3">Explore Other Cities:</h3>
+          <div class="flex flex-wrap gap-3">
+            {siblingCities.map((city) => (
+              <a
+                href={`/services/housing/${city.slug}`}
+                class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-primary-50 hover:text-primary-700 transition-colors"
+              >
+                {city.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="py-16 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-2 text-center">Trusted Geneva Housing Partners</h2>
+        <p class="text-gray-600 text-center mb-8">Expert agencies with off-market access and French-language support</p>
+
+        <div class="space-y-8">
+          <!-- Prime Relocation - Preferred Partner -->
+          <div class="bg-gradient-to-br from-primary-50 via-white to-red-50 border-2 border-primary-200 rounded-2xl p-8">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-2xl font-bold text-gray-900">Prime Relocation</h3>
+              <span class="px-3 py-1 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full text-xs font-bold uppercase tracking-wide">
+                🏆 Preferred Partner
+              </span>
+            </div>
+            
+            <div class="flex items-center gap-2 mb-4">
+              <div class="flex text-yellow-500">
+                ★★★★★
+              </div>
+              <span class="text-gray-600 text-sm">4.8 / 5 • 53 reviews</span>
+            </div>
+            
+            <p class="text-gray-700 text-lg mb-6">
+              <strong>Comprehensive Geneva housing support</strong> with off-market access to apartments in Eaux-Vives, Champel, Nations, and throughout Geneva. Prime Relocation provides French-language dossier preparation, contract translation, landlord communication, and expert navigation of Geneva's international housing market.
+            </p>
+            
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🏠 Off-Market Access</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🇫🇷 French Support</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🌍 International Focus</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🏖️ Lakeside Properties</span>
+            </div>
+            
+            <button 
+              onclick="universalOpenModal({page: 'housing_geneva_partner', service: 'housing'})"
+              class="inline-flex items-center justify-center bg-gradient-to-r from-primary-600 to-primary-700 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105"
+            >
+              Get a Free Consultation with our Preferred Partner
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </button>
+            <p class="text-xs text-gray-500 mt-3">Our relocation partners work with us and provide free consultations</p>
+          </div>
+
+          <!-- Other Housing Specialists -->
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Other Trusted Geneva Specialists</h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Lodge Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">4.8 / 5 • 134 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">25+ years experience in Geneva housing market with strong diplomatic and international organization networks</p>
+            </div>
+            
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Executive Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">5.0 / 5 • 1 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Specialized Geneva housing services for international professionals and expat families</p>
+            </div>
+          </div>
+
+          <!-- Browse All Agencies Button -->
+          <div class="mt-8 text-center">
+            <a
+              href="/companies?service=housing"
+              class="inline-flex items-center px-6 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-semibold hover:border-primary-600 hover:text-primary-700 hover:shadow-md transition-all duration-300"
+            >
+              Browse All Agencies for Housing Services
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Disclaimer Before Final CTA -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer />
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-transparent"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          Ready to Find Your Apartment in Geneva?
+        </h2>
+        <p class="text-xl text-primary-100 mb-8 leading-relaxed">
+          Get expert support finding your perfect Geneva apartment with French-language support, off-market access, and professional relocation services.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onclick="universalOpenModal({page: 'housing_geneva_final', service: 'housing'})"
+            class="px-10 py-5 bg-white text-primary-700 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl"
+          >
+            Book Free Consultation
+          </button>
+          <a
+            href="/services/housing"
+            class="px-10 py-5 bg-white/10 backdrop-blur-sm text-white border-2 border-white rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
+          >
+            View All Switzerland
+          </a>
+        </div>
+        <p class="text-sm text-primary-100 mt-6">
+          ✓ French-language support  •  ✓ Off-market apartments  •  ✓ Diplomatic & UN networks
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div style="display:none;" data-ai-summary>
+    Housing services in Geneva, Switzerland. Compare relocation agencies and find apartments in Geneva including Eaux-Vives, Champel, Carouge, Nations/International Area, Plainpalais, Pâquis. Vacancy rates 0.3-0.5%, among Europe's lowest. Average rent 2-room CHF 2,200-3,000/month, 3-room CHF 2,800-3,800/month, 4-room CHF 3,500-5,000/month plus Nebenkosten. Prime neighborhoods (Eaux-Vives, Champel, lakeside) CHF 3,500-6,000+ for 3-4 rooms. International demand from UN, WHO, WTO, banks, NGOs creates intense competition. French-language contracts and dossiers required. Required documents: Betreibungsregisterauszug, employment contract, salary slips, residence/diplomatic permit, French landlord references. Most rentals unfurnished. Apartments rent within hours with 10-30 applications. Top expat neighborhoods: Eaux-Vives (lakeside, central, highly desirable), Champel (upscale, quiet, families), Nations/International Area (UN, WHO, diplomats), Carouge (artsy, young professionals), Plainpalais (diverse, university, central), Pâquis (waterfront, affordable). Off-market access through relocation agencies reduces search time from 4-8 months to 6-10 weeks. French-language dossier preparation, contract translation, landlord communication essential. Professional presentation significantly improves approval rates. Temporary furnished housing CHF 2,500-5,000/month during search. Municipality registration required within 14 days. International School of Geneva locations important for families. Prime Relocation preferred partner with French-language support and diplomatic networks.
+  </div>
+</Layout>
+
