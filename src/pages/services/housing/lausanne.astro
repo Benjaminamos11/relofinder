@@ -1,0 +1,861 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SchemaMarkup from '../../../components/common/SchemaMarkup.astro';
+import PlatformDisclaimer from '../../../components/common/PlatformDisclaimer.astro';
+import ServiceHero from '../../../components/services/ServiceHero.astro';
+
+const title = "Housing in Lausanne | Compare Relocation Agencies | ReloFinder";
+const description = "Compare relocation providers in Lausanne. ReloFinder helps you evaluate agencies and find apartments in Ouchy, Pully, Chailly, Renens & beyond.";
+const canonicalURL = "https://relofinder.ch/services/housing/lausanne";
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://relofinder.ch"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://relofinder.ch/services"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Housing",
+      "item": "https://relofinder.ch/services/housing"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Lausanne",
+      "item": "https://relofinder.ch/services/housing/lausanne"
+    }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Housing Services in Lausanne",
+  "description": "Compare housing providers and relocation agencies for apartment search in Lausanne, Switzerland including Ouchy, Pully, Chailly, Renens, and student housing near EPFL and UNIL",
+  "provider": {
+    "@type": "Organization",
+    "name": "ReloFinder",
+    "url": "https://relofinder.ch"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Lausanne",
+    "containedIn": {
+      "@type": "Country",
+      "name": "Switzerland"
+    }
+  },
+  "serviceType": "Housing Search Services"
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How competitive is the Lausanne housing market?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lausanne's housing market is competitive due to strong demand from EPFL (École Polytechnique Fédérale de Lausanne), UNIL (University of Lausanne), and corporate relocations. Students, researchers, and young professionals create constant pressure on housing stock. Apartments near universities (Renens, Lausanne Centre) and lakefront areas (Ouchy, Pully) are especially competitive with 8-20 applications per listing. However, Lausanne offers more availability than Geneva or Zurich, with search times typically 4-8 weeks with agency support."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the best neighborhoods for expats in Lausanne?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Best Lausanne neighborhoods for expats: Ouchy (lakeside luxury, international atmosphere, premium dining), Pully (upscale residential, families, excellent schools), Chailly (quiet suburban, long-term residents, peaceful), Lausanne Centre (lively, international, students, restaurants), Renens (multicultural, affordable, near EPFL/UNIL), and Flon (modern, startup culture, nightlife). Consider proximity to workplace, international schools, and Metro M2 line. Lakefront areas command premium prices; Renens offers better value for students and young professionals."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost to rent an apartment in Ouchy or Pully?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ouchy (lakefront Lausanne): CHF 2,200-3,500/month for 2.5-3.5 rooms plus Nebenkosten CHF 150-250. Premium lakeside apartments with views can reach CHF 4,000-6,000 for larger units. Pully (upscale suburb): CHF 2,000-3,200/month for 2.5-3.5 rooms. Both areas popular with families and corporate expats seeking quality living near the lake with excellent amenities. More affordable alternatives: Renens CHF 1,500-2,200, Lausanne Centre CHF 1,700-2,500, Chailly CHF 1,800-2,600 for similar apartment sizes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are Lausanne rental contracts in French?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, most Lausanne rental contracts are in French as Lausanne is in French-speaking Switzerland (Canton de Vaud). Landlords typically expect French-language application dossiers and communication. Non-French speakers face challenges without translation and cultural support. Relocation agencies provide essential French-language services: dossier preparation, contract translation, landlord communication, and legal term explanation. Some landlords accept English for international students/researchers, but French fluency or professional support significantly improves application success rates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is student housing available for EPFL and UNIL?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, both EPFL and UNIL offer student housing but demand far exceeds supply. EPFL provides some on-campus housing at its campus in Ecublens/Renens. UNIL has limited dormitory options. Most students search private market apartments in Renens (near EPFL, affordable, good transport), Lausanne Centre (lively, social), or shared accommodations. Student housing agencies and university services help with searches. Many students use temporary housing for first 1-2 months while securing permanent apartments. Apply early (3-6 months ahead) for university housing; private market searches typically take 4-8 weeks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are temporary furnished apartments common in Lausanne?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, temporary furnished housing is common in Lausanne due to EPFL/UNIL researchers, corporate expats, and students. Furnished apartments cost CHF 1,800-3,500/month depending on size and location. Many available near universities, lakefront, or city center. Corporate housing providers cater to short-term assignments. Students often use temporary housing during first semester while finding permanent apartments. Agencies coordinate temporary and permanent housing timing. Typical temporary stays: 1-3 months during permanent search. Advance booking recommended, especially August-September (academic year start)."
+      }
+    }
+  ]
+};
+
+const siblingCities = [
+  { name: 'Zurich', slug: 'zurich' },
+  { name: 'Zug', slug: 'zug' },
+  { name: 'Geneva', slug: 'geneva' },
+  { name: 'Basel', slug: 'basel' }
+];
+---
+
+<Layout title={title} description={description}>
+  <SchemaMarkup schema={breadcrumbSchema} />
+  <SchemaMarkup schema={serviceSchema} />
+  <SchemaMarkup schema={faqSchema} />
+
+  <ServiceHero
+    title="Find an Apartment in Lausanne"
+    subtitle="Housing Help for Expats"
+    description="Lausanne offers a mix of lakeside living, university culture, and startup energy. With strong demand from students, researchers, and corporate expats, the housing market is highly competitive. ReloFinder helps you compare relocation providers in Lausanne and connect with the right agency. We don't deliver the services ourselves — we connect you to trusted partners."
+    badge="Housing in Lausanne"
+  />
+
+  <!-- Platform Disclaimer -->
+  <section class="py-8 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer compact={true} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Primary CTA after Hero -->
+  <section class="py-12 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Need Help Finding Your Lausanne Home?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get expert support for lakeside apartments, university housing, and family neighborhoods
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'housing_lausanne', service: 'housing'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Housing in Lausanne Is Challenging -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            The Challenge
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Why Housing in Lausanne Is <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Challenging</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            University culture, lakeside appeal, and startup energy create strong housing demand
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">University & Research Demand</h3>
+            <p class="text-gray-600 leading-relaxed">
+              EPFL (École Polytechnique Fédérale de Lausanne) and UNIL (University of Lausanne) bring thousands of international students, researchers, and academic staff annually. Student housing supply cannot meet demand, pushing students and young academics into private market apartments. Popular areas near campuses (Renens, Ecublens) see constant turnover each academic year. PhD students and postdocs often secure better apartments, creating competition with young professionals. Research grants and fellowships provide housing budgets, maintaining price pressure.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Startup & Tech Scene Growth</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Lausanne's growing startup ecosystem (EPFL Innovation Park, Flon district tech companies, biotech sector) attracts young professionals and entrepreneurs. The Swiss Tech Convention Center and proximity to Geneva create international business appeal. Startup employees often prefer Lausanne Centre and Flon areas, driving up rents in trendy neighborhoods. Corporate relocations from tech companies add to housing pressure. Younger demographic competes aggressively for modern apartments near coworking spaces and vibrant nightlife.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Lakeside Premium Housing</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Lake Geneva (Lac Léman) shoreline properties in Ouchy and Pully command premium rents (CHF 2,200-3,500+ for 2.5-3.5 rooms, up to CHF 6,000 for luxury lakeside). Families and corporate expats compete for these high-quality apartments with lake views, waterfront access, and excellent amenities. Limited lakefront supply means apartments rarely become available. Waiting lists exist for the best buildings. International Olympic Committee (IOC) presence in Lausanne adds diplomatic and sports organization demand for premium housing.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">French-Language Barrier</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Lausanne is in French-speaking Canton de Vaud. Most rental contracts, landlord communication, and administrative processes are in French. Non-French speakers struggle with dossier preparation, contract understanding, and landlord negotiations. English is less common than in Zurich or Geneva's international sectors. University students get some English support, but private market requires French or professional translation. Missing French-language nuances can disqualify applications or lead to unfavorable lease terms. Agencies provide critical French-language navigation.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Academic Year Timing Pressure</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Late August through September sees intense housing competition as students arrive for EPFL/UNIL academic year. Apartments that became available over summer are snapped up immediately. New students compete against returning students upgrading housing. Families relocating for corporate jobs also target September moves for school year starts. This creates annual housing crunch with landlords receiving 15-25 applications per apartment. Non-academic relocations should avoid August-September timing when possible. Early preparation (3-4 months ahead) essential for September moves.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-12 p-8 bg-gradient-to-br from-primary-50 via-white to-red-50 rounded-2xl border-2 border-primary-100">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <svg class="w-8 h-8 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-4">
+              <h4 class="text-xl font-bold text-gray-900 mb-2">Expert Insight</h4>
+              <p class="text-gray-700 leading-relaxed">
+                <strong>Lausanne offers more accessible housing than Geneva or Zurich</strong> but requires French-language support and local market knowledge. Students benefit from university housing services and EPFL/UNIL networks. Corporate expats should leverage relocation agencies for French dossiers and neighborhood guidance. Search time typically 4-8 weeks with professional support, longer for lakeside premium properties. Avoid August-September peak if possible. Renens and Lausanne Centre offer better availability than Ouchy or Pully.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Agencies Help -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Our Solution
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            How Agencies <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Help in Lausanne</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            ReloFinder connects you with agencies specializing in Lausanne's French-speaking market
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  1
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">French-Speaking Housing Search</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Comprehensive apartment search across Lausanne neighborhoods conducted in French: Ouchy (lakeside luxury), Pully (upscale residential), Chailly (quiet suburban), Lausanne Centre (student/startup hub), Renens (affordable, near EPFL), and Flon (modern, trendy). Agencies navigate French-language listings, communicate with French-speaking landlords, and understand Canton de Vaud rental customs. Access to off-market apartments through departing expats, university networks, and local connections. French fluency eliminates communication barriers that disqualify non-French speakers.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">French Communication</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Lakeside Properties</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">University Networks</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  2
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">French Contract Translation & Support</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Professional translation and explanation of French-language rental contracts. Clarify Swiss-French legal terminology, Canton de Vaud specific regulations, Nebenkosten calculations, notice periods (typically 3 months), deposit requirements (3 months in blocked account), rent adjustment clauses, and tenant rights. Agencies ensure you understand every contract term before signing, protecting you from unfavorable clauses or misunderstandings. French-language landlord negotiations handled professionally. Attend move-in handover (état des lieux) to document defects in French.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Contract Translation</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Legal Explanation</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Vaud Regulations</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  3
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Student & Researcher Housing Assistance</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Specialized support for EPFL and UNIL students, researchers, postdocs, and academic staff. Understand university housing systems, coordinate with EPFL/UNIL housing offices, navigate student-specific rental options near campuses (Renens, Ecublens, Dorigny), and connect with academic networks for apartment leads. Help with shared housing searches popular among students. Timing guidance for academic year moves (avoid August-September crush). Budget-conscious options for PhD students and early-career researchers. Parent coordination for international student arrivals.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">EPFL/UNIL Focus</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Student Housing</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Academic Networks</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  4
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Temporary Furnished Housing</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Furnished temporary apartments in Lausanne (CHF 1,800-3,500/month) while searching for permanent housing. Options near universities, lakefront, or city center. Many researchers and corporate expats use temporary housing during first 1-3 months. Students often need temporary accommodation for first semester while finding permanent apartments to share. Agencies coordinate temporary and permanent housing timing, ensuring smooth transition. Advance booking essential for August-September academic year start. Flexible short-term contracts available.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Furnished Options</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Student-Friendly</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Flexible Terms</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA after How We Help -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Ready to Find Your Lausanne Apartment?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get expert French-language support for lakeside, university, and family housing
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'housing_lausanne_mid', service: 'housing'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Neighborhoods Section -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Neighborhoods
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Lausanne <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Neighborhoods</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Popular areas for students, researchers, families, and corporate expats
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gradient-to-r from-primary-500 to-primary-600 p-6">
+              <h3 class="text-2xl font-bold text-white mb-2">Ouchy</h3>
+              <p class="text-primary-100">Lakeside, Luxury, Premium</p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-600 leading-relaxed mb-4">
+                Prestigious lakefront neighborhood with luxury apartments and waterfront living. CHF 2,200-3,500/month for 2.5-3.5 rooms, premium properties CHF 4,000-6,000+. Lake Geneva views, marina, excellent restaurants, and Olympic Museum. International atmosphere with IOC presence. Metro M2 connection to city center. Popular with families and corporate expats seeking quality of life. Limited availability; apartments rarely on market. Off-market access essential.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">🏖️ Lakefront</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">💎 Premium</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">🌍 International</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gradient-to-r from-primary-500 to-primary-600 p-6">
+              <h3 class="text-2xl font-bold text-white mb-2">Renens</h3>
+              <p class="text-primary-100">Affordable, Multicultural, EPFL Access</p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-600 leading-relaxed mb-4">
+                Popular neighborhood near EPFL campus with diverse international community. CHF 1,500-2,200/month for 2.5 rooms. Students, researchers, and young professionals create vibrant atmosphere. Excellent public transport (Metro M1 to EPFL, trains to Lausanne center). More affordable than city center or lakeside. High turnover due to academic population. Good value for budget-conscious expats and students. Active academic social scene.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">🎓 Students</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">💰 Affordable</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">🚇 EPFL Access</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Pully</h4>
+            <p class="text-gray-600 text-sm">Upscale residential suburb, families, excellent schools. CHF 2,000-3,200 for 2.5-3.5 rooms.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Chailly</h4>
+            <p class="text-gray-600 text-sm">Quiet suburban feel, long-term residents, peaceful. CHF 1,800-2,600 for 2.5-3.5 rooms.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Lausanne Centre</h4>
+            <p class="text-gray-600 text-sm">Lively, international, student-heavy, restaurants. CHF 1,700-2,500 for 2.5 rooms.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">Flon</h4>
+            <p class="text-gray-600 text-sm">Modern, startup culture, nightlife, young professionals. CHF 1,900-2,700 for 2.5 rooms.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step-by-Step Process -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Step-by-Step Guide
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Your Lausanne Housing <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Process</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Follow this proven process for finding housing in Lausanne
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              1
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Define Housing Needs</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Work with agency to define your profile: student (EPFL/UNIL, shared housing, budget-conscious), researcher (temporary then permanent, university proximity), family (schools, space, Pully/Chailly), or corporate expat (quality living, lakeside preference). Define budget (CHF 1,500-3,500 depending on profile), preferred neighborhoods, proximity to university/workplace, and lifestyle needs. Agency provides French-language support and Lausanne market insights. Consider academic year timing if student/researcher.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1 consultation call, 1-2 hours</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              2
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Shortlist Districts & Viewings</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Receive apartment listings for target neighborhoods (Ouchy, Pully, Renens, Centre, etc.). Schedule viewings quickly as popular apartments rent within days. Be prepared for French-language viewings; agency provides translation if needed. Renens and Centre apartments turn over frequently; lakeside properties have longer search times. Consider Metro M2 line access for commuting. Agency coordinates logistics and provides neighborhood context. Students should explore shared housing options.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 4-8 weeks of active searching and viewings</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              3
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">French Dossier & Application</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Complete French-language dossier with ID, residence permit, employment/university contract, salary slips or funding proof (students: scholarship letters, parental guarantees), Betreibungsregisterauszug (from Vaud or current canton), landlord references, and application forms. Agency prepares professional French documents and presents application to landlords. Explain your profile (stable researcher, long-term family, responsible student) to improve approval odds. All communication in French handled by agency.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Same-day or next-day application for competitive properties</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              4
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Lease Review & Translation</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Review and translate French lease contract. Clarify Canton de Vaud specific terms, Nebenkosten calculations, 3-month notice period, deposit requirements (3 months in blocked account), tenant rights, and rent adjustment clauses. Attend move-in handover (état des lieux) to document defects in French and protect deposit. Agency ensures full understanding before signing. Negotiate terms if possible (rare in Lausanne but worth attempting for longer leases or premium properties).
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1-2 weeks from approval to handover</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              5
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Municipality Registration</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Register with Lausanne municipality (Service de la population) or commune (Renens, Pully, etc.) within 14 days of move-in. Set up utilities, internet, Swiss health insurance (mandatory), and transport passes (Mobilis for Canton de Vaud, Swiss Half-Fare Card). Students register with EPFL/UNIL as well. Agency provides ongoing support for French administrative processes, service providers, banking setup, and community integration. Connect with expat and university networks.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Complete within 14 days of move-in</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center">
+          <button
+            onclick="universalOpenModal({page: 'housing_lausanne_steps', service: 'housing'})"
+            class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            Book Your Free Housing Consultation
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Facts -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Essential Information
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Key Facts for <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Lausanne Housing</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">University Demand</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>EPFL & UNIL</strong> students/researchers drive housing market
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Average Rent (2.5-room)</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>CHF 1,800-2,400/month</strong> + Nebenkosten CHF 150-250
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Lakefront Ouchy</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Luxury living: <strong>CHF 2,200-3,500+</strong> with lake views
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">French Contracts</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>French-language</strong> dossiers and contracts required
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Student-Friendly Renens</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>Affordable, near EPFL</strong>, international community
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Temporary Housing</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>CHF 1,800-3,500/month</strong> furnished for researchers
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            FAQ
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Frequently Asked <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Questions</span>
+          </h2>
+        </div>
+
+        <div class="space-y-6">
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              How competitive is the Lausanne housing market?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Lausanne's housing market is competitive due to strong demand from EPFL (École Polytechnique Fédérale de Lausanne), UNIL (University of Lausanne), and corporate relocations. Students, researchers, and young professionals create constant pressure on housing stock. Apartments near universities (Renens, Lausanne Centre) and lakefront areas (Ouchy, Pully) are especially competitive with 8-20 applications per listing. However, Lausanne offers more availability than Geneva or Zurich, with search times typically 4-8 weeks with agency support.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              What are the best neighborhoods for expats in Lausanne?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Best Lausanne neighborhoods for expats: Ouchy (lakeside luxury, international atmosphere, premium dining), Pully (upscale residential, families, excellent schools), Chailly (quiet suburban, long-term residents, peaceful), Lausanne Centre (lively, international, students, restaurants), Renens (multicultural, affordable, near EPFL/UNIL), and Flon (modern, startup culture, nightlife). Consider proximity to workplace, international schools, and Metro M2 line. Lakefront areas command premium prices; Renens offers better value for students and young professionals.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              How much does it cost to rent an apartment in Ouchy or Pully?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Ouchy (lakefront Lausanne): CHF 2,200-3,500/month for 2.5-3.5 rooms plus Nebenkosten CHF 150-250. Premium lakeside apartments with views can reach CHF 4,000-6,000 for larger units. Pully (upscale suburb): CHF 2,000-3,200/month for 2.5-3.5 rooms. Both areas popular with families and corporate expats seeking quality living near the lake with excellent amenities. More affordable alternatives: Renens CHF 1,500-2,200, Lausanne Centre CHF 1,700-2,500, Chailly CHF 1,800-2,600 for similar apartment sizes.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Are Lausanne rental contracts in French?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Yes, most Lausanne rental contracts are in French as Lausanne is in French-speaking Switzerland (Canton de Vaud). Landlords typically expect French-language application dossiers and communication. Non-French speakers face challenges without translation and cultural support. Relocation agencies provide essential French-language services: dossier preparation, contract translation, landlord communication, and legal term explanation. Some landlords accept English for international students/researchers, but French fluency or professional support significantly improves application success rates.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Is student housing available for EPFL and UNIL?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Yes, both EPFL and UNIL offer student housing but demand far exceeds supply. EPFL provides some on-campus housing at its campus in Ecublens/Renens. UNIL has limited dormitory options. Most students search private market apartments in Renens (near EPFL, affordable, good transport), Lausanne Centre (lively, social), or shared accommodations. Student housing agencies and university services help with searches. Many students use temporary housing for first 1-2 months while securing permanent apartments. Apply early (3-6 months ahead) for university housing; private market searches typically take 4-8 weeks.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Are temporary furnished apartments common in Lausanne?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Yes, temporary furnished housing is common in Lausanne due to EPFL/UNIL researchers, corporate expats, and students. Furnished apartments cost CHF 1,800-3,500/month depending on size and location. Many available near universities, lakefront, or city center. Corporate housing providers cater to short-term assignments. Students often use temporary housing during first semester while finding permanent apartments. Agencies coordinate temporary and permanent housing timing. Typical temporary stays: 1-3 months during permanent search. Advance booking recommended, especially August-September (academic year start).
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Parent Link -->
+  <section class="py-8 bg-white border-t border-gray-200">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <a href="/services/housing" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Housing Services (All Switzerland)
+        </a>
+        
+        <div class="mt-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-3">Explore Other Cities:</h3>
+          <div class="flex flex-wrap gap-3">
+            {siblingCities.map((city) => (
+              <a
+                href={`/services/housing/${city.slug}`}
+                class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-primary-50 hover:text-primary-700 transition-colors"
+              >
+                {city.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="py-16 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-2 text-center">Trusted Lausanne Housing Partners</h2>
+        <p class="text-gray-600 text-center mb-8">Expert agencies with French-language and university housing support</p>
+
+        <div class="space-y-8">
+          <!-- Prime Relocation - Preferred Partner -->
+          <div class="bg-gradient-to-br from-primary-50 via-white to-red-50 border-2 border-primary-200 rounded-2xl p-8">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-2xl font-bold text-gray-900">Prime Relocation</h3>
+              <span class="px-3 py-1 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full text-xs font-bold uppercase tracking-wide">
+                🏆 Preferred Partner
+              </span>
+            </div>
+            
+            <div class="flex items-center gap-2 mb-4">
+              <div class="flex text-yellow-500">
+                ★★★★★
+              </div>
+              <span class="text-gray-600 text-sm">4.8 / 5 • 53 reviews</span>
+            </div>
+            
+            <p class="text-gray-700 text-lg mb-6">
+              <strong>Comprehensive Lausanne housing support</strong> with French-language services, lakeside property access (Ouchy, Pully), university housing expertise (EPFL/UNIL), and student/researcher relocation specialization. Prime Relocation navigates Canton de Vaud rental market and French administrative processes.
+            </p>
+            
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🏠 Lakeside & University</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🇫🇷 French Language</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🎓 Student Support</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🏖️ Ouchy Properties</span>
+            </div>
+            
+            <button 
+              onclick="universalOpenModal({page: 'housing_lausanne_partner', service: 'housing'})"
+              class="inline-flex items-center justify-center bg-gradient-to-r from-primary-600 to-primary-700 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105"
+            >
+              Get a Free Consultation with our Preferred Partner
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </button>
+            <p class="text-xs text-gray-500 mt-3">Our relocation partners work with us and provide free consultations</p>
+          </div>
+
+          <!-- Other Housing Specialists -->
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Other Trusted Lausanne Specialists</h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Lodge Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">4.8 / 5 • 134 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Lausanne market expertise with French-language support and lakeside property access</p>
+            </div>
+            
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Auris Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">4.8 / 5 • 98 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Comprehensive relocation services helping expats find homes in Lausanne region</p>
+            </div>
+          </div>
+
+          <!-- Browse All Agencies Button -->
+          <div class="mt-8 text-center">
+            <a
+              href="/companies?service=housing"
+              class="inline-flex items-center px-6 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-semibold hover:border-primary-600 hover:text-primary-700 hover:shadow-md transition-all duration-300"
+            >
+              Browse All Agencies for Housing Services
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Disclaimer Before Final CTA -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer />
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-transparent"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          Ready to Find Your New Home in Lausanne?
+        </h2>
+        <p class="text-xl text-primary-100 mb-8 leading-relaxed">
+          Get expert French-language support for lakeside luxury, university housing, or family neighborhoods. Our trusted agencies provide comprehensive relocation services.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onclick="universalOpenModal({page: 'housing_lausanne_final', service: 'housing'})"
+            class="px-10 py-5 bg-white text-primary-700 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl"
+          >
+            Book Free Consultation
+          </button>
+          <a
+            href="/services/housing"
+            class="px-10 py-5 bg-white/10 backdrop-blur-sm text-white border-2 border-white rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
+          >
+            View All Switzerland
+          </a>
+        </div>
+        <p class="text-sm text-primary-100 mt-6">
+          ✓ French-language support  •  ✓ EPFL/UNIL expertise  •  ✓ Lakeside Ouchy access
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div style="display:none;" data-ai-summary>
+    Housing services in Lausanne, Switzerland. Compare relocation agencies and find apartments in Lausanne including Ouchy, Pully, Chailly, Renens, Lausanne Centre, Flon. EPFL (École Polytechnique Fédérale de Lausanne) and UNIL (University of Lausanne) drive student and researcher housing demand. Average rent Lausanne city CHF 1,800-2,400/month for 2.5 rooms, Ouchy lakefront CHF 2,200-3,500+ (premium CHF 4,000-6,000), Pully CHF 2,000-3,200, Renens (near EPFL) CHF 1,500-2,200, Lausanne Centre CHF 1,700-2,500, Chailly CHF 1,800-2,600 plus Nebenkosten. French-language contracts and dossiers required in Canton de Vaud. Required documents: Betreibungsregisterauszug, employment/university contract, salary slips or funding proof, residence permit, landlord references. Ouchy lakeside luxury with Lake Geneva views, International Olympic Committee presence. Startup culture in Flon district. Metro M2 line connects neighborhoods. Student housing limited at EPFL/UNIL; private market common. Shared housing popular with students. Academic year timing (August-September) creates housing pressure. Temporary furnished housing CHF 1,800-3,500/month for researchers and students. Professional French-language support essential for applications and contracts. Search time 4-8 weeks with agency support. Renens multicultural and affordable near universities. Pully upscale residential for families. Chailly quiet suburban. More accessible than Geneva/Zurich but still competitive. Prime Relocation preferred partner with French-language and university housing expertise.
+  </div>
+</Layout>
+
