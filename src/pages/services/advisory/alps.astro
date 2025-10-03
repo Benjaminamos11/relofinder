@@ -1,0 +1,963 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SchemaMarkup from '../../../components/common/SchemaMarkup.astro';
+import PlatformDisclaimer from '../../../components/common/PlatformDisclaimer.astro';
+import ServiceHero from '../../../components/services/ServiceHero.astro';
+
+const title = "HNWI Advisory in the Swiss Alps | Luxury & Lifestyle Relocation | ReloFinder";
+const description = "Compare advisory partners for HNWI relocation to Swiss Alps: St. Moritz, Gstaad, Zermatt, Andermatt, Crans-Montana. Luxury real estate, lump-sum taxation, lifestyle services. ReloFinder connects you to trusted advisors.";
+const canonicalURL = "https://relofinder.ch/services/advisory/alps";
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://relofinder.ch"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://relofinder.ch/services"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Advisory",
+      "item": "https://relofinder.ch/services/advisory"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Swiss Alps",
+      "item": "https://relofinder.ch/services/advisory/alps"
+    }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "HNWI Advisory Services in Swiss Alps",
+  "description": "Comprehensive advisory services for high-net-worth individuals relocating to Swiss alpine resorts including St. Moritz, Gstaad, Zermatt, Andermatt, and Crans-Montana",
+  "provider": {
+    "@type": "Organization",
+    "name": "ReloFinder",
+    "url": "https://relofinder.ch"
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Swiss Alps",
+    "containedIn": {
+      "@type": "Country",
+      "name": "Switzerland"
+    }
+  },
+  "serviceType": "HNWI Luxury Relocation Advisory"
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which alpine towns are most popular with HNWI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Top alpine destinations: St. Moritz (winter luxury hub, global jetset, tax deals), Gstaad (chalets, private schools, discreet dynasties), Zermatt (car-free, Matterhorn, luxury chalets), Andermatt (new luxury resort investments, golf, property projects), Crans-Montana (French-speaking Alps, lifestyle retreat). All attract HNWI for luxury real estate, privacy, and potential lump-sum taxation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I buy property in St. Moritz or Gstaad as a foreigner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Swiss property purchase for foreigners is restricted (Lex Koller). Exceptions: 1) Swiss residence permit holders can buy primary residence, 2) Holiday homes in designated tourist zones with cantonal quotas (limited availability, high demand in St. Moritz/Gstaad), 3) Swiss/EU citizens have more flexibility. Advisory agencies navigate Lex Koller, cantonal permits, and real estate transactions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is lump-sum taxation available in alpine resorts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, lump-sum taxation (forfait fiscal/pauschalbesteuerung) available in select alpine communes: Valais (Zermatt, Crans-Montana), Vaud (some resorts), Geneva (limited, CHF 400k+ minimum). Eligibility: First-time Swiss residents with no professional activity in Switzerland. Tax based on living expenses (5-7x annual rent/property value) rather than worldwide income. Requires negotiation with cantonal tax authorities. Advisory agencies guide application process."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What lifestyle services can advisory agencies provide?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lifestyle services for alpine HNWI: Concierge (restaurant reservations, event tickets, private transportation), property management (chalet maintenance, staff hiring, security), family office coordination (wealth management, estate planning), education consulting (international/boarding schools), wellness coordination (private medical, spa, fitness trainers), security services (personal protection, property security systems). Advisory agencies coordinate all aspects of luxury alpine lifestyle."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do family offices support HNWI relocation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Family offices provide comprehensive support: Wealth management (portfolio management, tax optimization, multi-currency), tax planning (lump-sum negotiation, cross-border structures, estate planning), legal services (trusts, foundations, succession planning), lifestyle management (concierge, property, travel), philanthropy coordination (charitable foundations, donations), family governance (succession, education, values). Advisory agencies facilitate family office selection and integration with Swiss relocation."
+      }
+    }
+  ]
+};
+
+const siblingCities = [
+  { name: 'Zug', slug: 'zug' }
+];
+---
+
+<Layout title={title} description={description}>
+  <SchemaMarkup type="service" data={breadcrumbSchema} />
+  <SchemaMarkup type="service" data={serviceSchema} />
+  <SchemaMarkup type="service" data={faqSchema} />
+
+  <ServiceHero
+    title="HNWI Advisory in the Swiss Alps"
+    subtitle="Luxury & Lifestyle Relocation"
+    description="Switzerland's alpine resorts attract high-net-worth individuals seeking luxury homes, tax advantages, and lifestyle excellence. ReloFinder connects you with advisory partners in St. Moritz, Gstaad, Zermatt, Andermatt, and Crans-Montana. We don't deliver services ourselves — we connect you to the right agency."
+    icon="briefcase"
+    badge="Advisory in Swiss Alps"
+  />
+
+  <!-- Platform Disclaimer -->
+  <section class="py-8 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer compact={true} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Primary CTA after Hero -->
+  <section class="py-12 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Need Strategic Advisory for Your Alpine Relocation?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get expert guidance for luxury real estate, lump-sum taxation, and lifestyle services
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'advisory_alps', service: 'advisory'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- InfoCard Grid: Why the Alps -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Why the Alps
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Why the Swiss Alps <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">for HNWI</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Card 1: Exclusive Destinations -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Exclusive HNWI Destinations</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              St. Moritz, Gstaad, Zermatt, Andermatt, Crans-Montana. World-renowned resorts attracting global ultra-wealthy for privacy, luxury, and alpine lifestyle.
+            </p>
+            <a href="#alpine-destinations" class="text-primary-600 hover:text-primary-700 text-sm font-semibold inline-flex items-center">
+              Explore destinations
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Card 2: Luxury Real Estate -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Luxury Real Estate</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              Chalets, villas, estates with mountain views. CHF 5M-50M+ properties. Limited supply, high demand. Lex Koller restrictions require permit strategy.
+            </p>
+            <a href="#comparison-table" class="text-primary-600 hover:text-primary-700 text-sm font-semibold inline-flex items-center">
+              Property insights
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Card 3: Lump-Sum Taxation -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Pauschalbesteuerung (Lump-Sum)</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              Available in Valais (Zermatt, Crans-Montana), select Vaud resorts. Tax based on living expenses (5-7x rent) not worldwide income. CHF 400k+ minimums.
+            </p>
+            <a href="#alpine-destinations" class="text-primary-600 hover:text-primary-700 text-sm font-semibold inline-flex items-center">
+              Tax details
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Card 4: Private Banking -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Private Banking & Family Offices</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              Geneva/Zurich private banks serve alpine residents. CHF 2M+ typical minimum. Wealth management, estate planning, trusts. Family offices coordinate lifestyle.
+            </p>
+            <a href="#alpine-destinations" class="text-primary-600 hover:text-primary-700 text-sm font-semibold inline-flex items-center">
+              Banking services
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Card 5: Lifestyle Services -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Lifestyle: Concierge, Security, Wellness</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              Concierge services, property management, chalet staff, personal security, private medical, wellness. Advisory agencies coordinate all lifestyle aspects.
+            </p>
+            <a href="#alpine-destinations" class="text-primary-600 hover:text-primary-700 text-sm font-semibold inline-flex items-center">
+              Lifestyle services
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Card 6: Education -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Education: International & Boarding Schools</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              Gstaad: Le Rosey, Aiglon College. Crans-Montana: Montana Institute. World-class boarding schools. Advisory agencies handle admissions, placement.
+            </p>
+            <a href="#alpine-destinations" class="text-primary-600 hover:text-primary-700 text-sm font-semibold inline-flex items-center">
+              School options
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table: Alpine Destinations -->
+  <section id="comparison-table" class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Destinations
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Alpine <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Destinations Compared</span>
+          </h2>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-gray-50 border-b border-gray-200">
+                  <th class="px-4 py-3 text-left font-bold text-gray-900">Destination</th>
+                  <th class="px-4 py-3 text-left font-bold text-gray-900">Best For</th>
+                  <th class="px-4 py-3 text-left font-bold text-gray-900">Lifestyle</th>
+                  <th class="px-4 py-3 text-left font-bold text-gray-900">Advisory Focus</th>
+                  <th class="px-4 py-3 text-left font-bold text-gray-900">Tax/Permit Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="px-4 py-3 font-semibold text-gray-900">St. Moritz</td>
+                  <td class="px-4 py-3 text-gray-700">HNWI global jetset</td>
+                  <td class="px-4 py-3 text-gray-700">Luxury homes, winter sports</td>
+                  <td class="px-4 py-3 text-gray-700">Lifestyle, estate planning</td>
+                  <td class="px-4 py-3 text-gray-700">Limited lump-sum</td>
+                </tr>
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="px-4 py-3 font-semibold text-gray-900">Gstaad</td>
+                  <td class="px-4 py-3 text-gray-700">Families, dynasties</td>
+                  <td class="px-4 py-3 text-gray-700">Chalets, private schools</td>
+                  <td class="px-4 py-3 text-gray-700">Family offices, trusts</td>
+                  <td class="px-4 py-3 text-gray-700">Pauschal possible</td>
+                </tr>
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="px-4 py-3 font-semibold text-gray-900">Zermatt</td>
+                  <td class="px-4 py-3 text-gray-700">Sports/luxury mix</td>
+                  <td class="px-4 py-3 text-gray-700">Chalets, car-free</td>
+                  <td class="px-4 py-3 text-gray-700">Property, wealth planning</td>
+                  <td class="px-4 py-3 text-gray-700">Permits limited</td>
+                </tr>
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="px-4 py-3 font-semibold text-gray-900">Andermatt</td>
+                  <td class="px-4 py-3 text-gray-700">Investors</td>
+                  <td class="px-4 py-3 text-gray-700">Resorts, golf, new builds</td>
+                  <td class="px-4 py-3 text-gray-700">Investment, property setup</td>
+                  <td class="px-4 py-3 text-gray-700">Attracts entrepreneurs</td>
+                </tr>
+                <tr class="hover:bg-gray-50">
+                  <td class="px-4 py-3 font-semibold text-gray-900">Crans-Montana</td>
+                  <td class="px-4 py-3 text-gray-700">Francophone HNWI</td>
+                  <td class="px-4 py-3 text-gray-700">Villas, lifestyle retreat</td>
+                  <td class="px-4 py-3 text-gray-700">Advisory in French, estate</td>
+                  <td class="px-4 py-3 text-gray-700">Pauschal possible</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="mt-6 p-6 bg-white rounded-xl border border-gray-200">
+          <p class="text-gray-700 leading-relaxed">
+            <strong>Recommended approach:</strong> Advisory agencies assess family needs, tax eligibility (lump-sum vs standard rates), property availability, and lifestyle priorities to recommend optimal alpine destination. Multiple-property strategies common (primary + holiday homes).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alpine Destinations (Accordion) -->
+  <section id="alpine-destinations" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Destinations
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Explore <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Alpine Destinations</span>
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          <!-- St. Moritz -->
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center">
+              <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+              St. Moritz — Winter Luxury Hub & Global Jetset
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">St. Moritz is Switzerland's most famous luxury winter resort:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>Lifestyle</strong>: World-class skiing (Corviglia, Corvatsch), luxury hotels (Badrutt's Palace, Kulm Hotel), high-end shopping, celebrity sightings, winter polo, exclusive events.</li>
+                <li><strong>Real estate</strong>: Chalets CHF 10M-50M+, apartments CHF 3M-15M. Limited supply, extremely high demand. Lex Koller restrictions require residence permit for property purchase.</li>
+                <li><strong>Tax considerations</strong>: Canton Graubünden. Lump-sum taxation (pauschalbesteuerung) very limited availability in St. Moritz commune. High-income HNWI may find standard rates acceptable given lifestyle benefits.</li>
+                <li><strong>International community</strong>: British, Russian, Middle Eastern, Latin American ultra-wealthy. English widely spoken. Discreet privacy respected.</li>
+                <li><strong>Advisory focus</strong>: Property acquisition strategy (Lex Koller navigation), lifestyle concierge coordination, wealth management, estate planning for multi-property portfolios.</li>
+              </ul>
+              <p class="text-gray-700 mt-2">Best for: Global HNWI seeking winter sports, luxury lifestyle, international social scene. Seasonal residence (winter focus) common. Full-time residency possible but requires commitment to alpine lifestyle year-round.</p>
+            </div>
+          </details>
+
+          <!-- Gstaad -->
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center">
+              <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+              Gstaad — Chalets, Private Schools & Discreet Dynasties
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">Gstaad attracts wealthy families and dynasties seeking discretion:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>Lifestyle</strong>: Traditional Swiss chalets, discreet luxury, family-oriented, excellent hiking/skiing, boutique shopping, Michelin restaurants, wellness spas.</li>
+                <li><strong>Real estate</strong>: Authentic chalets CHF 8M-40M+, family estates with land. More traditional architecture than St. Moritz. Long-term family ownership common.</li>
+                <li><strong>Education</strong>: Proximity to world-class boarding schools: Le Rosey (Rolle/Gstaad), Aiglon College (nearby). International schools Lausanne/Geneva 90 minutes. Major draw for families.</li>
+                <li><strong>Tax considerations</strong>: Canton Bern (Gstaad commune). Lump-sum taxation (forfait fiscal) possible in select cases. Requires negotiation with cantonal authorities. Minimum CHF 400k+ annual tax typical.</li>
+                <li><strong>Privacy & discretion</strong>: European aristocracy, business dynasties, entertainment industry. Less ostentatious than St. Moritz. Privacy highly valued.</li>
+                <li><strong>Advisory focus</strong>: Family office coordination (multi-generational wealth), trust structures, boarding school placement, property acquisition with Lex Koller navigation, discreet lifestyle services.</li>
+              </ul>
+              <p class="text-gray-700 mt-2">Best for: Wealthy families with children seeking private education, dynasties requiring privacy, HNWI preferring traditional Swiss alpine lifestyle over jetset scene.</p>
+            </div>
+          </details>
+
+          <!-- Zermatt -->
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center">
+              <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+              Zermatt — Car-Free, Matterhorn & Luxury Chalets
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">Zermatt offers unique car-free alpine luxury at foot of Matterhorn:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>Lifestyle</strong>: Car-free village (electric taxis only), iconic Matterhorn views, year-round skiing (glacier), luxury hotels (Mont Cervin Palace, The Omnia), fine dining, hiking paradise.</li>
+                <li><strong>Real estate</strong>: Luxury chalets CHF 5M-30M+, ski-in/ski-out properties premium. Limited new construction due to car-free restrictions and topography. High demand, scarce supply.</li>
+                <li><strong>Tax considerations</strong>: Canton Valais. Lump-sum taxation (pauschalbesteuerung) available in Valais canton. Zermatt commune receptive to HNWI. Minimum CHF 400k+ tax, negotiable based on property value/living expenses.</li>
+                <li><strong>Residence permits</strong>: Limited quotas due to high demand. Property ownership facilitates permit application but not guaranteed. Advisory agencies navigate permit strategy.</li>
+                <li><strong>Sports & wellness</strong>: World-class skiing/mountaineering, alpine climbing, ultra-trail running. Wellness spas, private fitness trainers, mountain guides.</li>
+                <li><strong>Advisory focus</strong>: Property search (scarce inventory), permit navigation (quota limitations), lump-sum tax negotiation with Valais authorities, lifestyle concierge (mountain guides, property staff).</li>
+              </ul>
+              <p class="text-gray-700 mt-2">Best for: HNWI passionate about skiing/mountaineering, those seeking car-free tranquility, sports enthusiasts wanting year-round alpine activities, Matterhorn enthusiasts.</p>
+            </div>
+          </details>
+
+          <!-- Andermatt -->
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center">
+              <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+              Andermatt — Luxury Resort Investments & Golf
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">Andermatt is Switzerland's newest luxury alpine development:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>Development</strong>: Andermatt Swiss Alps mega-project by Samih Sawiris (Egyptian billionaire). New luxury apartments, chalets, hotels (The Chedi Andermatt 5-star), golf course (18-hole designed by Kurt Rossknecht).</li>
+                <li><strong>Real estate</strong>: New-build luxury apartments CHF 2M-10M+, chalets CHF 5M-20M+. Modern architecture mixed with traditional alpine style. Purchase opportunities in new developments.</li>
+                <li><strong>Skiing</strong>: SkiArena Andermatt-Sedrun, modern lifts, excellent snow conditions, proximity to Gotthard Pass. Less crowded than St. Moritz/Zermatt.</li>
+                <li><strong>Tax considerations</strong>: Canton Uri. Standard Swiss taxation. Lump-sum (pauschalbesteuerung) not commonly granted in Uri. Entrepreneurial residents welcomed for economic contribution.</li>
+                <li><strong>Investment angle</strong>: Real estate investment opportunity in growing resort. Rental income potential from luxury apartments. Golf course memberships, resort amenities.</li>
+                <li><strong>Advisory focus</strong>: Property investment analysis (new developments, rental yields), golf membership coordination, entrepreneur-friendly residence permits, wealth structuring.</li>
+              </ul>
+              <p class="text-gray-700 mt-2">Best for: HNWI investors seeking alpine property appreciation potential, golf enthusiasts, those preferring modern luxury amenities over traditional villages, entrepreneurs wanting Swiss residence.</p>
+            </div>
+          </details>
+
+          <!-- Crans-Montana -->
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center">
+              <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+              </svg>
+              Crans-Montana — French-Speaking Alps & Lifestyle Retreat
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">Crans-Montana attracts French-speaking HNWI and lifestyle-focused residents:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>Language & culture</strong>: French-speaking Valais. Attracts Francophone HNWI (French, Belgian, Middle Eastern French speakers). Different cultural feel than German-speaking St. Moritz/Gstaad.</li>
+                <li><strong>Lifestyle</strong>: Sunny plateau (300+ sunny days/year), golf courses (Crans-sur-Sierre Golf Club hosts European Masters), luxury hotels, Michelin dining, thermal baths (Leukerbad nearby).</li>
+                <li><strong>Real estate</strong>: Villas CHF 3M-20M+, luxury apartments CHF 1M-8M. More affordable than St. Moritz/Gstaad while maintaining luxury standards. South-facing sunny plateau prime real estate.</li>
+                <li><strong>Tax considerations</strong>: Canton Valais. Lump-sum taxation (pauschalbesteuerung) available. Crans-Montana commune receptive to HNWI applications. Minimum CHF 400k+ tax, negotiated based on property/lifestyle expenses.</li>
+                <li><strong>Education</strong>: Montana Institute (international boarding school), French/bilingual schools. Proximity to Lausanne international schools (90 minutes).</li>
+                <li><strong>Advisory focus</strong>: French-language advisory services, lump-sum tax negotiation with Valais, property search (sunny plateau), lifestyle coordination (golf, wellness), family office integration.</li>
+              </ul>
+              <p class="text-gray-700 mt-2">Best for: French-speaking HNWI, golf enthusiasts, those seeking sunny alpine climate, families wanting French-language education, HNWI preferring lower-key luxury than St. Moritz.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Documents Checklist -->
+  <section id="docs-checklist" class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Preparation
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Documents <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Checklist</span>
+          </h2>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl border-2 border-gray-200">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                <svg class="w-5 h-5 text-primary-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Personal & Residence Documents
+              </h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Passport & Residence Documents (all family members)</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Proof of Assets / Wealth Statements (for lump-sum applications)</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Insurance (mandatory health within 3 months)</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                <svg class="w-5 h-5 text-primary-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                Property & Financial Documents
+              </h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Property Purchase Papers (if buying chalet/villa)</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Banking Letters (for wealth management introductions)</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Tax Returns (for lump-sum eligibility assessment)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-8 p-4 bg-primary-50 rounded-lg border border-primary-200">
+            <p class="text-gray-700 text-sm">
+              <strong>💡 Pro tip:</strong> Lump-sum taxation (forfait fiscal) requires first-time Swiss residency (no prior Swiss tax history) and no professional activity in Switzerland. Advisory agencies assess eligibility and negotiate with cantonal authorities. Start process 6-12 months before planned move.
+            </p>
+          </div>
+
+          <div class="mt-6">
+            <button
+              onclick="universalOpenModal({page: 'advisory_alps_docs', service: 'advisory'})"
+              class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-lg font-semibold hover:from-primary-700 hover:to-primary-800 transition-all"
+            >
+              Get Help with Documents
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Stepper: HNWI Alps Relocation Process -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Process
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            HNWI Alps <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Relocation Process</span>
+          </h2>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Step 1 -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              1
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Initial Consultation (Destination Choice)</h3>
+              <p class="text-gray-600">
+                Assess family priorities: sports focus (Zermatt, St. Moritz), education (Gstaad boarding schools), investment (Andermatt), French culture (Crans-Montana). Review lifestyle preferences and tax eligibility.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              2
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Tax & Permit Feasibility (Forfait Fiscal Eligibility)</h3>
+              <p class="text-gray-600">
+                Assess lump-sum taxation eligibility (first-time residency, no Swiss professional activity). Coordinate with cantonal tax authorities (Valais, Vaud, Geneva). Calculate minimum tax (CHF 400k+). Compare lump-sum vs standard rates.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              3
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Real Estate & Banking Setup</h3>
+              <p class="text-gray-600">
+                Property search (chalets CHF 5M-50M+). Navigate Lex Koller restrictions (residence permit required). Private banking introductions (Geneva/Zurich banks, CHF 2M+ minimum). Wealth management coordination.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              4
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Family Office & Education Setup</h3>
+              <p class="text-gray-600">
+                Select family office (multi-family office or standalone). Coordinate estate planning, trusts, succession. Boarding school placement (Le Rosey, Aiglon College) or international schools. Coordinate admissions, tours.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              5
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Lifestyle Services (Concierge, Security, Wellness)</h3>
+              <p class="text-gray-600">
+                Arrange concierge (restaurant reservations, event access, private jets), property management (chalet staff, maintenance, security), personal security, wellness (private medical, spa, fitness), lifestyle integration.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center">
+          <button
+            onclick="universalOpenModal({page: 'advisory_alps_steps', service: 'advisory'})"
+            class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            Start Your Alps Advisory Process
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Facts (LLM-SEO Block) -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Quick Facts
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Key Facts for <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Swiss Alps Advisory</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-start">
+            <svg class="w-6 h-6 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700"><strong>Top luxury resorts</strong>: St. Moritz, Gstaad, Zermatt, Andermatt, Crans-Montana</span>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-start">
+            <svg class="w-6 h-6 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700"><strong>Lump-sum taxation</strong> available in Valais (Zermatt, Crans-Montana), select Vaud resorts</span>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-start">
+            <svg class="w-6 h-6 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700"><strong>Properties</strong>: Chalets, villas, estates CHF 5M-50M+ (high demand, limited supply)</span>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-start">
+            <svg class="w-6 h-6 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700"><strong>Private banking</strong> via Geneva/Zurich (CHF 2M+ minimum), family offices coordinate</span>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-start">
+            <svg class="w-6 h-6 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700"><strong>Boarding schools</strong>: Le Rosey, Aiglon College (Gstaad area), Montana Institute</span>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-start">
+            <svg class="w-6 h-6 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700"><strong>Mandatory insurance</strong> within 3 months (Expat-Savvy.ch for guidance)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            FAQ
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Frequently Asked <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Questions</span>
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Which alpine towns are most popular with HNWI?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Top alpine destinations: St. Moritz (winter luxury hub, global jetset, tax deals), Gstaad (chalets, private schools, discreet dynasties), Zermatt (car-free, Matterhorn, luxury chalets), Andermatt (new luxury resort investments, golf, property projects), Crans-Montana (French-speaking Alps, lifestyle retreat). All attract HNWI for luxury real estate, privacy, and potential lump-sum taxation.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Can I buy property in St. Moritz or Gstaad as a foreigner?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Swiss property purchase for foreigners is restricted (Lex Koller). Exceptions: 1) Swiss residence permit holders can buy primary residence, 2) Holiday homes in designated tourist zones with cantonal quotas (limited availability, high demand in St. Moritz/Gstaad), 3) Swiss/EU citizens have more flexibility. Advisory agencies navigate Lex Koller, cantonal permits, and real estate transactions.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Is lump-sum taxation available in alpine resorts?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Yes, lump-sum taxation (forfait fiscal/pauschalbesteuerung) available in select alpine communes: Valais (Zermatt, Crans-Montana), Vaud (some resorts), Geneva (limited, CHF 400k+ minimum). Eligibility: First-time Swiss residents with no professional activity in Switzerland. Tax based on living expenses (5-7x annual rent/property value) rather than worldwide income. Requires negotiation with cantonal tax authorities. Advisory agencies guide application process.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              What lifestyle services can advisory agencies provide?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Lifestyle services for alpine HNWI: Concierge (restaurant reservations, event tickets, private transportation), property management (chalet maintenance, staff hiring, security), family office coordination (wealth management, estate planning), education consulting (international/boarding schools), wellness coordination (private medical, spa, fitness trainers), security services (personal protection, property security systems). Advisory agencies coordinate all aspects of luxury alpine lifestyle.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              How do family offices support HNWI relocation?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Family offices provide comprehensive support: Wealth management (portfolio management, tax optimization, multi-currency), tax planning (lump-sum negotiation, cross-border structures, estate planning), legal services (trusts, foundations, succession planning), lifestyle management (concierge, property, travel), philanthropy coordination (charitable foundations, donations), family governance (succession, education, values). Advisory agencies facilitate family office selection and integration with Swiss relocation.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Parent Link -->
+  <section class="py-8 bg-gradient-to-br from-gray-50 via-white to-primary-50 border-t border-gray-200">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <a href="/services/advisory" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Advisory Services (All Switzerland)
+        </a>
+        
+        <div class="mt-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-3">Explore Other Destinations:</h3>
+          <div class="flex flex-wrap gap-3">
+            {siblingCities.map((city) => (
+              <a
+                href={`/services/advisory/${city.slug}`}
+                class="px-4 py-2 bg-white text-gray-700 rounded-lg border border-gray-200 hover:border-primary-600 hover:bg-primary-50 hover:text-primary-700 transition-colors"
+              >
+                {city.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-2 text-center">Trusted Alps Advisory Partners</h2>
+        <p class="text-gray-600 text-center mb-8">Expert agencies with alpine luxury and HNWI experience</p>
+
+        <div class="space-y-8">
+          <!-- Prime Relocation - Preferred Partner -->
+          <div class="bg-gradient-to-br from-primary-50 via-white to-red-50 border-2 border-primary-200 rounded-2xl p-8">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-2xl font-bold text-gray-900">Prime Relocation</h3>
+              <span class="px-3 py-1 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full text-xs font-bold uppercase tracking-wide">
+                🏆 Preferred Partner
+              </span>
+            </div>
+            
+            <div class="flex items-center gap-2 mb-4">
+              <div class="flex text-yellow-500">
+                ★★★★★
+              </div>
+              <span class="text-gray-600 text-sm">4.8 / 5 • 53 reviews</span>
+            </div>
+            
+            <ul class="text-gray-700 space-y-2 mb-6">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-primary-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Alpine property search & Lex Koller navigation
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-primary-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Lump-sum taxation negotiation with cantonal authorities
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-primary-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Family office coordination & lifestyle services
+              </li>
+            </ul>
+            
+            <button 
+              onclick="universalOpenModal({page: 'advisory_alps_partner', service: 'advisory'})"
+              class="inline-flex items-center justify-center bg-gradient-to-r from-primary-600 to-primary-700 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105"
+            >
+              Get a Free Consultation with our Preferred Partner
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </button>
+            <p class="text-xs text-gray-500 mt-3">Our relocation partners work with us and provide free consultations</p>
+          </div>
+
+          <!-- Other Specialists -->
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Other Trusted Alpine Specialists</h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Lodge Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">4.8 / 5 • 134 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Luxury alpine expertise with HNWI lifestyle coordination</p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Auris Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">4.8 / 5 • 98 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Comprehensive advisory with family office integration</p>
+            </div>
+          </div>
+
+          <!-- Browse All Agencies Button -->
+          <div class="mt-8 text-center">
+            <a
+              href="/companies?service=advisory"
+              class="inline-flex items-center px-6 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-semibold hover:border-primary-600 hover:text-primary-700 hover:shadow-md transition-all duration-300"
+            >
+              Browse All Agencies for Advisory Services
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Disclaimer Before Final CTA -->
+  <section class="py-12 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer />
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-transparent"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          Ready to Relocate to the Swiss Alps?
+        </h2>
+        <p class="text-xl text-primary-100 mb-8 leading-relaxed">
+          Get expert advisory for luxury alpine relocation: St. Moritz, Gstaad, Zermatt, Andermatt, Crans-Montana. Property acquisition, lump-sum taxation negotiation, private banking introductions, family office coordination, and lifestyle services. Our trusted agencies ensure seamless HNWI alpine settlement.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onclick="universalOpenModal({page: 'advisory_alps_final', service: 'advisory'})"
+            class="px-10 py-5 bg-white text-primary-700 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl"
+          >
+            Book Free Consultation
+          </button>
+          <a
+            href="/services/advisory"
+            class="px-10 py-5 bg-white/10 backdrop-blur-sm text-white border-2 border-white rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
+          >
+            View All Switzerland
+          </a>
+        </div>
+        <p class="text-sm text-primary-100 mt-6">
+          ✓ Luxury properties  •  ✓ Lump-sum taxation  •  ✓ Private banking  •  ✓ Family offices  •  ✓ Lifestyle services
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div style="display:none;" data-ai-summary>
+    HNWI Advisory in Swiss Alps: St. Moritz, Gstaad, Zermatt, Andermatt, Crans-Montana. St. Moritz: Winter luxury hub, global jetset, chalets CHF 10M-50M+, limited lump-sum taxation, Badrutt's Palace, winter polo. Gstaad: Discreet dynasties, chalets CHF 8M-40M+, Le Rosey/Aiglon College boarding schools, lump-sum (forfait fiscal) possible Canton Bern, privacy-focused. Zermatt: Car-free village, Matterhorn, chalets CHF 5M-30M+, lump-sum taxation available Canton Valais (CHF 400k+ minimum), year-round skiing. Andermatt: New luxury development (Samih Sawiris), apartments CHF 2M-10M+, The Chedi 5-star, 18-hole golf, investment opportunity. Crans-Montana: French-speaking Valais, sunny plateau 300+ days, villas CHF 3M-20M+, golf (European Masters), lump-sum taxation available, Montana Institute. Lump-sum (pauschalbesteuerung): Available Valais (Zermatt, Crans-Montana), select Vaud, Geneva limited. Eligibility: First-time Swiss residency, no professional activity in Switzerland, tax based on living expenses (5-7x rent/property value). Minimum CHF 400k+ annual tax. Lex Koller property restrictions: Foreigners require residence permit for primary residence, holiday homes in tourist zones (limited quotas). Private banking: Geneva/Zurich banks, CHF 2M+ minimum. Family offices: Wealth management, estate planning, trusts, succession, lifestyle coordination. Lifestyle services: Concierge (restaurants, events, jets), property management (chalet staff, security), wellness (private medical, spa), education (boarding schools). Boarding schools: Le Rosey (Gstaad area), Aiglon College, Montana Institute. Advisory process: Destination choice, tax/permit feasibility (forfait fiscal), real estate/banking setup, family office/education, lifestyle services. Prime Relocation preferred partner.
+  </div>
+</Layout>
+
