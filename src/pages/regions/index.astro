@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 const allRegions = await getCollection('regions');
 
 // Regional images mapping (same as individual region pages)
-const availableRegionKeys = ['zurich', 'geneva', 'basel', 'bern', 'lausanne', 'zug'];
+const availableRegionKeys = ['zurich', 'geneva', 'basel', 'alps', 'lausanne', 'zug'];
 
 // Filter to only show regions that have actual images (not placeholders)
 const regions = allRegions.filter(region => {
@@ -32,8 +32,8 @@ const regionalImages = {
   'zurich': 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748054305/a-whimsical-slightly-quirky-photograph-d_zq8vecXuSUm5G0iW2zVS2A_ahKrzbyPSHujmZTV4weezQ_fefkl9.webp',
   'geneva': 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748054305/a-photograph-of-a-friendly-typical-swiss_jygtMk7MRVCGIR4b-pXn1w_u_7qRvYXQmqaQVXTr4FhIQ_exkzuu.webp',
   'basel': 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748054305/a-photograph-of-a-friendly-typical-swiss_byvGP0Q4RKyeAN-ygL2jbg_aTPr-BU2TWSrb4xXReYWMw_tw5r7l.webp',
-  'bern': 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748054305/a-vibrant-slightly-whimsical-photograph-_j_Bc2kuLQfWixPiozYlkZg_3GfAV6UKRZKiLAd7QOavuA_mkvcga.webp',
-  'lausanne': 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748054305/a-photograph-of-a-friendly-typical-swiss_s2o30GAgRB2T9AZDpXe4_A_RED4Ygx9Rw2E2XeYdgDzog_jyhysn.webp',
+  'alps': 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748054307/a-whimsical-photograph-of-a-friendly-typ_eIhtU-yYRV6QkH2ycfp9hQ_PJcuPNslT6iZbK83d0zYLQ_gocgoe.webp',
+  'lausanne': 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748054306/a-photograph-of-a-friendly-typical-swiss_byvGP0Q4RKyeAN-ygL2jbg_6_W-YX95QW6TcdUWt3kK0w_xdylgj.webp',
   'zug': 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748054307/a-whimsical-slightly-quirky-photograph-c_ESZqUcnqSiCNpGzcV89dBw_o-YAUo9-RbC7oy5d4C2v2Q_ehpyba.webp'
 };
 
