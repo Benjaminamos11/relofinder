@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import SchemaMarkup from '../../components/common/SchemaMarkup.astro';
+import PlatformDisclaimer from '../../components/common/PlatformDisclaimer.astro';
 import ServiceHero from '../../components/services/ServiceHero.astro';
 import ServiceRelated from '../../components/services/ServiceRelated.astro';
 import ServiceBlog from '../../components/services/ServiceBlog.astro';
@@ -204,6 +205,15 @@ const faqSchema = {
     icon="home"
     badge="Housing Services"
   />
+
+  <!-- Platform Disclaimer -->
+  <section class="py-8 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer compact={true} />
+      </div>
+    </div>
+  </section>
 
   <!-- Main Content Section -->
   <section class="py-16 bg-white">
@@ -649,6 +659,19 @@ const faqSchema = {
               <p class="text-gray-700 text-sm">Expert housing specialists helping expats navigate Switzerland's competitive rental market</p>
             </div>
           </div>
+
+          <!-- Browse All Agencies Button -->
+          <div class="mt-8 text-center">
+            <a
+              href="/companies?service=housing"
+              class="inline-flex items-center px-6 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-semibold hover:border-primary-600 hover:text-primary-700 hover:shadow-md transition-all duration-300"
+            >
+              Browse All Agencies for Housing Services
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </a>
+          </div>
         </div>
 
       </div>
@@ -675,6 +698,15 @@ const faqSchema = {
             </a>
           ))}
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Disclaimer Before Final CTA -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer />
       </div>
     </div>
   </section>
