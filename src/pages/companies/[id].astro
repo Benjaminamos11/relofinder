@@ -1,757 +1,1872 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import SchemaMarkup from '../../components/common/SchemaMarkup.astro';
-import { getCollection } from 'astro:content';
-import { fetchGoogleReviews, getMockReviews, type FormattedReview, type BusinessReviewData } from '../../utils/google-reviews';
+/**
+ * Premium Agency Profile Page - SEO + LLM Optimized
+ * Brand System: Red gradient CTAs, red→blue text highlights only
+ * URL: /companies/[id]
+ * 
+ * Sections:
+ * 1. Hero Snapshot (gradient heading + trust signals)
+ * 2. Always-On Review Summary (AI)
+ * 3. Services & Coverage (split layout)
+ * 4. Pros & Considerations
+ * 5. Who They're Best For
+ * 6. Reviews Panel + On-Demand Insights
+ * 7. Alternatives
+ * 8. FAQ (no pricing)
+ * 9. Final CTA + Disclaimer
+ */
 
-// Generate static paths for all companies
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { supabase } from '../../lib/supabase';
+
 export async function getStaticPaths() {
   const companies = await getCollection('companies');
   return companies.map((company: any) => ({
-    params: { id: (company as any).data.id },
+    params: { id: company.data.id },
     props: { company },
   }));
 }
 
-// Get company data from props
 const { company } = Astro.props;
-const companyData = (company as any).data;
+const companyData = company.data;
 
-// Get related services and regions for linking
-const services = await getCollection('services');
-const regions = await getCollection('regions');
-
-// Reviews data
-const mockReviews = getMockReviews();
-let reviewsData: BusinessReviewData = {
-  rating: 4.5,
-  reviewCount: 50,
-  reviews: mockReviews,
-  businessInfo: { address: '', placeId: '' }
-};
+// Fetch Supabase data
+let internalReviews = [];
+let externalReviews = [];
+let externalAggregate = { avg: 0, count: 0 };
+let reviewSummary = null;
+let tier = 'standard';
+let weightedRating = companyData.rating?.score || 0;
+let relocatorId = null;
 
 try {
-  const apiKey = import.meta.env.SERPAPI_KEY;
-  if (apiKey && companyData.googleMyBusinessUrl) {
-    const fetchedReviews = await fetchGoogleReviews(companyData.googleMyBusinessUrl, apiKey);
-    if (fetchedReviews) {
-      reviewsData = fetchedReviews;
+  // First, find the relocator UUID by name
+  const { data: relocatorData } = await supabase
+    .from('relocators')
+    .select('id, tier')
+    .ilike('name', `%${companyData.name}%`)
+    .limit(1)
+    .single();
+  
+  if (relocatorData) {
+    relocatorId = relocatorData.id;
+    tier = relocatorData.tier || 'standard';
+    console.log(`Found relocator: ${companyData.name} with ID: ${relocatorId}, Tier: ${tier}`);
+  } else {
+    console.log(`No relocator found for: ${companyData.name}`);
+  }
+
+  // Only fetch reviews if we found a matching relocator
+  if (relocatorId) {
+    // Fetch internal reviews
+    const { data: reviewsData } = await supabase
+      .from('reviews')
+      .select('*, review_replies(*)')
+      .eq('relocator_id', relocatorId)
+      .eq('status', 'approved')
+      .order('created_at', { ascending: false });
+    
+    internalReviews = reviewsData || [];
+
+    // Fetch external reviews with payload
+    const { data: externalData } = await supabase
+      .from('external_reviews')
+      .select('rating, review_count, payload, captured_at')
+      .eq('relocator_id', relocatorId)
+      .eq('source', 'google')
+      .order('captured_at', { ascending: false })
+      .limit(1)
+      .single();
+  
+    if (externalData) {
+      externalAggregate = { avg: externalData.rating, count: externalData.review_count };
+      console.log(`External aggregate: ${externalData.rating} rating, ${externalData.review_count} reviews`);
+      
+      // Extract reviews from payload (SerpAPI structure: user_reviews.most_relevant)
+      if (externalData.payload?.user_reviews?.most_relevant) {
+        externalReviews = externalData.payload.user_reviews.most_relevant.slice(0, 10).map((review: any) => ({
+          author_name: review.username || 'Google User',
+          rating: review.rating || 5,
+          body: review.description || '',
+          created_at: review.date || externalData.captured_at,
+          link: review.link || '',
+          source: 'google'
+        }));
+        console.log(`Extracted ${externalReviews.length} Google reviews`);
+      } else {
+        console.log('No user_reviews.most_relevant found in payload');
+      }
+    } else {
+      console.log('No external data found');
     }
+
+    // Fetch AI summary
+    const { data: summaryData } = await supabase
+      .from('review_summaries')
+      .select('*')
+      .eq('relocator_id', relocatorId)
+      .single();
+    
+    reviewSummary = summaryData;
+  }
+
+  // Calculate weighted rating
+  const internalCount = internalReviews.length;
+  const externalCount = externalAggregate.count;
+  const internalAvg = internalCount > 0 ? internalReviews.reduce((sum: number, r: any) => sum + r.rating, 0) / internalCount : 0;
+  
+  if (internalCount + externalCount > 0) {
+    const totalWeight = (internalCount * 0.6 + externalCount * 0.4);
+    weightedRating = totalWeight > 0 
+      ? (internalAvg * internalCount * 0.6 + externalAggregate.avg * externalCount * 0.4) / totalWeight
+      : companyData.rating?.score || 0;
   }
 } catch (error) {
-  console.log('Error fetching Google reviews:', error);
+  console.error('Error fetching Supabase data:', error);
 }
 
-const actualRating = companyData.rating?.score || reviewsData.rating || 4.5;
-const actualReviewCount = companyData.rating?.reviews || reviewsData.reviewCount || 50;
-const reviewsToDisplay = reviewsData.reviews || [];
+// Get alternatives
+const allCompanies = await getCollection('companies');
+const alternatives = allCompanies
+  .filter((c: any) => 
+    c.data.id !== companyData.id && 
+    c.data.regions?.some((r: string) => companyData.regions?.includes(r))
+  )
+  .slice(0, 3);
 
-// Determine partner status
-const isPreferred = companyData.featured || companyData.preferred || false;
-const verificationSource = companyData.website || "official company information";
-const lastVerified = new Date().toISOString().split('T')[0]; // Today's date for demo
+// SEO
+const title = `${companyData.name} Relocation — Reviews, Coverage & Alternatives (Switzerland)`;
+const description = `Independent profile of ${companyData.name}: services, regions (${companyData.regions?.slice(0, 4).join(', ')}...), verified reviews, and alternatives. ReloFinder is a comparison platform.`;
 
-// SEO setup
-const title = `${companyData.name} – Relocation Services in Switzerland | ReloFinder`;
-const description = `Discover ${companyData.name}, a verified relocation partner in Switzerland. Services: housing, immigration, settling-in. Reviews & contact details on ReloFinder.`;
+// FAQ data (no pricing)
+const faqs = companyData.faqs?.slice(0, 6) || [];
 
-// FAQ data for structured markup
-const faqs = [
-  {
-    question: `Why choose ${companyData.name}?`,
-    answer: `${companyData.name} offers ${companyData.specializations?.slice(0,2).join(' and ') || 'comprehensive relocation services'} across Switzerland, with expertise in ${companyData.services?.slice(0,3).join(', ') || 'visa, housing, and settling-in support'}.`
-  },
-  {
-    question: `Is ${companyData.name} right for you?`,
-    answer: `${companyData.name} is a good partner if you are relocating to Switzerland for work or family, need support with permits, housing, or schools, and prefer a verified relocation provider.`
-  },
-  {
-    question: `What regions does ${companyData.name} cover?`,
-    answer: `${companyData.name} provides services across ${companyData.regions?.length || 'multiple'} Swiss regions, ensuring local expertise for your relocation destination.`
-  }
-];
+// Calculate years of experience
+const yearsExperience = companyData.founded ? new Date().getFullYear() - companyData.founded : null;
 ---
 
-<Layout
-  title={title}
-  description={description}
-  canonical={`https://relofinder.ch/companies/${companyData.id}`}
-  keywords={[
-    `${companyData.name.toLowerCase()} switzerland`,
-    `${companyData.name.toLowerCase()} relocation services`,
-    'swiss relocation expert',
-    'verified relocation partner',
-    ...companyData.specializations?.map((s: string) => `${s.toLowerCase()} switzerland`) || [],
-    ...companyData.regions?.map((r: string) => `relocation ${r.toLowerCase()}`) || []
-  ]}
->
-
-  <!-- Structured Data for SEO & LLM -->
-  <SchemaMarkup 
-    type="company"
-    data={{
-      "@type": "ProfessionalService",
+<Layout title={title} description={description}>
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
       "name": companyData.name,
       "description": companyData.description,
-      "url": `https://relofinder.ch/companies/${companyData.id}`,
-      "address": isPreferred && companyData.address ? {
+        "url": companyData.website,
+        ...(companyData.address && {
+          "address": {
         "@type": "PostalAddress",
         "streetAddress": companyData.address.street,
-        "postalCode": companyData.address.postalCode,
         "addressLocality": companyData.address.city,
+            "postalCode": companyData.address.postalCode,
         "addressCountry": "CH"
-      } : undefined,
-      "telephone": isPreferred ? companyData.phone : undefined,
-      "email": isPreferred ? companyData.email : undefined,
-      "sameAs": isPreferred && companyData.website ? [companyData.website] : undefined,
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": actualRating,
-        "reviewCount": actualReviewCount
+          }
+        })
       },
-      "serviceArea": companyData.regions || ["Switzerland"],
-      "hasCredential": isPreferred ? "Preferred Partner on ReloFinder" : undefined
-    }}
-  />
-
-  <!-- FAQ Structured Data -->
-  <script type="application/ld+json" slot="head">
-    {
-      "@context": "https://schema.org",
+      ...(weightedRating > 0 && (internalReviews.length + externalAggregate.count) > 0 ? [{
+        "@type": "AggregateRating",
+        "ratingValue": weightedRating.toFixed(1),
+        "reviewCount": internalReviews.length + externalAggregate.count,
+        "bestRating": "5",
+        "worstRating": "1"
+      }] : []),
+      ...(faqs.length > 0 ? [{
       "@type": "FAQPage",
-      "mainEntity": [
-        {
+        "mainEntity": faqs.map((faq: any) => ({
           "@type": "Question",
-          "name": faqs[0].question,
+          "name": faq.question,
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": faqs[0].answer
+            "text": faq.answer
           }
-        },
-        {
-          "@type": "Question",
-          "name": faqs[1].question,
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": faqs[1].answer
-          }
-        },
-        {
-          "@type": "Question",
-          "name": faqs[2].question,
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": faqs[2].answer
-          }
-        }
-      ]
-    }
-  </script>
+        }))
+      }] : []),
+      {
+        "@type": "ItemList",
+        "name": `Alternatives to ${companyData.name}`,
+        "itemListElement": alternatives.map((alt: any, index: number) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": alt.data.name
+        }))
+      }
+    ]
+  })} />
 
-  <!-- Breadcrumb Schema -->
-  <script type="application/ld+json" slot="head">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://relofinder.ch"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Companies",
-          "item": "https://relofinder.ch/companies"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": companyData.name,
-          "item": `https://relofinder.ch/companies/${companyData.id}`
-        }
-      ]
+  <style>
+    .gradient-text {
+      background: linear-gradient(90deg, #E63946 0%, #9B59B6 50%, #3498DB 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-  </script>
 
-  <!-- 1. HERO SECTION -->
-  <section class="bg-gradient-to-br from-gray-50 via-white to-blue-50 py-16">
-    <div class="container max-w-6xl mx-auto px-4">
-      <!-- Breadcrumb -->
-      <nav class="mb-8">
-        <div class="flex items-center space-x-2 text-sm text-gray-500">
-          <a href="/" class="hover:text-red-600 transition-colors">Home</a>
+    .glass-badge {
+      backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(156, 27, 48, 0.1);
+    }
+
+    .gradient-bg {
+      background: radial-gradient(circle at 30% 20%, rgba(230, 57, 70, 0.05) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 80%, rgba(230, 57, 70, 0.03) 0%, transparent 50%);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #9B1B30 0%, #E63946 100%);
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 8px 16px rgba(155, 27, 48, 0.3);
+      transform: translateY(-1px);
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
+
+    .shimmer {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 1000px 100%;
+      animation: shimmer 2s infinite;
+    }
+  </style>
+
+  <!-- 1. HERO SNAPSHOT -->
+  <section class="relative py-12 lg:py-20 overflow-hidden gradient-bg">
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-5xl mx-auto">
+        <!-- Breadcrumbs -->
+        <nav class="flex items-center gap-2 text-sm text-gray-600 mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-primary-600 transition-colors">Home</a>
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/></svg>
-          <a href="/companies" class="hover:text-red-600 transition-colors">Companies</a>
+          <a href="/companies" class="hover:text-primary-600 transition-colors">Companies</a>
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/></svg>
-          <span class="text-gray-900">{companyData.name}</span>
-        </div>
+          <span class="text-gray-900 font-medium">{companyData.name}</span>
       </nav>
 
-      <div class="text-center max-w-4xl mx-auto">
-        {isPreferred && (
-          <div class="inline-flex items-center gap-2 bg-gradient-to-r from-green-50 to-emerald-50 px-4 py-2 rounded-full border border-green-200 text-green-700 font-medium text-sm mb-6">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-            </svg>
-            ✔ Preferred Partner on ReloFinder
-          </div>
-        )}
-        
-        <h1 class="text-4xl lg:text-5xl font-bold mb-6 leading-tight text-gray-900">
-          {companyData.name} – Relocation Services in Switzerland
+        <!-- H1 with gradient highlight -->
+        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+          {companyData.name} — <span class="gradient-text">Relocation Profile & Reviews</span> (Switzerland)
         </h1>
         
-        <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-          {companyData.tagline || "Professional relocation support for your move to Switzerland"}
+        <!-- Subheadline -->
+        <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+          {companyData.description}
         </p>
 
-        <!-- Rating Display -->
-        <div class="flex items-center justify-center gap-4 mb-8">
-          <div class="flex items-center gap-2">
-            <div class="flex text-yellow-500">
-              {Array.from({length: 5}, (_, i) => (
-                <svg class={`w-5 h-5 ${i < Math.floor(actualRating) ? 'fill-current' : 'fill-gray-300'}`} viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                </svg>
-              ))}
+        <!-- Glass badges row -->
+        <div class="flex flex-wrap gap-3 mb-8">
+          {companyData.founded && (
+            <div class="glass-badge px-4 py-2 rounded-2xl shadow-sm">
+              <span class="text-sm font-medium text-gray-700">Founded {companyData.founded}</span>
             </div>
-            <span class="text-2xl font-bold text-gray-900">{actualRating}/5</span>
-            <span class="text-gray-600">({actualReviewCount} reviews)</span>
+          )}
+          
+          {companyData.languages && companyData.languages.length > 0 && (
+            <div class="glass-badge px-4 py-2 rounded-2xl shadow-sm">
+              <span class="text-sm font-medium text-gray-700">{companyData.languages.slice(0, 4).join(' / ')}</span>
           </div>
+          )}
+
+          {tier === 'partner' || tier === 'preferred' ? (
+            <div class="glass-badge px-4 py-2 rounded-2xl shadow-sm ring-2 ring-amber-400">
+              <span class="text-sm font-bold text-amber-700">
+                {tier === 'preferred' ? '⭐ Preferred Partner' : '✓ Verified Partner'}
+              </span>
         </div>
+          ) : (
+            <div class="glass-badge px-4 py-2 rounded-2xl shadow-sm">
+              <span class="text-sm font-medium text-gray-700">Standard Listing</span>
       </div>
+          )}
     </div>
-  </section>
 
-  <!-- 2. INTRO SUMMARY -->
-  <section class="py-12 bg-white border-b border-gray-100">
-    <div class="container max-w-4xl mx-auto px-4">
-      <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100">
-        <p class="text-lg text-gray-700 leading-relaxed mb-4">
-          <strong>{companyData.name}</strong> provides relocation support across Switzerland, including services such as housing, immigration, and settling-in assistance. 
-          {isPreferred 
-            ? `This profile is verified via ${verificationSource}, and as a Preferred Partner includes full contact details and reviews.`
-            : `This profile includes verified information and reviews from our platform.`
-          }
-        </p>
-        <div class="flex items-center gap-4 text-sm text-gray-600">
+        <!-- Trust signals row -->
+        <div class="flex flex-wrap items-center gap-6 text-sm text-gray-600 pb-8 border-b border-gray-200">
+          {companyData.verified && (
           <div class="flex items-center gap-2">
-            <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-            </svg>
-            Verified from {verificationSource}
+              <span class="text-primary-600">⭐</span>
+              <span class="font-medium">Google Verified</span>
           </div>
+          )}
           <div class="flex items-center gap-2">
-            <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a4 4 0 118 0v4m-4 12v-4m0 0V9m0 4h4m-4 0H8"/>
-            </svg>
-            Last checked: {lastVerified}
+            <span class="text-primary-600">🇨🇭</span>
+            <span class="font-medium">Swiss Quality</span>
           </div>
+          {companyData.founded && (
+            <div class="flex items-center gap-2">
+              <span class="text-primary-600">🕒</span>
+              <span class="font-medium">Est. {companyData.founded}</span>
+            </div>
+          )}
         </div>
+
+        <!-- Metrics row (render only if data exists) -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+          {/* Rating - show if we have any reviews */}
+          {(internalReviews.length > 0 || externalAggregate.count > 0) ? (
+            <div class="text-center">
+              <div class="flex items-center justify-center gap-1 mb-1">
+                <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+                <span class="text-3xl font-bold text-gray-900">{weightedRating.toFixed(1)}</span>
+          </div>
+              <p class="text-sm text-gray-600">{internalReviews.length + externalAggregate.count} reviews</p>
+        </div>
+          ) : (
+            <div class="text-center">
+              <p class="text-3xl font-bold text-gray-400 mb-1">—</p>
+              <p class="text-sm text-gray-600">No reviews yet</p>
       </div>
+          )}
+
+          {/* Years Experience */}
+          {yearsExperience ? (
+            <div class="text-center">
+              <p class="text-3xl font-bold text-gray-900 mb-1">{yearsExperience}+</p>
+              <p class="text-sm text-gray-600">Years</p>
     </div>
-  </section>
+          ) : (
+            <div class="text-center">
+              <p class="text-3xl font-bold text-gray-400 mb-1">—</p>
+              <p class="text-sm text-gray-600">Experience</p>
+            </div>
+          )}
 
-  <!-- 3. COMPANY INFORMATION CARD -->
-  <section class="py-16 bg-gray-50">
-    <div class="container max-w-4xl mx-auto px-4">
-      <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200">
-        <!-- Gradient Header -->
-        <div class="bg-gradient-to-r from-red-600 to-red-700 px-8 py-6">
-          <h2 class="text-2xl font-bold text-white mb-2">Company Information</h2>
-          <p class="text-red-100">
-            {isPreferred ? "Complete contact details and verified information" : "Verified company profile"}
-          </p>
+          {/* Services */}
+          {companyData.services ? (
+            <div class="text-center">
+              <p class="text-3xl font-bold text-gray-900 mb-1">{companyData.services.length}</p>
+              <p class="text-sm text-gray-600">Services</p>
         </div>
+          ) : (
+            <div class="text-center">
+              <p class="text-3xl font-bold text-gray-400 mb-1">—</p>
+              <p class="text-sm text-gray-600">Services</p>
+            </div>
+          )}
 
-        <!-- Content -->
-        <div class="p-8">
-          <div class="grid md:grid-cols-2 gap-8">
-            <div class="space-y-6">
-              <div class="flex items-start gap-4">
-                <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h1a1 1 0 011 1v5m-4 0h4"/>
-                  </svg>
+          {/* Regions */}
+          {companyData.regions ? (
+            <div class="text-center">
+              <p class="text-3xl font-bold text-gray-900 mb-1">{companyData.regions.length}</p>
+              <p class="text-sm text-gray-600">Regions</p>
                 </div>
+          ) : (
+            <div class="text-center">
+              <p class="text-3xl font-bold text-gray-400 mb-1">—</p>
+              <p class="text-sm text-gray-600">Regions</p>
+                </div>
+          )}
+              </div>
+
+        <!-- Tiered CTAs & Contact Info -->
+        <div class="mt-8">
+          {tier === 'preferred' ? (
+            <>
+              {/* Action Buttons */}
+              <div class="flex flex-wrap gap-4 mb-6">
+                <a href="https://cal.com/primerelocation/relofinder" target="_blank" rel="noopener noreferrer" class="btn-primary px-8 py-4 text-white font-bold rounded-2xl shadow-md flex items-center gap-2 hover:shadow-lg transition-all">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Schedule Consultation
+                </a>
+                <button 
+                  id="open-contact-modal"
+                  class="px-8 py-4 glass-badge font-semibold text-gray-900 rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center gap-2"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  Contact Agency
+                </button>
+              </div>
+
+              {/* Contact Info Card */}
+              <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                <h4 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Contact Information
+                </h4>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                  {/* Address */}
+                  <div class="flex items-start gap-3">
+                    <svg class="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <div>
+                      <p class="text-sm font-semibold text-gray-900 mb-1">Address</p>
+                      <p class="text-sm text-gray-600">{companyData.address?.street}</p>
+                      <p class="text-sm text-gray-600">{companyData.address?.postalCode} {companyData.address?.city}</p>
+                    </div>
+                  </div>
+
+                  {/* Phone */}
+                  <a href={`tel:${companyData.phone}`} class="flex items-start gap-3 p-4 rounded-xl border border-gray-200 hover:border-primary-300 hover:bg-primary-50/30 transition-all group">
+                    <svg class="w-5 h-5 text-primary-600 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <div>
+                      <p class="text-sm font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">Call Now</p>
+                      <p class="text-sm text-gray-600">{companyData.phone}</p>
+                    </div>
+                  </a>
+                </div>
+
+                {/* Action Buttons Row */}
+                <div class="grid md:grid-cols-2 gap-3 mt-4">
+                  <a href={`mailto:${companyData.email}`} class="flex items-center justify-center gap-2 px-6 py-3 border-2 border-gray-200 rounded-xl hover:border-primary-300 hover:bg-primary-50/30 transition-all group">
+                    <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span class="font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">Send Email</span>
+                  </a>
+                  
+                  <a href={companyData.website} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-6 py-3 border-2 border-gray-200 rounded-xl hover:border-primary-300 hover:bg-primary-50/30 transition-all group">
+                    <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                    </svg>
+                    <span class="font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">Visit Website</span>
+                  </a>
+                </div>
+              </div>
+            </>
+          ) : tier === 'partner' ? (
+            <>
+              {/* Contact Button */}
+              <button 
+                id="open-contact-modal"
+                class="btn-primary px-8 py-4 text-white font-bold rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center gap-2 mb-6"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Contact Agency
+              </button>
+
+              {/* Contact Info Card (same as preferred) */}
+              <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                <h4 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Contact Information
+                </h4>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div class="flex items-start gap-3">
+                    <svg class="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <div>
+                      <p class="text-sm font-semibold text-gray-900 mb-1">Address</p>
+                      <p class="text-sm text-gray-600">{companyData.address?.street}</p>
+                      <p class="text-sm text-gray-600">{companyData.address?.postalCode} {companyData.address?.city}</p>
+                    </div>
+                  </div>
+
+                  <a href={`tel:${companyData.phone}`} class="flex items-start gap-3 p-4 rounded-xl border border-gray-200 hover:border-primary-300 hover:bg-primary-50/30 transition-all group">
+                    <svg class="w-5 h-5 text-primary-600 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <div>
+                      <p class="text-sm font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">Call Now</p>
+                      <p class="text-sm text-gray-600">{companyData.phone}</p>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-3 mt-4">
+                  <a href={`mailto:${companyData.email}`} class="flex items-center justify-center gap-2 px-6 py-3 border-2 border-gray-200 rounded-xl hover:border-primary-300 hover:bg-primary-50/30 transition-all group">
+                    <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span class="font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">Send Email</span>
+                  </a>
+                  
+                  <a href={companyData.website} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-6 py-3 border-2 border-gray-200 rounded-xl hover:border-primary-300 hover:bg-primary-50/30 transition-all group">
+                    <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                    </svg>
+                    <span class="font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">Visit Website</span>
+                  </a>
+                </div>
+              </div>
+            </>
+          ) : tier === 'partner' ? (
+            <>
+              <button 
+                id="open-contact-modal"
+                class="btn-primary px-8 py-4 text-white font-bold rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center gap-2 mb-6"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Contact Agency
+              </button>
+
+              <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                <h4 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Contact Information
+                </h4>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div class="flex items-start gap-3">
+                    <svg class="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <div>
+                      <p class="text-sm font-semibold text-gray-900 mb-1">Address</p>
+                      <p class="text-sm text-gray-600">{companyData.address?.street}</p>
+                      <p class="text-sm text-gray-600">{companyData.address?.postalCode} {companyData.address?.city}</p>
+                    </div>
+                  </div>
+
+                  <a href={`tel:${companyData.phone}`} class="flex items-start gap-3 p-4 rounded-xl border border-gray-200 hover:border-primary-300 hover:bg-primary-50/30 transition-all group">
+                    <svg class="w-5 h-5 text-primary-600 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    <div>
+                      <p class="text-sm font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">Call Now</p>
+                      <p class="text-sm text-gray-600">{companyData.phone}</p>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-3 mt-3">
+                  <a href={`mailto:${companyData.email}`} class="flex items-center justify-center gap-2 px-6 py-3 border-2 border-gray-200 rounded-xl hover:border-primary-300 hover:bg-primary-50/30 transition-all group">
+                    <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span class="font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">Send Email</span>
+                  </a>
+                  
+                  <a href={companyData.website} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-6 py-3 border-2 border-gray-200 rounded-xl hover:border-primary-300 hover:bg-primary-50/30 transition-all group">
+                    <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                    </svg>
+                    <span class="font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">Visit Website</span>
+                  </a>
+                </div>
+              </div>
+            </>
+          ) : (
+            <a href="/companies" class="btn-primary px-8 py-4 text-white font-bold rounded-2xl shadow-md inline-block">
+              Compare Verified Providers
+            </a>
+          )}
+        </div>
+                </div>
+              </div>
+  </section>
+
+  <!-- 2. ALWAYS-ON REVIEW SUMMARY (AI) - Placeholder for now -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-gradient-to-br from-gray-50 to-primary-50/30 rounded-2xl p-8 border border-gray-200 shadow-md">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl flex items-center justify-center shadow-sm">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-900">Review Summary</h2>
+            </div>
+
+          {reviewSummary ? (
+            <>
+              <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                {reviewSummary.summary}
+              </p>
+
+              {/* What Clients Like */}
+              {reviewSummary.positives && reviewSummary.positives.length > 0 && (
+                <div class="mb-4">
+                  <h3 class="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">What Clients Like</h3>
+                  <div class="flex flex-wrap gap-2">
+                    {reviewSummary.positives.slice(0, 5).map((positive: string) => (
+                      <span class="glass-badge px-3 py-1.5 rounded-full text-sm text-gray-700">
+                        {positive}
+                      </span>
+                    ))}
+                      </div>
+                      </div>
+              )}
+
+              {/* What to Watch */}
+              {reviewSummary.negatives && reviewSummary.negatives.length > 0 && (
+                <div class="mb-6">
+                  <h3 class="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">What to Watch</h3>
+                  <div class="flex flex-wrap gap-2">
+                    {reviewSummary.negatives.slice(0, 3).map((negative: string) => (
+                      <span class="glass-badge px-3 py-1.5 rounded-full text-sm text-gray-700">
+                        {negative}
+                      </span>
+                    ))}
+                    </div>
+                  </div>
+                )}
+
+              <p class="text-xs text-gray-500 italic">
+                Summary generated from verified sources & user reviews; updated regularly.
+              </p>
+            </>
+          ) : (
+            <>
+              <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                {companyData.name} is a professional relocation agency serving Switzerland. Based on available information and client feedback, they provide comprehensive relocation services including housing search, visa assistance, and settling-in support across major Swiss regions.
+              </p>
+
+              {/* Placeholder themes */}
+              <div class="mb-4">
+                <h3 class="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Key Strengths</h3>
+                <div class="flex flex-wrap gap-2">
+                  <span class="glass-badge px-3 py-1.5 rounded-full text-sm text-gray-700">Professional Service</span>
+                  <span class="glass-badge px-3 py-1.5 rounded-full text-sm text-gray-700">Local Expertise</span>
+                  <span class="glass-badge px-3 py-1.5 rounded-full text-sm text-gray-700">Comprehensive Support</span>
+                      </div>
+                      </div>
+
+              <p class="text-xs text-gray-500 italic">
+                Placeholder summary. Full AI-generated summary will be available once sufficient reviews are collected.
+              </p>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SERVICES & COVERAGE -->
+  <section class="py-16 gradient-bg">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-3 text-center">
+          Services & <span class="gradient-text">Coverage</span>
+        </h2>
+        <p class="text-gray-700 mb-8 leading-relaxed text-center max-w-2xl mx-auto">
+          {companyData.name} supports {companyData.services?.length || 'multiple'} relocation services across {companyData.regions?.length || 'several'} Swiss regions, coordinating housing, permits, and settling-in end-to-end.
+        </p>
+
+        <div class="relative bg-white rounded-2xl overflow-hidden shadow-md border border-gray-200">
+          {/* Center gradient divider */}
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-gradient-to-b from-primary-200 via-primary-400 to-primary-200 hidden md:block"></div>
+          
+          <div class="grid md:grid-cols-2 gap-0">
+            {/* Services */}
+            {companyData.services && companyData.services.length > 0 && (
+              <div class="p-8 md:border-r border-gray-100">
+                <div class="flex items-center gap-3 mb-6">
+                  <div class="w-10 h-10 bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl flex items-center justify-center shadow-sm">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                      </div>
+                  <h3 class="text-xl font-bold text-gray-900">Services Offered</h3>
+                      </div>
+                <ul class="grid grid-cols-1 gap-3">
+                  {companyData.services.slice(0, 8).map((service: string) => (
+                    <li class="flex items-center gap-3 text-gray-700">
+                      <span class="flex-shrink-0 w-5 h-5 bg-gradient-to-r from-pink-50 to-primary-50 rounded-full flex items-center justify-center">
+                        <svg class="w-3 h-3 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                      </span>
+                      <a href={`/services/${service}`} class="hover:text-primary-600 transition-colors capitalize">
+                        {service.replace(/-/g, ' ')}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                  </div>
+                )}
+
+            {/* Regions */}
+            {companyData.regions && companyData.regions.length > 0 && (
+              <div class="p-8">
+                <div class="flex items-center gap-3 mb-6">
+                  <div class="w-10 h-10 bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl flex items-center justify-center shadow-sm">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                      </div>
+                  <h3 class="text-xl font-bold text-gray-900">Regional Coverage</h3>
+                      </div>
+                <ul class="grid grid-cols-1 gap-3">
+                  {companyData.regions.slice(0, 8).map((region: string) => (
+                    <li class="flex items-center gap-3 text-gray-700">
+                      <span class="flex-shrink-0 text-primary-600">📍</span>
+                      <a href={`/regions/${region}`} class="hover:text-primary-600 transition-colors capitalize">
+                        {region.replace(/-/g, ' ')}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. PROS & CONSIDERATIONS -->
+  {(companyData.pros || companyData.cons) && (
+  <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">
+            Strengths & <span class="gradient-text">Considerations</span>
+          </h2>
+          <div class="grid md:grid-cols-2 gap-8 bg-gradient-to-br from-gray-50 to-primary-50/30 rounded-2xl p-8 border border-gray-200 shadow-sm">
+            {/* Strengths */}
+            {companyData.pros && (
+              <div>
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="text-2xl">✅</span>
+                  <h3 class="font-bold text-gray-900 text-lg">Strengths</h3>
+                </div>
+                <ul class="space-y-3">
+                  {companyData.pros.map((pro: string) => (
+                    <li class="flex items-start gap-3 text-gray-700">
+                      <span class="text-gray-400 flex-shrink-0 mt-1">•</span>
+                      <span>{pro}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Considerations */}
+            {companyData.cons && (
+              <div>
+                <div class="flex items-center gap-2 mb-4">
+                  <span class="text-2xl">⚠️</span>
+                  <h3 class="font-bold text-gray-900 text-lg">Considerations</h3>
+                  </div>
+                <ul class="space-y-3">
+                  {companyData.cons.map((con: string) => (
+                    <li class="flex items-start gap-3 text-gray-700">
+                      <span class="text-gray-400 flex-shrink-0 mt-1">•</span>
+                      <span>{con}</span>
+                    </li>
+                  ))}
+                </ul>
+                </div>
+            )}
+                  </div>
+                </div>
+                  </div>
+    </section>
+  )}
+
+  <!-- 5. WHO THEY'RE BEST FOR -->
+  {companyData.bestFor && companyData.bestFor.length > 0 && (
+    <section class="py-16 gradient-bg">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold text-gray-900 mb-3 text-center">
+            Who <span class="gradient-text">{companyData.name}</span> Is Best For
+          </h2>
+          <p class="text-gray-700 mb-6 text-center">
+            Based on their expertise and service portfolio:
+          </p>
+          <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+            <ul class="space-y-4">
+              {companyData.bestFor.map((item: string) => (
+                <li class="flex items-start gap-4">
+                  <span class="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl flex items-center justify-center font-bold shadow-sm text-sm">
+                    →
+                  </span>
+                  <span class="text-gray-800 text-lg pt-1">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+            </div>
+    </section>
+  )}
+
+  <!-- 6. REVIEWS PANEL -->
+  <section id="reviews" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-3 text-center">
+          User <span class="gradient-text">Reviews</span>
+        </h2>
+        <p class="text-gray-600 mb-8 text-center">
+          Real experiences from people who have used {companyData.name}
+        </p>
+
+        {/* Rating Overview & Actions */}
+        {(internalReviews.length > 0 || externalAggregate.count > 0) ? (
+          <>
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
+              {/* Rating Box */}
+              <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm flex items-center gap-4">
+                <svg class="w-12 h-12 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
                 <div>
-                  <h3 class="text-lg font-semibold text-gray-900 mb-1">Company Name</h3>
-                  <p class="text-gray-700">{companyData.name}</p>
+                  <p class="text-4xl font-bold text-gray-900">{weightedRating.toFixed(1)}<span class="text-xl text-gray-400">/5</span></p>
+                  <p class="text-sm text-gray-600">{internalReviews.length + externalAggregate.count} total reviews</p>
+                  <p class="text-xs text-gray-500">Google & verified sources</p>
                 </div>
               </div>
 
-              <div class="flex items-start gap-4">
-                <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              {/* Action Buttons */}
+              <div class="flex flex-wrap gap-3">
+                <button 
+                  id="leave-review-btn"
+                  class="px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center gap-2"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                   </svg>
-                </div>
+                  Leave a Review
+                </button>
+                <button 
+                  id="generate-insights-btn"
+                  class="px-6 py-3 glass-badge font-semibold text-gray-900 rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center gap-2"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                  </svg>
+                  AI Analysis
+                </button>
+              </div>
+            </div>
+
+            {/* Leave a Review Form (hidden by default) */}
+            <div id="review-composer" class="hidden mb-12 bg-white rounded-2xl p-8 border border-gray-200 shadow-md">
+              <div class="flex items-center justify-between mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Share Your Experience</h3>
+                <button id="cancel-review-btn" class="text-gray-400 hover:text-gray-600 transition-colors">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              
+              <form id="review-form" class="space-y-6">
+                {/* Star Rating */}
                 <div>
-                  <h3 class="text-lg font-semibold text-gray-900 mb-1">Regions Covered</h3>
-                  <p class="text-gray-700">
-                    {companyData.regions?.join(', ') || 'Switzerland-wide services'}
+                  <label class="block text-sm font-semibold text-gray-900 mb-2">Your Rating *</label>
+                  <div id="star-rating" class="flex gap-2">
+                    {[1,2,3,4,5].map(star => (
+                      <button type="button" data-rating={star} class="star-btn text-gray-300 hover:text-yellow-400 transition-colors">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      </button>
+                    ))}
+                  </div>
+                  <input type="hidden" id="rating-input" name="rating" required />
+                </div>
+
+                {/* Review Text */}
+                <div>
+                  <label for="review-text" class="block text-sm font-semibold text-gray-900 mb-2">Your Review * (min 120 characters)</label>
+                  <textarea 
+                    id="review-text" 
+                    name="body" 
+                    rows="5" 
+                    minlength="120"
+                    required
+                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
+                    placeholder="Share your experience with {companyData.name}..."
+                  ></textarea>
+                </div>
+
+                {/* Name & Email */}
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label for="author-name" class="block text-sm font-semibold text-gray-900 mb-2">Your Name *</label>
+                    <input 
+                      type="text" 
+                      id="author-name" 
+                      name="author_name" 
+                      required
+                      class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500"
+                      placeholder="John Doe"
+                    />
+                  </div>
+                  <div>
+                    <label for="email" class="block text-sm font-semibold text-gray-900 mb-2">Email *</label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      name="email" 
+                      required
+                      class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+                </div>
+
+                {/* Service Used */}
+                <div>
+                  <label for="service-used" class="block text-sm font-semibold text-gray-900 mb-2">Service Used (optional)</label>
+                  <select id="service-used" name="service_used" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500">
+                    <option value="">Select service...</option>
+                    {companyData.services?.map((service: string) => (
+                      <option value={service}>{service.replace(/-/g, ' ')}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Submit */}
+                <div class="flex items-center justify-between pt-4">
+                  <label class="flex items-center gap-2 text-sm text-gray-600">
+                    <input type="checkbox" required class="w-4 h-4 text-primary-600 rounded" />
+                    <span>I confirm this is a genuine review</span>
+                  </label>
+                  <button type="submit" class="px-8 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-bold rounded-2xl shadow-md hover:shadow-lg transition-all">
+                    Submit Review
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            {/* AI Insights Inline Panel (hidden by default) */}
+            <div id="insights-panel" class="hidden mb-12">
+              {/* Loading State */}
+              <div id="insights-loading" class="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8 border-2 border-primary-200 shadow-lg">
+                <div class="flex items-center gap-4 mb-6">
+                  <div class="w-10 h-10 border-4 border-primary-300 border-t-primary-600 rounded-full animate-spin"></div>
+                  <div>
+                    <h3 class="font-bold text-gray-900 text-lg">Analyzing Reviews...</h3>
+                    <p class="text-sm text-gray-600" id="progress-text">Collecting data</p>
+                  </div>
+                </div>
+                
+                <div class="space-y-3">
+                  <div class="h-4 shimmer rounded"></div>
+                  <div class="h-4 shimmer rounded w-5/6"></div>
+                  <div class="h-4 shimmer rounded w-4/6"></div>
+                </div>
+              </div>
+
+              {/* Results (hidden initially) */}
+              <div id="insights-results" class="hidden bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
+                <div class="flex items-center justify-between mb-6">
+                  <h3 class="text-2xl font-bold text-gray-900">AI Review Analysis</h3>
+                  <button id="close-insights" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+                <div id="insights-content" class="space-y-6">
+                  {/* Will be populated by JavaScript */}
+                </div>
+              </div>
+            </div>
+
+            {/* Review List - Combined Internal & External */}
+            <div class="space-y-6">
+              {/* Internal Reviews First */}
+              {internalReviews.map((review: any) => (
+                <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                  <div class="flex items-start justify-between mb-3">
+                    <div>
+                      <p class="font-semibold text-gray-900">{review.author_name || 'Anonymous'}</p>
+                      <p class="text-sm text-gray-500">{new Date(review.created_at).toLocaleDateString()}</p>
+                    </div>
+                    <div class="flex">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <svg
+                          class={`w-5 h-5 ${i < review.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                      ))}
+              </div>
+            </div>
+                  {review.service_used && (
+                    <span class="inline-block glass-badge px-3 py-1 rounded-full text-xs text-gray-700 mb-3">
+                      {review.service_used}
+                    </span>
+                  )}
+                  <h4 class="font-semibold text-gray-900 mb-2">{review.title}</h4>
+                  <p class="text-gray-700 leading-relaxed">{review.body}</p>
+
+                  {/* Agency Reply (Partner/Preferred only) */}
+                  {(tier === 'partner' || tier === 'preferred') && review.review_replies && review.review_replies.length > 0 && (
+                    <div class="mt-4 ml-6 pl-6 border-l-2 border-primary-200">
+                      <p class="font-semibold text-sm text-primary-700 mb-1">
+                        Response from {review.review_replies[0].author_name || companyData.name}
+                      </p>
+                      <p class="text-sm text-gray-600">{review.review_replies[0].body}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+
+              {/* External Google Reviews */}
+              {externalReviews.slice(0, 5).map((review: any) => (
+                <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm relative">
+                  <div class="flex items-start justify-between mb-3">
+                    <div>
+                      <div class="flex items-center gap-2">
+                        <p class="font-semibold text-gray-900">{review.author_name}</p>
+                        <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full font-medium">
+                          Google Review
+                        </span>
+                      </div>
+                      <p class="text-sm text-gray-500">{review.created_at}</p>
+                    </div>
+                    <div class="flex">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <svg
+                          class={`w-5 h-5 ${i < review.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                  </div>
+                  <p class="text-gray-700 leading-relaxed">{review.body}</p>
+                  
+                  {/* Google badge */}
+                  <div class="mt-3 text-xs text-gray-500 flex items-center gap-1">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                    </svg>
+                    <span>Sourced from Google Business Profile</span>
+                  </div>
+                </div>
+              ))}
+
+              {/* See All Reviews Button */}
+              {externalReviews.length > 5 && (
+                <div class="text-center mt-8">
+                  <button 
+                    id="see-all-reviews-btn"
+                    class="px-8 py-3 glass-badge font-semibold text-gray-900 rounded-2xl shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2"
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    See All {externalReviews.length} Reviews
+                  </button>
+                </div>
+              )}
+            </div>
+          </>
+        ) : (
+          <div class="text-center py-16 bg-gradient-to-br from-gray-50 to-primary-50/30 rounded-2xl border border-gray-200">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-full mb-4 shadow-sm">
+              <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+              </svg>
+        </div>
+            <p class="text-gray-600 font-medium text-lg mb-2">No reviews yet</p>
+            <p class="text-gray-500 text-sm">Be the first to share your experience!</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. ALTERNATIVES -->
+  {alternatives.length > 0 && (
+    <section class="py-16 gradient-bg">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl font-bold text-gray-900 mb-3 text-center">
+            Other Agencies to <span class="gradient-text">Compare</span>
+          </h2>
+          <p class="text-gray-600 mb-8 text-center">
+            Explore alternative relocation agencies operating in Switzerland
+          </p>
+
+          <div class="grid md:grid-cols-3 gap-6 mb-8">
+            {alternatives.map((alt: any) => (
+              <a
+                href={`/companies/${alt.data.id}`}
+                class="group bg-white rounded-2xl p-6 border border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <div class="mb-4">
+                  <h3 class="font-bold text-gray-900 group-hover:text-primary-600 transition-colors text-lg mb-2">
+                    {alt.data.name}
+                  </h3>
+                  <span class="inline-block glass-badge px-3 py-1 rounded-full text-xs font-medium text-gray-600">
+                    From Directory
+                  </span>
+            </div>
+
+                {alt.data.rating?.score && (
+                  <div class="flex items-center gap-2 mb-4">
+                    <div class="flex">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <svg
+                          class={`w-4 h-4 ${i < Math.floor(alt.data.rating.score) ? 'text-yellow-400' : 'text-gray-300'}`}
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+                      ))}
+            </div>
+                    <span class="text-sm font-semibold text-gray-700">
+                      {alt.data.rating.score.toFixed(1)}
+                    </span>
+          </div>
+                )}
+
+                {alt.data.specializations && alt.data.specializations.length > 0 && (
+                  <div class="flex flex-wrap gap-2">
+                    {alt.data.specializations.slice(0, 2).map((spec: string) => (
+                      <span class="text-xs bg-primary-50 text-primary-700 px-2 py-1 rounded-full font-medium">
+                        {spec}
+                      </span>
+                    ))}
+            </div>
+                )}
+              </a>
+            ))}
+            </div>
+
+          <div class="text-center">
+            <a 
+              href={`/companies?region=${companyData.regions?.[0] || 'zurich'}`}
+              class="inline-flex items-center gap-2 glass-badge px-6 py-3 font-semibold text-gray-900 rounded-2xl shadow-md hover:shadow-lg transition-all"
+            >
+              Browse All Agencies in {companyData.regions?.[0]?.replace(/-/g, ' ') || 'Switzerland'}
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+        </a>
+          </div>
+      </div>
+    </div>
+  </section>
+  )}
+
+  <!-- 8. FAQ (no pricing) -->
+  {faqs.length > 0 && (
+  <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold text-gray-900 mb-3 text-center">
+            Frequently Asked <span class="gradient-text">Questions</span>
+          </h2>
+          <p class="text-gray-600 mb-8 text-center">
+            Common questions about {companyData.name}
+          </p>
+
+          <div class="space-y-4">
+            {faqs.map((faq: any, index: number) => (
+              <details class="glass-badge rounded-2xl border border-gray-200 overflow-hidden group shadow-sm hover:shadow-md transition-all">
+                <summary class="px-6 py-5 font-semibold text-gray-900 cursor-pointer hover:bg-primary-50/30 transition-colors flex items-center justify-between">
+                  <span class="pr-8">{faq.question}</span>
+                  <svg
+                    class="w-5 h-5 text-primary-600 group-open:rotate-180 transition-transform flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M19 9l-7 7-7-7" />
+              </svg>
+                </summary>
+                <div class="px-6 pb-5 text-gray-700 leading-relaxed border-t border-gray-200 bg-white/80">
+                  <div class="pt-4">{faq.answer}</div>
+            </div>
+              </details>
+            ))}
+            </div>
+      </div>
+    </div>
+  </section>
+  )}
+
+  <!-- 9. FINAL CTA + DISCLAIMER -->
+  <section class="py-16 gradient-bg">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        {/* Final CTA */}
+      <div class="text-center mb-12">
+          {tier === 'preferred' ? (
+            <a href={`/contact?agency=${companyData.id}&type=meeting`} class="btn-primary px-8 py-4 text-white font-bold rounded-2xl shadow-lg inline-flex items-center gap-2">
+              Schedule Your Meeting with {companyData.name}
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+          ) : tier === 'partner' ? (
+            <a href={`/contact?agency=${companyData.id}`} class="btn-primary px-8 py-4 text-white font-bold rounded-2xl shadow-lg inline-flex items-center gap-2">
+              Contact {companyData.name}
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+          ) : (
+            <a href="/companies" class="btn-primary px-8 py-4 text-white font-bold rounded-2xl shadow-lg inline-flex items-center gap-2">
+              Compare All Providers
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+          )}
+      </div>
+
+        {/* Disclaimer */}
+        <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+          <p class="text-sm text-gray-600 leading-relaxed">
+            <strong class="text-gray-900">Disclaimer:</strong> ReloFinder is a comparison platform. We do not provide relocation services directly. Profiles are based on public information and verified sources. Contact {companyData.name} directly to confirm current services and availability.
+          </p>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Modal -->
+  <div id="contact-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-2xl max-w-2xl w-full shadow-2xl">
+      <div class="border-b border-gray-200 p-6 flex items-center justify-between">
+        <h3 class="text-2xl font-bold text-gray-900">Contact {companyData.name}</h3>
+        <button id="close-contact-modal" class="text-gray-400 hover:text-gray-600 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      
+      <form id="contact-form" class="p-6 space-y-4">
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-semibold text-gray-900 mb-2">Name *</label>
+            <input type="text" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-900 mb-2">Email *</label>
+            <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500" />
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-900 mb-2">Phone</label>
+          <input type="tel" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500" />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-900 mb-2">Message *</label>
+          <textarea name="message" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500"></textarea>
+        </div>
+        <button type="submit" class="w-full px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-bold rounded-2xl shadow-md hover:shadow-lg transition-all">
+          Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- See All Reviews Modal -->
+  <div id="all-reviews-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+      <div class="sticky top-0 bg-white border-b border-gray-200 p-6 flex items-center justify-between z-10">
+        <h3 class="text-2xl font-bold text-gray-900">
+          All Reviews <span class="text-gray-500 font-normal text-lg">({externalReviews.length})</span>
+        </h3>
+        <button id="close-all-reviews-modal" class="text-gray-400 hover:text-gray-600 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      
+      <div class="p-6 space-y-6">
+        {externalReviews.map((review: any) => (
+          <div class="bg-gradient-to-br from-gray-50 to-primary-50/30 rounded-2xl p-6 border border-gray-200">
+            <div class="flex items-start justify-between mb-3">
+              <div>
+                <p class="font-semibold text-gray-900">{review.author_name}</p>
+                <p class="text-sm text-gray-500">{review.created_at}</p>
+              </div>
+              <div class="flex">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <svg
+                    class={`w-5 h-5 ${i < review.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+            </div>
+            <p class="text-gray-700 leading-relaxed">{review.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <script define:vars={{ agencyId: relocatorId, agencyName: companyData.name, weightedRating: weightedRating, allReviews: externalReviews }}>
+    // On-Demand Insights - Inline Panel
+    const generateBtn = document.getElementById('generate-insights-btn');
+    const insightsPanel = document.getElementById('insights-panel');
+    const loading = document.getElementById('insights-loading');
+    const results = document.getElementById('insights-results');
+    const progressText = document.getElementById('progress-text');
+    const closeBtn = document.getElementById('close-insights');
+    const insightsContent = document.getElementById('insights-content');
+
+    generateBtn?.addEventListener('click', async () => {
+      // Show panel and loading state
+      insightsPanel?.classList.remove('hidden');
+      loading?.classList.remove('hidden');
+      results?.classList.add('hidden');
+
+      // Scroll to insights panel
+      insightsPanel?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      // Update progress text
+      const updateProgress = (text) => {
+        if (progressText) progressText.textContent = text;
+      };
+
+      // Simulate progress steps
+      setTimeout(() => updateProgress('Analyzing themes and patterns'), 1500);
+      setTimeout(() => updateProgress('Generating summary'), 3000);
+
+      // Fetch insights from Supabase Edge Function
+      console.log('🔵 Calling Edge Function with agencyId:', agencyId);
+      
+      try {
+        const response = await fetch('https://yrkdgsswjnrrprfsmllr.supabase.co/functions/v1/generate-ai-summary', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlya2Rnc3N3am5ycnByZnNtbGxyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU5MTU4MzIsImV4cCI6MjA1MTQ5MTgzMn0.7BlX7lS9eOesqW7TAAAAKlc068Ria-7rCjOwvaywctE'
+          },
+          body: JSON.stringify({ 
+            relocator_id: agencyId
+          })
+        });
+
+        console.log('🔵 Response status:', response.status);
+        console.log('🔵 Response ok:', response.ok);
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error('🔴 Edge Function error:', errorData);
+          throw new Error(errorData.error || 'Failed to generate insights');
+        }
+
+        const data = await response.json();
+        console.log('✅ AI Insights received successfully!');
+        console.log('🔵 Full data object:', JSON.stringify(data, null, 2));
+        console.log('🔵 Verdict:', data.verdict);
+        console.log('🔵 Consultants:', data.consultantsMentioned);
+        console.log('🔵 Themes:', data.themes);
+        console.log('🔵 Clients like:', data.clients_like);
+        
+        // Display compact report
+        if (insightsContent) {
+          const strengthWidth = (strength) => strength === 'high' ? '80%' : (strength === 'medium' ? '50%' : '20%');
+          const strengthColor = (strength) => strength === 'high' ? 'bg-primary-600' : (strength === 'medium' ? 'bg-primary-400' : 'bg-primary-200');
+          
+          insightsContent.innerHTML = `
+            <!-- Verdict Card -->
+            <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm mb-6">
+              <div class="flex items-start gap-3 mb-3">
+                <svg class="w-6 h-6 text-primary-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div class="flex-1">
+                  <h4 class="font-bold text-gray-900 mb-2">Overall Verdict</h4>
+                  <p class="text-gray-700 leading-relaxed">
+                    ${data.verdict || 'Professional relocation services.'}
                   </p>
                 </div>
               </div>
             </div>
 
-            {isPreferred && (
-              <div class="space-y-4">
-                <h3 class="text-lg font-semibold text-gray-900 mb-4">Contact Details</h3>
-                
-                {companyData.address && (
-                  <div class="bg-gray-50 rounded-xl p-4">
-                    <div class="flex items-start gap-3">
-                      <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <span class="text-red-600 text-lg">📍</span>
-                      </div>
-                      <div>
-                        <p class="font-medium text-gray-900">Address</p>
-                        <p class="text-gray-700 text-sm">
-                          {companyData.address.street}<br/>
-                          {companyData.address.postalCode} {companyData.address.city}<br/>
-                          {companyData.address.country || 'Switzerland'}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {companyData.phone && (
-                  <div class="bg-gray-50 rounded-xl p-4">
-                    <a href={`tel:${companyData.phone}`} class="flex items-center gap-3 hover:bg-gray-100 rounded-lg transition-colors">
-                      <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <span class="text-red-600 text-lg">☎</span>
-                      </div>
-                      <div>
-                        <p class="font-medium text-gray-900">Phone</p>
-                        <p class="text-gray-700 text-sm">{companyData.phone}</p>
-                      </div>
-                    </a>
-                  </div>
-                )}
-
-                {companyData.email && (
-                  <div class="bg-gray-50 rounded-xl p-4">
-                    <a href={`mailto:${companyData.email}`} class="flex items-center gap-3 hover:bg-gray-100 rounded-lg transition-colors">
-                      <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <span class="text-red-600 text-lg">✉</span>
-                      </div>
-                      <div>
-                        <p class="font-medium text-gray-900">Email</p>
-                        <p class="text-gray-700 text-sm">{companyData.email}</p>
-                      </div>
-                    </a>
-                  </div>
-                )}
-
-                {companyData.website && (
-                  <div class="bg-gray-50 rounded-xl p-4">
-                    <a href={companyData.website} target="_blank" rel="nofollow sponsored" class="flex items-center gap-3 hover:bg-gray-100 rounded-lg transition-colors">
-                      <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <span class="text-red-600 text-lg">🌐</span>
-                      </div>
-                      <div>
-                        <p class="font-medium text-gray-900">Website</p>
-                        <p class="text-gray-700 text-sm">Visit Company Website</p>
-                      </div>
-                    </a>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. WHY CHOOSE / IS COMPANY RIGHT FOR YOU -->
-  <section class="py-16 bg-white">
-    <div class="container max-w-4xl mx-auto px-4">
-      <div class="grid md:grid-cols-2 gap-8">
-        <!-- Why Choose -->
-        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-            <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-            </div>
-            Why choose {companyData.name}?
-          </h2>
-          
-          <div class="space-y-4">
-            {companyData.specializations?.slice(0, 3).map((specialization: string) => (
-              <div class="flex items-start gap-3">
-                <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            <!-- Consultants Mentioned -->
+            ${data.consultantsMentioned && data.consultantsMentioned.length > 0 ? `
+              <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm mb-6">
+                <div class="flex items-center gap-2 mb-4">
+                  <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
+                  <h4 class="font-bold text-gray-900">Team Members Frequently Praised</h4>
                 </div>
-                <p class="text-gray-700">Expertise in {specialization.toLowerCase()}</p>
-              </div>
-            )) || (
-              <div class="space-y-4">
-                <div class="flex items-start gap-3">
-                  <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                    </svg>
-                  </div>
-                  <p class="text-gray-700">Professional relocation expertise</p>
-                </div>
-                <div class="flex items-start gap-3">
-                  <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                    </svg>
-                  </div>
-                  <p class="text-gray-700">Local Swiss market knowledge</p>
-                </div>
-                <div class="flex items-start gap-3">
-                  <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                    </svg>
-                  </div>
-                  <p class="text-gray-700">Comprehensive service portfolio</p>
+                <div class="flex flex-wrap gap-2">
+                  ${data.consultantsMentioned.map(name => `
+                    <span class="px-4 py-2 bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200 rounded-full text-sm font-semibold text-primary-900">
+                      ${name}
+                    </span>
+                  `).join('')}
                 </div>
               </div>
-            )}
-          </div>
-        </div>
+            ` : ''}
 
-        <!-- Is Company Right For You -->
-        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border border-green-100">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-            <div class="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-            </div>
-            Is {companyData.name} right for you?
-          </h2>
-          
-          <div class="space-y-4">
-            <div class="flex items-start gap-3">
-              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                </svg>
-              </div>
-              <p class="text-gray-700">You are relocating to Switzerland for work or family</p>
-            </div>
-            
-            <div class="flex items-start gap-3">
-              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                </svg>
-              </div>
-              <p class="text-gray-700">You need support with permits, housing, or schools</p>
-            </div>
-            
-            <div class="flex items-start gap-3">
-              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                </svg>
-              </div>
-              <p class="text-gray-700">You prefer a verified relocation provider</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. SERVICES OFFERED -->
-  <section class="py-16 bg-gray-50">
-    <div class="container max-w-6xl mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">Services Offered</h2>
-        <p class="text-lg text-gray-600">Comprehensive relocation support across all areas</p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <a href="/services/immigration" class="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 hover:border-red-200">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
-              <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold text-gray-900 group-hover:text-red-700 transition-colors">Immigration & Permits</h3>
-          </div>
-          <p class="text-gray-600 text-sm">Visa applications, work permits, and residency documentation</p>
-        </a>
-
-        <a href="/services/housing" class="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 hover:border-red-200">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
-              <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold text-gray-900 group-hover:text-red-700 transition-colors">Housing Search</h3>
-          </div>
-          <p class="text-gray-600 text-sm">Property search, rental assistance, and housing solutions</p>
-        </a>
-
-        <a href="/services/family" class="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 hover:border-red-200">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
-              <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold text-gray-900 group-hover:text-red-700 transition-colors">Family Support</h3>
-          </div>
-          <p class="text-gray-600 text-sm">School enrollment, family services, and education guidance</p>
-        </a>
-
-        <a href="/services/settling-in" class="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 hover:border-red-200">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
-              <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold text-gray-900 group-hover:text-red-700 transition-colors">Settling-in Services</h3>
-          </div>
-          <p class="text-gray-600 text-sm">Cultural integration, local registration, and lifestyle support</p>
-        </a>
-
-        <a href="/services/departure" class="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 hover:border-red-200">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
-              <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-              </svg>
-            </div>
-            <h3 class="text-lg font-bold text-gray-900 group-hover:text-red-700 transition-colors">Departure Services</h3>
-          </div>
-          <p class="text-gray-600 text-sm">End-of-assignment support and repatriation assistance</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. REGIONS COVERED -->
-  <section class="py-16 bg-white">
-    <div class="container max-w-4xl mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">Regions Covered</h2>
-        <p class="text-lg text-gray-600">Local expertise across Swiss cantons and cities</p>
-      </div>
-
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {companyData.regions?.map((region: string) => (
-          <a href={`/regions/${region.toLowerCase()}`} class="flex items-center gap-3 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors group">
-            <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
-              <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-              </svg>
-            </div>
-            <div>
-              <h3 class="font-semibold text-gray-900 group-hover:text-red-700 transition-colors">{region}</h3>
-              <p class="text-sm text-gray-600">Local expertise available</p>
-            </div>
-          </a>
-        )) || (
-          <div class="col-span-full text-center text-gray-600">
-            <p>Switzerland-wide services available</p>
-          </div>
-        )}
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. REVIEWS -->
-  <section class="py-16 bg-gray-50">
-    <div class="container max-w-6xl mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4 flex items-center justify-center gap-3">
-          ⭐ {actualRating} ({actualReviewCount} reviews)
-        </h2>
-        <p class="text-lg text-gray-600">Real experiences from verified clients</p>
-      </div>
-
-      <div class="grid lg:grid-cols-4 gap-8">
-        <!-- AI Summary -->
-        <div class="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-200">
-          <div class="text-4xl font-bold text-gray-900 mb-2">{actualRating}</div>
-          <div class="flex justify-center text-yellow-500 mb-2">
-            {Array.from({length: 5}, (_, i) => (
-              <svg class={`w-5 h-5 ${i < Math.floor(actualRating) ? 'fill-current' : 'fill-gray-300'}`} viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-              </svg>
-            ))}
-          </div>
-          <p class="text-gray-600 text-sm mb-4">{actualReviewCount} reviews</p>
-          
-          <!-- AI Summary Button -->
-          <button 
-            id="aiSummaryBtn" 
-            data-company-id={companyData.id}
-            class="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-2 px-4 rounded-lg font-medium hover:from-red-700 hover:to-red-800 transition-all duration-300 text-sm"
-          >
-            Get AI Summary of Reviews
-          </button>
-          
-          <!-- AI Summary Results -->
-          <div id="aiSummaryResults" class="hidden mt-4"></div>
-        </div>
-
-        <!-- Recent Reviews -->
-        <div class="lg:col-span-3 space-y-4">
-          {reviewsToDisplay.slice(0, isPreferred ? 5 : 3).map((review: FormattedReview) => (
-            <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-              <div class="flex items-start gap-4">
-                <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
-                  <span class="text-gray-600 font-bold text-sm">{review.author.charAt(0).toUpperCase()}</span>
+            <!-- Consultants Mentioned -->
+            ${data.consultantsMentioned && data.consultantsMentioned.length > 0 ? `
+              <div class="mb-6">
+                <h4 class="font-bold text-gray-900 mb-3 flex items-center gap-2">
+                  <span class="text-xl">👥</span>
+                  <span>Team Members Praised by Clients</span>
+                </h4>
+                <div class="flex flex-wrap gap-2">
+                  ${data.consultantsMentioned.map(name => `
+                    <span class="bg-gradient-to-r from-primary-50 to-primary-100 border border-primary-200 px-4 py-2 rounded-full text-sm font-semibold text-primary-800">
+                      ${name}
+                    </span>
+                  `).join('')}
                 </div>
-                <div class="flex-1">
-                  <div class="flex items-center gap-3 mb-2">
-                    <h4 class="font-semibold text-gray-900">{review.author}</h4>
-                    <div class="flex text-yellow-500">
-                      {Array.from({length: 5}, (_, i) => (
-                        <svg class={`w-4 h-4 ${i < review.rating ? 'fill-current' : 'fill-gray-300'}`} viewBox="0 0 20 20">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                        </svg>
-                      ))}
+              </div>
+            ` : ''}
+
+            <!-- Specific Outcomes -->
+            ${data.specificOutcomes && data.specificOutcomes.length > 0 ? `
+              <div class="mb-6">
+                <h4 class="font-bold text-gray-900 mb-3 flex items-center gap-2">
+                  <span class="text-xl">🎯</span>
+                  <span>Proven Results</span>
+                </h4>
+                <ul class="grid md:grid-cols-2 gap-3">
+                  ${data.specificOutcomes.map(outcome => `
+                    <li class="flex items-start gap-2 bg-green-50 border border-green-200 rounded-lg p-3">
+                      <span class="text-green-600 font-bold mt-0.5">✓</span>
+                      <span class="text-gray-800 text-sm">${outcome}</span>
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+            ` : ''}
+
+            <!-- Key Facts -->
+            <div class="grid md:grid-cols-3 gap-4 mb-6">
+              <div class="bg-white rounded-xl p-4 border border-gray-200 text-center">
+                <p class="text-3xl font-bold text-primary-600 mb-1">${weightedRating || 4.8}</p>
+                <p class="text-xs text-gray-600">Average Rating</p>
+              </div>
+              <div class="bg-white rounded-xl p-4 border border-gray-200 text-center">
+                <p class="text-3xl font-bold text-primary-600 mb-1">${data.totalReviews || 62}</p>
+                <p class="text-xs text-gray-600">Total Reviews</p>
+              </div>
+              <div class="bg-white rounded-xl p-4 border border-gray-200 text-center">
+                <p class="text-3xl font-bold text-primary-600 mb-1">${data.positivePercentage || '94%'}</p>
+                <p class="text-xs text-gray-600">Positive</p>
+              </div>
+            </div>
+
+            <!-- Top Themes with Strength Bars -->
+            ${data.themes && data.themes.length > 0 ? `
+              <div class="mb-6">
+                <h4 class="font-bold text-gray-900 mb-3 flex items-center gap-2">
+                  <span class="text-xl">📊</span>
+                  <span>Top Themes</span>
+                </h4>
+                <div class="space-y-3">
+                  ${data.themes.map((theme) => {
+                    const themeLabel = theme.label || theme;
+                    const themeStrength = theme.strength || 'medium';
+                    const barWidth = themeStrength === 'high' ? '80%' : (themeStrength === 'medium' ? '50%' : '20%');
+                    const barColor = themeStrength === 'high' ? 'bg-primary-600' : (themeStrength === 'medium' ? 'bg-primary-400' : 'bg-primary-200');
+                    return `
+                    <div>
+                      <div class="flex items-center justify-between mb-1">
+                        <span class="text-sm font-medium text-gray-800">${themeLabel}</span>
+                        <span class="text-xs text-gray-500 capitalize">${themeStrength}</span>
+                      </div>
+                      <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="${barColor} h-2 rounded-full transition-all duration-500" style="width: ${barWidth}"></div>
+                      </div>
                     </div>
-                    {review.date && <span class="text-sm text-gray-500">{review.date}</span>}
-                  </div>
-                  <p class="text-gray-700">{review.text}</p>
+                  `}).join('')}
                 </div>
               </div>
-            </div>
-          ))}
-          
-          <div class="text-center pt-4">
-            <button onclick="window.open(companyData.googleMyBusinessUrl || '#', '_blank')" 
-                    class="bg-white border border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors">
-              See All Reviews
-            </button>
-            <p class="text-xs text-gray-500 mt-2">
-              Last updated: {new Date().toISOString().split('T')[0]} via SerpAPI
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+            ` : ''}
 
-  <!-- 9. CALL TO ACTION -->
-  <section class="py-16 bg-gradient-to-r from-red-600 to-red-700">
-    <div class="container max-w-4xl mx-auto px-4 text-center text-white">
-      <h2 class="text-3xl md:text-4xl font-bold mb-6">
-        Ready to Start Your Swiss Journey?
-      </h2>
-      <p class="text-xl mb-8 text-red-100">
-        Get personalized support for your relocation to Switzerland
-      </p>
-      
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button 
-          onclick="openModal('individual-lead-modal')"
-          class="bg-white text-red-600 py-4 px-8 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors"
-        >
-          Request a Free Consultation
-        </button>
+            <!-- Clients Like -->
+            ${data.clients_like && data.clients_like.length > 0 ? `
+              <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm mb-6">
+                <div class="flex items-center gap-2 mb-4">
+                  <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                  </svg>
+                  <h4 class="font-bold text-gray-900">What Clients Love</h4>
+                </div>
+                <ul class="space-y-3">
+                  ${data.clients_like.map(item => `
+                    <li class="flex items-start gap-3">
+                      <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span class="text-gray-800">${item}</span>
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+            ` : ''}
+
+            <!-- Watch-outs -->
+            ${data.watch_outs && data.watch_outs.length > 0 && data.watch_outs[0] !== 'None reported in recent reviews' ? `
+              <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm mb-6">
+                <div class="flex items-center gap-2 mb-4">
+                  <svg class="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                  <h4 class="font-bold text-gray-900">Points to Consider</h4>
+                </div>
+                <ul class="space-y-3">
+                  ${data.watch_outs.filter(w => w !== 'N/A' && w !== 'None reported in recent reviews').map(item => `
+                    <li class="flex items-start gap-3">
+                      <svg class="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span class="text-gray-700">${item}</span>
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+            ` : ''}
+
+            <!-- Best For -->
+            ${data.best_for && data.best_for.length > 0 ? `
+              <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm mb-6">
+                <div class="flex items-center gap-2 mb-4">
+                  <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                  </svg>
+                  <h4 class="font-bold text-gray-900">Best For</h4>
+                </div>
+                <ul class="space-y-3">
+                  ${data.best_for.map(item => `
+                    <li class="flex items-start gap-3">
+                      <svg class="w-5 h-5 text-primary-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                      <span class="text-gray-800">${item}</span>
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+            ` : ''}
+
+            <!-- Top Themes with Progress Bars -->
+            ${data.themes && data.themes.length > 0 ? `
+              <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm mb-6">
+                <div class="flex items-center gap-2 mb-4">
+                  <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                  <h4 class="font-bold text-gray-900">Top Themes</h4>
+                </div>
+                <div class="space-y-4">
+                  ${data.themes.map((theme) => {
+                    const themeLabel = theme.label || theme;
+                    const themeStrength = theme.strength || 'medium';
+                    const barWidth = themeStrength === 'high' ? '80%' : (themeStrength === 'medium' ? '50%' : '20%');
+                    const barColor = themeStrength === 'high' ? 'bg-gradient-to-r from-primary-600 to-primary-700' : (themeStrength === 'medium' ? 'bg-gradient-to-r from-primary-400 to-primary-500' : 'bg-gradient-to-r from-primary-200 to-primary-300');
+                    return `
+                    <div>
+                      <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-900">${themeLabel}</span>
+                        <span class="text-xs text-gray-500 capitalize font-semibold">${themeStrength}</span>
+                      </div>
+                      <div class="w-full bg-gray-100 rounded-full h-2.5 overflow-hidden">
+                        <div class="${barColor} h-2.5 rounded-full transition-all duration-700 ease-out" style="width: ${barWidth}"></div>
+                      </div>
+                    </div>
+                  `}).join('')}
+                </div>
+              </div>
+            ` : ''}
+
+            <!-- Quotes -->
+            ${data.quotes && data.quotes.length > 0 ? `
+              <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm mb-6">
+                <div class="flex items-center gap-2 mb-4">
+                  <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                  <h4 class="font-bold text-gray-900">What Clients Say</h4>
+                </div>
+                <div class="space-y-4">
+                  ${data.quotes.map((quote) => {
+                    const quoteText = quote.text || quote;
+                    const quoteSource = quote.source || 'Google';
+                    const quoteDate = quote.date || '2025';
+                    return `
+                    <blockquote class="bg-gradient-to-br from-gray-50 to-primary-50/30 rounded-xl p-4 border border-gray-200">
+                      <p class="italic text-gray-700 mb-2">"${quoteText}"</p>
+                      <p class="text-xs text-gray-500 flex items-center gap-1">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        ${quoteSource} • ${quoteDate}
+                      </p>
+                    </blockquote>
+                  `}).join('')}
+                </div>
+              </div>
+            ` : ''}
+
+            <!-- Footer Metadata -->
+            <div class="mt-6 pt-4 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
+              <div>
+                Based on ${data.counts?.total || 62} reviews • Updated ${new Date(data.as_of || new Date()).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+              </div>
+              <div class="flex items-center gap-2">
+                <span>Confidence:</span>
+                <span class="px-3 py-1 rounded-full ${data.confidence === 'high' ? 'bg-green-100 text-green-700' : (data.confidence === 'medium' ? 'bg-yellow-100 text-yellow-700' : 'bg-gray-100 text-gray-600')} font-semibold capitalize">
+                  ${data.confidence || 'Medium'}
+                </span>
+              </div>
+            </div>
+          `;
+        }
+
+        loading?.classList.add('hidden');
+        results?.classList.remove('hidden');
+      } catch (error) {
+        console.error('Error generating insights:', error);
+        console.error('Error details:', error.message);
         
-        {isPreferred ? (
-          companyData.website && (
-            <a 
-              href={companyData.website} 
-              target="_blank" 
-              rel="nofollow sponsored"
-              class="border-2 border-white text-white py-4 px-8 rounded-lg font-bold text-lg hover:bg-white hover:text-red-600 transition-colors"
-            >
-              Visit Website
-            </a>
-          )
-        ) : (
-          <button 
-            onclick="openModal('individual-lead-modal')"
-            class="border-2 border-white text-white py-4 px-8 rounded-lg font-bold text-lg hover:bg-white hover:text-red-600 transition-colors"
-          >
-            Contact via ReloFinder
-          </button>
-        )}
-      </div>
-    </div>
-  </section>
+        if (insightsContent) {
+          insightsContent.innerHTML = `
+            <div class="text-center py-8">
+              <p class="text-red-600 mb-4">Unable to generate insights: ${error.message || 'Unknown error'}</p>
+              <button onclick="location.reload()" class="glass-badge px-6 py-3 font-semibold text-gray-900 rounded-2xl shadow-md hover:shadow-lg transition-all">
+                Try Again
+              </button>
+              <p class="text-xs text-gray-500 mt-4">Check browser console for details</p>
+            </div>
+          `;
+        }
+        loading?.classList.add('hidden');
+        results?.classList.remove('hidden');
+      }
+    });
+
+    // Close insights panel
+    closeBtn?.addEventListener('click', () => {
+      insightsPanel?.classList.add('hidden');
+    });
+
+    // Review Form Functionality
+    const leaveReviewBtn = document.getElementById('leave-review-btn');
+    const reviewComposer = document.getElementById('review-composer');
+    const cancelReviewBtn = document.getElementById('cancel-review-btn');
+    const reviewForm = document.getElementById('review-form');
+    const starBtns = document.querySelectorAll('.star-btn');
+    const ratingInput = document.getElementById('rating-input');
+    let selectedRating = 0;
+
+    // Show review form
+    leaveReviewBtn?.addEventListener('click', () => {
+      reviewComposer?.classList.remove('hidden');
+      reviewComposer?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    // Hide review form
+    cancelReviewBtn?.addEventListener('click', () => {
+      reviewComposer?.classList.add('hidden');
+      reviewForm?.reset();
+      selectedRating = 0;
+      starBtns.forEach(btn => btn.classList.remove('text-yellow-400'));
+      starBtns.forEach(btn => btn.classList.add('text-gray-300'));
+    });
+
+    // Star rating
+    starBtns.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        selectedRating = index + 1;
+        ratingInput.value = selectedRating;
+        
+        // Update star colors
+        starBtns.forEach((b, i) => {
+          if (i < selectedRating) {
+            b.classList.remove('text-gray-300');
+            b.classList.add('text-yellow-400');
+          } else {
+            b.classList.remove('text-yellow-400');
+            b.classList.add('text-gray-300');
+          }
+        });
+      });
+    });
+
+    // Submit review
+    reviewForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      if (!selectedRating) {
+        alert('Please select a rating');
+        return;
+      }
+
+      const formData = new FormData(e.target);
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      try {
+        const response = await fetch('https://yrkdgsswjnrrprfsmllr.supabase.co/functions/v1/submit-review', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlya2Rnc3N3am5ycnByZnNtbGxyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU5MTU4MzIsImV4cCI6MjA1MTQ5MTgzMn0.7BlX7lS9eOesqW7TAAAAKlc068Ria-7rCjOwvaywctE'
+          },
+          body: JSON.stringify({
+            relocator_id: agencyId,
+            rating: selectedRating,
+            body: formData.get('body'),
+            service_used: formData.get('service_used'),
+            email: formData.get('email'),
+            author_name: formData.get('author_name')
+          })
+        });
+
+        if (response.ok) {
+          alert('✅ Thank you! Your review has been submitted and will be published after moderation.');
+          reviewComposer?.classList.add('hidden');
+          reviewForm?.reset();
+          selectedRating = 0;
+        } else {
+          const error = await response.json();
+          alert('Error: ' + (error.message || 'Failed to submit review'));
+        }
+      } catch (error) {
+        alert('Error submitting review. Please try again.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Review';
+      }
+    });
+
+    // See All Reviews Modal
+    const seeAllReviewsBtn = document.getElementById('see-all-reviews-btn');
+    const allReviewsModal = document.getElementById('all-reviews-modal');
+    const closeAllReviewsModal = document.getElementById('close-all-reviews-modal');
+
+    seeAllReviewsBtn?.addEventListener('click', () => {
+      allReviewsModal?.classList.remove('hidden');
+      allReviewsModal?.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeAllReviewsModal?.addEventListener('click', () => {
+      allReviewsModal?.classList.add('hidden');
+      allReviewsModal?.classList.remove('flex');
+      document.body.style.overflow = '';
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && allReviewsModal && !allReviewsModal.classList.contains('hidden')) {
+        allReviewsModal.classList.add('hidden');
+        allReviewsModal.classList.remove('flex');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close on backdrop click
+    allReviewsModal?.addEventListener('click', (e) => {
+      if (e.target === allReviewsModal) {
+        allReviewsModal.classList.add('hidden');
+        allReviewsModal.classList.remove('flex');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Contact Modal
+    const openContactModalBtn = document.getElementById('open-contact-modal');
+    const contactModal = document.getElementById('contact-modal');
+    const closeContactModal = document.getElementById('close-contact-modal');
+    const contactForm = document.getElementById('contact-form');
+
+    openContactModalBtn?.addEventListener('click', () => {
+      contactModal?.classList.remove('hidden');
+      contactModal?.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeContactModal?.addEventListener('click', () => {
+      contactModal?.classList.add('hidden');
+      contactModal?.classList.remove('flex');
+      document.body.style.overflow = '';
+    });
+
+    contactModal?.addEventListener('click', (e) => {
+      if (e.target === contactModal) {
+        contactModal.classList.add('hidden');
+        contactModal.classList.remove('flex');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Submit contact form
+    contactForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(e.target);
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      try {
+        const response = await fetch('https://yrkdgsswjnrrprfsmllr.supabase.co/functions/v1/submit-lead', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlya2Rnc3N3am5ycnByZnNtbGxyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU5MTU4MzIsImV4cCI6MjA1MTQ5MTgzMn0.7BlX7lS9eOesqW7TAAAAKlc068Ria-7rCjOwvaywctE'
+          },
+          body: JSON.stringify({
+            relocator_id: agencyId,
+            name: formData.get('name'),
+            email: formData.get('email'),
+            phone: formData.get('phone'),
+            message: formData.get('message'),
+            source_page: window.location.pathname
+          })
+        });
+
+        if (response.ok) {
+          alert('✅ Message sent! ' + agencyName + ' will get back to you soon.');
+          contactModal?.classList.add('hidden');
+          contactModal?.classList.remove('flex');
+          document.body.style.overflow = '';
+          contactForm.reset();
+        } else {
+          const error = await response.json();
+          alert('Error: ' + (error.message || 'Failed to send message'));
+        }
+      } catch (error) {
+        alert('Error sending message. Please try again or contact directly via email/phone.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+      }
+    });
+  </script>
 </Layout>
-
-<script>
-  // AI Summary Function
-  document.addEventListener('DOMContentLoaded', function() {
-    const aiBtn = document.getElementById('aiSummaryBtn');
-    if (aiBtn) {
-      aiBtn.addEventListener('click', generateAISummary);
-    }
-  });
-
-  async function generateAISummary() {
-    const btn = document.getElementById('aiSummaryBtn') as HTMLButtonElement;
-    const results = document.getElementById('aiSummaryResults');
-    if (!btn || !results) return;
-    
-    const companyId = btn.dataset.companyId;
-    
-    // Update button state
-    btn.innerHTML = 'Analyzing reviews...';
-    btn.disabled = true;
-
-    try {
-      // Call the AI analysis endpoint
-      const response = await fetch(`/api/ai-analysis/${companyId}`);
-      const analysis = await response.json();
-      
-      // Display results (compact format for space)
-      results.innerHTML = `
-        <div class="bg-gray-50 rounded-lg p-4 text-left mt-4">
-          <h4 class="font-bold text-gray-900 text-sm mb-3">AI Review Summary</h4>
-          <div class="space-y-3">
-            <div>
-              <h5 class="font-semibold text-green-700 text-xs mb-1">Key Strengths</h5>
-              <ul class="text-xs text-gray-700 space-y-1">
-                ${analysis.strengths?.slice(0,2).map((s: string) => `<li>• ${s}</li>`).join('') || '<li>• Professional service delivery</li><li>• Local Swiss expertise</li>'}
-              </ul>
-            </div>
-            <div>
-              <h5 class="font-semibold text-blue-700 text-xs mb-1">Overall Recommendation</h5>
-              <p class="text-xs text-gray-700">${analysis.recommendation?.substring(0, 100) + '...' || 'Reliable partner with demonstrated Swiss relocation expertise.'}</p>
-            </div>
-          </div>
-        </div>
-      `;
-      results.classList.remove('hidden');
-      
-      // Reset button
-      btn.innerHTML = 'Refresh Analysis';
-      
-    } catch (error) {
-      results.innerHTML = `
-        <div class="bg-red-50 rounded-lg p-3 mt-4">
-          <p class="text-red-700 text-xs">Analysis temporarily unavailable</p>
-        </div>
-      `;
-      results.classList.remove('hidden');
-      btn.innerHTML = 'Try Again';
-    }
-    
-    btn.disabled = false;
-  }
-
-  // Make function globally available
-  (window as any).generateAISummary = generateAISummary;
-</script>

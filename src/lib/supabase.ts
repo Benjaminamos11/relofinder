@@ -1,28 +1,33 @@
-import { createClient } from '@supabase/supabase-js'
+/**
+ * Supabase Client Configuration
+ */
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || import.meta.env.SUPABASE_URL;
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.SUPABASE_ANON_KEY;
+import { createClient } from '@supabase/supabase-js';
 
-// For static builds, we create a dummy client if variables are missing
-// The client will be properly initialized on the client-side when needed
-let supabase: ReturnType<typeof createClient> | null = null;
+const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL || '';
+const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || '';
 
-if (supabaseUrl && supabaseKey) {
-  supabase = createClient(supabaseUrl, supabaseKey);
-} else {
-  console.warn('Supabase environment variables not found - client not initialized');
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.warn('Supabase env vars not configured. Set PUBLIC_SUPABASE_URL and PUBLIC_SUPABASE_ANON_KEY');
 }
 
-export { supabase };
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-// Helper function to create client with custom config
-export function createSupabaseClient(url?: string, key?: string) {
-  const finalUrl = url || supabaseUrl;
-  const finalKey = key || supabaseKey;
-  
-  if (!finalUrl || !finalKey) {
-    throw new Error('Missing Supabase environment variables');
-  }
-  
-  return createClient(finalUrl, finalKey);
-}
+// Type-safe database client
+export type Database = {
+  public: {
+    Tables: {
+      agencies: any;
+      services: any;
+      regions: any;
+      agency_services: any;
+      agency_regions: any;
+      reviews: any;
+      review_replies: any;
+      review_votes: any;
+      external_reviews: any;
+      review_summaries: any;
+      leads: any;
+    };
+  };
+};

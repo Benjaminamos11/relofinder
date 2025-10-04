@@ -1,0 +1,339 @@
+---
+/**
+ * DEMO: Agency Profile Page with All Components
+ * URL: /demo-agency-profile
+ * 
+ * This showcases the complete agency profile system:
+ * - Hero with tier badge
+ * - AI Review Summary with loading animation
+ * - Review submission form
+ * - Reviews list with replies
+ * - Lead form (tier-conditional)
+ * - Services & coverage chips
+ * - FAQ section
+ */
+
+// Mock data for Prime Relocation
+const mockAgency = {
+  id: 'uuid-prime',
+  name: 'Prime Relocation',
+  tagline: 'Verified Swiss Relocation Agency since 2008',
+  tier: 'preferred' as const,
+  yearFounded: 2008,
+  languages: ['English', 'German', 'French', 'Italian'],
+  phone: '+41 44 123 4567',
+  email: 'contact@primerelocation.ch',
+  website: 'https://www.primerelocation.ch',
+  meetingUrl: 'https://calendly.com/prime-relocation',
+  services: [
+    { code: 'housing', label: 'Housing & Real Estate' },
+    { code: 'immigration', label: 'Visa & Immigration' },
+    { code: 'finance', label: 'Banking & Finance' },
+    { code: 'advisory', label: 'Advisory Services' },
+    { code: 'settling_in', label: 'Settling-In Support' },
+  ],
+  regions: [
+    { code: 'zurich', label: 'Zürich' },
+    { code: 'geneva', label: 'Geneva' },
+    { code: 'basel', label: 'Basel' },
+    { code: 'zug', label: 'Zug' },
+  ],
+};
+
+const mockSummary = {
+  summary: 'Prime Relocation consistently receives high praise for their comprehensive service offering and professional approach to corporate and private relocations. Clients particularly value their multilingual support and deep knowledge of Swiss regulations across all major cities.',
+  positives: [
+    'Excellent communication and highly responsive team',
+    'Comprehensive end-to-end relocation services',
+    'Deep knowledge of Swiss immigration and housing regulations',
+    'Strong corporate relocation expertise',
+    'Multilingual capabilities (EN, DE, FR, IT)',
+  ],
+  negatives: [
+    'Premium pricing compared to some competitors',
+    'High demand requires advance booking during peak season',
+    'Some services require minimum engagement period',
+  ],
+  internal_review_count: 12,
+  external_review_count: 53,
+  weighted_rating: 4.8,
+  last_generated_at: new Date().toISOString(),
+};
+
+const mockReviews = [
+  {
+    id: '1',
+    rating: 5,
+    title: 'Exceptional service from start to finish',
+    text: 'Prime Relocation made our move to Zurich seamless. Their team helped us find the perfect apartment, handled all the paperwork, and even assisted with setting up utilities. The multilingual support was invaluable!',
+    created_at: new Date(Date.now() - 45 * 24 * 60 * 60 * 1000).toISOString(),
+    status: 'approved',
+    reply: {
+      id: 'r1',
+      author_name: 'Prime Relocation Team',
+      body: 'Thank you for the wonderful feedback! We\'re delighted to hear your move went smoothly. Wishing you all the best in your new home in Zurich!',
+      created_at: new Date(Date.now() - 44 * 24 * 60 * 60 * 1000).toISOString(),
+    },
+  },
+  {
+    id: '2',
+    rating: 5,
+    title: 'Visa process made easy',
+    text: 'Navigating the Swiss immigration system seemed daunting, but Prime Relocation guided us through every step. Their expertise saved us time and stress.',
+    created_at: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
+    status: 'approved',
+  },
+  {
+    id: '3',
+    rating: 4,
+    title: 'Professional and reliable',
+    text: 'Great experience overall. The team was professional and responsive. Only minor issue was the premium pricing, but the quality of service justified it.',
+    created_at: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
+    status: 'approved',
+  },
+];
+
+const faqs = [
+  {
+    question: `What regions does ${mockAgency.name} cover?`,
+    answer: `${mockAgency.name} provides services in Zürich, Geneva, Basel, and Zug. They offer comprehensive relocation support across these regions with local expertise.`,
+  },
+  {
+    question: `What services does ${mockAgency.name} offer?`,
+    answer: `${mockAgency.name} specializes in Housing & Real Estate, Visa & Immigration, Banking & Finance, Advisory Services, and Settling-In support. They provide end-to-end solutions for your relocation needs.`,
+  },
+  {
+    question: `Is ${mockAgency.name} suitable for corporate relocations?`,
+    answer: `Yes, ${mockAgency.name} has extensive experience with corporate relocations and works with international companies to relocate teams and executives to Switzerland.`,
+  },
+  {
+    question: `What languages does the team speak?`,
+    answer: `The ${mockAgency.name} team provides services in English, German, French, and Italian, ensuring smooth communication throughout your relocation.`,
+  },
+  {
+    question: `How quickly can they respond to inquiries?`,
+    answer: `As a Preferred Partner, ${mockAgency.name} typically responds within 24 hours. You can also schedule a meeting directly through their profile.`,
+  },
+  {
+    question: `How do I compare ${mockAgency.name} with others?`,
+    answer: `You can use our comparison tool to evaluate multiple agencies based on ratings, services, regional coverage, and client reviews.`,
+  },
+];
+
+import TierBadge from '../components/agencies/TierBadge';
+import AIReviewSummary from '../components/agencies/AIReviewSummary';
+import ReviewForm from '../components/agencies/ReviewForm';
+import ReviewsList from '../components/agencies/ReviewsList';
+import LeadForm from '../components/agencies/LeadForm';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{mockAgency.name} — Profile & Reviews | ReloFinder DEMO</title>
+  <style>
+    .demo-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 12px;
+      text-align: center;
+      font-weight: 600;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    body {
+      padding-top: 48px;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50">
+  <!-- Demo Banner -->
+  <div class="demo-banner">
+    🎨 DEMO MODE: This is a preview of the new agency profile system with all components
+  </div>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <!-- Breadcrumbs -->
+    <nav class="mb-8 flex items-center gap-2 text-sm text-gray-600">
+      <a href="/" class="hover:text-red-600">Home</a>
+      <span>/</span>
+      <a href="/companies" class="hover:text-red-600">Companies</a>
+      <span>/</span>
+      <span class="text-gray-900 font-medium">{mockAgency.name}</span>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-white rounded-3xl p-8 md:p-12 mb-12 shadow-sm border border-gray-200">
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+          <div class="flex flex-wrap items-start gap-4 mb-4">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 flex-1 min-w-0">
+              {mockAgency.name}
+            </h1>
+            <TierBadge tier={mockAgency.tier} client:load />
+          </div>
+          
+          <p class="text-xl text-gray-600 mb-6">{mockAgency.tagline}</p>
+
+          {/* Rating */}
+          <div class="mb-6">
+            <div class="flex items-center gap-3">
+              <div class="flex">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <svg
+                    key={i}
+                    class={`w-7 h-7 ${i < Math.floor(mockSummary.weighted_rating) ? 'text-yellow-400' : 'text-gray-300'}`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <span class="text-2xl font-bold text-gray-900">
+                {mockSummary.weighted_rating.toFixed(1)}
+              </span>
+            </div>
+            <div class="flex items-center gap-4 mt-2 text-sm text-gray-600">
+              <span>{mockSummary.internal_review_count + mockSummary.external_review_count} total reviews</span>
+              <span>•</span>
+              <span>{mockSummary.internal_review_count} platform</span>
+              <span>•</span>
+              <span>{mockSummary.external_review_count} external</span>
+            </div>
+          </div>
+
+          {/* Quick Info */}
+          <div class="flex flex-wrap gap-3 mb-6">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-700">
+              Founded {mockAgency.yearFounded}
+            </span>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-50 text-blue-700">
+              Languages: {mockAgency.languages.join(', ')}
+            </span>
+          </div>
+
+          {/* Services */}
+          <div class="mb-6">
+            <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Services</h3>
+            <div class="flex flex-wrap gap-2">
+              {mockAgency.services.map((service) => (
+                <span class="inline-block px-4 py-2 bg-gradient-to-r from-red-50 to-orange-50 text-red-700 rounded-xl text-sm font-medium border border-red-200">
+                  {service.label}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Regions */}
+          <div>
+            <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Coverage</h3>
+            <div class="flex flex-wrap gap-2">
+              {mockAgency.regions.map((region) => (
+                <span class="inline-block px-4 py-2 bg-green-50 text-green-700 rounded-xl text-sm font-medium border border-green-200">
+                  {region.label}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Panel */}
+        <div class="lg:col-span-1">
+          <LeadForm 
+            relocatorId={mockAgency.id}
+            relocatorName={mockAgency.name}
+            tier={mockAgency.tier}
+            meetingUrl={mockAgency.meetingUrl}
+            phone={mockAgency.phone}
+            email={mockAgency.email}
+            website={mockAgency.website}
+            client:load 
+          />
+        </div>
+      </div>
+    </div>
+
+    {/* AI Review Summary */}
+    <div class="mb-12">
+      <AIReviewSummary 
+        relocatorId={mockAgency.id}
+        relocatorName={mockAgency.name}
+        existingSummary={mockSummary}
+        client:load 
+      />
+    </div>
+
+    {/* User Reviews Section */}
+    <div class="mb-12 bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-3">
+        User Reviews
+      </h2>
+      <p class="text-gray-600 mb-8">
+        Read verified reviews from clients who have used {mockAgency.name}'s services
+      </p>
+
+      <div class="mb-8">
+        <ReviewForm 
+          relocatorId={mockAgency.id}
+          relocatorName={mockAgency.name}
+          client:load 
+        />
+      </div>
+
+      <ReviewsList reviews={mockReviews} canReply={mockAgency.tier !== 'standard'} client:load />
+    </div>
+
+    {/* FAQ Section */}
+    <div class="mb-12 bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-3">
+        Frequently Asked Questions
+      </h2>
+      <p class="text-gray-600 mb-8">
+        Common questions about {mockAgency.name}
+      </p>
+
+      <div class="space-y-4">
+        {faqs.map((faq, index) => (
+          <details class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden group">
+            <summary class="px-6 py-5 font-semibold text-gray-900 cursor-pointer hover:bg-gray-100 transition-colors flex items-center justify-between">
+              <span class="pr-8">{faq.question}</span>
+              <svg
+                class="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-700 leading-relaxed border-t border-gray-200">
+              <div class="pt-4">{faq.answer}</div>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    {/* Disclaimer */}
+    <div class="bg-gray-100 rounded-2xl p-6 text-sm text-gray-600 border border-gray-200">
+      <p>
+        <strong class="text-gray-900">Disclaimer:</strong> ReloFinder is a comparison platform. 
+        We do not provide relocation services directly. This profile is based on public information 
+        and verified sources. Ratings are calculated using a weighted formula combining internal 
+        platform reviews (60%) and external reviews (40%). Always verify details directly with the agency.
+      </p>
+    </div>
+
+  </main>
+</body>
+</html>
+

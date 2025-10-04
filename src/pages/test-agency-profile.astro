@@ -1,0 +1,291 @@
+---
+/**
+ * Test Agency Profile Page (No Database Required)
+ * Visit: http://localhost:4321/test-agency-profile
+ * 
+ * This demonstrates the agency profile UI without needing Supabase setup.
+ * Once your database is configured, use /companies/[slug] instead.
+ */
+
+const mockAgency = {
+  id: 'test-id',
+  slug: 'prime-relocation',
+  name: 'Prime Relocation',
+  tagline: 'Verified Swiss Relocation Agency since 2008',
+  year_founded: 2008,
+  languages: ['en', 'de', 'fr', 'it'],
+  website_url: 'https://www.prime-relocation.ch',
+  phone: '+41 44 123 4567',
+  email: 'contact@prime-relocation.ch',
+  meeting_url: 'https://calendly.com/prime-relocation',
+  status: 'preferred' as const,
+};
+
+const services = [
+  { id: 1, code: 'housing', label: 'Housing & Real Estate' },
+  { id: 2, code: 'immigration', label: 'Visa & Immigration' },
+  { id: 3, code: 'finance', label: 'Banking & Finance' },
+  { id: 4, code: 'advisory', label: 'Advisory (HNWI/Corporate)' },
+  { id: 5, code: 'settling_in', label: 'Settling-In' },
+];
+
+const regions = [
+  { id: 1, code: 'zurich', label: 'Zürich' },
+  { id: 2, code: 'geneva', label: 'Geneva' },
+  { id: 3, code: 'basel', label: 'Basel' },
+  { id: 4, code: 'zug', label: 'Zug' },
+];
+
+const rating = {
+  overall: 4.8,
+  internal_avg: 4.8,
+  internal_count: 5,
+  external_avg: 4.8,
+  external_count: 53,
+};
+
+const reviews = [
+  {
+    id: '1',
+    agency_id: 'test',
+    rating: 5,
+    title: 'Exceptional service from start to finish',
+    body: 'Prime Relocation made our move to Zurich seamless. Their team helped us find the perfect apartment, handled all the paperwork, and even assisted with setting up utilities. Highly recommend!',
+    service_code: 'housing',
+    created_at: new Date(Date.now() - 45 * 24 * 60 * 60 * 1000).toISOString(),
+    is_published: true,
+    is_verified: true,
+  },
+  {
+    id: '2',
+    agency_id: 'test',
+    rating: 5,
+    title: 'Visa process made easy',
+    body: 'Navigating the Swiss immigration system seemed daunting, but Prime Relocation guided us through every step.',
+    service_code: 'immigration',
+    created_at: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
+    is_published: true,
+    is_verified: true,
+  },
+];
+
+const alternatives = [
+  { 
+    ...mockAgency, 
+    id: 'alt-1',
+    slug: 'auris-relocation',
+    name: 'Auris Relocation', 
+    status: 'partner' as const,
+    tagline: 'Personalized relocation services',
+    services: [],
+    regions: [],
+  },
+];
+
+const faqItems = [
+  {
+    question: `What regions does ${mockAgency.name} cover?`,
+    answer: `${mockAgency.name} provides services in Zürich, Geneva, Basel, and Zug. They offer comprehensive relocation support across these regions.`,
+  },
+  {
+    question: `What services does ${mockAgency.name} offer?`,
+    answer: `${mockAgency.name} specializes in Housing & Real Estate, Visa & Immigration, Banking & Finance, Advisory, and Settling-In services.`,
+  },
+];
+
+import AgencyStatusBadge from '../components/agencies/AgencyStatusBadge';
+import ReviewStars from '../components/agencies/ReviewStars';
+import ContactPanel from '../components/agencies/ContactPanel';
+import ReviewForm from '../components/agencies/ReviewForm';
+import ReviewsList from '../components/agencies/ReviewsList';
+import ReviewSummaryCard from '../components/agencies/ReviewSummaryCard';
+import AlternativesList from '../components/agencies/AlternativesList';
+import FaqAccordion from '../components/agencies/FaqAccordion';
+
+const summary = {
+  agency_id: 'test',
+  summary: 'Prime Relocation is highly regarded for their comprehensive service offering and professional approach to corporate and private relocations.',
+  positives: [
+    'Excellent communication and responsive team',
+    'Comprehensive end-to-end relocation services',
+    'Deep knowledge of Swiss regulations',
+  ],
+  negatives: [
+    'Premium pricing compared to some competitors',
+    'High demand requires advance booking',
+  ],
+  updated_at: new Date().toISOString(),
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{mockAgency.name} — Test Profile | ReloFinder</title>
+  <style>
+    .test-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      color: #78350f;
+      padding: 12px;
+      text-align: center;
+      font-weight: 600;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    body {
+      padding-top: 48px;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50">
+  <!-- Test Mode Banner -->
+  <div class="test-banner">
+    ⚠️ TEST MODE: This is a demo using mock data. To use real data, set up Supabase and run migrations.
+    <a href="/QUICK_FIX_404.md" class="underline ml-2">View Setup Guide</a>
+  </div>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <!-- Breadcrumbs -->
+    <nav class="mb-8 flex items-center gap-2 text-sm text-gray-600">
+      <a href="/" class="hover:text-red-600">Home</a>
+      <span>/</span>
+      <a href="/companies" class="hover:text-red-600">Companies</a>
+      <span>/</span>
+      <span class="text-gray-900 font-medium">{mockAgency.name}</span>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-white rounded-3xl p-8 md:p-12 mb-12 shadow-sm border border-gray-200">
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+          <div class="flex items-start gap-4 mb-4">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 flex-1">
+              {mockAgency.name}
+            </h1>
+            <AgencyStatusBadge status={mockAgency.status} client:load />
+          </div>
+          
+          <p class="text-xl text-gray-600 mb-6">{mockAgency.tagline}</p>
+
+          {/* Rating */}
+          <div class="mb-6">
+            <ReviewStars rating={rating.overall} size="lg" client:load />
+            <div class="flex items-center gap-4 mt-2 text-sm text-gray-600">
+              <span>{rating.internal_count + rating.external_count} total reviews</span>
+              <span>•</span>
+              <span>{rating.internal_count} platform reviews</span>
+              <span>•</span>
+              <span>{rating.external_count} external reviews</span>
+            </div>
+          </div>
+
+          {/* Quick Info */}
+          <div class="flex flex-wrap gap-3 mb-6">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-700">
+              Founded {mockAgency.year_founded}
+            </span>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-blue-50 text-blue-700">
+              Languages: {mockAgency.languages?.join(', ').toUpperCase()}
+            </span>
+          </div>
+
+          {/* Services */}
+          <div class="mb-6">
+            <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Services</h3>
+            <div class="flex flex-wrap gap-2">
+              {services.map((service) => (
+                <span class="inline-block px-4 py-2 bg-gradient-to-r from-red-50 to-orange-50 text-red-700 rounded-xl text-sm font-medium border border-red-200">
+                  {service.label}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Regions */}
+          <div>
+            <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Coverage</h3>
+            <div class="flex flex-wrap gap-2">
+              {regions.map((region) => (
+                <span class="inline-block px-4 py-2 bg-green-50 text-green-700 rounded-xl text-sm font-medium border border-green-200">
+                  {region.label}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Panel */}
+        <div class="lg:col-span-1">
+          <ContactPanel agency={mockAgency} sourcePage="/test-agency-profile" client:load />
+        </div>
+      </div>
+    </div>
+
+    {/* Review Summary */}
+    <div class="mb-12">
+      <ReviewSummaryCard summary={summary} client:load />
+    </div>
+
+    {/* Reviews Section */}
+    <div class="mb-12 bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-3">
+        User Reviews
+      </h2>
+      <p class="text-gray-600 mb-8">
+        Sample reviews demonstrating the review system
+      </p>
+
+      <div class="mb-8">
+        <ReviewForm agencyId={mockAgency.id} agencyName={mockAgency.name} client:load />
+      </div>
+
+      <ReviewsList reviews={reviews} client:load />
+    </div>
+
+    {/* Alternatives */}
+    <div class="mb-12">
+      <AlternativesList alternatives={alternatives} currentAgencyName={mockAgency.name} client:load />
+    </div>
+
+    {/* FAQ */}
+    <div class="mb-12 bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-200">
+      <h2 class="text-3xl font-bold text-gray-900 mb-3">
+        Frequently Asked Questions
+      </h2>
+      <p class="text-gray-600 mb-8">
+        Common questions about {mockAgency.name}
+      </p>
+      <FaqAccordion items={faqItems} agencyName={mockAgency.name} client:load />
+    </div>
+
+    {/* Setup Instructions */}
+    <div class="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-8 border-2 border-yellow-300">
+      <h3 class="text-2xl font-bold text-yellow-900 mb-4">
+        🚀 Ready to Use Real Data?
+      </h3>
+      <p class="text-yellow-800 mb-4">
+        This is a test page with mock data. To set up the full system with database:
+      </p>
+      <ol class="list-decimal list-inside space-y-2 text-yellow-900 mb-6">
+        <li>Create a Supabase account (free tier works)</li>
+        <li>Add credentials to <code class="bg-yellow-100 px-2 py-1 rounded">.env</code> file</li>
+        <li>Run migrations: <code class="bg-yellow-100 px-2 py-1 rounded">supabase db push</code></li>
+        <li>Restart server and visit <code class="bg-yellow-100 px-2 py-1 rounded">/companies/prime-relocation</code></li>
+      </ol>
+      <a href="/QUICK_FIX_404.md" class="inline-block px-6 py-3 bg-yellow-600 text-white font-semibold rounded-xl hover:bg-yellow-700 transition-colors">
+        View Setup Guide
+      </a>
+    </div>
+
+  </main>
+</body>
+</html>
+

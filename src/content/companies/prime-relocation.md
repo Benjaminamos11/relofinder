@@ -132,15 +132,34 @@ stats:
     value: "< 60min"
     icon: "lightning-bolt"
 
+pros:
+  - "15+ years of Swiss relocation expertise"
+  - "Multilingual team (EN/DE/FR/IT)"
+  - "98% client satisfaction rate"
+
+cons:
+  - "Premium pricing vs. budget options"
+  - "Focus on corporate clients"
+  - "Availability in peak season"
+
+bestFor:
+  - "Corporate executives and HR departments"
+  - "Families requiring comprehensive support"
+  - "High-net-worth individuals"
+
 faqs:
-  - question: "How much does Prime Relocation charge for relocation services?"
-    answer: "Prime Relocation offers customized packages starting at CHF 3,500 for single professionals. Full-family executive moves average CHF 8,900. Contact us for a personalized quote based on your specific requirements."
-  - question: "Is the first consultation free?"
-    answer: "Yes, our expert advisors offer a complimentary 30-minute video assessment to understand your needs and provide initial guidance."
+  - question: "Which regions does Prime Relocation cover?"
+    answer: "Prime Relocation provides services across Zurich, Geneva, Basel, Zug, and Lucerne. They offer comprehensive relocation support in all major Swiss business hubs."
+  - question: "What services does Prime Relocation offer?"
+    answer: "Prime Relocation specializes in housing search, visa assistance, banking setup, move management, settling-in support, and ongoing relocation services. They provide end-to-end solutions for corporate and private relocations."
   - question: "Can Prime Relocation assist with property purchases?"
-    answer: "Absolutely. Our advisory team works with notaries and banks to facilitate property acquisition for foreign nationals, including mortgage guidance and legal support."
-  - question: "Which services does Prime Relocation offer in major Swiss cities?"
-    answer: "We provide comprehensive relocation services including housing search, visa assistance, banking setup, and settling-in support across Zurich, Geneva, Basel, Zug, and Lucerne."
+    answer: "Yes, their advisory team works with notaries and banks to facilitate property acquisition for foreign nationals, including mortgage guidance and legal support."
+  - question: "Which languages does the team speak?"
+    answer: "The Prime Relocation team provides services in English, German, French, and Italian, ensuring smooth communication throughout your relocation."
+  - question: "How quickly do they respond to inquiries?"
+    answer: "As a Preferred Partner, Prime Relocation typically responds within 24 hours. You can also schedule a meeting directly through their profile."
+  - question: "Do they support both corporate and private relocations?"
+    answer: "Yes, Prime Relocation has extensive experience with both corporate HR relocations and private family moves. They can tailor packages to meet specific business or individual needs."
 ---
 
 # About Prime Relocation

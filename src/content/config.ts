@@ -74,6 +74,9 @@ const companies = defineCollection({
       value: z.string(),
       icon: z.string().optional()
     })).optional(),
+    pros: z.array(z.string()).optional(),
+    cons: z.array(z.string()).optional(),
+    bestFor: z.array(z.string()).optional(),
     faqs: z.array(z.object({
       question: z.string(),
       answer: z.string()
