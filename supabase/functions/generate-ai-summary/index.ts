@@ -232,9 +232,9 @@ Return JSON using the exact schema from system prompt.`;
       .from('review_summaries')
       .upsert({
         relocator_id,
-        summary: aiSummary.summary,
-        positives: aiSummary.positives,
-        negatives: aiSummary.negatives,
+        summary: aiSummary.verdict, // Map verdict to summary
+        positives: aiSummary.clients_like, // Map clients_like to positives
+        negatives: aiSummary.watch_outs, // Map watch_outs to negatives
         themes: aiSummary.themes || {},
         internal_review_count: internalCount,
         external_review_count: externalCount,

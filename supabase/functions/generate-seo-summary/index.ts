@@ -91,23 +91,49 @@ serve(async (req) => {
       ? relocator.regions_served[0]
       : 'Zurich';
 
+    // Determine company type based on name and bio
+    let companyType = 'relocation services';
+    let serviceKeywords = 'relocation services';
+    let targetAudience = 'expats relocating to Switzerland';
+    
+    if (relocator.name.toLowerCase().includes('expat savvy') || 
+        relocator.bio?.toLowerCase().includes('insurance') ||
+        relocator.bio?.toLowerCase().includes('financial services')) {
+      companyType = 'insurance and financial services';
+      serviceKeywords = 'health insurance, financial planning';
+      targetAudience = 'expats seeking insurance and financial advice';
+    } else if (relocator.name.toLowerCase().includes('swiss prime') ||
+               relocator.bio?.toLowerCase().includes('wealth management') ||
+               relocator.bio?.toLowerCase().includes('investment')) {
+      companyType = 'financial advisory and wealth management';
+      serviceKeywords = 'wealth management, financial planning';
+      targetAudience = 'high-net-worth expats and investors';
+    } else if (relocator.bio?.toLowerCase().includes('moving') ||
+               relocator.bio?.toLowerCase().includes('déménagement')) {
+      companyType = 'moving and relocation services';
+      serviceKeywords = 'moving services, relocation support';
+      targetAudience = 'expats relocating to Switzerland';
+    }
+
     // Build the prompt
-    const systemPrompt = `You are an expert SEO & relocation industry analyst. 
-You write short, factual, keyword-optimized summaries for relocation agencies in Switzerland.
+    const systemPrompt = `You are an expert SEO & expat services analyst. 
+You write short, factual, keyword-optimized summaries for expat service providers in Switzerland.
 Your output appears directly under the company hero on ReloFinder.ch.
-It must sound trustworthy, objective, and helpful to expats comparing relocation providers.
+It must sound trustworthy, objective, and helpful to expats comparing service providers.
 Keep it concise (80–120 words) and factually grounded in the provided data.`;
 
     const userPrompt = `Write a one-paragraph summary for the company below.
 
 ### Company Information
 Name: ${relocator.name}
+Type: ${companyType}
 Tier: ${relocator.tier || 'standard'}
 Founded: ${relocator.founded || 'Not specified'}
 Languages: ${Array.isArray(relocator.languages) ? relocator.languages.join(', ') : 'English, German'}
 Regions served: ${regionsServed}
 Certifications: ${relocator.certifications || 'Not specified'}
 Website: ${relocator.website || 'Not specified'}
+Bio: ${relocator.bio || 'Not specified'}
 
 ### Reviews Summary
 Overall rating: ${averageRating} / 5 (${reviewCount} reviews)
@@ -116,15 +142,15 @@ Common negatives: ${negatives}
 AI Review Summary: ${reviewSummaryText}
 
 ### SEO Target
-Target keyword phrase: "${relocator.name} relocation services Switzerland"
-Secondary intent: "expat relocation in ${topRegion}", "relocation agency ${topRegion}"
+Target keyword phrase: "${relocator.name} ${serviceKeywords} Switzerland"
+Secondary intent: "expat ${serviceKeywords} in ${topRegion}", "${companyType} ${topRegion}"
 
 ### Instructions
 - Include the company name naturally at least twice.
 - Mention 1–2 service categories and 1 region keyword.
 - Blend review insights ("clients praise...") into a factual tone.
 - Avoid superlatives like "best"; prefer "known for," "trusted by," or "recognized."
-- End with a neutral statement about who it's ideal for ("ideal for expats relocating to ${topRegion} or across Switzerland").
+- End with a neutral statement about who it's ideal for ("ideal for ${targetAudience}").
 
 Output:
 Return only the plain paragraph text. No lists, no markdown.`;
