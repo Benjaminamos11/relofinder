@@ -596,21 +596,168 @@ export const ContactModal: FC<ContactModalProps> = ({
             </div>
             
             {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Honeypot */}
-              <input
-                type="text"
-                name="website"
-                value={formData.honeypot}
-                onChange={(e) => handleInputChange('honeypot', e.target.value)}
-                style={{ position: 'absolute', left: '-9999px' }}
-                tabIndex={-1}
-                autoComplete="off"
-              />
-              
-              {/* Step 1: Your Details */}
-              <div className="space-y-4">
-                <h3 className="font-semibold text-gray-900 text-sm">Step 1 — Your Details</h3>
+            {mode === "consultation" ? (
+              // Consultation Form - Simplified
+              <div className="space-y-6">
+                <div>
+                  <label htmlFor="cons-name" className="block text-sm font-medium text-gray-700 mb-1">
+                    Your Name <span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="cons-name"
+                    value={formData.name}
+                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition-all"
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="cons-email" className="block text-sm font-medium text-gray-700 mb-1">
+                    Email <span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="cons-email"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition-all"
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="cons-reason" className="block text-sm font-medium text-gray-700 mb-1">
+                    Reason for relocating to Switzerland <span className="text-red-600">*</span>
+                  </label>
+                  <select
+                    id="cons-reason"
+                    value={formData.reason}
+                    onChange={(e) => handleInputChange('reason', e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition-all"
+                    required
+                  >
+                    <option value="">Select a reason</option>
+                    {COPY.reasons.map((reason) => (
+                      <option key={reason} value={reason}>{reason}</option>
+                    ))}
+                  </select>
+                </div>
+                
+                <div>
+                  <label htmlFor="cons-timeline" className="block text-sm font-medium text-gray-700 mb-1">
+                    When do you plan to relocate? <span className="text-red-600">*</span>
+                  </label>
+                  <select
+                    id="cons-timeline"
+                    value={formData.timeline}
+                    onChange={(e) => handleInputChange('timeline', e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition-all"
+                    required
+                  >
+                    <option value="">Select timeline</option>
+                    {COPY.timeline.map((time) => (
+                      <option key={time} value={time}>{time}</option>
+                    ))}
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Services interested in <span className="text-gray-500 text-xs">(optional)</span>
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    {COPY.services.map((service) => (
+                      <button
+                        key={service.id}
+                        type="button"
+                        onClick={() => toggleService(service.id)}
+                        className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-150 ${
+                          formData.services.includes(service.id)
+                            ? 'bg-red-100 text-red-700 border-2 border-red-600'
+                            : 'bg-gray-100 text-gray-700 border-2 border-transparent hover:border-gray-300'
+                        }`}
+                      >
+                        {service.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Regions interested in <span className="text-gray-500 text-xs">(optional)</span>
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    {COPY.regions.map((region) => (
+                      <button
+                        key={region.id}
+                        type="button"
+                        onClick={() => toggleRegion(region.id)}
+                        className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-150 ${
+                          formData.regions.includes(region.id)
+                            ? 'bg-red-100 text-red-700 border-2 border-red-600'
+                            : 'bg-gray-100 text-gray-700 border-2 border-transparent hover:border-gray-300'
+                        }`}
+                      >
+                        {region.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="pt-4">
+                  <a
+                    href="https://cal.com/relofinder/consultation"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      // Track analytics
+                      if (typeof window !== 'undefined' && (window as any).dataLayer) {
+                        (window as any).dataLayer.push({
+                          event: 'calcom_schedule_click',
+                          context: context,
+                          formData: {
+                            name: formData.name,
+                            email: formData.email,
+                            reason: formData.reason,
+                            timeline: formData.timeline,
+                          },
+                        });
+                      }
+                    }}
+                    className="block w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-200 text-center"
+                  >
+                    Schedule Meeting Now →
+                  </a>
+                  <p className="mt-2 text-xs text-gray-500 text-center">
+                    Opens Cal.com scheduling in new tab
+                  </p>
+                </div>
+                
+                <div className="text-xs text-gray-600 text-center space-y-1 pt-2">
+                  <p>All consultations are with licensed Swiss relocation specialists</p>
+                  <p className="text-gray-500">{COPY.legal}</p>
+                </div>
+              </div>
+            ) : (
+              // Quote Form - Original Full Form
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot */}
+                <input
+                  type="text"
+                  name="website"
+                  value={formData.honeypot}
+                  onChange={(e) => handleInputChange('honeypot', e.target.value)}
+                  style={{ position: 'absolute', left: '-9999px' }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+                
+                {/* Step 1: Your Details */}
+                <div className="space-y-4">
+                  <h3 className="font-semibold text-gray-900 text-sm">Step 1 — Your Details</h3>
                 
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -867,26 +1014,27 @@ export const ContactModal: FC<ContactModalProps> = ({
                 <p className="text-gray-500">{COPY.legal}</p>
               </div>
               
-              {/* Corporate Link */}
-              <div className="text-center pt-2">
-                <a
-                  href="/corporate"
-                  onClick={() => {
-                    if (typeof window !== 'undefined' && (window as any).dataLayer) {
-                      (window as any).dataLayer.push({
-                        event: 'corporate_link_click',
-                      });
-                    }
-                  }}
-                  className="text-xs text-gray-500 hover:text-gray-700 transition-colors inline-flex items-center gap-1"
-                >
-                  {COPY.corporate}
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </a>
-              </div>
-            </form>
+                {/* Corporate Link */}
+                <div className="text-center pt-2">
+                  <a
+                    href="/corporate"
+                    onClick={() => {
+                      if (typeof window !== 'undefined' && (window as any).dataLayer) {
+                        (window as any).dataLayer.push({
+                          event: 'corporate_link_click',
+                        });
+                      }
+                    }}
+                    className="text-xs text-gray-500 hover:text-gray-700 transition-colors inline-flex items-center gap-1"
+                  >
+                    {COPY.corporate}
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
+              </form>
+            )}
           </div>
         )}
       </div>
