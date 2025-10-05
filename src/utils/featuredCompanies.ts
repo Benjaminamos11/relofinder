@@ -26,7 +26,6 @@ interface SupabaseRelocator {
   name: string;
   tier: string;
   rating?: number;
-  logo_url?: string;
 }
 
 /**
@@ -42,7 +41,7 @@ export async function getFeaturedCompanies(
   // Fetch tier and rating data from Supabase
   const { data: relocators, error: relocatorsError } = await supabase
     .from('relocators')
-    .select('id, name, tier, rating, logo_url');
+    .select('id, name, tier, rating');
   
   if (relocatorsError) {
     console.error('[FeaturedCompanies] Supabase error:', relocatorsError.message, relocatorsError.hint);
@@ -129,7 +128,7 @@ export async function getFeaturedCompanies(
         id: data.id,
         slug: data.id, // Using id as slug
         name: data.name,
-        logo_url: supabaseData?.logo_url || data.logo || undefined,
+        logo_url: data.logo || undefined,
         tier: tier,
         rating_avg: supabaseData?.rating || data.rating?.score || undefined,
         rating_count: supabaseData
@@ -140,7 +139,13 @@ export async function getFeaturedCompanies(
       };
     })
     .filter((company) => {
-      // Exclude insurance agencies (keep relocation companies only)
+      // Keep preferred/partner tier companies even if they're insurance
+      // Only filter out insurance agencies if they're standard tier
+      if (company.tier === 'preferred' || company.tier === 'partner') {
+        return true;
+      }
+      
+      // Exclude insurance agencies from standard tier only
       const name = company.name.toLowerCase();
       return (
         !name.includes('expat savvy') &&
