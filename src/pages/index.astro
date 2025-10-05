@@ -61,8 +61,8 @@ const schema = {
 	<!-- 3. Services - What do you need help with? -->
 	<ServicesShowcase />
 	
-	<!-- 4. Featured Agencies - Compact, data-driven, auto-updates -->
-	<FeaturedAgencies companies={featuredCompanies} limit={10} client:load />
+	<!-- 4. Featured Agencies - Clean text cards, perfect alignment, Preferred first -->
+	<FeaturedAgencies companies={featuredCompanies} limit={12} client:only="react" />
 	
 	<!-- 5. Recent Reviews - Real client feedback -->
 	<RecentReviewsSection />
