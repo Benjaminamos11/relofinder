@@ -46,6 +46,8 @@ export async function getFeaturedCompanies(
 
   // Create lookup map with multiple key variations for better matching
   const relocatorMap = new Map<string, SupabaseRelocator>();
+  console.log(`[FeaturedCompanies] Total relocators from DB: ${relocators?.length || 0}`);
+  
   if (relocators) {
     relocators.forEach((r) => {
       const normalized = r.name.toLowerCase().trim();
@@ -60,10 +62,12 @@ export async function getFeaturedCompanies(
       
       // Log preferred/partner tiers for debugging
       if (r.tier === 'preferred' || r.tier === 'partner') {
-        console.log(`[FeaturedCompanies] Found ${r.tier}: ${r.name}`);
+        console.log(`[FeaturedCompanies] Found ${r.tier} in DB: "${r.name}" (normalized: "${normalized}")`);
       }
     });
   }
+  
+  console.log(`[FeaturedCompanies] Total companies from content: ${companies.length}`);
 
   // Fetch review counts from google_reviews
   const { data: reviewCounts } = await supabase
@@ -93,9 +97,14 @@ export async function getFeaturedCompanies(
 
       const tier = (supabaseData?.tier as CompanyTier) || 'standard';
       
+      // Log matching attempts for all companies
+      if (data.name.toLowerCase().includes('prime') || data.name.toLowerCase().includes('expat')) {
+        console.log(`[FeaturedCompanies] Matching "${data.name}": normalized="${normalized}", withoutSuffix="${withoutSuffix}", found=${!!supabaseData}, tier=${tier}`);
+      }
+      
       // Log if we found tier data
       if (supabaseData && (tier === 'preferred' || tier === 'partner')) {
-        console.log(`[FeaturedCompanies] Mapped ${data.name} → tier: ${tier}`);
+        console.log(`[FeaturedCompanies] ✓ Mapped "${data.name}" → tier: ${tier}`);
       }
 
       return {
