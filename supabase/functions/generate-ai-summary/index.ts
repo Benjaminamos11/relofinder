@@ -89,10 +89,11 @@ serve(async (req) => {
     const totalRating = googleReviews.reduce((sum, review) => sum + review.rating, 0);
     const avgRating = totalRating / googleReviews.length;
     const externalCount = googleReviews.length;
+    const internalCount = 0; // No internal reviews for now
     const externalAvg = Math.round(avgRating * 100) / 100;
     const weightedRating = externalAvg;
 
-    console.log(`Stats: internal=0, external=${externalCount}, total=${externalCount}, rating=${weightedRating}`);
+    console.log(`Stats: internal=${internalCount}, external=${externalCount}, total=${externalCount}, rating=${weightedRating}`);
 
     // Prepare Google review snippets for AI analysis (prioritize recent reviews)
     const recentReviews = googleReviews.slice(0, 30); // Take top 30 most recent
