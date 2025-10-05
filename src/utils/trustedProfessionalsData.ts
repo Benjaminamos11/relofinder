@@ -91,15 +91,14 @@ export async function getTrustedProfessionalsData(): Promise<CompanySlide[]> {
           console.error(`[TrustedProfessionals] Error fetching reviews for ${company.name}:`, reviewsError);
         }
 
-        // Fetch AI summary from review_summaries table
-        const { data: summaryData, error: summaryError } = await supabase
-          .from('review_summaries')
-          .select('verdict, review_count')
-          .eq('relocator_id', company.id)
+        // Fetch AI summary from relocators table (stored as seo_summary)
+        const { data: relocatorData, error: summaryError } = await supabase
+          .from('relocators')
+          .select('seo_summary')
+          .eq('id', company.id)
           .single();
 
-        if (summaryError && summaryError.code !== 'PGRST116') {
-          // PGRST116 = not found (acceptable)
+        if (summaryError) {
           console.error(`[TrustedProfessionals] Error fetching AI summary for ${company.name}:`, summaryError);
         }
 
@@ -118,10 +117,10 @@ export async function getTrustedProfessionalsData(): Promise<CompanySlide[]> {
           tier: company.tier || 'standard',
           rating_avg: company.rating || 0,
           reviews: reviews || [],
-          aiSummary: summaryData
+          aiSummary: relocatorData?.seo_summary
             ? {
-                verdict: summaryData.verdict,
-                review_count: summaryData.review_count || (reviews?.length || 0),
+                verdict: relocatorData.seo_summary,
+                review_count: reviews?.length || 0,
               }
             : null,
         };
