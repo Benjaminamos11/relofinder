@@ -105,7 +105,15 @@ export async function getFeaturedCompanies(
         supabaseData = relocatorMap.get(withoutSuffix);
       }
 
-      const tier = (supabaseData?.tier as CompanyTier) || 'standard';
+      // Determine tier: try Supabase first, then fallback to content collection
+      let tier: CompanyTier = 'standard';
+      if (supabaseData?.tier) {
+        tier = supabaseData.tier as CompanyTier;
+      } else if (data.featured === true) {
+        // Fallback: use 'featured' field from content as 'preferred'
+        tier = 'preferred';
+        console.log(`[FeaturedCompanies] Using fallback: ${data.name} marked as preferred (featured=true)`);
+      }
       
       // Log matching attempts for all companies
       if (data.name.toLowerCase().includes('prime') || data.name.toLowerCase().includes('expat')) {
