@@ -33,8 +33,11 @@ type FormData = {
   moveDate: string;
   reason: string;
   reasonOther: string;
+  timeline: string; // For consultation mode
   services: string[];
   servicesOther: string;
+  regions: string[]; // For consultation mode
+  regionsOther: string;
   emailOnly: boolean;
   notes: string;
   honeypot: string; // Anti-spam
@@ -70,6 +73,14 @@ const COPY = {
     "Tax relocation",
     "Other"
   ],
+  timeline: [
+    "Within 1 month",
+    "1-3 months",
+    "3-6 months",
+    "6-12 months",
+    "12+ months",
+    "Flexible / Not sure yet"
+  ],
   services: [
     { id: "home_search", label: "Home Search" },
     { id: "permits", label: "Registration / Permits" },
@@ -78,6 +89,16 @@ const COPY = {
     { id: "settling_in", label: "Settling-In" },
     { id: "departure", label: "Departure" },
     { id: "other", label: "Other" },
+  ],
+  regions: [
+    { id: "zurich", label: "Zurich" },
+    { id: "geneva", label: "Geneva" },
+    { id: "basel", label: "Basel" },
+    { id: "bern", label: "Bern" },
+    { id: "lausanne", label: "Lausanne" },
+    { id: "zug", label: "Zug" },
+    { id: "lucerne", label: "Lucerne" },
+    { id: "other", label: "Other Region" },
   ],
   trust: "We forward your request only to verified agencies. Expect 3–5 tailored proposals within 24–48 hours.",
   legal: "GDPR compliant. No hidden fees or commissions.",
@@ -150,8 +171,11 @@ export const ContactModal: FC<ContactModalProps> = ({
     moveDate: "",
     reason: "",
     reasonOther: "",
+    timeline: "",
     services: [],
     servicesOther: "",
+    regions: [],
+    regionsOther: "",
     emailOnly: false,
     notes: "",
     honeypot: "",
@@ -436,6 +460,23 @@ export const ContactModal: FC<ContactModalProps> = ({
     }
   };
   
+  const toggleRegion = (regionId: string) => {
+    setFormData(prev => ({
+      ...prev,
+      regions: prev.regions.includes(regionId)
+        ? prev.regions.filter(r => r !== regionId)
+        : [...prev.regions, regionId],
+    }));
+    
+    if (errors.regions) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors.regions;
+        return newErrors;
+      });
+    }
+  };
+  
   if (!isOpen) return null;
   
   return (
@@ -507,6 +548,28 @@ export const ContactModal: FC<ContactModalProps> = ({
                 {copy.subtext}
               </p>
             </div>
+            
+            {/* Prominent Consultation CTA */}
+            {mode === "quotes" && (
+              <div className="mb-6 p-4 bg-gradient-to-r from-red-50 to-orange-50 border-2 border-red-200 rounded-xl">
+                <div className="flex items-center justify-between">
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-gray-900 text-sm mb-1">
+                      Prefer personal guidance?
+                    </h3>
+                    <p className="text-xs text-gray-600">
+                      Book a free consultation with our experts
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => handleModeSwitch("consultation")}
+                    className="ml-4 px-5 py-2 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-full hover:shadow-lg transition-all duration-200 text-sm whitespace-nowrap"
+                  >
+                    Book Consultation →
+                  </button>
+                </div>
+              </div>
+            )}
             
             {/* Tabs */}
             <div className="flex border-b border-gray-200 mb-6">
@@ -797,37 +860,6 @@ export const ContactModal: FC<ContactModalProps> = ({
                 </p>
               </div>
               
-              {/* Consultation Callout - Only show in Quotes mode */}
-              {mode === "quotes" && (
-                <div className="mt-6 p-5 bg-white border border-gray-200 rounded-xl shadow-sm text-center">
-                  <h4 className="text-base font-semibold text-gray-900 mb-2">
-                    Prefer personal guidance?
-                  </h4>
-                  <p className="text-sm text-gray-600 mb-4">
-                    Schedule a free consultation with one of our verified experts.
-                  </p>
-                  <a
-                    href="/consultation"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      if (typeof window !== 'undefined' && (window as any).dataLayer) {
-                        (window as any).dataLayer.push({
-                          event: 'consultation_cta_click',
-                          context: context,
-                          target: '/consultation',
-                        });
-                      }
-                      window.location.href = '/consultation';
-                    }}
-                    className="inline-block w-full px-6 py-3 bg-white text-red-600 font-semibold rounded-full border-2 border-red-600 hover:bg-gradient-to-r hover:from-red-600 hover:to-red-500 hover:text-white transition-all duration-200"
-                  >
-                    Book a Free Consultation →
-                  </a>
-                  <p className="mt-2 text-xs text-gray-500">
-                    All consultations are with licensed Swiss relocation specialists.
-                  </p>
-                </div>
-              )}
               
               {/* Trust Line */}
               <div className="text-xs text-gray-600 text-center space-y-1 pt-4">
