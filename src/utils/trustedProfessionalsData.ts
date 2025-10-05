@@ -32,7 +32,7 @@ export async function getTrustedProfessionalsData(): Promise<CompanySlide[]> {
     // Fetch all relocators with tier and basic info
     const { data: relocators, error: relocatorsError } = await supabase
       .from('relocators')
-      .select('id, name, slug, tier, rating_avg, rating_count')
+      .select('id, name, tier, rating_avg, rating_count')
       .order('tier', { ascending: true }) // preferred < partner < standard
       .order('rating_avg', { ascending: false });
 
@@ -91,10 +91,18 @@ export async function getTrustedProfessionalsData(): Promise<CompanySlide[]> {
           console.error(`[TrustedProfessionals] Error fetching AI summary for ${company.name}:`, summaryError);
         }
 
+        // Generate slug from name (same logic as content collections)
+        const slug = company.name
+          .toLowerCase()
+          .replace(/[^a-z0-9\s-]/g, '') // Remove special chars
+          .replace(/\s+/g, '-') // Replace spaces with hyphens
+          .replace(/-+/g, '-') // Replace multiple hyphens with single
+          .trim();
+
         return {
           id: company.id,
           name: company.name,
-          slug: company.slug || company.name.toLowerCase().replace(/\s+/g, '-'),
+          slug: slug,
           tier: company.tier || 'standard',
           rating_avg: company.rating_avg || 0,
           reviews: reviews || [],
