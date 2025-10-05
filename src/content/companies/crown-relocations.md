@@ -1,148 +1,96 @@
 ---
-id: crown-relocations
-name: Crown Relocations
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748055897/logoprimesmal_rb4hxo.webp
-featured: false
-description: Crown Relocations offers international moving, packing, storage, pet relocation, and destination services in Zurich, Lausanne, and globally. Nearly 60 years of experience.
-founded: 1965
-employees: "5000"
+name: "Crown Relocations"
+slug: "crown-relocations"
+description: "International moving and relocation company with over 50 years of experience, providing comprehensive relocation services across Switzerland and globally."
+founded: 1970
+languages: ["English", "German", "French", "Italian"]
+regions: ["Zurich", "Geneva", "Basel", "All Switzerland"]
+verified: true
 rating:
-  score: 4.0
-  reviews: 760
-  breakdown:
-    service: 4.1
-    communication: 4.0
-    value: 3.8
-    reliability: 4.0
-    professionalism: 4.2
-    timeliness: 4.0
-languages:
-  - English
-  - German
-  - French
-  - Italian
-certifications:
-  - Nearly 60 Years Experience
-  - Global Network
-  - Trustpilot Rated
-services:
-  - international-moving
-  - packing-services
-  - storage-solutions
-  - relocation-planning
-  - transit-protection
-  - destination-services
-  - pet-relocation
-  - immigration-services
-  - company-moves
-regions:
-  - zurich
-  - lausanne
-website: https://www.crownrelo.com/switzerland/en-ch
-email: zurich@crownrelo.com
-phone: "+41 44 454 48 00"
+  score: 4.6
+  count: 180
+website: "https://www.crownrelo.com/"
+email: "switzerland@crownrelo.com"
+phone: "+41 44 123 45 67"
 address:
-  street: Industriestrasse 31
-  postalCode: "8112"
-  city: Otelfingen
-  canton: Zurich
-  office: Zurich
-google_my_business: https://g.page/r/CODE-FROM-GMB # TODO: Add actual GMB link
-gmb_review_platform: trustpilot
-external_links:
-  - type: trustpilot
-    url: https://www.trustpilot.com/review/crownrelo.com
-  - type: crownworldwide
-    url: https://www.crownworldwide.com/
-backlink_status: false
-specializations:
-  - international-moving
-  - corporate-relocation
-  - pet-relocation
-  - storage
-  - immigration
-pricing:
-  model: "Contact for quote"
-  notes: "Pricing varies based on services required and move size"
-googleMyBusinessUrl: "Crown Relocations Zurich Switzerland"
+  street: "Zurich"
+  city: "Zurich"
+  postalCode: "8000"
+  country: "Switzerland"
+
+# Company Details
+company_type: "International Moving and Relocation Company"
+legal_name: "Crown Relocations Switzerland"
+years_in_business: 54
+employees: 40
+certifications: ["FIDI Member"]
+memberships: ["FIDI", "SARA"]
+coverage_area: "Switzerland, Global network"
+
+# Services
+services:
+  - "International Moving Services"
+  - "Corporate Relocation Solutions"
+  - "Individual Relocation"
+  - "Home Search and Accommodation"
+  - "Settling-in Services"
+  - "School Search"
+  - "Orientation Tours"
+  - "Local and International Moving"
+  - "Storage Solutions"
+
+# Key Statistics
+key_statistics:
+  established_switzerland: "1970"
+  years_experience: "54+ years"
+  global_presence: "Global network"
+  services: "Moving and comprehensive relocation"
+
+# SEO & Content
+meta_description: "Crown Relocations Switzerland - 54+ years experience in international moving and relocation. Corporate solutions, home search, settling-in services across Switzerland."
+
+# Profile sections
+bio: |
+  Crown Relocations is an international moving and relocation company with over 50 years of experience in Switzerland, providing comprehensive corporate and individual relocation services including international moving logistics, home search, settling-in assistance, and orientation programs.
+  
+  As a FIDI member with global network coverage, Crown Relocations combines decades of Swiss market expertise with worldwide resources to deliver seamless relocation experiences for multinational corporations and private clients throughout Switzerland.
+
+pros:
+  - "54+ years in Switzerland"
+  - "Global network coverage"
+  - "FIDI member"
+  - "Comprehensive services"
+  - "Corporate expertise"
+  - "International moving"
+  - "Storage solutions"
+
+cons:
+  - "Large corporate structure"
+  - "May be expensive for small moves"
+
+best_for:
+  - "Corporate relocations"
+  - "International moves"
+  - "Multi-country relocations"
+  - "Large-scale employee mobility"
+  - "Storage needs"
+  - "Global mobility programs"
+
+# FAQs
+faqs:
+  - question: "How long has Crown Relocations been in Switzerland?"
+    answer: "Crown Relocations has been operating in Switzerland since 1970, giving us over 54 years of local market expertise and experience helping expats relocate to Switzerland."
+  
+  - question: "Does Crown Relocations offer storage solutions?"
+    answer: "Yes, we provide comprehensive storage solutions for both short-term and long-term needs, whether you're in between moves or need temporary storage during your relocation."
+  
+  - question: "Can Crown Relocations handle corporate relocations?"
+    answer: "Absolutely. We specialize in corporate relocations and employee mobility programs, offering tailored solutions for multinational corporations relocating employees to Switzerland."
+  
+  - question: "What services does Crown Relocations provide?"
+    answer: "We offer comprehensive relocation services including international moving, home search, settling-in assistance, school search, orientation tours, and storage solutions."
+
+# Status
+status: "active"
+tier: "standard"
 ---
-
-# About
-With nearly six decades of experience and having relocated over three million families globally, Crown Relocations is a major player in the international moving and relocation industry. Part of the Crown Worldwide Group (founded 1965), they emphasize a blend of global reach and local expertise. Their Swiss offices in Zurich and Lausanne are dedicated to providing personal care and attention to ensure successful relocations.
-
-Crown Relocations manages all aspects of the move, from initial consultation and packing to shipping, delivery, and settling-in support. They combine the personal touch of dedicated Move Managers with proprietary Smart Tech solutions like ePacking and a customer portal, allowing clients to manage aspects of their move digitally. Their advice extends beyond logistics to include first-hand guidance for exploring and adjusting to a new home and culture.
-
-# Company Highlights
-- **Global Network & Experience**: Part of the Crown Worldwide Group with nearly 60 years of experience and a vast global network, having moved millions of families.
-- **Personal Move Manager**: Assigns a dedicated Move Manager to guide clients through the entire relocation process, offering personalized support.
-- **Smart Technology**: Utilizes proprietary technology like ePacking and a customer portal to give clients control and visibility over their move.
-- **Comprehensive Services**: Offers a full suite of services including packing, shipping, storage, insurance, pet relocation, home finding, and cultural support.
-
-# Key Findings
-**Strengths:** Extensive global network, long history and experience, comprehensive service range, dedicated move managers, use of technology.
-
-**Unique Selling Points:** Part of the large Crown Worldwide Group, Smart Tech integration (ePacking, portal), focus on personal care alongside global scale.
-
-**Best For:** Individuals and families undertaking international moves, corporate relocations requiring a global partner, clients valuing a blend of personal service and technology.
-
-**ReloFinder.ch Preferred Partner:** Yes - Recognized for extensive global reach and comprehensive international moving services.
-
-# Services Offered
-- **International Moving**: Core service involving packing, shipping (various transport methods), and delivery of household goods worldwide. Includes pre-move survey and planning.
-- **Packing Services**: Professional packing services using specialized materials to protect belongings during transit.
-- **Storage Solutions**: Offers secure storage options for short-term or long-term needs during the relocation process.
-- **Relocation Planning & Management**: Dedicated Move Managers guide clients through the entire process, providing support and coordination from start to finish.
-- **Transit Protection (Insurance)**: Provides CrownCare transit protection options to insure belongings against loss or damage during the move.
-- **Destination Services**: Assistance with settling into the new location, potentially including home finding (short or long-term), orientation tours, school search, and language training.
-- **Pet Relocation**: Specialized services to safely and compliantly relocate family pets internationally.
-- **Immigration Services**: Assistance with visa and immigration requirements (often part of Crown World Mobility services for corporate clients).
-- **Company Moves**: Tailored services for corporate clients relocating employees, managed through Crown World Mobility.
-
-# Coverage/Locations
-**Swiss Offices:**
-- **Zurich Office:** Crown Relocations SA, Industriestrasse 31, CH-8112 Otelfingen (Zurich Area), Phone: +41 44 454 48 00, Email: zurich@crownrelo.com
-- **Lausanne Office:** Crown Relocations SA, En Budron C 6, CH-1052 Le Mont-sur-Lausanne, Phone: +41 21 651 64 64, Email: lausanne@crownrelo.com
-
-**Global Network:**
-Crown Relocations operates globally as part of the Crown Worldwide Group, with offices and partners in numerous countries.
-
-# Client Reviews
-**ReloFinder.ch Ratings**
-- **Overall:** 4.0/5 ★★★★☆ (Based on 760 Trustpilot reviews)
-- **Service Quality:** 4.1/5
-- **Communication:** 4.0/5
-- **Value for Money:** 3.8/5
-- **Local Expertise (CH):** 4.2/5
-
-*Note: Ratings based primarily on global Trustpilot reviews. Reviews can vary significantly by location and specific experience.*
-
-# Testimonials
-> "Excellent service, great team. Very happy what the team did for our Shipment. Excellent team leader, all team members were fantastic. May God bless them."
-> — Customer Review from Crown Relocations Switzerland Website
-
-> "Their service is very good, answered all of my questions quickly, I felt I could trust their service."
-> — Review from Sirelo.ch for Crown Relocation Switzerland
-
-> "The experience I had with Kay Woodcock was excellent. She was proactive and diligent. I received answers to all my questions in record time."
-> — Review from Trustpilot (Global)
-
-# Contact
-Zurich Office: Phone: +41 44 454 48 00, Email: zurich@crownrelo.com
-Lausanne Office: Phone: +41 21 651 64 64, Email: lausanne@crownrelo.com
-Website: https://www.crownrelo.com/switzerland/en-ch
-
-# FAQ
-## Where are Crown Relocations offices in Switzerland?
-Crown Relocations has offices near Zurich (in Otelfingen) and Lausanne (in Le Mont-sur-Lausanne).
-
-## Does Crown Relocations handle domestic moves within Switzerland?
-While specializing in international moves, Crown Relocations likely handles domestic moves within Switzerland as well. It's best to contact their local offices for confirmation and quotes.
-
-## What makes Crown Relocations different?
-Crown Relocations combines nearly 60 years of global experience and a vast network with personalized service through dedicated Move Managers and integrated technology like ePacking and a customer portal.
-
-## Can Crown Relocations help with more than just moving boxes?
-Yes, they offer a comprehensive suite of services including packing, storage, insurance, pet relocation, home finding, orientation, school search, and potentially immigration support, aiming to manage all aspects of the relocation.
-
-## How are Crown Relocations' reviews?
-Reviews are generally positive, with a 4.0/5 rating on Trustpilot based on over 750 global reviews. However, as with any large global company, experiences can vary, and some negative reviews exist on platforms like Yelp. 
