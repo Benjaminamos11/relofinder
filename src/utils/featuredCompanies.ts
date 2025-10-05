@@ -40,9 +40,19 @@ export async function getFeaturedCompanies(
   const companies = await getCollection('companies');
 
   // Fetch tier and rating data from Supabase
-  const { data: relocators } = await supabase
+  const { data: relocators, error: relocatorsError } = await supabase
     .from('relocators')
     .select('id, name, tier, rating, logo_url');
+  
+  if (relocatorsError) {
+    console.error('[FeaturedCompanies] Supabase error:', relocatorsError.message, relocatorsError.hint);
+  }
+  
+  if (!relocators || relocators.length === 0) {
+    console.warn('[FeaturedCompanies] ⚠️ No relocators from Supabase. Check if env vars are set during build.');
+    console.warn('[FeaturedCompanies] PUBLIC_SUPABASE_URL:', import.meta.env.PUBLIC_SUPABASE_URL ? 'SET' : 'NOT SET');
+    console.warn('[FeaturedCompanies] PUBLIC_SUPABASE_ANON_KEY:', import.meta.env.PUBLIC_SUPABASE_ANON_KEY ? 'SET' : 'NOT SET');
+  }
 
   // Create lookup map with multiple key variations for better matching
   const relocatorMap = new Map<string, SupabaseRelocator>();
