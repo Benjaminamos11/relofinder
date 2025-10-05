@@ -3,15 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/home/Hero.astro';
 import RegionsShowcase from '../components/home/RegionsShowcase.astro';
 import ServicesShowcase from '../components/home/ServicesShowcase.astro';
-import CompaniesShowcase from '../components/home/CompaniesShowcase.astro';
+import FeaturedAgencies from '../components/home/FeaturedAgencies';
 import RecentReviewsSection from '../components/home/RecentReviewsSection.astro';
 import CTASection from '../components/home/CTASection.astro';
 import Footer from '../components/common/Footer.astro';
-import { getCollection } from 'astro:content';
+import { getFeaturedCompanies } from '../utils/featuredCompanies';
 
-// Fetch all companies for the homepage
-const companies = await getCollection('companies');
-const featuredCompanies = companies.slice(0, 6); // Show top 6 companies
+// Fetch featured companies (data-driven, auto-updates from directory)
+const featuredCompanies = await getFeaturedCompanies(10);
 
 const title = "Switzerland Relocation Made Simple | Compare Providers & Regions | ReloFinder";
 const description = "Compare vetted relocation agencies, explore top Swiss regions, and plan your move with transparent services and free consultations.";
@@ -62,8 +61,8 @@ const schema = {
 	<!-- 3. Services - What do you need help with? -->
 	<ServicesShowcase />
 	
-	<!-- 4. Companies - Who can help you? -->
-	<CompaniesShowcase />
+	<!-- 4. Featured Agencies - Compact, data-driven, auto-updates -->
+	<FeaturedAgencies companies={featuredCompanies} limit={10} client:load />
 	
 	<!-- 5. Recent Reviews - Real client feedback -->
 	<RecentReviewsSection />
