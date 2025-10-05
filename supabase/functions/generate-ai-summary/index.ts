@@ -91,7 +91,7 @@ serve(async (req) => {
     const externalCount = googleReviews.length;
     const internalCount = 0; // No internal reviews for now
     const externalAvg = Math.round(avgRating * 100) / 100;
-    const weightedRating = externalAvg;
+    const weightedRating = parseFloat(externalAvg.toFixed(2)); // Ensure exactly 2 decimal places
 
     console.log(`Stats: internal=${internalCount}, external=${externalCount}, total=${externalCount}, rating=${weightedRating}`);
 
