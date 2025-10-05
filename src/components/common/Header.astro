@@ -1,231 +1,312 @@
 ---
-interface Props {
-  transparent?: boolean;
-}
-
-const { transparent = false } = Astro.props;
+/**
+ * Premium Minimal Header
+ * Clean, high-end navigation with sticky behavior and smooth transitions
+ */
 
 const popularRegions = [
   { id: 'zurich', name: 'Zürich', subtitle: 'Financial Capital' },
   { id: 'geneva', name: 'Geneva', subtitle: 'International Hub' },
   { id: 'basel', name: 'Basel', subtitle: 'Pharma Center' },
   { id: 'zug', name: 'Zug', subtitle: 'Crypto Valley' },
-  { id: 'alps', name: 'Alpine Regions', subtitle: 'Luxury Lifestyle' }
+  { id: 'lausanne', name: 'Lausanne', subtitle: 'Lake Geneva' },
 ];
 
 const mainServices = [
-  { 
-    id: 'housing', 
-    name: 'Housing & Real Estate',
-    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>`
-  },
-  { 
-    id: 'immigration', 
-    name: 'Visa & Immigration',
-    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>`
-  },
-  { 
-    id: 'finance', 
-    name: 'Banking & Finance',
-    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>`
-  },
-  { 
-    id: 'advisory', 
-    name: 'Advisory Services',
-    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>`
-  },
-  { 
-    id: 'education', 
-    name: 'Education & Schools',
-    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>`
-  },
-  { 
-    id: 'legal-services', 
-    name: 'Legal Services',
-    icon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16l3-3m-3 3l-3-3"></path></svg>`
-  }
+  { id: 'housing', name: 'Housing & Real Estate' },
+  { id: 'immigration', name: 'Visa & Immigration' },
+  { id: 'finance', name: 'Banking & Finance' },
+  { id: 'education', name: 'Education & Schools' },
+  { id: 'advisory', name: 'Advisory Services' },
+  { id: 'settling-in', name: 'Settling-In Support' },
 ];
-
-import { openModal } from '../../stores/modal';
 ---
 
-<header class={`fixed w-full z-50 transition-colors duration-300 ${transparent ? 'bg-transparent' : 'bg-white shadow-sm'}`}>
-  <div class="container mx-auto px-4">
-    <div class="flex items-center justify-between h-20">
-      <!-- Logo - Optimally sized and positioned to align with text baseline -->
-      <a href="/" class="flex items-center px-5" style="display: flex; align-items: center;">
+<header id="main-header" class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 transition-shadow duration-300">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="flex items-center justify-between h-16">
+      
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2">
         <img 
           src="https://res.cloudinary.com/dphbnwjtx/image/upload/v1751047384/1_bxqv6x.png" 
-          alt="ReloFinder Logo" 
-          class="h-9 w-auto md:h-9 sm:h-7"
-          style="height: 35px; width: auto; display: block; min-height: 28px; margin-top: 8px; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;"
+          alt="ReloFinder" 
+          class="h-7 w-auto"
+          style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;"
         />
       </a>
-      
-      <nav class="hidden md:flex items-center space-x-8">
-        <!-- Regions Dropdown -->
-        <div class="relative group">
-          <button class="flex items-center text-gray-600 hover:text-primary-600 transition-colors py-2 font-medium">
-            Regions
-            <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-6">
+        <ul class="flex items-center gap-6 text-[15px] font-medium text-[#1A1A1A]" style="letter-spacing: -0.02em;">
           
-          <!-- Compact Regions Dropdown -->
-          <div class="absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-            <div class="p-6">
-              <div class="flex items-center mb-4">
-                <div class="w-2 h-2 bg-gradient-to-r from-primary-600 to-primary-700 rounded-full mr-2"></div>
-                <h3 class="text-lg font-bold text-gray-900">Popular Regions</h3>
-              </div>
-              <p class="text-gray-600 mb-4 text-sm">Discover Swiss destinations for expats</p>
-              <div class="space-y-2">
+          <!-- Regions Dropdown -->
+          <li class="relative group">
+            <button class="flex items-center gap-1 py-2 hover:text-[#E23B2E] transition-colors duration-200">
+              Regions
+              <svg class="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            
+            <div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-1 group-hover:translate-y-0">
+              <div class="p-4 space-y-1">
                 {popularRegions.map((region) => (
-                  <a href={`/regions/${region.id}`} class="flex items-center justify-between p-3 rounded-lg hover:bg-gradient-to-r hover:from-primary-50 hover:to-red-50 transition-all duration-200 group/item border border-transparent hover:border-primary-100">
+                  <a 
+                    href={`/regions/${region.id}`}
+                    class="flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors duration-150 group/item"
+                  >
                     <div>
-                      <div class="font-semibold text-gray-900 group-hover/item:text-primary-700 transition-colors">{region.name}</div>
-                      <div class="text-xs text-gray-500 group-hover/item:text-primary-600 transition-colors">{region.subtitle}</div>
+                      <div class="font-medium text-gray-900 group-hover/item:text-[#E23B2E] text-sm">{region.name}</div>
+                      <div class="text-xs text-gray-500">{region.subtitle}</div>
                     </div>
-                    <svg class="w-4 h-4 text-gray-400 group-hover/item:text-primary-600 transition-colors transform group-hover/item:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 text-gray-400 opacity-0 group-hover/item:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                     </svg>
                   </a>
                 ))}
-              </div>
-              <div class="mt-4 pt-4 border-t border-gray-100">
-                <a href="/regions" class="block w-full text-center px-4 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-bold rounded-lg hover:from-primary-700 hover:to-primary-800 hover:scale-105 hover:shadow-lg transition-all duration-300 transform text-sm">
-                  View All Regions →
-                </a>
+                <div class="pt-2 mt-2 border-t border-gray-100">
+                  <a href="/regions" class="block text-center text-sm font-semibold text-[#E23B2E] hover:underline py-1">
+                    View All Regions →
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </li>
 
-        <!-- Services Dropdown -->
-        <div class="relative group">
-          <button class="flex items-center text-gray-600 hover:text-primary-600 transition-colors py-2 font-medium">
-            Services
-            <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          
-          <!-- Compact Services Dropdown with Icons -->
-          <div class="absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-            <div class="p-6">
-              <div class="flex items-center mb-4">
-                <div class="w-2 h-2 bg-gradient-to-r from-primary-600 to-primary-700 rounded-full mr-2"></div>
-                <h3 class="text-lg font-bold text-gray-900">Expert Assistance</h3>
-              </div>
-              <div class="space-y-2">
+          <!-- Services Dropdown -->
+          <li class="relative group">
+            <button class="flex items-center gap-1 py-2 hover:text-[#E23B2E] transition-colors duration-200">
+              Services
+              <svg class="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            
+            <div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-1 group-hover:translate-y-0">
+              <div class="p-4 space-y-1">
                 {mainServices.map((service) => (
-                  <a href={`/services/${service.id}`} class="flex items-center p-3 rounded-lg hover:bg-gradient-to-r hover:from-primary-50 hover:to-red-50 transition-all duration-200 group/item border border-transparent hover:border-primary-100">
-                    <div class="text-primary-600 group-hover/item:text-primary-700 mr-3" set:html={service.icon}></div>
-                    <div class="font-semibold text-gray-900 group-hover/item:text-primary-700 transition-colors">{service.name}</div>
+                  <a 
+                    href={`/services/${service.id}`}
+                    class="block px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors duration-150 group/item"
+                  >
+                    <div class="font-medium text-gray-900 group-hover/item:text-[#E23B2E] text-sm">{service.name}</div>
                   </a>
                 ))}
-              </div>
-              <div class="mt-4 pt-4 border-t border-gray-100">
-                <a href="/services" class="block text-center text-primary-600 hover:text-primary-700 font-bold hover:underline transition-all duration-300 text-sm">
-                  View All Services →
-                </a>
+                <div class="pt-2 mt-2 border-t border-gray-100">
+                  <a href="/services" class="block text-center text-sm font-semibold text-[#E23B2E] hover:underline py-1">
+                    View All Services →
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </li>
 
-        <a href="/companies" class="text-gray-600 hover:text-primary-600 transition-colors font-medium">Directory</a>
-        <a href="/blog" class="text-gray-600 hover:text-primary-600 transition-colors font-medium">Blog</a>
-        <a href="/chat" class="text-gray-600 hover:text-primary-600 transition-colors font-medium">AI Assistant</a>
-        <a href="/corporate" class="text-gray-600 hover:text-primary-600 transition-colors font-medium">For Companies</a>
-        <span class="text-sm text-gray-500 font-bold">EN</span>
-        <button onclick="universalOpenModal({page: 'home'})" class="px-6 py-3 rounded-xl text-white font-bold bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 hover:scale-105 hover:shadow-xl transition-all duration-300 text-base">Get Started</button>
+          <!-- Direct Links -->
+          <li>
+            <a href="/companies" class="py-2 hover:text-[#E23B2E] transition-colors duration-200">
+              Directory
+            </a>
+          </li>
+          
+          <li>
+            <a href="/blog" class="py-2 hover:text-[#E23B2E] transition-colors duration-200">
+              Blog
+            </a>
+          </li>
+          
+          <li>
+            <a href="/corporate" class="py-2 hover:text-[#E23B2E] transition-colors duration-200">
+              Corporate Solutions
+            </a>
+          </li>
+        </ul>
       </nav>
-      
-      <button id="menu-toggle" class="md:hidden text-gray-600 hover:text-primary-600 transition-colors">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+
+      <!-- CTA Button -->
+      <button
+        onclick="universalOpenModal({page: 'home'})"
+        class="hidden md:inline-flex items-center justify-center px-5 py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-[#E23B2E] to-[#F05454] hover:shadow-lg hover:scale-105 transition-all duration-200"
+        style="letter-spacing: -0.02em; font-weight: 600;"
+      >
+        Get Quotes
+        <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </button>
+
+      <!-- Mobile Menu Toggle -->
+      <button 
+        id="mobile-menu-toggle"
+        class="md:hidden p-2 text-gray-800 hover:text-[#E23B2E] transition-colors"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu-drawer"
+      >
+        <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
     </div>
   </div>
 </header>
 
-<div class="h-20"></div>
+<!-- Mobile Menu Overlay -->
+<div 
+  id="mobile-menu-overlay" 
+  class="fixed inset-0 bg-black/40 z-40 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"
+  aria-hidden="true"
+></div>
 
-<!-- Mobile Navigation Menu -->
-<div id="mobile-menu-overlay" class="fixed inset-0 bg-black/40 z-[9999] transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
-<div id="mobile-menu" class="lg:hidden max-h-0 overflow-hidden transition-all duration-300 bg-white shadow-xl rounded-b-2xl fixed left-0 right-0 top-0 z-[9999]">
-  <nav class="flex flex-col py-4 px-6 space-y-2" tabindex="-1">
-    <a href="/regions" class="text-gray-700 font-medium py-2">Regions</a>
-    <a href="/services" class="text-gray-700 font-medium py-2">Services</a>
-    <a href="/companies" class="text-gray-700 font-medium py-2">Directory</a>
-    <a href="/blog" class="text-gray-700 font-medium py-2">Blog</a>
-    <a href="/chat" class="text-gray-700 font-medium py-2">AI Assistant</a>
-    <a href="/corporate" class="text-gray-700 font-medium py-2">For Companies</a>
-    <span class="text-xs text-gray-500 font-semibold px-2 pt-2">EN</span>
-    <div class="mt-6">
-      <button
-        id="mobile-cta-button"
-        data-open-modal data-modal-tab="individual"
-        onclick="universalOpenModal({page: 'home'})"
-        class="w-full text-center px-6 py-3 rounded-lg bg-primary text-white font-semibold hover:bg-primary/90 transition-all duration-300"
+<!-- Mobile Menu Drawer -->
+<div 
+  id="mobile-menu-drawer"
+  class="fixed top-0 right-0 bottom-0 w-full max-w-sm bg-white z-50 transform translate-x-full transition-transform duration-300 md:hidden overflow-y-auto shadow-2xl"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="mobile-menu-title"
+>
+  <div class="p-6">
+    
+    <!-- Mobile Menu Header -->
+    <div class="flex items-center justify-between mb-8">
+      <h2 id="mobile-menu-title" class="text-xl font-bold text-gray-900">Menu</h2>
+      <button 
+        id="mobile-menu-close"
+        class="p-2 text-gray-600 hover:text-[#E23B2E] transition-colors"
+        aria-label="Close menu"
       >
-        Get Started
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
       </button>
     </div>
-  </nav>
+
+    <!-- Mobile Navigation Links -->
+    <nav class="space-y-6">
+      
+      <!-- Regions -->
+      <div>
+        <div class="font-semibold text-gray-900 mb-3">Regions</div>
+        <div class="pl-4 space-y-2">
+          {popularRegions.map((region) => (
+            <a href={`/regions/${region.id}`} class="block py-2 text-gray-600 hover:text-[#E23B2E] transition-colors">
+              {region.name}
+            </a>
+          ))}
+          <a href="/regions" class="block py-2 text-[#E23B2E] font-medium">
+            View All →
+          </a>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <div class="font-semibold text-gray-900 mb-3">Services</div>
+        <div class="pl-4 space-y-2">
+          {mainServices.map((service) => (
+            <a href={`/services/${service.id}`} class="block py-2 text-gray-600 hover:text-[#E23B2E] transition-colors">
+              {service.name}
+            </a>
+          ))}
+          <a href="/services" class="block py-2 text-[#E23B2E] font-medium">
+            View All →
+          </a>
+        </div>
+      </div>
+
+      <!-- Direct Links -->
+      <div class="space-y-4 pt-4 border-t border-gray-100">
+        <a href="/companies" class="block py-2 text-gray-900 font-medium hover:text-[#E23B2E] transition-colors">
+          Directory
+        </a>
+        <a href="/blog" class="block py-2 text-gray-900 font-medium hover:text-[#E23B2E] transition-colors">
+          Blog
+        </a>
+        <a href="/corporate" class="block py-2 text-gray-900 font-medium hover:text-[#E23B2E] transition-colors">
+          Corporate Solutions
+        </a>
+      </div>
+
+      <!-- Mobile CTA -->
+      <div class="pt-6">
+        <button
+          onclick="universalOpenModal({page: 'home'})"
+          class="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-[#E23B2E] to-[#F05454] hover:shadow-lg transition-all duration-200"
+        >
+          Get Quotes
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+    </nav>
+
+  </div>
 </div>
 
+<!-- Scroll Shadow & Mobile Menu Scripts -->
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const overlay = document.getElementById('mobile-menu-overlay');
-    let isMenuOpen = false;
+  // Scroll shadow effect
+  const header = document.getElementById('main-header');
+  let lastScroll = 0;
+  
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
     
-    function openMenu() {
-      isMenuOpen = true;
-      mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
-      overlay.classList.remove('opacity-0','pointer-events-none');
-      overlay.classList.add('opacity-100');
-      menuToggle.setAttribute('aria-expanded', 'true');
-      menuToggle.setAttribute('aria-label', 'Close menu');
-      mobileMenu.querySelector('a,button').focus();
+    if (currentScroll > 10) {
+      header?.classList.add('shadow-sm');
+    } else {
+      header?.classList.remove('shadow-sm');
     }
     
-    function closeMenu() {
-      isMenuOpen = false;
-      mobileMenu.style.maxHeight = '0px';
-      overlay.classList.add('opacity-0','pointer-events-none');
-      overlay.classList.remove('opacity-100');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.setAttribute('aria-label', 'Open menu');
-      menuToggle.focus();
+    lastScroll = currentScroll;
+  });
+
+  // Mobile menu functionality
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenuClose = document.getElementById('mobile-menu-close');
+  const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
+  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+  const menuIconOpen = document.getElementById('menu-icon-open');
+  const menuIconClose = document.getElementById('menu-icon-close');
+  
+  function openMobileMenu() {
+    mobileMenuDrawer?.classList.remove('translate-x-full');
+    mobileMenuOverlay?.classList.remove('opacity-0', 'pointer-events-none');
+    mobileMenuToggle?.setAttribute('aria-expanded', 'true');
+    menuIconOpen?.classList.add('hidden');
+    menuIconClose?.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeMobileMenu() {
+    mobileMenuDrawer?.classList.add('translate-x-full');
+    mobileMenuOverlay?.classList.add('opacity-0', 'pointer-events-none');
+    mobileMenuToggle?.setAttribute('aria-expanded', 'false');
+    menuIconOpen?.classList.remove('hidden');
+    menuIconClose?.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+  
+  mobileMenuToggle?.addEventListener('click', openMobileMenu);
+  mobileMenuClose?.addEventListener('click', closeMobileMenu);
+  mobileMenuOverlay?.addEventListener('click', closeMobileMenu);
+  
+  // Close on link click
+  mobileMenuDrawer?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+  
+  // Close on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !mobileMenuDrawer?.classList.contains('translate-x-full')) {
+      closeMobileMenu();
     }
-    
-    if (menuToggle) {
-      menuToggle.setAttribute('aria-controls', 'mobile-menu');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      menuToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (isMenuOpen) closeMenu(); else openMenu();
-      });
-    }
-    
-    if (overlay) {
-      overlay.addEventListener('click', closeMenu);
-    }
-    
-    document.addEventListener('keydown', function(e) {
-      if (isMenuOpen && e.key === 'Escape') closeMenu();
-    });
-    
-    // Close on link click
-    mobileMenu?.querySelectorAll('a').forEach(el => {
-      el.addEventListener('click', closeMenu);
-    });
   });
 </script>

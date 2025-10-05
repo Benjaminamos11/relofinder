@@ -1007,6 +1007,37 @@ export const ContactModal: FC<ContactModalProps> = ({
                 </p>
               </div>
               
+              {/* Consultation Callout - Only in Quotes Mode */}
+              {mode === "quotes" && (
+                <div className="mt-6 p-5 bg-white border border-gray-200 rounded-xl shadow-sm text-center">
+                  <h4 className="text-base font-semibold text-gray-900 mb-2">
+                    Prefer personal guidance?
+                  </h4>
+                  <p className="text-sm text-gray-600 mb-4">
+                    Schedule a free consultation with one of our verified experts.
+                  </p>
+                  <a
+                    href="/consultation"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (typeof window !== 'undefined' && (window as any).dataLayer) {
+                        (window as any).dataLayer.push({
+                          event: 'consultation_cta_click',
+                          context: context,
+                          target: '/consultation',
+                        });
+                      }
+                      window.location.href = '/consultation';
+                    }}
+                    className="inline-block w-full px-6 py-3 bg-white text-red-600 font-semibold rounded-full border-2 border-red-600 hover:bg-gradient-to-r hover:from-red-600 hover:to-red-500 hover:text-white transition-all duration-200"
+                  >
+                    Book a Free Consultation →
+                  </a>
+                  <p className="mt-2 text-xs text-gray-500">
+                    All consultations are with licensed Swiss relocation specialists.
+                  </p>
+                </div>
+              )}
               
               {/* Trust Line */}
               <div className="text-xs text-gray-600 text-center space-y-1 pt-4">
@@ -1014,26 +1045,26 @@ export const ContactModal: FC<ContactModalProps> = ({
                 <p className="text-gray-500">{COPY.legal}</p>
               </div>
               
-                {/* Corporate Link */}
-                <div className="text-center pt-2">
-                  <a
-                    href="/corporate"
-                    onClick={() => {
-                      if (typeof window !== 'undefined' && (window as any).dataLayer) {
-                        (window as any).dataLayer.push({
-                          event: 'corporate_link_click',
-                        });
-                      }
-                    }}
-                    className="text-xs text-gray-500 hover:text-gray-700 transition-colors inline-flex items-center gap-1"
-                  >
-                    {COPY.corporate}
-                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </a>
-                </div>
-              </form>
+              {/* Corporate Link */}
+              <div className="text-center pt-2">
+                <a
+                  href="/corporate"
+                  onClick={() => {
+                    if (typeof window !== 'undefined' && (window as any).dataLayer) {
+                      (window as any).dataLayer.push({
+                        event: 'corporate_link_click',
+                      });
+                    }
+                  }}
+                  className="text-xs text-gray-500 hover:text-gray-700 transition-colors inline-flex items-center gap-1"
+                >
+                  {COPY.corporate}
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </form>
             )}
           </div>
         )}
