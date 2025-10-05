@@ -1,8 +1,10 @@
 ---
 /**
- * Premium Minimal Header
- * Clean, high-end navigation with sticky behavior and smooth transitions
+ * Premium Polished Header
+ * High-density (56px), dark-red gradient CTA, refined hover states
  */
+
+const currentPath = Astro.url.pathname;
 
 const popularRegions = [
   { id: 'zurich', name: 'Zürich', subtitle: 'Financial Capital' },
@@ -20,29 +22,33 @@ const mainServices = [
   { id: 'advisory', name: 'Advisory Services' },
   { id: 'settling-in', name: 'Settling-In Support' },
 ];
+
+function isActive(path: string) {
+  return currentPath === path || currentPath.startsWith(path + '/');
+}
 ---
 
 <header id="main-header" class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 transition-shadow duration-300">
-  <div class="mx-auto max-w-7xl px-6">
-    <div class="flex items-center justify-between h-16">
+  <div class="mx-auto max-w-7xl px-6 md:px-6 px-4">
+    <div class="flex items-center justify-between h-14">
       
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2">
+      <a href="/" class="flex items-center">
         <img 
           src="https://res.cloudinary.com/dphbnwjtx/image/upload/v1751047384/1_bxqv6x.png" 
           alt="ReloFinder" 
-          class="h-7 w-auto"
+          class="h-6 w-auto"
           style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;"
         />
       </a>
 
       <!-- Desktop Navigation -->
       <nav class="hidden md:flex items-center gap-6">
-        <ul class="flex items-center gap-6 text-[15px] font-medium text-[#1A1A1A]" style="letter-spacing: -0.02em;">
+        <ul class="flex items-center gap-6 text-[15px] font-medium text-gray-800" style="letter-spacing: -0.01em; line-height: 1.35;">
           
           <!-- Regions Dropdown -->
           <li class="relative group">
-            <button class="flex items-center gap-1 py-2 hover:text-[#E23B2E] transition-colors duration-200">
+            <button class={`flex items-center gap-1 py-2 hover:text-[#B61919] transition-colors duration-200 ${isActive('/regions') ? 'text-[#B61919]' : ''}`}>
               Regions
               <svg class="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -50,23 +56,28 @@ const mainServices = [
             </button>
             
             <div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-1 group-hover:translate-y-0">
-              <div class="p-4 space-y-1">
-                {popularRegions.map((region) => (
-                  <a 
-                    href={`/regions/${region.id}`}
-                    class="flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors duration-150 group/item"
-                  >
-                    <div>
-                      <div class="font-medium text-gray-900 group-hover/item:text-[#E23B2E] text-sm">{region.name}</div>
-                      <div class="text-xs text-gray-500">{region.subtitle}</div>
-                    </div>
-                    <svg class="w-4 h-4 text-gray-400 opacity-0 group-hover/item:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
-                  </a>
-                ))}
-                <div class="pt-2 mt-2 border-t border-gray-100">
-                  <a href="/regions" class="block text-center text-sm font-semibold text-[#E23B2E] hover:underline py-1">
+              <div class="p-3">
+                <div class="px-3 py-1.5 mb-1">
+                  <div class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Top Regions</div>
+                </div>
+                <div class="space-y-0.5">
+                  {popularRegions.map((region) => (
+                    <a 
+                      href={`/regions/${region.id}`}
+                      class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors duration-150 group/item"
+                    >
+                      <div>
+                        <div class="font-medium text-gray-900 group-hover/item:text-[#B61919] text-sm">{region.name}</div>
+                        <div class="text-xs text-gray-500">{region.subtitle}</div>
+                      </div>
+                      <svg class="w-3.5 h-3.5 text-gray-400 opacity-0 group-hover/item:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                      </svg>
+                    </a>
+                  ))}
+                </div>
+                <div class="pt-2 mt-2 border-t border-gray-100 px-3">
+                  <a href="/regions" class="block text-center text-xs font-semibold text-[#B61919] hover:underline py-1">
                     View All Regions →
                   </a>
                 </div>
@@ -76,7 +87,7 @@ const mainServices = [
 
           <!-- Services Dropdown -->
           <li class="relative group">
-            <button class="flex items-center gap-1 py-2 hover:text-[#E23B2E] transition-colors duration-200">
+            <button class={`flex items-center gap-1 py-2 hover:text-[#B61919] transition-colors duration-200 ${isActive('/services') ? 'text-[#B61919]' : ''}`}>
               Services
               <svg class="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -84,17 +95,22 @@ const mainServices = [
             </button>
             
             <div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-1 group-hover:translate-y-0">
-              <div class="p-4 space-y-1">
-                {mainServices.map((service) => (
-                  <a 
-                    href={`/services/${service.id}`}
-                    class="block px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors duration-150 group/item"
-                  >
-                    <div class="font-medium text-gray-900 group-hover/item:text-[#E23B2E] text-sm">{service.name}</div>
-                  </a>
-                ))}
-                <div class="pt-2 mt-2 border-t border-gray-100">
-                  <a href="/services" class="block text-center text-sm font-semibold text-[#E23B2E] hover:underline py-1">
+              <div class="p-3">
+                <div class="px-3 py-1.5 mb-1">
+                  <div class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Expert Assistance</div>
+                </div>
+                <div class="space-y-0.5">
+                  {mainServices.map((service) => (
+                    <a 
+                      href={`/services/${service.id}`}
+                      class="block px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors duration-150 group/item"
+                    >
+                      <div class="font-medium text-gray-900 group-hover/item:text-[#B61919] text-sm">{service.name}</div>
+                    </a>
+                  ))}
+                </div>
+                <div class="pt-2 mt-2 border-t border-gray-100 px-3">
+                  <a href="/services" class="block text-center text-xs font-semibold text-[#B61919] hover:underline py-1">
                     View All Services →
                   </a>
                 </div>
@@ -102,35 +118,62 @@ const mainServices = [
             </div>
           </li>
 
-          <!-- Direct Links -->
+          <!-- Direct Links with Active States -->
           <li>
-            <a href="/companies" class="py-2 hover:text-[#E23B2E] transition-colors duration-200">
+            <a 
+              href="/companies" 
+              class={`relative py-2 inline-block hover:text-[#B61919] transition-colors duration-200 ${
+                isActive('/companies') 
+                  ? 'text-[#B61919] after:content-[""] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:rounded-full' 
+                  : ''
+              }`}
+              style={isActive('/companies') ? 'background: linear-gradient(90deg, var(--rf-red-start), var(--rf-red-end)); -webkit-background-clip: text; background-clip: text; --tw-gradient-stops: none;' : ''}
+            >
               Directory
+              {isActive('/companies') && (
+                <span class="absolute -bottom-1 left-0 h-[2px] w-full rounded-full" style="background: var(--rf-grad-red);"></span>
+              )}
             </a>
           </li>
           
           <li>
-            <a href="/blog" class="py-2 hover:text-[#E23B2E] transition-colors duration-200">
+            <a 
+              href="/blog" 
+              class={`relative py-2 inline-block hover:text-[#B61919] transition-colors duration-200 ${
+                isActive('/blog') ? 'text-[#B61919]' : ''
+              }`}
+            >
               Blog
+              {isActive('/blog') && (
+                <span class="absolute -bottom-1 left-0 h-[2px] w-full rounded-full" style="background: var(--rf-grad-red);"></span>
+              )}
             </a>
           </li>
           
           <li>
-            <a href="/corporate" class="py-2 hover:text-[#E23B2E] transition-colors duration-200">
+            <a 
+              href="/corporate" 
+              class={`relative py-2 inline-block hover:text-[#B61919] transition-colors duration-200 ${
+                isActive('/corporate') ? 'text-[#B61919]' : ''
+              }`}
+            >
               Corporate Solutions
+              {isActive('/corporate') && (
+                <span class="absolute -bottom-1 left-0 h-[2px] w-full rounded-full" style="background: var(--rf-grad-red);"></span>
+              )}
             </a>
           </li>
         </ul>
       </nav>
 
-      <!-- CTA Button -->
+      <!-- CTA Button with Dark Red Gradient -->
       <button
         onclick="universalOpenModal({page: 'home'})"
-        class="hidden md:inline-flex items-center justify-center px-5 py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-[#E23B2E] to-[#F05454] hover:shadow-lg hover:scale-105 transition-all duration-200"
-        style="letter-spacing: -0.02em; font-weight: 600;"
+        class="hidden md:inline-flex h-10 px-4 items-center justify-center rounded-lg font-semibold text-white transition-all duration-200 will-change-transform hover:brightness-105 hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-red-300/40"
+        style="background: var(--rf-grad-red); letter-spacing: -0.01em;"
       >
         Get Quotes
-        <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="ml-1.5 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </button>
@@ -138,7 +181,7 @@ const mainServices = [
       <!-- Mobile Menu Toggle -->
       <button 
         id="mobile-menu-toggle"
-        class="md:hidden p-2 text-gray-800 hover:text-[#E23B2E] transition-colors"
+        class="md:hidden p-2 text-gray-800 hover:text-[#B61919] transition-colors"
         aria-label="Toggle menu"
         aria-expanded="false"
         aria-controls="mobile-menu-drawer"
@@ -177,7 +220,7 @@ const mainServices = [
       <h2 id="mobile-menu-title" class="text-xl font-bold text-gray-900">Menu</h2>
       <button 
         id="mobile-menu-close"
-        class="p-2 text-gray-600 hover:text-[#E23B2E] transition-colors"
+        class="p-2 text-gray-600 hover:text-[#B61919] transition-colors"
         aria-label="Close menu"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -191,14 +234,14 @@ const mainServices = [
       
       <!-- Regions -->
       <div>
-        <div class="font-semibold text-gray-900 mb-3">Regions</div>
+        <div class="font-semibold text-gray-900 mb-3 text-sm uppercase tracking-wide text-gray-500">Regions</div>
         <div class="pl-4 space-y-2">
           {popularRegions.map((region) => (
-            <a href={`/regions/${region.id}`} class="block py-2 text-gray-600 hover:text-[#E23B2E] transition-colors">
+            <a href={`/regions/${region.id}`} class="block py-2 text-gray-600 hover:text-[#B61919] transition-colors font-medium">
               {region.name}
             </a>
           ))}
-          <a href="/regions" class="block py-2 text-[#E23B2E] font-medium">
+          <a href="/regions" class="block py-2 text-[#B61919] font-semibold">
             View All →
           </a>
         </div>
@@ -206,14 +249,14 @@ const mainServices = [
 
       <!-- Services -->
       <div>
-        <div class="font-semibold text-gray-900 mb-3">Services</div>
+        <div class="font-semibold text-gray-900 mb-3 text-sm uppercase tracking-wide text-gray-500">Services</div>
         <div class="pl-4 space-y-2">
           {mainServices.map((service) => (
-            <a href={`/services/${service.id}`} class="block py-2 text-gray-600 hover:text-[#E23B2E] transition-colors">
+            <a href={`/services/${service.id}`} class="block py-2 text-gray-600 hover:text-[#B61919] transition-colors font-medium">
               {service.name}
             </a>
           ))}
-          <a href="/services" class="block py-2 text-[#E23B2E] font-medium">
+          <a href="/services" class="block py-2 text-[#B61919] font-semibold">
             View All →
           </a>
         </div>
@@ -221,22 +264,23 @@ const mainServices = [
 
       <!-- Direct Links -->
       <div class="space-y-4 pt-4 border-t border-gray-100">
-        <a href="/companies" class="block py-2 text-gray-900 font-medium hover:text-[#E23B2E] transition-colors">
+        <a href="/companies" class="block py-2 text-gray-900 font-semibold hover:text-[#B61919] transition-colors">
           Directory
         </a>
-        <a href="/blog" class="block py-2 text-gray-900 font-medium hover:text-[#E23B2E] transition-colors">
+        <a href="/blog" class="block py-2 text-gray-900 font-semibold hover:text-[#B61919] transition-colors">
           Blog
         </a>
-        <a href="/corporate" class="block py-2 text-gray-900 font-medium hover:text-[#E23B2E] transition-colors">
+        <a href="/corporate" class="block py-2 text-gray-900 font-semibold hover:text-[#B61919] transition-colors">
           Corporate Solutions
         </a>
       </div>
 
-      <!-- Mobile CTA -->
+      <!-- Mobile CTA with Dark Red Gradient -->
       <div class="pt-6">
         <button
           onclick="universalOpenModal({page: 'home'})"
-          class="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-[#E23B2E] to-[#F05454] hover:shadow-lg transition-all duration-200"
+          class="w-full flex items-center justify-center gap-2 h-12 px-6 rounded-lg font-semibold text-white transition-all duration-200 hover:brightness-105 hover:scale-[1.01]"
+          style="background: var(--rf-grad-red); letter-spacing: -0.01em;"
         >
           Get Quotes
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -256,17 +300,21 @@ const mainServices = [
   const header = document.getElementById('main-header');
   let lastScroll = 0;
   
-  window.addEventListener('scroll', () => {
+  function handleScroll() {
     const currentScroll = window.scrollY;
     
-    if (currentScroll > 10) {
-      header?.classList.add('shadow-sm');
+    if (currentScroll > 8) {
+      header?.classList.add('shadow-[0_6px_24px_rgba(0,0,0,0.06)]');
     } else {
-      header?.classList.remove('shadow-sm');
+      header?.classList.remove('shadow-[0_6px_24px_rgba(0,0,0,0.06)]');
     }
     
     lastScroll = currentScroll;
-  });
+  }
+  
+  // Initial check
+  handleScroll();
+  window.addEventListener('scroll', handleScroll, { passive: true });
 
   // Mobile menu functionality
   const mobileMenuToggle = document.getElementById('mobile-menu-toggle');

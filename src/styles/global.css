@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Brand Gradient Tokens */
+:root {
+  --rf-red-start: #B61919;
+  --rf-red-end: #DF3030;
+  --rf-grad-red: linear-gradient(90deg, var(--rf-red-start), var(--rf-red-end));
+}
+
 /* Contact Modal Animations */
 @keyframes fadeIn {
   from {
