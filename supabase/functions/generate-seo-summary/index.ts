@@ -1,6 +1,3 @@
-// Generate SEO Summary Edge Function
-// Creates a static, SEO-optimized summary for each agency (always visible)
-
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
@@ -8,19 +5,6 @@ const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
-
-const SEO_SYSTEM_PROMPT = `You are an SEO copywriter specializing in Swiss relocation services. Generate a short, SEO-optimized summary (3-5 sentences) based on reviews.
-
-Requirements:
-- Focus on concrete services and strengths
-- Include key locations (Zürich, Geneva, Basel, etc.)
-- Mention client types (corporate, families, HNWI, etc.)
-- Natural language, not marketing fluff
-- Include relevant keywords naturally
-- Maximum 200 words
-
-Output format (plain text only, no JSON):
-Write a natural paragraph that flows well and includes key SEO terms.`;
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -33,7 +17,7 @@ serve(async (req) => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
     );
 
-    const { relocator_id, force = false } = await req.json();
+    const { relocator_id } = await req.json();
 
     if (!relocator_id) {
       return new Response(
@@ -42,144 +26,178 @@ serve(async (req) => {
       );
     }
 
-    // Check if SEO summary already exists (unless force=true)
-    if (!force) {
-      const { data: existing } = await supabaseClient
-        .from('relocators')
-        .select('seo_summary, seo_summary_generated_at')
-        .eq('id', relocator_id)
-        .single();
+    console.log(`Generating SEO summary for relocator_id: ${relocator_id}`);
 
-      if (existing?.seo_summary && existing?.seo_summary_generated_at) {
-        const daysSince = (Date.now() - new Date(existing.seo_summary_generated_at).getTime()) / (1000 * 60 * 60 * 24);
-        if (daysSince < 30) {
-          return new Response(
-            JSON.stringify({ 
-              message: 'SEO summary already exists and is recent',
-              seo_summary: existing.seo_summary,
-              generated_at: existing.seo_summary_generated_at,
-            }),
-            { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-          );
-        }
-      }
-    }
-
-    // Get relocator info
+    // Fetch relocator data
     const { data: relocator, error: relocatorError } = await supabaseClient
       .from('relocators')
-      .select('name, description, services, regions')
+      .select('*')
       .eq('id', relocator_id)
       .single();
 
     if (relocatorError || !relocator) {
+      console.error('Error fetching relocator:', relocatorError);
       return new Response(
         JSON.stringify({ error: 'Relocator not found' }),
         { status: 404, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
-    // Fetch reviews
-    const { data: reviews } = await supabaseClient
-      .from('reviews')
-      .select('rating, text, service_code')
+    // Fetch review summary
+    const { data: reviewSummary } = await supabaseClient
+      .from('review_summaries')
+      .select('*')
       .eq('relocator_id', relocator_id)
-      .eq('status', 'approved')
-      .order('created_at', { ascending: false })
-      .limit(10);
+      .single();
 
-    // Fetch external reviews
-    const { data: externalReviews } = await supabaseClient
-      .from('external_reviews')
-      .select('rating, review_count')
-      .eq('relocator_id', relocator_id)
-      .eq('source', 'google')
-      .order('captured_at', { ascending: false })
-      .limit(1);
+    // Fetch Google reviews for aggregate stats
+    const { data: googleReviews } = await supabaseClient
+      .from('google_reviews')
+      .select('rating')
+      .eq('relocator_id', relocator_id);
 
-    // Prepare context
-    const context = {
-      name: relocator.name,
-      description: relocator.description || '',
-      services: relocator.services || [],
-      regions: relocator.regions || [],
-      review_count: (reviews?.length || 0) + (externalReviews?.[0]?.review_count || 0),
-      avg_rating: externalReviews?.[0]?.rating || 4.5,
-      sample_reviews: reviews?.slice(0, 5).map(r => r.text) || [],
-    };
+    // Calculate rating and count
+    let averageRating = 0;
+    let reviewCount = 0;
+    if (googleReviews && googleReviews.length > 0) {
+      const totalRating = googleReviews.reduce((sum, review) => sum + review.rating, 0);
+      averageRating = parseFloat((totalRating / googleReviews.length).toFixed(1));
+      reviewCount = googleReviews.length;
+    }
 
-    // Call OpenAI
-    const openaiKey = Deno.env.get('OPENAI_API_KEY');
-    if (!openaiKey) {
-      return new Response(
-        JSON.stringify({ error: 'OpenAI API key not configured' }),
-        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+    // Extract common positives and negatives from review summary
+    let positives = 'responsive service, local expertise';
+    let negatives = 'limited availability during peak times';
+    let reviewSummaryText = '';
+
+    if (reviewSummary) {
+      if (reviewSummary.positives && Array.isArray(reviewSummary.positives)) {
+        positives = reviewSummary.positives.slice(0, 3).join(', ');
+      }
+      if (reviewSummary.negatives && Array.isArray(reviewSummary.negatives)) {
+        negatives = reviewSummary.negatives.slice(0, 2).join(', ');
+      }
+      if (reviewSummary.summary) {
+        reviewSummaryText = reviewSummary.summary;
+      }
+    }
+
+    // Extract regions and services
+    const regionsServed = Array.isArray(relocator.regions_served) 
+      ? relocator.regions_served.join(', ') 
+      : 'Zurich, Geneva, Basel';
+    
+    const topRegion = Array.isArray(relocator.regions_served) && relocator.regions_served.length > 0
+      ? relocator.regions_served[0]
+      : 'Zurich';
+
+    // Build the prompt
+    const systemPrompt = `You are an expert SEO & relocation industry analyst. 
+You write short, factual, keyword-optimized summaries for relocation agencies in Switzerland.
+Your output appears directly under the company hero on ReloFinder.ch.
+It must sound trustworthy, objective, and helpful to expats comparing relocation providers.
+Keep it concise (80–120 words) and factually grounded in the provided data.`;
+
+    const userPrompt = `Write a one-paragraph summary for the company below.
+
+### Company Information
+Name: ${relocator.name}
+Tier: ${relocator.tier || 'standard'}
+Founded: ${relocator.founded || 'Not specified'}
+Languages: ${Array.isArray(relocator.languages) ? relocator.languages.join(', ') : 'English, German'}
+Regions served: ${regionsServed}
+Certifications: ${relocator.certifications || 'Not specified'}
+Website: ${relocator.website || 'Not specified'}
+
+### Reviews Summary
+Overall rating: ${averageRating} / 5 (${reviewCount} reviews)
+Common positives: ${positives}
+Common negatives: ${negatives}
+AI Review Summary: ${reviewSummaryText}
+
+### SEO Target
+Target keyword phrase: "${relocator.name} relocation services Switzerland"
+Secondary intent: "expat relocation in ${topRegion}", "relocation agency ${topRegion}"
+
+### Instructions
+- Include the company name naturally at least twice.
+- Mention 1–2 service categories and 1 region keyword.
+- Blend review insights ("clients praise...") into a factual tone.
+- Avoid superlatives like "best"; prefer "known for," "trusted by," or "recognized."
+- End with a neutral statement about who it's ideal for ("ideal for expats relocating to ${topRegion} or across Switzerland").
+
+Output:
+Return only the plain paragraph text. No lists, no markdown.`;
+
+    console.log('Calling OpenAI for SEO summary generation...');
+
+    // Call OpenAI API
+    const openaiApiKey = Deno.env.get('OPENAI_API_KEY');
+    if (!openaiApiKey) {
+      throw new Error('OPENAI_API_KEY not configured');
     }
 
     const openaiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${openaiKey}`,
+        'Authorization': `Bearer ${openaiApiKey}`,
       },
       body: JSON.stringify({
         model: 'gpt-4o-mini',
         messages: [
-          { role: 'system', content: SEO_SYSTEM_PROMPT },
-          { role: 'user', content: JSON.stringify(context) },
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: userPrompt }
         ],
         temperature: 0.7,
-        max_tokens: 250,
+        max_tokens: 300,
       }),
     });
 
     if (!openaiResponse.ok) {
       const errorText = await openaiResponse.text();
       console.error('OpenAI API error:', errorText);
-      return new Response(
-        JSON.stringify({ error: 'AI generation failed' }),
-        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+      throw new Error(`OpenAI API error: ${openaiResponse.status}`);
     }
 
     const openaiData = await openaiResponse.json();
     const seoSummary = openaiData.choices[0].message.content.trim();
 
-    // Update relocator with SEO summary
-    const { error: updateError } = await supabaseClient
+    console.log('SEO summary generated:', seoSummary.substring(0, 100) + '...');
+
+    // Store the summary in the database
+    const { data: updatedRelocator, error: updateError } = await supabaseClient
       .from('relocators')
       .update({
         seo_summary: seoSummary,
         seo_summary_generated_at: new Date().toISOString(),
       })
-      .eq('id', relocator_id);
+      .eq('id', relocator_id)
+      .select()
+      .single();
 
     if (updateError) {
-      console.error('Error updating SEO summary:', updateError);
-      return new Response(
-        JSON.stringify({ error: 'Failed to save SEO summary' }),
-        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+      console.error('Error updating relocator with SEO summary:', updateError);
+      // Don't fail the request, just log the error
     }
 
     return new Response(
-      JSON.stringify({ 
-        success: true, 
-        seo_summary: seoSummary,
+      JSON.stringify({
+        summary: seoSummary,
         generated_at: new Date().toISOString(),
+        word_count: seoSummary.split(' ').length,
       }),
-      {
-        status: 200,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      }
+      { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
+
   } catch (error) {
     console.error('Error in generate-seo-summary function:', error);
     return new Response(
-      JSON.stringify({ error: 'Internal server error', details: error.message }),
+      JSON.stringify({ 
+        error: 'Internal server error', 
+        details: error.message 
+      }),
       { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
   }
 });
-
