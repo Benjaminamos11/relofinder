@@ -709,7 +709,7 @@ export const ContactModal: FC<ContactModalProps> = ({
                 
                 <div className="pt-4">
                   <a
-                    href="https://cal.com/relofinder/consultation"
+                    href="https://cal.com/relofinder/relofinder-consultation"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => {

@@ -372,25 +372,23 @@ SET active = false
 WHERE region = 'basel' AND service = 'temporary';
 ```
 
-### Feature Flags
+### Cal.com Integration
 
-To enable Cal.com integration (future):
+The modal includes Cal.com integration for direct consultation scheduling:
 
 ```typescript
-// In ContactModal.tsx
-const USE_CAL_COM = false; // Set to true when ready
+// Official Cal.com booking link
+const CAL_COM_LINK = "https://cal.com/relofinder/relofinder-consultation";
 
-// Show Cal.com button in success view
-{USE_CAL_COM && mode === 'consultation' && (
-  <a
-    href="https://cal.com/prime-relocation"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-gray-700 font-semibold"
-  >
-    Schedule via Cal.com
-  </a>
-)}
+// Used in consultation mode after form submission
+<a
+  href="https://cal.com/relofinder/relofinder-consultation"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-gray-700 font-semibold"
+>
+  Schedule Meeting Now →
+</a>
 ```
 
 ## 📱 Responsive Design
