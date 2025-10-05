@@ -4,13 +4,17 @@ import Hero from '../components/home/Hero.astro';
 import RegionsShowcase from '../components/home/RegionsShowcase.astro';
 import ServicesShowcase from '../components/home/ServicesShowcase.astro';
 import FeaturedAgencies from '../components/home/FeaturedAgencies';
-import RecentReviewsSection from '../components/home/RecentReviewsSection.astro';
+import TrustedProfessionalsSlider from '../components/home/TrustedProfessionalsSlider';
 import CTASection from '../components/home/CTASection.astro';
 import Footer from '../components/common/Footer.astro';
 import { getFeaturedCompanies } from '../utils/featuredCompanies';
+import { getTrustedProfessionalsData } from '../utils/trustedProfessionalsData';
 
 // Fetch featured companies (data-driven, auto-updates from directory)
 const featuredCompanies = await getFeaturedCompanies(10);
+
+// Fetch trusted professionals slider data
+const trustedProfessionalsData = await getTrustedProfessionalsData();
 
 const title = "Switzerland Relocation Made Simple | Compare Providers & Regions | ReloFinder";
 const description = "Compare vetted relocation agencies, explore top Swiss regions, and plan your move with transparent services and free consultations.";
@@ -64,8 +68,8 @@ const schema = {
 	<!-- 4. Featured Agencies - Clean text cards, perfect alignment, Preferred first -->
 	<FeaturedAgencies companies={featuredCompanies} limit={8} client:only="react" />
 	
-	<!-- 5. Recent Reviews - Real client feedback -->
-	<RecentReviewsSection />
+	<!-- 5. Trusted Professionals - AI-powered reviews slider by company -->
+	<TrustedProfessionalsSlider companies={trustedProfessionalsData} client:only="react" />
 	
 	<!-- 6. CTA - How to get started -->
 	<CTASection />
