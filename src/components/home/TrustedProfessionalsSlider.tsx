@@ -26,9 +26,14 @@ type Props = {
   companies: CompanySlide[];
 };
 
+type GenerationState = 'idle' | 'generating' | 'success' | 'error';
+
 export default function TrustedProfessionalsSlider({ companies }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [generationState, setGenerationState] = useState<GenerationState>('idle');
+  const [generatedSummary, setGeneratedSummary] = useState<string | null>(null);
+  const [progress, setProgress] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Auto-scroll every 8 seconds
@@ -54,6 +59,66 @@ export default function TrustedProfessionalsSlider({ companies }: Props) {
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + companies.length) % companies.length);
+    // Reset generation state when changing slides
+    setGenerationState('idle');
+    setGeneratedSummary(null);
+    setProgress(0);
+  };
+
+  const handleGenerateAI = async () => {
+    const company = companies[currentIndex];
+    
+    setGenerationState('generating');
+    setProgress(0);
+
+    // Simulate progress bar
+    const progressInterval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 90) {
+          clearInterval(progressInterval);
+          return 90;
+        }
+        return prev + 10;
+      });
+    }, 300);
+
+    try {
+      const response = await fetch('https://yrkdgsswjnrrprfsmllr.supabase.co/functions/v1/generate-ai-summary', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlya2Rnc3N3am5ycnByZnNtbGxyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU5MTU4MzIsImV4cCI6MjA1MTQ5MTgzMn0.7BlX7lS9eOesqW7TAAAAKlc068Ria-7rCjOwvaywctE'
+        },
+        body: JSON.stringify({ relocator_id: company.id })
+      });
+
+      clearInterval(progressInterval);
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to generate insights');
+      }
+
+      const data = await response.json();
+      
+      setProgress(100);
+      setGeneratedSummary(data.verdict || 'AI summary generated successfully!');
+      setGenerationState('success');
+
+      // Track analytics
+      if (typeof window !== 'undefined' && (window as any).dataLayer) {
+        (window as any).dataLayer.push({
+          event: 'ai_summary_generated',
+          company_id: company.id,
+          company_name: company.name,
+        });
+      }
+    } catch (error) {
+      clearInterval(progressInterval);
+      console.error('Error generating AI summary:', error);
+      setGenerationState('error');
+      setProgress(0);
+    }
   };
 
   if (!companies.length) {
@@ -61,6 +126,13 @@ export default function TrustedProfessionalsSlider({ companies }: Props) {
   }
 
   const currentCompany = companies[currentIndex];
+  
+  // Reset generation state when company changes
+  useEffect(() => {
+    setGenerationState('idle');
+    setGeneratedSummary(null);
+    setProgress(0);
+  }, [currentIndex]);
 
   return (
     <section className="py-16 bg-gray-50/50">
@@ -174,55 +246,121 @@ export default function TrustedProfessionalsSlider({ companies }: Props) {
             ))}
 
             {/* AI Summary Card */}
-            {currentCompany.aiSummary ? (
-              <article className="bg-gradient-to-br from-[#FFF7E6] to-white rounded-xl p-6 shadow-sm border border-[#FDE68A] hover:shadow-md transition-shadow">
-                {/* AI Badge */}
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-8 h-8 bg-gradient-to-r from-[#B61919] to-[#DF3030] rounded-lg flex items-center justify-center">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                      />
-                    </svg>
-                  </div>
-                  <h3 className="text-base font-semibold text-gray-900">AI Insights</h3>
-                </div>
-
-                {/* Summary Text */}
-                <p className="text-sm text-gray-800 leading-relaxed mb-6">
-                  {currentCompany.aiSummary.verdict}
-                </p>
-
-                {/* Footer */}
-                <div className="pt-3 border-t border-[#FDE68A]">
-                  <p className="text-xs text-gray-600">
-                    Based on <span className="font-semibold">{currentCompany.aiSummary.review_count}</span> verified reviews
-                  </p>
-                </div>
-              </article>
-            ) : (
-              <article className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow flex items-center justify-center">
-                <div className="text-center text-gray-500">
-                  <svg
-                    className="w-10 h-10 mx-auto mb-3 text-gray-300"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
+            <article className="bg-gradient-to-br from-[#FFF7E6] to-white rounded-xl p-6 shadow-sm border border-[#FDE68A] hover:shadow-md transition-shadow flex flex-col">
+              {/* AI Badge */}
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 bg-gradient-to-r from-[#B61919] to-[#DF3030] rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeWidth={1.5}
+                      strokeWidth={2}
                       d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
                     />
                   </svg>
-                  <p className="text-sm">AI summary generating...</p>
                 </div>
-              </article>
-            )}
+                <h3 className="text-base font-semibold text-gray-900">AI Insights</h3>
+              </div>
+
+              {/* Content Area */}
+              <div className="flex-1 mb-4">
+                {generationState === 'idle' && (
+                  <>
+                    {currentCompany.aiSummary ? (
+                      <p className="text-sm text-gray-800 leading-relaxed">
+                        {currentCompany.aiSummary.verdict}
+                      </p>
+                    ) : (
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        Generate an AI-powered summary of all reviews for {currentCompany.name}.
+                      </p>
+                    )}
+                  </>
+                )}
+
+                {generationState === 'generating' && (
+                  <div className="space-y-3">
+                    <p className="text-sm text-gray-700 font-medium">Analyzing reviews...</p>
+                    {/* Progress Bar */}
+                    <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-[#B61919] to-[#DF3030] transition-all duration-300 ease-out"
+                        style={{ width: `${progress}%` }}
+                      />
+                    </div>
+                    <p className="text-xs text-gray-500">
+                      Processing {currentCompany.reviews.length}+ reviews with AI...
+                    </p>
+                  </div>
+                )}
+
+                {generationState === 'success' && generatedSummary && (
+                  <div className="space-y-2">
+                    <p className="text-sm text-gray-800 leading-relaxed">{generatedSummary}</p>
+                    <div className="flex items-center gap-1 text-xs text-green-600">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <span>Summary generated successfully</span>
+                    </div>
+                  </div>
+                )}
+
+                {generationState === 'error' && (
+                  <div className="text-center text-red-600">
+                    <p className="text-sm font-medium">Failed to generate summary</p>
+                    <p className="text-xs mt-1">Please try again</p>
+                  </div>
+                )}
+              </div>
+
+              {/* Action Button or Footer */}
+              {generationState === 'idle' && !currentCompany.aiSummary && (
+                <button
+                  onClick={handleGenerateAI}
+                  className="w-full px-4 py-2.5 bg-gradient-to-r from-[#B61919] to-[#DF3030] text-white text-sm font-semibold rounded-lg hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                  Generate AI Summary
+                </button>
+              )}
+
+              {generationState === 'idle' && currentCompany.aiSummary && (
+                <div className="pt-3 border-t border-[#FDE68A]">
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs text-gray-600">
+                      Based on <span className="font-semibold">{currentCompany.aiSummary.review_count}</span> verified reviews
+                    </p>
+                    <button
+                      onClick={handleGenerateAI}
+                      className="text-xs text-[#B61919] hover:text-[#DF3030] font-medium transition-colors"
+                    >
+                      Refresh
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {generationState === 'error' && (
+                <button
+                  onClick={handleGenerateAI}
+                  className="w-full px-4 py-2.5 bg-gray-100 text-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-200 transition-all duration-200"
+                >
+                  Try Again
+                </button>
+              )}
+            </article>
           </div>
 
           {/* Navigation Arrows */}
