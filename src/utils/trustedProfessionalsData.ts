@@ -32,9 +32,9 @@ export async function getTrustedProfessionalsData(): Promise<CompanySlide[]> {
     // Fetch all relocators with tier and basic info
     const { data: relocators, error: relocatorsError } = await supabase
       .from('relocators')
-      .select('id, name, tier, rating_avg, rating_count')
+      .select('id, name, tier, rating')
       .order('tier', { ascending: true }) // preferred < partner < standard
-      .order('rating_avg', { ascending: false });
+      .order('rating', { ascending: false });
 
     if (relocatorsError || !relocators) {
       console.error('[TrustedProfessionals] Error fetching relocators:', relocatorsError);
@@ -43,8 +43,20 @@ export async function getTrustedProfessionalsData(): Promise<CompanySlide[]> {
 
     console.log(`[TrustedProfessionals] Fetched ${relocators.length} relocators from DB`);
 
+    // Count reviews per company from google_reviews table
+    const companiesWithReviewCount = await Promise.all(
+      relocators.map(async (company) => {
+        const { count } = await supabase
+          .from('google_reviews')
+          .select('*', { count: 'exact', head: true })
+          .eq('relocator_id', company.id);
+        
+        return { ...company, review_count: count || 0 };
+      })
+    );
+
     // Filter companies with enough reviews (at least 3)
-    const eligibleCompanies = relocators.filter((r) => (r.rating_count || 0) >= 3);
+    const eligibleCompanies = companiesWithReviewCount.filter((r) => r.review_count >= 3);
 
     console.log(`[TrustedProfessionals] ${eligibleCompanies.length} companies have 3+ reviews`);
 
@@ -104,7 +116,7 @@ export async function getTrustedProfessionalsData(): Promise<CompanySlide[]> {
           name: company.name,
           slug: slug,
           tier: company.tier || 'standard',
-          rating_avg: company.rating_avg || 0,
+          rating_avg: company.rating || 0,
           reviews: reviews || [],
           aiSummary: summaryData
             ? {
