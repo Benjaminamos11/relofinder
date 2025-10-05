@@ -40,11 +40,10 @@ rating:
   score: 4.6
   reviews: 180
   breakdown:
-    5: 120
-    4: 40
-    3: 15
-    2: 3
-    1: 2
+    communication: 4.5
+    professionalism: 4.7
+    value: 4.6
+    timeliness: 4.6
 pricing:
   consultation: "Free"
   hourlyRate: "Varies"
