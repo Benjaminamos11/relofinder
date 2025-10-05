@@ -37,7 +37,7 @@ let externalReviews = [];
 let externalAggregate = { avg: 0, count: 0 };
 let reviewSummary = null;
 let tier = 'standard';
-let weightedRating = companyData.rating?.score || 0;
+let weightedRating = Math.round((companyData.rating?.score || 0) * 10) / 10;
 let relocatorId = null;
 
 try {
@@ -135,7 +135,7 @@ try {
   if (internalCount + externalCount > 0) {
     const totalWeight = (internalCount * 0.6 + externalCount * 0.4);
     weightedRating = totalWeight > 0 
-      ? (internalAvg * internalCount * 0.6 + externalAggregate.avg * externalCount * 0.4) / totalWeight
+      ? Math.round(((internalAvg * internalCount * 0.6 + externalAggregate.avg * externalCount * 0.4) / totalWeight) * 10) / 10
       : companyData.rating?.score || 0;
   }
 } catch (error) {
@@ -1456,7 +1456,7 @@ const yearsExperience = companyData.founded ? new Date().getFullYear() - company
             <!-- Key Facts -->
             <div class="grid md:grid-cols-3 gap-4 mb-6">
               <div class="bg-white rounded-xl p-4 border border-gray-200 text-center">
-                <p class="text-3xl font-bold text-primary-600 mb-1">${weightedRating || 4.8}</p>
+                <p class="text-3xl font-bold text-primary-600 mb-1">${(weightedRating || 4.8).toFixed(1)}</p>
                 <p class="text-xs text-gray-600">Average Rating</p>
               </div>
               <div class="bg-white rounded-xl p-4 border border-gray-200 text-center">
