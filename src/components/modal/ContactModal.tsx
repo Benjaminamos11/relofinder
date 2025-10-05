@@ -797,8 +797,40 @@ export const ContactModal: FC<ContactModalProps> = ({
                 </p>
               </div>
               
+              {/* Consultation Callout - Only show in Quotes mode */}
+              {mode === "quotes" && (
+                <div className="mt-6 p-5 bg-white border border-gray-200 rounded-xl shadow-sm text-center">
+                  <h4 className="text-base font-semibold text-gray-900 mb-2">
+                    Prefer personal guidance?
+                  </h4>
+                  <p className="text-sm text-gray-600 mb-4">
+                    Schedule a free consultation with one of our verified experts.
+                  </p>
+                  <a
+                    href="/consultation"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (typeof window !== 'undefined' && (window as any).dataLayer) {
+                        (window as any).dataLayer.push({
+                          event: 'consultation_cta_click',
+                          context: context,
+                          target: '/consultation',
+                        });
+                      }
+                      window.location.href = '/consultation';
+                    }}
+                    className="inline-block w-full px-6 py-3 bg-white text-red-600 font-semibold rounded-full border-2 border-red-600 hover:bg-gradient-to-r hover:from-red-600 hover:to-red-500 hover:text-white transition-all duration-200"
+                  >
+                    Book a Free Consultation →
+                  </a>
+                  <p className="mt-2 text-xs text-gray-500">
+                    All consultations are with licensed Swiss relocation specialists.
+                  </p>
+                </div>
+              )}
+              
               {/* Trust Line */}
-              <div className="text-xs text-gray-600 text-center space-y-1 pt-2">
+              <div className="text-xs text-gray-600 text-center space-y-1 pt-4">
                 <p>{COPY.trust}</p>
                 <p className="text-gray-500">{COPY.legal}</p>
               </div>

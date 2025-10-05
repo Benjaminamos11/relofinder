@@ -1,0 +1,163 @@
+---
+/**
+ * Free Consultation Page
+ * Dedicated page for booking consultations with verified Swiss relocation experts
+ */
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Book a Free Consultation | Swiss Relocation Experts | ReloFinder"
+  description="Schedule a free consultation with licensed Swiss relocation specialists. Get personalized guidance for your move to Switzerland."
+>
+  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <div class="container mx-auto px-4 py-16">
+      <div class="max-w-4xl mx-auto">
+        
+        <!-- Header -->
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center bg-red-50 px-4 py-2 rounded-full mb-4">
+            <svg class="w-5 h-5 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span class="text-sm font-semibold text-red-600">Free Consultation</span>
+          </div>
+          
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Get Expert Guidance for Your <span class="bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent">Swiss Move</span>
+          </h1>
+          
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Schedule a free 30-minute consultation with one of our licensed Swiss relocation specialists. Get personalized answers to all your questions.
+          </p>
+        </div>
+
+        <!-- Benefits Grid -->
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+            <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Personalized Roadmap</h3>
+            <p class="text-sm text-gray-600">
+              Get a tailored relocation plan based on your specific situation and timeline
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+            <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Expert Answers</h3>
+            <p class="text-sm text-gray-600">
+              Ask anything about permits, housing, schools, insurance, or Swiss life
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+            <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-gray-900 mb-2">Specialist Matching</h3>
+            <p class="text-sm text-gray-600">
+              We'll match you with the right specialists for your specific needs
+            </p>
+          </div>
+        </div>
+
+        <!-- Main CTA -->
+        <div class="bg-white rounded-2xl p-8 md:p-12 shadow-lg border border-gray-200 text-center mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">
+            Ready to Get Started?
+          </h2>
+          <p class="text-gray-600 mb-8">
+            Click below to open our consultation request form. We'll match you with the perfect specialist within 24 hours.
+          </p>
+          
+          <button
+            onclick="universalOpenModal({page: 'consultation_page', service: 'consultation'})"
+            class="inline-block px-8 py-4 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-200 text-lg"
+          >
+            Book Your Free Consultation
+          </button>
+          
+          <div class="mt-6 flex items-center justify-center gap-6 text-sm text-gray-600">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>100% Free</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>No Obligation</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>Licensed Experts</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- What to Expect -->
+        <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-200">
+          <h3 class="text-xl font-bold text-gray-900 mb-6 text-center">What to Expect</h3>
+          
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="text-center">
+              <div class="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">
+                1
+              </div>
+              <h4 class="font-semibold text-gray-900 mb-2">Submit Your Request</h4>
+              <p class="text-sm text-gray-600">
+                Fill out the simple form with your move details and questions
+              </p>
+            </div>
+
+            <div class="text-center">
+              <div class="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">
+                2
+              </div>
+              <h4 class="font-semibold text-gray-900 mb-2">Get Matched</h4>
+              <p class="text-sm text-gray-600">
+                We'll match you with the best specialist for your needs within 24 hours
+              </p>
+            </div>
+
+            <div class="text-center">
+              <div class="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-lg">
+                3
+              </div>
+              <h4 class="font-semibold text-gray-900 mb-2">Schedule & Meet</h4>
+              <p class="text-sm text-gray-600">
+                Book a convenient time for your free 30-minute consultation
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Back Link -->
+        <div class="mt-8 text-center">
+          <a href="/" class="text-gray-600 hover:text-gray-900 transition-colors inline-flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Back to Home
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</Layout>
+
