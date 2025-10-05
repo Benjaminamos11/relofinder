@@ -62,83 +62,88 @@ serve(async (req) => {
       );
     }
 
-    // Fetch ONLY Google reviews from external_reviews (we know these exist)
+    // Fetch Google reviews from google_reviews table, ordered by date (newest first)
     console.log(`Fetching Google reviews for relocator_id: ${relocator_id}`);
     
-    const { data: externalReviews, error: externalError } = await supabaseClient
-      .from('external_reviews')
-      .select('rating, review_count, payload')
+    const { data: googleReviews, error: googleError } = await supabaseClient
+      .from('google_reviews')
+      .select('author_name, rating, review_text, review_date')
       .eq('relocator_id', relocator_id)
-      .eq('source', 'google')
-      .order('captured_at', { ascending: false })
-      .limit(1)
-      .single();
+      .order('created_at', { ascending: false }); // Order by creation date (newest first)
 
-    if (externalError || !externalReviews) {
-      console.error('Error fetching Google reviews:', externalError);
+    if (googleError || !googleReviews || googleReviews.length === 0) {
+      console.error('Error fetching Google reviews:', googleError);
       return new Response(
         JSON.stringify({ 
           error: 'No Google reviews found', 
-          details: externalError?.message || 'No data',
+          details: googleError?.message || 'No data',
           relocator_id
         }),
         { status: 404, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
-    // Extract Google reviews from payload
-    console.log('Extracting reviews from payload...');
-    const googleReviewsFull = externalReviews.payload?.user_reviews?.most_relevant || [];
-    
-    if (googleReviewsFull.length === 0) {
-      return new Response(
-        JSON.stringify({ 
-          error: 'No reviews in payload',
-          message: 'Google data exists but no review text found'
-        }),
-        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
-    }
+    console.log(`Found ${googleReviews.length} Google reviews`);
 
-    console.log(`Found ${googleReviewsFull.length} Google reviews in payload`);
-
-    // Use ONLY Google reviews for analysis (no internal reviews)
-    const internalCount = 0;
-    const internalAvg = 0;
-    const externalCount = externalReviews.review_count || 0;
-    const externalAvg = externalReviews.rating || 0;
+    // Calculate aggregates from individual reviews
+    const totalRating = googleReviews.reduce((sum, review) => sum + review.rating, 0);
+    const avgRating = totalRating / googleReviews.length;
+    const externalCount = googleReviews.length;
+    const externalAvg = Math.round(avgRating * 100) / 100;
     const weightedRating = externalAvg;
 
     console.log(`Stats: internal=0, external=${externalCount}, total=${externalCount}, rating=${weightedRating}`);
 
-    // Prepare Google review snippets for AI analysis
-    const snippets = googleReviewsFull.slice(0, 20).map((review: any) => ({
-      author: review.username || 'Anonymous',
-      source: 'Google',
-      date: review.date || '2025',
-      rating: review.rating || 5,
-      sentiment: (review.rating || 5) >= 4 ? 'pos' : ((review.rating || 5) >= 3 ? 'mix' : 'neg'),
-      text: review.description || ''
-    }));
+    // Prepare Google review snippets for AI analysis (prioritize recent reviews)
+    const recentReviews = googleReviews.slice(0, 30); // Take top 30 most recent
+    const olderReviews = googleReviews.slice(30, 50); // Take some older ones for context
     
-    console.log(`Prepared ${snippets.length} Google review snippets for AI analysis`);
+    const snippets = [
+      // Recent reviews (higher weight)
+      ...recentReviews.map((review: any, index: number) => ({
+        author: review.author_name || 'Anonymous',
+        source: 'Google',
+        date: review.review_date || '2025',
+        rating: review.rating || 5,
+        sentiment: (review.rating || 5) >= 4 ? 'pos' : ((review.rating || 5) >= 3 ? 'mix' : 'neg'),
+        text: review.review_text || '',
+        weight: 'recent', // Mark as recent
+        recency_score: Math.max(0, 30 - index) // Higher score for newer reviews
+      })),
+      // Older reviews (lower weight)
+      ...olderReviews.map((review: any) => ({
+        author: review.author_name || 'Anonymous',
+        source: 'Google',
+        date: review.review_date || '2025',
+        rating: review.rating || 5,
+        sentiment: (review.rating || 5) >= 4 ? 'pos' : ((review.rating || 5) >= 3 ? 'mix' : 'neg'),
+        text: review.review_text || '',
+        weight: 'older', // Mark as older
+        recency_score: 1 // Lower score for older reviews
+      }))
+    ];
+    
+    console.log(`Prepared ${snippets.length} Google review snippets (${recentReviews.length} recent, ${olderReviews.length} older) for AI analysis`);
     
     const userPrompt = `AGENCY: Prime Relocation
 COUNTS: internal=${internalCount}, external=${externalCount}, total=${internalCount + externalCount}
-RECENT_90D: ${snippets.length}
-SNIPPETS (normalized, anonymized):
+RECENT_REVIEWS: ${recentReviews.length} (weighted higher)
+TOTAL_REVIEWS: ${snippets.length}
+SNIPPETS (recent reviews weighted higher, normalized, anonymized):
 ${JSON.stringify(snippets, null, 2)}
 
+CRITICAL: Prioritize reviews marked as "recent" (weight: recent) over "older" ones. Recent reviews reflect current service quality.
+
 TASKS:
-1) Produce a 1-sentence verdict (≤160 chars). Be specific about consultant names and outcomes.
-2) 3 bullets "clients_like" (max 6 words each)
-3) 2 bullets "watch_outs" (max 7 words each)
-4) 2-3 bullets "best_for" (max 6 words each)
-5) Classify 90-day trend as "improving", "steady", or "mixed"
-6) Top 3 themes with strength (low/med/high)
-7) 1-2 short quotes (≤120 chars, no PII)
-8) List consultant names mentioned
-9) Confidence: high (if >20 reviews), medium (5-20), or low (<5)
+1) Produce a 1-sentence verdict (≤160 chars). Focus on recent trends and consultant names.
+2) 3 bullets "clients_like" (max 6 words each) - emphasize recent patterns
+3) 2 bullets "watch_outs" (max 7 words each) - note any recent concerns
+4) 2-3 bullets "best_for" (max 6 words each) - based on recent reviews
+5) Classify trend as "improving" (if recent reviews are better), "steady", or "declining"
+6) Top 3 themes with strength (focus on recent patterns)
+7) 1-2 short quotes (≤120 chars, prefer recent reviews)
+8) List consultant names mentioned in recent reviews
+9) Confidence: high (if >30 recent reviews), medium (10-30), or low (<10)
 
 Return JSON using the exact schema from system prompt.`;
 
@@ -181,7 +186,16 @@ Return JSON using the exact schema from system prompt.`;
     }
 
     const openaiData = await openaiResponse.json();
-    const aiSummary = JSON.parse(openaiData.choices[0].message.content);
+    let aiContent = openaiData.choices[0].message.content;
+    
+    // Clean up the response (remove markdown code blocks if present)
+    if (aiContent.includes('```json')) {
+      aiContent = aiContent.split('```json')[1].split('```')[0];
+    } else if (aiContent.includes('```')) {
+      aiContent = aiContent.split('```')[1].split('```')[0];
+    }
+    
+    const aiSummary = JSON.parse(aiContent.trim());
     
     console.log('AI Verdict:', aiSummary.verdict?.substring(0, 80));
     console.log('Consultants mentioned:', aiSummary.consultantsMentioned);

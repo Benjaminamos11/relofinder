@@ -69,36 +69,36 @@ try {
     
     internalReviews = reviewsData || [];
 
-    // Fetch external reviews with payload
-    const { data: externalData } = await supabase
-      .from('external_reviews')
-      .select('rating, review_count, payload, captured_at')
+    // Fetch ALL external reviews from google_reviews table
+    const { data: googleReviewsData } = await supabase
+      .from('google_reviews')
+      .select('author_name, rating, review_text, review_date, review_link')
       .eq('relocator_id', relocatorId)
-      .eq('source', 'google')
-      .order('captured_at', { ascending: false })
-      .limit(1)
-      .single();
-  
-    if (externalData) {
-      externalAggregate = { avg: externalData.rating, count: externalData.review_count };
-      console.log(`External aggregate: ${externalData.rating} rating, ${externalData.review_count} reviews`);
+      .order('rating', { ascending: false });
+    
+    if (googleReviewsData && googleReviewsData.length > 0) {
+      // Calculate aggregate from individual reviews
+      const totalRating = googleReviewsData.reduce((sum, review) => sum + review.rating, 0);
+      const avgRating = totalRating / googleReviewsData.length;
       
-      // Extract reviews from payload (SerpAPI structure: user_reviews.most_relevant)
-      if (externalData.payload?.user_reviews?.most_relevant) {
-        externalReviews = externalData.payload.user_reviews.most_relevant.slice(0, 10).map((review: any) => ({
-          author_name: review.username || 'Google User',
-          rating: review.rating || 5,
-          body: review.description || '',
-          created_at: review.date || externalData.captured_at,
-          link: review.link || '',
-          source: 'google'
-        }));
-        console.log(`Extracted ${externalReviews.length} Google reviews`);
-      } else {
-        console.log('No user_reviews.most_relevant found in payload');
-      }
+      externalAggregate = { 
+        avg: Math.round(avgRating * 100) / 100, 
+        count: googleReviewsData.length 
+      };
+      
+      // Format reviews for display
+      externalReviews = googleReviewsData.map((review: any) => ({
+        author_name: review.author_name || 'Google User',
+        rating: review.rating || 5,
+        body: review.review_text || '',
+        created_at: review.review_date || new Date().toISOString(),
+        link: review.review_link || '',
+        source: 'google'
+      }));
+      
+      console.log(`Found ${externalReviews.length} Google reviews with avg rating ${externalAggregate.avg}`);
     } else {
-      console.log('No external data found');
+      console.log('No Google reviews found in google_reviews table');
     }
 
     // Fetch AI summary

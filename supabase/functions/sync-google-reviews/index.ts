@@ -145,7 +145,19 @@ serve(async (req) => {
           continue;
         }
 
-        // Insert external review snapshot
+        // Get data_id for fetching reviews
+        const dataId = businessData.data_id;
+        if (!dataId) {
+          console.log(`No data_id found for ${relocator.name}`);
+          results.push({
+            relocator_id: relocator.id,
+            name: relocator.name,
+            status: 'no_data_id',
+          });
+          continue;
+        }
+
+        // Insert external review snapshot (aggregate data)
         const { error: insertError } = await supabaseClient
           .from('external_reviews')
           .insert({
@@ -159,13 +171,82 @@ serve(async (req) => {
 
         if (insertError) {
           console.error(`Error inserting review for ${relocator.name}:`, insertError);
-          results.push({
+        }
+
+        // Now fetch ALL individual reviews with pagination
+        let allReviews = [];
+        let nextPageToken = null;
+        let page = 1;
+        const maxPages = 10; // Limit to 10 pages (10 reviews each = up to 100 reviews)
+
+        do {
+          console.log(`Fetching reviews page ${page} for ${relocator.name}...`);
+          
+          let reviewsUrl = `https://serpapi.com/search?engine=google_maps_reviews&data_id=${encodeURIComponent(dataId)}&api_key=${serpApiKey}&hl=en`;
+          if (nextPageToken) {
+            reviewsUrl += `&next_page_token=${encodeURIComponent(nextPageToken)}`;
+          }
+
+          const reviewsResponse = await fetch(reviewsUrl);
+          if (!reviewsResponse.ok) {
+            console.error(`Failed to fetch reviews page ${page}: ${reviewsResponse.status}`);
+            break;
+          }
+
+          const reviewsData = await reviewsResponse.json();
+          
+          if (reviewsData.error) {
+            console.error(`SerpAPI reviews error: ${reviewsData.error}`);
+            break;
+          }
+
+          if (reviewsData.reviews && reviewsData.reviews.length > 0) {
+            allReviews = allReviews.concat(reviewsData.reviews);
+            console.log(`Got ${reviewsData.reviews.length} reviews on page ${page}`);
+          }
+
+          nextPageToken = reviewsData.serpapi_pagination?.next_page_token;
+          page++;
+
+          // Rate limiting between page requests
+          if (nextPageToken) {
+            await new Promise(resolve => setTimeout(resolve, 1000));
+          }
+
+        } while (nextPageToken && page <= maxPages);
+
+        console.log(`Total reviews fetched: ${allReviews.length} for ${relocator.name}`);
+
+        // Store individual reviews in google_reviews table
+        if (allReviews.length > 0) {
+          const reviewsToInsert = allReviews.map(review => ({
             relocator_id: relocator.id,
-            name: relocator.name,
-            status: 'error',
-            error: insertError.message,
-          });
-          continue;
+            google_review_id: review.review_id || review.link,
+            author_name: review.user?.name || 'Anonymous',
+            author_photo: review.user?.thumbnail || null,
+            rating: review.rating || 5,
+            review_text: review.snippet || review.description || '',
+            review_date: review.date || review.iso_date_of_review || new Date().toISOString(),
+            review_link: review.link || '',
+            contributor_id: review.user?.contributor_id || null,
+          }));
+
+          // Deduplicate reviews by google_review_id before inserting
+          const uniqueReviews = Array.from(
+            new Map(reviewsToInsert.map(r => [r.google_review_id, r])).values()
+          );
+
+          console.log(`Deduped ${reviewsToInsert.length} reviews to ${uniqueReviews.length} unique reviews`);
+
+          const { error: reviewsInsertError } = await supabaseClient
+            .from('google_reviews')
+            .upsert(uniqueReviews, { onConflict: 'relocator_id,google_review_id' });
+
+          if (reviewsInsertError) {
+            console.error(`Error inserting individual reviews for ${relocator.name}:`, reviewsInsertError);
+          } else {
+            console.log(`✓ Stored ${uniqueReviews.length} individual reviews for ${relocator.name}`);
+          }
         }
 
         console.log(`✓ Synced ${businessData.reviews} reviews for ${relocator.name} (${businessData.rating}★)`);
@@ -175,6 +256,7 @@ serve(async (req) => {
           status: 'success',
           rating: businessData.rating,
           review_count: businessData.reviews,
+          individual_reviews_stored: allReviews.length,
         });
 
         // Rate limiting: wait 2 seconds between requests
