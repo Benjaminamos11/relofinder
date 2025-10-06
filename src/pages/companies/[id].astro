@@ -232,13 +232,13 @@ const yearsExperience = companyData.founded ? new Date().getFullYear() - company
   <!-- 1. HERO SECTION - Premium Corporate Minimal -->
   <section class="relative overflow-hidden bg-white" style="padding: var(--section-padding) 0;">
     <div class="container mx-auto max-w-[var(--container-max)] px-6 lg:px-8">
-      <!-- Breadcrumbs -->
+        <!-- Breadcrumbs -->
       <nav class="flex items-center gap-2 text-sm text-gray-500 mb-8 fade-up" aria-label="Breadcrumb">
         <a href="/" class="hover:text-[var(--rf-red-start)] transition-colors">Home</a>
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/></svg>
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/></svg>
         <a href="/companies" class="hover:text-[var(--rf-red-start)] transition-colors">Companies</a>
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/></svg>
-        <span class="text-gray-900 font-medium">{companyData.name}</span>
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/></svg>
+          <span class="text-gray-900 font-medium">{companyData.name}</span>
       </nav>
 
       <!-- Hero Content -->
@@ -264,14 +264,14 @@ const yearsExperience = companyData.founded ? new Date().getFullYear() - company
         <div class="mb-8">
           <h1 class="text-gray-900 font-bold leading-tight mb-4" style="font-size: var(--text-hero);">
             {companyData.name}
-          </h1>
+        </h1>
           <div class="h-1 w-20 rounded-full mb-6" style="background: var(--rf-grad-red);"></div>
-          
+        
           <!-- Description -->
           <p class="text-lg text-gray-700 leading-relaxed max-w-3xl">
-            {companyData.description}
-          </p>
-        </div>
+          {companyData.description}
+        </p>
+            </div>
 
         <!-- Rating Summary (if available) -->
         {(internalReviews.length > 0 || externalAggregate.count > 0) && (
@@ -291,7 +291,7 @@ const yearsExperience = companyData.founded ? new Date().getFullYear() - company
             <span class="text-lg font-bold text-gray-900">{weightedRating.toFixed(1)}</span>
             <span class="text-gray-600">({internalReviews.length + externalAggregate.count} reviews)</span>
           </div>
-        )}
+          )}
 
         <!-- CTA Buttons Row -->
         <div class="flex flex-col sm:flex-row gap-4 mb-8">
@@ -332,7 +332,7 @@ const yearsExperience = companyData.founded ? new Date().getFullYear() - company
           About {companyData.name}
         </h2>
         <div class="h-1 w-20 rounded-full" style="background: var(--rf-grad-red);"></div>
-      </div>
+          </div>
 
       <div class="grid lg:grid-cols-2 gap-12 fade-up delay-100">
         <!-- Left: Description -->
@@ -345,7 +345,7 @@ const yearsExperience = companyData.founded ? new Date().getFullYear() - company
               {companyData.longDescription}
             </p>
           )}
-        </div>
+          </div>
 
         <!-- Right: Key Details Cards -->
         <div class="grid gap-4">
@@ -371,7 +371,7 @@ const yearsExperience = companyData.founded ? new Date().getFullYear() - company
                 <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
                 </svg>
-              </div>
+        </div>
               <div>
                 <p class="text-sm font-semibold text-gray-500 mb-1">Languages</p>
                 <p class="text-lg font-bold text-gray-900">{companyData.languages.slice(0, 4).join(', ')}</p>
@@ -385,13 +385,13 @@ const yearsExperience = companyData.founded ? new Date().getFullYear() - company
               <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
                 <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                </svg>
-              </div>
+            </svg>
+          </div>
               <div>
                 <p class="text-sm font-semibold text-gray-500 mb-1">Services Offered</p>
                 <p class="text-lg font-bold text-gray-900">{companyData.services.length} Services</p>
-              </div>
-            </div>
+        </div>
+      </div>
           )}
 
           {/* Regions Count */}
@@ -402,7 +402,7 @@ const yearsExperience = companyData.founded ? new Date().getFullYear() - company
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-              </div>
+    </div>
               <div>
                 <p class="text-sm font-semibold text-gray-500 mb-1">Regions Covered</p>
                 <p class="text-lg font-bold text-gray-900">{companyData.regions.length} Regions</p>
@@ -448,7 +448,7 @@ const yearsExperience = companyData.founded ? new Date().getFullYear() - company
             Regions Covered
           </h2>
           <div class="h-1 w-20 rounded-full" style="background: var(--rf-grad-red);"></div>
-        </div>
+                </div>
 
         <!-- Regions Pills -->
         <div class="flex flex-wrap gap-3 fade-up delay-100">
@@ -457,13 +457,85 @@ const yearsExperience = companyData.founded ? new Date().getFullYear() - company
               {region}
             </span>
           ))}
-        </div>
+                </div>
       </div>
     </section>
   )}
 
-        <!-- Tiered CTAs & Contact Info -->
-        <div class="mt-8">
+  <!-- 5. REVIEWS & AI SUMMARY SECTION (Keep existing functionality) -->
+  {(internalReviews.length > 0 || externalReviews.length > 0) && (
+    <section class="relative overflow-hidden bg-white" style="padding: var(--section-padding) 0;">
+      <div class="container mx-auto max-w-[var(--container-max)] px-6 lg:px-8">
+        <!-- Section Heading -->
+        <div class="mb-12 fade-up">
+          <h2 class="text-gray-900 font-bold tracking-tight mb-4" style="font-size: var(--text-h2);">
+            Client Experiences
+          </h2>
+          <div class="h-1 w-20 rounded-full" style="background: var(--rf-grad-red);"></div>
+              </div>
+
+        <!-- Reviews Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 fade-up delay-100">
+          {[...externalReviews.slice(0, 6)].map((review: any) => (
+            <article class="neuro-card p-6 flex flex-col">
+              {/* Rating */}
+              <div class="flex items-center mb-4">
+                <div class="flex text-yellow-400">
+                  {[...Array(5)].map((_, i) => (
+                    <svg 
+                      key={i}
+                      class={`w-5 h-5 ${i < review.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                      fill="currentColor" 
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <span class="ml-2 text-sm text-gray-500">
+                  {new Date(review.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                </span>
+              </div>
+
+              {/* Review Text */}
+              <blockquote class="text-gray-700 mb-4 leading-relaxed flex-1 line-clamp-4">
+                "{review.body}"
+              </blockquote>
+
+              {/* Author */}
+              <div class="border-t pt-4">
+                <p class="font-semibold text-gray-900">{review.author_name}</p>
+                <p class="text-xs text-gray-500">{review.source === 'google' ? 'Google Review' : 'Verified Client'}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {/* AI Summary (if available) */}
+        {reviewSummary?.seo_summary && (
+          <div class="neuro-card p-8 bg-gradient-to-br from-[#FFF7E6] to-white border-2 border-[#FDE68A] fade-up delay-200">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-brand-gradient rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-gray-900 mb-3">AI Insights</h3>
+                <p class="text-gray-800 leading-relaxed mb-4">{reviewSummary.seo_summary}</p>
+                <p class="text-sm text-gray-600">Based on {internalReviews.length + externalAggregate.count} verified client reviews</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+  <!-- KEEP ALL OLD SECTIONS BELOW FOR NOW - JUST UPDATE STYLING -->
+  <section class="hidden">
+    <!-- This hides the duplicate tiered CTA section -->
+    <div>
           {tier === 'preferred' ? (
             <>
               {/* Action Buttons */}
@@ -670,7 +742,9 @@ const yearsExperience = companyData.founded ? new Date().getFullYear() - company
         </div>
                 </div>
               </div>
+    </div>
   </section>
+  <!-- End hidden duplicate section -->
 
   <!-- 2. ALWAYS-ON REVIEW SUMMARY (AI) - Placeholder for now -->
   <section class="py-16 bg-white">
