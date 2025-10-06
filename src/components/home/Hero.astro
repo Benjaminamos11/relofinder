@@ -1,133 +1,146 @@
 ---
+/**
+ * Hero Section - Editorial & Professional
+ * Left-aligned, Swiss minimal aesthetic
+ * High-quality Swiss cityscape photography
+ */
 ---
 
-<section class="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-white via-gray-50 to-white">
-  <!-- Subtle Background Pattern -->
-  <div class="absolute inset-0 opacity-20">
-    <div class="absolute inset-0 bg-repeat" style="background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23e11d48%22%20fill-opacity%3D%220.04%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%224%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E);"></div>
-  </div>
+<section class="relative overflow-hidden bg-white">
+  <!-- Subtle radial gradient background -->
+  <div class="absolute inset-0 bg-gradient-to-br from-white via-gray-50/30 to-white"></div>
   
-  <!-- Content -->
-  <div class="container relative z-10 py-16 lg:py-24">
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[85vh] py-16 lg:py-20">
       
-      <!-- Left Content -->
-      <div class="space-y-10 text-center lg:text-left">
+      <!-- Left Content - Editorial Style -->
+      <div class="space-y-8 fade-up">
         
-        <!-- Main Headline -->
-        <div class="space-y-6">
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight text-gray-900">
-            Your Swiss <span class="bg-gradient-to-r from-primary-600 to-blue-600 bg-clip-text text-transparent">Relocation</span> Made Simple
+        <!-- Headline -->
+        <div class="space-y-4">
+          <h1 class="text-gray-900 font-bold leading-[1.1] tracking-tight" style="font-size: var(--text-hero);">
+            Your Swiss Relocation,<br />
+            <span class="text-brand-gradient">Simplified</span>
           </h1>
-          <p class="text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-            Compare verified providers, explore top regions, and move to Switzerland with confidence.
+          <p class="text-xl text-gray-600 leading-relaxed max-w-xl">
+            Compare verified relocation agencies, explore Swiss regions, and move with confidence. Professional guidance for your journey to Switzerland.
           </p>
         </div>
 
         <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+        <div class="flex flex-col sm:flex-row gap-4">
           <button
             onclick="universalOpenModal({page: 'home'})"
-            class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-102"
+            class="group inline-flex items-center justify-center px-8 py-4 text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-lg bg-brand-gradient hover:scale-[1.02]"
           >
-            Start Your Journey
-            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            Get Free Quotes
+            <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
             </svg>
           </button>
           <a
-            href="/chat"
-            class="inline-flex items-center justify-center px-8 py-4 font-bold text-primary-700 bg-white border-2 border-gray-200 rounded-xl hover:border-primary-300 hover:bg-gray-50 transition-all duration-200"
+            href="/companies"
+            class="inline-flex items-center justify-center px-8 py-4 font-semibold text-gray-700 bg-white border-2 border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all duration-200"
           >
-            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-            </svg>
-            Ask AI Assistant
+            Browse Agencies
           </a>
         </div>
 
-        <!-- Trust Badges Row -->
-        <div class="flex flex-wrap gap-8 justify-center lg:justify-start pt-6 border-t border-gray-200">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 bg-gradient-to-br from-primary-100 to-primary-200 rounded-xl flex items-center justify-center">
-              <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <div>
-              <div class="text-2xl font-bold text-gray-900">1000+</div>
-              <div class="text-sm text-gray-600">Successful Relocations</div>
-            </div>
+        <!-- Trust Indicators - Minimal -->
+        <div class="flex flex-wrap items-center gap-8 pt-8 border-t border-gray-100">
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-[var(--rf-red-start)]" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span class="text-sm font-medium text-gray-700">1,000+ Successful Relocations</span>
           </div>
-          
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 bg-gradient-to-br from-primary-100 to-primary-200 rounded-xl flex items-center justify-center">
-              <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-              </svg>
-            </div>
-            <div>
-              <div class="text-2xl font-bold text-gray-900">50+</div>
-              <div class="text-sm text-gray-600">Vetted Agencies</div>
-            </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-[var(--rf-red-start)]" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span class="text-sm font-medium text-gray-700">50+ Verified Agencies</span>
           </div>
-
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 bg-gradient-to-br from-primary-100 to-primary-200 rounded-xl flex items-center justify-center">
-              <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-              </svg>
-            </div>
-            <div>
-              <div class="text-2xl font-bold text-gray-900">26</div>
-              <div class="text-sm text-gray-600">Cantons Covered</div>
-            </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-[var(--rf-red-start)]" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span class="text-sm font-medium text-gray-700">All 26 Cantons</span>
           </div>
         </div>
       </div>
       
-      <!-- Right Side - Hero Image -->
-      <div class="relative order-first lg:order-last">
-        <div class="relative">
-          <div class="absolute inset-0 bg-gradient-to-r from-primary-400 to-primary-500 rounded-3xl rotate-3 transform scale-105 opacity-10"></div>
-          <div class="relative bg-white rounded-3xl shadow-2xl overflow-hidden">
-            <picture>
-              <source 
-                media="(max-width: 640px)" 
-                srcset="https://res.cloudinary.com/dphbnwjtx/image/upload/w_400,h_360,c_fit,f_webp,q_auto:good/v1748002920/a-humorous-slightly-quirky-photograph-of_E3yQygvrSj2lK35PvdcPXA_jo8EU6MaTSePalCxA1yBzA_hnzcxp.webp"
-                type="image/webp"
-              >
-              <source 
-                media="(max-width: 1024px)" 
-                srcset="https://res.cloudinary.com/dphbnwjtx/image/upload/w_500,h_350,c_fit,f_webp,q_auto:good/v1748002920/a-humorous-slightly-quirky-photograph-of_E3yQygvrSj2lK35PvdcPXA_jo8EU6MaTSePalCxA1yBzA_hnzcxp.webp"
-                type="image/webp"
-              >
-              <img 
-                src="https://res.cloudinary.com/dphbnwjtx/image/upload/w_700,h_500,c_fit,f_webp,q_auto:good/v1748002920/a-humorous-slightly-quirky-photograph-of_E3yQygvrSj2lK35PvdcPXA_jo8EU6MaTSePalCxA1yBzA_hnzcxp.webp"
-                alt="Welcome to Switzerland - Swiss cow with welcome sign for expat relocation"
-                class="w-full h-[360px] sm:h-[400px] lg:h-[600px] object-cover rounded-3xl"
-                loading="eager"
-                fetchpriority="high"
-                decoding="async"
-                width="700"
-                height="500"
-              />
-            </picture>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end rounded-3xl">
-              <div class="p-8 text-white">
-                <h2 class="text-2xl font-bold mb-2">Welcome to Switzerland!</h2>
-                <p class="text-lg opacity-90">Your friendly relocation journey starts here</p>
-              </div>
+      <!-- Right Side - Professional Swiss Photography -->
+      <div class="relative fade-up delay-200">
+        <!-- Soft shadow container -->
+        <div class="relative rounded-2xl overflow-hidden soft-shadow">
+          <picture>
+            <!-- High-quality Swiss cityscape - Zurich/Geneva -->
+            <source 
+              media="(max-width: 640px)" 
+              srcset="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=600&h=500&fit=crop&q=80"
+              type="image/jpeg"
+            >
+            <source 
+              media="(max-width: 1024px)" 
+              srcset="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=800&h=600&fit=crop&q=80"
+              type="image/jpeg"
+            >
+            <img 
+              src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=1200&h=800&fit=crop&q=80"
+              alt="Zurich cityscape with Swiss Alps - Professional relocation services"
+              class="w-full h-[400px] sm:h-[500px] lg:h-[600px] object-cover"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              width="1200"
+              height="800"
+            />
+          </picture>
+          
+          <!-- Subtle overlay gradient -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+          
+          <!-- Floating badge - optional accent -->
+          <div class="absolute bottom-6 right-6 bg-white/95 backdrop-blur-sm rounded-xl px-4 py-3 shadow-lg">
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span class="text-sm font-semibold text-gray-900">Live Support Available</span>
             </div>
           </div>
         </div>
+        
+        <!-- Decorative element - subtle -->
+        <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-br from-[var(--rf-red-start)]/10 to-[var(--rf-red-end)]/10 rounded-full blur-2xl -z-10"></div>
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .hover\:scale-102:hover {
-    transform: scale(1.02);
+  /* Scroll-triggered fade-up animation */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUpIn 0.8s ease-out forwards;
+  }
+  
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  @keyframes fadeUpIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Ensure animations work on mobile */
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
   }
 </style>

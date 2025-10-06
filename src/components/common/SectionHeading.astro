@@ -1,0 +1,76 @@
+---
+/**
+ * Consistent Section Heading Component
+ * Left-aligned with red gradient underline
+ * Used across all homepage sections
+ */
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  align?: 'left' | 'center';
+  className?: string;
+}
+
+const { title, subtitle, align = 'left', className = '' } = Astro.props;
+---
+
+<div class:list={[
+  'section-heading-wrapper',
+  align === 'center' ? 'text-center mx-auto max-w-3xl' : 'text-left',
+  className
+]}>
+  <h2 class="section-heading text-gray-900 font-bold tracking-tight" style="font-size: var(--text-h2);">
+    {title}
+  </h2>
+  {subtitle && (
+    <p class="text-gray-600 text-lg leading-relaxed max-w-2xl" class:list={align === 'center' ? 'mx-auto' : ''}>
+      {subtitle}
+    </p>
+  )}
+</div>
+
+<style>
+  .section-heading-wrapper {
+    margin-bottom: 3rem;
+  }
+  
+  .section-heading {
+    position: relative;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  
+  .section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background: var(--rf-grad-red);
+    border-radius: 2px;
+  }
+  
+  .text-center .section-heading::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  @media (max-width: 768px) {
+    .section-heading-wrapper {
+      margin-bottom: 2rem;
+    }
+    
+    .section-heading {
+      padding-bottom: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .section-heading::after {
+      width: 60px;
+      height: 2px;
+    }
+  }
+</style>

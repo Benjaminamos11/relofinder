@@ -2,11 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Brand Gradient Tokens */
+/* ============================================
+   RELOFINDER DESIGN SYSTEM
+   High-End Swiss Minimal Aesthetic
+   ============================================ */
+
+/* Brand Gradient Tokens - Single Source of Truth */
 :root {
+  /* Primary Brand Gradient */
   --rf-red-start: #B61919;
   --rf-red-end: #DF3030;
   --rf-grad-red: linear-gradient(90deg, var(--rf-red-start), var(--rf-red-end));
+  
+  /* Neumorphic Shadows */
+  --shadow-neumorphic: 8px 8px 16px rgba(0, 0, 0, 0.08), -4px -4px 12px rgba(255, 255, 255, 0.9);
+  --shadow-neumorphic-hover: 12px 12px 24px rgba(0, 0, 0, 0.1), -6px -6px 16px rgba(255, 255, 255, 0.95);
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --shadow-soft-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+  
+  /* Section Backgrounds */
+  --bg-white: #FFFFFF;
+  --bg-gray-light: #FAFAFA;
+  --bg-gradient-subtle: linear-gradient(180deg, #FFFFFF 0%, #F9FAFB 100%);
+  --bg-gradient-warm: linear-gradient(135deg, #FFF9F5 0%, #FFFFFF 100%);
+  
+  /* Typography Scale */
+  --text-hero: clamp(2.5rem, 5vw, 3.5rem);
+  --text-h2: clamp(2rem, 4vw, 2.75rem);
+  --text-h3: clamp(1.5rem, 3vw, 2rem);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  
+  /* Spacing Rhythm */
+  --section-padding: clamp(4rem, 8vw, 7rem);
+  --container-max: 1280px;
+  
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
 }
 
 /* Contact Modal Animations */
@@ -39,6 +74,7 @@
 }
 
 @layer utilities {
+  /* Line Clamping */
   .line-clamp-1 {
     overflow: hidden;
     display: -webkit-box;
@@ -66,6 +102,79 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
   }
+  
+  /* Neumorphic Design System */
+  .neuro-card {
+    background: var(--bg-white);
+    box-shadow: var(--shadow-neumorphic);
+    border-radius: var(--radius-lg);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .neuro-card:hover {
+    box-shadow: var(--shadow-neumorphic-hover);
+    transform: translateY(-2px);
+  }
+  
+  .soft-shadow {
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .soft-shadow-hover:hover {
+    box-shadow: var(--shadow-soft-hover);
+  }
+  
+  /* Brand Gradient Applications */
+  .bg-brand-gradient {
+    background: var(--rf-grad-red);
+  }
+  
+  .text-brand-gradient {
+    background: var(--rf-grad-red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .border-brand-gradient {
+    border-image: var(--rf-grad-red) 1;
+  }
+  
+  /* Section Heading with Red Underline */
+  .section-heading {
+    position: relative;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background: var(--rf-grad-red);
+    border-radius: 2px;
+  }
+  
+  /* Scroll Fade-Up Animation */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Staggered Animation Delays */
+  .delay-100 { transition-delay: 100ms; }
+  .delay-200 { transition-delay: 200ms; }
+  .delay-300 { transition-delay: 300ms; }
+  .delay-400 { transition-delay: 400ms; }
 }
 
 @layer base {
