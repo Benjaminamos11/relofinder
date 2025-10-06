@@ -1,111 +1,126 @@
 ---
+/**
+ * Regions Showcase - Neumorphic Design
+ * Soft shadows, overlapping layout, professional photography
+ */
+import SectionHeading from '../common/SectionHeading.astro';
+
 const featuredRegions = [
   {
     id: 'zurich',
     name: 'Zürich',
-    subtitle: 'Switzerland\'s Financial Capital',
-    description: 'Global hub for banking, tech, and culture.',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748054305/a-whimsical-slightly-quirky-photograph-d_zq8vecXuSUm5G0iW2zVS2A_ahKrzbyPSHujmZTV4weezQ_fefkl9.webp',
-    tags: ['Global Hub', 'ETH Zurich', 'Lake Views']
+    subtitle: 'Financial & Tech Hub',
+    description: 'Global banking center with ETH Zurich, vibrant culture, and stunning lake views.',
+    image: 'https://images.unsplash.com/photo-1527004013197-933c4bb611b3?w=800&h=600&fit=crop&q=80',
+    tags: ['Banking', 'Tech', 'University']
   },
   {
     id: 'geneva',
     name: 'Geneva',
-    subtitle: 'International Diplomatic Hub',
-    description: 'UN agencies, global finance, luxury lifestyle.',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748054305/a-photograph-of-a-friendly-typical-swiss_jygtMk7MRVCGIR4b-pXn1w_u_7qRvYXQmqaQVXTr4FhIQ_exkzuu.webp',
-    tags: ['UN HQ', 'International', 'French Culture']
+    subtitle: 'International Capital',
+    description: 'Home to UN agencies, global organizations, and French-speaking culture.',
+    image: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=800&h=600&fit=crop&q=80',
+    tags: ['UN HQ', 'Diplomacy', 'Luxury']
   },
   {
     id: 'basel',
     name: 'Basel',
-    subtitle: 'Life Sciences Capital',
-    description: 'Pharma hub with art and Rhine river charm.',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748054305/a-photograph-of-a-friendly-typical-swiss_byvGP0Q4RKyeAN-ygL2jbg_aTPr-BU2TWSrb4xXReYWMw_tw5r7l.webp',
-    tags: ['Pharma', 'Art Basel', 'Rhine']
+    subtitle: 'Life Sciences Hub',
+    description: 'Pharmaceutical capital with world-class art scene and Rhine river charm.',
+    image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&h=600&fit=crop&q=80',
+    tags: ['Pharma', 'Art', 'Culture']
   },
   {
     id: 'lausanne',
     name: 'Lausanne',
     subtitle: 'Olympic Capital',
-    description: 'University & innovation city on Lake Geneva.',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748054305/a-photograph-of-a-friendly-typical-swiss_s2o30GAgRB2T9AZDpXe4_A_RED4Ygx9Rw2E2XeYdgDzog_jyhysn.webp',
-    tags: ['EPFL/UNIL', 'Olympic', 'Lakeside']
+    description: 'University city with EPFL innovation hub on beautiful Lake Geneva shores.',
+    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop&q=80',
+    tags: ['EPFL', 'Sports', 'Lakeside']
   },
   {
     id: 'zug',
     name: 'Zug',
     subtitle: 'Crypto Valley',
-    description: 'Tax-friendly, fintech-driven business hub.',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748054307/a-whimsical-slightly-quirky-photograph-c_ESZqUcnqSiCNpGzcV89dBw_o-YAUo9-RbC7oy5d4C2v2Q_ehpyba.webp',
-    tags: ['Tax Haven', 'Blockchain', 'Business']
+    description: 'Tax-friendly business hub with thriving blockchain and fintech ecosystem.',
+    image: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&h=600&fit=crop&q=80',
+    tags: ['Tax', 'Blockchain', 'Business']
   },
   {
     id: 'alps',
     name: 'Alpine Regions',
-    subtitle: 'Luxury Lifestyle Relocation',
-    description: 'Exclusive relocation to St. Moritz, Gstaad, Zermatt, Andermatt, Crans-Montana.',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/v1748054307/a-whimsical-photograph-of-a-friendly-typ_eIhtU-yYRV6QkH2ycfp9hQ_PJcuPNslT6iZbK83d0zYLQ_gocgoe.webp',
-    tags: ['HNWI', 'Luxury', 'Tax Deals']
+    subtitle: 'Luxury Lifestyle',
+    description: 'Exclusive mountain living in St. Moritz, Gstaad, Zermatt, and Verbier.',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&q=80',
+    tags: ['HNWI', 'Luxury', 'Skiing']
   }
 ];
 ---
 
-<section class="py-24 bg-white relative overflow-hidden">
-  <div class="container relative z-10">
-    <!-- Section Header -->
-    <div class="text-center mb-16">
-      <span class="inline-block px-4 py-2 rounded-full bg-gray-100 text-gray-700 font-semibold text-sm mb-4">
-        Step 1: Choose Your Destination
-      </span>
-      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
-        Explore Switzerland's Most Popular Hubs
-      </h2>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-        for expats and professionals
-      </p>
-    </div>
+<section class="relative overflow-hidden" style="padding: var(--section-padding) 0; background: var(--bg-gradient-subtle);">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    
+    <!-- Section Heading -->
+    <SectionHeading 
+      title="Explore Swiss Regions"
+      subtitle="From global business hubs to alpine luxury — find your perfect location in Switzerland"
+      align="left"
+    />
 
-    <!-- 6-Card Grid (2×3) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-      {featuredRegions.map((region) => (
+    <!-- Regions Grid - Neumorphic Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+      {featuredRegions.map((region, index) => (
         <a 
           href={`/regions/${region.id}`}
-          class="group bg-white border-2 border-gray-200 rounded-2xl overflow-hidden hover:border-primary-300 hover:shadow-lg transition-all duration-200 flex flex-col h-full"
+          class:list={['neuro-card group fade-up', `delay-${Math.min(index * 100, 400)}`]}
         >
-          <!-- Image -->
-          <div class="relative h-48 overflow-hidden">
+          <!-- Image with Overlay -->
+          <div class="relative h-56 overflow-hidden rounded-t-xl">
             <img 
               src={region.image} 
-              alt={`Relocation to ${region.name}, Switzerland`}
-              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              alt={`${region.name} - Swiss relocation destination`}
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               loading="lazy"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-4">
-              <h3 class="text-xl font-bold text-white mb-1">
+            <!-- Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+            
+            <!-- Region Name Overlay -->
+            <div class="absolute bottom-0 left-0 right-0 p-6">
+              <h3 class="text-2xl font-bold text-white mb-1">
                 {region.name}
               </h3>
-              <p class="text-white/90 text-sm font-medium italic">
+              <p class="text-white/90 text-sm font-medium">
                 {region.subtitle}
               </p>
             </div>
+            
+            <!-- Red accent line on hover -->
+            <div class="absolute top-0 left-0 right-0 h-1 bg-brand-gradient transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
           </div>
 
           <!-- Content -->
-          <div class="p-6 flex-1 flex flex-col">
+          <div class="p-6">
             <!-- Description -->
-            <p class="text-gray-600 text-sm leading-relaxed mb-4 flex-1">
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
               {region.description}
             </p>
 
             <!-- Tags -->
-            <div class="flex flex-wrap gap-2">
+            <div class="flex flex-wrap gap-2 mb-4">
               {region.tags.map((tag) => (
-                <span class="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
+                <span class="inline-block px-3 py-1.5 bg-gray-50 text-gray-700 text-xs font-medium rounded-full border border-gray-100">
                   {tag}
                 </span>
               ))}
+            </div>
+            
+            <!-- Arrow Link -->
+            <div class="flex items-center text-sm font-semibold text-gray-700 group-hover:text-[var(--rf-red-start)] transition-colors">
+              Explore {region.name}
+              <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
             </div>
           </div>
         </a>
@@ -113,12 +128,12 @@ const featuredRegions = [
     </div>
 
     <!-- Bottom CTA -->
-    <div class="text-center">
+    <div class="text-center fade-up delay-400">
       <a
         href="/regions"
-        class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl font-bold text-lg hover:shadow-lg transition-all duration-200 hover:scale-102"
+        class="inline-flex items-center justify-center px-8 py-4 text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-lg bg-brand-gradient hover:scale-[1.02]"
       >
-        View All Regions
+        View All Swiss Regions
         <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
         </svg>
@@ -127,8 +142,22 @@ const featuredRegions = [
   </div>
 </section>
 
-<style>
-  .hover\:scale-102:hover {
-    transform: scale(1.02);
+<script>
+  // Intersection Observer for fade-up animations
+  if (typeof window !== 'undefined') {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
   }
-</style>
+</script>
