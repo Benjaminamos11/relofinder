@@ -120,14 +120,14 @@ const FeaturedAgencies = ({ companies, limit = 12 }: FeaturedAgenciesProps) => {
   const getTierBadge = (tier: string) => {
     if (tier === 'preferred') {
       return (
-        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-50 text-yellow-800 border border-yellow-200">
-          Preferred Partner
+        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-yellow-50 to-amber-50 text-yellow-900 border border-yellow-300/50">
+          ⭐ Preferred Partner
         </span>
       );
     }
     if (tier === 'partner') {
       return (
-        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200">
+        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gray-50 text-gray-700 border border-gray-200">
           Partner
         </span>
       );
@@ -138,52 +138,69 @@ const FeaturedAgencies = ({ companies, limit = 12 }: FeaturedAgenciesProps) => {
   return (
     <section
       id="featured-agencies-v2"
-      className="py-16 bg-gradient-to-b from-white to-gray-50"
+      className="relative overflow-hidden bg-white"
+      style={{ padding: 'var(--section-padding) 0' }}
       aria-label="Featured relocation agencies"
       itemScope
       itemType="https://schema.org/ItemList"
     >
-      <div className="mx-auto max-w-7xl px-6">
-        {/* Section Header */}
-        <div className="flex items-end justify-between mb-8">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-2">
-              Featured Relocation Agencies
-            </h2>
-            <div
-              className="h-0.5 w-24 rounded-full"
-              style={{ background: 'var(--rf-grad-red)' }}
-            ></div>
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        {/* Section Header with Red Underline */}
+        <div className="mb-12">
+          <div className="flex items-end justify-between mb-4">
+            <div>
+              <h2 
+                className="text-gray-900 font-bold tracking-tight mb-4"
+                style={{ fontSize: 'var(--text-h2)' }}
+              >
+                Featured Relocation Agencies
+              </h2>
+              <div
+                className="h-1 w-20 rounded-full"
+                style={{ background: 'var(--rf-grad-red)' }}
+              ></div>
+            </div>
+            <a
+              href="/companies"
+              className="hidden md:inline-flex items-center gap-1 text-sm font-semibold text-gray-700 hover:text-[var(--rf-red-start)] transition-colors"
+            >
+              View all
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
           </div>
-          <a
-            href="/companies"
-            className="text-[#B61919] font-semibold hover:underline inline-flex items-center gap-1 text-sm"
-          >
-            View all
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
+          <p className="text-gray-600 text-lg max-w-2xl">
+            Verified partners with proven track records in Swiss relocations
+          </p>
         </div>
 
-        {/* Preferred Partners Indicator */}
-        {preferred.length > 0 && (
-          <div className="mb-4">
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-yellow-50 text-yellow-800 border border-yellow-200">
-              ✓ {preferred.length} Preferred Partner{preferred.length !== 1 ? 's' : ''}
+        {/* Verified Label */}
+        {(preferred.length > 0 || partner.length > 0) && (
+          <div className="mb-6">
+            <span className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold bg-green-50 text-green-800 border border-green-200">
+              <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              {preferred.length + partner.length} Verified & Preferred Partners
             </span>
           </div>
         )}
 
-        {/* Grid */}
-        <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {/* Grid - Neumorphic Cards */}
+        <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {mergedCompanies.map((company, index) => (
             <article
               key={company.id}
               itemProp="itemListElement"
               itemScope
               itemType="https://schema.org/ListItem"
-              className="flex flex-col rounded-xl border border-gray-200 bg-white p-5 shadow-sm hover:shadow-md transition-shadow duration-200 min-h-[240px]"
+              className="neuro-card flex flex-col p-6 min-h-[260px] group"
+              style={{
+                ...(company.tier === 'preferred' && {
+                  boxShadow: '0 0 0 1px rgba(234, 179, 8, 0.2), var(--shadow-neumorphic)'
+                })
+              }}
             >
               <meta itemProp="position" content={String(index + 1)} />
               <div itemProp="item" itemScope itemType="https://schema.org/Organization" className="flex-1 flex flex-col">
@@ -250,13 +267,13 @@ const FeaturedAgencies = ({ companies, limit = 12 }: FeaturedAgenciesProps) => {
                   <a
                     href={`/companies/${company.slug}`}
                     onClick={() => handleClick(company.id, 'profile')}
-                    className="flex-1 inline-flex h-9 items-center justify-center rounded-lg border border-gray-300 bg-white px-3 text-sm font-medium text-gray-800 hover:bg-gray-50 transition-colors duration-150"
+                    className="flex-1 inline-flex h-10 items-center justify-center rounded-lg border-2 border-gray-200 bg-white px-3 text-sm font-medium text-gray-700 hover:border-gray-300 hover:bg-gray-50 transition-all duration-200"
                   >
                     View Profile
                   </a>
                   <button
                     onClick={() => openQuoteModal(company)}
-                    className="flex-1 inline-flex h-9 items-center justify-center rounded-lg px-3 text-sm font-semibold text-white transition-all duration-150 hover:brightness-105 hover:scale-[1.01]"
+                    className="flex-1 inline-flex h-10 items-center justify-center rounded-lg px-3 text-sm font-semibold text-white transition-all duration-200 hover:shadow-lg hover:scale-[1.02]"
                     style={{ background: 'var(--rf-grad-red)' }}
                   >
                     Get Quote
