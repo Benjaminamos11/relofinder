@@ -108,7 +108,7 @@ export default function AgenciesCarousel({ agencies }: Props) {
       trackEvent('ai_summary_open', { agency_id: agencyId });
     } catch (error) {
       console.error('Summary error:', error);
-      setSummaryError('Couldn't load summary. Try again.');
+      setSummaryError('Could not load summary. Try again.');
       trackEvent('ai_summary_error', { agency_id: agencyId });
     } finally {
       setLoadingSummary(null);
