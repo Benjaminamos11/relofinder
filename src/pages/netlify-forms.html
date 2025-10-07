@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Netlify Forms Detection</title>
+    <meta name="robots" content="noindex, nofollow">
+</head>
+<body style="display: none;">
+    <!-- This page is hidden and used only for Netlify form detection at build time -->
+    
+    <!-- Contact Modal Form -->
+    <form name="contact-modal" netlify netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="form-name" value="contact-modal" />
+        <input name="bot-field" />
+        
+        <!-- Contact Details -->
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input type="tel" name="phone" />
+        
+        <!-- Move Details -->
+        <input type="text" name="movingFrom" />
+        <input type="text" name="movingTo" />
+        <input type="text" name="moveDate" />
+        <input type="text" name="reason" />
+        <input type="text" name="reasonOther" />
+        <input type="text" name="timeline" />
+        
+        <!-- Services (checkboxes) -->
+        <input type="checkbox" name="services[]" value="home_search" />
+        <input type="checkbox" name="services[]" value="permits" />
+        <input type="checkbox" name="services[]" value="schools" />
+        <input type="checkbox" name="services[]" value="temporary" />
+        <input type="checkbox" name="services[]" value="settling_in" />
+        <input type="checkbox" name="services[]" value="departure" />
+        <input type="checkbox" name="services[]" value="other" />
+        <input type="text" name="servicesOther" />
+        
+        <!-- Regions (checkboxes) -->
+        <input type="checkbox" name="regions[]" value="zurich" />
+        <input type="checkbox" name="regions[]" value="geneva" />
+        <input type="checkbox" name="regions[]" value="basel" />
+        <input type="checkbox" name="regions[]" value="bern" />
+        <input type="checkbox" name="regions[]" value="lausanne" />
+        <input type="checkbox" name="regions[]" value="zug" />
+        <input type="checkbox" name="regions[]" value="lucerne" />
+        <input type="checkbox" name="regions[]" value="other" />
+        <input type="text" name="regionsOther" />
+        
+        <!-- Preferences -->
+        <input type="checkbox" name="emailOnly" />
+        <textarea name="notes"></textarea>
+        
+        <!-- Context -->
+        <input type="hidden" name="mode" />
+        <input type="hidden" name="context_type" />
+        <input type="hidden" name="context_value" />
+        <input type="hidden" name="source_path" />
+    </form>
+    
+</body>
+</html>
+
