@@ -43,8 +43,11 @@ export interface AgencyCarouselData {
  */
 export async function getAgenciesCarouselData(limit = 8): Promise<AgencyCarouselData[]> {
   try {
+    console.log('[AgenciesCarousel] Starting data fetch...');
+    
     // Fetch all companies from Content Collections
     const companies = await getCollection('companies');
+    console.log('[AgenciesCarousel] Found companies from content:', companies.length);
     
     // Fetch Supabase data (tier, rating, reviews)
     const { data: relocators, error: relocatorsError } = await supabase
@@ -55,7 +58,10 @@ export async function getAgenciesCarouselData(limit = 8): Promise<AgencyCarousel
 
     if (relocatorsError) {
       console.error('[AgenciesCarousel] Error fetching relocators:', relocatorsError);
+      // Still continue with content collection data
     }
+
+    console.log('[AgenciesCarousel] Found relocators from Supabase:', relocators?.length || 0);
 
     // Build name-to-relocator map
     const relocatorMap = new Map();
@@ -132,11 +138,17 @@ export async function getAgenciesCarouselData(limit = 8): Promise<AgencyCarousel
     });
 
     console.log(`[AgenciesCarousel] Fetched ${mergedAgencies.length} agencies`);
-    console.log(`[AgenciesCarousel] First agency: ${mergedAgencies[0]?.name}`);
+    if (mergedAgencies.length > 0) {
+      console.log(`[AgenciesCarousel] First agency: ${mergedAgencies[0]?.name}`);
+      console.log(`[AgenciesCarousel] First agency reviews: ${mergedAgencies[0]?.reviews_count}`);
+    } else {
+      console.warn('[AgenciesCarousel] No agencies found! This might be why the section is not visible.');
+    }
     
     return mergedAgencies.slice(0, limit);
   } catch (error) {
     console.error('[AgenciesCarousel] Error:', error);
+    // Return empty array on error - component will show "Loading" message
     return [];
   }
 }

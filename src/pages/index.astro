@@ -11,6 +11,12 @@ import { getAgenciesCarouselData } from '../utils/agenciesCarouselData';
 // Fetch agencies for the unified carousel
 const carouselAgencies = await getAgenciesCarouselData(8);
 
+// Debug: Log what we got
+console.log('[Homepage] Carousel agencies count:', carouselAgencies.length);
+if (carouselAgencies.length > 0) {
+  console.log('[Homepage] First agency:', carouselAgencies[0].name);
+}
+
 const title = "Switzerland Relocation Made Simple | Compare Providers & Regions | ReloFinder";
 const description = "Compare vetted relocation agencies, explore top Swiss regions, and plan your move with transparent services and free consultations.";
 
