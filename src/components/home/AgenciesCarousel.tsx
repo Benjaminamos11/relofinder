@@ -307,23 +307,23 @@ export default function AgenciesCarousel({ agencies }: Props) {
               </p>
             )}
 
-            {/* Stats Row */}
-            {activeAgency.stats && (
-              <div className="grid grid-cols-3 gap-4 mb-6 p-4 bg-gray-50 rounded-xl">
+            {/* Stats Row - Only show real stats we know */}
+            {activeAgency.stats && (activeAgency.stats.yearsInBusiness || activeAgency.reviews_count > 0) && (
+              <div className="flex items-center gap-6 mb-6 p-4 bg-gray-50 rounded-xl">
                 {activeAgency.stats.yearsInBusiness && (
-                  <div className="text-center">
+                  <div className="flex items-center gap-2">
                     <div className="text-2xl font-bold text-[#B61919]">{activeAgency.stats.yearsInBusiness}+</div>
                     <div className="text-sm text-gray-600">Years Experience</div>
                   </div>
                 )}
-                {activeAgency.stats.successfulRelocations && (
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-[#B61919]">{activeAgency.stats.successfulRelocations}+</div>
-                    <div className="text-sm text-gray-600">Relocations</div>
+                {activeAgency.reviews_count > 0 && (
+                  <div className="flex items-center gap-2">
+                    <div className="text-2xl font-bold text-[#B61919]">{activeAgency.reviews_count}</div>
+                    <div className="text-sm text-gray-600">{activeAgency.reviews_count === 1 ? 'Review' : 'Reviews'}</div>
                   </div>
                 )}
                 {activeAgency.stats.responseTime && (
-                  <div className="text-center">
+                  <div className="flex items-center gap-2">
                     <div className="text-2xl font-bold text-[#B61919]">{activeAgency.stats.responseTime}</div>
                     <div className="text-sm text-gray-600">Response Time</div>
                   </div>
@@ -342,7 +342,7 @@ export default function AgenciesCarousel({ agencies }: Props) {
                 </span>
               ))}
               {activeAgency.regions[0] && (
-                <span className="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-medium border border-blue-200">
+                <span className="px-3 py-1.5 bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 rounded-full text-sm font-semibold border border-gray-200 shadow-sm">
                   📍 {activeAgency.regions[0]}
                 </span>
               )}

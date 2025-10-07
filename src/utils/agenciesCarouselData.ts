@@ -32,7 +32,6 @@ export interface AgencyCarouselData {
   description?: string; // Short summary
   stats?: {
     yearsInBusiness?: number;
-    successfulRelocations?: number;
     responseTime?: string;
   };
 }
@@ -114,7 +113,6 @@ export async function getAgenciesCarouselData(limit = 8): Promise<AgencyCarousel
         description: company.data.description || company.body || '',
         stats: {
           yearsInBusiness: company.data.founded ? new Date().getFullYear() - company.data.founded : undefined,
-          successfulRelocations: Math.floor((reviewsCount || 0) * 3.5), // Estimate
           responseTime: '< 24h'
         }
       });
