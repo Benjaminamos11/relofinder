@@ -50,8 +50,10 @@ if (isCloudinaryUrl) {
       // Build transformation parameters with advanced compression
       const transforms: string[] = [];
       
-      // Enhanced quality and format optimization
-      transforms.push(`q_${quality === 'auto' ? 'auto:best' : quality}`);
+      // Enhanced quality and format optimization with higher compression for mobile
+      // Use q_auto:eco for mobile (smaller files) and q_auto:good for desktop
+      const qualityParam = width <= 640 ? 'q_auto:eco' : 'q_auto:good';
+      transforms.push(qualityParam);
       
       // Responsive sizing with crop
       if (height) {
@@ -75,8 +77,9 @@ if (isCloudinaryUrl) {
       const baseTransformString = transforms.join(',');
       
       // Create optimized srcSets for different formats
-      const sizes = [320, 480, 640, 768, 1024, 1280, 1920];
-      const relevantSizes = sizes.filter(size => size <= width * 2); // Only include relevant sizes
+      // Use smaller sizes for better mobile performance (match actual display sizes)
+      const sizes = [320, 384, 640, 768, 1024, 1280];
+      const relevantSizes = sizes.filter(size => size <= width * 1.5); // Limit to 1.5x for better perf
       
       // AVIF format (best compression, modern browsers)
       avifSrcSet = relevantSizes.map(size => {
@@ -125,9 +128,10 @@ if (isCloudinaryUrl) {
 }
 
 // Enhanced sizes attribute for better responsive loading
+// More accurate viewport-based sizing for mobile-first approach
 const responsiveSizes = priority 
-  ? '(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 80vw'
-  : '(max-width: 480px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 70vw';
+  ? '(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 70vw'
+  : '(max-width: 384px) 364px, (max-width: 640px) 90vw, (max-width: 768px) 80vw, (max-width: 1024px) 70vw, 60vw';
 
 // Determine optimal loading strategy
 const finalLoading = priority ? 'eager' : loading;

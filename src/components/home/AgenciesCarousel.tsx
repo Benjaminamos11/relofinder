@@ -381,18 +381,23 @@ export default function AgenciesCarousel({ agencies }: Props) {
               <div className="bg-gray-50 rounded-xl p-6 mb-6 border border-gray-100 relative">
                 {/* Review Navigation Dots */}
                 {activeReviews.length > 1 && (
-                  <div className="absolute top-4 right-4 flex gap-1.5">
+                  <div className="absolute top-4 right-4 flex gap-2">
                     {activeReviews.map((_, idx) => (
                       <button
                         key={idx}
                         onClick={() => setActiveReviewIndex(idx)}
-                        className={`w-2 h-2 rounded-full transition-all ${
+                        className={`min-w-[44px] min-h-[44px] p-3 rounded-full transition-all flex items-center justify-center ${
                           idx === activeReviewIndex
-                            ? 'bg-[#B61919] w-6'
+                            ? 'bg-[#B61919]'
                             : 'bg-gray-300 hover:bg-gray-400'
                         }`}
                         aria-label={`View review ${idx + 1}`}
-                      />
+                        aria-current={idx === activeReviewIndex ? 'true' : 'false'}
+                      >
+                        <span className={`block w-2 h-2 rounded-full transition-all ${
+                          idx === activeReviewIndex ? 'bg-white w-4' : 'bg-white'
+                        }`}></span>
+                      </button>
                     ))}
                   </div>
                 )}
@@ -621,7 +626,9 @@ export default function AgenciesCarousel({ agencies }: Props) {
                     setActiveIndex(idx);
                   }
                 }}
+                role="tab"
                 aria-selected={idx === activeIndex}
+                aria-controls={`agency-panel-${agency.id}`}
                 className={`
                   flex-shrink-0 snap-start p-3 rounded-xl border-2 transition-all duration-200
                   ${

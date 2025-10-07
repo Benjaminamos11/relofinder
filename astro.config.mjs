@@ -86,16 +86,34 @@ export default defineConfig({
   site: 'https://relofinder.ch',
   trailingSlash: 'never',
   build: {
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'always', // Inline critical CSS for faster FCP
     assets: 'assets'
   },
   vite: {
     build: {
       rollupOptions: {
         output: {
-          manualChunks: {
-            'vendor': ['react', 'react-dom'],
-            'utils': ['./src/utils']
+          manualChunks: (id) => {
+            // Separate React core (used on most pages)
+            if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+              return 'vendor-react';
+            }
+            // Separate large carousel components (only used on homepage and company pages)
+            if (id.includes('/AgenciesCarousel') || id.includes('/TrustedProfessionalsSlider')) {
+              return 'carousel';
+            }
+            // Separate modal components (used across site but can be lazy)
+            if (id.includes('/UniversalContactModal') || id.includes('/modal')) {
+              return 'modal';
+            }
+            // Separate AI/review components (only on company pages)
+            if (id.includes('/AIReviewSummary') || id.includes('/AgencyReviewSummary')) {
+              return 'ai-features';
+            }
+            // Keep other vendor libs together but separate from app code
+            if (id.includes('node_modules/')) {
+              return 'vendor';
+            }
           },
           assetFileNames: (assetInfo) => {
             const info = assetInfo.name.split('.');
