@@ -6,42 +6,45 @@ interface Props {
 const { showNewsletter = true } = Astro.props;
 ---
 
-<footer class="bg-gray-900 relative overflow-hidden">
-  <!-- Background Elements -->
-  <div class="absolute inset-0">
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-secondary-500/20 rounded-full blur-3xl"></div>
-  </div>
-
-  <!-- Gradient Frame Effect -->
-  <div class="absolute inset-0 bg-gradient-to-br from-primary-600/10 via-transparent to-secondary-600/10"></div>
-  
+<footer class="bg-gray-50 relative">
   <!-- Main Footer Content -->
-  <div class="container relative z-10 py-16">
+  <div class="container mx-auto max-w-7xl px-6 lg:px-8 py-16">
     <!-- Footer Card -->
-    <div class="bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 p-8 lg:p-12 shadow-2xl">
+    <div class="bg-white rounded-2xl p-8 lg:p-12 shadow-lg border border-gray-100">
       
       <!-- Top Section -->
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-12">
         
         <!-- Brand Column -->
-        <div class="lg:col-span-1 flex flex-col items-center mb-6">
-          <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center mb-2">
+        <div class="lg:col-span-1 flex flex-col items-start">
+          <div class="w-12 h-12 bg-gradient-to-br from-[#B61919] to-[#DF3030] rounded-xl flex items-center justify-center mb-4">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
             </svg>
           </div>
-          <p class="text-gray-300 leading-relaxed mb-6 text-center">
+          <p class="text-gray-600 leading-relaxed mb-6">
             Your trusted partner for seamless Swiss relocations. Connecting expats with verified professionals since 2023.
           </p>
-          <div class="w-full overflow-x-auto whitespace-nowrap py-4 flex items-center justify-center gap-6">
-            <a href="https://www.linkedin.com/company/relofinder" target="_blank" rel="noopener" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition-colors duration-300" aria-label="Follow us on LinkedIn">
-              <svg class="w-5 h-5 text-gray-300 hover:text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <div class="flex items-center gap-3">
+            <a 
+              href="https://www.linkedin.com/company/relofinder" 
+              target="_blank" 
+              rel="noopener" 
+              class="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-all duration-200 hover:scale-105" 
+              aria-label="Follow us on LinkedIn"
+            >
+              <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
               </svg>
             </a>
-            <a href="https://facebook.com/relofinder" target="_blank" rel="noopener" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition-colors duration-300" aria-label="Follow us on Facebook">
-              <svg class="w-5 h-5 text-gray-300 hover:text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <a 
+              href="https://facebook.com/relofinder" 
+              target="_blank" 
+              rel="noopener" 
+              class="w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-all duration-200 hover:scale-105" 
+              aria-label="Follow us on Facebook"
+            >
+              <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/>
               </svg>
             </a>
@@ -50,112 +53,114 @@ const { showNewsletter = true } = Astro.props;
 
         <!-- Services Column -->
         <div class="lg:col-span-1">
-          <h3 class="text-lg font-bold text-white mb-6">Services</h3>
+          <h3 class="text-lg font-semibold text-gray-900 mb-6">Services</h3>
           <ul class="space-y-3">
-            <li><a href="/services/housing" class="text-gray-300 hover:text-white transition-colors duration-300">Housing & Real Estate</a></li>
-            <li><a href="/services/immigration" class="text-gray-300 hover:text-white transition-colors duration-300">Visa & Immigration</a></li>
-            <li><a href="/services/finance" class="text-gray-300 hover:text-white transition-colors duration-300">Banking & Finance</a></li>
-            <li><a href="/services/education" class="text-gray-300 hover:text-white transition-colors duration-300">Education & Schools</a></li>
-            <li><a href="/services/moving" class="text-gray-300 hover:text-white transition-colors duration-300">Moving & Logistics</a></li>
-            <li><a href="/services/insurance" class="text-gray-300 hover:text-white transition-colors duration-300">Insurance</a></li>
+            <li><a href="/services/housing" class="text-gray-600 hover:text-[#B61919] transition-colors duration-200">Housing & Real Estate</a></li>
+            <li><a href="/services/immigration" class="text-gray-600 hover:text-[#B61919] transition-colors duration-200">Visa & Immigration</a></li>
+            <li><a href="/services/finance" class="text-gray-600 hover:text-[#B61919] transition-colors duration-200">Banking & Finance</a></li>
+            <li><a href="/services/education" class="text-gray-600 hover:text-[#B61919] transition-colors duration-200">Education & Schools</a></li>
+            <li><a href="/services/moving-logistics" class="text-gray-600 hover:text-[#B61919] transition-colors duration-200">Moving & Logistics</a></li>
+            <li><a href="/services/insurance" class="text-gray-600 hover:text-[#B61919] transition-colors duration-200">Insurance</a></li>
           </ul>
         </div>
 
         <!-- Regions Column -->
         <div class="lg:col-span-1">
-          <h3 class="text-lg font-bold text-white mb-6">Popular Regions</h3>
+          <h3 class="text-lg font-semibold text-gray-900 mb-6">Popular Regions</h3>
           <ul class="space-y-3">
-            <li><a href="/regions/zurich" class="text-gray-300 hover:text-white transition-colors duration-300">Zürich</a></li>
-            <li><a href="/regions/geneva" class="text-gray-300 hover:text-white transition-colors duration-300">Geneva</a></li>
-            <li><a href="/regions/basel" class="text-gray-300 hover:text-white transition-colors duration-300">Basel</a></li>
-            <li><a href="/regions/bern" class="text-gray-300 hover:text-white transition-colors duration-300">Bern</a></li>
-            <li><a href="/regions/lausanne" class="text-gray-300 hover:text-white transition-colors duration-300">Lausanne</a></li>
-            <li><a href="/regions" class="text-primary-400 hover:text-primary-300 transition-colors duration-300">View All Regions →</a></li>
+            <li><a href="/locations/zurich" class="text-gray-600 hover:text-[#B61919] transition-colors duration-200">Zürich</a></li>
+            <li><a href="/locations/geneva" class="text-gray-600 hover:text-[#B61919] transition-colors duration-200">Geneva</a></li>
+            <li><a href="/locations/basel" class="text-gray-600 hover:text-[#B61919] transition-colors duration-200">Basel</a></li>
+            <li><a href="/regions/bern" class="text-gray-600 hover:text-[#B61919] transition-colors duration-200">Bern</a></li>
+            <li><a href="/regions/lausanne" class="text-gray-600 hover:text-[#B61919] transition-colors duration-200">Lausanne</a></li>
+            <li><a href="/regions" class="text-[#B61919] hover:text-[#DF3030] font-medium transition-colors duration-200">View All Regions →</a></li>
           </ul>
         </div>
 
         <!-- Company Column -->
         <div class="lg:col-span-1">
-          <h3 class="text-lg font-bold text-white mb-6">Company</h3>
+          <h3 class="text-lg font-semibold text-gray-900 mb-6">Company</h3>
           <ul class="space-y-3">
-            <li><a href="/about" class="text-gray-300 hover:text-white transition-colors duration-300">About Us</a></li>
-            <li><a href="/contact" class="text-gray-300 hover:text-white transition-colors duration-300">Contact</a></li>
-            <li><a href="/partners" class="text-gray-300 hover:text-white transition-colors duration-300">Become a Partner</a></li>
-            <li><a href="/blog" class="text-gray-300 hover:text-white transition-colors duration-300">Blog</a></li>
-            <li><a href="/careers" class="text-gray-300 hover:text-white transition-colors duration-300">Careers</a></li>
-            <li><a href="/help" class="text-gray-300 hover:text-white transition-colors duration-300">Help Center</a></li>
+            <li><a href="/about" class="text-gray-600 hover:text-[#B61919] transition-colors duration-200">About Us</a></li>
+            <li><a href="/contact" class="text-gray-600 hover:text-[#B61919] transition-colors duration-200">Contact</a></li>
+            <li><a href="/partners" class="text-gray-600 hover:text-[#B61919] transition-colors duration-200">Become a Partner</a></li>
+            <li><a href="/blog" class="text-gray-600 hover:text-[#B61919] transition-colors duration-200">Blog</a></li>
+            <li><a href="/careers" class="text-gray-600 hover:text-[#B61919] transition-colors duration-200">Careers</a></li>
+            <li><a href="/help" class="text-gray-600 hover:text-[#B61919] transition-colors duration-200">Help Center</a></li>
           </ul>
         </div>
       </div>
 
       <!-- Newsletter Section -->
-      <div class="border-t border-white/10 pt-12 mb-12">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          <div>
-            <h3 class="text-2xl font-bold text-white mb-4">Stay Updated</h3>
-            <p class="text-gray-300 leading-relaxed">
-              Get the latest Swiss relocation tips, market insights, and exclusive partner offers delivered to your inbox.
-            </p>
-          </div>
-          <div class="flex flex-col sm:flex-row gap-3">
-            <input 
-              type="email" 
-              placeholder="Enter your email address" 
-              class="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            >
-            <button
-              class="w-full sm:w-auto px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
-              data-open-modal data-modal-tab="individual" onclick="universalOpenModal({tab:'individual'})"
-            >
-              Get Started
-            </button>
+      {showNewsletter && (
+        <div class="border-t border-gray-100 pt-12 mb-12">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-3">Stay Updated</h3>
+              <p class="text-gray-600 leading-relaxed">
+                Get the latest Swiss relocation tips, market insights, and exclusive partner offers delivered to your inbox.
+              </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <input 
+                type="email" 
+                placeholder="Enter your email address" 
+                class="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-[#B61919] focus:border-transparent transition-all"
+              >
+              <button
+                class="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-[#B61919] to-[#DF3030] text-white font-semibold rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all duration-200"
+                data-open-modal data-modal-tab="individual" onclick="universalOpenModal({tab:'individual'})"
+              >
+                Get Started
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <!-- Stats Section -->
-      <div class="border-t border-white/10 pt-12 mb-12">
+      <div class="border-t border-gray-100 pt-12 mb-12">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div>
-            <div class="text-3xl font-bold gradient-text mb-2">5,000+</div>
-            <div class="text-gray-300 text-sm">Happy Expats</div>
+          <div class="p-4 rounded-xl bg-gray-50">
+            <div class="text-3xl font-bold bg-gradient-to-r from-[#B61919] to-[#DF3030] bg-clip-text text-transparent mb-2">5,000+</div>
+            <div class="text-gray-600 text-sm font-medium">Happy Expats</div>
           </div>
-          <div>
-            <div class="text-3xl font-bold gradient-text mb-2">500+</div>
-            <div class="text-gray-300 text-sm">Partner Companies</div>
+          <div class="p-4 rounded-xl bg-gray-50">
+            <div class="text-3xl font-bold bg-gradient-to-r from-[#B61919] to-[#DF3030] bg-clip-text text-transparent mb-2">500+</div>
+            <div class="text-gray-600 text-sm font-medium">Partner Companies</div>
           </div>
-          <div>
-            <div class="text-3xl font-bold gradient-text mb-2">26</div>
-            <div class="text-gray-300 text-sm">Swiss Cantons</div>
+          <div class="p-4 rounded-xl bg-gray-50">
+            <div class="text-3xl font-bold bg-gradient-to-r from-[#B61919] to-[#DF3030] bg-clip-text text-transparent mb-2">26</div>
+            <div class="text-gray-600 text-sm font-medium">Swiss Cantons</div>
           </div>
-          <div>
-            <div class="text-3xl font-bold gradient-text mb-2">98%</div>
-            <div class="text-gray-300 text-sm">Success Rate</div>
+          <div class="p-4 rounded-xl bg-gray-50">
+            <div class="text-3xl font-bold bg-gradient-to-r from-[#B61919] to-[#DF3030] bg-clip-text text-transparent mb-2">98%</div>
+            <div class="text-gray-600 text-sm font-medium">Success Rate</div>
           </div>
         </div>
       </div>
 
       <!-- Bottom Section -->
-      <div class="border-t border-white/10 pt-8">
+      <div class="border-t border-gray-100 pt-8">
         <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
           
           <!-- Copyright -->
-          <div class="text-gray-400 text-sm text-center lg:text-left">
+          <div class="text-gray-500 text-sm text-center lg:text-left">
             © 2025 ReloFinder.ch. All rights reserved. Made with ❤️ in Switzerland.
           </div>
 
           <!-- Legal Links -->
           <div class="flex flex-wrap justify-center lg:justify-end gap-6 text-sm">
-            <a href="/privacy" class="text-gray-400 hover:text-white transition-colors duration-300">Privacy Policy</a>
-            <a href="/terms" class="text-gray-400 hover:text-white transition-colors duration-300">Terms of Service</a>
-            <a href="/cookies" class="text-gray-400 hover:text-white transition-colors duration-300">Cookie Policy</a>
-            <a href="/sitemap" class="text-gray-400 hover:text-white transition-colors duration-300">Sitemap</a>
+            <a href="/privacy" class="text-gray-500 hover:text-[#B61919] transition-colors duration-200">Privacy Policy</a>
+            <a href="/terms" class="text-gray-500 hover:text-[#B61919] transition-colors duration-200">Terms of Service</a>
+            <a href="/cookies" class="text-gray-500 hover:text-[#B61919] transition-colors duration-200">Cookie Policy</a>
+            <a href="/sitemap.xml" class="text-gray-500 hover:text-[#B61919] transition-colors duration-200">Sitemap</a>
           </div>
 
           <!-- Swiss Badge -->
-          <div class="flex items-center space-x-2 text-gray-400 text-sm">
+          <div class="flex items-center space-x-2 text-gray-500 text-sm">
             <span class="text-2xl">🇨🇭</span>
-            <span>Proudly Swiss</span>
+            <span class="font-medium">Proudly Swiss</span>
           </div>
         </div>
       </div>
@@ -166,7 +171,7 @@ const { showNewsletter = true } = Astro.props;
   <div class="fixed bottom-6 right-6 lg:hidden z-40">
     <button 
       data-open-modal data-modal-tab="individual" onclick="universalOpenModal({tab:'individual'})"
-      class="w-14 h-14 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
+      class="w-14 h-14 bg-gradient-to-r from-[#B61919] to-[#DF3030] text-white rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-200 flex items-center justify-center"
       aria-label="Start relocation process"
     >
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -175,12 +180,3 @@ const { showNewsletter = true } = Astro.props;
     </button>
   </div>
 </footer>
-
-<style>
-  .gradient-text {
-    background: linear-gradient(135deg, #dc2626 0%, #0ea5e9 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-</style>
