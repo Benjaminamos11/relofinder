@@ -109,15 +109,21 @@ export async function getAgenciesCarouselData(limit = 8): Promise<AgencyCarousel
       });
     }
 
-    // Sort: preferred → partner → by rating
+    // Sort: Prime first, then preferred → partner → by rating
     const tierOrder = { preferred: 1, partner: 2, standard: 3 };
     mergedAgencies.sort((a, b) => {
+      // Prime Relocation always first
+      if (a.name.toLowerCase().includes('prime relocation')) return -1;
+      if (b.name.toLowerCase().includes('prime relocation')) return 1;
+      
+      // Then sort by tier and rating
       const tierDiff = tierOrder[a.tier] - tierOrder[b.tier];
       if (tierDiff !== 0) return tierDiff;
       return (b.avg_rating || 0) - (a.avg_rating || 0);
     });
 
     console.log(`[AgenciesCarousel] Fetched ${mergedAgencies.length} agencies`);
+    console.log(`[AgenciesCarousel] First agency: ${mergedAgencies[0]?.name}`);
     
     return mergedAgencies.slice(0, limit);
   } catch (error) {

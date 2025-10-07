@@ -147,6 +147,28 @@ export default function AgenciesCarousel({ agencies }: Props) {
 
   if (!agencies.length) return null;
 
+  // Helper to get initials from company name
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .map(word => word[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  };
+
+  // Helper to get color for initials avatar based on tier
+  const getAvatarColor = (tier: string) => {
+    switch (tier) {
+      case 'preferred':
+        return 'bg-gradient-to-br from-yellow-400 to-amber-500 text-white';
+      case 'partner':
+        return 'bg-gradient-to-br from-blue-500 to-blue-600 text-white';
+      default:
+        return 'bg-gradient-to-br from-gray-400 to-gray-500 text-white';
+    }
+  };
+
   return (
     <section
       className="relative py-16 lg:py-24 bg-white"
@@ -173,13 +195,10 @@ export default function AgenciesCarousel({ agencies }: Props) {
           {/* Header */}
           <div className="flex items-start justify-between mb-6 flex-wrap gap-4">
             <div className="flex items-center gap-4">
-              {activeAgency.logo_url && (
-                <img
-                  src={activeAgency.logo_url}
-                  alt={`${activeAgency.name} logo`}
-                  className="w-16 h-16 object-contain rounded-lg"
-                />
-              )}
+              {/* Initials Avatar */}
+              <div className={`w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold ${getAvatarColor(activeAgency.tier)}`}>
+                {getInitials(activeAgency.name)}
+              </div>
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <h3 className="text-2xl font-bold text-gray-900">
@@ -476,13 +495,10 @@ export default function AgenciesCarousel({ agencies }: Props) {
                 style={{ minWidth: '160px' }}
               >
                 <div className="flex items-center gap-3">
-                  {agency.logo_url && (
-                    <img
-                      src={agency.logo_url}
-                      alt=""
-                      className="w-10 h-10 object-contain rounded"
-                    />
-                  )}
+                  {/* Initials Avatar for thumbnails */}
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 ${getAvatarColor(agency.tier)}`}>
+                    {getInitials(agency.name)}
+                  </div>
                   <div className="text-left flex-1">
                     <p className="font-semibold text-sm text-gray-900 truncate">
                       {agency.name}
