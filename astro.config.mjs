@@ -26,11 +26,24 @@ export default defineConfig({
       filter: (page) => !page.includes('/admin') 
         && !page.includes('/private') 
         && !page.includes('/api')
-        && !page.includes('/services/banking')
-        && !page.includes('/services/immigration-services'),
+        && !page.includes('/netlify-forms')
+        && !page.includes('/login')
+        && !page.includes('/todos'),
       changefreq: 'weekly',
       priority: 0.7,
-      lastmod: new Date()
+      lastmod: new Date(),
+      // Custom URL entries with priorities
+      customPages: [
+        'https://relofinder.ch',
+        'https://relofinder.ch/about',
+        'https://relofinder.ch/contact',
+        'https://relofinder.ch/corporate',
+        'https://relofinder.ch/partners',
+        'https://relofinder.ch/swiss-relocation-guide',
+        'https://relofinder.ch/companies',
+        'https://relofinder.ch/regions',
+        'https://relofinder.ch/blog',
+      ]
     }),
     compress({
       CSS: {

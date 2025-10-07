@@ -245,10 +245,10 @@ export default function AgenciesCarousel({ agencies }: Props) {
           {/* Previous Arrow */}
           <button
             onClick={prevAgency}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 lg:-translate-x-16 z-10 w-12 h-12 rounded-full bg-white shadow-lg border border-gray-200 hover:border-[#B61919] hover:bg-red-50 transition-all duration-200 flex items-center justify-center group"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 lg:-translate-x-10 z-10 p-2 hover:opacity-70 transition-opacity duration-200 group"
             aria-label="Previous agency"
           >
-            <svg className="w-6 h-6 text-gray-600 group-hover:text-[#B61919]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-8 h-8 text-gray-400 group-hover:text-[#B61919]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
@@ -256,10 +256,10 @@ export default function AgenciesCarousel({ agencies }: Props) {
           {/* Next Arrow */}
           <button
             onClick={nextAgency}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 lg:translate-x-16 z-10 w-12 h-12 rounded-full bg-white shadow-lg border border-gray-200 hover:border-[#B61919] hover:bg-red-50 transition-all duration-200 flex items-center justify-center group"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 lg:translate-x-10 z-10 p-2 hover:opacity-70 transition-opacity duration-200 group"
             aria-label="Next agency"
           >
-            <svg className="w-6 h-6 text-gray-600 group-hover:text-[#B61919]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-8 h-8 text-gray-400 group-hover:text-[#B61919]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>
@@ -381,23 +381,19 @@ export default function AgenciesCarousel({ agencies }: Props) {
               <div className="bg-gray-50 rounded-xl p-6 mb-6 border border-gray-100 relative">
                 {/* Review Navigation Dots */}
                 {activeReviews.length > 1 && (
-                  <div className="absolute top-4 right-4 flex gap-2">
+                  <div className="absolute top-4 right-4 flex gap-1.5">
                     {activeReviews.map((_, idx) => (
                       <button
                         key={idx}
                         onClick={() => setActiveReviewIndex(idx)}
-                        className={`min-w-[44px] min-h-[44px] p-3 rounded-full transition-all flex items-center justify-center ${
+                        className={`w-2 h-2 rounded-full transition-all ${
                           idx === activeReviewIndex
-                            ? 'bg-[#B61919]'
+                            ? 'bg-[#B61919] w-6'
                             : 'bg-gray-300 hover:bg-gray-400'
                         }`}
                         aria-label={`View review ${idx + 1}`}
                         aria-current={idx === activeReviewIndex ? 'true' : 'false'}
-                      >
-                        <span className={`block w-2 h-2 rounded-full transition-all ${
-                          idx === activeReviewIndex ? 'bg-white w-4' : 'bg-white'
-                        }`}></span>
-                      </button>
+                      />
                     ))}
                   </div>
                 )}
