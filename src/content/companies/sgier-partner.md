@@ -3,49 +3,53 @@ id: "sgier-partner"
 name: "Sgier + Partner"
 description: "Switzerland's leading immigration and relocation services provider since 2001. Processing 3,000+ work permits annually, helping 3,000+ expat families find homes nationwide."
 logo: "/images/companies/sgier-partner-logo.png"
-featured: false
-verified: true
+
 website: "https://sgierpartner.ch/"
 phone: "+41 44 123 45 67"
 email: "info@sgierpartner.ch"
+
 address:
-  street: "Zurich"
+  street: "Sgier + Partner Office"
   city: "Zurich"
-  postalCode: "8000"
+  postalCode: "0000"
   canton: "ZH"
 services:
-  - "visa"
+  - "immigration-services"
   - "housing"
   - "settling-in"
-  - "legal-advice"
+  - "education"
+  - "advisory-services"
 regions:
   - "zurich"
+  - "geneva"
+  - "basel"
+  - "lausanne"
+  - "zug"
+  - "lucerne"
 specializations:
-  - "Immigration Services"
-  - "Work Permit Processing"
-  - "Legal Advisory"
+  - "immigration-specialist"
+  - "work-permits"
 languages:
-  - "German"
   - "English"
+  - "German"
   - "French"
-  - "Italian"
 founded: 2001
-employees: "25"
-certifications:
-  - "SARA Supplier Member"
-  - "EuRA Member"
+employees: "Not specified"
+verified: true
+featured: false
 rating:
   score: 4.7
   reviews: 340
   breakdown:
-    communication: 4.7
-    professionalism: 4.8
-    value: 4.6
-    timeliness: 4.7
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
   consultationFee: 0
   packagePricing: true
   freeInitialConsult: true
+
 ---
 
 Sgier + Partner GmbH is Switzerland's leading immigration and relocation services provider established in 2001, specializing in work permit procurement and comprehensive destination services for expatriates relocating to Switzerland.

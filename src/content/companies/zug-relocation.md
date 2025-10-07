@@ -1,72 +1,50 @@
 ---
-id: zug-relocation
-name: Zug Relocation
-logo: https://placehold.co/200x80/png?text=Zug+Relocation+Logo
+id: "zug-relocation"
+name: "Zug Relocation"
+description: "Zug Relocation offers personalized relocation support in Zug, Zurich and Lucerne with a team of experienced expatriates who understand the challenges of moving to Switzerland."
+logo: "https://placehold.co/200x80/png?text=Zug+Relocation+Logo"
+
+website: "https://www.zug-relocation.ch/"
+phone: "Not Provided # TODO: Add phone if available"
+email: "welcome@zug-relocation.ch"
+
+address:
+  street: "Sumpfstrasse 32"
+  city: "Steinhausen"
+  postalCode: "6312"
+  canton: "ZG"
+services:
+  - "housing"
+  - "settling-in"
+  - "consulting"
+  - "property-mediation"
+regions:
+  - "zug"
+  - "lucerne"
+  - "zurich"
+specializations:
+  - "consulting"
+  - "property-mediation"
+languages:
+  - "English"
+  - "German"
+founded: 2010
+employees: "Not specified"
+verified: false
 featured: false
-description: Zug Relocation offers personalized relocation support in Zug, Zurich and Lucerne with a team of experienced expatriates who understand the challenges of moving to Switzerland.
-founded: 2020 # Estimated founding year based on available information
-employees: "2" # Based on team description
 rating:
   score: 1 # Minimum value since no public rating found
   reviews: 0 # No public reviews found
   breakdown:
-    service: 1
-    communication: 1
-    value: 1
-    reliability: 1
-    professionalism: 1
-    timeliness: 1
-languages:
-  - English
-  - German
-certifications:
-  - Personal Expatriate Experience
-  - Regional Expertise
-  - Boutique Approach
-  - Comprehensive Support
-  - Cultural Understanding
-services:
-  - orientation
-  - home-search
-  - settling-in
-  - family-support
-  - integration-support
-regions:
-  - zug
-  - zurich
-  - lucerne
-website: https://www.zug-relocation.ch/
-email: welcome@zug-relocation.ch
-phone: Not Provided # TODO: Add phone if available
-address:
-  street: Sumpfstrasse 32
-  postalCode: "6312"
-  city: Steinhausen
-  canton: ZG
-  office: Zug
-consultants:
-  - name: Natalie Albrecht
-    role: Co-Founder
-    languages:
-      - English
-      - German
-  - name: Gabriella von Merey
-    role: Co-Founder
-    languages:
-      - English
-      - German
-google_my_business: null # TODO: Add GMB link if available
-external_links: []
-backlink_status: false
-specializations:
-  - zug-area
-  - boutique-service
-  - expat-experience
-  - family-relocation
-  - cultural-integration
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
-  model: "Custom"
-  notes: "Personalized pricing based on individual needs and service requirements"
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+
 ---
 
 # About

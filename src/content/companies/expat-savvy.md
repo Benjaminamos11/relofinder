@@ -3,53 +3,51 @@ id: "expat-savvy"
 name: "Expat Savvy"
 description: "FINMA-certified independent insurance broker specializing in comprehensive health insurance solutions and financial services for expatriates relocating to Switzerland."
 logo: "/images/companies/expat-savvy-logo.png"
-featured: true
-verified: true
+
 website: "https://expat-savvy.ch/"
 phone: "+41 79 123 45 67"
 email: "contact@expat-savvy.ch"
+
 address:
   street: "Zurich"
   city: "Zurich"
   postalCode: "8000"
   canton: "ZH"
 services:
-  - "insurance"
-  - "financial-planning"
-  - "health-insurance"
-  - "settling-in"
+  - "advisory-services"
+  - "supplementary-insurance"
 regions:
   - "zurich"
   - "geneva"
   - "basel"
-  - "bern"
+  - "lausanne"
   - "zug"
   - "lucerne"
 specializations:
-  - "Health Insurance"
-  - "Financial Planning"
-  - "Insurance Optimization"
+  - "health-insurance"
+  - "finma-certified"
 languages:
   - "English"
   - "German"
   - "Russian"
-  - "Czech"
 founded: 2024
 employees: "4"
-certifications:
-  - "FINMA-certified"
+verified: true
+featured: true
 rating:
-  score: 5.0
+  score: 5
   reviews: 150
   breakdown:
-    communication: 5.0
-    professionalism: 5.0
-    value: 5.0
-    timeliness: 5.0
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
   consultationFee: 0
   packagePricing: false
   freeInitialConsult: true
+certifications:
+  - "FINMA"
 ---
 
 Expat Savvy is a FINMA-certified independent insurance broker founded by Benjamin Amos Wagner, specializing in comprehensive health insurance solutions and financial services for expatriates relocating to Switzerland. With over 20 years of combined industry experience and having served 1,000+ happy clients, Expat Savvy provides fully independent advice comparing the entire Swiss insurance market.

@@ -1,77 +1,60 @@
 ---
-id: packimpex
-name: Packimpex
-logo: https://placehold.co/200x80/png?text=Packimpex+Logo
-featured: false
-description: Packimpex offers comprehensive relocation, immigration, moving, and destination services across Switzerland and Europe. Rated 4.6/5 by 5800+ clients. Get your free quote!
+id: "packimpex"
+name: "Packimpex"
+description: "Packimpex offers comprehensive relocation, immigration, moving, and destination services across Switzerland and Europe. Rated 4.6/5 by 5800+ clients. Get your free quote!"
+logo: "https://placehold.co/200x80/png?text=Packimpex+Logo"
+
+website: "https://www.packimpex.com/ch-en/home"
+phone: "+41 58 356 14 14"
+email: "info@packimpex.com"
+googleMyBusinessUrl: "Packimpex Zurich Switzerland"
+address:
+  street: "Brunnmattstrasse 5"
+  city: "Thörishaus, Bern"
+  postalCode: "3174"
+  canton: "BE"
+services:
+  - "housing"
+  - "immigration-services"
+  - "settling-in"
+  - "move-management"
+  - "rental-furniture"
+  - "corporate-apartments"
+  - "childcare"
+  - "healthcare"
+regions:
+  - "basel"
+  - "bern"
+  - "zurich"
+  - "zug"
+  - "geneva"
+  - "neuchatel"
+specializations:
+  - "comprehensive-services"
+  - "my-journey-platform"
+languages:
+  - "English"
+  - "German"
+  - "French"
+  - "Italian"
 founded: 1977
-employees: "50"
+employees: "Not specified"
+verified: false
+featured: false
 rating:
   score: 4.6
   reviews: 5879
   breakdown:
-    service: 4.7
-    communication: 4.6
+    communication: 4.5
+    professionalism: 4.5
     value: 4.5
-    reliability: 4.6
-    professionalism: 4.6
-    timeliness: 4.6
-languages:
-  - English
-  - German
-  - French
-  - Italian
-certifications:
-  - Tech-Driven Relocation
-  - Sustainability Focus
-  - Award-Winning Support
-services:
-  - destination-services
-  - immigration-support
-  - rental-furniture
-  - corporate-apartment-management
-  - moving-services
-  - group-moves
-  - my-journey-platform
-regions:
-  - bern
-  - basel
-  - zurich
-  - zug
-  - geneva
-  - neuchatel
-  - vevey
-  - lugano
-website: https://www.packimpex.com/ch-en/home
-email: info@packimpex.com
-phone: "+41-58-356-14-14"
-address:
-  street: Brunnmattstrasse 5
-  postalCode: "3174"
-  city: Thörishaus
-  canton: Bern
-  office: Headquarters
-google_my_business: https://g.page/r/CODE-FROM-GMB # TODO: Add actual GMB link
-gmb_review_platform: trustpilot
-external_links:
-  - type: linkedin
-    url: https://ch.linkedin.com/company/packimpex-sa
-  - type: youtube
-    url: https://www.youtube.com/user/PackimpexSA
-  - type: my-journey
-    url: https://myjourney.packimpex.com/
-backlink_status: false
-specializations:
-  - corporate-relocation
-  - immigration
-  - furniture-rental
-  - corporate-housing
-  - group-moves
-  - tech-driven-relocation
+    timeliness: 4.5
 pricing:
-  model: "Contact for quote"
-  notes: "Pricing varies based on services required and move size"
-googleMyBusinessUrl: "Packimpex Zurich Switzerland"
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+certifications:
+  - "ISO 27001"
 ---
 
 # About

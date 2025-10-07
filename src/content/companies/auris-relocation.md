@@ -1,11 +1,13 @@
 ---
 id: "auris-relocation"
-name: "Auris Relocation AG"
+name: "Auris Relocation"
 description: "Comprehensive destination services provider founded in 2010, operating offices in Zurich, Geneva, and Lucerne with Switzerland-wide coverage."
 logo: "https://www.aurisrelocation.com/cstyle/6680750/images/logo.svg"
-website: "https://www.aurisrelocation.com"
+
+website: "https://www.aurisrelocation.com/"
 phone: "+41 44 808 60 00"
 email: "info@aurisrelocation.com"
+
 address:
   street: "Sternenstrasse 12"
   city: "Zurich"
@@ -15,25 +17,24 @@ services:
   - "housing"
   - "education"
   - "settling-in"
-  - "immigration-support"
-  - "orientation-programs"
-  - "departure-services"
+  - "immigration-services"
+  - "departure-repatriation"
 regions:
   - "zurich"
+  - "lucerne"
   - "geneva"
   - "basel"
-  - "zug"
-  - "lucerne"
-  - "bern"
   - "lausanne"
+  - "zug"
 specializations:
-  - "Destination services provider"
+  - "destination-services"
+  - "corporate-relocation"
 languages:
   - "English"
   - "German"
   - "French"
 founded: 2010
-
+employees: "Not specified"
 verified: false
 featured: false
 rating:

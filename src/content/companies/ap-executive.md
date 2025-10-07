@@ -1,52 +1,54 @@
 ---
-id: ap-executive
-name: AP Executive
-description: AP Executive is a global executive search and recruitment consultancy specializing in finance, legal, and wealth management sectors, with offices worldwide including Geneva and Zurich. They offer relocation support as part of their recruitment services.
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167543/apexec-logo_hliyad.webp
-website: https://www.ap-executive.com/
-email: info@ap-executive.com
+id: "ap-executive"
+name: "AP Executive"
+description: "AP Executive is a global executive search and recruitment consultancy specializing in finance, legal, and wealth management sectors, with offices worldwide including Geneva and Zurich. They offer relocation support as part of their recruitment services."
+logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167543/apexec-logo_hliyad.webp"
+
+website: "https://www.ap-executive.com/"
+phone: "+41 22 731 12 90"
+email: "geneva@ap-executive.com"
+
 address:
-  street: Rue du Mont-Blanc 7
-  postalCode: "1201"
-  city: Geneva
-  canton: GE
-  office: Geneva
+  street: "Rue de la Cité 1"
+  city: "Geneva"
+  postalCode: "1204"
+  canton: "GE"
 services:
-  - Executive Search
-  - Recruitment
-  - Industry Specialization
-  - Relocation Support
+  - "advisory-services"
+  - "immigration-advice"
+  - "relocation-advice"
 regions:
-  - Geneva
-  - Zurich
-  - Switzerland
-  - Global
+  - "geneva"
+  - "zurich"
+  - "zug"
+  - "lausanne"
+  - "ticino"
+  - "basel"
 specializations:
-  - Finance
-  - Legal
-  - Wealth Management
-  - Private Equity
-  - Trust
-  - Compliance
-  - Tax
-  - Fintech
+  - "executive-search"
+  - "finance-legal-recruitment"
 languages:
-  - English
-  - French
-  - German
+  - "English"
+  - "German"
+  - "French"
+founded: 1990
+employees: "Not specified"
+verified: false
+featured: false
 rating:
   score: 1
-  reviews: 0
+  reviews: 10
   breakdown:
-    service: 1
-    communication: 1
-    value: 1
-    reliability: 1
-    professionalism: 1
-    timeliness: 1
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
-  model: "Contact for quote"
-  notes: "Pricing varies based on recruitment needs and services required."
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+certifications:
+  - "FIRP DipRP"
 ---
 
 # About

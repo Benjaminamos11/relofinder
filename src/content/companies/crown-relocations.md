@@ -1,51 +1,53 @@
 ---
 id: "crown-relocations"
-name: "Crown Relocations"
+name: "Crown Relocations Switzerland"
 description: "International moving and relocation company with over 50 years of experience, providing comprehensive relocation services across Switzerland and globally."
 logo: "/images/companies/crown-relocations-logo.png"
-featured: false
-verified: true
-website: "https://www.crownrelo.com/"
-phone: "+41 44 123 45 67"
+
+website: "http://www.crownrelo.com/intl/en-ch/"
+phone: "+41 22 518 88 70"
 email: "switzerland@crownrelo.com"
+
 address:
-  street: "Zurich"
-  city: "Zurich"
-  postalCode: "8000"
+  street: "Industriestrasse 44"
+  city: "Wallisellen"
+  postalCode: "8304"
   canton: "ZH"
 services:
-  - "move-management"
   - "housing"
+  - "immigration-services"
   - "settling-in"
-  - "storage"
+  - "move-management"
+  - "education"
 regions:
   - "zurich"
   - "geneva"
+  - "lausanne"
   - "basel"
+  - "zug"
+  - "lucerne"
 specializations:
-  - "International Moving"
-  - "Corporate Relocations"
-  - "Storage Solutions"
+  - "global-network"
+  - "international-moving"
 languages:
   - "English"
-  - "German"
   - "French"
-  - "Italian"
-founded: 1970
-employees: "40+"
-certifications:
-  - "FIDI Member"
-  - "SARA Member"
+  - "German"
+founded: 1965
+employees: "Not specified"
+verified: true
+featured: false
 rating:
   score: 4.6
   reviews: 180
   breakdown:
     communication: 4.5
-    professionalism: 4.7
-    value: 4.6
-    timeliness: 4.6
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
-  consultation: "Free"
-  hourlyRate: "Varies"
+  consultationFee: 0
   packagePricing: true
+  freeInitialConsult: true
+
 ---

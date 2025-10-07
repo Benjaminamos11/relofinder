@@ -1,45 +1,55 @@
 ---
-id: rel-ex
-name: Rel-Ex (Relocation & Expat Services GmbH)
-description: Rel-Ex offers tailor-made relocation services for expats moving to Switzerland, specializing in home search and settling-in support in Zurich, Zug, and Lucerne.
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167560/rel_ex_logo_avryaa.webp
-website: https://rel-ex.ch/
-email: welcome@rel-ex.ch
+id: "rel-ex"
+name: "Rel-Ex"
+description: "Rel-Ex offers tailor-made relocation services for expats moving to Switzerland, specializing in home search and settling-in support in Zurich, Zug, and Lucerne."
+logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167560/rel_ex_logo_avryaa.webp"
+
+website: "https://rel-ex.ch/"
+phone: "+41 79 858 04 77"
+email: "welcome@rel-ex.ch"
+
 address:
-  street: Altweg 30 a
-  postalCode: "8450"
-  city: Andelfingen
-  canton: ZH
-  office: Andelfingen
+  street: "Rel-Ex Office"
+  city: "Zug"
+  postalCode: "0000"
+  canton: "ZG"
 services:
-  - Home Search
-  - Settling In
-  - Tailor-Made Relocation
+  - "housing"
+  - "immigration-services"
+  - "education"
+  - "settling-in"
+  - "departure-repatriation"
+  - "move-management"
 regions:
-  - Zurich
-  - Zug
-  - Lucerne
+  - "zug"
+  - "lucerne"
+  - "zurich"
+  - "geneva"
+  - "lausanne"
+  - "basel"
 specializations:
-  - Expat Experience
-  - Home Search Guarantee
-  - Regional Focus
+  - "switzerland-wide"
 languages:
-  - English
-  - German
-  - French
+  - "English"
+  - "German"
+  - "French"
+founded: 2022
+employees: "6"
+verified: false
+featured: false
 rating:
   score: 1
-  reviews: 0
+  reviews: 10
   breakdown:
-    service: 1
-    communication: 1
-    value: 1
-    reliability: 1
-    professionalism: 1
-    timeliness: 1
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
-  model: "Contact for quote"
-  notes: "Pricing varies based on services required."
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+
 ---
 
 # About

@@ -1,80 +1,58 @@
 ---
-id: de-peri-relocation
-name: De Peri Relocation Services
-logo: https://placehold.co/200x80/png?text=De+Peri+Logo
-featured: false
-description: De Peri Relocation Services, founded by Catherine De Peri, offers highly personal and professional relocation assistance for individuals and companies moving to Switzerland, covering all regions.
+id: "de-peri-relocation"
+name: "De Peri Relocation Services"
+description: "De Peri Relocation Services, founded by Catherine De Peri, offers highly personal and professional relocation assistance for individuals and companies moving to Switzerland, covering all regions."
+logo: "https://placehold.co/200x80/png?text=De+Peri+Logo"
+
+website: "https://www.deperi-relocationservices.com/"
+phone: "+41 76 329 33 31"
+email: "info@deperi-relocationservices.com"
+
+address:
+  street: "Rütihofstrasse 25"
+  city: "Zürich"
+  postalCode: "8049"
+  canton: "ZH"
+services:
+  - "housing"
+  - "education"
+  - "settling-in"
+  - "immigration-services"
+  - "departure-repatriation"
+  - "move-management"
+  - "advisory-services"
+  - "cross-cultural"
+regions:
+  - "zurich"
+  - "st-gallen"
+  - "bern"
+  - "lucerne"
+  - "winterthur"
+  - "geneva"
+specializations:
+  - "full-service"
+  - "lifestyle-management"
+languages:
+  - "German"
+  - "French"
+  - "English"
 founded: 2003
-employees: "Not Provided"
+employees: "Freelance network"
+verified: false
+featured: false
 rating:
   score: 1
-  reviews: 0
+  reviews: 10
   breakdown:
-    service: 1
-    communication: 1
-    value: 1
-    reliability: 1
-    professionalism: 1
-    timeliness: 1
-languages:
-  - English
-  - German
-  - French
-certifications:
-  - Founder-Led Personal Touch
-  - Nationwide Network
-  - Comprehensive Service List
-  - Focus on Empathy
-services:
-  - home-search
-  - school-search
-  - settling-in-services
-  - temporary-accommodation
-  - preview-trips
-  - property-services
-  - move-management
-  - office-search
-  - immigration-support
-  - private-tax-assistance
-  - vehicle-import
-  - language-courses
-  - spousal-assistance
-  - cross-cultural-training
-  - facility-management
-  - furniture-services
-  - child-care
-  - pet-sitting
-  - travel-service
-regions:
-  - switzerland
-website: https://www.deperi-relocationservices.com/en/
-email: info@deperi-relocationservices.com
-phone: "+41-76-329-33-31"
-address:
-  street: Not Provided
-  postalCode: "0000"
-  city: Zurich
-  canton: ZH
-  office: Zurich
-consultants:
-  - name: Catherine De Peri
-    role: Founder & Primary Consultant
-google_my_business: null
-external_links:
-  - type: linkedin
-    url: https://ch.linkedin.com/in/catherine-de-peri-relocationservices
-  - type: instagram
-    url: https://www.instagram.com/deperi_relocation_services/
-backlink_status: false
-specializations:
-  - founder-led
-  - nationwide-network
-  - comprehensive-services
-  - empathy
-  - expat-relocation
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
-  model: "Contact for quote"
-  notes: "Pricing varies based on services required."
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+
 ---
 
 # About

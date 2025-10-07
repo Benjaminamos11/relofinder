@@ -1,44 +1,54 @@
 ---
-id: la-boutique-relocation
-name: La Boutique Relocation
-description: La Boutique Relocation offers personalized relocation services to help individuals and families settle in Switzerland.
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166468/1_logo_La_Boutique_beige_e5yfrt.webp
-website: https://www.laboutiquerelocation.ch
-email: contact@laboutiquerelocation.ch
+id: "la-boutique-relocation"
+name: "La Boutique Relocation Switzerland"
+description: "La Boutique Relocation offers personalized relocation services to help individuals and families settle in Switzerland."
+logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166468/1_logo_La_Boutique_beige_e5yfrt.webp"
+
+website: "https://www.laboutiquerelocation.ch/"
+phone: "+41 76 567 68 65"
+email: "contact@laboutiquerelocation.ch"
+
 address:
-  street: Rue du Mont-Blanc 18
-  postalCode: "1201"
-  city: Geneva
-  canton: GE
-  office: Geneva
+  street: "Avenue de Rhodanie 54"
+  city: "Lausanne"
+  postalCode: "1007"
+  canton: "VD"
 services:
-  - Relocation
-  - Housing
-  - School Search
-  - Administrative Support
+  - "housing"
+  - "settling-in"
+  - "immigration-services"
+  - "education"
+  - "departure-repatriation"
+  - "cross-cultural"
+  - "property-purchase"
+  - "office-search"
 regions:
-  - Geneva
-  - Vaud
-  - Valais
+  - "lausanne"
+  - "neuchatel"
+  - "fribourg"
+  - "geneva"
+  - "france-border"
 specializations:
-  - Corporate Relocation
-  - Family Relocation
+  - "boutique-service"
+  - "integration-support"
 languages:
-  - English
-  - French
-  - German
-  - Italian
+  - "English"
+  - "French"
+founded: 2020
+employees: "Not specified"
+verified: false
+featured: false
 rating:
   score: 4.5
   reviews: 10
   breakdown:
-    service: 5
-    communication: 5
-    value: 4
-    reliability: 5
-    professionalism: 4
-    timeliness: 5
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
-  model: "Contact for pricing"
-  notes: "Contact for a quote"
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+
 --- 

@@ -1,58 +1,53 @@
 ---
-id: touchdown-relocation
-name: Touchdown Relocation Services
-description: Established in 1997, Touchdown Relocation Services provides personalized, modular relocation assistance for individuals and companies moving to the greater Zurich area and the cantons of Aargau, Zug, and Schwyz. Part of Welcome Service Sàrl.
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167559/logo-touchdown-relocation_btnyub.webp
-website: https://www.touchdown-reloc.ch/index.html?lang=en
-email: bmilne@welcome-service.ch
+id: "touchdown-relocation"
+name: "Touchdown Relocation Services"
+description: "Established in 1997, Touchdown Relocation Services provides personalized, modular relocation assistance for individuals and companies moving to the greater Zurich area and the cantons of Aargau, Zug, and Schwyz. Part of Welcome Service Sàrl."
+logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167559/logo-touchdown-relocation_btnyub.webp"
+
+website: "https://www.touchdown-reloc.ch/"
+phone: "+41 43 243 70 70"
+email: "bmilne@welcome-service.ch"
+
 address:
-  street: Nebelbachstrasse 9
+  street: "Nebelbachstr. 9"
+  city: "Zurich"
   postalCode: "8008"
-  city: Zurich
-  canton: ZH
-  office: Zurich
+  canton: "ZH"
 services:
-  - Orientation
-  - Temporary Housing
-  - Home Search
-  - Administration
-  - Immigration
-  - Settling In
-  - Workshops
-  - Insurance
-  - Post-Move Support
-  - Corporate Services
-  - Partner Network
+  - "housing"
+  - "settling-in"
+  - "immigration-services"
+  - "education"
+  - "banking-finance"
+  - "property-maintenance"
 regions:
-  - Zurich
-  - Aargau
-  - Zug
-  - Schwyz
+  - "zurich"
+  - "aargau"
+  - "zug"
+  - "central-switzerland"
 specializations:
-  - Zurich Area
-  - Modular Services
-  - Multilingual
-  - Corporate Relocation
-  - Long-Standing
+  - "group-moves"
+  - "property-maintenance"
 languages:
-  - English
-  - German
-  - French
-  - Italian
-  - Spanish
+  - "English"
+  - "German"
+founded: 1997
+employees: "4"
+verified: false
+featured: false
 rating:
   score: 1
-  reviews: 0
+  reviews: 10
   breakdown:
-    service: 1
-    communication: 1
-    value: 1
-    reliability: 1
-    professionalism: 1
-    timeliness: 1
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
-  model: "Modular"
-  notes: "Pricing varies based on selected modules."
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+
 ---
 
 # About

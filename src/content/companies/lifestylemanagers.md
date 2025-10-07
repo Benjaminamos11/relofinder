@@ -1,79 +1,54 @@
 ---
-id: lifestylemanagers
-name: Lifestylemanagers
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166862/Logo-Lifestylemanagers_1_bp0g84.webp
+id: "lifestylemanagers"
+name: "Lifestylemanagers"
+description: "Lifestylemanagers offers personalized relocation, integration, and real estate services in Zug, Zurich, Lucerne, and Schwyz. Perfect 5.0/5 Google rating."
+logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166862/Logo-Lifestylemanagers_1_bp0g84.webp"
+
+website: "https://www.lifestylemanagers.ch/"
+phone: "+41 41 763 36 66"
+email: "welcome@lifestylemanagers.ch"
+googleMyBusinessUrl: "https://www.google.com/maps/place/Lifestylemanagers/@47.1854,8.4884,17z/data=!3m1!4b1!4m6!3m5!1s0x479aa9a7f0f8f0f9:0x3e0b8a0c1c9a7a0f!8m2!3d47.1854!4d8.4884!16s%2Fg%2F11c6_1l9y3"
+address:
+  street: "Sumpfstrasse 32"
+  city: "Steinhausen"
+  postalCode: "6312"
+  canton: "ZG"
+services:
+  - "housing"
+  - "immigration-services"
+  - "education"
+  - "settling-in"
+  - "departure-repatriation"
+  - "ongoing-support"
+  - "event-management"
+regions:
+  - "zug"
+  - "zurich"
+  - "lucerne"
+  - "central-switzerland"
+specializations:
+  - "lifestyle-management"
+  - "personal-assistant"
+languages:
+  - "English"
+  - "German"
+founded: 2000
+employees: "4"
+verified: false
 featured: false
-description: Lifestylemanagers offers personalized relocation, integration, and real estate services in Zug, Zurich, Lucerne, and Schwyz. Perfect 5.0/5 Google rating.
-founded: 2015
-employees: "Not Provided"
 rating:
-  score: 5.0
+  score: 5
   reviews: 12
   breakdown:
-    service: 5.0
-    communication: 5.0
-    value: 5.0
-    reliability: 5.0
-    professionalism: 5.0
-    timeliness: 5.0
-languages:
-  - English
-  - German
-certifications:
-  - Comprehensive Service Range
-  - Personalized Approach
-  - Regional Expertise
-  - Strong Network
-  - High Client Satisfaction
-services:
-  - orientation
-  - immigration
-  - house-hunting
-  - settling-in
-  - family-support
-  - departure-services
-  - property-management
-  - property-sales
-  - property-buying
-regions:
-  - zug
-  - zurich
-  - lucerne
-  - schwyz
-website: https://www.lifestylemanagers.ch/
-email: welcome@lifestylemanagers.ch
-phone: "+41-41-763-36-66"
-address:
-  street: Hinterbergstrasse 32
-  postalCode: "6312"
-  city: Steinhausen
-  canton: ZG
-  office: Zug
-consultants:
-  - name: Natalie Albrecht
-    role: Founder
-    languages:
-      - English
-      - German
-google_my_business: https://www.google.com/maps/place/Lifestylemanagers/@47.1854,8.4884,17z/data=!3m1!4b1!4m6!3m5!1s0x479aa9a7f0f8f0f9:0x3e0b8a0c1c9a7a0f!8m2!3d47.1854!4d8.4884!16s%2Fg%2F11c6_1l9y3
-external_links:
-  - type: facebook
-    url: https://www.facebook.com/lifestylemanagers/
-  - type: instagram
-    url: https://www.instagram.com/lifestylemanagers/
-  - type: linkedin
-    url: https://www.linkedin.com/company/lifestylemanagers/
-backlink_status: false
-specializations:
-  - relocation
-  - integration
-  - real-estate
-  - property-management
-  - family-support
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
-  model: "Contact for quote"
-  notes: "Pricing varies based on services required."
-googleMyBusinessUrl: "https://www.google.com/maps/place/Lifestylemanagers/@47.1854,8.4884,17z/data=!3m1!4b1!4m6!3m5!1s0x479aa9a7f0f8f0f9:0x3e0b8a0c1c9a7a0f!8m2!3d47.1854!4d8.4884!16s%2Fg%2F11c6_1l9y3"
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+
 ---
 
 # About

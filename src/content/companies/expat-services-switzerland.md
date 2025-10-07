@@ -3,46 +3,51 @@ id: "expat-services-switzerland"
 name: "Expat Services Switzerland"
 description: "Zurich-based personal insurance broker and pension/tax partner specializing in comprehensive financial services for newcomers and expatriates settling in Switzerland."
 logo: "/images/companies/expat-services-switzerland-logo.png"
-featured: false
-verified: true
+
 website: "https://www.expatservices.ch/"
 phone: "+41 44 552 72 31"
 email: "welcome@expatservices.ch"
+
 address:
   street: "Lavaterstrasse 67"
-  city: "Zurich"
+  city: "Zürich"
   postalCode: "8002"
   canton: "ZH"
 services:
-  - "insurance"
-  - "financial-planning"
-  - "tax-services"
-  - "settling-in"
+  - "advisory-services"
+  - "pension-planning"
+  - "tax-filing"
 regions:
   - "zurich"
+  - "geneva"
+  - "basel"
+  - "lausanne"
+  - "zug"
+  - "lucerne"
 specializations:
-  - "Insurance Consultation"
-  - "Pension Planning"
-  - "Tax Filing"
+  - "insurance-broker"
+  - "pension-tax-services"
 languages:
   - "German"
   - "English"
   - "Russian"
 founded: 2020
-employees: "3"
-certifications: []
+employees: "Not specified"
+verified: true
+featured: false
 rating:
   score: 4.8
   reviews: 85
   breakdown:
-    communication: 4.8
-    professionalism: 4.9
-    value: 4.7
-    timeliness: 4.8
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
   consultationFee: 0
   packagePricing: true
   freeInitialConsult: true
+
 ---
 
 Expat Services Switzerland is a Zurich-based personal insurance broker and pension/tax partner specializing in comprehensive financial services for newcomers and expatriates settling in Switzerland.

@@ -1,61 +1,56 @@
 ---
 id: "silver-nest-relocation"
-name: "Silver Nest Relocation"
+name: "Silver Nest Relocation Switzerland"
 description: "Silver Nest Relocation offers personalized relocation services in Zurich and German-speaking Switzerland since 2011. Family-owned business specializing in executive relocations with perfect 5.0 rating."
 logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748131687/silvernest_vvrrjk.webp"
 heroImage: "https://images.unsplash.com/photo-1454391304352-2bf4678b1a7a?w=1200&h=600&fit=crop"
-website: "https://www.silvernest.ch"
+website: "https://www.silvernest.ch/"
 phone: "+41 76 569 62 14"
-email: "info@silvernest.ch"
+email: "office@silvernest.ch"
+
 address:
-  street: "Lake Zurich Region"
-  city: "Zurich"
-  postalCode: "8000"
-  canton: "Zurich"
+  street: "Gemeindestrasse 27"
+  city: "Zürich"
+  postalCode: "8032"
+  canton: "ZH"
 services:
-  - "home-search"
-  - "immigration-services"
-  - "move-management"
-  - "education"
-  - "departure-repatriation"
+  - "housing"
   - "settling-in"
-  - "advisory-services"
+  - "education"
+  - "move-management"
+  - "immigration-services"
+  - "departure-repatriation"
+  - "ongoing-support"
 regions:
   - "zurich"
-  - "zug"
-  - "lucerne"
-  - "bern"
   - "basel"
+  - "bern"
+  - "lucerne"
+  - "zug"
+  - "geneva"
 specializations:
-  - "Executive Relocations"
-  - "Family-Owned Personal Service"
-  - "Lake Zurich Region Specialist"
-  - "VIP Services & Discretion"
-  - "Home Butler & Lifestyle Management"
+  - "family-owned"
+  - "lifestyle-management"
 languages:
   - "English"
   - "German"
-  - "French"
-  - "Italian"
 founded: 2011
-employees: "5-10"
+employees: "Not specified"
 verified: true
 featured: false
 rating:
-  score: 5.0
+  score: 5
   reviews: 58
   breakdown:
-    communication: 5.0
-    professionalism: 5.0
-    value: 4.8
-    timeliness: 5.0
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
   consultationFee: 0
   packagePricing: true
   freeInitialConsult: true
-certifications:
-  - "Family-Owned Business Excellence"
-  - "Executive Relocation Specialist"
+
 ---
 
 # Silver Nest Relocation: Making Your Move to Switzerland Seamless

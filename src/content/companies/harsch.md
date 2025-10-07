@@ -3,54 +3,53 @@ id: "harsch"
 name: "Harsch - The Art of Moving Forward"
 description: "Family-owned moving and relocation company since 1957 with offices in Geneva, Lausanne, and Basel. 67+ years experience, 130 employees, international coverage in 173 countries."
 logo: "/images/companies/harsch-logo.png"
-featured: false
-verified: true
+
 website: "https://www.harsch.ch/en/"
 phone: "+41 22 300 43 00"
 email: "harsch.ge@harsch.ch"
+
 address:
   street: "Rue Baylon 10"
-  city: "Carouge (Geneva)"
+  city: "Carouge, Geneva"
   postalCode: "1227"
   canton: "GE"
 services:
   - "move-management"
   - "housing"
   - "settling-in"
-  - "storage"
-  - "fine-art-transport"
+  - "office-relocation"
+  - "art-transport"
 regions:
   - "geneva"
   - "lausanne"
   - "basel"
+  - "zurich"
+  - "zug"
+  - "lucerne"
 specializations:
-  - "International Moving"
-  - "Fine Art Transport"
-  - "Storage Solutions"
-  - "Office Relocation"
+  - "family-owned"
+  - "art-transport"
 languages:
-  - "French"
   - "English"
+  - "French"
   - "German"
-  - "Italian"
 founded: 1957
 employees: "130"
-certifications:
-  - "FIDI Member"
-  - "EuRA Member (since 2010)"
-  - "SMA (Swiss Movers Association)"
+verified: true
+featured: false
 rating:
   score: 4.8
   reviews: 890
   breakdown:
-    communication: 4.8
-    professionalism: 4.9
-    value: 4.7
-    timeliness: 4.8
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
   consultationFee: 0
   packagePricing: true
   freeInitialConsult: true
+
 ---
 
 Harsch - The Art of Moving Forward is a family-owned moving and relocation company founded in 1957 by Henri Harsch (grandfather of the current CEO). With 67+ years of experience, 130 employees, and a fleet of 70 vehicles, Harsch provides integrated moving and relocation services throughout Switzerland and 173 countries worldwide.

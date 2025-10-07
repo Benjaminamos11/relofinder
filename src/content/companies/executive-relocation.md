@@ -1,74 +1,54 @@
 ---
-id: executive-relocation
-name: Executive Relocation GmbH
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166874/logo-executive-relocation_loiisi.webp
+id: "executive-relocation"
+name: "Executive Relocation"
+description: "Executive Relocation GmbH offers tailored relocation services in Zurich for individuals, companies & property owners. Home search, permits, settling-in & more."
+logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166874/logo-executive-relocation_loiisi.webp"
+
+website: "https://www.executive-relocation.ch/"
+phone: "+41 76 346 51 17"
+email: "welcome@executive-relocation.ch"
+googleMyBusinessUrl: "https://www.google.com/maps/place/Executive+Relocation/@47.3668281,8.5384901,15z/data=!4m6!3m5!1s0x47900a08f4b1f3e5:0x3e0b8a0c1c9a7a0f!8m2!3d47.3668281!4d8.5384901!16s%2Fg%2F11c6_1l9y3"
+address:
+  street: "Etzlibergstrasse 19"
+  city: "Thalwil"
+  postalCode: "8800"
+  canton: "ZH"
+services:
+  - "housing"
+  - "education"
+  - "immigration-services"
+  - "settling-in"
+  - "property-purchase"
+regions:
+  - "zurich"
+  - "geneva"
+  - "basel"
+  - "lausanne"
+  - "zug"
+  - "lucerne"
+specializations:
+  - "property-management"
+  - "corporate-hr"
+languages:
+  - "English"
+  - "German"
+founded: 2012
+employees: "Not specified"
+verified: false
 featured: false
-description: Executive Relocation GmbH offers tailored relocation services in Zurich for individuals, companies & property owners. Home search, permits, settling-in & more.
-founded: 2015
-employees: "2"
 rating:
-  score: 5.0
+  score: 5
   reviews: 1
   breakdown:
-    service: 5.0
-    communication: 5.0
-    value: 5.0
-    reliability: 5.0
-    professionalism: 5.0
-    timeliness: 5.0
-languages:
-  - English
-  - German
-certifications:
-  - Personal & Proactive
-  - Tech-Enabled
-  - Flexible Service
-  - Zurich Area Focus
-services:
-  - orientation-planning
-  - housing
-  - family-support
-  - formalities
-  - moving-logistics
-  - settling-in
-  - ongoing-support
-  - departure
-  - property-services
-regions:
-  - zurich
-website: https://www.executive-relocation.ch/en
-email: welcome@executive-relocation.ch
-phone: "+41-76-346-51-17"
-address:
-  street: Etzlibergstrasse 19
-  postalCode: "8800"
-  city: Thalwil
-  canton: ZH
-  office: Thalwil
-consultants:
-  - name: Bettina Riopelle
-    phone: "+41-76-346-51-17"
-    email: br@executive-relocation.ch
-  - name: Claudia Hüssy
-    phone: "+41-78-710-68-69"
-    email: ch@executive-relocation.ch
-google_my_business: https://g.co/kgs/E65dcYq
-external_links:
-  - type: linkedin
-    url: https://www.linkedin.com/company/executive-relocation-gmbh/
-  - type: xing
-    url: https://www.xing.com/pages/executiverelocationgmbh
-backlink_status: false
-specializations:
-  - executive-relocation
-  - zurich-area
-  - property-management
-  - family-support
-  - tech-enabled
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
-  model: "Flexible packages and individual services"
-  notes: "Services available as single items or tailor-made packages"
-googleMyBusinessUrl: "https://www.google.com/maps/place/Executive+Relocation/@47.3668281,8.5384901,15z/data=!4m6!3m5!1s0x47900a08f4b1f3e5:0x3e0b8a0c1c9a7a0f!8m2!3d47.3668281!4d8.5384901!16s%2Fg%2F11c6_1l9y3"
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+
 ---
 
 # About

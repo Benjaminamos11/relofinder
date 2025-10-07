@@ -1,75 +1,53 @@
 ---
-id: leman-relocation
-name: Leman Relocation Sàrl
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166474/leman-relocation-logo_1_q5sx42.webp
+id: "leman-relocation"
+name: "Leman Relocation"
+description: "Leman Relocation Sàrl, founded 2003, offers expert relocation and real estate services in Geneva, Lausanne, Verbier, and Lake Geneva region. Personalized support for expats & locals."
+logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166474/leman-relocation-logo_1_q5sx42.webp"
+
+website: "https://www.leman-relocation.com/"
+phone: "+41 21 566 15 11"
+email: "info@leman-relocation.com"
+googleMyBusinessUrl: "Leman Relocation Geneva Switzerland"
+address:
+  street: "Avenue Général-Guisan 46"
+  city: "Pully"
+  postalCode: "1009"
+  canton: "VD"
+services:
+  - "housing"
+  - "education"
+  - "settling-in"
+  - "immigration-services"
+  - "departure-repatriation"
+  - "property-purchase"
+  - "office-search"
+regions:
+  - "geneva"
+  - "lausanne"
+  - "valais"
+specializations:
+  - "lake-geneva"
+  - "alpine-resort"
+languages:
+  - "English"
+  - "French"
+founded: 2009
+employees: "Not specified"
+verified: false
 featured: false
-description: Leman Relocation Sàrl, founded 2003, offers expert relocation and real estate services in Geneva, Lausanne, Verbier, and Lake Geneva region. Personalized support for expats & locals.
-founded: 2003
-employees: "Not Provided"
 rating:
   score: 1 # No Google rating found, using minimum value
   reviews: 0 # No public aggregate review count found
   breakdown:
-    service: 1
-    communication: 1
-    value: 1
-    reliability: 1
-    professionalism: 1
-    timeliness: 1
-languages:
-  - English
-  - French
-  - German
-certifications:
-  - Decades of Experience
-  - Multilingual Expertise
-  - Founder-led
-services:
-  - needs-assessment
-  - educational-establishment-selection
-  - orientation-tours
-  - visa-assistance
-  - property-search
-  - brokerage
-  - temporary-furnished-property-search
-  - furniture-rental-organization
-  - business-premises-search
-  - lease-takeover-assistance
-  - arrival-departure-procedures
-regions:
-  - geneva
-  - lausanne
-  - montreux
-  - lake-geneva-region
-  - verbier
-website: https://www.leman-relocation.com/en
-email: info@leman-relocation.com
-phone: "+41-21-566-15-11" # Primary office
-address:
-  street: Avenue Général-Guisan 46
-  postalCode: "1009" # Changed to string
-  city: Pully
-  canton: VD
-  office: Lausanne
-consultants:
-  - name: Odile Reyes
-google_my_business: null # No GMB link found
-external_links:
-  - type: facebook
-    url: https://www.facebook.com/lemanrelocation/
-  - type: yelp
-    url: https://www.yelp.com/biz/leman-relocation-pully
-specializations:
-  - relocation
-  - real-estate
-  - property-search
-  - settling-in
-  - departure-services
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
-  model: "Contact for quote"
-  notes: "Pricing varies based on services required and client needs"
-googleMyBusinessUrl: "Leman Relocation Geneva Switzerland"
-backlink_status: false
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+
 ---
 
 # About

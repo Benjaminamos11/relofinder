@@ -1,41 +1,54 @@
 ---
-id: relocality
-name: Relocality
-description: Relocality offers relocation and support services for individuals and families moving to Switzerland.
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166855/relocality-logo_dzw6pr.webp
-website: https://www.relocality.ch
-email: info@relocality.ch
+id: "relocality"
+name: "Relocality"
+description: "Relocality offers relocation and support services for individuals and families moving to Switzerland."
+logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166855/relocality-logo_dzw6pr.webp"
+
+website: "https://www.relocality.ch/"
+phone: "+41 79 566 89 22"
+email: "info@relocality.ch"
+
 address:
-  street: Not Provided
-  postalCode: Not Provided
-  city: Not Provided
-  canton: Not Provided
-  office: Not Provided
+  street: "Lange Gasse 43"
+  city: "Basel"
+  postalCode: "4052"
+  canton: "BS"
 services:
-  - Relocation
-  - Housing
-  - School Search
-  - Administrative Support
+  - "housing"
+  - "settling-in"
+  - "immigration-services"
+  - "banking-finance"
+  - "advisory-services"
+  - "education"
+  - "departure-repatriation"
 regions:
-  - Geneva
-  - Vaud
+  - "basel"
+  - "zurich"
+  - "geneva"
+  - "lausanne"
+  - "zug"
+  - "lucerne"
 specializations:
-  - Local Expertise
-  - Family Relocation
+  - "vip-concierge"
+  - "basel-organizations"
 languages:
-  - French
-  - English
+  - "English"
+  - "German"
+founded: 2010
+employees: "5"
+verified: false
+featured: false
 rating:
   score: 1
-  reviews: 0
+  reviews: 10
   breakdown:
-    service: 1
-    communication: 1
-    value: 1
-    reliability: 1
-    professionalism: 1
-    timeliness: 1
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
-  model: "Contact for quote"
-  notes: "Contact for a quote"
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+
 --- 

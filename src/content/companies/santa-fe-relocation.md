@@ -3,51 +3,53 @@ id: "santa-fe-relocation"
 name: "Santa Fe Relocation Services"
 description: "International moving and relocation company with over 50 years in Switzerland, offering comprehensive employee relocation solutions with global reach across 38 countries."
 logo: "/images/companies/santa-fe-relocation-logo.png"
-featured: false
-verified: true
+
 website: "https://www.santaferelo.com/"
 phone: "+41 22 562 41 53"
 email: "geneva@santaferelo.com"
+
 address:
   street: "Route de Pré-Bois 20"
-  city: "Geneva"
+  city: "Genève 15 Aéroport"
   postalCode: "1215"
   canton: "GE"
 services:
-  - "move-management"
   - "housing"
+  - "immigration-services"
   - "settling-in"
-  - "visa"
+  - "move-management"
   - "education"
 regions:
   - "geneva"
   - "zurich"
+  - "basel"
+  - "lausanne"
+  - "zug"
+  - "lucerne"
 specializations:
-  - "International Moving Services"
-  - "Corporate Relocation Solutions"
-  - "Visa and Immigration Services"
+  - "international-moving"
+  - "global-network"
 languages:
   - "English"
-  - "German"
   - "French"
-  - "Italian"
+  - "German"
 founded: 1968
-employees: "50"
-certifications:
-  - "FIDI Member"
-  - "SARA Full Member"
+employees: "Not specified"
+verified: true
+featured: false
 rating:
   score: 4.7
   reviews: 420
   breakdown:
-    communication: 4.7
-    professionalism: 4.8
-    value: 4.6
-    timeliness: 4.7
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
   consultationFee: 0
   packagePricing: true
   freeInitialConsult: true
+
 ---
 
 Santa Fe Relocation Services is an international moving and relocation company with over 50 years of presence in Switzerland, operating offices in Geneva and Zurich as part of a global network spanning 38 countries worldwide.

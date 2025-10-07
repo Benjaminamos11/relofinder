@@ -3,49 +3,53 @@ id: "sirva-relocation"
 name: "Sirva Relocation"
 description: "Swiss subsidiary of global relocation leader Sirva Inc. Operating since 2003 with 75 offices across 180+ countries. Geneva office serving corporate and individual relocations."
 logo: "/images/companies/sirva-relocation-logo.png"
-featured: false
-verified: true
+
 website: "https://www.sirva.com/"
-phone: "+1 (260) 429-2511"
+phone: "+12604292511"
 email: "concierge@sirva.com"
+
 address:
   street: "Avenue des Morgines 12"
-  city: "Petit-Lancy (Geneva)"
+  city: "Petit-Lancy"
   postalCode: "1213"
   canton: "GE"
 services:
-  - "move-management"
   - "housing"
-  - "settling-in"
-  - "visa"
-  - "financial-services"
+  - "immigration-services"
+  - "move-management"
+  - "banking-finance"
+  - "ongoing-support"
 regions:
+  - "zurich"
   - "geneva"
+  - "basel"
+  - "lausanne"
+  - "zug"
+  - "lucerne"
 specializations:
-  - "Global Relocation and Moving Services"
-  - "Corporate Mobility Programs"
-  - "Visa Services"
+  - "global-corporation"
+  - "employee-relocation"
 languages:
   - "English"
   - "French"
   - "German"
-  - "Italian"
 founded: 2003
-employees: "2900"
-certifications:
-  - "SARA Full Member"
+employees: "2900 (global)"
+verified: true
+featured: false
 rating:
   score: 4.5
   reviews: 195
   breakdown:
     communication: 4.5
-    professionalism: 4.6
-    value: 4.4
+    professionalism: 4.5
+    value: 4.5
     timeliness: 4.5
 pricing:
   consultationFee: 0
   packagePricing: true
   freeInitialConsult: true
+
 ---
 
 Sirva Relocation SA is the Swiss subsidiary of Sirva Inc., a global leader in corporate relocation and moving services with 75 offices and 2,900 employees across 180+ countries worldwide.

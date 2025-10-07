@@ -7,58 +7,47 @@ heroImage: "https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=1200&
 website: "https://www.lodge-relocation.com"
 phone: "+41 22 700 11 88"
 email: "info@lodge-relocation.com"
+
 address:
-  street: "Rue de la Scie 4"
+  street: "Lodge Relocation Office"
   city: "Geneva"
-  postalCode: "1207"
-  canton: "Geneva"
+  postalCode: "0000"
+  canton: "GE"
 services:
   - "housing"
-  - "immigration-services"
-  - "move-management"
   - "education"
-  - "advisory-services"
   - "settling-in"
-  - "departure-repatriation"
+  - "cross-cultural"
 regions:
   - "geneva"
   - "lausanne"
   - "zurich"
-  - "zug"
   - "basel"
-  - "bern"
+  - "zug"
   - "lucerne"
 specializations:
-  - "Corporate Relocations"
-  - "Group Move Coordination"
-  - "Expense Management"
-  - "Multicultural Integration"
-  - "Property Purchase Support"
+  - "hospitality-focused"
+  - "lake-geneva"
 languages:
   - "English"
   - "French"
-  - "German"
-  - "Italian"
 founded: 1994
-employees: "30-50"
+employees: "13"
 verified: true
 featured: false
 rating:
   score: 4.8
   reviews: 101
   breakdown:
-    communication: 4.9
-    professionalism: 4.8
-    value: 4.7
-    timeliness: 4.8
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
   consultationFee: 0
   packagePricing: true
   freeInitialConsult: true
-certifications:
-  - "Swiss Business Registry"
-  - "30+ Years Experience"
-  - "Nationwide Coverage"
+
 ---
 
 # Thinking Global, Acting Local: Why Choose Lodge Relocation for Your Swiss Move?

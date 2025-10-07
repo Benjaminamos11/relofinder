@@ -1,76 +1,51 @@
 ---
-id: xpat-relocation
-name: Xpat Relocation
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166875/xpat-relocation-logo_j8xxfd.webp
-featured: false
-description: Xpat Relocation, founded by expat Marianne Blommers, offers personalized relocation services in Zug, Luzern & Zurich. Packages & a-la-carte options available.
+id: "xpat-relocation"
+name: "Xpat Relocation"
+description: "Xpat Relocation, founded by expat Marianne Blommers, offers personalized relocation services in Zug, Luzern & Zurich. Packages & a-la-carte options available."
+logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166875/xpat-relocation-logo_j8xxfd.webp"
+
+website: "https://xpatrelocation.com/"
+phone: "+41 41 545 42 38"
+email: "marianne@xpatrelocation.com"
+googleMyBusinessUrl: "https://www.google.com/maps/place/Xpat+Relocation/@47.3668281,8.5384901,15z/data=!4m6!3m5!1s0x47900a08f4b1f3e5:0x3e0b8a0c1c9a7a0f!8m2!3d47.3668281!4d8.5384901!16s%2Fg%2F11c6_1l9y3"
+address:
+  street: "Eichmattstrasse 130"
+  city: "Hünenbergsee"
+  postalCode: "6331"
+  canton: "ZG"
+services:
+  - "housing"
+  - "settling-in"
+  - "education"
+  - "departure-repatriation"
+  - "immigration-services"
+  - "banking-finance"
+regions:
+  - "zug"
+  - "lucerne"
+  - "zurich"
+specializations:
+  - "boutique-service"
+languages:
+  - "English"
+  - "German"
 founded: 2018
-employees: "2" # Based on team description
+employees: "2-10"
+verified: false
+featured: false
 rating:
-  score: 5.0
+  score: 5
   reviews: 31
   breakdown:
-    service: 5.0
-    communication: 5.0
-    value: 5.0
-    reliability: 5.0
-    professionalism: 5.0
-    timeliness: 5.0
-languages:
-  - English
-  - German
-  - Dutch
-  - Spanish
-  - French
-certifications:
-  - Expat-Founded
-  - Multilingual Team
-  - Local Knowledge
-  - Flexible Service Options
-services:
-  - pre-arrival-orientation
-  - housing
-  - formalities-administration
-  - family-support
-  - moving-logistics
-  - settling-in
-  - departure-services
-  - welcome-package
-  - executive-package
-  - a-la-carte
-regions:
-  - zug
-  - luzern
-  - zurich
-website: https://xpatrelocation.com/
-email: info@xpatrelocation.com
-phone: "+41-78-631-85-85"
-address:
-  street: Not Provided # TODO: Add street address if available
-  postalCode: "6300" # Placeholder for Zug
-  city: Zug
-  canton: ZG
-  office: Zug
-founder: Marianne Blommers-Poggio Voormolen
-google_my_business: https://g.co/kgs/VKe3fEk
-external_links:
-  - type: facebook
-    url: https://www.facebook.com/xpatrelocation.ch/
-  - type: linkedin
-    url: https://www.linkedin.com/in/marianne-blommers-poggio-voormolen-10573716/
-  - type: contact-form
-    url: https://xpatrelocation.com/contact/
-backlink_status: false
-specializations:
-  - expat-relocation
-  - central-switzerland
-  - housing
-  - family-support
-  - cultural-integration
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
-  model: "Contact for quote"
-  notes: "Pricing varies based on services required and client needs"
-googleMyBusinessUrl: "https://www.google.com/maps/place/Xpat+Relocation/@47.3668281,8.5384901,15z/data=!4m6!3m5!1s0x47900a08f4b1f3e5:0x3e0b8a0c1c9a7a0f!8m2!3d47.3668281!4d8.5384901!16s%2Fg%2F11c6_1l9y3"
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+
 ---
 
 # About

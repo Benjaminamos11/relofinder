@@ -3,38 +3,36 @@ id: "prime-relocation"
 name: "Prime Relocation"
 description: "Switzerland's leading corporate relocation specialist helping international professionals and families successfully relocate with over 10 years of expertise across all major Swiss regions."
 logo: "/images/companies/prime-relocation-logo.png"
+
 website: "https://www.primerelocation.ch/"
-email: "info@primerelocation.ch"
 phone: "+41 41 760 74 41"
+email: "info@primerelocation.ch"
+
 address:
   street: "Industriestrasse 47"
   city: "Zug"
   postalCode: "6300"
   canton: "ZG"
-
-
-
 services:
   - "housing"
-  - "visa"
+  - "immigration-services"
   - "settling-in"
   - "education"
 regions:
   - "zurich"
+  - "zug"
   - "geneva"
   - "basel"
-  - "zug"
-  - "lucerne"
-  - "bern"
   - "lausanne"
+  - "lucerne"
 specializations:
-  - "Corporate relocation specialist"
+  - "corporate-relocation"
+  - "professionals"
 languages:
   - "English"
   - "German"
-  - "French"
 founded: 2014
-
+employees: "Not specified"
 verified: false
 featured: false
 rating:

@@ -1,44 +1,56 @@
 ---
-id: alliance-relocation
-name: Alliance Relocation
-description: Alliance Relocation provides comprehensive relocation services to help individuals and families settle in Switzerland.
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166880/alliance-relocation_it1qgi.webp
-website: https://www.alliancerelocation.ch
-email: info@alliancerelocation.ch
+id: "alliance-relocation"
+name: "Alliance Relocation Switzerland"
+description: "Alliance Relocation provides comprehensive relocation services to help individuals and families settle in Switzerland."
+logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166880/alliance-relocation_it1qgi.webp"
+
+website: "https://www.alliance-relocation.ch/"
+phone: "+41 79 781 78 80"
+email: "info@alliance-relocation.ch"
+
 address:
-  street: Rue de la Tour 1
-  postalCode: "1204"
-  city: Geneva
-  canton: GE
-  office: Geneva
+  street: "Im Eichli 21"
+  city: "Oberägeri"
+  postalCode: "6315"
+  canton: "ZG"
 services:
-  - Relocation
-  - Housing
-  - School Search
-  - Administrative Support
+  - "housing"
+  - "education"
+  - "settling-in"
+  - "immigration-services"
+  - "banking-finance"
+  - "advisory-services"
+  - "move-management"
+  - "departure-repatriation"
 regions:
-  - Geneva
-  - Vaud
-  - Valais
+  - "lucerne"
+  - "zurich"
+  - "zug"
+  - "geneva"
+  - "basel"
+  - "ticino"
 specializations:
-  - Corporate Relocation
-  - Family Relocation
+  - "switzerland-wide"
+  - "partnership-model"
 languages:
-  - English
-  - French
-  - German
-  - Italian
+  - "English"
+  - "German"
+  - "French"
+founded: 2024
+employees: "5 partners"
+verified: false
+featured: false
 rating:
   score: 4.5
   reviews: 10
   breakdown:
-    service: 5
-    communication: 5
-    value: 4
-    reliability: 5
-    professionalism: 4
-    timeliness: 5
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
-  model: "Contact for pricing"
-  notes: "Contact for a quote"
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+
 --- 

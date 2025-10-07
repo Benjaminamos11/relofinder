@@ -1,40 +1,48 @@
 ---
-id: relocation-genevoise
-name: Relocation Genevoise
-description: Relocation Genevoise provides relocation services in the Geneva region, assisting individuals and families with moving and settling in Switzerland.
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166854/Relocation-genevois_p8lvow.webp
-website: https://www.relocation-genevoise.ch
-email: info@relocation-genevoise.ch
+id: "relocation-genevoise"
+name: "RG Relocation Genevoise"
+description: "Relocation Genevoise provides relocation services in the Geneva region, assisting individuals and families with moving and settling in Switzerland."
+logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166854/Relocation-genevois_p8lvow.webp"
+
+website: "https://relocation-genevoise.ch/en"
+phone: "+41 22 715 17 48"
+email: "contact@relocation-genevoise.ch"
+
 address:
-  street: Not Provided
-  postalCode: Not Provided
-  city: Geneva
-  canton: GE
-  office: Geneva
+  street: "Rue des Alpes 5"
+  city: "Geneva"
+  postalCode: "1201"
+  canton: "GE"
 services:
-  - Relocation
-  - Housing
-  - School Search
-  - Administrative Support
+  - "housing"
+  - "settling-in"
+  - "ongoing-support"
+  - "banking-finance"
+  - "advisory-services"
 regions:
-  - Geneva
+  - "geneva"
 specializations:
-  - Local Expertise
-  - Family Relocation
+  - "property-search"
+  - "concierge-services"
 languages:
-  - French
-  - English
+  - "English"
+  - "French"
+  - "German"
+
+employees: "Not specified"
+verified: false
+featured: false
 rating:
   score: 1
-  reviews: 0
+  reviews: 10
   breakdown:
-    service: 1
-    communication: 1
-    value: 1
-    reliability: 1
-    professionalism: 1
-    timeliness: 1
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
-  model: "Contact for quote"
-  notes: "Contact for a quote"
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+
 --- 

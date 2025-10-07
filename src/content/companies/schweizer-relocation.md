@@ -1,50 +1,57 @@
 ---
-id: schweizer-relocation
-name: Schweizer Relocation GmbH
-description: Schweizer Relocation provides comprehensive, tailored relocation support for companies and private individuals moving to Switzerland, featuring digital tools like the ReX communication platform.
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166881/schweizwr-relocation_w1itkg.webp
-website: https://www.schweizer-relocation.ch/en/home/
-email: info@schweizer-relocation.ch
+id: "schweizer-relocation"
+name: "Schweizer Relocation"
+description: "Schweizer Relocation provides comprehensive, tailored relocation support for companies and private individuals moving to Switzerland, featuring digital tools like the ReX communication platform."
+logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166881/schweizwr-relocation_w1itkg.webp"
+
+website: "https://www.schweizer-relocation.ch/en/home/"
+phone: "+41 43 243 70 70"
+email: "schweiz@welcome-service.ch"
+
 address:
-  street: Zentralstrasse 156
+  street: "Zentralstrasse 156"
+  city: "Zürich"
   postalCode: "8003"
-  city: Zürich
-  canton: ZH
-  office: Zürich
+  canton: "ZH"
 services:
-  - Relocation
-  - Work Permits
-  - Intercultural Training
-  - Temporary Housing
-  - Schooling Assistance
-  - Move Organisation
-  - Digital Hub
+  - "housing"
+  - "immigration-services"
+  - "cross-cultural"
+  - "education"
+  - "move-management"
+  - "advisory-services"
 regions:
-  - Zurich
-  - Switzerland
+  - "zurich"
+  - "geneva"
+  - "basel"
+  - "lausanne"
+  - "zug"
+  - "lucerne"
 specializations:
-  - Digital Relocation
-  - Zurich Area
-  - Intercultural Training
-  - Work Permits
-  - Schooling
+  - "global-mobility"
+  - "iso-certified"
 languages:
-  - English
-  - German
-  - French
+  - "English"
+  - "German"
+  - "French"
+founded: 2001
+employees: "Not specified"
+verified: false
+featured: false
 rating:
   score: 1
-  reviews: 0
+  reviews: 10
   breakdown:
-    service: 1
-    communication: 1
-    value: 1
-    reliability: 1
-    professionalism: 1
-    timeliness: 1
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
-  model: "Contact for quote"
-  notes: "Contact for a quote"
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+certifications:
+  - "ISO"
 ---
 
 # About

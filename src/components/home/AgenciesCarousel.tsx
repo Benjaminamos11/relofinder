@@ -93,12 +93,12 @@ export default function AgenciesCarousel({ agencies }: Props) {
     setSummaryError(null);
 
     try {
-      // Call Supabase Edge Function
-      const SUPABASE_URL = 'https://xdjcvyqczwjrfnsgfpsp.supabase.co';
-      const response = await fetch(`${SUPABASE_URL}/functions/v1/generate-ai-summary`, {
+      // Call Supabase Edge Function (same as company detail page)
+      const response = await fetch('https://yrkdgsswjnrrprfsmllr.supabase.co/functions/v1/generate-ai-summary', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlya2Rnc3N3am5ycnByZnNtbGxyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU5MTU4MzIsImV4cCI6MjA1MTQ5MTgzMn0.7BlX7lS9eOesqW7TAAAAKlc068Ria-7rCjOwvaywctE'
         },
         body: JSON.stringify({
           relocator_id: relocatorId
@@ -106,17 +106,17 @@ export default function AgenciesCarousel({ agencies }: Props) {
       });
 
       if (!response.ok) {
-        const errorText = await response.text();
-        console.error('Edge function error:', errorText);
-        throw new Error('Failed to generate summary');
+        const errorData = await response.json();
+        console.error('Edge function error:', errorData);
+        throw new Error(errorData.error || 'Failed to generate summary');
       }
 
       const data = await response.json();
       
       const summary: AISummary = {
-        verdict: data.verdict || data.summary || '',
-        clients_like: data.clients_like || data.positives || [],
-        watch_outs: data.watch_outs || data.negatives || [],
+        verdict: data.verdict || '',
+        clients_like: data.clients_like || [],
+        watch_outs: data.watch_outs || [],
         best_for: data.best_for || [],
         themes: data.themes || []
       };

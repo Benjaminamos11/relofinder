@@ -1,82 +1,55 @@
 ---
-id: swiss-expat-realtor
-name: Swiss Expat Realtor
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166880/Swiss_Expat_Realtor_Logo__edited_fuej6b.webp
-featured: false
-description: Swiss Expat Realtor offers expert relocation services in Zurich, Zug & Basel. Home search, immigration, settling-in support from former expats. High success rate.
+id: "swiss-expat-realtor"
+name: "Swiss Expat Realtor"
+description: "Swiss Expat Realtor offers expert relocation services in Zurich, Zug & Basel. Home search, immigration, settling-in support from former expats. High success rate."
+logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166880/Swiss_Expat_Realtor_Logo__edited_fuej6b.webp"
+
+website: "https://www.swissexpatrealtor.com/"
+phone: "+41-79-577-06-97"
+email: "info@swissexpatrealtor.com"
+googleMyBusinessUrl: "https://www.google.com/maps/place/Swiss+Expat+Realtor/@47.237158,8.661423,17z/data=!4m6!3m5!1s0x6a86b31ff9121b59:0xddeba5f709bcf00c!8m2!3d47.237158!4d8.661423!16s%2Fg%2F11v6flrfjj"
+address:
+  street: "Seestrasse 194"
+  city: "Wädenswil"
+  postalCode: "8820"
+  canton: "ZH"
+services:
+  - "housing"
+  - "settling-in"
+  - "immigration-services"
+  - "banking-finance"
+  - "tax-services"
+  - "advisory-services"
+  - "departure-repatriation"
+  - "property-purchase"
+regions:
+  - "zurich"
+  - "zug"
+  - "basel"
+specializations:
+  - "expat-founded"
+  - "comprehensive-services"
+languages:
+  - "English"
+  - "German"
+  - "Russian"
 founded: 2018 # Based on website content and social media presence
-employees: "3" # Based on team description
+employees: "Not specified"
+verified: false
+featured: false
 rating:
   score: 4.9
   reviews: 36
   breakdown:
-    service: 4.9
-    communication: 4.9
-    value: 4.9
-    reliability: 4.9
-    professionalism: 4.9
-    timeliness: 4.9
-languages:
-  - English
-  - German
-  - French
-  - Spanish
-  - Italian
-  - Portuguese
-certifications:
-  - Expat Perspective
-  - Local Knowledge & Network
-  - Multilingual Team
-  - High Success Rate
-services:
-  - rental-home-search
-  - orientation-arrival-support
-  - immigration-services
-  - financial-services
-  - company-creation
-  - temporary-housing
-  - departure-assistance
-  - additional-services
-  - corporate-employee-relocation
-  - buy-sell-properties
-regions:
-  - zurich
-  - zug
-  - basel
-website: https://www.swissexpatrealtor.com/
-email: info@swissexpatrealtor.com
-phone: "+41-79-577-06-97"
-address:
-  street: Seestrasse 131
-  postalCode: "8820"
-  city: Wädenswil
-  canton: ZH
-  office: Zurich/Zug/Basel
-consultants: [] # TODO: Add named consultants if available
-googleMyBusinessUrl: "https://www.google.com/maps/place/Swiss+Expat+Realtor/@47.237158,8.661423,17z/data=!4m6!3m5!1s0x6a86b31ff9121b59:0xddeba5f709bcf00c!8m2!3d47.237158!4d8.661423!16s%2Fg%2F11v6flrfjj"
-external_links:
-  - type: linkedin
-    url: https://www.linkedin.com/company/swiss-expat-realtor/
-  - type: facebook
-    url: https://www.facebook.com/swissexpatrealtor
-  - type: instagram
-    url: https://www.instagram.com/swissexpatrealtor/
-  - type: tiktok
-    url: https://www.tiktok.com/@swissexpatrealtor
-  - type: youtube
-    url: https://www.youtube.com/@swissexpatrealtor
-  - type: online-booking
-    url: https://www.swissexpatrealtor.com/book-online
-backlink_status: false
-specializations:
-  - expat-relocation
-  - real-estate
-  - immigration
-  - corporate-relocation
-  - multilingual
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
-  model: "Contact for quote"
-  notes: "Free initial consultation available"
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+
 ---
 
 # About

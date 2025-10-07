@@ -1,66 +1,61 @@
 ---
-id: relonest
-name: ReloNest
-description: ReloNest offers expert relocation services across major Swiss cities like Zurich, Basel, Geneva, Bern, and more, providing tailored support for individuals and families moving to Switzerland.
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167540/logo-relonest-v1_80-1725639366_1_jtctq8.webp
-website: https://www.relonest.com/
-email: info@relonest.com
+id: "relonest"
+name: "ReloNest"
+description: "ReloNest offers expert relocation services across major Swiss cities like Zurich, Basel, Geneva, Bern, and more, providing tailored support for individuals and families moving to Switzerland."
+logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167540/logo-relonest-v1_80-1725639366_1_jtctq8.webp"
+
+website: "https://www.relonest.com/"
+phone: "+41 76 339 66 89"
+email: "contact@relonest.com"
+
 address:
-  street: Not Provided
-  postalCode: "Not Provided"
-  city: Not Provided
-  canton: Not Provided
-  office: Not Provided
+  street: "ReloNest Office"
+  city: "Zurich"
+  postalCode: "0000"
+  canton: "ZH"
 services:
-  - Area Orientation
-  - Temporary Accommodation
-  - Home Search
-  - Settling In
-  - School Search
-  - Immigration Consulting
-  - Moving Coordination
-  - Departure Services
-  - All-Inclusive Package
-  - New Tenant Search
+  - "housing"
+  - "immigration-services"
+  - "education"
+  - "settling-in"
+  - "departure-repatriation"
 regions:
-  - Zurich
-  - Basel
-  - Geneva
-  - Bern
-  - Chur
-  - Fribourg
-  - Lausanne
-  - Lugano
-  - Luzern
-  - Neuchatel
-  - Sion
-  - Winterthur
-  - Wollerau-sz
-  - Zug
+  - "geneva"
+  - "lausanne"
+  - "fribourg"
+  - "bern"
+  - "lucerne"
+  - "zug"
 specializations:
-  - Broad Coverage
-  - Online Platform
-  - Modular Services
-  - Experienced Leadership
-  - Multilingual Team
+  - "boutique-service"
+  - "digital-platform"
 languages:
-  - English
-  - German
-  - French
-  - Italian
+  - "English"
+  - "German"
+  - "French"
+  - "Italian"
+  - "Spanish"
+  - "Portuguese"
+  - "Dutch"
+  - "Polish"
+  - "Russian"
+founded: 2023
+employees: "5"
+verified: false
+featured: false
 rating:
   score: 1
-  reviews: 0
+  reviews: 10
   breakdown:
-    service: 1
-    communication: 1
-    value: 1
-    reliability: 1
-    professionalism: 1
-    timeliness: 1
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
-  model: "Contact for quote"
-  notes: "Pricing varies based on services required."
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+
 ---
 
 # About

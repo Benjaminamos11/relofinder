@@ -1,8 +1,9 @@
 ---
 id: "anchor-relocation"
-name: "Anchor Relocation Services GmbH"
+name: "Anchor Relocation Services"
 description: "Relocation and property services specialist with 20+ years experience, offering integrated home finding and real estate solutions in Zurich and Central Switzerland."
 logo: "/images/companies/anchor-relocation-logo.png"
+
 website: "https://anchor-relocation.ch/"
 phone: "+41 44 383 23 23"
 email: "info@anchor-relocation.ch"
@@ -13,23 +14,23 @@ address:
   postalCode: "8001"
   canton: "ZH"
 services:
-  - "relocation-services"
-  - "home-finding"
+  - "housing"
   - "education"
+  - "settling-in"
   - "property-purchase"
 regions:
   - "zurich"
   - "zug"
-  - "schwyz"
+  - "central-switzerland"
   - "lucerne"
 specializations:
-  - "Relocation and property services"
+  - "property-services"
+  - "real-estate"
 languages:
   - "English"
   - "German"
-  - "French"
 
-
+employees: "6+"
 verified: false
 featured: false
 rating:

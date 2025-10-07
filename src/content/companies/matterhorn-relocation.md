@@ -1,64 +1,54 @@
 ---
-id: matterhorn-relocation
-name: Matterhorn Relocation
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748055897/logoprimesmal_rb4hxo.webp
+id: "matterhorn-relocation"
+name: "Matterhorn Relocation"
+description: "Matterhorn Relocation offers premium relocation and real estate services in Zurich, Zug, Schwyz, Klosters, and Zermatt. Expert support for renting, buying, letting, and selling properties."
+logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748055897/logoprimesmal_rb4hxo.webp"
+
+website: "https://www.matterhorn-relocation.com/"
+phone: "+41 75 500 08 08"
+email: "mail@matterhorn-relocation.com"
+googleMyBusinessUrl: "https://www.google.com/maps/place/Matterhorn+Relocation/@46.0207,7.7491,17z/data=!4m6!3m5!1s0x478f0c7c3c3c3c3c:0x3e0b8a0c1c9a7a0f!8m2!3d46.0207!4d7.7491!16s%2Fg%2F11c6_1l9y3"
+address:
+  street: "Seestrasse 1"
+  city: "Rüschlikon"
+  postalCode: "8803"
+  canton: "ZH"
+services:
+  - "housing"
+  - "property-purchase"
+  - "education"
+  - "settling-in"
+  - "ongoing-support"
+  - "departure-repatriation"
+regions:
+  - "zurich"
+  - "zug"
+  - "central-switzerland"
+  - "grisons"
+  - "valais"
+specializations:
+  - "real-estate"
+  - "alpine-resorts"
+languages:
+  - "English"
+  - "German"
+founded: 2012
+employees: "6"
+verified: false
 featured: false
-description: Matterhorn Relocation offers premium relocation and real estate services in Zurich, Zug, Schwyz, Klosters, and Zermatt. Expert support for renting, buying, letting, and selling properties.
-founded: 2016
-employees: "1"
 rating:
   score: 4.7
   reviews: 15
   breakdown:
-    service: 4.8
-    communication: 4.7
+    communication: 4.5
+    professionalism: 4.5
     value: 4.5
-    reliability: 4.7
-    professionalism: 4.9
-    timeliness: 4.7
-languages:
-  - English
-  - German
-certifications:
-  - Premium Real Estate & Relocation
-  - Local Experts
-  - Exclusive Access
-services:
-  - relocation-to-zurich
-  - relocation-from-zurich
-  - real-estate-rent-buy
-  - real-estate-let-sell
-regions:
-  - zurich
-  - zug
-  - schwyz
-  - klosters
-  - zermatt
-website: https://www.matterhorn-relocation.com/
-email: mail@matterhorn-relocation.com
-phone: "+41 75 500 08 08"
-address:
-  street: Seestrasse 1
-  postalCode: "8803"
-  city: Rüschlikon
-  canton: Zurich
-  office: Rüschlikon
-instagram: https://www.instagram.com/matterhornrelocation/
-google_my_business: https://g.page/r/CODE-FROM-GMB # TODO: Add actual GMB link
-gmb_review_platform: testimonials
-external_links:
-  - type: instagram
-    url: https://www.instagram.com/matterhornrelocation/
-backlink_status: false
-specializations:
-  - premium-relocation
-  - real-estate
-  - alpine-properties
-  - executive-relocation
+    timeliness: 4.5
 pricing:
-  model: "Contact for quote"
-  notes: "Premium service pricing varies based on services required"
-googleMyBusinessUrl: "https://www.google.com/maps/place/Matterhorn+Relocation/@46.0207,7.7491,17z/data=!4m6!3m5!1s0x478f0c7c3c3c3c3c:0x3e0b8a0c1c9a7a0f!8m2!3d46.0207!4d7.7491!16s%2Fg%2F11c6_1l9y3"
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+
 ---
 
 # About

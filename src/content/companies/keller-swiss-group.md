@@ -3,22 +3,23 @@ id: "keller-swiss-group"
 name: "Keller Swiss Group"
 description: "Comprehensive corporate moving and relocation services with offices in Basel, Geneva, Zurich, Lausanne, Zug, and Bern. SARA, EuRA, FIDI, and ONE Group member."
 logo: "/images/companies/keller-swiss-group-logo.png"
-featured: false
-verified: true
+
 website: "https://www.kellerswissgroup.com/"
 phone: "+41 58 317 10 00"
 email: "basel@kellerswissgroup.com"
+
 address:
   street: "Reinacherstrasse 121"
   city: "Basel"
   postalCode: "4053"
   canton: "BS"
 services:
-  - "move-management"
   - "housing"
   - "settling-in"
+  - "cross-cultural"
   - "education"
-  - "cultural-training"
+  - "move-management"
+  - "immigration-services"
 regions:
   - "basel"
   - "geneva"
@@ -27,33 +28,29 @@ regions:
   - "zug"
   - "bern"
 specializations:
-  - "Employee Relocation Programs"
-  - "Corporate Relocations"
-  - "Intercultural Training"
+  - "corporate-moving"
+  - "global-network"
 languages:
-  - "German"
   - "English"
+  - "German"
   - "French"
-  - "Italian"
 founded: 1990
-employees: "80"
-certifications:
-  - "SARA Full Member"
-  - "EuRA Member"
-  - "FIDI Member"
-  - "ONE Group"
+employees: "Not specified"
+verified: true
+featured: false
 rating:
   score: 4.6
   reviews: 280
   breakdown:
-    communication: 4.6
-    professionalism: 4.7
+    communication: 4.5
+    professionalism: 4.5
     value: 4.5
-    timeliness: 4.6
+    timeliness: 4.5
 pricing:
   consultationFee: 0
   packagePricing: true
   freeInitialConsult: true
+
 ---
 
 Keller Swiss Group AG is a comprehensive corporate moving and relocation services provider headquartered in Basel with offices in Geneva, Zurich, Lausanne, Zug, and Bern, offering integrated destination services and international moving solutions throughout Switzerland and globally.
