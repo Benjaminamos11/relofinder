@@ -628,10 +628,10 @@ const description = 'Join ReloFinder.ch as a partner - whether you\'re a relocat
 
   Cal.ns["partner-call"]("inline", {
     elementOrSelector:"#my-cal-inline-partner-call",
-    config: {"layout":"month_view"},
+    config: {"layout":"month_view","theme":"light"},
     calLink: "relofinder/partner-call",
   });
 
-  Cal.ns["partner-call"]("ui", {"hideEventTypeDetails":true,"layout":"month_view"});
+  Cal.ns["partner-call"]("ui", {"theme":"light","cssVarsPerTheme":{"light":{"cal-brand":"#ff3333"},"dark":{"cal-brand":"#f13b3b"}},"hideEventTypeDetails":false,"layout":"month_view"});
 </script>
 <!-- Cal inline embed code ends --> 
