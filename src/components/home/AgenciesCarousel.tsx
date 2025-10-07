@@ -266,18 +266,18 @@ export default function AgenciesCarousel({ agencies }: Props) {
 
           <div
             ref={carouselRef}
-            className="bg-white rounded-2xl p-8 lg:p-10 shadow-lg border border-gray-100"
+            className="bg-white rounded-2xl p-4 sm:p-6 lg:p-10 shadow-lg border border-gray-100"
           >
             {/* Header */}
-            <div className="flex items-start justify-between mb-6 flex-wrap gap-4">
-              <div className="flex items-center gap-4">
+            <div className="flex items-start justify-between mb-4 sm:mb-6 flex-wrap gap-4">
+              <div className="flex items-center gap-3 sm:gap-4">
                 {/* Initials Avatar with tier-based frame */}
-                <div className={`w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold ${getAvatarColor(activeAgency.tier)} ${getAvatarFrame(activeAgency.tier)}`}>
+                <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-lg sm:text-xl font-bold ${getAvatarColor(activeAgency.tier)} ${getAvatarFrame(activeAgency.tier)}`}>
                   {getInitials(activeAgency.name)}
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <h3 className="text-2xl font-bold text-gray-900">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 leading-tight">
                       {activeAgency.name}
                     </h3>
                     {activeAgency.verified && (
@@ -302,29 +302,29 @@ export default function AgenciesCarousel({ agencies }: Props) {
 
             {/* Company Description */}
             {activeAgency.description && (
-              <p className="text-gray-700 leading-relaxed mb-6">
+              <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4 sm:mb-6">
                 {truncateText(activeAgency.description, 200)}
               </p>
             )}
 
             {/* Stats Row - Only show real stats we know, optimized for mobile */}
             {activeAgency.stats && (activeAgency.stats.yearsInBusiness || activeAgency.reviews_count > 0) && (
-              <div className="grid grid-cols-2 md:flex md:items-center gap-4 md:gap-6 mb-6 p-4 bg-gray-50 rounded-xl">
+              <div className="grid grid-cols-2 md:flex md:items-center gap-3 md:gap-6 mb-4 sm:mb-6 p-3 sm:p-4 bg-gray-50 rounded-xl">
                 {activeAgency.stats.yearsInBusiness && (
                   <div className="flex flex-col md:flex-row md:items-center md:gap-2">
-                    <div className="text-2xl md:text-2xl font-bold text-[#B61919]">{activeAgency.stats.yearsInBusiness}+</div>
+                    <div className="text-xl sm:text-2xl font-bold text-[#B61919]">{activeAgency.stats.yearsInBusiness}+</div>
                     <div className="text-xs md:text-sm text-gray-600 leading-tight">Years<br className="md:hidden" /> Experience</div>
                   </div>
                 )}
                 {activeAgency.reviews_count > 0 && (
                   <div className="flex flex-col md:flex-row md:items-center md:gap-2">
-                    <div className="text-2xl md:text-2xl font-bold text-[#B61919]">{activeAgency.reviews_count}</div>
+                    <div className="text-xl sm:text-2xl font-bold text-[#B61919]">{activeAgency.reviews_count}</div>
                     <div className="text-xs md:text-sm text-gray-600 leading-tight">{activeAgency.reviews_count === 1 ? 'Review' : 'Reviews'}</div>
                   </div>
                 )}
                 {activeAgency.stats.responseTime && (
                   <div className="flex flex-col md:flex-row md:items-center md:gap-2 col-span-2">
-                    <div className="text-2xl md:text-2xl font-bold text-[#B61919]">{activeAgency.stats.responseTime}</div>
+                    <div className="text-xl sm:text-2xl font-bold text-[#B61919]">{activeAgency.stats.responseTime}</div>
                     <div className="text-xs md:text-sm text-gray-600 leading-tight">Response Time</div>
                   </div>
                 )}
