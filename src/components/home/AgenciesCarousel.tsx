@@ -307,25 +307,25 @@ export default function AgenciesCarousel({ agencies }: Props) {
               </p>
             )}
 
-            {/* Stats Row - Only show real stats we know */}
+            {/* Stats Row - Only show real stats we know, optimized for mobile */}
             {activeAgency.stats && (activeAgency.stats.yearsInBusiness || activeAgency.reviews_count > 0) && (
-              <div className="flex items-center gap-6 mb-6 p-4 bg-gray-50 rounded-xl">
+              <div className="grid grid-cols-2 md:flex md:items-center gap-4 md:gap-6 mb-6 p-4 bg-gray-50 rounded-xl">
                 {activeAgency.stats.yearsInBusiness && (
-                  <div className="flex items-center gap-2">
-                    <div className="text-2xl font-bold text-[#B61919]">{activeAgency.stats.yearsInBusiness}+</div>
-                    <div className="text-sm text-gray-600">Years Experience</div>
+                  <div className="flex flex-col md:flex-row md:items-center md:gap-2">
+                    <div className="text-2xl md:text-2xl font-bold text-[#B61919]">{activeAgency.stats.yearsInBusiness}+</div>
+                    <div className="text-xs md:text-sm text-gray-600 leading-tight">Years<br className="md:hidden" /> Experience</div>
                   </div>
                 )}
                 {activeAgency.reviews_count > 0 && (
-                  <div className="flex items-center gap-2">
-                    <div className="text-2xl font-bold text-[#B61919]">{activeAgency.reviews_count}</div>
-                    <div className="text-sm text-gray-600">{activeAgency.reviews_count === 1 ? 'Review' : 'Reviews'}</div>
+                  <div className="flex flex-col md:flex-row md:items-center md:gap-2">
+                    <div className="text-2xl md:text-2xl font-bold text-[#B61919]">{activeAgency.reviews_count}</div>
+                    <div className="text-xs md:text-sm text-gray-600 leading-tight">{activeAgency.reviews_count === 1 ? 'Review' : 'Reviews'}</div>
                   </div>
                 )}
                 {activeAgency.stats.responseTime && (
-                  <div className="flex items-center gap-2">
-                    <div className="text-2xl font-bold text-[#B61919]">{activeAgency.stats.responseTime}</div>
-                    <div className="text-sm text-gray-600">Response Time</div>
+                  <div className="flex flex-col md:flex-row md:items-center md:gap-2 col-span-2">
+                    <div className="text-2xl md:text-2xl font-bold text-[#B61919]">{activeAgency.stats.responseTime}</div>
+                    <div className="text-xs md:text-sm text-gray-600 leading-tight">Response Time</div>
                   </div>
                 )}
               </div>
