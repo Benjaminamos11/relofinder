@@ -205,15 +205,20 @@ export default function AgenciesCarousel({ agencies }: Props) {
       .slice(0, 2);
   };
 
-  // Helper to get color for initials avatar based on tier
+  // Helper to get color for initials avatar - all red gradient
   const getAvatarColor = (tier: string) => {
+    return 'bg-gradient-to-br from-[#B61919] to-[#DF3030] text-white';
+  };
+
+  // Helper to get frame color based on tier
+  const getAvatarFrame = (tier: string) => {
     switch (tier) {
       case 'preferred':
-        return 'bg-gradient-to-br from-yellow-400 to-amber-500 text-white';
+        return 'ring-4 ring-yellow-400 ring-offset-2';
       case 'partner':
-        return 'bg-gradient-to-br from-blue-500 to-blue-600 text-white';
+        return 'ring-4 ring-gray-300 ring-offset-2';
       default:
-        return 'bg-gradient-to-br from-gray-400 to-gray-500 text-white';
+        return '';
     }
   };
 
@@ -266,8 +271,8 @@ export default function AgenciesCarousel({ agencies }: Props) {
             {/* Header */}
             <div className="flex items-start justify-between mb-6 flex-wrap gap-4">
               <div className="flex items-center gap-4">
-                {/* Initials Avatar */}
-                <div className={`w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold ${getAvatarColor(activeAgency.tier)}`}>
+                {/* Initials Avatar with tier-based frame */}
+                <div className={`w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold ${getAvatarColor(activeAgency.tier)} ${getAvatarFrame(activeAgency.tier)}`}>
                   {getInitials(activeAgency.name)}
                 </div>
                 <div>
@@ -629,8 +634,8 @@ export default function AgenciesCarousel({ agencies }: Props) {
                 style={{ minWidth: '160px' }}
               >
                 <div className="flex items-center gap-3">
-                  {/* Initials Avatar for thumbnails */}
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 ${getAvatarColor(agency.tier)}`}>
+                  {/* Initials Avatar for thumbnails with tier-based frame */}
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 ${getAvatarColor(agency.tier)} ${getAvatarFrame(agency.tier)}`}>
                     {getInitials(agency.name)}
                   </div>
                   <div className="text-left flex-1">
