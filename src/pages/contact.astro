@@ -41,7 +41,15 @@ const description = 'Get in touch with Lang + Partner for personalized assistanc
             </div>
           </div>
           
-          <form action="https://formspree.io/f/mgvlznna" method="POST" class="space-y-6">
+          <form name="contact" method="POST" netlify netlify-honeypot="bot-field" class="space-y-6">
+            <!-- Hidden field for bot detection -->
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="hidden">
+              <label>
+                Don't fill this out if you're human: <input name="bot-field" />
+              </label>
+            </p>
+
             <div class="grid md:grid-cols-2 gap-6">
               <div>
                 <label for="firstName" class="block text-sm font-semibold text-gray-900 mb-2">First Name*</label>
