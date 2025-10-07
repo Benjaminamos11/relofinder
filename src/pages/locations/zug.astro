@@ -184,28 +184,40 @@ const schema = {
 
 <Layout title={title} description={description}>
   <main class="pt-20">
-    <!-- Hero Section -->
-    <section class="py-20 bg-gradient-to-br from-emerald-600 to-blue-700 text-white">
-      <div class="container">
-        <div class="max-w-4xl mx-auto text-center">
-          <h1 class="text-4xl md:text-6xl font-bold mb-6">
+    <!-- Hero Section with Background Image -->
+    <section class="relative h-[500px] overflow-hidden">
+      <!-- Background Image -->
+      <div class="absolute inset-0">
+        <img 
+          src="https://res.cloudinary.com/dphbnwjtx/image/upload/w_1920,h_600,c_fill,f_webp,q_90,e_sharpen:100/v1759820128/louis-droege-k6rwCx5oAS8-unsplash_wiu51b.jpg" 
+          alt="Zug lakeside and business district - Crypto Valley"
+          class="w-full h-full object-cover"
+        />
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+      </div>
+
+      <!-- Content -->
+      <div class="container relative z-10 h-full flex items-center">
+        <div class="max-w-3xl text-white">
+          <h1 class="text-5xl md:text-6xl font-bold mb-6">
             Relocating to 
-            <span class="text-yellow-300">Zug</span>
+            <span class="bg-gradient-to-r from-[#B61919] to-[#DF3030] bg-clip-text text-transparent">Zug</span>
           </h1>
-          <p class="text-xl md:text-2xl text-white/90 mb-8">
+          <p class="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
             Switzerland's business paradise and world-renowned Crypto Valley
           </p>
-          <div class="flex flex-wrap gap-4 justify-center">
-            <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+          <div class="flex flex-wrap gap-4">
+            <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
               <span class="font-semibold">💼 Business Hub</span>
             </div>
-            <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+            <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
               <span class="font-semibold">₿ Crypto Valley</span>
             </div>
-            <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+            <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
               <span class="font-semibold">💰 Low Taxes</span>
             </div>
-            <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full">
+            <div class="bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
               <span class="font-semibold">🏔️ Lake Views</span>
             </div>
           </div>
