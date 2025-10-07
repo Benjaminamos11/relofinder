@@ -1,44 +1,54 @@
 ---
-id: de-peri-relocation-services
-name: De Peri Relocation Services
-description: De Peri Relocation Services provides comprehensive relocation assistance for individuals and families moving to Switzerland.
-logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167507/logo-red-de-peri_glkpj6.webp
-website: https://www.deperi-relocation.ch
-email: info@deperi-relocation.ch
+id: "de-peri-relocation-services"
+name: "De Peri Relocation Services"
+description: "De Peri Relocation Services provides comprehensive relocation services in Switzerland."
+logo: "/images/companies/de-peri-relocation-services-logo.png"
+website: "https://www.deperi-relocationservices.com/"
+phone: "+41 76 329 33 31"
+email: "info@deperi-relocationservices.com"
 address:
-  street: Rue de la Tour 1
-  postalCode: "1204"
-  city: Geneva
-  canton: GE
-  office: Geneva
+  street: "Rütihofstrasse 25"
+  city: "Zürich"
+  postalCode: "8049"
+  canton: ""
 services:
-  - Relocation
-  - Housing
-  - School Search
-  - Administrative Support
+  - "housing"
+  - "education"
+  - "settling-in"
+  - "immigration-support"
+  - "advisory-services"
 regions:
-  - Geneva
-  - Vaud
-  - Valais
+  - "zurich"
+  - "geneva"
+  - "basel"
+  - "zug"
+  - "lucerne"
+  - "bern"
+  - "lausanne"
 specializations:
-  - Corporate Relocation
-  - Family Relocation
+  - "Full-service relocation agency"
 languages:
-  - English
-  - French
-  - German
-  - Italian
+  - "German"
+  - "French"
+  - "English"
+founded: 2003
+
+verified: false
+featured: false
 rating:
   score: 4.5
   reviews: 10
   breakdown:
-    service: 5
-    communication: 5
-    value: 4
-    reliability: 5
-    professionalism: 4
-    timeliness: 5
+    communication: 4.5
+    professionalism: 4.5
+    value: 4.5
+    timeliness: 4.5
 pricing:
-  model: "Contact for pricing"
-  notes: "Contact for a quote"
---- 
+  consultationFee: 0
+  packagePricing: true
+  freeInitialConsult: true
+
+---
+# De Peri Relocation Services
+
+De Peri Relocation Services provides comprehensive relocation services in Switzerland.
