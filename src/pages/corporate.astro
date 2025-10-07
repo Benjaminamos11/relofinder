@@ -126,13 +126,14 @@ const faqSchema = {
         </div>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button 
-            onclick="universalOpenModal({page: 'corporate_hero', service: 'corporate'})"
-            class="bg-white text-gray-900 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 shadow-xl"
+          <a 
+            href="#get-rates"
+            onclick="event.preventDefault(); document.getElementById('get-rates').scrollIntoView({behavior: 'smooth'});"
+            class="bg-white text-gray-900 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 shadow-xl text-center"
           >
             Get Anonymous Quotes
-          </button>
-          <a href="#how-it-works" class="bg-transparent border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300">
+          </a>
+          <a href="#how-it-works" class="bg-transparent border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300 text-center">
             See How It Works
           </a>
         </div>
@@ -296,15 +297,263 @@ const faqSchema = {
         </div>
 
         <div class="mt-12 text-center">
-          <button
-            onclick="universalOpenModal({page: 'corporate_process', service: 'corporate'})"
+          <a
+            href="#get-rates"
+            onclick="event.preventDefault(); document.getElementById('get-rates').scrollIntoView({behavior: 'smooth'});"
             class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             Request Quotes Now (Free)
-          </button>
+          </a>
           <p class="text-sm text-gray-500 mt-3">
             ✓ 100% Anonymous  •  ✓ 48h Turnaround  •  ✓ Zero Obligation
           </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get Anonymous Rates - Multi-Step Form -->
+  <section id="get-rates" class="py-20 bg-white">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 rounded-full bg-primary-100 text-primary-700 font-medium text-sm mb-4">
+            Get Started
+          </span>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            Get <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Anonymous Rates</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Tell us about your needs and receive competitive quotes within 48 hours
+          </p>
+        </div>
+
+        <!-- Multi-Step Form -->
+        <div id="multi-step-form" class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border-2 border-gray-200 shadow-lg">
+          <!-- Progress Bar -->
+          <div class="mb-8">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-sm font-medium text-gray-600">Step <span id="current-step">1</span> of 4</span>
+              <span class="text-sm font-medium text-gray-600"><span id="progress-percent">25</span>%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div id="progress-bar" class="bg-gradient-to-r from-primary-600 to-primary-700 h-2 rounded-full transition-all duration-300" style="width: 25%"></div>
+            </div>
+          </div>
+
+          <form id="rate-request-form" class="space-y-6">
+            <!-- Step 1: Timeline & Employee Count -->
+            <div class="form-step" data-step="1">
+              <h3 class="text-2xl font-bold text-gray-900 mb-6">When do you need relocation services?</h3>
+              
+              <div class="space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Expected Start Date *</label>
+                  <input type="date" name="start_date" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Number of Employees to Relocate *</label>
+                  <select name="employee_count" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                    <option value="">Select...</option>
+                    <option value="1">1 employee</option>
+                    <option value="2-5">2-5 employees</option>
+                    <option value="6-10">6-10 employees</option>
+                    <option value="11-20">11-20 employees</option>
+                    <option value="21-50">21-50 employees</option>
+                    <option value="50+">50+ employees</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Relocation Type *</label>
+                  <select name="relocation_type" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                    <option value="">Select...</option>
+                    <option value="international">International to Switzerland</option>
+                    <option value="domestic">Within Switzerland</option>
+                    <option value="both">Both</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Services Needed -->
+            <div class="form-step hidden" data-step="2">
+              <h3 class="text-2xl font-bold text-gray-900 mb-6">What services do you need?</h3>
+              
+              <div class="space-y-3">
+                <label class="flex items-start p-4 border-2 border-gray-200 rounded-lg hover:border-primary-300 cursor-pointer transition-all">
+                  <input type="checkbox" name="services" value="immigration" class="mt-1 mr-3 w-5 h-5 text-primary-600 rounded focus:ring-primary-500">
+                  <div>
+                    <div class="font-semibold text-gray-900">Immigration & Work Permits</div>
+                    <div class="text-sm text-gray-600">Visa processing, work permits, residence permits</div>
+                  </div>
+                </label>
+
+                <label class="flex items-start p-4 border-2 border-gray-200 rounded-lg hover:border-primary-300 cursor-pointer transition-all">
+                  <input type="checkbox" name="services" value="housing" class="mt-1 mr-3 w-5 h-5 text-primary-600 rounded focus:ring-primary-500">
+                  <div>
+                    <div class="font-semibold text-gray-900">Housing Search</div>
+                    <div class="text-sm text-gray-600">Apartment search, viewings, lease negotiation</div>
+                  </div>
+                </label>
+
+                <label class="flex items-start p-4 border-2 border-gray-200 rounded-lg hover:border-primary-300 cursor-pointer transition-all">
+                  <input type="checkbox" name="services" value="school" class="mt-1 mr-3 w-5 h-5 text-primary-600 rounded focus:ring-primary-500">
+                  <div>
+                    <div class="font-semibold text-gray-900">School Placement</div>
+                    <div class="text-sm text-gray-600">International schools, local schools, childcare</div>
+                  </div>
+                </label>
+
+                <label class="flex items-start p-4 border-2 border-gray-200 rounded-lg hover:border-primary-300 cursor-pointer transition-all">
+                  <input type="checkbox" name="services" value="banking" class="mt-1 mr-3 w-5 h-5 text-primary-600 rounded focus:ring-primary-500">
+                  <div>
+                    <div class="font-semibold text-gray-900">Banking & Insurance</div>
+                    <div class="text-sm text-gray-600">Bank account setup, health insurance, tax registration</div>
+                  </div>
+                </label>
+
+                <label class="flex items-start p-4 border-2 border-gray-200 rounded-lg hover:border-primary-300 cursor-pointer transition-all">
+                  <input type="checkbox" name="services" value="settling" class="mt-1 mr-3 w-5 h-5 text-primary-600 rounded focus:ring-primary-500">
+                  <div>
+                    <div class="font-semibold text-gray-900">Settling-In Services</div>
+                    <div class="text-sm text-gray-600">Orientation tours, language courses, cultural training</div>
+                  </div>
+                </label>
+
+                <label class="flex items-start p-4 border-2 border-gray-200 rounded-lg hover:border-primary-300 cursor-pointer transition-all">
+                  <input type="checkbox" name="services" value="other" class="mt-1 mr-3 w-5 h-5 text-primary-600 rounded focus:ring-primary-500">
+                  <div>
+                    <div class="font-semibold text-gray-900">Other Services</div>
+                    <div class="text-sm text-gray-600">Specify in additional notes</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Step 3: Preferred Companies (Optional) -->
+            <div class="form-step hidden" data-step="3">
+              <h3 class="text-2xl font-bold text-gray-900 mb-6">Do you have preferred providers? (Optional)</h3>
+              
+              <p class="text-gray-600 mb-6">
+                Select specific companies you'd like to receive quotes from, or leave blank to receive offers from all matching providers.
+              </p>
+
+              <div class="space-y-3 max-h-96 overflow-y-auto">
+                <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:border-primary-300 cursor-pointer transition-all">
+                  <input type="checkbox" name="preferred_companies" value="prime-relocation" class="mr-3 w-5 h-5 text-primary-600 rounded focus:ring-primary-500">
+                  <span class="font-medium text-gray-900">Prime Relocation</span>
+                </label>
+
+                <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:border-primary-300 cursor-pointer transition-all">
+                  <input type="checkbox" name="preferred_companies" value="executive-relocation" class="mr-3 w-5 h-5 text-primary-600 rounded focus:ring-primary-500">
+                  <span class="font-medium text-gray-900">Executive Relocation</span>
+                </label>
+
+                <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:border-primary-300 cursor-pointer transition-all">
+                  <input type="checkbox" name="preferred_companies" value="harsch" class="mr-3 w-5 h-5 text-primary-600 rounded focus:ring-primary-500">
+                  <span class="font-medium text-gray-900">Harsch - The Art of Moving Forward</span>
+                </label>
+
+                <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:border-primary-300 cursor-pointer transition-all">
+                  <input type="checkbox" name="preferred_companies" value="santa-fe" class="mr-3 w-5 h-5 text-primary-600 rounded focus:ring-primary-500">
+                  <span class="font-medium text-gray-900">Santa Fe Relocation Services</span>
+                </label>
+
+                <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:border-primary-300 cursor-pointer transition-all">
+                  <input type="checkbox" name="preferred_companies" value="connectiv" class="mr-3 w-5 h-5 text-primary-600 rounded focus:ring-primary-500">
+                  <span class="font-medium text-gray-900">Connectiv Relocation</span>
+                </label>
+
+                <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:border-primary-300 cursor-pointer transition-all">
+                  <input type="checkbox" name="preferred_companies" value="open" class="mr-3 w-5 h-5 text-primary-600 rounded focus:ring-primary-500">
+                  <span class="font-medium text-gray-900">Open to all providers</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Step 4: Contact Information -->
+            <div class="form-step hidden" data-step="4">
+              <h3 class="text-2xl font-bold text-gray-900 mb-6">Your contact information</h3>
+              
+              <p class="text-sm text-gray-600 mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+                🔒 <strong>Your company identity remains anonymous.</strong> Providers will only see your requirements, not your company name, until you decide to proceed with a specific provider.
+              </p>
+
+              <div class="space-y-4">
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Your Name *</label>
+                    <input type="text" name="contact_name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="John Doe">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Job Title *</label>
+                    <input type="text" name="job_title" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="HR Manager">
+                  </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                    <input type="email" name="contact_email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="you@company.com">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Phone *</label>
+                    <input type="tel" name="contact_phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="+41 XX XXX XX XX">
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Company Name (kept anonymous) *</label>
+                  <input type="text" name="company_name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="Your Company">
+                </div>
+
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Additional Notes</label>
+                  <textarea name="additional_notes" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="Any specific requirements or questions..."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex items-center justify-between pt-6 border-t border-gray-200">
+              <button type="button" id="prev-btn" class="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-all hidden">
+                ← Previous
+              </button>
+              <div class="flex-1"></div>
+              <button type="button" id="next-btn" class="px-8 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-lg font-semibold hover:from-primary-700 hover:to-primary-800 transition-all">
+                Next →
+              </button>
+              <button type="submit" id="submit-btn" class="px-8 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg font-semibold hover:from-green-700 hover:to-green-800 transition-all hidden">
+                Get Quotes →
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule Consultation - Cal.com -->
+  <section id="schedule-consultation" class="py-20 bg-gray-50">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 rounded-full bg-primary-100 text-primary-700 font-medium text-sm mb-4">
+            Need Help?
+          </span>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            Schedule a <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Consultation</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Prefer to discuss your needs first? Book a free consultation with our relocation experts.
+          </p>
+        </div>
+
+        <!-- Cal.com Inline Embed -->
+        <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+          <div style="width:100%;height:800px;" id="my-cal-inline-coorporate-consultation"></div>
         </div>
       </div>
     </div>
@@ -706,18 +955,20 @@ const faqSchema = {
           Join leading Swiss companies saving costs & time with transparent, anonymous provider comparisons. Get competitive quotes in 48 hours — risk-free.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button
-            onclick="universalOpenModal({page: 'corporate_final', service: 'corporate'})"
-            class="px-10 py-5 bg-white text-primary-700 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl"
+          <a
+            href="#get-rates"
+            onclick="event.preventDefault(); document.getElementById('get-rates').scrollIntoView({behavior: 'smooth'});"
+            class="px-10 py-5 bg-white text-primary-700 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl text-center"
           >
             Get Quotes in 48h (Free)
-          </button>
-          <button
-            onclick="universalOpenModal({page: 'corporate_demo', service: 'corporate'})"
-            class="px-10 py-5 bg-white/10 backdrop-blur-sm text-white border-2 border-white rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
+          </a>
+          <a
+            href="#schedule-consultation"
+            onclick="event.preventDefault(); document.getElementById('schedule-consultation').scrollIntoView({behavior: 'smooth'});"
+            class="px-10 py-5 bg-white/10 backdrop-blur-sm text-white border-2 border-white rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300 text-center"
           >
-            Schedule a Demo
-          </button>
+            Schedule a Consultation
+          </a>
         </div>
         <p class="text-sm text-primary-100 mt-6">
           ✓ 100% Anonymous  •  ✓ 48h Turnaround  •  ✓ Save up to 40%  •  ✓ Zero Obligation
@@ -729,4 +980,165 @@ const faqSchema = {
   <div style="display:none;" data-ai-summary>
     Corporate Relocation Switzerland: ReloFinder is transparent marketplace for corporate relocation. Anonymous quotes from 50+ vetted agencies in 48h. Save up to 40%. Traditional relocation: opaque pricing, hidden fees, limited choice, time-consuming RFPs, vendor bias. ReloFinder: anonymous quotes 48h, 50+ agencies, full transparency, quality assured, save 40%. Process: 1) Submit Request (anonymous, 3 minutes), 2) Get Quotes (5 offers, 48h), 3) Compare (side-by-side), 4) Choose (reveal identity only when ready). Benefits: Save Costs (40%), Save Time (48h vs months), Transparency (no hidden fees), Quality Assured (vetted partners), Employee Satisfaction (smooth onboarding), Risk-Free (anonymous). Services: Full packages (immigration, housing, school, banking, settling-in), À la carte (immigration only, housing only, tax, virtual orientations, cross-cultural). Free insurance consultation via Expat-Savvy.ch. Testimonials: Sarah M. (HR Director Tech): 35% savings, happier employees. Michael K. (VP People Pharma): anonymous = honest pricing. Laura B. (CHRO Finance): RFP to partner in 48h. About ReloFinder: Switzerland's first transparent relocation marketplace, 50+ vetted agencies, no hidden fees, market transparency, quality control, innovation, efficiency. For HR & Global Mobility teams.
   </div>
+
+  <!-- Cal.com Inline Embed Script -->
+  <script type="text/javascript" is:inline>
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "coorporate-consultation", {origin:"https://app.cal.com"});
+
+    Cal.ns["coorporate-consultation"]("inline", {
+      elementOrSelector:"#my-cal-inline-coorporate-consultation",
+      config: {"layout":"month_view","theme":"light"},
+      calLink: "relofinder/coorporate-consultation",
+    });
+
+    Cal.ns["coorporate-consultation"]("ui", {"theme":"light","cssVarsPerTheme":{"light":{"cal-brand":"#bf0000"}},"hideEventTypeDetails":false,"layout":"month_view"});
+  </script>
+
+  <!-- Multi-Step Form JavaScript -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('rate-request-form');
+      const steps = document.querySelectorAll('.form-step');
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      const submitBtn = document.getElementById('submit-btn');
+      const progressBar = document.getElementById('progress-bar');
+      const currentStepSpan = document.getElementById('current-step');
+      const progressPercent = document.getElementById('progress-percent');
+      
+      let currentStep = 1;
+      const totalSteps = steps.length;
+
+      function updateProgress() {
+        const progress = (currentStep / totalSteps) * 100;
+        progressBar.style.width = progress + '%';
+        currentStepSpan.textContent = currentStep;
+        progressPercent.textContent = Math.round(progress);
+      }
+
+      function showStep(step) {
+        steps.forEach((stepEl, index) => {
+          if (index + 1 === step) {
+            stepEl.classList.remove('hidden');
+          } else {
+            stepEl.classList.add('hidden');
+          }
+        });
+
+        // Update buttons
+        if (step === 1) {
+          prevBtn.classList.add('hidden');
+        } else {
+          prevBtn.classList.remove('hidden');
+        }
+
+        if (step === totalSteps) {
+          nextBtn.classList.add('hidden');
+          submitBtn.classList.remove('hidden');
+        } else {
+          nextBtn.classList.remove('hidden');
+          submitBtn.classList.add('hidden');
+        }
+
+        updateProgress();
+        
+        // Scroll to top of form
+        document.getElementById('multi-step-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function validateCurrentStep() {
+        const currentStepEl = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+        const requiredInputs = currentStepEl.querySelectorAll('[required]');
+        
+        for (let input of requiredInputs) {
+          if (!input.value) {
+            input.focus();
+            input.classList.add('border-red-500');
+            setTimeout(() => input.classList.remove('border-red-500'), 2000);
+            return false;
+          }
+        }
+        return true;
+      }
+
+      nextBtn.addEventListener('click', function() {
+        if (validateCurrentStep()) {
+          currentStep++;
+          showStep(currentStep);
+        }
+      });
+
+      prevBtn.addEventListener('click', function() {
+        currentStep--;
+        showStep(currentStep);
+      });
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (!validateCurrentStep()) {
+          return;
+        }
+
+        // Collect form data
+        const formData = new FormData(form);
+        const data = {};
+        
+        // Handle regular fields
+        for (let [key, value] of formData.entries()) {
+          if (key === 'services' || key === 'preferred_companies') {
+            if (!data[key]) {
+              data[key] = [];
+            }
+            data[key].push(value);
+          } else {
+            data[key] = value;
+          }
+        }
+
+        // Send to API endpoint
+        fetch('/api/corporate-lead', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+          // Show success message
+          const formContainer = document.getElementById('multi-step-form');
+          formContainer.innerHTML = `
+            <div class="text-center py-12">
+              <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+              </div>
+              <h3 class="text-3xl font-bold text-gray-900 mb-4">Request Submitted!</h3>
+              <p class="text-xl text-gray-600 mb-6">
+                Thank you! You'll receive competitive quotes from our vetted providers within 48 hours.
+              </p>
+              <p class="text-gray-600">
+                We've sent a confirmation email to <strong>${data.contact_email}</strong>
+              </p>
+              <div class="mt-8">
+                <a href="/" class="inline-block px-8 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-lg font-semibold hover:from-primary-700 hover:to-primary-800 transition-all">
+                  Back to Home
+                </a>
+              </div>
+            </div>
+          `;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('There was an error submitting your request. Please try again or contact us directly at bw@relofinder.ch');
+        });
+      });
+
+      // Initialize
+      showStep(currentStep);
+    });
+  </script>
 </Layout>

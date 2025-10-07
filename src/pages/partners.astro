@@ -484,6 +484,87 @@ const description = 'Join ReloFinder.ch as a partner - whether you\'re a relocat
             <p class="text-gray-700 mb-6">
               Submit your partnership application and we'll get back to you within 24 hours.
             </p>
+
+            <form class="space-y-4" action="mailto:bw@relofinder.ch" method="get" enctype="text/plain">
+              <!-- Company Information -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
+                <input type="text" name="company" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="Your Company Name">
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Your Name *</label>
+                  <input type="text" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="John Doe">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                  <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="you@company.com">
+                </div>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                  <input type="tel" name="phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="+41 XX XXX XX XX">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">Website *</label>
+                  <input type="url" name="website" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="https://yoursite.com">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Partnership Tier *</label>
+                <select name="tier" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                  <option value="">Select a tier...</option>
+                  <option value="partner">Partner (Free)</option>
+                  <option value="preferred">Preferred Partner (Premium)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Services Offered *</label>
+                <textarea name="services" required rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="e.g., Corporate relocation, housing search, visa assistance..."></textarea>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Requested Changes to Profile</label>
+                <textarea name="profile_changes" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="Any specific information or changes you'd like on your profile..."></textarea>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">ReloFinder Logo Placement URL *</label>
+                <input type="url" name="logo_url" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="https://yoursite.com/partners (where you'll place our logo)">
+                <p class="text-xs text-gray-500 mt-1">URL where the ReloFinder logo and link will be displayed on your website</p>
+              </div>
+
+              <!-- Logo Download -->
+              <div class="bg-gray-50 rounded-xl p-4 border border-gray-300">
+                <h4 class="font-bold text-gray-900 mb-2 text-sm">Download ReloFinder Logo</h4>
+                <div class="flex flex-wrap gap-3">
+                  <a href="https://res.cloudinary.com/dphbnwjtx/image/upload/v1751047383/SVG_sdmxdo.svg" download class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                    </svg>
+                    SVG Logo
+                  </a>
+                  <a href="https://res.cloudinary.com/dphbnwjtx/image/upload/v1751047384/1_bxqv6x.png" download class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                    </svg>
+                    PNG Logo
+                  </a>
+                </div>
+                <p class="text-xs text-gray-500 mt-2">Link to: https://relofinder.ch</p>
+              </div>
+
+              <button type="submit" class="w-full py-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-bold rounded-xl hover:shadow-lg transition-all">
+                Submit Partnership Application
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </section>
