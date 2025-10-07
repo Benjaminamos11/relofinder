@@ -1,9 +1,8 @@
 ---
 title: "Best Relocation Companies in Switzerland (2025)"
 description: "Compare the top 10 relocation companies in Switzerland based on verified reviews, services, and regional coverage. Expert rankings to help expats, families, and HR teams find the right relocation partner."
-pubDate: 2025-01-08
 publishDate: 2025-01-08
-readingTime: "12 min read"
+readingTime: 15
 author: "ReloFinder Editorial Team"
 heroImage: "https://images.unsplash.com/photo-1531156992292-d36397ee9b1b?w=1200&h=600&fit=crop"
 category: "Guides"
