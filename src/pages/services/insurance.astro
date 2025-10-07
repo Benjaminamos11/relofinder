@@ -1,0 +1,282 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SectionHeading from '../../components/common/SectionHeading.astro';
+
+const title = "Swiss Health Insurance Services | Setup & Changes | ReloFinder";
+const description = "Expert guidance for Swiss health insurance setup and changes. Compare agencies specializing in mandatory coverage, plan selection, and insurance transitions for expats.";
+
+const featuredAgencies = [
+  {
+    name: 'Expat-Savvy',
+    slug: 'expat-savvy',
+    description: 'Specialized insurance advisory for expats with deep knowledge of Swiss health insurance landscape.',
+    website: 'https://expat-savvy.ch'
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  
+  <!-- Hero Section -->
+  <section class="relative min-h-[60vh] flex items-center overflow-hidden bg-gray-50">
+    <div class="container relative z-10 mx-auto px-6 lg:px-8 py-20">
+      <div class="max-w-4xl mx-auto">
+        
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-sm text-gray-600 mb-8">
+          <a href="/" class="hover:text-[#B61919] transition-colors">Home</a>
+          <span>→</span>
+          <a href="/services" class="hover:text-[#B61919] transition-colors">Services</a>
+          <span>→</span>
+          <span class="text-gray-900">Insurance Services</span>
+        </nav>
+
+        <!-- Headline -->
+        <h1 class="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+          Swiss Health <span class="bg-gradient-to-r from-[#B61919] to-[#DF3030] bg-clip-text text-transparent">Insurance</span>
+        </h1>
+        <div class="h-1 w-32 bg-gradient-to-r from-[#B61919] to-[#DF3030] rounded-full mb-8"></div>
+        
+        <p class="text-xl text-gray-600 leading-relaxed mb-8">
+          Navigate Swiss health insurance requirements with expert guidance. From mandatory coverage setup to plan changes and optimization — specialized agencies help you choose the right insurance for your needs and budget.
+        </p>
+
+        <!-- CTA -->
+        <button
+          onclick="universalOpenModal({page: 'service', service: 'insurance'})"
+          class="inline-flex items-center justify-center px-8 py-4 text-white font-semibold rounded-xl transition-all duration-200 hover:shadow-lg bg-gradient-to-r from-[#B61919] to-[#DF3030] hover:scale-[1.02]"
+        >
+          Get Insurance Advisory Quotes
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Included Section -->
+  <section class="relative overflow-hidden bg-white" style="padding: var(--section-padding) 0;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      
+      <SectionHeading 
+        title="What's Included"
+        subtitle="Comprehensive insurance advisory for expats relocating to Switzerland"
+        align="left"
+      />
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+          <div class="w-12 h-12 bg-gradient-to-br from-[#B61919] to-[#DF3030] rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold mb-3 text-gray-900">Mandatory Insurance Setup</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Expert guidance on selecting and enrolling in Swiss mandatory health insurance (KVG/LAMal) within the required 3-month deadline.
+          </p>
+        </div>
+
+        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+          <div class="w-12 h-12 bg-gradient-to-br from-[#B61919] to-[#DF3030] rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold mb-3 text-gray-900">Plan Comparison</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Compare premiums, deductibles, and coverage across all Swiss insurance providers. Find the optimal balance between cost and coverage.
+          </p>
+        </div>
+
+        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+          <div class="w-12 h-12 bg-gradient-to-br from-[#B61919] to-[#DF3030] rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold mb-3 text-gray-900">Insurance Changes</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Assistance with changing insurance providers, adjusting deductibles, or updating coverage levels during annual change periods.
+          </p>
+        </div>
+
+        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+          <div class="w-12 h-12 bg-gradient-to-br from-[#B61919] to-[#DF3030] rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold mb-3 text-gray-900">Premium Optimization</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Strategies to reduce premiums through deductible selection, managed care models, and subsidy eligibility assessment.
+          </p>
+        </div>
+
+        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+          <div class="w-12 h-12 bg-gradient-to-br from-[#B61919] to-[#DF3030] rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold mb-3 text-gray-900">Family Coverage</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Specialized advice for families, including children's insurance, maternity coverage, and coordinating policies for the whole household.
+          </p>
+        </div>
+
+        <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+          <div class="w-12 h-12 bg-gradient-to-br from-[#B61919] to-[#DF3030] rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold mb-3 text-gray-900">Ongoing Support</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Claims assistance, coverage questions, dispute resolution, and annual plan review to ensure continued optimal coverage.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Facts Section -->
+  <section class="relative overflow-hidden bg-gray-50" style="padding: var(--section-padding) 0;">
+    <div class="max-w-5xl mx-auto px-6 lg:px-8">
+      
+      <SectionHeading 
+        title="Swiss Health Insurance Key Facts"
+        subtitle="Important information for expats"
+        align="center"
+      />
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
+          <h3 class="text-lg font-bold mb-3 text-gray-900 flex items-center gap-2">
+            <svg class="w-5 h-5 text-[#B61919]" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+            </svg>
+            Mandatory Within 3 Months
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Everyone residing in Switzerland must have basic health insurance (KVG/LAMal). You have 3 months from arrival to enroll retroactively.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
+          <h3 class="text-lg font-bold mb-3 text-gray-900 flex items-center gap-2">
+            <svg class="w-5 h-5 text-[#B61919]" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+            </svg>
+            Monthly Premiums Vary
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Premiums range from CHF 200–600/month depending on canton, age, deductible choice, and insurance model. Same coverage, different prices.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
+          <h3 class="text-lg font-bold mb-3 text-gray-900 flex items-center gap-2">
+            <svg class="w-5 h-5 text-[#B61919]" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            Annual Change Period
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            You can change insurance providers by November 30 each year for coverage starting January 1. Deductible changes possible at different times.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
+          <h3 class="text-lg font-bold mb-3 text-gray-900 flex items-center gap-2">
+            <svg class="w-5 h-5 text-[#B61919]" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/>
+            </svg>
+            Subsidies Available
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Low to middle-income residents may qualify for premium subsidies from their canton. Eligibility and amounts vary by canton and income level.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Agencies Section -->
+  <section class="relative overflow-hidden bg-white" style="padding: var(--section-padding) 0;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      
+      <SectionHeading 
+        title="Specialized Insurance Agencies"
+        subtitle="Expert advisors for Swiss health insurance"
+        align="left"
+      />
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {featuredAgencies.map((agency) => (
+          <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 p-6">
+            <h3 class="text-xl font-bold mb-3 text-gray-900 group-hover:text-[#B61919] transition-colors">
+              {agency.name}
+            </h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-6">
+              {agency.description}
+            </p>
+            <div class="flex flex-col gap-3">
+              <a
+                href={`/companies/${agency.slug}`}
+                class="inline-flex items-center justify-center px-4 py-3 bg-gradient-to-r from-[#B61919] to-[#DF3030] text-white rounded-xl font-semibold hover:shadow-md transition-all duration-200"
+              >
+                View Profile
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+              <a
+                href={agency.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-4 py-3 bg-white text-gray-700 border-2 border-gray-200 rounded-xl font-semibold hover:border-gray-300 hover:bg-gray-50 transition-all duration-200"
+              >
+                Visit Website
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="relative overflow-hidden" style="padding: var(--section-padding) 0; background: linear-gradient(135deg, #B61919 0%, #DF3030 100%);">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center text-white">
+      <h2 class="text-4xl font-bold mb-6">
+        Get Expert Insurance Guidance
+      </h2>
+      <p class="text-xl mb-8 opacity-90">
+        Connect with specialized insurance advisors who understand Swiss health insurance inside and out.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button
+          onclick="universalOpenModal({page: 'service', service: 'insurance'})"
+          class="inline-flex items-center justify-center px-8 py-4 bg-white text-[#B61919] font-semibold rounded-xl hover:bg-gray-100 transition-all duration-200"
+        >
+          Get Free Advisory Quotes
+        </button>
+        <a
+          href="/companies?service=insurance"
+          class="inline-flex items-center justify-center px-8 py-4 font-semibold bg-white/10 backdrop-blur-sm border-2 border-white/30 rounded-xl hover:bg-white/20 transition-all duration-200"
+        >
+          Browse All Advisors
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+

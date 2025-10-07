@@ -9,7 +9,7 @@
 
 /* Brand Gradient Tokens - Single Source of Truth */
 :root {
-  /* Primary Brand Gradient */
+  /* Primary Brand Gradient - RESTORED TO ORIGINAL */
   --rf-red-start: #B61919;
   --rf-red-end: #DF3030;
   --rf-grad-red: linear-gradient(90deg, var(--rf-red-start), var(--rf-red-end));
