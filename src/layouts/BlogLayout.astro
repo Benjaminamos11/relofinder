@@ -12,204 +12,173 @@ const readingTime = post.data.readingTime;
 const heroImage = post.data.heroImage;
 const category = post.data.category;
 const tags = post.data.tags;
+const excerpt = post.data.excerpt;
+
+// Generate schema markup
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  "author": {
+    "@type": "Organization",
+    "name": author
+  },
+  "datePublished": publishDate.toISOString(),
+  "dateModified": publishDate.toISOString(),
+  "publisher": {
+    "@type": "Organization",
+    "name": "ReloFinder",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1751047384/1_bxqv6x.png"
+    }
+  },
+  "image": heroImage,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://relofinder.ch/blog/${post.slug}`
+  }
+};
+
+const currentUrl = `https://relofinder.ch/blog/${post.slug}`;
+const shareText = encodeURIComponent(title);
 ---
 
 <Layout 
   title={title} 
   description={description}
   keywords={tags}
+  schema={schema}
 >
-  <!-- Hero Section with Gradient -->
-  <section class="relative bg-gradient-to-br from-red-50 via-white to-red-50 py-16 border-b-2 border-red-100">
-    <div class="container max-w-6xl mx-auto px-4">
-      <div class="max-w-4xl mx-auto text-center">
-        <!-- Category Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-600 to-red-700 text-white text-sm font-semibold mb-6 shadow-lg">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-          </svg>
+  <!-- Minimal Hero -->
+  <section class="py-12 bg-white border-b border-gray-100">
+    <div class="container max-w-5xl mx-auto px-4">
+      <div class="flex items-center gap-3 mb-6">
+        <a href="/blog" class="text-sm text-gray-500 hover:text-red-600 transition-colors">← Back to Articles</a>
+        <span class="px-3 py-1 rounded-full bg-red-100 text-red-700 text-xs font-semibold">
           {category}
+        </span>
+      </div>
+      <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+        {title}
+      </h1>
+      <p class="text-xl text-gray-600 leading-relaxed mb-6">
+        {excerpt}
+      </p>
+      <div class="flex items-center gap-6 text-sm text-gray-500">
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          {publishDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         </div>
-        
-        <!-- Title with Red Accent -->
-        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-          {title}
-        </h1>
-        
-        <!-- Meta Bar -->
-        <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600 mb-8">
-          <div class="flex items-center gap-2">
-            <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-            </svg>
-            {publishDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-          </div>
-          <div class="flex items-center gap-2">
-            <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            {readingTime} min read
-          </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          {readingTime} min read
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Main Content Area -->
-  <section class="py-12 bg-white">
-    <div class="container max-w-6xl mx-auto px-4">
-      <!-- Article Content with Custom Styling -->
-      <article class="prose-custom max-w-none">
+  <!-- Main Content -->
+  <section class="py-16 bg-white">
+    <div class="container max-w-5xl mx-auto px-4">
+      <article class="article-content">
         <style>
-          /* Reset blog-like styles and create page-like design */
-          .prose-custom {
-            @apply text-gray-800;
+          /* Clean, minimal styling like homepage */
+          .article-content {
+            @apply text-gray-700;
           }
           
-          /* Headings with red accents */
-          .prose-custom :global(h1) {
-            @apply text-3xl md:text-4xl font-bold text-gray-900 mb-8 mt-12 first:mt-0;
-            border-left: 6px solid #B61919;
-            padding-left: 24px;
-            background: linear-gradient(90deg, #fee2e2 0%, transparent 100%);
-            padding-top: 12px;
-            padding-bottom: 12px;
-            border-radius: 0 8px 8px 0;
+          /* Headings - minimal with just bottom border */
+          .article-content :global(h2) {
+            @apply text-3xl font-bold text-gray-900 mb-8 mt-16 first:mt-0 pb-4 border-b-2 border-gray-200;
           }
           
-          .prose-custom :global(h2) {
-            @apply text-2xl md:text-3xl font-bold text-gray-900 mb-6 mt-10;
-            border-left: 4px solid #B61919;
-            padding-left: 20px;
+          .article-content :global(h3) {
+            @apply text-2xl font-bold text-gray-900 mb-6 mt-12;
           }
           
-          .prose-custom :global(h3) {
-            @apply text-xl md:text-2xl font-semibold text-gray-900 mb-4 mt-8;
-            color: #B61919;
+          .article-content :global(h4) {
+            @apply text-xl font-semibold text-gray-900 mb-4 mt-8;
           }
           
-          .prose-custom :global(h4) {
-            @apply text-lg md:text-xl font-semibold text-gray-900 mb-3 mt-6;
+          /* Paragraphs - clean, no boxes */
+          .article-content :global(p) {
+            @apply text-lg leading-relaxed mb-6 text-gray-700;
           }
           
-          /* Paragraphs in boxes */
-          .prose-custom :global(p) {
-            @apply text-base md:text-lg leading-relaxed mb-6 text-gray-700;
-            padding: 16px;
-            background: white;
-            border-left: 2px solid #fee2e2;
+          /* Lists - clean bullets */
+          .article-content :global(ul) {
+            @apply space-y-2 mb-6 ml-6;
+            list-style-type: disc;
           }
           
-          /* Lists as cards */
-          .prose-custom :global(ul) {
-            @apply space-y-3 mb-8 list-none;
+          .article-content :global(ul li) {
+            @apply text-gray-700 leading-relaxed;
           }
           
-          .prose-custom :global(ul li) {
-            @apply bg-gray-50 rounded-lg p-4 border-l-4 border-red-200;
-            position: relative;
-            padding-left: 48px;
+          .article-content :global(ol) {
+            @apply space-y-2 mb-6 ml-6;
+            list-style-type: decimal;
           }
           
-          .prose-custom :global(ul li::before) {
-            content: "✓";
-            @apply absolute left-4 top-4 w-6 h-6 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-full flex items-center justify-center text-sm font-bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+          .article-content :global(ol li) {
+            @apply text-gray-700 leading-relaxed;
           }
           
-          .prose-custom :global(ol) {
-            @apply space-y-3 mb-8;
-            counter-reset: item;
-            list-style: none;
+          /* Links - minimal red */
+          .article-content :global(a) {
+            @apply text-red-600 hover:text-red-700 underline decoration-1 underline-offset-2;
           }
           
-          .prose-custom :global(ol li) {
-            @apply bg-white rounded-lg p-4 border border-gray-200 shadow-sm;
-            position: relative;
-            padding-left: 48px;
-            counter-increment: item;
+          /* Strong - minimal accent */
+          .article-content :global(strong) {
+            @apply font-semibold text-gray-900;
           }
           
-          .prose-custom :global(ol li::before) {
-            content: counter(item);
-            @apply absolute left-4 top-4 w-6 h-6 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-full flex items-center justify-center text-sm font-bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+          /* Company Cards - like homepage */
+          .article-content :global(.company-card) {
+            @apply bg-white rounded-xl border border-gray-200 p-6 mb-6 hover:shadow-lg transition-all;
           }
           
-          /* Links as buttons */
-          .prose-custom :global(a) {
-            @apply inline-flex items-center gap-2 text-red-600 font-semibold hover:text-red-700 no-underline;
-            transition: all 0.2s;
+          /* Tables - clean minimal */
+          .article-content :global(table) {
+            @apply w-full border-collapse my-8;
           }
           
-          .prose-custom :global(a:hover) {
-            @apply underline;
+          .article-content :global(thead) {
+            @apply bg-gray-50 border-b-2 border-gray-200;
           }
           
-          /* Strong text with red color */
-          .prose-custom :global(strong) {
-            @apply text-red-700 font-bold;
+          .article-content :global(th) {
+            @apply px-6 py-4 text-left font-semibold text-gray-900 text-sm;
           }
           
-          /* Blockquotes as highlight boxes */
-          .prose-custom :global(blockquote) {
-            @apply border-l-4 border-red-600 bg-gradient-to-r from-red-50 to-white p-6 rounded-r-xl my-8 shadow-md;
+          .article-content :global(td) {
+            @apply px-6 py-4 text-gray-700 border-b border-gray-100;
           }
           
-          .prose-custom :global(blockquote p) {
-            @apply text-gray-900 font-medium text-lg mb-0 border-l-0 bg-transparent;
-          }
-          
-          /* Tables as cards */
-          .prose-custom :global(table) {
-            @apply w-full border-collapse rounded-xl overflow-hidden shadow-lg my-8;
-          }
-          
-          .prose-custom :global(thead) {
-            @apply bg-gradient-to-r from-red-600 to-red-700;
-          }
-          
-          .prose-custom :global(th) {
-            @apply border-0 px-6 py-4 text-left font-bold text-white text-sm uppercase tracking-wide;
-          }
-          
-          .prose-custom :global(td) {
-            @apply border-0 px-6 py-4 text-gray-700 bg-white;
-          }
-          
-          .prose-custom :global(tbody tr) {
-            @apply border-b border-gray-100;
-          }
-          
-          .prose-custom :global(tbody tr:nth-child(even)) {
+          .article-content :global(tbody tr:hover) {
             @apply bg-gray-50;
           }
           
-          .prose-custom :global(tbody tr:hover) {
-            @apply bg-red-50;
-            transition: background 0.2s;
+          /* Blockquotes - minimal box */
+          .article-content :global(blockquote) {
+            @apply border-l-4 border-gray-300 pl-6 py-4 my-8 italic text-gray-600;
           }
           
-          /* Code blocks as cards */
-          .prose-custom :global(code) {
-            @apply bg-gray-100 text-red-600 px-3 py-1 rounded-lg text-sm font-mono border border-gray-200;
+          /* Code - minimal */
+          .article-content :global(code) {
+            @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono text-gray-800;
           }
           
-          .prose-custom :global(pre) {
-            @apply bg-gray-900 text-gray-100 p-6 rounded-xl overflow-x-auto my-8 shadow-lg border-l-4 border-red-600;
-          }
-          
-          .prose-custom :global(pre code) {
-            @apply bg-transparent text-gray-100 p-0 border-0;
-          }
-          
-          /* Horizontal rules */
-          .prose-custom :global(hr) {
-            @apply border-0 h-1 bg-gradient-to-r from-transparent via-red-300 to-transparent my-12;
+          /* HR - thin line */
+          .article-content :global(hr) {
+            @apply border-0 h-px bg-gray-200 my-12;
           }
         </style>
         
@@ -218,82 +187,69 @@ const tags = post.data.tags;
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="py-16 bg-gradient-to-br from-gray-50 to-white border-t-2 border-gray-100">
-    <div class="container max-w-6xl mx-auto px-4">
-      <div class="bg-white rounded-2xl shadow-xl border-2 border-red-100 overflow-hidden">
-        <div class="grid md:grid-cols-2 gap-8 p-8 md:p-12">
-          <!-- Left: CTA Text -->
-          <div class="flex flex-col justify-center">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">Ready to Start Your Swiss Relocation?</h2>
-            <p class="text-lg text-gray-600 mb-6">
-              Connect with verified relocation companies and get free quotes for your move to Switzerland.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a 
-                href="/companies" 
-                class="inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-bold rounded-xl hover:shadow-lg transition-all"
-              >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
-                Browse Companies
-              </a>
-              <a 
-                href="/contact" 
-                class="inline-flex items-center justify-center gap-2 px-6 py-4 bg-white border-2 border-gray-300 text-gray-700 font-bold rounded-xl hover:border-red-300 hover:bg-red-50 transition-all"
-              >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
-                </svg>
-                Get Free Consultation
-              </a>
-            </div>
+  <!-- Share Buttons -->
+  <section class="py-8 bg-gray-50 border-y border-gray-100">
+    <div class="container max-w-5xl mx-auto px-4">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <span class="text-sm font-semibold text-gray-700">Share this article:</span>
+        <div class="flex items-center gap-3">
+          <a 
+            href={`https://twitter.com/intent/tweet?text=${shareText}&url=${currentUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-3 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300 transition-all"
+            aria-label="Share on Twitter"
+          >
+            <svg class="w-5 h-5 text-gray-700" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a 
+            href={`https://www.linkedin.com/sharing/share-offsite/?url=${currentUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-3 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300 transition-all"
+            aria-label="Share on LinkedIn"
+          >
+            <svg class="w-5 h-5 text-gray-700" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/>
+            </svg>
+          </a>
+          <a 
+            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-3 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300 transition-all"
+            aria-label="Share on Facebook"
+          >
+            <svg class="w-5 h-5 text-gray-700" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Author Box -->
+  <section class="py-12 bg-white border-b border-gray-100">
+    <div class="container max-w-5xl mx-auto px-4">
+      <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 p-8">
+        <div class="flex items-start gap-6">
+          <div class="w-16 h-16 rounded-full bg-gradient-to-r from-red-600 to-red-700 flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+            RF
           </div>
-          
-          <!-- Right: Quick Links Box -->
-          <div class="bg-gradient-to-br from-red-50 to-white rounded-xl p-6 border border-red-100">
-            <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-              </svg>
-              Quick Actions
-            </h3>
-            <div class="space-y-3">
-              <a href="/services/housing" class="flex items-center gap-3 p-3 bg-white rounded-lg hover:shadow-md transition-all group">
-                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
-                  <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                  </svg>
-                </div>
-                <div class="flex-1">
-                  <div class="font-semibold text-gray-900">Find Housing</div>
-                  <div class="text-sm text-gray-600">Search for apartments & homes</div>
-                </div>
+          <div class="flex-1">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">{author}</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              ReloFinder's editorial team consists of relocation experts, Swiss market specialists, and international mobility professionals dedicated to providing accurate, helpful information for your Swiss relocation journey.
+            </p>
+            <div class="flex items-center gap-4">
+              <a href="/about" class="text-sm font-semibold text-red-600 hover:text-red-700">
+                Learn More →
               </a>
-              
-              <a href="/services/visa" class="flex items-center gap-3 p-3 bg-white rounded-lg hover:shadow-md transition-all group">
-                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
-                  <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                  </svg>
-                </div>
-                <div class="flex-1">
-                  <div class="font-semibold text-gray-900">Visa & Immigration</div>
-                  <div class="text-sm text-gray-600">Get permit assistance</div>
-                </div>
-              </a>
-              
-              <a href="/corporate" class="flex items-center gap-3 p-3 bg-white rounded-lg hover:shadow-md transition-all group">
-                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
-                  <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h1a1 1 0 011 1v5m-4 0h4"/>
-                  </svg>
-                </div>
-                <div class="flex-1">
-                  <div class="font-semibold text-gray-900">Corporate Solutions</div>
-                  <div class="text-sm text-gray-600">For HR & mobility teams</div>
-                </div>
+              <a href="/contact" class="text-sm font-semibold text-red-600 hover:text-red-700">
+                Contact Us →
               </a>
             </div>
           </div>
@@ -302,16 +258,85 @@ const tags = post.data.tags;
     </div>
   </section>
 
-  <!-- Tags Section -->
+  <!-- CTA Banner - Like Homepage -->
+  <section class="py-16 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <div class="container max-w-5xl mx-auto px-4">
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-xl overflow-hidden">
+        <div class="grid md:grid-cols-2 gap-8 p-8 md:p-12">
+          <!-- Left: Main CTA -->
+          <div class="flex flex-col justify-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Ready to Move to Switzerland?</h2>
+            <p class="text-lg text-gray-600 mb-6">
+              Compare verified relocation companies and get personalized quotes for your move.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a 
+                href="/companies" 
+                class="inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold rounded-xl hover:shadow-lg transition-all"
+              >
+                Browse Companies →
+              </a>
+              <a 
+                href="/contact" 
+                class="inline-flex items-center justify-center gap-2 px-6 py-4 bg-white border-2 border-gray-200 text-gray-700 font-semibold rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-all"
+              >
+                Get Free Consultation
+              </a>
+            </div>
+          </div>
+          
+          <!-- Right: Quick Links -->
+          <div class="space-y-4">
+            <h3 class="text-lg font-bold text-gray-900 mb-4">Popular Services</h3>
+            <a href="/services/housing" class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all group">
+              <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center group-hover:shadow-md transition-all">
+                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-900">Housing Search</div>
+                <div class="text-sm text-gray-600">Find your perfect home</div>
+              </div>
+            </a>
+            
+            <a href="/services/visa" class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all group">
+              <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center group-hover:shadow-md transition-all">
+                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-900">Visa & Immigration</div>
+                <div class="text-sm text-gray-600">Get permit assistance</div>
+              </div>
+            </a>
+            
+            <a href="/corporate" class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all group">
+              <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center group-hover:shadow-md transition-all">
+                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h1a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-900">Corporate Solutions</div>
+                <div class="text-sm text-gray-600">For HR teams</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tags -->
   {tags && tags.length > 0 && (
-    <section class="py-8 bg-gray-50 border-t border-gray-200">
-      <div class="container max-w-6xl mx-auto px-4">
+    <section class="py-8 bg-white">
+      <div class="container max-w-5xl mx-auto px-4">
         <div class="flex flex-wrap items-center gap-3">
-          <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
-          </svg>
+          <span class="text-sm text-gray-500">Tags:</span>
           {tags.map((tag) => (
-            <span class="px-4 py-2 bg-white border border-gray-200 rounded-full text-sm text-gray-700 hover:border-red-300 hover:text-red-700 transition-colors cursor-pointer">
+            <span class="px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-700 hover:bg-gray-200 transition-colors">
               {tag}
             </span>
           ))}
@@ -323,7 +348,7 @@ const tags = post.data.tags;
 
 <script>
   // Add IDs to headings for anchor links
-  document.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(heading => {
+  document.querySelectorAll('h2, h3, h4').forEach(heading => {
     const text = heading.textContent || '';
     const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     if (id) {
