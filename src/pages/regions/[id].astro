@@ -140,8 +140,6 @@ const relatedBlogPosts = [
 // SEO metadata with enhanced keywords
 const title = region.data.name + " Relocation Guide 2025: Moving to " + region.data.name + ", Switzerland | ReloFinder.ch";
 const description = "Complete " + region.data.name + " relocation guide for expats. Find housing, immigration services, cost of living info, and relocation companies for moving to " + region.data.name + ", Switzerland.";
-const keywords = region.data.name + " relocation, move to " + region.data.name + ", " + region.data.name + " expat guide, " + region.data.name + " immigration, " + region.data.name + " housing, " + region.data.name + " cost of living, Switzerland";
----
 
 // Canonical URL
 const canonical = `https://relofinder.ch/regions/${region.data.id || region.slug}`;
@@ -185,7 +183,6 @@ const regionSchema = {
 
 <Layout title={title} description={description} canonical={canonical} keywords={keywordsArray} schema={regionSchema}>
   <!-- Enhanced SEO meta tags -->
-  <meta name="keywords" content={keywords} slot="head" />
   <meta property="og:title" content={title} slot="head" />
   <meta property="og:description" content={description} slot="head" />
   <meta property="og:image" content={heroImage} slot="head" />
