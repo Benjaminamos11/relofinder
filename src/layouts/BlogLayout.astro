@@ -4,15 +4,6 @@ import Layout from './Layout.astro';
 const { post } = Astro.props;
 const { Content } = await post.render();
 
-// Extract headings for TOC
-const headings = post.body.match(/^#{1,6}\s+.+$/gm) || [];
-const toc = headings.map(heading => {
-  const level = heading.match(/^#+/)[0].length;
-  const text = heading.replace(/^#+\s+/, '');
-  const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-  return { level, text, id };
-});
-
 const title = post.data.title;
 const description = post.data.description;
 const author = post.data.author;
@@ -21,8 +12,6 @@ const readingTime = post.data.readingTime;
 const heroImage = post.data.heroImage;
 const category = post.data.category;
 const tags = post.data.tags;
-const featured = post.data.featured;
-const excerpt = post.data.excerpt;
 ---
 
 <Layout 
@@ -30,44 +19,33 @@ const excerpt = post.data.excerpt;
   description={description}
   keywords={tags}
 >
-  <!-- Hero Section -->
-  <section class="relative bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20">
+  <!-- Hero Section with Gradient -->
+  <section class="relative bg-gradient-to-br from-red-50 via-white to-red-50 py-16 border-b-2 border-red-100">
     <div class="container max-w-6xl mx-auto px-4">
-      <div class="text-center max-w-4xl mx-auto">
+      <div class="max-w-4xl mx-auto text-center">
         <!-- Category Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-600 to-red-700 text-white text-sm font-semibold mb-6">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-600 to-red-700 text-white text-sm font-semibold mb-6 shadow-lg">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
           </svg>
           {category}
         </div>
         
-        <!-- Title -->
+        <!-- Title with Red Accent -->
         <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
           {title}
         </h1>
         
-        <!-- Excerpt -->
-        <p class="text-xl text-gray-600 leading-relaxed mb-8">
-          {excerpt}
-        </p>
-        
-        <!-- Meta Info -->
-        <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
+        <!-- Meta Bar -->
+        <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600 mb-8">
           <div class="flex items-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-            </svg>
-            {author}
-          </div>
-          <div class="flex items-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
             </svg>
             {publishDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
           </div>
           <div class="flex items-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
             {readingTime} min read
@@ -77,201 +55,279 @@ const excerpt = post.data.excerpt;
     </div>
   </section>
 
-  <!-- Main Content -->
-  <section class="py-16 bg-white">
+  <!-- Main Content Area -->
+  <section class="py-12 bg-white">
     <div class="container max-w-6xl mx-auto px-4">
-      <div class="grid lg:grid-cols-4 gap-12">
+      <!-- Article Content with Custom Styling -->
+      <article class="prose-custom max-w-none">
+        <style>
+          /* Reset blog-like styles and create page-like design */
+          .prose-custom {
+            @apply text-gray-800;
+          }
+          
+          /* Headings with red accents */
+          .prose-custom :global(h1) {
+            @apply text-3xl md:text-4xl font-bold text-gray-900 mb-8 mt-12 first:mt-0;
+            border-left: 6px solid #B61919;
+            padding-left: 24px;
+            background: linear-gradient(90deg, #fee2e2 0%, transparent 100%);
+            padding-top: 12px;
+            padding-bottom: 12px;
+            border-radius: 0 8px 8px 0;
+          }
+          
+          .prose-custom :global(h2) {
+            @apply text-2xl md:text-3xl font-bold text-gray-900 mb-6 mt-10;
+            border-left: 4px solid #B61919;
+            padding-left: 20px;
+          }
+          
+          .prose-custom :global(h3) {
+            @apply text-xl md:text-2xl font-semibold text-gray-900 mb-4 mt-8;
+            color: #B61919;
+          }
+          
+          .prose-custom :global(h4) {
+            @apply text-lg md:text-xl font-semibold text-gray-900 mb-3 mt-6;
+          }
+          
+          /* Paragraphs in boxes */
+          .prose-custom :global(p) {
+            @apply text-base md:text-lg leading-relaxed mb-6 text-gray-700;
+            padding: 16px;
+            background: white;
+            border-left: 2px solid #fee2e2;
+          }
+          
+          /* Lists as cards */
+          .prose-custom :global(ul) {
+            @apply space-y-3 mb-8 list-none;
+          }
+          
+          .prose-custom :global(ul li) {
+            @apply bg-gray-50 rounded-lg p-4 border-l-4 border-red-200;
+            position: relative;
+            padding-left: 48px;
+          }
+          
+          .prose-custom :global(ul li::before) {
+            content: "✓";
+            @apply absolute left-4 top-4 w-6 h-6 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-full flex items-center justify-center text-sm font-bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          
+          .prose-custom :global(ol) {
+            @apply space-y-3 mb-8;
+            counter-reset: item;
+            list-style: none;
+          }
+          
+          .prose-custom :global(ol li) {
+            @apply bg-white rounded-lg p-4 border border-gray-200 shadow-sm;
+            position: relative;
+            padding-left: 48px;
+            counter-increment: item;
+          }
+          
+          .prose-custom :global(ol li::before) {
+            content: counter(item);
+            @apply absolute left-4 top-4 w-6 h-6 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-full flex items-center justify-center text-sm font-bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          
+          /* Links as buttons */
+          .prose-custom :global(a) {
+            @apply inline-flex items-center gap-2 text-red-600 font-semibold hover:text-red-700 no-underline;
+            transition: all 0.2s;
+          }
+          
+          .prose-custom :global(a:hover) {
+            @apply underline;
+          }
+          
+          /* Strong text with red color */
+          .prose-custom :global(strong) {
+            @apply text-red-700 font-bold;
+          }
+          
+          /* Blockquotes as highlight boxes */
+          .prose-custom :global(blockquote) {
+            @apply border-l-4 border-red-600 bg-gradient-to-r from-red-50 to-white p-6 rounded-r-xl my-8 shadow-md;
+          }
+          
+          .prose-custom :global(blockquote p) {
+            @apply text-gray-900 font-medium text-lg mb-0 border-l-0 bg-transparent;
+          }
+          
+          /* Tables as cards */
+          .prose-custom :global(table) {
+            @apply w-full border-collapse rounded-xl overflow-hidden shadow-lg my-8;
+          }
+          
+          .prose-custom :global(thead) {
+            @apply bg-gradient-to-r from-red-600 to-red-700;
+          }
+          
+          .prose-custom :global(th) {
+            @apply border-0 px-6 py-4 text-left font-bold text-white text-sm uppercase tracking-wide;
+          }
+          
+          .prose-custom :global(td) {
+            @apply border-0 px-6 py-4 text-gray-700 bg-white;
+          }
+          
+          .prose-custom :global(tbody tr) {
+            @apply border-b border-gray-100;
+          }
+          
+          .prose-custom :global(tbody tr:nth-child(even)) {
+            @apply bg-gray-50;
+          }
+          
+          .prose-custom :global(tbody tr:hover) {
+            @apply bg-red-50;
+            transition: background 0.2s;
+          }
+          
+          /* Code blocks as cards */
+          .prose-custom :global(code) {
+            @apply bg-gray-100 text-red-600 px-3 py-1 rounded-lg text-sm font-mono border border-gray-200;
+          }
+          
+          .prose-custom :global(pre) {
+            @apply bg-gray-900 text-gray-100 p-6 rounded-xl overflow-x-auto my-8 shadow-lg border-l-4 border-red-600;
+          }
+          
+          .prose-custom :global(pre code) {
+            @apply bg-transparent text-gray-100 p-0 border-0;
+          }
+          
+          /* Horizontal rules */
+          .prose-custom :global(hr) {
+            @apply border-0 h-1 bg-gradient-to-r from-transparent via-red-300 to-transparent my-12;
+          }
+        </style>
         
-        <!-- Table of Contents - Compact -->
-        <div class="lg:col-span-1">
-          <div class="sticky top-8">
-            <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-              <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+        <Content />
+      </article>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-gradient-to-br from-gray-50 to-white border-t-2 border-gray-100">
+    <div class="container max-w-6xl mx-auto px-4">
+      <div class="bg-white rounded-2xl shadow-xl border-2 border-red-100 overflow-hidden">
+        <div class="grid md:grid-cols-2 gap-8 p-8 md:p-12">
+          <!-- Left: CTA Text -->
+          <div class="flex flex-col justify-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Ready to Start Your Swiss Relocation?</h2>
+            <p class="text-lg text-gray-600 mb-6">
+              Connect with verified relocation companies and get free quotes for your move to Switzerland.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a 
+                href="/companies" 
+                class="inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-bold rounded-xl hover:shadow-lg transition-all"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                 </svg>
-                Contents
-              </h3>
-              <nav class="space-y-1">
-                {toc.slice(0, 8).map((item) => (
-                  <a 
-                    href={`#${item.id}`}
-                    class={`block py-2 px-3 rounded-lg text-sm transition-colors ${
-                      item.level === 1 
-                        ? 'font-semibold text-gray-900 hover:bg-red-50 hover:text-red-700' 
-                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                    }`}
-                    style={`margin-left: ${(item.level - 1) * 8}px`}
-                  >
-                    {item.text}
-                  </a>
-                ))}
-                {toc.length > 8 && (
-                  <button 
-                    onclick="document.querySelectorAll('.toc-hidden').forEach(el => el.classList.toggle('hidden'))"
-                    class="text-xs text-red-600 hover:text-red-700 font-medium mt-2"
-                  >
-                    Show {toc.length - 8} more...
-                  </button>
-                )}
-                {toc.slice(8).map((item) => (
-                  <a 
-                    href={`#${item.id}`}
-                    class="toc-hidden hidden block py-2 px-3 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
-                    style={`margin-left: ${(item.level - 1) * 8}px`}
-                  >
-                    {item.text}
-                  </a>
-                ))}
-              </nav>
+                Browse Companies
+              </a>
+              <a 
+                href="/contact" 
+                class="inline-flex items-center justify-center gap-2 px-6 py-4 bg-white border-2 border-gray-300 text-gray-700 font-bold rounded-xl hover:border-red-300 hover:bg-red-50 transition-all"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                </svg>
+                Get Free Consultation
+              </a>
+            </div>
+          </div>
+          
+          <!-- Right: Quick Links Box -->
+          <div class="bg-gradient-to-br from-red-50 to-white rounded-xl p-6 border border-red-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+              Quick Actions
+            </h3>
+            <div class="space-y-3">
+              <a href="/services/housing" class="flex items-center gap-3 p-3 bg-white rounded-lg hover:shadow-md transition-all group">
+                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
+                  <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <div class="font-semibold text-gray-900">Find Housing</div>
+                  <div class="text-sm text-gray-600">Search for apartments & homes</div>
+                </div>
+              </a>
+              
+              <a href="/services/visa" class="flex items-center gap-3 p-3 bg-white rounded-lg hover:shadow-md transition-all group">
+                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
+                  <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <div class="font-semibold text-gray-900">Visa & Immigration</div>
+                  <div class="text-sm text-gray-600">Get permit assistance</div>
+                </div>
+              </a>
+              
+              <a href="/corporate" class="flex items-center gap-3 p-3 bg-white rounded-lg hover:shadow-md transition-all group">
+                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
+                  <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h1a1 1 0 011 1v5m-4 0h4"/>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <div class="font-semibold text-gray-900">Corporate Solutions</div>
+                  <div class="text-sm text-gray-600">For HR & mobility teams</div>
+                </div>
+              </a>
             </div>
           </div>
         </div>
-
-        <!-- Article Content -->
-        <article class="lg:col-span-3">
-          <div class="prose prose-lg max-w-none">
-            <!-- Custom styling for better readability -->
-            <style>
-              .prose h1 {
-                @apply text-3xl font-bold text-gray-900 mb-6 mt-12 first:mt-0 border-b-2 border-red-200 pb-3;
-              }
-              .prose h2 {
-                @apply text-2xl font-bold text-gray-900 mb-4 mt-10 border-l-4 border-red-600 pl-4;
-              }
-              .prose h3 {
-                @apply text-xl font-semibold text-gray-900 mb-3 mt-8;
-              }
-              .prose h4 {
-                @apply text-lg font-semibold text-gray-900 mb-2 mt-6;
-              }
-              .prose p {
-                @apply text-gray-700 leading-relaxed mb-4;
-              }
-              .prose ul, .prose ol {
-                @apply mb-6;
-              }
-              .prose li {
-                @apply text-gray-700 mb-2;
-              }
-              .prose strong {
-                @apply text-gray-900 font-semibold;
-              }
-              .prose a {
-                @apply text-red-600 hover:text-red-700 font-medium no-underline hover:underline;
-              }
-              .prose blockquote {
-                @apply border-l-4 border-red-200 bg-red-50 p-4 rounded-r-lg my-6;
-              }
-              .prose blockquote p {
-                @apply text-gray-800 font-medium mb-0;
-              }
-              .prose table {
-                @apply w-full border-collapse border border-gray-200 rounded-lg overflow-hidden my-6;
-              }
-              .prose th {
-                @apply bg-gray-50 border border-gray-200 px-4 py-3 text-left font-semibold text-gray-900;
-              }
-              .prose td {
-                @apply border border-gray-200 px-4 py-3 text-gray-700;
-              }
-              .prose tr:nth-child(even) {
-                @apply bg-gray-50;
-              }
-              .prose code {
-                @apply bg-gray-100 text-red-600 px-2 py-1 rounded text-sm font-mono;
-              }
-              .prose pre {
-                @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto my-6;
-              }
-              .prose pre code {
-                @apply bg-transparent text-gray-100 p-0;
-              }
-            </style>
-            
-            <Content />
-          </div>
-        </article>
       </div>
     </div>
   </section>
 
   <!-- Tags Section -->
-  <section class="py-12 bg-gray-50">
-    <div class="container max-w-6xl mx-auto px-4">
-      <div class="flex flex-wrap items-center gap-4">
-        <span class="text-sm font-semibold text-gray-700">Tags:</span>
-        {tags.map((tag) => (
-          <span class="px-3 py-1 bg-white border border-gray-200 rounded-full text-sm text-gray-600 hover:border-red-300 hover:text-red-700 transition-colors">
-            {tag}
-          </span>
-        ))}
+  {tags && tags.length > 0 && (
+    <section class="py-8 bg-gray-50 border-t border-gray-200">
+      <div class="container max-w-6xl mx-auto px-4">
+        <div class="flex flex-wrap items-center gap-3">
+          <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+          </svg>
+          {tags.map((tag) => (
+            <span class="px-4 py-2 bg-white border border-gray-200 rounded-full text-sm text-gray-700 hover:border-red-300 hover:text-red-700 transition-colors cursor-pointer">
+              {tag}
+            </span>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Related Content -->
-  <section class="py-16 bg-white">
-    <div class="container max-w-6xl mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">Continue Your Swiss Relocation Journey</h2>
-        <p class="text-lg text-gray-600">Explore more resources to help with your move to Switzerland</p>
-      </div>
-      
-      <div class="grid md:grid-cols-3 gap-8">
-        <a href="/companies" class="group bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all">
-          <div class="w-12 h-12 bg-gradient-to-r from-red-600 to-red-700 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h1a1 1 0 011 1v5m-4 0h4"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">Browse All Companies</h3>
-          <p class="text-gray-600">Compare 50+ verified relocation companies with detailed profiles and reviews</p>
-        </a>
-        
-        <a href="/services/housing" class="group bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all">
-          <div class="w-12 h-12 bg-gradient-to-r from-red-600 to-red-700 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">Housing Services</h3>
-          <p class="text-gray-600">Find apartments, homes, and property purchase assistance across Switzerland</p>
-        </a>
-        
-        <a href="/contact" class="group bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-all">
-          <div class="w-12 h-12 bg-gradient-to-r from-red-600 to-red-700 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-            </svg>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">Get Free Consultation</h3>
-          <p class="text-gray-600">Speak with our relocation experts for personalized guidance</p>
-        </a>
-      </div>
-    </div>
-  </section>
+    </section>
+  )}
 </Layout>
 
 <script>
-  // Smooth scrolling for TOC links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    });
-  });
-
-  // Add IDs to headings for TOC
+  // Add IDs to headings for anchor links
   document.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(heading => {
-    const text = heading.textContent;
-    const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-    heading.id = id;
+    const text = heading.textContent || '';
+    const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    if (id) {
+      heading.id = id;
+    }
   });
 </script>
