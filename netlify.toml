@@ -4,6 +4,8 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  CI = "true"
+  NODE_OPTIONS = "--max_old_space_size=4096"
 
 # Normalize legacy service URLs to consolidated slugs
 [[redirects]]
