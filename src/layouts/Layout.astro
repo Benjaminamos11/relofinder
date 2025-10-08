@@ -109,19 +109,31 @@ const {
     <!-- Global Modal Functions with Event Queue -->
     <script is:inline>
       // Event queue for modal events before React component loads
-      window.modalEventQueue = [];
-      window.modalReady = false;
+      window.modalEventQueue = window.modalEventQueue || [];
+      window.modalReady = window.modalReady || false;
       
       // Global modal functions that queue events if React component isn't ready
       window.universalOpenModal = function(context) {
+        console.log('📞 universalOpenModal called', context);
         const event = new CustomEvent('openModal', { detail: context });
         
         if (window.modalReady) {
           // React component is ready, dispatch immediately
+          console.log('✅ Modal ready, dispatching immediately');
           window.dispatchEvent(event);
         } else {
           // Queue the event for when React component loads
+          console.log('⏳ Modal not ready, queuing event');
           window.modalEventQueue.push(event);
+          
+          // Fallback: Try again after a short delay if modal still not ready
+          setTimeout(() => {
+            if (!window.modalReady && window.modalEventQueue.length > 0) {
+              console.warn('⚠️ Modal still not ready after 2s, forcing dispatch');
+              window.dispatchEvent(event);
+              window.modalEventQueue = [];
+            }
+          }, 2000);
         }
       };
       
@@ -132,12 +144,12 @@ const {
           window.dispatchEvent(event);
         } else {
           window.modalEventQueue.push(event);
-          console.log('Modal not ready, queuing close event');
         }
       };
       
       // Function to process queued events when React component is ready
       window.processModalQueue = function() {
+        console.log('🚀 Processing modal queue:', window.modalEventQueue.length, 'events');
         window.modalReady = true;
         
         window.modalEventQueue.forEach(event => {
@@ -146,6 +158,15 @@ const {
         
         window.modalEventQueue = [];
       };
+      
+      // Safety check: Log if modal hasn't loaded after 3 seconds
+      setTimeout(() => {
+        if (!window.modalReady) {
+          console.warn('⚠️ UniversalContactModal not ready after 3s - check client:load directive');
+        } else {
+          console.log('✅ Modal system initialized successfully');
+        }
+      }, 3000);
     </script>
   </body>
 </html>
