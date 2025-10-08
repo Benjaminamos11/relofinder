@@ -51,6 +51,9 @@ const UniversalContactModal: React.FC<ModalContentProps> = () => {
       (window as any).processModalQueue();
     }
     
+    // Set modal ready flag immediately for better mobile responsiveness
+    (window as any).modalReady = true;
+    
     return () => {
       console.log('🔌 UniversalContactModal unmounting');
       window.removeEventListener('openModal', handleOpenModal as EventListener);

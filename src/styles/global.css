@@ -181,12 +181,38 @@
   html {
     background-color: #FFFFFF;
     overscroll-behavior: none;
+    /* Improve touch responsiveness on mobile */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
   }
   
   body {
     @apply font-sans text-gray-800 antialiased;
     background-color: #FFFFFF;
     overscroll-behavior-y: none;
+    /* Ensure touch events work properly on mobile */
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Mobile-specific button improvements */
+  button, [role="button"] {
+    /* Ensure buttons are touch-friendly on mobile */
+    min-height: 44px;
+    min-width: 44px;
+    /* Improve touch responsiveness */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  /* Mobile-specific improvements for interactive elements */
+  @media (max-width: 768px) {
+    button, [role="button"], a {
+      /* Larger touch targets on mobile */
+      min-height: 48px;
+      min-width: 48px;
+      /* Prevent zoom on double-tap */
+      touch-action: manipulation;
+    }
   }
 
   h1, h2, h3, h4, h5, h6 {

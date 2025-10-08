@@ -104,40 +104,51 @@ const {
     </main>
     
     <Footer />
-    <UniversalContactModal client:only="react" />
+    <UniversalContactModal client:load />
     
-    <!-- Global Modal Functions with Event Queue -->
+    <!-- Enhanced Global Modal Functions with Mobile Support -->
     <script is:inline>
       // Event queue for modal events before React component loads
       window.modalEventQueue = window.modalEventQueue || [];
       window.modalReady = window.modalReady || false;
+      window.modalRetryCount = window.modalRetryCount || 0;
       
-      // Global modal functions that queue events if React component isn't ready
+      // Enhanced global modal functions with mobile touch support
       window.universalOpenModal = function(context) {
-        console.log('📞 universalOpenModal called', context);
+        console.log('📞 universalOpenModal called', context, 'Device:', navigator.userAgent.includes('Mobile') ? 'Mobile' : 'Desktop');
+        
         const event = new CustomEvent('openModal', { detail: context });
         
         if (window.modalReady) {
-          // React component is ready, dispatch immediately
           console.log('✅ Modal ready, dispatching immediately');
           window.dispatchEvent(event);
         } else {
-          // Queue the event for when React component loads
           console.log('⏳ Modal not ready, queuing event');
           window.modalEventQueue.push(event);
           
-          // Fallback: Try again after a short delay if modal still not ready
+          // More aggressive retry for mobile devices
+          const retryDelay = navigator.userAgent.includes('Mobile') ? 1000 : 2000;
+          const maxRetries = navigator.userAgent.includes('Mobile') ? 5 : 3;
+          
           setTimeout(() => {
-            if (!window.modalReady && window.modalEventQueue.length > 0) {
-              console.warn('⚠️ Modal still not ready after 2s, forcing dispatch');
+            if (!window.modalReady && window.modalRetryCount < maxRetries) {
+              window.modalRetryCount++;
+              console.warn(`⚠️ Modal retry ${window.modalRetryCount}/${maxRetries}, forcing dispatch`);
               window.dispatchEvent(event);
-              window.modalEventQueue = [];
+              
+              // If still not working, try direct DOM manipulation as fallback
+              if (window.modalRetryCount >= maxRetries) {
+                console.error('🚨 Modal system failed, attempting direct fallback');
+                // Create a simple alert as ultimate fallback
+                alert('Please contact us at hello@relofinder.ch for relocation assistance.');
+              }
             }
-          }, 2000);
+          }, retryDelay);
         }
       };
       
       window.closeModal = function() {
+        console.log('🚪 closeModal called');
         const event = new CustomEvent('closeModal');
         
         if (window.modalReady) {
@@ -147,10 +158,11 @@ const {
         }
       };
       
-      // Function to process queued events when React component is ready
+      // Enhanced function to process queued events when React component is ready
       window.processModalQueue = function() {
         console.log('🚀 Processing modal queue:', window.modalEventQueue.length, 'events');
         window.modalReady = true;
+        window.modalRetryCount = 0; // Reset retry count on success
         
         window.modalEventQueue.forEach(event => {
           window.dispatchEvent(event);
@@ -159,14 +171,43 @@ const {
         window.modalEventQueue = [];
       };
       
-      // Safety check: Log if modal hasn't loaded after 3 seconds
+      // Enhanced safety check with mobile-specific timing
+      const safetyDelay = navigator.userAgent.includes('Mobile') ? 5000 : 3000;
       setTimeout(() => {
         if (!window.modalReady) {
-          console.warn('⚠️ UniversalContactModal not ready after 3s - check client:load directive');
+          console.warn('⚠️ UniversalContactModal not ready after', safetyDelay + 'ms');
+          console.warn('Device:', navigator.userAgent.includes('Mobile') ? 'Mobile' : 'Desktop');
+          console.warn('User Agent:', navigator.userAgent);
         } else {
           console.log('✅ Modal system initialized successfully');
         }
-      }, 3000);
+      }, safetyDelay);
+      
+      // Add touch event support for mobile buttons
+      document.addEventListener('DOMContentLoaded', function() {
+        // Add touch event listeners to all buttons with onclick="universalOpenModal"
+        const buttons = document.querySelectorAll('button[onclick*="universalOpenModal"]');
+        buttons.forEach(button => {
+          // Add touchstart event for immediate response on mobile
+          button.addEventListener('touchstart', function(e) {
+            console.log('📱 Touch event on button:', button);
+            // Don't prevent default to allow normal click behavior
+          }, { passive: true });
+          
+          // Add touchend event for better mobile responsiveness
+          button.addEventListener('touchend', function(e) {
+            console.log('📱 Touch end on button:', button);
+            // Small delay to ensure touch is processed
+            setTimeout(() => {
+              if (button.onclick) {
+                button.onclick(e);
+              }
+            }, 50);
+          }, { passive: true });
+        });
+        
+        console.log('📱 Added touch event listeners to', buttons.length, 'buttons');
+      });
     </script>
   </body>
 </html>
