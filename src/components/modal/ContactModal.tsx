@@ -364,45 +364,7 @@ export const ContactModal: FC<ContactModalProps> = ({
     }
     
     try {
-      const payload = {
-        mode,
-        context,
-        contact: {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone || null,
-          contact_pref: formData.emailOnly ? 'email' : null,
-        },
-        move: {
-          from: formData.movingFrom,
-          to: formData.movingTo,
-          date: formData.moveDate,
-          reason: formData.reason === "Other" ? formData.reasonOther : formData.reason,
-        },
-        services: formData.services.map(s => 
-          s === "other" ? formData.servicesOther : s
-        ),
-        notes: formData.notes || null,
-        source_context: {
-          ...context,
-          path: window.location.pathname,
-          ua: navigator.userAgent,
-        },
-      };
-      
-      const response = await fetch('/api/submit-lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Submission failed');
-      }
-      
-      const result = await response.json();
-      
+      // Netlify form submission - no API call needed
       setSubmitSuccess(true);
       
       if (typeof window !== 'undefined' && (window as any).dataLayer) {
@@ -410,7 +372,7 @@ export const ContactModal: FC<ContactModalProps> = ({
           event: 'lead_submit_success',
           mode,
           context,
-          id: result.id,
+          id: 'netlify-submission',
         });
       }
       

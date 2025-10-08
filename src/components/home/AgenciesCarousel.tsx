@@ -19,13 +19,6 @@ interface AISummary {
 }
 
 export default function AgenciesCarousel({ agencies }: Props) {
-  // Debug logging
-  useEffect(() => {
-    console.log('[AgenciesCarousel] Component mounted');
-    console.log('[AgenciesCarousel] Agencies prop:', agencies);
-    console.log('[AgenciesCarousel] Agencies length:', agencies?.length);
-  }, []);
-
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeReviewIndex, setActiveReviewIndex] = useState(0);
   const [summaries, setSummaries] = useState<Record<string, AISummary>>({});
@@ -200,21 +193,9 @@ export default function AgenciesCarousel({ agencies }: Props) {
     }
   }, [activeIndex]);
 
+  // Early return for empty agencies
   if (!agencies || agencies.length === 0) {
-    return (
-      <section className="relative py-16 lg:py-24 bg-white">
-        <div className="container mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
-              Featured Relocation Agencies
-            </h2>
-            <p className="text-lg text-gray-600">
-              Loading featured agencies...
-            </p>
-          </div>
-        </div>
-      </section>
-    );
+    return null;
   }
 
   // Helper to get initials from company name
