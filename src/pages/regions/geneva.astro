@@ -44,14 +44,54 @@ const serviceSchema = {
     }
   }
 };
+
+const title = "Relocation to Geneva | International Expat Relocation Guide 2025 | ReloFinder";
+const description = "Plan your move to Geneva with confidence. Costs, housing, jobs, schools, permits, and relocation agencies. Compare providers with ReloFinder.";
+const canonical = "https://relofinder.ch/regions/geneva";
+const keywords = ['geneva relocation', 'moving to geneva', 'geneva expat', 'geneva international', 'geneva housing', 'UN geneva', 'relocation agencies geneva', 'geneva switzerland'];
+
+const combinedSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    breadcrumbSchema,
+    {
+      ...serviceSchema,
+      provider: {
+        "@type": "Organization",
+        "name": "ReloFinder",
+        "url": "https://relofinder.ch"
+      },
+      areaServed: {
+        "@type": "City",
+        "name": "Geneva",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Geneva",
+          "addressCountry": "CH"
+        }
+      }
+    },
+    {
+      "@type": "Place",
+      "name": "Geneva",
+      "description": description,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Geneva",
+        "addressCountry": "CH"
+      }
+    }
+  ]
+};
 ---
 
 <Layout 
-  title="Relocation to Geneva | International Expat Relocation Guide 2025 | ReloFinder"
-  description="Plan your move to Geneva with confidence. Costs, housing, jobs, schools, permits, and relocation agencies. Compare providers with ReloFinder."
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords={keywords}
+  schema={combinedSchema}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 
   <!-- Hero Section -->
   <section class="relative min-h-[600px] flex items-center justify-center overflow-hidden">

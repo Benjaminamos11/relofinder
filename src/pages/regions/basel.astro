@@ -1,57 +1,77 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
-const breadcrumbSchema = {
+const title = "Relocation to Basel | Expat & Business Relocation Guide 2025 | ReloFinder";
+const description = "Relocate to Basel with confidence. Housing, costs, jobs, schools, cross-border commuting, and relocation agencies. Compare providers with ReloFinder.";
+const canonical = "https://relofinder.ch/regions/basel";
+const keywords = ['basel relocation', 'moving to basel', 'basel expat', 'basel pharma jobs', 'basel housing', 'cross border basel', 'relocation agencies basel', 'basel switzerland'];
+
+const combinedSchema = {
   "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
+  "@graph": [
     {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://relofinder.ch"
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://relofinder.ch"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Regions",
+          "item": "https://relofinder.ch/regions"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Basel",
+          "item": "https://relofinder.ch/regions/basel"
+        }
+      ]
     },
     {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Regions",
-      "item": "https://relofinder.ch/regions"
+      "@type": "Service",
+      "name": "Relocation to Basel Services",
+      "description": "Complete relocation guide for Basel, Switzerland. Housing, costs, jobs, schools, cross-border commuting, and trusted relocation agencies.",
+      "provider": {
+        "@type": "Organization",
+        "name": "ReloFinder",
+        "url": "https://relofinder.ch"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Basel",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Basel",
+          "addressCountry": "CH"
+        }
+      }
     },
     {
-      "@type": "ListItem",
-      "position": 3,
+      "@type": "Place",
       "name": "Basel",
-      "item": "https://relofinder.ch/regions/basel"
+      "description": description,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Basel",
+        "addressCountry": "CH"
+      }
     }
   ]
-};
-
-const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Relocation to Basel Services",
-  "description": "Complete relocation guide for Basel, Switzerland. Housing, costs, jobs, schools, cross-border commuting, and trusted relocation agencies.",
-  "provider": {
-    "@type": "Organization",
-    "name": "ReloFinder"
-  },
-  "areaServed": {
-    "@type": "City",
-    "name": "Basel",
-    "containedIn": {
-      "@type": "Country",
-      "name": "Switzerland"
-    }
-  }
 };
 ---
 
 <Layout 
-  title="Relocation to Basel | Expat & Business Relocation Guide 2025 | ReloFinder"
-  description="Relocate to Basel with confidence. Housing, costs, jobs, schools, cross-border commuting, and relocation agencies. Compare providers with ReloFinder."
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords={keywords}
+  schema={combinedSchema}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 
   <!-- Hero Section -->
   <section class="relative min-h-[600px] flex items-center justify-center overflow-hidden">

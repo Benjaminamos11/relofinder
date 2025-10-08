@@ -1,57 +1,75 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
-const breadcrumbSchema = {
+const title = "Relocation to the Swiss Alps | Luxury & HNWI Expat Guide 2025 | ReloFinder";
+const description = "Relocate to Switzerland's Alpine regions with confidence. Luxury lifestyle, chalets, lump-sum taxation, schools, and relocation agencies for HNWI expats.";
+const canonical = "https://relofinder.ch/regions/alps";
+const keywords = ['swiss alps relocation', 'luxury alps living', 'st moritz relocation', 'gstaad expat', 'zermatt living', 'alpine lifestyle switzerland', 'hnwi switzerland', 'lump sum taxation alps'];
+
+const combinedSchema = {
   "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
+  "@graph": [
     {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://relofinder.ch"
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://relofinder.ch"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Regions",
+          "item": "https://relofinder.ch/regions"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Swiss Alps",
+          "item": "https://relofinder.ch/regions/alps"
+        }
+      ]
     },
     {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Regions",
-      "item": "https://relofinder.ch/regions"
+      "@type": "Service",
+      "name": "Relocation to the Swiss Alps Services",
+      "description": "Complete relocation guide for Switzerland's Alpine regions. Luxury lifestyle, chalets, lump-sum taxation, schools, and trusted relocation agencies for HNWI expats.",
+      "provider": {
+        "@type": "Organization",
+        "name": "ReloFinder",
+        "url": "https://relofinder.ch"
+      },
+      "areaServed": {
+        "@type": "Place",
+        "name": "Swiss Alps",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "CH"
+        }
+      }
     },
     {
-      "@type": "ListItem",
-      "position": 3,
+      "@type": "Place",
       "name": "Swiss Alps",
-      "item": "https://relofinder.ch/regions/alps"
+      "description": description,
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "CH"
+      }
     }
   ]
-};
-
-const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Relocation to the Swiss Alps Services",
-  "description": "Complete relocation guide for Switzerland's Alpine regions. Luxury lifestyle, chalets, lump-sum taxation, schools, and trusted relocation agencies for HNWI expats.",
-  "provider": {
-    "@type": "Organization",
-    "name": "ReloFinder"
-  },
-  "areaServed": {
-    "@type": "Place",
-    "name": "Swiss Alps",
-    "containedIn": {
-      "@type": "Country",
-      "name": "Switzerland"
-    }
-  }
 };
 ---
 
 <Layout 
-  title="Relocation to the Swiss Alps | Luxury & HNWI Expat Guide 2025 | ReloFinder"
-  description="Relocate to Switzerland's Alpine regions with confidence. Luxury lifestyle, chalets, lump-sum taxation, schools, and relocation agencies for HNWI expats."
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords={keywords}
+  schema={combinedSchema}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 
   <!-- Hero Section -->
   <section class="relative min-h-[600px] flex items-center justify-center overflow-hidden">
