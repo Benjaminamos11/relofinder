@@ -2,10 +2,100 @@
 import Layout from '../layouts/Layout.astro';
 
 const title = 'Contact Us | ReloFinder.ch';
-const description = 'Get in touch with Lang + Partner for personalized assistance with your relocation to Switzerland or to inquire about our services.';
+const description = 'Get in touch with ReloFinder for personalized assistance with your relocation to Switzerland or to inquire about our services. We respond within 24 hours.';
+const canonical = 'https://relofinder.ch/contact';
+const keywords = ['contact relofinder', 'swiss relocation contact', 'relocation help switzerland', 'expat support switzerland', 'relocation inquiry', 'swiss relocation assistance'];
+
+const combinedSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://relofinder.ch"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contact",
+          "item": "https://relofinder.ch/contact"
+        }
+      ]
+    },
+    {
+      "@type": "ContactPage",
+      "name": title,
+      "description": description,
+      "url": canonical
+    },
+    {
+      "@type": "Organization",
+      "name": "ReloFinder",
+      "url": "https://relofinder.ch",
+      "logo": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1751047383/SVG_sdmxdo.svg",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+41-XX-XXX-XXXX",
+          "email": "hello@relofinder.ch",
+          "contactType": "customer service",
+          "areaServed": "CH",
+          "availableLanguage": ["English", "German", "French"]
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How quickly will you respond to my inquiry?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We respond to all inquiries within 24 hours during business days. For urgent relocation needs, you can also schedule a free consultation directly through our platform."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a fee for contacting ReloFinder?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, contacting ReloFinder is completely free. We never charge individuals or companies for using our platform or getting quotes from relocation agencies."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I request quotes from multiple agencies?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, you can request quotes from multiple relocation agencies through our platform. We'll connect you with specialists that match your specific needs and location in Switzerland."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What information do I need to provide?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Basic information about your relocation timeline, services needed, and destination in Switzerland. The more details you provide, the better we can match you with the right relocation partners."
+          }
+        }
+      ]
+    }
+  ]
+};
 ---
 
-<Layout title={title} description={description}>
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonical}
+  keywords={keywords}
+  schema={combinedSchema}
+>
   <!-- Hero Section -->
   <section class="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20">
     <div class="container max-w-4xl mx-auto px-4 text-center">

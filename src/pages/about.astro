@@ -3,9 +3,100 @@ import Layout from '../layouts/Layout.astro';
 
 const title = 'About ReloFinder | Swiss Relocation Platform';
 const description = 'ReloFinder makes Swiss relocation services more accessible and transparent for companies, HR departments, and professionals. A team of relocation experts dedicated to simplifying your move to Switzerland.';
+const canonical = 'https://relofinder.ch/about';
+const keywords = ['about relofinder', 'swiss relocation platform', 'relocation experts switzerland', 'expat services switzerland', 'relocation company switzerland', 'swiss relocation team'];
+
+const combinedSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://relofinder.ch"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "About",
+          "item": "https://relofinder.ch/about"
+        }
+      ]
+    },
+    {
+      "@type": "AboutPage",
+      "name": title,
+      "description": description,
+      "url": canonical,
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "ReloFinder",
+        "url": "https://relofinder.ch",
+        "logo": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1751047383/SVG_sdmxdo.svg",
+        "description": "Swiss relocation services comparison platform helping expats and companies find the right relocation partners.",
+        "foundingDate": "2023",
+        "areaServed": {
+          "@type": "Country",
+          "name": "Switzerland"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "hello@relofinder.ch",
+          "contactType": "customer service"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is ReloFinder?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ReloFinder is a Swiss relocation services comparison platform that helps expats, professionals, and companies find and compare verified relocation agencies across Switzerland. We provide transparent information, verified reviews, and expert guidance to make relocation easier."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does ReloFinder make money?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ReloFinder operates on a partnership model with relocation agencies. We offer free and preferred partner tiers. Our platform is free for users - we never charge individuals or companies seeking relocation services."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are ReloFinder's reviews verified?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we integrate verified Google reviews and ratings for all listed relocation companies. We also provide AI-powered summaries to help you quickly understand the strengths and specializations of each agency."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which Swiss regions does ReloFinder cover?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ReloFinder covers all 26 Swiss cantons with a focus on major expat destinations: Zurich, Geneva, Basel, Zug, Lausanne, Bern, and the Alps region. We connect you with local and nationwide relocation specialists."
+          }
+        }
+      ]
+    }
+  ]
+};
 ---
 
-<Layout title={title} description={description}>
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonical}
+  keywords={keywords}
+  schema={combinedSchema}
+>
   <!-- Hero Section -->
   <section class="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20">
     <div class="container max-w-4xl mx-auto px-4 text-center">
