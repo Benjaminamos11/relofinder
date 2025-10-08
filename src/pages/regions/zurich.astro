@@ -5,6 +5,7 @@ import SchemaMarkup from '../../components/common/SchemaMarkup.astro';
 const title = "Relocation to Zürich | Regional Expat Guide 2025 | ReloFinder";
 const description = "Relocate to Zürich with confidence. Learn about housing, costs, jobs, schools, permits, and connect with trusted relocation agencies.";
 const canonicalURL = "https://relofinder.ch/regions/zurich";
+const keywords = ['zurich relocation', 'moving to zurich', 'zurich expat', 'zurich housing', 'zurich jobs', 'zurich schools', 'gold coast zurich', 'relocation agencies zurich'];
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -51,11 +52,32 @@ const serviceSchema = {
   },
   "serviceType": "Relocation Services"
 };
+const combinedSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    breadcrumbSchema,
+    serviceSchema,
+    {
+      "@type": "Place",
+      "name": "Zürich",
+      "description": description,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Zürich",
+        "addressCountry": "CH"
+      }
+    }
+  ]
+};
 ---
 
-<Layout title={title} description={description}>
-  <SchemaMarkup type="service" data={breadcrumbSchema} />
-  <SchemaMarkup type="service" data={serviceSchema} />
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonicalURL}
+  keywords={keywords}
+  schema={combinedSchema}
+>
 
   <!-- Hero Section -->
   <section class="relative min-h-[600px] flex items-center justify-center overflow-hidden">

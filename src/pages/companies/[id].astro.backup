@@ -165,31 +165,11 @@ const faqs = companyData.faqs?.slice(0, 6) || [];
 const yearsExperience = companyData.founded ? new Date().getFullYear() - companyData.founded : null;
 ---
 
-// Canonical URL
-const canonical = `https://relofinder.ch/companies/${companyData.id}`;
-
-// Keywords for SEO
-const keywords = [
-  `${companyData.name} relocation`,
-  `${companyData.name} reviews`,
-  ...(companyData.regions || []).slice(0, 3).map((r: string) => `relocation ${r}`),
-  ...(companyData.services || []).slice(0, 3),
-  "swiss relocation services"
-];
-
-<Layout title={title} description={description} canonical={canonical} keywords={keywords}>
+<Layout title={title} description={description}>
   <!-- JSON-LD Schema -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://relofinder.ch" },
-          { "@type": "ListItem", "position": 2, "name": "Companies", "item": "https://relofinder.ch/companies" },
-          { "@type": "ListItem", "position": 3, "name": companyData.name, "item": canonical }
-        ]
-      },
       {
         "@type": "Organization",
       "name": companyData.name,

@@ -143,46 +143,7 @@ const description = "Complete " + region.data.name + " relocation guide for expa
 const keywords = region.data.name + " relocation, move to " + region.data.name + ", " + region.data.name + " expat guide, " + region.data.name + " immigration, " + region.data.name + " housing, " + region.data.name + " cost of living, Switzerland";
 ---
 
-// Canonical URL
-const canonical = `https://relofinder.ch/regions/${region.data.id || region.slug}`;
-
-// Convert keywords to array format
-const keywordsArray = [
-  `${region.data.name} relocation`,
-  `move to ${region.data.name}`,
-  `${region.data.name} expat guide`,
-  `${region.data.name} immigration`,
-  `${region.data.name} housing`,
-  `${region.data.name} cost of living`,
-  "switzerland relocation"
-];
-
-// Schema markup
-const regionSchema = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://relofinder.ch" },
-        { "@type": "ListItem", "position": 2, "name": "Regions", "item": "https://relofinder.ch/regions" },
-        { "@type": "ListItem", "position": 3, "name": region.data.name, "item": canonical }
-      ]
-    },
-    {
-      "@type": "Place",
-      "name": region.data.name,
-      "description": description,
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": region.data.name,
-        "addressCountry": "CH"
-      }
-    }
-  ]
-};
-
-<Layout title={title} description={description} canonical={canonical} keywords={keywordsArray} schema={regionSchema}>
+<Layout title={title} description={description}>
   <!-- Enhanced SEO meta tags -->
   <meta name="keywords" content={keywords} slot="head" />
   <meta property="og:title" content={title} slot="head" />
