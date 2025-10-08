@@ -76,9 +76,72 @@ const allRegions = [...new Set(relocationCompanies.flatMap(c => c.data.regions))
 // Page metadata
 const title = 'Relocation Companies Directory Switzerland | Find Trusted Relocators | ReloFinder.ch';
 const description = 'Browse our directory of verified relocation companies in Switzerland. Compare services, read reviews, and find the perfect relocation partner for your move to Switzerland.';
+const canonical = 'https://relofinder.ch/companies';
+const keywords = ['relocation companies switzerland', 'swiss relocators', 'relocation agencies switzerland', 'moving companies switzerland', 'expat services providers', 'relocation directory', 'trusted relocators'];
+
+// Schema for companies directory
+const combinedSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://relofinder.ch"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Companies",
+          "item": "https://relofinder.ch/companies"
+        }
+      ]
+    },
+    {
+      "@type": "CollectionPage",
+      "name": title,
+      "description": description,
+      "url": canonical
+    },
+    {
+      "@type": "ItemList",
+      "name": "Swiss Relocation Companies",
+      "description": `${relocationCompanies.length} verified relocation service providers in Switzerland`,
+      "numberOfItems": relocationCompanies.length,
+      "itemListElement": featuredCompanies.slice(0, 10).map((company, index) => {
+        const supabaseData = relocatorMap.get(company.data.name);
+        return {
+          "@type": "ListItem",
+          "position": index + 1,
+          "item": {
+            "@type": "Organization",
+            "name": company.data.name,
+            "url": `https://relofinder.ch/companies/${company.slug}`,
+            "description": supabaseData?.seo_summary || company.data.description,
+            "aggregateRating": supabaseData?.rating ? {
+              "@type": "AggregateRating",
+              "ratingValue": supabaseData.rating,
+              "bestRating": "5",
+              "worstRating": "1"
+            } : undefined
+          }
+        };
+      })
+    }
+  ]
+};
 ---
 
-<Layout title={title} description={description}>
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonical}
+  keywords={keywords}
+  schema={combinedSchema}
+>
   <!-- Hero Section -->
   <section class="relative py-16 md:py-24 bg-gradient-to-br from-gray-50 via-white to-primary-50/30 overflow-hidden">
     <div class="absolute inset-0 opacity-5">

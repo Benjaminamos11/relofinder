@@ -68,9 +68,68 @@ const featuredRegions = [
 
 const title = 'Swiss Regions Guide 2025 | Best Cities for Expats | ReloFinder';
 const description = 'Discover the best Swiss regions and cities for expats. Compare Zürich, Geneva, Basel, Zug, Lausanne, and the Alps. Complete relocation guide with housing, costs, and quality of life.';
+const canonical = 'https://relofinder.ch/regions';
+const keywords = ['swiss regions', 'best cities switzerland', 'swiss cantons expats', 'zurich geneva basel', 'where to live switzerland', 'swiss cities guide', 'expat locations switzerland'];
+
+// Schema for regions directory
+const combinedSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://relofinder.ch"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Regions",
+          "item": "https://relofinder.ch/regions"
+        }
+      ]
+    },
+    {
+      "@type": "CollectionPage",
+      "name": title,
+      "description": description,
+      "url": canonical
+    },
+    {
+      "@type": "ItemList",
+      "name": "Swiss Regions for Expats",
+      "description": "Guide to the best Swiss regions and cities for international professionals",
+      "numberOfItems": featuredRegions.length,
+      "itemListElement": featuredRegions.map((region, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "Place",
+          "name": region.name,
+          "description": region.description,
+          "url": `https://relofinder.ch/regions/${region.id}`,
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": region.name,
+            "addressCountry": "CH"
+          }
+        }
+      }))
+    }
+  ]
+};
 ---
 
-<Layout title={title} description={description}>
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonical}
+  keywords={keywords}
+  schema={combinedSchema}
+>
   
   <!-- Hero Section -->
   <section class="relative min-h-[70vh] flex items-center overflow-hidden bg-gray-50">
