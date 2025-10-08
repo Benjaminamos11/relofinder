@@ -44,14 +44,54 @@ const serviceSchema = {
     }
   }
 };
+
+const title = "Relocation to Lausanne | Expat & Business Relocation Guide 2025 | ReloFinder";
+const description = "Relocate to Lausanne with confidence. Housing, costs, jobs, schools, permits, and relocation agencies. Compare providers with ReloFinder.";
+const canonical = "https://relofinder.ch/regions/lausanne";
+const keywords = ['lausanne relocation', 'moving to lausanne', 'lausanne expat', 'lausanne lake geneva', 'lausanne housing', 'french switzerland', 'relocation agencies lausanne', 'lausanne switzerland'];
+
+const combinedSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    breadcrumbSchema,
+    {
+      ...serviceSchema,
+      provider: {
+        "@type": "Organization",
+        "name": "ReloFinder",
+        "url": "https://relofinder.ch"
+      },
+      areaServed: {
+        "@type": "City",
+        "name": "Lausanne",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lausanne",
+          "addressCountry": "CH"
+        }
+      }
+    },
+    {
+      "@type": "Place",
+      "name": "Lausanne",
+      "description": description,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Lausanne",
+        "addressCountry": "CH"
+      }
+    }
+  ]
+};
 ---
 
 <Layout 
-  title="Relocation to Lausanne | Expat & Business Relocation Guide 2025 | ReloFinder"
-  description="Relocate to Lausanne with confidence. Housing, costs, jobs, schools, permits, and relocation agencies. Compare providers with ReloFinder."
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords={keywords}
+  schema={combinedSchema}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 
   <!-- Hero Section -->
   <section class="relative min-h-[600px] flex items-center justify-center overflow-hidden">

@@ -44,14 +44,54 @@ const serviceSchema = {
     }
   }
 };
+
+const title = "Relocation to Zug | Expat & Business Relocation Guide 2025 | ReloFinder";
+const description = "Move to Zug with confidence. Housing, costs, jobs, schools, tax advantages, and trusted relocation agencies. Compare providers with ReloFinder.";
+const canonical = "https://relofinder.ch/regions/zug";
+const keywords = ['zug relocation', 'moving to zug', 'zug crypto valley', 'zug expat', 'zug housing', 'zug tax advantages', 'relocation agencies zug', 'zug switzerland'];
+
+const combinedSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    breadcrumbSchema,
+    {
+      ...serviceSchema,
+      provider: {
+        "@type": "Organization",
+        "name": "ReloFinder",
+        "url": "https://relofinder.ch"
+      },
+      areaServed: {
+        "@type": "City",
+        "name": "Zug",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Zug",
+          "addressCountry": "CH"
+        }
+      }
+    },
+    {
+      "@type": "Place",
+      "name": "Zug",
+      "description": description,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Zug",
+        "addressCountry": "CH"
+      }
+    }
+  ]
+};
 ---
 
 <Layout 
-  title="Relocation to Zug | Expat & Business Relocation Guide 2025 | ReloFinder"
-  description="Move to Zug with confidence. Housing, costs, jobs, schools, tax advantages, and trusted relocation agencies. Compare providers with ReloFinder."
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords={keywords}
+  schema={combinedSchema}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 
   <!-- Hero Section -->
   <section class="relative min-h-[600px] flex items-center justify-center overflow-hidden">
