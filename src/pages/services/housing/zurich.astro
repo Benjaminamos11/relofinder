@@ -121,12 +121,34 @@ const siblingCities = [
   { name: 'Basel', slug: 'basel' },
   { name: 'Lausanne', slug: 'lausanne' }
 ];
+
+// Combine all schemas into one array for proper structured data
+const combinedSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    breadcrumbSchema,
+    serviceSchema,
+    faqSchema,
+    {
+      "@type": "Place",
+      "name": "Zurich",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Zurich",
+        "addressCountry": "CH"
+      }
+    }
+  ]
+};
 ---
 
-<Layout title={title} description={description}>
-  <SchemaMarkup schema={breadcrumbSchema} />
-  <SchemaMarkup schema={serviceSchema} />
-  <SchemaMarkup schema={faqSchema} />
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonicalURL}
+  schema={combinedSchema}
+  keywords={["housing zurich", "apartments zurich", "gold coast zurich", "silver coast zurich", "relocation zurich", "expat housing zurich", "küsnacht apartments", "horgen apartments", "housing agencies zurich"]}
+>
 
   <ServiceHero
     title="Find an Apartment in Zurich"
