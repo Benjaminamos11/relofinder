@@ -19,6 +19,7 @@ if (carouselAgencies.length > 0) {
 
 const title = "Switzerland Relocation Made Simple | Compare Providers & Regions | ReloFinder";
 const description = "Compare vetted relocation agencies, explore top Swiss regions, and plan your move with transparent services and free consultations.";
+const canonical = "https://relofinder.ch";
 
 const keywords = [
   'swiss relocation services',
@@ -32,27 +33,71 @@ const keywords = [
   'expat relocation switzerland'
 ];
 
-// Schema markup for homepage
+// Enhanced Schema markup for homepage
 const schema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "ReloFinder",
-  "url": "https://relofinder.ch",
-  "description": description,
-  "logo": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1751047383/SVG_sdmxdo.svg",
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "CH"
-  },
-  "sameAs": [
-    "https://www.linkedin.com/company/relofinder"
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "ReloFinder",
+      "url": "https://relofinder.ch",
+      "description": description,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://relofinder.ch/companies?search={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "name": "ReloFinder",
+      "url": "https://relofinder.ch",
+      "description": description,
+      "logo": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1751047383/SVG_sdmxdo.svg",
+      "foundingDate": "2023",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "CH"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "hello@relofinder.ch",
+        "contactType": "customer service"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/relofinder"
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "name": "Featured Relocation Companies",
+      "description": "Top-rated Swiss relocation service providers",
+      "itemListElement": carouselAgencies.slice(0, 5).map((agency, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "Organization",
+          "name": agency.name,
+          "url": `https://relofinder.ch/companies/${agency.slug}`,
+          "aggregateRating": agency.rating ? {
+            "@type": "AggregateRating",
+            "ratingValue": agency.rating,
+            "reviewCount": agency.reviews_count || 0
+          } : undefined
+        }
+      }))
+    }
   ]
 };
 ---
 
 <Layout 
   title={title} 
-  description={description} 
+  description={description}
+  canonical={canonical}
   keywords={keywords}
   schema={schema}
 >

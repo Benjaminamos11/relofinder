@@ -20,9 +20,68 @@ function formatDate(dateString: string) {
 // Page metadata
 const title = 'Swiss Relocation Blog & Guides | ReloFinder';
 const description = 'Expert guides, tips, and advice for expats relocating to Switzerland. Learn about visas, housing, banking, insurance, and settling in.';
+const canonical = 'https://relofinder.ch/blog';
+const keywords = ['swiss relocation blog', 'expat guides switzerland', 'moving to switzerland guide', 'swiss visa guide', 'housing switzerland', 'swiss living tips', 'relocation advice'];
+
+// Schema for blog listing page
+const combinedSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://relofinder.ch"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://relofinder.ch/blog"
+        }
+      ]
+    },
+    {
+      "@type": "CollectionPage",
+      "name": title,
+      "description": description,
+      "url": canonical
+    },
+    {
+      "@type": "ItemList",
+      "name": "Swiss Relocation Blog Posts",
+      "description": "Expert guides and articles about relocating to Switzerland",
+      "itemListElement": blogPosts.slice(0, 10).map((post, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "BlogPosting",
+          "headline": post.data.title,
+          "description": post.data.description,
+          "url": `https://relofinder.ch/blog/${post.slug}`,
+          "datePublished": post.data.publishDate,
+          "author": {
+            "@type": "Organization",
+            "name": post.data.author || "ReloFinder Editorial Team"
+          },
+          "image": post.data.heroImage
+        }
+      }))
+    }
+  ]
+};
 ---
 
-<Layout title={title} description={description}>
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonical}
+  keywords={keywords}
+  schema={combinedSchema}
+>
   
   <!-- Hero Section -->
   <section class="relative min-h-[70vh] flex items-center overflow-hidden bg-gray-50">
