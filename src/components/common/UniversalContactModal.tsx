@@ -4,7 +4,7 @@
  * while using the new ContactModal component
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { isModalOpen, modalContext, type ModalContext } from '../../stores/modal';
 import { ContactModal } from '../modal/ContactModal';
@@ -20,15 +20,26 @@ interface ModalContentProps {
 const UniversalContactModal: React.FC<ModalContentProps> = () => {
   const modalOpen = useStore(isModalOpen);
   const oldContext = useStore(modalContext);
+  const [isReady, setIsReady] = useState(false);
   
   // Listen for global modal events (legacy support)
   useEffect(() => {
+    console.log('🎯 UniversalContactModal mounted');
+    setIsReady(true);
+    
     const handleOpenModal = (event: CustomEvent) => {
-      modalContext.set(event.detail || {});
-      isModalOpen.set(true);
+      console.log('🔔 OpenModal event:', event.detail);
+      try {
+        modalContext.set(event.detail || {});
+        isModalOpen.set(true);
+        console.log('✅ Modal opened successfully');
+      } catch (error) {
+        console.error('❌ Error opening modal:', error);
+      }
     };
     
     const handleCloseModal = () => {
+      console.log('🔔 CloseModal event');
       isModalOpen.set(false);
     };
     
@@ -41,6 +52,7 @@ const UniversalContactModal: React.FC<ModalContentProps> = () => {
     }
     
     return () => {
+      console.log('🔌 UniversalContactModal unmounting');
       window.removeEventListener('openModal', handleOpenModal as EventListener);
       window.removeEventListener('closeModal', handleCloseModal);
       (window as any).modalReady = false;
@@ -72,10 +84,16 @@ const UniversalContactModal: React.FC<ModalContentProps> = () => {
   const context = convertContext(oldContext);
   
   const closeModal = () => {
+    console.log('🚪 Closing modal');
     isModalOpen.set(false);
   };
 
-  if (!modalOpen) return null;
+  // Don't render anything if modal is not open
+  if (!modalOpen) {
+    return null;
+  }
+
+  console.log('🎨 Rendering ContactModal with:', { modalOpen, context, isReady });
 
   return (
     <ContactModal
