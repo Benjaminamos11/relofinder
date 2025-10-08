@@ -5,9 +5,9 @@
 
 ---
 
-## ✅ COMPLETED (7/33 = 21%)
+## ✅ COMPLETED (12/33 = 36%)
 
-### Core Pages (7)
+### Core Pages (9/9 ✅)
 - ✅ about.astro - AboutPage, Organization, FAQPage, Breadcrumb
 - ✅ contact.astro - ContactPage, Organization + ContactPoint, FAQPage, Breadcrumb
 - ✅ partners.astro - Service + Offers, FAQPage, Breadcrumb
@@ -15,10 +15,17 @@
 - ✅ terms.astro - WebPage, Breadcrumb
 - ✅ cookies.astro - WebPage, Breadcrumb
 - ✅ sitemap.astro - WebPage, Breadcrumb
+- ✅ index.astro - WebSite + SearchAction, Organization, ItemList
+- ✅ corporate.astro - Service, FAQPage, Breadcrumb + keywords/canonical
+
+### Directory Pages (3/3 ✅)
+- ✅ blog/index.astro - CollectionPage, ItemList, Breadcrumb
+- ✅ companies/index.astro - CollectionPage, ItemList with ratings
+- ✅ regions/index.astro - CollectionPage, ItemList with Place
 
 ---
 
-## 🔄 IN PROGRESS (26/33 remaining)
+## 🔄 IN PROGRESS (21/33 remaining)
 
 ### Core Pages (2 remaining)
 - [ ] index.astro (Homepage) - Add WebSite + searchAction, Breadcrumb
