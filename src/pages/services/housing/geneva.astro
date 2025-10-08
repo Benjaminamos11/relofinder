@@ -7,6 +7,7 @@ import ServiceHero from '../../../components/services/ServiceHero.astro';
 const title = "Housing in Geneva | Compare Relocation Agencies | ReloFinder";
 const description = "Compare housing providers in Geneva. ReloFinder helps you evaluate relocation agencies and find apartments in neighborhoods like Eaux-Vives, Champel, Carouge & Nations.";
 const canonicalURL = "https://relofinder.ch/services/housing/geneva";
+const keywords = ['housing geneva', 'apartments geneva', 'geneva housing search', 'geneva relocation housing', 'find apartment geneva', 'eaux-vives housing', 'champel apartments', 'carouge housing'];
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -123,10 +124,16 @@ const siblingCities = [
 ];
 ---
 
-<Layout title={title} description={description}>
-  <SchemaMarkup schema={breadcrumbSchema} />
-  <SchemaMarkup schema={serviceSchema} />
-  <SchemaMarkup schema={faqSchema} />
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonicalURL}
+  keywords={keywords}
+  schema={{
+    "@context": "https://schema.org",
+    "@graph": [breadcrumbSchema, serviceSchema, faqSchema]
+  }}
+>
 
   <ServiceHero
     title="Find an Apartment in Geneva"

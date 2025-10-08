@@ -7,6 +7,7 @@ import ServiceHero from '../../../components/services/ServiceHero.astro';
 const title = "Immigration in Zurich | Work & Residence Permits | ReloFinder";
 const description = "Compare immigration providers in Zurich. ReloFinder helps you evaluate relocation agencies for residence & work permits, Kreisbüro registration & Migrationsamt support.";
 const canonicalURL = "https://relofinder.ch/services/immigration/zurich";
+const keywords = ['immigration zurich', 'zurich work permit', 'zurich residence permit', 'visa zurich', 'kreisbüro zurich', 'migrationsamt zurich', 'b permit zurich', 'c permit zurich'];
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -116,10 +117,16 @@ const faqSchema = {
 };
 ---
 
-<Layout title={title} description={description}>
-  <SchemaMarkup type="service" data={breadcrumbSchema} />
-  <SchemaMarkup type="service" data={serviceSchema} />
-  <SchemaMarkup type="service" data={faqSchema} />
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonicalURL}
+  keywords={keywords}
+  schema={{
+    "@context": "https://schema.org",
+    "@graph": [breadcrumbSchema, serviceSchema, faqSchema]
+  }}
+>
 
   <ServiceHero
     title="Immigration in Zurich"

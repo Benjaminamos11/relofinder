@@ -7,6 +7,7 @@ import ServiceHero from '../../../components/services/ServiceHero.astro';
 const title = "Housing in Zug | Compare Relocation Agencies | ReloFinder";
 const description = "Compare housing providers in Zug. ReloFinder helps you evaluate agencies and connect with trusted partners like Prime Relocation, based in Zug.";
 const canonicalURL = "https://relofinder.ch/services/housing/zug";
+const keywords = ['housing zug', 'apartments zug', 'zug housing search', 'zug relocation housing', 'find apartment zug', 'crypto valley housing', 'zug real estate', 'central switzerland housing'];
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -123,10 +124,16 @@ const siblingCities = [
 ];
 ---
 
-<Layout title={title} description={description}>
-  <SchemaMarkup schema={breadcrumbSchema} />
-  <SchemaMarkup schema={serviceSchema} />
-  <SchemaMarkup schema={faqSchema} />
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonicalURL}
+  keywords={keywords}
+  schema={{
+    "@context": "https://schema.org",
+    "@graph": [breadcrumbSchema, serviceSchema, faqSchema]
+  }}
+>
 
   <ServiceHero
     title="Find an Apartment in Zug"

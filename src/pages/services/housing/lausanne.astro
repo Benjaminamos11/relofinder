@@ -7,6 +7,7 @@ import ServiceHero from '../../../components/services/ServiceHero.astro';
 const title = "Housing in Lausanne | Compare Relocation Agencies | ReloFinder";
 const description = "Compare relocation providers in Lausanne. ReloFinder helps you evaluate agencies and find apartments in Ouchy, Pully, Chailly, Renens & beyond.";
 const canonicalURL = "https://relofinder.ch/services/housing/lausanne";
+const keywords = ['housing lausanne', 'apartments lausanne', 'lausanne housing search', 'lausanne relocation housing', 'find apartment lausanne', 'ouchy housing', 'pully apartments', 'lake geneva housing'];
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -123,10 +124,16 @@ const siblingCities = [
 ];
 ---
 
-<Layout title={title} description={description}>
-  <SchemaMarkup schema={breadcrumbSchema} />
-  <SchemaMarkup schema={serviceSchema} />
-  <SchemaMarkup schema={faqSchema} />
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonicalURL}
+  keywords={keywords}
+  schema={{
+    "@context": "https://schema.org",
+    "@graph": [breadcrumbSchema, serviceSchema, faqSchema]
+  }}
+>
 
   <ServiceHero
     title="Find an Apartment in Lausanne"

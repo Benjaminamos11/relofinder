@@ -7,6 +7,7 @@ import ServiceHero from '../../../components/services/ServiceHero.astro';
 const title = "Immigration in Geneva | Work & Residence Permits | ReloFinder";
 const description = "Compare immigration providers in Geneva. ReloFinder helps you evaluate agencies for residence & work permits, SCP registrations, and diplomatic permits.";
 const canonicalURL = "https://relofinder.ch/services/immigration/geneva";
+const keywords = ['immigration geneva', 'geneva work permit', 'geneva residence permit', 'visa geneva', 'geneva permits', 'SCP geneva', 'UN permits geneva', 'diplomatic permits geneva'];
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -116,10 +117,16 @@ const faqSchema = {
 };
 ---
 
-<Layout title={title} description={description}>
-  <SchemaMarkup type="service" data={breadcrumbSchema} />
-  <SchemaMarkup type="service" data={serviceSchema} />
-  <SchemaMarkup type="service" data={faqSchema} />
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonicalURL}
+  keywords={keywords}
+  schema={{
+    "@context": "https://schema.org",
+    "@graph": [breadcrumbSchema, serviceSchema, faqSchema]
+  }}
+>
 
   <ServiceHero
     title="Immigration in Geneva"
