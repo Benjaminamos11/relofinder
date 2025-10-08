@@ -7,6 +7,7 @@ import ServiceHero from '../../../components/services/ServiceHero.astro';
 const title = "Finance in Zurich | Expat Banking & Wealth Services | ReloFinder";
 const description = "Compare finance providers in Zurich. ReloFinder helps you evaluate expat-friendly banks like Yapeal, Neon, Revolut, UBS, and Credit Suisse. Insurance via Expat-Savvy.ch.";
 const canonicalURL = "https://relofinder.ch/services/finance/zurich";
+const keywords = ['finance zurich', 'banking zurich', 'expat banking zurich', 'UBS zurich', 'credit suisse zurich', 'neobank zurich', 'insurance zurich', 'wealth management zurich'];
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -121,10 +122,16 @@ const siblingCities = [
 ];
 ---
 
-<Layout title={title} description={description}>
-  <SchemaMarkup type="service" data={breadcrumbSchema} />
-  <SchemaMarkup type="service" data={serviceSchema} />
-  <SchemaMarkup type="service" data={faqSchema} />
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonicalURL}
+  keywords={keywords}
+  schema={{
+    "@context": "https://schema.org",
+    "@graph": [breadcrumbSchema, serviceSchema, faqSchema]
+  }}
+>
 
   <ServiceHero
     title="Finance in Zurich"

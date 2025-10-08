@@ -7,6 +7,7 @@ import ServiceHero from '../../../components/services/ServiceHero.astro';
 const title = "HNWI & Entrepreneur Advisory in Zug | Tax, Crypto & Settlement | ReloFinder";
 const description = "Compare advisory partners for HNWI relocation, company formation, and tax optimization in Zug. Switzerland's Crypto Valley with lowest cantonal taxes. ReloFinder connects you to trusted advisors.";
 const canonicalURL = "https://relofinder.ch/services/advisory/zug";
+const keywords = ['hnwi advisory zug', 'entrepreneur relocation zug', 'crypto valley zug', 'tax optimization zug', 'company formation zug', 'zug tax advantages', 'wealth advisory zug', 'business relocation zug'];
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -112,10 +113,16 @@ const siblingCities = [
 ];
 ---
 
-<Layout title={title} description={description}>
-  <SchemaMarkup type="service" data={breadcrumbSchema} />
-  <SchemaMarkup type="service" data={serviceSchema} />
-  <SchemaMarkup type="service" data={faqSchema} />
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonicalURL}
+  keywords={keywords}
+  schema={{
+    "@context": "https://schema.org",
+    "@graph": [breadcrumbSchema, serviceSchema, faqSchema]
+  }}
+>
 
   <ServiceHero
     title="HNWI & Entrepreneur Advisory in Zug"

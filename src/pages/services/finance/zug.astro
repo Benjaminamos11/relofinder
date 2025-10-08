@@ -7,6 +7,7 @@ import ServiceHero from '../../../components/services/ServiceHero.astro';
 const title = "Finance in Zug | Banking, Crypto & Tax Advantages | ReloFinder";
 const description = "Compare finance providers in Zug. Banking, neobanks, and crypto-friendly services in Switzerland's Crypto Valley. Tax benefits for expats. Insurance via Expat-Savvy.ch.";
 const canonicalURL = "https://relofinder.ch/services/finance/zug";
+const keywords = ['finance zug', 'banking zug', 'crypto banking zug', 'zug crypto valley', 'expat banking zug', 'tax advantages zug', 'insurance zug', 'wealth management zug'];
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -121,10 +122,16 @@ const siblingCities = [
 ];
 ---
 
-<Layout title={title} description={description}>
-  <SchemaMarkup type="service" data={breadcrumbSchema} />
-  <SchemaMarkup type="service" data={serviceSchema} />
-  <SchemaMarkup type="service" data={faqSchema} />
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonicalURL}
+  keywords={keywords}
+  schema={{
+    "@context": "https://schema.org",
+    "@graph": [breadcrumbSchema, serviceSchema, faqSchema]
+  }}
+>
 
   <ServiceHero
     title="Finance in Zug"

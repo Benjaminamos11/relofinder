@@ -7,6 +7,7 @@ import ServiceHero from '../../../components/services/ServiceHero.astro';
 const title = "Finance in Geneva | Expat Banking & Wealth Services | ReloFinder";
 const description = "Compare finance providers in Geneva. Private banking, wealth managers, neobanks (Yapeal, Neon, Revolut). Insurance via Expat-Savvy.ch.";
 const canonicalURL = "https://relofinder.ch/services/finance/geneva";
+const keywords = ['finance geneva', 'banking geneva', 'expat banking geneva', 'private banking geneva', 'wealth management geneva', 'insurance geneva', 'neobank geneva', 'UBS geneva'];
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -121,10 +122,16 @@ const siblingCities = [
 ];
 ---
 
-<Layout title={title} description={description}>
-  <SchemaMarkup type="service" data={breadcrumbSchema} />
-  <SchemaMarkup type="service" data={serviceSchema} />
-  <SchemaMarkup type="service" data={faqSchema} />
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonicalURL}
+  keywords={keywords}
+  schema={{
+    "@context": "https://schema.org",
+    "@graph": [breadcrumbSchema, serviceSchema, faqSchema]
+  }}
+>
 
   <ServiceHero
     title="Finance in Geneva"
