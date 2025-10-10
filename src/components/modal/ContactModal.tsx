@@ -453,29 +453,29 @@ export const ContactModal: FC<ContactModalProps> = ({
     >
       <div 
         ref={modalRef}
-        className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto animate-slideUp"
+        className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-2 sm:mx-4 max-h-[95vh] overflow-y-auto animate-slideUp"
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-100"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 sm:p-2.5 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-100 z-10"
           aria-label="Close modal"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
         
         {submitSuccess ? (
           // Success View
-          <div className="p-8 text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="p-6 sm:p-8 text-center">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-7 h-7 sm:w-8 sm:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Request Received!</h2>
-            <p className="text-gray-600 mb-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Request Received!</h2>
+            <p className="text-sm sm:text-base text-gray-600 mb-6">
               We've notified the right agencies. Expect {mode === "quotes" ? "3–5 proposals" : "a response"} within 24–48 hours.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -495,28 +495,28 @@ export const ContactModal: FC<ContactModalProps> = ({
           </div>
         ) : (
           // Form View
-          <div className="p-8">
+          <div className="p-4 sm:p-6 md:p-8">
             {/* Header */}
-            <div className="mb-6">
-              <div className="flex justify-between items-start mb-2">
-                <h1 id="modal-headline" className="text-2xl font-bold text-gray-900 pr-8">
+            <div className="mb-4 sm:mb-6">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
+                <h1 id="modal-headline" className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 pr-0 sm:pr-8">
                   {copy.headline}
                 </h1>
-                <div className="text-xs text-gray-600 bg-gray-50 px-3 py-1 rounded-full whitespace-nowrap">
+                <div className="text-xs text-gray-600 bg-gray-50 px-2.5 py-1 rounded-full whitespace-nowrap self-start">
                   {COPY.matchesThisMonth(socialProof.matchesThisMonth)}
                 </div>
               </div>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-xs sm:text-sm">
                 {copy.subtext}
               </p>
             </div>
             
             {/* Prominent Consultation CTA */}
             {mode === "quotes" && (
-              <div className="mb-6 p-4 bg-gradient-to-r from-red-50 to-orange-50 border-2 border-red-200 rounded-xl">
-                <div className="flex items-center justify-between">
+              <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-gradient-to-r from-red-50 to-orange-50 border-2 border-red-200 rounded-xl">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                   <div className="flex-1">
-                    <h3 className="font-semibold text-gray-900 text-sm mb-1">
+                    <h3 className="font-semibold text-gray-900 text-xs sm:text-sm mb-1">
                       Prefer personal guidance?
                     </h3>
                     <p className="text-xs text-gray-600">
@@ -525,7 +525,7 @@ export const ContactModal: FC<ContactModalProps> = ({
                   </div>
                   <button
                     onClick={() => handleModeSwitch("consultation")}
-                    className="ml-4 px-5 py-2 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-full hover:shadow-lg transition-all duration-200 text-sm whitespace-nowrap"
+                    className="sm:ml-4 px-4 sm:px-5 py-2 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-full hover:shadow-lg transition-all duration-200 text-xs sm:text-sm whitespace-nowrap"
                   >
                     Book Consultation →
                   </button>
@@ -534,10 +534,10 @@ export const ContactModal: FC<ContactModalProps> = ({
             )}
             
             {/* Tabs */}
-            <div className="flex border-b border-gray-200 mb-6">
+            <div className="flex border-b border-gray-200 mb-4 sm:mb-6 -mx-1">
               <button
                 onClick={() => handleModeSwitch("quotes")}
-                className={`px-6 py-3 font-semibold text-sm transition-all duration-150 border-b-2 ${
+                className={`flex-1 sm:flex-none sm:px-6 px-3 py-2.5 sm:py-3 font-semibold text-xs sm:text-sm transition-all duration-150 border-b-2 ${
                   mode === "quotes"
                     ? "border-red-600 text-red-600"
                     : "border-transparent text-gray-500 hover:text-gray-700"
@@ -547,7 +547,7 @@ export const ContactModal: FC<ContactModalProps> = ({
               </button>
               <button
                 onClick={() => handleModeSwitch("consultation")}
-                className={`px-6 py-3 font-semibold text-sm transition-all duration-150 border-b-2 ${
+                className={`flex-1 sm:flex-none sm:px-6 px-3 py-2.5 sm:py-3 font-semibold text-xs sm:text-sm transition-all duration-150 border-b-2 ${
                   mode === "consultation"
                     ? "border-red-600 text-red-600"
                     : "border-transparent text-gray-500 hover:text-gray-700"
@@ -560,7 +560,7 @@ export const ContactModal: FC<ContactModalProps> = ({
             {/* Form */}
             {mode === "consultation" ? (
               // Consultation Form - Simplified
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <div>
                   <label htmlFor="cons-name" className="block text-sm font-medium text-gray-700 mb-1">
                     Your Name <span className="text-red-600">*</span>
@@ -626,16 +626,16 @@ export const ContactModal: FC<ContactModalProps> = ({
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                     Services interested in <span className="text-gray-500 text-xs">(optional)</span>
                   </label>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {COPY.services.map((service) => (
                       <button
                         key={service.id}
                         type="button"
                         onClick={() => toggleService(service.id)}
-                        className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-150 ${
+                        className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-150 ${
                           formData.services.includes(service.id)
                             ? 'bg-red-100 text-red-700 border-2 border-red-600'
                             : 'bg-gray-100 text-gray-700 border-2 border-transparent hover:border-gray-300'
@@ -648,16 +648,16 @@ export const ContactModal: FC<ContactModalProps> = ({
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                     Regions interested in <span className="text-gray-500 text-xs">(optional)</span>
                   </label>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {COPY.regions.map((region) => (
                       <button
                         key={region.id}
                         type="button"
                         onClick={() => toggleRegion(region.id)}
-                        className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-150 ${
+                        className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-150 ${
                           formData.regions.includes(region.id)
                             ? 'bg-red-100 text-red-700 border-2 border-red-600'
                             : 'bg-gray-100 text-gray-700 border-2 border-transparent hover:border-gray-300'
@@ -705,7 +705,7 @@ export const ContactModal: FC<ContactModalProps> = ({
               </div>
             ) : (
               // Quote Form - Original Full Form
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 {/* Honeypot */}
                 <input
                   type="text"
@@ -868,18 +868,18 @@ export const ContactModal: FC<ContactModalProps> = ({
               </div>
               
               {/* Step 3: Services Needed */}
-              <div className="space-y-4 pt-4 border-t border-gray-100">
-                <h3 className="font-semibold text-gray-900 text-sm">
+              <div className="space-y-3 sm:space-y-4 pt-3 sm:pt-4 border-t border-gray-100">
+                <h3 className="font-semibold text-gray-900 text-xs sm:text-sm">
                   Step 3 — {COPY.labels.services} <span className="text-red-600">*</span>
                 </h3>
                 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {COPY.services.map((service) => (
                     <button
                       key={service.id}
                       type="button"
                       onClick={() => toggleService(service.id)}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-150 ${
+                      className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-150 ${
                         formData.services.includes(service.id)
                           ? 'bg-red-100 text-red-700 border-2 border-red-600'
                           : 'bg-gray-100 text-gray-700 border-2 border-transparent hover:border-gray-300'
@@ -940,15 +940,15 @@ export const ContactModal: FC<ContactModalProps> = ({
               </div>
               
               {/* Submit Button */}
-              <div className="pt-4">
+              <div className="pt-3 sm:pt-4">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm sm:text-base font-semibold rounded-xl hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
                     <>
-                      <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                      <svg className="animate-spin h-4 w-4 sm:h-5 sm:w-5 text-white" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
@@ -971,11 +971,11 @@ export const ContactModal: FC<ContactModalProps> = ({
               
               {/* Consultation Callout - Only in Quotes Mode */}
               {mode === "quotes" && (
-                <div className="mt-6 p-5 bg-white border border-gray-200 rounded-xl shadow-sm text-center">
-                  <h4 className="text-base font-semibold text-gray-900 mb-2">
+                <div className="mt-4 sm:mt-6 p-4 sm:p-5 bg-white border border-gray-200 rounded-xl shadow-sm text-center">
+                  <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-1.5 sm:mb-2">
                     Prefer personal guidance?
                   </h4>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
                     Schedule a free consultation with one of our verified experts.
                   </p>
                   <a
@@ -991,7 +991,7 @@ export const ContactModal: FC<ContactModalProps> = ({
                       }
                       window.location.href = '/consultation';
                     }}
-                    className="inline-block w-full px-6 py-3 bg-white text-red-600 font-semibold rounded-full border-2 border-red-600 hover:bg-gradient-to-r hover:from-red-600 hover:to-red-500 hover:text-white transition-all duration-200"
+                    className="inline-block w-full px-4 sm:px-6 py-2.5 sm:py-3 bg-white text-red-600 text-sm sm:text-base font-semibold rounded-full border-2 border-red-600 hover:bg-gradient-to-r hover:from-red-600 hover:to-red-500 hover:text-white transition-all duration-200"
                   >
                     Book a Free Consultation →
                   </a>
