@@ -46,7 +46,7 @@ Create a fully interconnected knowledge hub where every page naturally leads use
 
 ### **Content Pages**
 - `/swiss-relocation-guide`
-- `/companies/[id]` (36 company pages)
+- `/companies/[id]` (63 company pages)
 - `/blog/` (blog hub + articles)
 - `/corporate` (B2B services)
 

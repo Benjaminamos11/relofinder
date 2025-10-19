@@ -136,8 +136,8 @@ const CANONICAL_COMPANIES = [
   },
   {
     name: 'Swiss Relocation Services GmbH',
-    id: 'swiss-relocation-services-gmbh',
-    legalName: 'Swiss Relocation Services GmbH (All-in-One)',
+    id: 'swiss-relocation-services',
+    legalName: 'Swiss Relocation Services (All-in-One)',
     founded: 2005,
     management: 'Jennifer Stiers',
     locations: ['Regensdorf'],
@@ -154,7 +154,7 @@ const CANONICAL_COMPANIES = [
   },
   {
     name: 'De Peri Relocation Services',
-    id: 'de-peri-relocation-services',
+    id: 'de-peri-relocation',
     legalName: 'De Peri Relocation Services',
     founded: 2003,
     management: 'Catherine De Peri',
