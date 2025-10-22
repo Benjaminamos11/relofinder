@@ -152,6 +152,8 @@ Zug offers excellent healthcare facilities:
 
 All residents must have mandatory health insurance, and many international employees receive supplementary private coverage through their employers.
 
+**Comparing Swiss health insurers?** For an expat-focused breakdown of premiums, coverage models, and provider comparisons, visit [Expat-Savvy's Health Insurance Guide](https://expat-savvy.ch/blog/best-health-insurance-switzerland-expats) — helping you choose between Helsana, Swica, Sanitas, and other major insurers.
+
 ## Transportation
 
 ### Public Transport

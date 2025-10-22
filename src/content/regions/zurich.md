@@ -169,6 +169,8 @@ With over 30% of residents being foreign nationals, Zürich offers a welcoming e
 - **Costs**: CHF 300-500/month for basic coverage
 - **Emergency services**: Efficient and reliable
 
+**Need help understanding Swiss health coverage?** Check out [Expat-Savvy's 2026 Health Insurance Guide](https://expat-savvy.ch/blog/best-health-insurance-switzerland-expats) — a comprehensive comparison of Swica, Helsana, Sanitas, and CSS written specifically for expats navigating the Swiss system.
+
 ## Tips for Success
 
 ### **Cultural Integration**

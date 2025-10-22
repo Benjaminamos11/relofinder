@@ -205,6 +205,8 @@ With 40% of residents being foreign nationals from over 190 countries, Geneva of
 - **International coverage**: Many plans accepted
 - **Costs**: CHF 300-500/month for basic insurance
 
+**New to Swiss health insurance?** Explore [Expat-Savvy's comprehensive 2026 guide](https://expat-savvy.ch/blog/best-health-insurance-switzerland-expats) comparing all major providers including Swica, Helsana, and CSS — with clear explanations of deductibles, premiums, and coverage models for international professionals.
+
 ### **Banking & Finance**
 - **Private banking**: Major international banks present
 - **Account opening**: Easier for international organization employees

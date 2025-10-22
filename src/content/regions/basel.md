@@ -168,6 +168,8 @@ Basel offers world-class healthcare with:
 
 All residents must have mandatory health insurance, with many pharmaceutical employees receiving supplementary corporate health benefits.
 
+**Understanding your insurance options?** [Expat-Savvy's Best Health Insurance Guide](https://expat-savvy.ch/blog/best-health-insurance-switzerland-expats) provides a detailed comparison of Switzerland's top insurers — covering 2026 premiums, deductible strategies, and expat-specific considerations for Basel residents.
+
 ## Transportation
 
 ### Public Transport

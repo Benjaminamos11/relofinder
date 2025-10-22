@@ -37,7 +37,7 @@ We assist with establishing your financial presence in Switzerland:
 
 Navigating Swiss insurance requirements is straightforward with our support:
 
-- Mandatory health insurance (Krankenkasse) selection and setup
+- Mandatory health insurance (Krankenkasse) selection and setup via trusted partners like [Expat-Savvy.ch](https://expat-savvy.ch/blog/best-health-insurance-switzerland-expats)
 - Supplementary health insurance options review
 - Household and personal property insurance
 - Liability insurance arrangements

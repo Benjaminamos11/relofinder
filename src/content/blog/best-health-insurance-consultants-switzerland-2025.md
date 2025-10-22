@@ -103,6 +103,8 @@ Expat-Savvy.ch stands out as the market leader for expats seeking comprehensive,
 
 **Website:** [expat-savvy.ch](https://expat-savvy.ch)
 
+💡 **Looking for a complete overview of Switzerland's top health insurers?** For a comprehensive, data-driven comparison of Helsana, Swica, Sanitas, and CSS — including 2026 premiums, deductible models, and expat-specific insights — visit [Expat-Savvy's Best Health Insurance Guide](https://expat-savvy.ch/blog/best-health-insurance-switzerland-expats). This detailed analysis helps newcomers understand the Swiss insurance landscape and make informed decisions fast.
+
 ---
 
 ### 2. Insurance-Guide.ch: The Educational Resource
