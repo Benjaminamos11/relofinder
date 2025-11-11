@@ -104,47 +104,91 @@ const {
     </main>
     
     <Footer />
-    <UniversalContactModal client:load />
+    <!-- Hidden marker div - always present in DOM for MutationObserver -->
+    <div id="relofinder-modal-marker" data-relofinder-modal="pending" style="display: none;" aria-hidden="true"></div>
+    <UniversalContactModal client:only="react" />
     
-    <!-- Enhanced Global Modal Functions with Mobile Support -->
+    <!-- Global Modal Functions - Synchronous Setup Before React Loads -->
     <script is:inline>
-      // Event queue for modal events before React component loads
+      // Initialize modal system synchronously before React loads
       window.modalEventQueue = window.modalEventQueue || [];
-      window.modalReady = window.modalReady || false;
-      window.modalRetryCount = window.modalRetryCount || 0;
+      window.modalReady = false;
+      window.reactHydrationFailed = false;
       
-      // Enhanced global modal functions with mobile touch support
-      window.universalOpenModal = function(context) {
-        console.log('📞 universalOpenModal called', context, 'Device:', navigator.userAgent.includes('Mobile') ? 'Mobile' : 'Desktop');
-        
-        const event = new CustomEvent('openModal', { detail: context });
-        
-        if (window.modalReady) {
-          console.log('✅ Modal ready, dispatching immediately');
-          window.dispatchEvent(event);
-        } else {
-          console.log('⏳ Modal not ready, queuing event');
-          window.modalEventQueue.push(event);
-          
-          // More aggressive retry for mobile devices
-          const retryDelay = navigator.userAgent.includes('Mobile') ? 1000 : 2000;
-          const maxRetries = navigator.userAgent.includes('Mobile') ? 5 : 3;
-          
+      // Listen for React hydration errors
+      window.addEventListener('error', function(e) {
+        if (e.message && (e.message.includes('hydrating') || e.message.includes('unstable_now'))) {
+          console.error('🚨 React hydration error detected:', e.message);
+          window.reactHydrationFailed = true;
+          // If React fails, mark as ready anyway after a delay to process queue
           setTimeout(() => {
-            if (!window.modalReady && window.modalRetryCount < maxRetries) {
-              window.modalRetryCount++;
-              console.warn(`⚠️ Modal retry ${window.modalRetryCount}/${maxRetries}, forcing dispatch`);
-              window.dispatchEvent(event);
-              
-              // If still not working, try direct DOM manipulation as fallback
-              if (window.modalRetryCount >= maxRetries) {
-                console.error('🚨 Modal system failed, attempting direct fallback');
-                // Create a simple alert as ultimate fallback
-                alert('Please contact us at hello@relofinder.ch for relocation assistance.');
+            if (!window.modalReady) {
+              console.warn('⚠️ React hydration failed, forcing modal ready state');
+              const marker = document.getElementById('relofinder-modal-marker');
+              if (marker) {
+                marker.setAttribute('data-relofinder-modal', 'ready');
+              }
+              window.modalReady = true;
+              if (typeof window.processModalQueue === 'function') {
+                window.processModalQueue();
               }
             }
-          }, retryDelay);
+          }, 2000);
         }
+      }, true);
+      
+      const dispatchModalContext = (context) => {
+        try {
+          const event = new CustomEvent('openModal', { detail: context });
+          window.dispatchEvent(event);
+          return true;
+        } catch (error) {
+          console.error('❌ Failed to dispatch modal context', error);
+          return false;
+        }
+      };
+
+      // Universal modal opener - queues events until React is ready
+      window.universalOpenModal = function(context) {
+        const resolvedContext =
+          context && typeof context === 'object'
+            ? context
+            : typeof context === 'string'
+              ? { page: 'legacy', topic: context }
+              : { page: 'home' };
+
+        console.log('📞 universalOpenModal called', resolvedContext);
+
+        if (window.modalReady) {
+          dispatchModalContext(resolvedContext);
+          return;
+        }
+
+        // Queue event until React is ready
+        console.log('⏳ Modal not ready, queuing context', resolvedContext);
+        window.modalEventQueue.push({ kind: 'open', payload: resolvedContext });
+      };
+
+      // Legacy compatibility for old openModal calls
+      const legacyModalContextMap = {
+        'individual-lead-modal': { page: 'service', service: 'relocation' },
+      };
+
+      window.openModal = function(legacyContext) {
+        console.log('📞 legacy openModal shim invoked with', legacyContext);
+
+        if (typeof legacyContext === 'string') {
+          const mappedContext = legacyModalContextMap[legacyContext] || { page: 'home', topic: legacyContext };
+          window.universalOpenModal(mappedContext);
+          return;
+        }
+
+        if (legacyContext && typeof legacyContext === 'object') {
+          window.universalOpenModal(legacyContext);
+          return;
+        }
+
+        window.universalOpenModal({ page: 'home' });
       };
       
       window.closeModal = function() {
@@ -154,60 +198,103 @@ const {
         if (window.modalReady) {
           window.dispatchEvent(event);
         } else {
-          window.modalEventQueue.push(event);
+          window.modalEventQueue.push({ kind: 'close' });
         }
       };
       
-      // Enhanced function to process queued events when React component is ready
+      // Process queued events when React component confirms readiness
       window.processModalQueue = function() {
+        // Prevent double processing
+        if (window.modalReady && window.modalEventQueue.length === 0) {
+          return;
+        }
+        
         console.log('🚀 Processing modal queue:', window.modalEventQueue.length, 'events');
         window.modalReady = true;
-        window.modalRetryCount = 0; // Reset retry count on success
         
-        window.modalEventQueue.forEach(event => {
-          window.dispatchEvent(event);
-        });
-        
+        const queuedItems = [...window.modalEventQueue];
         window.modalEventQueue = [];
+
+        queuedItems.forEach(item => {
+          if (item?.kind === 'open') {
+            dispatchModalContext(item.payload);
+          } else if (item?.kind === 'close') {
+            window.dispatchEvent(new CustomEvent('closeModal'));
+          }
+        });
       };
       
-      // Enhanced safety check with mobile-specific timing
-      const safetyDelay = navigator.userAgent.includes('Mobile') ? 5000 : 3000;
-      setTimeout(() => {
-        if (!window.modalReady) {
-          console.warn('⚠️ UniversalContactModal not ready after', safetyDelay + 'ms');
-          console.warn('Device:', navigator.userAgent.includes('Mobile') ? 'Mobile' : 'Desktop');
-          console.warn('User Agent:', navigator.userAgent);
-        } else {
-          console.log('✅ Modal system initialized successfully');
-        }
-      }, safetyDelay);
-      
-      // Add touch event support for mobile buttons
-      document.addEventListener('DOMContentLoaded', function() {
-        // Add touch event listeners to all buttons with onclick="universalOpenModal"
-        const buttons = document.querySelectorAll('button[onclick*="universalOpenModal"]');
-        buttons.forEach(button => {
-          // Add touchstart event for immediate response on mobile
-          button.addEventListener('touchstart', function(e) {
-            console.log('📱 Touch event on button:', button);
-            // Don't prevent default to allow normal click behavior
-          }, { passive: true });
-          
-          // Add touchend event for better mobile responsiveness
-          button.addEventListener('touchend', function(e) {
-            console.log('📱 Touch end on button:', button);
-            // Small delay to ensure touch is processed
-            setTimeout(() => {
-              if (button.onclick) {
-                button.onclick(e);
-              }
-            }, 50);
-          }, { passive: true });
-        });
+      // MutationObserver to detect when React component mounts in DOM
+      const observeReactMount = () => {
+        let checkCount = 0;
+        const maxChecks = 40; // 20 seconds max for mobile
         
-        console.log('📱 Added touch event listeners to', buttons.length, 'buttons');
-      });
+        const checkAndProcess = () => {
+          // Check both the marker div and any React-rendered markers
+          const markerDiv = document.getElementById('relofinder-modal-marker');
+          const reactMarker = document.querySelector('[data-relofinder-modal="ready"]');
+          const marker = reactMarker || markerDiv;
+          
+          if (marker && marker.getAttribute('data-relofinder-modal') === 'ready' && !window.modalReady) {
+            console.log('✅ Modal marker detected in DOM');
+            window.modalReady = true;
+            if (typeof window.processModalQueue === 'function') {
+              window.processModalQueue();
+            }
+            return true;
+          }
+          return false;
+        };
+
+        const observer = new MutationObserver((mutations, obs) => {
+          if (checkAndProcess()) {
+            obs.disconnect();
+            if (checkInterval) clearInterval(checkInterval);
+          }
+        });
+
+        // Start observing immediately
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+          attributes: true,
+          attributeFilter: ['data-relofinder-modal']
+        });
+
+        // Check immediately
+        if (checkAndProcess()) {
+          observer.disconnect();
+        }
+
+        // Periodic check for slow devices or hydration failures
+        const checkInterval = setInterval(() => {
+          checkCount++;
+          if (checkAndProcess()) {
+            observer.disconnect();
+            clearInterval(checkInterval);
+          } else if (checkCount >= maxChecks) {
+            // Force ready state if React never mounts (hydration failure)
+            console.warn('⚠️ React component not detected after 20 seconds, forcing ready state');
+            const markerDiv = document.getElementById('relofinder-modal-marker');
+            if (markerDiv && !window.modalReady) {
+              markerDiv.setAttribute('data-relofinder-modal', 'ready');
+              window.modalReady = true;
+              if (typeof window.processModalQueue === 'function') {
+                window.processModalQueue();
+              }
+            }
+            observer.disconnect();
+            clearInterval(checkInterval);
+          }
+        }, 500);
+      };
+
+      // Start observing when script loads
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', observeReactMount);
+      } else {
+        observeReactMount();
+      }
     </script>
   </body>
 </html>

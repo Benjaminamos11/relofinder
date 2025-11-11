@@ -4,7 +4,7 @@
  * while using the new ContactModal component
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useStore } from '@nanostores/react';
 import { isModalOpen, modalContext, type ModalContext } from '../../stores/modal';
 import { ContactModal } from '../modal/ContactModal';
@@ -20,12 +20,16 @@ interface ModalContentProps {
 const UniversalContactModal: React.FC<ModalContentProps> = () => {
   const modalOpen = useStore(isModalOpen);
   const oldContext = useStore(modalContext);
-  const [isReady, setIsReady] = useState(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
   
-  // Listen for global modal events (legacy support)
+  // Set up event listeners and mark component as ready synchronously
   useEffect(() => {
     console.log('🎯 UniversalContactModal mounted');
-    setIsReady(true);
+    
+    // Add DOM marker for MutationObserver detection
+    if (containerRef.current) {
+      containerRef.current.setAttribute('data-relofinder-modal', 'ready');
+    }
     
     const handleOpenModal = (event: CustomEvent) => {
       console.log('🔔 OpenModal event:', event.detail);
@@ -46,19 +50,20 @@ const UniversalContactModal: React.FC<ModalContentProps> = () => {
     window.addEventListener('openModal', handleOpenModal as EventListener);
     window.addEventListener('closeModal', handleCloseModal);
     
-    // Process any queued modal events
+    // Mark as ready and process queue immediately
+    (window as any).modalReady = true;
     if (typeof (window as any).processModalQueue === 'function') {
       (window as any).processModalQueue();
     }
-    
-    // Set modal ready flag immediately for better mobile responsiveness
-    (window as any).modalReady = true;
     
     return () => {
       console.log('🔌 UniversalContactModal unmounting');
       window.removeEventListener('openModal', handleOpenModal as EventListener);
       window.removeEventListener('closeModal', handleCloseModal);
       (window as any).modalReady = false;
+      if (containerRef.current) {
+        containerRef.current.removeAttribute('data-relofinder-modal');
+      }
     };
   }, []);
   
@@ -91,19 +96,32 @@ const UniversalContactModal: React.FC<ModalContentProps> = () => {
     isModalOpen.set(false);
   };
 
-  // Don't render anything if modal is not open
-  if (!modalOpen) {
-    return null;
-  }
+  // Update the marker div when component mounts
+  useEffect(() => {
+    const markerDiv = document.getElementById('relofinder-modal-marker');
+    if (markerDiv) {
+      markerDiv.setAttribute('data-relofinder-modal', 'ready');
+    }
+    // Also set on container ref if it exists
+    if (containerRef.current) {
+      containerRef.current.setAttribute('data-relofinder-modal', 'ready');
+    }
+  }, []);
 
-  console.log('🎨 Rendering ContactModal with:', { modalOpen, context, isReady });
-
+  // Always render container with marker for MutationObserver, even when modal is closed
   return (
-    <ContactModal
-      isOpen={modalOpen}
-      onClose={closeModal}
-      context={context}
-    />
+    <>
+      {/* Hidden marker for MutationObserver */}
+      <div ref={containerRef} data-relofinder-modal="ready" style={{ display: 'none' }} aria-hidden="true" />
+      {/* Actual modal */}
+      {modalOpen && (
+        <ContactModal
+          isOpen={modalOpen}
+          onClose={closeModal}
+          context={context}
+        />
+      )}
+    </>
   );
 };
 

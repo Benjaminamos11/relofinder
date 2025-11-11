@@ -448,7 +448,7 @@ const combinedSchema = {
         Join thousands of successful expats who found their perfect Swiss life through our platform.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button onclick="openModal('individual-lead-modal')" class="bg-white text-red-600 py-4 px-8 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg">
+        <button onclick={`universalOpenModal({page: "contact", service: "relocation"})`} class="bg-white text-red-600 py-4 px-8 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg">
           Get Started Today
         </button>
         <a href="/swiss-relocation-guide" class="border-2 border-white text-white py-4 px-8 rounded-lg font-bold text-lg hover:bg-white hover:text-red-600 transition-colors shadow-lg">
@@ -458,14 +458,3 @@ const combinedSchema = {
     </div>
   </section>
 </Layout>
-
-<script>
-  // Modal functionality - this should be imported from your existing modal system
-  function openModal(modalId: string) {
-    // Your existing modal opening logic
-    console.log('Opening modal:', modalId);
-  }
-  
-  // Make function globally available
-  (window as any).openModal = openModal;
-</script>
