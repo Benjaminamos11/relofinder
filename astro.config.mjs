@@ -3,7 +3,6 @@ import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 // import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
-import compress from 'astro-compress';
 import mdx from '@astrojs/mdx';
 
 export default defineConfig({
@@ -44,50 +43,6 @@ export default defineConfig({
         'https://relofinder.ch/regions',
         'https://relofinder.ch/blog',
       ]
-    }),
-    compress({
-      CSS: {
-        csso: {
-          comments: false,
-          forceMediaMerge: true,
-        }
-      },
-      HTML: {
-        'html-minifier-terser': {
-          removeComments: true,
-          collapseWhitespace: true,
-          removeRedundantAttributes: true,
-          removeScriptTypeAttributes: true,
-          removeStyleLinkTypeAttributes: true,
-          minifyCSS: true,
-          minifyJS: true,
-        }
-      },
-      Image: {
-        webp: {
-          quality: 85,
-        },
-        avif: {
-          quality: 80,
-        }
-      },
-      // Disable additional JavaScript minification to prevent double-terser runs
-      // which were breaking hydration bundles on some browsers.
-      JavaScript: false,
-      SVG: {
-        svgo: {
-          plugins: [
-            {
-              name: 'preset-default',
-              params: {
-                overrides: {
-                  removeViewBox: false,
-                }
-              }
-            }
-          ]
-        }
-      }
     })
   ],
   output: 'static',
