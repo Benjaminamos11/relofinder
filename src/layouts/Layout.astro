@@ -114,14 +114,71 @@ const {
     
     <!-- Global Modal Functions - Synchronous Setup Before React Loads -->
     <script is:inline>
+      // Initialize globals FIRST (before browser check) so functions are always defined
+      if (typeof window !== 'undefined') {
+        window.modalEventQueue = window.modalEventQueue || [];
+        window.modalReady = false;
+        window.reactHydrationFailed = false;
+        
+        // Define functions immediately so they're always available
+        window.universalOpenModal = function(context) {
+          const resolvedContext =
+            context && typeof context === 'object'
+              ? context
+              : typeof context === 'string'
+                ? { page: 'legacy', topic: context }
+                : { page: 'home' };
+
+          console.log('📞 universalOpenModal called', resolvedContext);
+
+          if (window.modalReady && window.relofinderModalStores) {
+            window.relofinderModalStores.setContext(resolvedContext);
+            window.relofinderModalStores.setOpen(true);
+            return;
+          }
+
+          // Queue event until React is ready
+          console.log('⏳ Modal not ready, queuing context', resolvedContext);
+          window.modalEventQueue.push({ kind: 'open', payload: resolvedContext });
+        };
+
+        const legacyModalContextMap = {
+          'individual-lead-modal': { page: 'service', service: 'relocation' },
+        };
+
+        window.openModal = function(legacyContext) {
+          console.log('📞 legacy openModal shim invoked with', legacyContext);
+
+          if (typeof legacyContext === 'string') {
+            const mappedContext = legacyModalContextMap[legacyContext] || { page: 'home', topic: legacyContext };
+            window.universalOpenModal(mappedContext);
+            return;
+          }
+
+          if (legacyContext && typeof legacyContext === 'object') {
+            window.universalOpenModal(legacyContext);
+            return;
+          }
+
+          window.universalOpenModal({ page: 'home' });
+        };
+        
+        window.closeModal = function() {
+          console.log('🚪 closeModal called');
+          
+          if (window.modalReady && window.relofinderModalStores) {
+            window.relofinderModalStores.setOpen(false);
+          } else {
+            window.modalEventQueue.push({ kind: 'close' });
+          }
+        };
+      }
+      
       // Guard all DOM access - only run in browser (SSR-safe)
       if (typeof window === 'undefined' || typeof document === 'undefined') {
         // SSR - exit early, do nothing
       } else {
         // Initialize modal system synchronously before React loads
-        window.modalEventQueue = window.modalEventQueue || [];
-        window.modalReady = false;
-        window.reactHydrationFailed = false;
         window.reactLoadPromise = null;
         
         // Preload React to ensure it's ready before hydration

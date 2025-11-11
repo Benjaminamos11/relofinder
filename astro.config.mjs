@@ -71,14 +71,9 @@ export default defineConfig({
           quality: 80,
         }
       },
-      JavaScript: {
-        terser: {
-          compress: {
-            drop_console: true,
-            drop_debugger: true,
-          }
-        }
-      },
+      // Disable additional JavaScript minification to prevent double-terser runs
+      // which were breaking hydration bundles on some browsers.
+      JavaScript: false,
       SVG: {
         svgo: {
           plugins: [
