@@ -109,7 +109,8 @@ const {
     <!-- Hidden marker div - always present in DOM for MutationObserver -->
     <div id="relofinder-modal-marker" data-relofinder-modal="pending" style="display: none;" aria-hidden="true"></div>
     
-    <UniversalContactModal client:load />
+    <!-- Force React to mount immediately - use client:only but ensure React is ready -->
+    <UniversalContactModal client:only="react" />
     
     <!-- Global Modal Functions - Synchronous Setup Before React Loads -->
     <script is:inline>
@@ -117,6 +118,28 @@ const {
       window.modalEventQueue = window.modalEventQueue || [];
       window.modalReady = false;
       window.reactHydrationFailed = false;
+      window.reactLoadPromise = null;
+      
+      // Preload React to ensure it's ready before hydration
+      if (typeof window !== 'undefined' && !window.reactLoadPromise) {
+        window.reactLoadPromise = new Promise((resolve) => {
+          // Check if React is already loaded
+          if (window.React || document.querySelector('script[src*="react"]')) {
+            resolve();
+            return;
+          }
+          
+          // Wait for React to load (check every 50ms, max 5 seconds)
+          let checks = 0;
+          const checkReact = setInterval(() => {
+            checks++;
+            if (window.React || document.querySelector('script[src*="react"]') || checks > 100) {
+              clearInterval(checkReact);
+              resolve();
+            }
+          }, 50);
+        });
+      }
       
       // Listen for React hydration errors and set up fallback event listeners
       window.addEventListener('error', function(e) {

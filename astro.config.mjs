@@ -152,7 +152,11 @@ export default defineConfig({
       }
     },
     optimizeDeps: {
-      include: ['react', 'react-dom']
+      include: ['react', 'react-dom'],
+      force: true
+    },
+    ssr: {
+      noExternal: ['@nanostores/react', 'nanostores']
     }
   }
 });
