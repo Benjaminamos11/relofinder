@@ -109,7 +109,7 @@ const {
     <!-- Hidden marker div - always present in DOM for MutationObserver -->
     <div id="relofinder-modal-marker" data-relofinder-modal="pending" style="display: none;" aria-hidden="true"></div>
     
-    <UniversalContactModal client:only="react" />
+    <UniversalContactModal client:load />
     
     <!-- Global Modal Functions - Synchronous Setup Before React Loads -->
     <script is:inline>
