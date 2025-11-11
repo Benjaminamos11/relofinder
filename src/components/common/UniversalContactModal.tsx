@@ -22,9 +22,17 @@ const UniversalContactModal: React.FC<ModalContentProps> = () => {
   const oldContext = useStore(modalContext);
   const containerRef = React.useRef<HTMLDivElement>(null);
   
-  // Set up event listeners and mark component as ready synchronously
+  // Expose nanostores to window for inline script access
   useEffect(() => {
     console.log('🎯 UniversalContactModal mounted');
+    
+    // Expose stores to window so inline script can access them
+    (window as any).relofinderModalStores = {
+      modalContext,
+      isModalOpen,
+      setContext: (ctx: ModalContext) => modalContext.set(ctx),
+      setOpen: (open: boolean) => isModalOpen.set(open),
+    };
     
     // Add DOM marker for MutationObserver detection
     if (containerRef.current) {
@@ -61,6 +69,7 @@ const UniversalContactModal: React.FC<ModalContentProps> = () => {
       window.removeEventListener('openModal', handleOpenModal as EventListener);
       window.removeEventListener('closeModal', handleCloseModal);
       (window as any).modalReady = false;
+      delete (window as any).relofinderModalStores;
       if (containerRef.current) {
         containerRef.current.removeAttribute('data-relofinder-modal');
       }

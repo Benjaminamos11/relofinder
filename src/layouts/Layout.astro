@@ -5,6 +5,8 @@ import SEOHead from '../components/common/SEOHead.astro';
 import '../styles/global.css';
 import { ViewTransitions } from 'astro:transitions';
 import UniversalContactModal from '../components/common/UniversalContactModal.tsx';
+// Expose stores immediately (side-effect import)
+import '../lib/expose-modal-stores.client.ts';
 
 export interface Props {
   title?: string;
@@ -106,6 +108,7 @@ const {
     <Footer />
     <!-- Hidden marker div - always present in DOM for MutationObserver -->
     <div id="relofinder-modal-marker" data-relofinder-modal="pending" style="display: none;" aria-hidden="true"></div>
+    
     <UniversalContactModal client:only="react" />
     
     <!-- Global Modal Functions - Synchronous Setup Before React Loads -->
@@ -115,11 +118,44 @@ const {
       window.modalReady = false;
       window.reactHydrationFailed = false;
       
-      // Listen for React hydration errors
+      // Listen for React hydration errors and set up fallback event listeners
       window.addEventListener('error', function(e) {
         if (e.message && (e.message.includes('hydrating') || e.message.includes('unstable_now'))) {
           console.error('🚨 React hydration error detected:', e.message);
           window.reactHydrationFailed = true;
+          
+          // Set up event listeners that work even without React
+          const setupFallbackListeners = () => {
+            // Try to access nanostores via window (they might be exposed even if React fails)
+            const checkStores = setInterval(() => {
+              if (window.relofinderModalStores) {
+                console.log('✅ Found nanostores, setting up fallback listeners');
+                clearInterval(checkStores);
+                
+                // Set up listeners that use nanostores directly
+                window.addEventListener('openModal', function(e: CustomEvent) {
+                  if (window.relofinderModalStores && e.detail) {
+                    console.log('🔔 Fallback: Opening modal via nanostores', e.detail);
+                    window.relofinderModalStores.setContext(e.detail);
+                    window.relofinderModalStores.setOpen(true);
+                  }
+                });
+                
+                window.addEventListener('closeModal', function() {
+                  if (window.relofinderModalStores) {
+                    console.log('🔔 Fallback: Closing modal via nanostores');
+                    window.relofinderModalStores.setOpen(false);
+                  }
+                });
+              }
+            }, 100);
+            
+            // Stop checking after 5 seconds
+            setTimeout(() => clearInterval(checkStores), 5000);
+          };
+          
+          setupFallbackListeners();
+          
           // If React fails, mark as ready anyway after a delay to process queue
           setTimeout(() => {
             if (!window.modalReady) {
@@ -139,11 +175,38 @@ const {
       
       const dispatchModalContext = (context) => {
         try {
+          // Try to use nanostores directly if available (works even if React hasn't mounted)
+          if (window.relofinderModalStores) {
+            console.log('📦 Using nanostores directly');
+            window.relofinderModalStores.setContext(context);
+            window.relofinderModalStores.setOpen(true);
+            return true;
+          }
+          
+          // Fallback to event dispatch (requires React component to be mounted)
           const event = new CustomEvent('openModal', { detail: context });
           window.dispatchEvent(event);
           return true;
         } catch (error) {
           console.error('❌ Failed to dispatch modal context', error);
+          return false;
+        }
+      };
+      
+      const dispatchCloseModal = () => {
+        try {
+          // Try to use nanostores directly if available
+          if (window.relofinderModalStores) {
+            window.relofinderModalStores.setOpen(false);
+            return true;
+          }
+          
+          // Fallback to event dispatch
+          const event = new CustomEvent('closeModal');
+          window.dispatchEvent(event);
+          return true;
+        } catch (error) {
+          console.error('❌ Failed to dispatch close modal', error);
           return false;
         }
       };
@@ -193,10 +256,9 @@ const {
       
       window.closeModal = function() {
         console.log('🚪 closeModal called');
-        const event = new CustomEvent('closeModal');
         
         if (window.modalReady) {
-          window.dispatchEvent(event);
+          dispatchCloseModal();
         } else {
           window.modalEventQueue.push({ kind: 'close' });
         }
@@ -219,7 +281,7 @@ const {
           if (item?.kind === 'open') {
             dispatchModalContext(item.payload);
           } else if (item?.kind === 'close') {
-            window.dispatchEvent(new CustomEvent('closeModal'));
+            dispatchCloseModal();
           }
         });
       };
