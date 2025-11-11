@@ -109,18 +109,15 @@ const {
     <!-- Hidden marker div - always present in DOM for MutationObserver -->
     <div id="relofinder-modal-marker" data-relofinder-modal="pending" style="display: none;" aria-hidden="true"></div>
     
-    <!-- Force React to mount immediately - use client:only but ensure React is ready -->
-    <UniversalContactModal client:only="react" />
+    <!-- Use client:load to ensure React is ready before hydration -->
+    <UniversalContactModal client:load />
     
     <!-- Global Modal Functions - Synchronous Setup Before React Loads -->
     <script is:inline>
       // Guard all DOM access - only run in browser (SSR-safe)
-      (function() {
-        'use strict';
-        if (typeof window === 'undefined' || typeof document === 'undefined') {
-          // SSR - exit early, do nothing
-          return;
-        }
+      if (typeof window === 'undefined' || typeof document === 'undefined') {
+        // SSR - exit early, do nothing
+      } else {
         // Initialize modal system synchronously before React loads
         window.modalEventQueue = window.modalEventQueue || [];
         window.modalReady = false;
@@ -163,7 +160,7 @@ const {
                 clearInterval(checkStores);
                 
                 // Set up listeners that use nanostores directly
-                window.addEventListener('openModal', function(e: CustomEvent) {
+                window.addEventListener('openModal', function(e) {
                   if (window.relofinderModalStores && e.detail) {
                     console.log('🔔 Fallback: Opening modal via nanostores', e.detail);
                     window.relofinderModalStores.setContext(e.detail);
@@ -242,6 +239,7 @@ const {
       };
 
       // Universal modal opener - queues events until React is ready
+      // MUST be exposed to window OUTSIDE IIFE so it's globally accessible
       window.universalOpenModal = function(context) {
         const resolvedContext =
           context && typeof context === 'object'
@@ -387,7 +385,7 @@ const {
       } else {
         observeReactMount();
       }
-      })(); // End IIFE - only executes in browser
+      } // End browser check
     </script>
   </body>
 </html>
