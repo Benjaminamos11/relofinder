@@ -5,13 +5,15 @@
 
 import { isModalOpen, modalContext } from '../stores/modal';
 
-// Expose stores to window immediately
-(window as any).relofinderModalStores = {
-  modalContext,
-  isModalOpen,
-  setContext: (ctx: any) => modalContext.set(ctx),
-  setOpen: (open: boolean) => isModalOpen.set(open),
-};
+// Expose stores to window immediately (only in browser)
+if (typeof window !== 'undefined') {
+  (window as any).relofinderModalStores = {
+    modalContext,
+    isModalOpen,
+    setContext: (ctx: any) => modalContext.set(ctx),
+    setOpen: (open: boolean) => isModalOpen.set(open),
+  };
 
-console.log('📦 Modal stores exposed to window (pre-React)');
+  console.log('📦 Modal stores exposed to window (pre-React)');
+}
 

@@ -114,35 +114,42 @@ const {
     
     <!-- Global Modal Functions - Synchronous Setup Before React Loads -->
     <script is:inline>
-      // Initialize modal system synchronously before React loads
-      window.modalEventQueue = window.modalEventQueue || [];
-      window.modalReady = false;
-      window.reactHydrationFailed = false;
-      window.reactLoadPromise = null;
-      
-      // Preload React to ensure it's ready before hydration
-      if (typeof window !== 'undefined' && !window.reactLoadPromise) {
-        window.reactLoadPromise = new Promise((resolve) => {
-          // Check if React is already loaded
-          if (window.React || document.querySelector('script[src*="react"]')) {
-            resolve();
-            return;
-          }
-          
-          // Wait for React to load (check every 50ms, max 5 seconds)
-          let checks = 0;
-          const checkReact = setInterval(() => {
-            checks++;
-            if (window.React || document.querySelector('script[src*="react"]') || checks > 100) {
-              clearInterval(checkReact);
+      // Guard all DOM access - only run in browser (SSR-safe)
+      (function() {
+        'use strict';
+        if (typeof window === 'undefined' || typeof document === 'undefined') {
+          // SSR - exit early, do nothing
+          return;
+        }
+        // Initialize modal system synchronously before React loads
+        window.modalEventQueue = window.modalEventQueue || [];
+        window.modalReady = false;
+        window.reactHydrationFailed = false;
+        window.reactLoadPromise = null;
+        
+        // Preload React to ensure it's ready before hydration
+        if (!window.reactLoadPromise) {
+          window.reactLoadPromise = new Promise((resolve) => {
+            // Check if React is already loaded
+            if (window.React || document.querySelector('script[src*="react"]')) {
               resolve();
+              return;
             }
-          }, 50);
-        });
-      }
-      
-      // Listen for React hydration errors and set up fallback event listeners
-      window.addEventListener('error', function(e) {
+            
+            // Wait for React to load (check every 50ms, max 5 seconds)
+            let checks = 0;
+            const checkReact = setInterval(() => {
+              checks++;
+              if (window.React || document.querySelector('script[src*="react"]') || checks > 100) {
+                clearInterval(checkReact);
+                resolve();
+              }
+            }, 50);
+          });
+        }
+        
+        // Listen for React hydration errors and set up fallback event listeners
+        window.addEventListener('error', function(e) {
         if (e.message && (e.message.includes('hydrating') || e.message.includes('unstable_now'))) {
           console.error('🚨 React hydration error detected:', e.message);
           window.reactHydrationFailed = true;
@@ -380,6 +387,7 @@ const {
       } else {
         observeReactMount();
       }
+      })(); // End IIFE - only executes in browser
     </script>
   </body>
 </html>
