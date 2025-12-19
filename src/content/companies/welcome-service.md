@@ -35,8 +35,9 @@ languages:
   - "German"
 founded: 1990
 employees: "Not specified"
-verified: false
+verified: true
 featured: false
+googleMyBusinessUrl: "https://maps.app.goo.gl/kJLqiTU5qtULd9EDA" # Geneva
 rating:
   score: 4.5
   reviews: 10
