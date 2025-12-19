@@ -33,8 +33,8 @@ languages:
   - "German"
 founded: 2014
 employees: "Not specified"
-verified: false
-featured: false
+verified: true
+featured: true
 rating:
   score: 4.5
   reviews: 10

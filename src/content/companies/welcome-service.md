@@ -36,7 +36,7 @@ languages:
 founded: 1990
 employees: "Not specified"
 verified: true
-featured: false
+featured: true
 # Google My Business URLs (multiple locations):
 # Geneva: https://maps.app.goo.gl/kJLqiTU5qtULd9EDA
 # Lausanne: https://maps.app.goo.gl/VPom11VS84XS9XTV8
