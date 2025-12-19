@@ -1,326 +1,161 @@
 ---
-import { 
-  Search, 
-  MapPin, 
-  Building2, 
-  Star, 
-  ArrowRight, 
-  Home, 
-  ChevronDown,
-  Briefcase,
-  FileText,
-  Download
-} from 'lucide-react';
-import '../styles/global.css';
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/home/Hero.astro';
+import RegionsShowcase from '../components/home/RegionsShowcase.astro';
+import ServicesShowcase from '../components/home/ServicesShowcase.astro';
+import AgenciesCarousel from '../components/home/AgenciesCarousel';
+import CTASection from '../components/home/CTASection.astro';
+import Footer from '../components/common/Footer.astro';
+import { getAgenciesCarouselData } from '../utils/agenciesCarouselData';
 
-// Mock Data for Agency Cards
-const topAgencies = [
-  {
-    name: "SwissRelo Pros",
-    rating: 4.9,
-    count: 128,
-    analystNote: "Best choice for fast visa processing and families moving to Zurich. High availability in Q3.",
-    tags: ["Housing", "Visa"],
-    logo: "/images/placeholder-logo.svg" 
-  },
-  {
-    name: "Geneva Expat Services",
-    rating: 4.8,
-    count: 85,
-    analystNote: "Top-rated for school placement and orientation tours in the Romandie region.",
-    tags: ["Schooling", "Orientation"],
-    logo: "/images/placeholder-logo.svg"
-  },
-  {
-    name: "Zurich Mobility Group",
-    rating: 5.0,
-    count: 42,
-    analystNote: "Specializes in complex corporate moves and tax residency setup for C-level executives.",
-    tags: ["Corporate", "Tax"],
-    logo: "/images/placeholder-logo.svg"
-  }
+// Fetch agencies for the unified carousel
+const carouselAgencies = await getAgenciesCarouselData(8);
+
+// Debug: Log what we got
+console.log('[Homepage] Carousel agencies count:', carouselAgencies.length);
+if (carouselAgencies.length > 0) {
+  console.log('[Homepage] First agency:', carouselAgencies[0].name);
+}
+
+const title = "Switzerland Relocation Made Simple | Compare Providers & Regions | ReloFinder";
+const description = "Compare vetted relocation agencies, explore top Swiss regions, and plan your move with transparent services and free consultations.";
+const canonical = "https://relofinder.ch";
+
+const keywords = [
+  'swiss relocation services',
+  'moving to switzerland',
+  'switzerland relocation companies',
+  'expat services switzerland',
+  'relocation zurich',
+  'relocation geneva',
+  'international move switzerland',
+  'swiss immigration services',
+  'expat relocation switzerland'
 ];
 
-const cantons = [
-  "Zurich", "Geneva", "Basel-Stadt", "Vaud", "Zug", "Bern", "Lucerne", "St. Gallen"
-];
-
-const faqs = [
-  {
-    q: "How much does a relocation agent cost in Switzerland?",
-    a: "Basic home search packages start around CHF 2,500, while full-service relocation management can range from CHF 5,000 to CHF 12,000 depending on family size and services required."
-  },
-  {
-    q: "Can I move to Switzerland without a job?",
-    a: "EU/EFTA citizens can move for 3 months to look for work. Non-EU citizens generally need a signed employment contract or proof of independent wealth/retirement to obtain a residence permit."
-  },
-  {
-    q: "How long does the Swiss visa process take?",
-    a: "For EU citizens, permits are often issued within 2-4 weeks. For non-EU nationals, the work permit approval process typically takes 8-12 weeks involving both cantonal and federal approval."
-  }
-];
+// Enhanced Schema markup for homepage
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "ReloFinder",
+      "url": "https://relofinder.ch",
+      "description": description,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://relofinder.ch/companies?search={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "name": "ReloFinder",
+      "url": "https://relofinder.ch",
+      "description": description,
+      "logo": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1751047383/SVG_sdmxdo.svg",
+      "foundingDate": "2023",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "CH"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "hello@relofinder.ch",
+        "contactType": "customer service"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/relofinder"
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "name": "Featured Relocation Companies",
+      "description": "Top-rated Swiss relocation service providers",
+      "itemListElement": carouselAgencies.slice(0, 5).map((agency, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "Organization",
+          "name": agency.name,
+          "url": `https://relofinder.ch/companies/${agency.slug}`,
+          "aggregateRating": agency.rating ? {
+            "@type": "AggregateRating",
+            "ratingValue": agency.rating,
+            "reviewCount": agency.reviews_count || 0
+          } : undefined
+        }
+      }))
+    }
+  ]
+};
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compare Best Relocation Agencies Switzerland | ReloFinder</title>
-    <meta name="description" content="Find and compare verified Swiss relocation agencies. Get free quotes, read analyst summaries, and download our 2025 Cost Benchmark Guide.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body class="font-sans text-slate-600 bg-[#F9FAFB] antialiased">
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonical}
+  keywords={keywords}
+  schema={schema}
+>
 
-    <!-- 1. Split Header -->
-    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Logo -->
-            <div class="flex items-center">
-                <img src="/images/relofinder-logo-real.png" alt="ReloFinder" class="h-8 w-auto" />
-            </div>
+	<!-- 1. Hero - Welcome & Value Proposition -->
+	<Hero />
+	
+	<!-- 2. Regions - Where do you want to move? -->
+	<RegionsShowcase />
+	
+	<!-- 3. Services - What do you need help with? -->
+	<ServicesShowcase />
+	
+	<!-- 4. Agencies Carousel - Featured agencies with reviews & AI summaries -->
+	<AgenciesCarousel agencies={carouselAgencies} client:visible />
+	
+	<!-- 5. CTA - How to get started -->
+	<CTASection />
+</Layout>
 
-            <!-- Desktop Nav Links -->
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-                <a href="/directory" class="hover:text-slate-900 transition-colors">Directory</a>
-                <a href="/cost-guide" class="hover:text-slate-900 transition-colors">Cost Guide</a>
-                <a href="/login" class="hover:text-slate-900 transition-colors">Login</a>
-            </div>
+<script>
+  // Animate elements on scroll
+  document.addEventListener('DOMContentLoaded', function() {
+    const animateOnScrollElements = document.querySelectorAll('.animate-on-scroll');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+    
+    animateOnScrollElements.forEach(element => {
+      observer.observe(element);
+    });
+  });
 
-            <!-- Right Side Actions -->
-            <div class="flex items-center gap-4">
-                <a href="#" class="hidden md:block text-sm font-medium text-slate-600 hover:text-[#FF6F61] transition-colors">
-                    For Individuals
-                </a>
-                <a href="#" class="bg-slate-800 text-white text-sm font-medium px-5 py-2.5 rounded-lg hover:bg-slate-700 transition-colors flex items-center gap-2">
-                    <Building2 className="w-4 h-4" />
-                    <span>For Corporate HR</span>
-                </a>
-            </div>
-        </div>
-    </nav>
+  // Modal functionality
+  function openModal(modalId: string) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+  }
 
-    <!-- 2. High-Performance Hero -->
-    <section class="relative py-20 lg:py-28 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="max-w-3xl mx-auto mb-12">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-800 mb-6">
-                    Compare the Best Relocation Agencies in Switzerland.
-                </h1>
-                <p class="text-lg text-slate-500">
-                    Verified partners. Analyst summaries. Anonymous quotes.
-                </p>
-            </div>
+  function closeModal(modalId: string) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+  }
 
-            <!-- Conversion Box -->
-            <div class="max-w-3xl mx-auto relative z-10">
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-                    
-                    <!-- Tabs -->
-                    <div class="flex border-b border-slate-100" id="hero-tabs">
-                        <button class="flex-1 py-4 text-center font-semibold text-sm bg-white text-slate-800 border-b-2 border-[#B61919]" data-target="private">
-                            Private Move
-                        </button>
-                        <button class="flex-1 py-4 text-center font-semibold text-sm bg-slate-50 text-slate-500 border-b-2 border-transparent hover:text-slate-700" data-target="corporate">
-                            Corporate Inquiry
-                        </button>
-                    </div>
-
-                    <!-- Form Content -->
-                    <div class="p-6 md:p-8">
-                        <div class="grid md:grid-cols-12 gap-4 mb-6">
-                            <div class="md:col-span-4">
-                                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 text-left">Moving From</label>
-                                <div class="relative">
-                                    <MapPin className="absolute left-3 top-3 w-5 h-5 text-slate-400" />
-                                    <input type="text" placeholder="City or Country" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 placeholder:text-slate-400 focus:ring-2 focus:ring-[#B61919]/20 focus:border-[#B61919] outline-none transition-all" />
-                                </div>
-                            </div>
-                            
-                            <div class="md:col-span-4">
-                                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 text-left">Moving To</label>
-                                <div class="relative">
-                                    <Home className="absolute left-3 top-3 w-5 h-5 text-slate-400" />
-                                    <select class="w-full pl-10 pr-8 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-[#B61919]/20 focus:border-[#B61919] outline-none appearance-none cursor-pointer transition-all">
-                                        <option value="" disabled selected>Select Canton</option>
-                                        <option>Zurich</option>
-                                        <option>Geneva</option>
-                                        <option>Basel</option>
-                                        <option>Vaud</option>
-                                        <option>Zug</option>
-                                    </select>
-                                    <ChevronDown className="absolute right-3 top-3 w-5 h-5 text-slate-400 pointer-events-none" />
-                                </div>
-                            </div>
-
-                            <div class="md:col-span-4">
-                                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 text-left">Service Needed</label>
-                                <div class="relative">
-                                    <FileText className="absolute left-3 top-3 w-5 h-5 text-slate-400" />
-                                    <select class="w-full pl-10 pr-8 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-[#B61919]/20 focus:border-[#B61919] outline-none appearance-none cursor-pointer transition-all">
-                                        <option>Full Package</option>
-                                        <option>Housing Search</option>
-                                        <option>Visa Assistance</option>
-                                        <option>Schooling</option>
-                                    </select>
-                                    <ChevronDown className="absolute right-3 top-3 w-5 h-5 text-slate-400 pointer-events-none" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <button class="w-full py-4 bg-gradient-to-r from-[#B61919] to-[#DF3030] hover:from-[#DF3030] hover:to-[#B61919] text-white font-bold rounded-lg shadow-sm transition-all transform active:scale-[0.99] text-lg">
-                            Compare Rates & Availability
-                        </button>
-                        
-                        <p class="mt-4 text-xs text-slate-400 font-medium">
-                            <span class="inline-block w-2 h-2 rounded-full bg-green-500 mr-1"></span>
-                            Used by 5,000+ movers this year
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. Analyst Agency Cards -->
-    <section class="py-20 bg-white border-y border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-end mb-12">
-                <div>
-                    <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-2">Top Rated Agencies</h2>
-                    <p class="text-slate-500">Selected based on verification status and client feedback.</p>
-                </div>
-                <a href="/directory" class="hidden md:flex items-center gap-2 text-[#B61919] font-semibold hover:text-[#DF3030] transition-colors">
-                    View All Agencies <ArrowRight className="w-4 h-4" />
-                </a>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                {topAgencies.map((agency) => (
-                    <div class="bg-white rounded-lg border border-slate-200 p-6 transition-all duration-300 hover:shadow-lg hover:border-slate-300 group h-full flex flex-col">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-12 h-12 bg-slate-50 rounded border border-slate-100 p-2 flex items-center justify-center">
-                                <img src="/images/relofinder-logo.svg" class="w-full h-full object-contain opacity-50 grayscale group-hover:grayscale-0 transition-all" alt="Agency Logo" />
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-slate-800 text-lg leading-tight">{agency.name}</h3>
-                                <div class="flex items-center gap-1.5 text-sm mt-1">
-                                    <span class="flex text-yellow-400">
-                                        <Star className="w-4 h-4 fill-current" />
-                                    </span>
-                                    <span class="font-semibold text-slate-900">{agency.rating}/5</span>
-                                    <span class="text-slate-400 text-xs">({agency.count} Verified)</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Analyst Note -->
-                        <div class="bg-slate-50 border-l-4 border-slate-300 p-4 mb-6 rounded-r-md">
-                            <p class="text-sm text-slate-700 leading-relaxed font-medium">
-                                <span class="font-bold text-slate-900 block mb-1 text-xs uppercase tracking-wide">Analyst Summary</span>
-                                "{agency.analystNote}"
-                            </p>
-                        </div>
-
-                        <div class="mt-auto">
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                {agency.tags.map(tag => (
-                                    <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded border border-slate-200">
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                            <a href="#" class="block w-full py-2.5 text-center rounded border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-slate-50 hover:border-slate-300 transition-all">
-                                View Profile
-                            </a>
-                        </div>
-                    </div>
-                ))}
-            </div>
-            
-            <div class="mt-8 text-center md:hidden">
-                <a href="/directory" class="text-[#B61919] font-semibold">View All Agencies &rarr;</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. SEO Regions Grid -->
-    <section class="py-16 bg-[#F9FAFB]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-xl font-bold text-slate-800 mb-8">Find Experts by Canton</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
-                {cantons.map(canton => (
-                    <a href={`/canton/${canton.toLowerCase()}`} class="flex flex-col items-center justify-center p-4 bg-white border border-slate-200 rounded-lg hover:border-[#B61919] hover:shadow-sm transition-all group">
-                        <MapPin className="w-5 h-5 text-slate-400 mb-2 group-hover:text-[#B61919] transition-colors" />
-                        <span class="text-sm font-medium text-slate-600 group-hover:text-slate-900">{canton}</span>
-                    </a>
-                ))}
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. Lead Magnet -->
-    <section class="bg-slate-800 py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-slate-700/50 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 border border-slate-600">
-                <div class="text-left md:max-w-xl">
-                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Don't overpay for your move.</h2>
-                    <p class="text-slate-300 text-lg">Download the 2025 Swiss Relocation Cost Benchmark PDF to see average market rates.</p>
-                </div>
-                <div class="w-full md:w-auto">
-                    <form class="flex flex-col sm:flex-row gap-3">
-                        <input type="email" placeholder="Enter work email..." class="px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder:text-slate-400 focus:ring-2 focus:ring-[#B61919] outline-none min-w-[260px]" />
-                        <button class="px-6 py-3 bg-gradient-to-r from-[#B61919] to-[#DF3030] hover:from-[#DF3030] hover:to-[#B61919] text-white font-bold rounded-lg flex items-center justify-center gap-2 transition-colors">
-                            <Download className="w-4 h-4" /> Download
-                        </button>
-                    </form>
-                    <p class="text-xs text-slate-400 mt-3 text-center sm:text-left">Instant access. No spam.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. LLM FAQ Section -->
-    <section class="py-20 bg-white">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl font-bold text-slate-800 mb-8 text-center">Common Questions about Moving to Switzerland</h2>
-            <div class="space-y-4">
-                {faqs.map((faq, i) => (
-                    <details class="group bg-[#F9FAFB] border border-slate-200 rounded-lg overflow-hidden">
-                        <summary class="flex justify-between items-center p-4 md:p-5 cursor-pointer font-semibold text-slate-800 hover:bg-slate-100 transition-colors select-none">
-                            {faq.q}
-                            <ChevronDown className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" />
-                        </summary>
-                        <div class="px-5 pb-5 pt-1 text-slate-600 leading-relaxed border-t border-slate-100">
-                            {faq.a}
-                        </div>
-                    </details>
-                ))}
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer Removed as requested -->
-    <script>
-        // Simple Tab Toggle Logic
-        const tabs = document.querySelectorAll('#hero-tabs button');
-        
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Deactivate all
-                tabs.forEach(t => {
-                    t.classList.remove('bg-white', 'text-slate-800', 'border-b-2', 'border-[#B61919]');
-                    t.classList.add('bg-slate-50', 'text-slate-500', 'border-transparent');
-                });
-
-                // Activate clicked
-                tab.classList.remove('bg-slate-50', 'text-slate-500', 'border-transparent');
-                tab.classList.add('bg-white', 'text-slate-800', 'border-b-2', 'border-[#B61919]');
-            });
-        });
-    </script>
-
-</body>
-</html>
+  // Global modal functions
+  (window as any).openModal = openModal;
+  (window as any).closeModal = closeModal;
+</script>
