@@ -31,7 +31,7 @@ languages:
   - "French"
 founded: 2005
 employees: "Not specified"
-verified: true
+verified: false
 featured: false
 rating:
   score: 4.9

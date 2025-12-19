@@ -32,8 +32,8 @@ languages:
   - "Russian"
 founded: 2024
 employees: "4"
-verified: true
-featured: true
+verified: false
+featured: false
 rating:
   score: 5
   reviews: 150

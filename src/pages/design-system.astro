@@ -1,0 +1,298 @@
+---
+import '../styles/global.css';
+
+const colors = [
+  { name: 'Warm Alabaster', hex: '#FAFAF9', class: 'bg-[#FAFAF9] border border-stone-200' },
+  { name: 'Midnight Slate', hex: '#0F172A', class: 'bg-[#0F172A] text-white' },
+  { name: 'Muted Gold', hex: '#C6A87C', class: 'bg-[#C6A87C] text-white' },
+  { name: 'Pure White', hex: '#FFFFFF', class: 'bg-white border border-stone-100' },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System - Precision & Heritage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* "Precision & Heritage" Overrides */
+        body {
+            background-color: #FAFAF9;
+            color: #0F172A;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.02em;
+        }
+
+        /* The "Keyline Card" - Sharp, precise, minimal */
+        .keyline-card {
+            background: #FFFFFF;
+            border: 1px solid #E7E5E4; /* stone-200 */
+            border-radius: 4px; /* rounded-sm */
+            transition: all 0.3s ease;
+        }
+
+        .keyline-card:hover {
+            border-color: #C6A87C;
+            box-shadow: 0 0 15px rgba(198, 168, 124, 0.15); /* Subtle Gold Glow */
+        }
+
+        /* The "Executive" Button */
+        .btn-executive {
+            background-color: #0F172A;
+            color: #FFFFFF;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 1rem 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-executive:hover {
+            background-color: #1E293B;
+            transform: translateY(-1px);
+        }
+
+        /* The "Lead Gen" Input - Contract Style */
+        .input-contract {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #E7E5E4;
+            padding: 0.5rem 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.125rem;
+            color: #0F172A;
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-contract:focus {
+            outline: none;
+            border-bottom-color: #C6A87C;
+        }
+
+        .input-contract::placeholder {
+            color: #A8A29E; /* stone-400 */
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.875rem;
+            opacity: 0.7;
+        }
+
+        /* Mesh Gradient Background for Hero */
+        .mesh-gradient {
+            background-color: #FAFAF9;
+            background-image: 
+                radial-gradient(at 100% 0%, hsla(38, 42%, 85%, 0.4) 0px, transparent 50%),
+                radial-gradient(at 0% 0%, hsla(210, 20%, 90%, 0.5) 0px, transparent 50%);
+        }
+
+        .gold-overline {
+            font-family: 'Manrope', sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #C6A87C;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-24">
+
+    <!-- Mesh Gradient Hero Section -->
+    <header class="mesh-gradient py-24 px-8 md:px-16 border-b border-stone-200">
+        <div class="max-w-6xl mx-auto">
+            <span class="gold-overline block mb-4">Design System 2.0</span>
+            <h1 class="text-5xl md:text-7xl font-semibold text-[#0F172A] mb-6">
+                Precision & <br /><span class="italic">Heritage</span>
+            </h1>
+            <p class="text-lg md:text-xl text-stone-600 max-w-2xl font-light">
+                A visual language for the Swiss Private Office. Established, secure, and meticulously crafted for the discerning expatriate and corporate client.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-8 md:px-16 py-24 space-y-32">
+
+        <!-- 1. Typography Scale -->
+        <section class="grid md:grid-cols-12 gap-12 border-t border-stone-200 pt-12">
+            <div class="md:col-span-4">
+                <h2 class="text-2xl font-semibold mb-2">Typography</h2>
+                <p class="text-stone-500 text-sm">Playfair Display (Headings) & Manrope (UI)</p>
+            </div>
+            <div class="md:col-span-8 space-y-12">
+                <div class="space-y-2">
+                    <span class="gold-overline">Display Serif</span>
+                    <h1 class="text-6xl text-[#0F172A]">The Swiss Standard.</h1>
+                </div>
+                <div class="space-y-2">
+                    <span class="gold-overline">Heading 2</span>
+                    <h2 class="text-4xl font-semibold text-[#0F172A]">Corporate Relocation Services</h2>
+                </div>
+                <div class="space-y-2">
+                    <span class="gold-overline">Body / Editorial</span>
+                    <p class="text-lg leading-relaxed text-stone-700 max-w-prose">
+                        We understand that relocating your executive team is a matter of precision, not just logistics. Our "Private Office" approach ensures that every detail—from tax domiciliation to international schooling—is handled with the discretion and efficiency you expect from a Swiss partner.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Color Palette -->
+        <section class="grid md:grid-cols-12 gap-12 border-t border-stone-200 pt-12">
+            <div class="md:col-span-4">
+                <h2 class="text-2xl font-semibold mb-2">Color Palette</h2>
+                <p class="text-stone-500 text-sm">Warm Alabaster, Midnight Slate, Muted Gold</p>
+            </div>
+            <div class="md:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
+                {colors.map((color) => (
+                    <div class="group">
+                        <div class={`h-32 w-full rounded-[4px] shadow-sm mb-3 ${color.class}`}></div>
+                        <p class="font-semibold text-sm text-[#0F172A]">{color.name}</p>
+                        <p class="font-mono text-xs text-stone-400 uppercase tracking-wide">{color.hex}</p>
+                    </div>
+                ))}
+            </div>
+        </section>
+
+        <!-- 3. Components: Buttons & Inputs -->
+        <section class="grid md:grid-cols-12 gap-12 border-t border-stone-200 pt-12">
+            <div class="md:col-span-4">
+                <h2 class="text-2xl font-semibold mb-2">Interface Elements</h2>
+                <p class="text-stone-500 text-sm">High-trust, contract-style interactions.</p>
+            </div>
+            <div class="md:col-span-8 grid md:grid-cols-2 gap-16">
+                
+                <!-- Buttons -->
+                <div class="space-y-8">
+                    <span class="gold-overline block border-b border-stone-200 pb-2">Actions</span>
+                    <div class="space-y-6">
+                        <!-- Primary Executive -->
+                        <div>
+                            <button class="btn-executive w-full md:w-auto">
+                                Request Consultation
+                            </button>
+                        </div>
+                        
+                        <!-- Secondary / Ghost -->
+                        <div>
+                            <button class="px-8 py-3 border border-[#0F172A] text-[#0F172A] uppercase text-sm tracking-wider font-semibold rounded-[4px] hover:bg-[#0F172A] hover:text-white transition-colors w-full md:w-auto">
+                                View Portfolio
+                            </button>
+                        </div>
+
+                        <!-- Text Link -->
+                        <div>
+                            <a href="#" class="inline-flex items-center text-[#C6A87C] font-medium hover:text-[#0F172A] transition-colors group">
+                                <span class="border-b border-[#C6A87C] pb-0.5 group-hover:border-[#0F172A] transition-colors">Read Market Report</span>
+                                <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lead Gen Inputs -->
+                <div class="space-y-8">
+                    <span class="gold-overline block border-b border-stone-200 pb-2">Inquiry Form</span>
+                    <div class="bg-white p-8 border border-stone-200 shadow-[0_0_20px_rgba(0,0,0,0.02)] rounded-[4px]">
+                        <form class="space-y-8">
+                            <div>
+                                <label class="block text-xs uppercase tracking-widest text-stone-400 mb-2">Full Name</label>
+                                <input type="text" class="input-contract" placeholder="e.g. Jonathan Sterling" />
+                            </div>
+                            <div>
+                                <label class="block text-xs uppercase tracking-widest text-stone-400 mb-2">Company</label>
+                                <input type="text" class="input-contract" placeholder="e.g. Sterling & Partners" />
+                            </div>
+                            <div class="pt-4">
+                                <button class="btn-executive w-full">Submit Inquiry</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Bento Grid (Keyline Style) -->
+        <section class="space-y-8 border-t border-stone-200 pt-12">
+            <div class="flex justify-between items-end">
+                <div>
+                    <span class="gold-overline mb-2 block">Services</span>
+                    <h2 class="text-3xl font-semibold">The Service Suite</h2>
+                </div>
+                <button class="text-sm text-stone-500 border-b border-stone-300 hover:text-[#0F172A] transition-colors pb-1">View All Services</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Card 1 -->
+                <div class="keyline-card p-8 flex flex-col justify-between min-h-[280px] group cursor-pointer">
+                    <div>
+                        <div class="w-10 h-10 mb-6 text-[#0F172A]">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#0F172A] mb-2 font-serif">Corporate Housing</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            Securing premium real estate in Geneva and Zurich for C-level executives.
+                        </p>
+                    </div>
+                    <div class="pt-6">
+                        <span class="text-xs uppercase tracking-widest text-[#C6A87C] opacity-0 group-hover:opacity-100 transition-opacity duration-300">Learn More &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="keyline-card p-8 flex flex-col justify-between min-h-[280px] group cursor-pointer">
+                    <div>
+                        <div class="w-10 h-10 mb-6 text-[#0F172A]">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#0F172A] mb-2 font-serif">Tax & Banking</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            Connecting you with private banking partners and tax advisors before arrival.
+                        </p>
+                    </div>
+                    <div class="pt-6">
+                        <span class="text-xs uppercase tracking-widest text-[#C6A87C] opacity-0 group-hover:opacity-100 transition-opacity duration-300">Learn More &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="keyline-card p-8 flex flex-col justify-between min-h-[280px] group cursor-pointer">
+                    <div>
+                        <div class="w-10 h-10 mb-6 text-[#0F172A]">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.499 5.221 69.17 69.17 0 01-2.717.827 69.17 69.17 0 01-2.112.613A69.17 69.17 0 0112 12.225a69.17 69.17 0 01-7.588-2.064 69.185 69.185 0 01-2.152-.618z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#0F172A] mb-2 font-serif">Education Advisory</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            Placement in top-tier international schools and universities for your family.
+                        </p>
+                    </div>
+                    <div class="pt-6">
+                        <span class="text-xs uppercase tracking-widest text-[#C6A87C] opacity-0 group-hover:opacity-100 transition-opacity duration-300">Learn More &rarr;</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>
+

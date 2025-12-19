@@ -5,6 +5,76 @@
 
 export type AgencyStatus = 'standard' | 'partner' | 'preferred';
 
+// ============================================================
+// Rich Content Type Definitions
+// ============================================================
+
+export interface PricingModel {
+  consultationFee?: number;
+  packagePricing: boolean;
+  freeInitialConsult: boolean;
+}
+
+export interface RatingBreakdown {
+  communication: number;
+  professionalism: number;
+  value: number;
+  timeliness: number;
+}
+
+export interface Highlight {
+  title: string;
+  icon?: string;
+  points: string[];
+}
+
+export interface Milestone {
+  year: number;
+  event: string;
+}
+
+export interface ProcessStep {
+  step: number;
+  title: string;
+  description: string;
+  duration?: string;
+  icon?: string;
+}
+
+export interface FAQ {
+  question: string;
+  answer: string;
+}
+
+export interface ContentBlocks {
+  highlights?: Highlight[];
+  milestones?: Milestone[];
+  process?: ProcessStep[];
+  faqs?: FAQ[];
+}
+
+export interface Stat {
+  label: string;
+  value: string;
+  icon?: string;
+}
+
+export interface Testimonial {
+  author: string;
+  role: string;
+  rating: number;
+  quote: string;
+}
+
+export interface SocialProof {
+  stats?: Stat[];
+  testimonials?: Testimonial[];
+}
+
+// ============================================================
+// Main Agency Interface
+// ============================================================
+
 export interface Agency {
   id: string;
   slug: string;
@@ -19,6 +89,13 @@ export interface Agency {
   status: AgencyStatus;
   created_at?: string;
   updated_at?: string;
+  // Rich content fields (from relocators table)
+  certifications?: string[];
+  pricing_model?: PricingModel | null;
+  rating_breakdown?: RatingBreakdown | null;
+  content_blocks?: ContentBlocks | null;
+  social_proof?: SocialProof | null;
+  meta_description?: string;
 }
 
 export interface Service {

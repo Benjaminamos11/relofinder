@@ -1,0 +1,250 @@
+---
+import '../styles/global.css';
+
+const colors = [
+  { name: 'Surface/Background', hex: '#F9FAFB', class: 'bg-[#F9FAFB] border border-gray-200' },
+  { name: 'Surface Highlight', hex: '#FFFFFF', class: 'bg-[#FFFFFF] border border-gray-100' },
+  { name: 'Primary Brand', hex: '#2C3E50', class: 'bg-[#2C3E50] text-white' },
+  { name: 'Action/Accent', hex: '#FF6F61', class: 'bg-[#FF6F61] text-white' },
+  { name: 'Swiss Touch', hex: '#D64541', class: 'bg-[#D64541] text-white' },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpine Clarity - Design Concept</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom overrides for this concept page */
+        body {
+            background-color: #F9FAFB;
+            color: #2C3E50;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        
+        /* Glassmorphism Utility */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Bento Card Utilities */
+        .bento-card {
+            background: #FFFFFF;
+            border-radius: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mad Libs Input */
+        .mad-libs-input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #e5e7eb;
+            color: #2C3E50;
+            font-weight: 600;
+            padding: 0 0.25rem;
+            transition: border-color 0.2s;
+        }
+        
+        .mad-libs-input:focus {
+            outline: none;
+            border-color: #FF6F61;
+        }
+    </style>
+</head>
+<body class="min-h-screen p-8 md:p-16">
+
+    <main class="max-w-6xl mx-auto space-y-24">
+        
+        <!-- Header -->
+        <header class="space-y-4">
+            <span class="inline-block px-3 py-1 rounded-full bg-[#D64541]/10 text-[#D64541] text-xs font-bold tracking-wider uppercase">Design System</span>
+            <h1 class="text-5xl md:text-6xl font-bold tracking-tight text-[#2C3E50]">
+                Alpine Clarity
+            </h1>
+            <p class="text-xl text-gray-500 max-w-2xl font-light">
+                A premium Swiss design language focusing on precision, cleanliness, and warmth.
+            </p>
+        </header>
+
+        <!-- 1. Color Palette -->
+        <section class="space-y-8">
+            <h2 class="text-2xl font-bold tracking-tight border-b border-gray-200 pb-4">1. Color Palette</h2>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+                {colors.map((color) => (
+                    <div class="space-y-3 group cursor-default">
+                        <div class={`h-24 w-full rounded-2xl shadow-sm transition-transform group-hover:scale-105 ${color.class}`}></div>
+                        <div>
+                            <p class="font-bold text-sm">{color.name}</p>
+                            <p class="font-mono text-xs text-gray-400 uppercase">{color.hex}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+
+        <!-- 2. Typography -->
+        <section class="space-y-8">
+            <h2 class="text-2xl font-bold tracking-tight border-b border-gray-200 pb-4">2. Typography</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div class="space-y-8">
+                    <div>
+                        <span class="text-xs text-gray-400 uppercase font-mono mb-2 block">Heading 1</span>
+                        <h1 class="text-5xl font-bold text-[#2C3E50] tracking-tight">
+                            Relocation to Switzerland made simple.
+                        </h1>
+                    </div>
+                    <div>
+                        <span class="text-xs text-gray-400 uppercase font-mono mb-2 block">Heading 2</span>
+                        <h2 class="text-4xl font-bold text-[#2C3E50] tracking-tight">
+                            Premium Services
+                        </h2>
+                    </div>
+                    <div>
+                        <span class="text-xs text-gray-400 uppercase font-mono mb-2 block">Heading 3</span>
+                        <h3 class="text-2xl font-bold text-[#2C3E50] tracking-tight">
+                            Visa & Immigration
+                        </h3>
+                    </div>
+                </div>
+                
+                <div>
+                    <span class="text-xs text-gray-400 uppercase font-mono mb-2 block">Body Text</span>
+                    <p class="text-lg leading-[1.6] text-gray-600">
+                        Moving to a new country is more than just logistics; it’s about starting a new chapter. Our approach combines Swiss precision with personalized care, ensuring that every aspect of your relocation is handled with the utmost attention to detail. From finding the perfect home to navigating local bureaucracy, we are your partners in this journey.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. UI Components -->
+        <section class="space-y-12">
+            <h2 class="text-2xl font-bold tracking-tight border-b border-gray-200 pb-4">3. UI Components</h2>
+            
+            <div class="grid lg:grid-cols-3 gap-12">
+                
+                <!-- Buttons -->
+                <div class="space-y-6">
+                    <h3 class="text-lg font-medium text-gray-400">Buttons</h3>
+                    <div class="space-y-4 p-8 bg-white rounded-2xl border border-gray-100 flex flex-col items-start">
+                        
+                        <!-- Primary -->
+                        <button class="bg-[#FF6F61] hover:bg-[#ee5f53] text-white px-8 py-3 rounded-full font-medium shadow-lg shadow-[#FF6F61]/20 transition-all hover:-translate-y-0.5">
+                            Get Started
+                        </button>
+                        
+                        <!-- Secondary -->
+                        <button class="bg-transparent border border-[#2C3E50] text-[#2C3E50] px-8 py-3 rounded-full font-medium hover:bg-[#2C3E50]/5 transition-colors">
+                            Learn More
+                        </button>
+
+                         <!-- Icon Button / Small -->
+                         <button class="flex items-center gap-2 text-[#FF6F61] font-medium hover:text-[#e65548] transition-colors group">
+                            View Details 
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bento Card -->
+                <div class="space-y-6">
+                    <h3 class="text-lg font-medium text-gray-400">Bento Card</h3>
+                    
+                    <div class="bento-card p-8 h-full flex flex-col justify-between relative overflow-hidden group">
+                        <div class="relative z-10">
+                            <div class="w-12 h-12 bg-[#2C3E50]/5 rounded-2xl flex items-center justify-center mb-6 text-[#2C3E50]">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                </svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-[#2C3E50] mb-2">Housing Search</h4>
+                            <p class="text-gray-500 leading-relaxed">
+                                Access exclusive off-market listings and let our local experts negotiate the best terms for your new Swiss home.
+                            </p>
+                        </div>
+                        
+                        <!-- Decorative gradient blob -->
+                        <div class="absolute -bottom-12 -right-12 w-32 h-32 bg-gradient-to-br from-[#FF6F61]/10 to-[#2C3E50]/5 rounded-full blur-2xl transition-transform group-hover:scale-150 duration-700"></div>
+                    </div>
+                </div>
+
+                <!-- Inputs -->
+                <div class="space-y-6">
+                    <h3 class="text-lg font-medium text-gray-400">Interactive Inputs</h3>
+                    <div class="p-8 bg-white rounded-2xl border border-gray-100 flex flex-col justify-center h-full">
+                        <p class="text-2xl leading-relaxed text-[#2C3E50] font-light">
+                            I want to move to
+                            <input type="text" placeholder="Zurich" class="mad-libs-input w-24 text-center" />, 
+                            and I need help with
+                            <select class="mad-libs-input bg-transparent cursor-pointer">
+                                <option>Housing</option>
+                                <option>Visas</option>
+                                <option>Banking</option>
+                            </select>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Gradients & Glassmorphism -->
+        <section class="space-y-8 relative pb-24">
+            <h2 class="text-2xl font-bold tracking-tight border-b border-gray-200 pb-4">4. Gradients & Effects</h2>
+            
+            <div class="relative h-80 w-full rounded-3xl overflow-hidden bg-[url('https://images.unsplash.com/photo-1527668752968-14dc70a27c95?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center shadow-2xl">
+                
+                <!-- Hero Bottom-up Gradient -->
+                <div class="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent"></div>
+
+                <!-- Glassmorphism Overlay -->
+                <div class="absolute top-8 right-8 md:right-12">
+                    <div class="glass-panel p-6 rounded-2xl max-w-xs">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="w-10 h-10 rounded-full bg-[#FF6F61] flex items-center justify-center text-white font-bold shadow-md">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-[#2C3E50]">Status Update</p>
+                                <p class="text-xs text-[#2C3E50]/70">Just now</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-[#2C3E50] font-medium">
+                            Permit application approved. <br>Welcome to Switzerland!
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="absolute bottom-8 left-8 md:left-12 max-w-lg">
+                    <span class="inline-block px-3 py-1 mb-4 rounded-full bg-[#2C3E50] text-white text-xs font-bold tracking-wider uppercase">
+                        Example Hero
+                    </span>
+                    <h2 class="text-4xl font-bold text-[#2C3E50] tracking-tight">
+                        Start your new life.
+                    </h2>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>
+

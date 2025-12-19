@@ -35,7 +35,7 @@ languages:
   - "German"
 founded: 1968
 employees: "Not specified"
-verified: true
+verified: false
 featured: false
 rating:
   score: 4.7

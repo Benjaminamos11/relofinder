@@ -36,7 +36,7 @@ languages:
   - "German"
 founded: 2011
 employees: "Not specified"
-verified: true
+verified: false
 featured: false
 rating:
   score: 5

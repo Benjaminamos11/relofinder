@@ -1,0 +1,105 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Comparison: Alpine Clarity vs. Precision & Heritage</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #111;
+            color: white;
+            font-family: system-ui, -apple-system, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        header {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            border-bottom: 1px solid #333;
+            z-index: 10;
+        }
+        h1 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 0;
+            color: #888;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+            height: calc(100vh - 60px);
+        }
+        .pane {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #333;
+            position: relative;
+        }
+        .pane:last-child {
+            border-right: none;
+        }
+        .pane-header {
+            padding: 12px;
+            background: #1a1a1a;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .pane-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .pane-url {
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        iframe {
+            flex: 1;
+            width: 100%;
+            border: none;
+            background: white;
+        }
+        
+        /* Label Colors */
+        .label-alpine { color: #FF6F61; }
+        .label-heritage { color: #C6A87C; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ReloFinder Design Concept Comparison</h1>
+    </header>
+    <div class="container">
+        <!-- Concept 1: Alpine Clarity -->
+        <div class="pane">
+            <div class="pane-header">
+                <span class="pane-title label-alpine">Option A: Alpine Clarity</span>
+                <span class="pane-url">/design-concept</span>
+            </div>
+            <iframe src="/design-concept" title="Alpine Clarity Design"></iframe>
+        </div>
+
+        <!-- Concept 2: Precision & Heritage -->
+        <div class="pane">
+            <div class="pane-header">
+                <span class="pane-title label-heritage">Option B: Precision & Heritage</span>
+                <span class="pane-url">/design-system</span>
+            </div>
+            <iframe src="/design-system" title="Precision & Heritage Design"></iframe>
+        </div>
+    </div>
+</body>
+</html>
+

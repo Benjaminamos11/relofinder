@@ -33,7 +33,7 @@ languages:
   - "French"
 founded: 1994
 employees: "13"
-verified: true
+verified: false
 featured: false
 rating:
   score: 4.8

@@ -353,6 +353,7 @@ const combinedSchema = {
         {sortedCompanies.map(company => {
           const supabaseData = relocatorMap.get(company.data.name);
           const rating = supabaseData?.rating || company.data.rating?.score || 4.5;
+          const tier = supabaseData?.tier || 'standard';
           
           return (
             <div 
@@ -362,13 +363,18 @@ const combinedSchema = {
               data-services={company.data.services.join(',')}
               data-regions={company.data.regions.join(',')}
               data-rating={rating}
-              data-verified={company.data.verified ? 'true' : 'false'}
+              data-verified={tier === 'preferred' || tier === 'partner' ? 'true' : 'false'}
             >
               <div class="p-6 flex flex-col flex-grow">
                 <div class="flex items-start justify-between mb-4 min-h-[28px]">
-                  {company.data.verified && (
-                    <span class="bg-green-50 text-green-700 text-xs font-medium px-2.5 py-1 rounded-full border border-green-200">
-                      ✓ Verified
+                  {tier === 'preferred' && (
+                    <span class="bg-gradient-to-r from-yellow-400 to-yellow-500 text-yellow-900 px-3 py-1.5 rounded-full text-xs font-bold shadow-md">
+                      ⭐ Preferred Partner
+                    </span>
+                  )}
+                  {tier === 'partner' && (
+                    <span class="bg-gradient-to-r from-blue-400 to-blue-500 text-blue-900 px-3 py-1.5 rounded-full text-xs font-bold shadow-md">
+                      ✓ Partner
                     </span>
                   )}
                 </div>

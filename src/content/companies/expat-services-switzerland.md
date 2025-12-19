@@ -33,7 +33,7 @@ languages:
   - "Russian"
 founded: 2020
 employees: "Not specified"
-verified: true
+verified: false
 featured: false
 rating:
   score: 4.8

@@ -36,7 +36,7 @@ languages:
   - "French"
 founded: 1990
 employees: "Not specified"
-verified: true
+verified: false
 featured: false
 rating:
   score: 4.6
