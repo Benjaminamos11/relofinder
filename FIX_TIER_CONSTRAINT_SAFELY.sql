@@ -1,14 +1,67 @@
 -- ==========================================
--- FIX TIER CONSTRAINT AND SET PREFERRED PARTNERS
+-- FIX TIER CONSTRAINT SAFELY - Step by Step
 -- ==========================================
--- This script:
--- 1. Checks current constraint
--- 2. Fixes constraint if it doesn't allow 'preferred'
--- 3. Sets Prime Relocation and Welcome Service to 'preferred'
--- 4. Verifies everything
+-- This script fixes the constraint violation by:
+-- 1. Finding all invalid tier values
+-- 2. Fixing them first
+-- 3. Then updating the constraint
+-- 4. Then setting preferred partners
 
 -- ==========================================
--- STEP 1: Check current constraint definition
+-- STEP 1: Check what tier values currently exist
+-- ==========================================
+SELECT 
+    tier,
+    COUNT(*) as count,
+    STRING_AGG(name, ', ' ORDER BY name) as companies
+FROM relocators
+GROUP BY tier
+ORDER BY tier;
+
+-- ==========================================
+-- STEP 2: Find any NULL or invalid tier values
+-- ==========================================
+SELECT 
+    id,
+    name,
+    tier,
+    CASE 
+        WHEN tier IS NULL THEN 'NULL - needs fixing'
+        WHEN tier NOT IN ('standard', 'partner', 'preferred') THEN 'Invalid value: ' || tier
+        ELSE 'Valid'
+    END as status
+FROM relocators
+WHERE tier IS NULL 
+   OR tier NOT IN ('standard', 'partner', 'preferred');
+
+-- ==========================================
+-- STEP 3: Fix any NULL or invalid tier values first
+-- ==========================================
+-- Set NULL to 'standard'
+UPDATE relocators 
+SET tier = 'standard'
+WHERE tier IS NULL;
+
+-- Set any invalid values to 'standard'
+UPDATE relocators 
+SET tier = 'standard'
+WHERE tier NOT IN ('standard', 'partner', 'preferred');
+
+-- ==========================================
+-- STEP 4: Now drop the old constraint
+-- ==========================================
+ALTER TABLE relocators 
+DROP CONSTRAINT IF EXISTS relocators_tier_check;
+
+-- ==========================================
+-- STEP 5: Add the correct constraint
+-- ==========================================
+ALTER TABLE relocators
+ADD CONSTRAINT relocators_tier_check 
+CHECK (tier IN ('standard', 'partner', 'preferred'));
+
+-- ==========================================
+-- STEP 6: Verify constraint is working
 -- ==========================================
 SELECT 
     conname AS constraint_name,
@@ -19,53 +72,7 @@ WHERE conrelid = 'relocators'::regclass
   AND conname LIKE '%tier%';
 
 -- ==========================================
--- STEP 2: Check current tier values
--- ==========================================
-SELECT DISTINCT tier, COUNT(*) as count
-FROM relocators
-GROUP BY tier
-ORDER BY tier;
-
--- ==========================================
--- STEP 3: Check Prime Relocation and Welcome Service current status
--- ==========================================
-SELECT 
-    name,
-    tier,
-    can_reply_to_reviews,
-    meeting_url
-FROM relocators
-WHERE name ILIKE '%prime relocation%' 
-   OR name ILIKE '%welcome service%'
-ORDER BY name;
-
--- ==========================================
--- STEP 4: Find and fix any invalid tier values FIRST
--- ==========================================
--- This is critical - we must fix invalid data before changing constraint
-UPDATE relocators 
-SET tier = 'standard'
-WHERE tier IS NULL;
-
-UPDATE relocators 
-SET tier = 'standard'
-WHERE tier NOT IN ('standard', 'partner', 'preferred');
-
--- ==========================================
--- STEP 5: Drop old constraint (if it exists)
--- ==========================================
-ALTER TABLE relocators 
-DROP CONSTRAINT IF EXISTS relocators_tier_check;
-
--- ==========================================
--- STEP 6: Add correct constraint that allows 'preferred'
--- ==========================================
-ALTER TABLE relocators
-ADD CONSTRAINT relocators_tier_check 
-CHECK (tier IN ('standard', 'partner', 'preferred'));
-
--- ==========================================
--- STEP 6: Update Prime Relocation to 'preferred'
+-- STEP 7: Now update Prime Relocation to 'preferred'
 -- ==========================================
 UPDATE relocators 
 SET 
@@ -75,7 +82,7 @@ WHERE name ILIKE '%prime relocation%'
 RETURNING id, name, tier, can_reply_to_reviews;
 
 -- ==========================================
--- STEP 7: Update Welcome Service to 'preferred'
+-- STEP 8: Update Welcome Service to 'preferred'
 -- ==========================================
 UPDATE relocators 
 SET 
@@ -85,7 +92,7 @@ WHERE name ILIKE '%welcome service%'
 RETURNING id, name, tier, can_reply_to_reviews;
 
 -- ==========================================
--- STEP 8: Verify the changes
+-- STEP 9: Final verification
 -- ==========================================
 SELECT 
     name, 
@@ -103,7 +110,7 @@ WHERE name ILIKE '%prime relocation%'
 ORDER BY tier DESC, name;
 
 -- ==========================================
--- STEP 9: Show all preferred companies (should be 2)
+-- STEP 10: Show all preferred companies
 -- ==========================================
 SELECT 
     name, 
@@ -115,7 +122,7 @@ WHERE tier = 'preferred'
 ORDER BY rating DESC NULLS LAST, name;
 
 -- ==========================================
--- STEP 10: Show tier distribution
+-- STEP 11: Show final tier distribution
 -- ==========================================
 SELECT 
     tier,
