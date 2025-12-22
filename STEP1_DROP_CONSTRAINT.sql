@@ -15,3 +15,4 @@ WHERE conrelid = 'relocators'::regclass
   AND contype = 'c'
   AND conname LIKE '%tier%';
 
+

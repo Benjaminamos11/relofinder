@@ -342,3 +342,4 @@ When comparing quotes on ReloFinder, do not just look at the price. Look at the 
 
 *Relocating to Switzerland? The housing market is brutal, but solvable. Start by finding an agent with the right access. [Compare agencies on ReloFinder](/companies), and make sure they're connected to networks like [Offlist.ch](https://offlist.ch).*
 
+

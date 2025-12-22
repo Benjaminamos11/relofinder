@@ -61,3 +61,4 @@ After syncing:
 - The rating should reflect their actual Google reviews
 - Reviews should be from "Welcome Service" relocation company, not a travel agency
 
+

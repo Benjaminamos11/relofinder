@@ -362,3 +362,4 @@ The Swiss system is excellent once you're in it — but the entry paperwork requ
 
 *Relocating to Switzerland? Get your insurance sorted early. Start with liability insurance from [Insurance-Guide.ch](https://insurance-guide.ch), then consult [Expat-Savvy.ch](https://expat-savvy.ch) for health insurance optimization. Your future self will thank you.*
 
+

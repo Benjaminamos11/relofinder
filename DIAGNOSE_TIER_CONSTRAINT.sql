@@ -58,3 +58,4 @@ FROM information_schema.columns
 WHERE table_name = 'relocators' 
   AND column_name = 'tier';
 
+

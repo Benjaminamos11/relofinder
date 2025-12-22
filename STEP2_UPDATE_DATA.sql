@@ -42,3 +42,4 @@ FROM relocators
 GROUP BY tier
 ORDER BY tier;
 
+
