@@ -13,9 +13,10 @@ const heroImage = post.data.heroImage;
 const category = post.data.category;
 const tags = post.data.tags;
 const excerpt = post.data.excerpt;
+const faqs = post.data.faqs || [];
 
-// Generate schema markup
-const schema = {
+// Generate Article schema markup
+const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": title,
@@ -40,6 +41,23 @@ const schema = {
     "@id": `https://relofinder.ch/blog/${post.slug}`
   }
 };
+
+// Generate FAQPage schema if FAQs exist
+const faqSchema = faqs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq: { question: string; answer: string }) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+} : null;
+
+// Combine all schemas into an array
+const schema = faqSchema ? [articleSchema, faqSchema] : articleSchema;
 
 const currentUrl = `https://relofinder.ch/blog/${post.slug}`;
 const shareText = encodeURIComponent(title);

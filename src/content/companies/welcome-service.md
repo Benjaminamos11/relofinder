@@ -35,14 +35,8 @@ languages:
   - "German"
 founded: 1990
 employees: "Not specified"
-verified: true
-featured: true
-# Google My Business URLs (multiple locations):
-# Geneva: https://maps.app.goo.gl/kJLqiTU5qtULd9EDA
-# Lausanne: https://maps.app.goo.gl/VPom11VS84XS9XTV8
-# Zurich: https://maps.app.goo.gl/CrsBwecLgEQAv9Jh9
-# Note: Schema only supports one URL, using Geneva as primary
-googleMyBusinessUrl: "https://maps.app.goo.gl/kJLqiTU5qtULd9EDA" # Geneva (primary)
+verified: false
+featured: false
 rating:
   score: 4.5
   reviews: 10
