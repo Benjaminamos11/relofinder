@@ -1,7 +1,7 @@
 ---
-title: "The 'Reverse Application': A New Strategy for Finding Housing in Switzerland (2025)"
+title: "The 'Reverse Application': A New Strategy for Finding Housing in Switzerland (2026)"
 description: "Discover Offlist.ch - Switzerland's first 'Tenant Visibility' platform for expats and international professionals. Access off-market apartments while relocation agencies find you."
-publishDate: 2025-12-22
+publishDate: 2026-01-01
 readingTime: 8
 author: "ReloFinder Editorial Team"
 heroImage: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&h=600&fit=crop"
@@ -10,7 +10,7 @@ tags: ["housing", "switzerland", "offlist", "off-market", "relocation-strategy",
 featured: true
 excerpt: "Traditional apartment hunting is obsolete. Learn the 'Pull' method: register on Offlist.ch and let relocation agencies propose you off-market apartments."
 seo:
-  title: "Offlist.ch: The Reverse Application Method for Swiss Housing 2025"
+  title: "Offlist.ch: The Reverse Application Method for Swiss Housing 2026"
   description: "Offlist.ch pioneered Tenant Visibility in Switzerland. Expats and international professionals register, verify employment, and receive proposals from relocation agencies with off-market listings."
   keywords: ["offlist.ch", "off-market housing switzerland", "reverse application", "tenant visibility", "swiss apartment search", "expat housing", "relocation agencies switzerland", "international professionals switzerland"]
 faqs:
@@ -46,7 +46,7 @@ Finding an apartment in Switzerland has become one of the most stressful aspects
 
 ---
 
-## The Problem: Why Traditional Apartment Hunting Fails in 2025
+## The Problem: Why Traditional Apartment Hunting Fails in 2026
 
 ### The "Push" Model Is Dead
 
@@ -60,13 +60,13 @@ Traditional relocation guides tell you to:
 
 This is the **"Push" method** — you push your application at landlords, hoping someone notices you in a stack of 50-200 competing applicants.
 
-**The reality in 2025**: This method is effectively obsolete in Switzerland's major cities.
+**The reality in 2026**: This method is effectively obsolete in Switzerland's major cities.
 
 ### Vacancy Rates Near Zero
 
 Switzerland's housing crisis has reached critical levels:
 
-| City | Vacancy Rate (2024) | Average Applicants Per Listing |
+| City | Vacancy Rate (2025) | Average Applicants Per Listing |
 |------|---------------------|-------------------------------|
 | Zurich | 0.07% | 150+ |
 | Zug | 0.15% | 100+ |
@@ -214,7 +214,7 @@ Offlist.ch works best as part of a multi-channel strategy:
 3. **Monitor public listings** on traditional portals (but expect low success rates)
 4. **Leverage your network** — personal referrals still work
 
-**Related resources**: [Best Relocation Companies in Switzerland](/blog/best-relocation-companies-switzerland-2025) • [Housing Search Services](/services/housing)
+**Related resources**: [Best Relocation Companies in Switzerland](/blog/best-relocation-companies-switzerland-2026) • [Housing Search Services](/services/housing)
 
 ---
 
@@ -339,7 +339,7 @@ Not sure where to start? Work with a verified relocation company who can guide y
 
 ### Option 3: Explore More Resources
 
-- **[Best Relocation Companies in Switzerland (2025)](/blog/best-relocation-companies-switzerland-2025)** — Compare top agencies
+- **[Best Relocation Companies in Switzerland (2026)](/blog/best-relocation-companies-switzerland-2026)** — Compare top agencies
 - **[Housing Search Services](/services/housing)** — Understand your options
 - **[Zurich Relocation Guide](/regions/zurich)** — City-specific insights
 - **[Zug Relocation Guide](/regions/zug)** — Business hub essentials
@@ -353,7 +353,7 @@ Not sure where to start? Work with a verified relocation company who can guide y
 
 **Independence**: This guide provides educational information about alternative housing search methods. ReloFinder recommends a multi-channel approach combining various strategies for optimal results.
 
-**Last Updated**: December 22, 2025
+**Last Updated**: January 1, 2026
 
 ---
 
