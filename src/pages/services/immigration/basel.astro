@@ -1,0 +1,850 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SchemaMarkup from '../../../components/common/SchemaMarkup.astro';
+import PlatformDisclaimer from '../../../components/common/PlatformDisclaimer.astro';
+import ServiceHero from '../../../components/services/ServiceHero.astro';
+
+const title = "Immigration in Basel | Work & Residence Permits | ReloFinder";
+const description = "Compare immigration providers in Basel. ReloFinder helps you evaluate relocation agencies for residence & work permits, Einwohnerkontrolle registration & Migrationsamt support.";
+const canonicalURL = "https://relofinder.ch/services/immigration/basel";
+const keywords = ['immigration basel', 'basel work permit', 'basel residence permit', 'visa basel', 'einwohnerkontrolle basel', 'migrationsamt basel', 'b permit basel', 'c permit basel', 'pharma basel'];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://relofinder.ch"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://relofinder.ch/services"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Immigration",
+      "item": "https://relofinder.ch/services/immigration"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Basel",
+      "item": "https://relofinder.ch/services/immigration/basel"
+    }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Immigration Services in Basel",
+  "description": "Compare immigration providers and relocation agencies for work permits, residence permits, Einwohnerkontrolle registration, and Migrationsamt support in Basel, Switzerland",
+  "provider": {
+    "@type": "Organization",
+    "name": "ReloFinder",
+    "url": "https://relofinder.ch"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Basel",
+    "containedIn": {
+      "@type": "Country",
+      "name": "Switzerland"
+    }
+  },
+  "serviceType": "Immigration & Permit Services"
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What permits are available for expats in Basel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Basel offers several residence and work permits depending on nationality and purpose. EU/EFTA citizens receive L permit (short-term, under 1 year), B permit (residence, 5 years renewable), or C permit (permanent settlement, after 5-10 years). Non-EU/EFTA citizens face quotas and stricter requirements: L permit for assignments under 1 year, B permit for residence/work (annual renewable, quota-limited), and C permit after 10 years. Specific permits include G permit (cross-border commuters from France/Germany - Basel is a tri-border region), F permit (temporary admission), and N permit (asylum seekers). Migrationsamt Basel-Stadt processes permits for Basel city; Migrationsamt Basel-Landschaft for Basel-Landschaft canton. Permits depend on employment contract, salary thresholds, qualifications, and employer justification. Basel's pharmaceutical industry (Roche, Novartis) attracts many high-skilled expats."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do I register my residence in Basel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Register at the Einwohnerkontrolle (residence registration office) within 14 days of arrival in Basel. Basel-Stadt (city) has one main Einwohnerkontrolle office at Marktplatz 1, 4001 Basel. Basel-Landschaft (canton) has multiple Gemeinde offices depending on your municipality. Bring rental contract, passport, residence permit (if already issued), biometric photo, and registration form (Anmeldeformular in German). Basel is a tri-border region (Switzerland, France, Germany), so cross-border workers (G permit holders) from France/Germany also register here. Late registration can result in CHF 100-200 fines. Book appointments online in advance as walk-ins face wait times. Basel's pharmaceutical industry (Roche, Novartis) means many expats register here."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between B and L permits in Basel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L permit (short-term residence): Valid up to 1 year for assignments under 12 months. EU/EFTA citizens receive almost automatically with employment contract. Non-EU citizens face quotas and stricter approval. Renewable if contract extends. Allows family reunification but limited. Tied to specific employer and job. B permit (residence): Valid 5 years for EU/EFTA, 1 year renewable for non-EU. Allows longer-term residence, job changes (after 1 year), and easier family reunification. Non-EU B permits subject to annual quotas (few thousand nationwide). Requires employer justification and higher salary thresholds. Both processed by Migrationsamt Basel-Stadt or Basel-Landschaft depending on location. B permit offers more stability and flexibility; L permit for temporary assignments only. Basel's pharmaceutical industry (Roche, Novartis) often requires longer-term B permits for research and executive roles."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to get a work permit in Basel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Processing times vary significantly by nationality and permit type. EU/EFTA citizens: L and B permits typically 2-6 weeks from complete application to Migrationsamt Basel approval. Often straightforward as no quotas apply. Non-EU/EFTA citizens: 8-16 weeks or longer due to federal quota system and stricter vetting. Employer must prove no suitable EU/Swiss candidate available. High-skilled roles in pharmaceutical industry (Roche, Novartis executives, specialists, PhDs, salary above CHF 120,000) process faster. Complex cases or incomplete documents cause delays. Start application process 3-4 months before planned move. Employer and relocation agency coordination essential. Peak times (January-March corporate relocations, summer for pharma research positions) see longer waits. Urgent cases can be expedited with additional fees and employer justification. Basel's tri-border location means cross-border worker (G permit) applications from France/Germany typically process in 2-6 weeks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can non-EU citizens get a residence permit in Basel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, but non-EU/EFTA citizens face significant restrictions. Switzerland imposes annual federal quotas for non-EU B and L permits (approximately 8,500 total, divided among cantons). Basel receives significant cantonal quota share due to pharmaceutical industry importance (Roche, Novartis headquarters). Permits granted only for high-skilled positions: executives, specialists, qualified professionals with university degrees or rare expertise. Employer must prove economic necessity and that no suitable EU/Swiss candidate exists. Salary thresholds apply (typically CHF 100,000-120,000+ depending on role and age). Industries with higher approval in Basel: pharmaceutical (Roche, Novartis), life sciences, chemical industry, tech, research. Family reunification possible but requires proof of adequate income and housing. After 10 years continuous residence, C permit (permanent settlement) possible. Relocation agencies navigate complex quota system and prepare strong applications. Basel's pharmaceutical industry often sponsors high-skilled non-EU professionals."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to translate my documents into German for Basel immigration?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Basel-Stadt and Basel-Landschaft cantons (German-speaking) require all official documents in German or accompanied by certified German translations. Documents needing translation: birth certificates, marriage certificates, diplomas, employment contracts (if not in German/English), previous residence permits, criminal records, and official correspondence. Migrationsamt Basel and Einwohnerkontrolle accept English for some documents (employment contracts from international pharmaceutical companies like Roche, Novartis, university diplomas) but prefer German. Personal documents and certificates from non-German/English-speaking countries require sworn translations by certified translators. Translation costs: CHF 50-150 per document depending on length and complexity. Relocation agencies coordinate translation services and ensure documents meet Migrationsamt requirements. Incorrect translations cause application delays or rejections. Invest in professional certified translations for critical documents. Basel's tri-border location means some cross-border workers may also need French translations for French residence documents."
+      }
+    }
+  ]
+};
+---
+
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonicalURL}
+  keywords={keywords}
+  schema={{
+    "@context": "https://schema.org",
+    "@graph": [breadcrumbSchema, serviceSchema, faqSchema]
+  }}
+>
+
+  <ServiceHero
+    title="Immigration in Basel"
+    subtitle="Work & Residence Permits for Expats"
+    description="Basel's pharmaceutical industry (Roche, Novartis) and tri-border location attract many international professionals. Navigating residence and work permits in this German-speaking region can be complex. ReloFinder helps you compare relocation providers in Basel and connect with the right agency for immigration support. We don't deliver the services ourselves — we connect you to trusted partners."
+    icon="passport"
+    badge="Immigration in Basel"
+  />
+
+  <!-- Platform Disclaimer -->
+  <section class="py-8 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer compact={true} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Primary CTA after Hero -->
+  <section class="py-12 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Need Help with Your Basel Residence Permit?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get expert support for work permits, Einwohnerkontrolle registration, and Migrationsamt processes
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'immigration_basel', service: 'immigration'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Immigration in Zurich Is Challenging -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            The Challenge
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Why Immigration in Basel Is <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Challenging</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Basel's tri-border location and pharmaceutical industry create unique immigration challenges
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Strict Migrationsamt Basel Requirements</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Migrationsamt Basel-Stadt (Basel City Migration Office) and Migrationsamt Basel-Landschaft (Basel-Landschaft Canton Migration Office) enforce rigorous documentation standards. All permit applications require complete dossiers: valid employment contract with Swiss employer (often pharmaceutical companies like Roche, Novartis), salary meeting minimum thresholds, proof of qualifications (diplomas, certificates - pharma/tech roles common), clean criminal record, valid passport with sufficient validity, proof of health insurance, and employer justification letter. Missing or incomplete documents result in automatic rejections or delays. Non-EU citizens face additional scrutiny with employer proving no suitable EU/Swiss candidate exists. Basel's pharmaceutical industry attracts many high-skilled expats, creating competitive permit applications. Even minor errors cause weeks of delay. Professional guidance essential for first-time applicants.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Tri-Border Cross-Border Workers</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Basel's unique location at the tri-border (Switzerland, France, Germany) creates special cross-border worker (G permit) dynamics. Many expats live in France (Saint-Louis, Huningue) or Germany (Lörrach, Weil am Rhein) and commute to Basel for work at pharmaceutical companies (Roche, Novartis) or other employers. G permits require primary residence in border zone, daily/weekly commute, and employment with Basel employer. Advantages: lower housing costs in France/Germany (30-50% cheaper), larger apartments, different tax systems. Considerations: daily commute via car or public transport, tax complexities (Swiss source tax vs. home country tax), health insurance choices. EU/EFTA citizens enjoy freedom of movement: B and L permits granted almost automatically with employment contracts, minimal quotas, and 2-6 week processing. Non-EU/EFTA citizens face federal quota system (approximately 8,500 permits annually nationwide, divided among cantons). Basel receives significant share due to pharmaceutical industry. Non-EU permits require high-skilled positions, university degrees, salary thresholds (CHF 100,000-120,000+), and employer proving economic necessity. Understanding which category you fall under and navigating appropriate channels critical. Agencies provide EU vs. non-EU strategic guidance.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Tight 14-Day Registration Deadline</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Swiss federal law requires residence registration within 14 days of arrival at Einwohnerkontrolle (residence registration office). Basel-Stadt (city) has one main office at Marktplatz 1, 4001 Basel. Basel-Landschaft (canton) has multiple Gemeinde offices depending on municipality. Appointment booking essential (walk-ins face wait times). Registration requires rental contract, passport, residence permit confirmation (or application receipt), biometric photo, completed Anmeldeformular (registration form in German), and registration fees. Einwohnerkontrolle staff may have limited English; German language or translator helpful. Missing the 14-day deadline results in CHF 100-200 fines and potential complications for permit renewals. Expats arriving without pre-arranged appointments or incomplete documents struggle to meet deadlines. Agencies coordinate timely registrations and provide German-language support. Basel's pharmaceutical industry means many expats register here, so appointments can be in high demand.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">German-Language Documentation</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Canton Basel-Stadt and Basel-Landschaft are German-speaking. All official correspondence, application forms, and supporting documents from Migrationsamt Basel and Einwohnerkontrolle are in German. While some international pharmaceutical companies (Roche, Novartis) provide English employment contracts (generally accepted), personal documents (birth certificates, marriage certificates, diplomas from non-German/English countries, previous residence permits) require certified German translations. Sworn translators (beglaubigte Übersetzer) charge CHF 50-150 per document. Application forms (Anmeldeformular, permit applications) in German with complex legal terminology. Migrationsamt staff may provide limited English support (Basel has many international workers), but German fluency significantly improves application success and communication. Non-German speakers face barriers understanding requirements, deadlines, and rejection reasons. Professional translation services and German-speaking agency support essential. Basel's tri-border location means some cross-border workers may also need French translations for French residence documents.
+            </p>
+          </div>
+
+          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Quotas & Processing Delays</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Non-EU/EFTA citizens face federal quota system: approximately 8,500 B and L permits annually for all of Switzerland. Canton Zurich receives proportionally largest share (approximately 2,000-2,500) due to economic importance, but quotas fill by mid-year (April-June). Applications submitted after quota exhaustion wait until next calendar year or face rejection. Even within quotas, processing takes 8-16 weeks or longer for non-EU permits due to federal and cantonal review layers. Employer must justify position, salary, and qualifications. Peak corporate relocation season (January-March) sees longest delays. EU/EFTA applications process faster (2-6 weeks) but still subject to Migrationsamt Zürich workload. Timing applications strategically (avoid peak times, apply early for non-EU quotas) and preparing complete dossiers (no back-and-forth for missing documents) reduce delays. Agency coordination with employers and Migrationsamt essential.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-12 p-8 bg-gradient-to-br from-primary-50 via-white to-red-50 rounded-2xl border-2 border-primary-100">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <svg class="w-8 h-8 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-4">
+              <h4 class="text-xl font-bold text-gray-900 mb-2">Expert Insight</h4>
+              <p class="text-gray-700 leading-relaxed">
+                <strong>Zurich's immigration system is manageable with proper preparation and expert guidance.</strong> EU/EFTA citizens navigate relatively smoothly with complete employment documentation. Non-EU citizens must work closely with employers and agencies to prepare competitive applications within quota constraints. Start permit applications 3-4 months before planned move. Invest in certified German translations for critical documents. Book Kreisbüro appointments immediately upon arrival. Agencies coordinate employer, Migrationsamt, and Kreisbüro communications, ensuring timely and compliant applications.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Agencies Help -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Our Solution
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            How Agencies <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Help in Zurich</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            ReloFinder connects you with agencies specializing in Zurich immigration processes
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  1
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Permit B/L/C Application Support</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Comprehensive support for all Zurich residence permit types: L permit (short-term, under 1 year), B permit (residence, 1-5 years depending on nationality), C permit (permanent settlement, after 5-10 years), and specialized permits (G cross-border, F temporary admission). Agencies assess your profile (nationality, employment, family status) and determine best permit strategy. Prepare complete dossiers meeting Migrationsamt Zürich requirements: employment contract review, salary verification, qualification documentation, criminal record coordination, health insurance proof, and employer justification letters. EU/EFTA applications streamlined with document checklists and submission coordination. Non-EU applications prepared within quota system: timing strategy (submit early in year), competitive positioning (emphasize qualifications, salary, economic benefit), and employer coordination. Track applications through Migrationsamt processing and address any requests for additional documentation.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">L/B/C Permits</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">EU & Non-EU</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Quota Strategy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  2
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">EU/EFTA vs. Third-Country Consulting</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Strategic consulting for different nationality pathways. EU/EFTA citizens (27 EU member states plus Iceland, Liechtenstein, Norway, Switzerland): leverage bilateral agreements for smoother processing, prepare documentation for near-automatic L/B permit approval, coordinate family reunification (easier for EU citizens), and advise on C permit pathways (after 5 years continuous residence). Non-EU/EFTA third-country nationals: navigate federal quota system (approximately 8,500 permits annually, Zurich receives largest cantonal share), prepare competitive applications emphasizing high skills and economic benefit, coordinate employer justification (prove no suitable EU/Swiss candidate exists), ensure salary meets thresholds (CHF 100,000-120,000+ depending on role and age), and advise on timing (apply early in year before quotas fill). Agencies understand Migrationsamt Zürich's evaluation criteria and position applications optimally within EU vs. non-EU frameworks.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">EU/EFTA Strategy</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Non-EU Quotas</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Competitive Applications</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  3
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">Kreisbüro Registration Assistance</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Comprehensive Kreisbüro (district registration office) support ensuring timely compliance with 14-day registration deadline. City of Zurich has 12 Kreisbüros serving different districts: Kreisbüro 1/2 (Altstadt, Enge, Wollishofen), Kreisbüro 3 (Wiedikon, Friesenberg), Kreisbüro 4/5 (Aussersihl, Industriequartier), Kreisbüro 6 (Unterstrass, Oberstrass), Kreisbüro 7/8 (Hottingen, Fluntern, Witikon), Kreisbüro 9 (Altstetten, Albisrieden), Kreisbüro 10 (Höngg, Wipkingen), Kreisbüro 11 (Oerlikon, Seebach, Affoltern), Kreisbüro 12 (Schwamendingen, Saatlen, Hirzenbach). Agencies determine correct Kreisbüro based on housing address, book appointments (online or phone), prepare required documents (rental contract, passport, permit, biometric photo, registration form), accompany to appointments for German-language support, and ensure all forms completed correctly. For Canton Zurich municipalities outside city (Zollikon, Küsnacht, Adliswil, Kloten, Opfikon, Wallisellen, etc.), coordinate with respective Gemeinde offices. Avoid late registration fines and permit complications.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">12 Kreisbüros</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">14-Day Deadline</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">German Support</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  4
+                </div>
+              </div>
+              <div class="ml-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">German Translation & Compliance</h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                  Professional German translation and compliance services for all Zurich immigration documentation. Coordinate certified translations (beglaubigte Übersetzungen) for foreign documents: birth certificates, marriage certificates, university diplomas, professional qualifications, previous residence permits, criminal records, and official correspondence. Sworn translators ensure translations meet Migrationsamt and Kreisbüro standards. Review employment contracts and provide German summaries if needed. Complete German-language application forms (Anmeldeformular, permit applications) with correct legal terminology. Translate Migrationsamt correspondence and explain requirements, deadlines, and next steps. German-speaking agency staff communicate directly with Migrationsamt Zürich, Kreisbüros, employers, and landlords, eliminating language barriers. Ensure all documents formatted correctly for Swiss bureaucratic standards. Translation services typically CHF 50-150 per document depending on complexity; agencies negotiate bulk rates.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Certified Translations</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">German Forms</span>
+                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Compliance</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA after How We Help -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Ready to Start Your Permit Application?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get expert guidance for Zurich permits, Kreisbüro registration, and German-language support
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'immigration_zurich_mid', service: 'immigration'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Local Considerations -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Local Considerations
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Zurich <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Immigration Landscape</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Key offices, processes, and considerations specific to Zurich
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gradient-to-r from-primary-500 to-primary-600 p-6">
+              <h3 class="text-2xl font-bold text-white mb-2">Kreisbüros (District Offices)</h3>
+              <p class="text-primary-100">12 Registration Offices Across Zurich</p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-600 leading-relaxed mb-4">
+                Each Zurich district has designated Kreisbüro for residence registration. Determine correct office based on housing address. Popular offices: Kreisbüro 11 (Oerlikon, Seebach – many expats live here), Kreisbüro 1/2 (Altstadt, Enge – central city), Kreisbüro 3 (Wiedikon – residential). Book appointments online in advance (walk-ins face 2-3 hour waits). Bring complete documents: rental contract, passport, permit, biometric photo, registration form. Staff may have limited English; German helpful. Processing usually same-day if documents complete.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">🏢 12 Offices</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">📅 Book Ahead</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">🇩🇪 German</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="bg-gradient-to-r from-primary-500 to-primary-600 p-6">
+              <h3 class="text-2xl font-bold text-white mb-2">City vs. Canton Zurich</h3>
+              <p class="text-primary-100">Different Processes for Different Areas</p>
+            </div>
+            <div class="p-8">
+              <p class="text-gray-600 leading-relaxed mb-4">
+                City of Zurich: Use one of 12 Kreisbüros for registration. Migrationsamt Zürich (Berninastrasse 45, 8090 Zürich) processes permits for entire canton. Canton Zurich outside city: Register with local Gemeinde (municipality) office instead of Kreisbüro. Common municipalities with expats: Zollikon, Küsnacht (Gold Coast), Adliswil, Thalwil (lake), Kloten, Opfikon, Wallisellen (airport area). Each Gemeinde has own office hours and appointment systems. Permit processing still through Migrationsamt Zürich for entire canton. Understand which municipality/district you live in for correct registration.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">🏙️ City vs Canton</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">🏘️ Gemeinde Offices</span>
+                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">📍 Know Location</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">High Expat Volume</h4>
+            <p class="text-gray-600 text-sm">Zurich is Switzerland's #1 expat destination. Migrationsamt and Kreisbüros handle high application volumes. Expect thorough vetting, longer wait times during peak seasons (Jan-Mar), and strict adherence to requirements.</p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200">
+            <h4 class="text-lg font-bold text-gray-900 mb-2">International Employer Support</h4>
+            <p class="text-gray-600 text-sm">Zurich's finance, tech, pharma sectors have extensive experience with work permits. Employers provide HR support, justification letters, and coordination with Migrationsamt. Leverage employer resources and relocation agency partnerships.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step-by-Step Process -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Step-by-Step Guide
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Your Zurich Immigration <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Process</span>
+          </h2>
+          <p class="text-xl text-gray-600">
+            Follow this proven process for securing residence permits in Zurich
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              1
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Document Review & Needs Assessment</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Initial consultation with agency to assess your immigration profile: nationality (EU/EFTA vs. non-EU), employment contract details (role, salary, duration), family status (spouse, children requiring permits), housing situation (rental contract needed for registration), and timeline (when do you need to move). Agency reviews employment contract ensuring it meets Migrationsamt standards: clearly defined role, salary meeting thresholds, Swiss employer details. Determine correct permit type: L permit (short-term, under 1 year), B permit (residence, 1-5 years), or other specialized permits. Assess quota implications for non-EU applicants. Identify required supporting documents: diplomas, criminal records, health insurance, marriage certificates, etc. Create customized checklist and timeline for your specific situation.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1-2 consultation calls, comprehensive document checklist provided</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              2
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">File Preparation & Translation</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Comprehensive dossier preparation meeting Migrationsamt Zürich requirements. Coordinate employment contract finalization with employer HR department. Obtain required documents: university diplomas and professional certificates (originals or certified copies), criminal record certificates from current/previous countries of residence (obtained through consulates/embassies), valid passport with sufficient remaining validity (minimum 1 year), health insurance confirmation (mandatory Swiss health insurance or cross-border equivalent), biometric photos (meeting Swiss passport photo standards), marriage certificate and children's birth certificates (if applicable for family permits). Arrange certified German translations for all foreign-language documents through sworn translators. Agency reviews all documents for completeness and compliance. Employer provides justification letter (especially critical for non-EU applications) explaining economic necessity and qualifications. Complete German-language application forms correctly.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 2-4 weeks depending on document sourcing complexity</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              3
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Migrationsamt Submission</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Submit complete dossier to Migrationsamt Zürich (Berninastrasse 45, 8090 Zürich). Submission typically done by employer or agency on your behalf (online portal for registered users or in-person submission). Ensure all required documents included: permit application form (completely filled in German), valid passport copy, employment contract, employer justification letter, diplomas/qualifications, criminal record, health insurance proof, biometric photos, and applicable fees. EU/EFTA applications processed relatively quickly (2-6 weeks). Non-EU applications enter federal quota review (8-16 weeks or longer). Timing critical for non-EU: submit early in year (January-March) before quotas fill. Agency tracks application status and responds to any Migrationsamt requests for additional documentation or clarification. Receive approval letter (Aufenthaltsbewilligung) or permit card by mail/pickup.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 2-6 weeks (EU/EFTA) or 8-16+ weeks (non-EU)</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              4
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Kreisbüro Registration</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Register at correct Kreisbüro within 14 days of arrival in Zurich (or local Gemeinde office if outside City of Zurich). Agency books appointment at appropriate Kreisbüro based on housing address. Bring required documents: rental contract (signed and valid), passport, residence permit approval letter or permit card, biometric passport photo, completed registration form (Anmeldeformular in German), and registration fee (approximately CHF 25-50). Agency staff can accompany for German-language support. Kreisbüro processes registration same-day if documents complete. Receive official residence confirmation (Wohnsitzbestätigung). Update address with bank, employer, health insurance, and other service providers. Late registration results in CHF 100-200 fines.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Within 14 days of arrival, appointment 30-60 minutes</p>
+            </div>
+          </div>
+
+          <div class="relative pl-8">
+            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+              5
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">Settlement & Compliance</h3>
+            <p class="text-gray-600 leading-relaxed mb-4">
+              Complete integration and ongoing compliance. Ensure Swiss health insurance coverage from day one (mandatory, choose from providers like Helsana, Swica, CSS). Open Swiss bank account (most employers require Swiss account for salary payments). Register for tax at local tax office (Steueramt). Understand permit conditions: work restrictions (tied to specific employer initially), family reunification rights, and C permit eligibility timeline (5 years for EU/EFTA, 10 years for non-EU). Agency provides ongoing support for permit renewals (B permits typically renewed 2-3 months before expiry), job changes (notify Migrationsamt within certain timeframes), family reunification applications, and eventual C permit (permanent settlement) applications. Stay compliant with Zurich regulations to ensure smooth renewals and future pathways to permanent residence.
+            </p>
+            <div class="bg-gray-50 p-4 rounded-xl">
+              <p class="text-sm text-gray-700"><strong>Timeline:</strong> First 1-2 months after arrival, ongoing as needed</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center">
+          <button
+            onclick="universalOpenModal({page: 'immigration_zurich_steps', service: 'immigration'})"
+            class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            Book Your Free Immigration Consultation
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Facts -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Essential Information
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Key Facts for <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Zurich Immigration</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">14-Day Registration</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Register at <strong>Kreisbüro within 14 days</strong> of arrival (fines apply)
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Common Permits</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>L (short-term), B (residence), C (settlement)</strong> permits available
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Non-EU Quotas</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Non-EU permits <strong>subject to federal quotas</strong> (limited annually)
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">German Language</h3>
+            <p class="text-gray-600 leading-relaxed">
+              All documents must be in <strong>German or certified translation</strong>
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Migrationsamt Zürich</h3>
+            <p class="text-gray-600 leading-relaxed">
+              <strong>Berninastrasse 45</strong> oversees permits for entire Canton Zurich
+            </p>
+          </div>
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Processing Time</h3>
+            <p class="text-gray-600 leading-relaxed">
+              EU: <strong>2-6 weeks</strong>; Non-EU: <strong>8-16+ weeks</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            FAQ
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Frequently Asked <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Questions</span>
+          </h2>
+        </div>
+
+        <div class="space-y-6">
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              What permits are available for expats in Zurich?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Zurich offers several residence and work permits depending on nationality and purpose. EU/EFTA citizens receive L permit (short-term, under 1 year), B permit (residence, 5 years renewable), or C permit (permanent settlement, after 5-10 years). Non-EU/EFTA citizens face quotas and stricter requirements: L permit for assignments under 1 year, B permit for residence/work (annual renewable, quota-limited), and C permit after 10 years. Specific permits include G permit (cross-border commuters from neighboring countries), F permit (temporary admission), and N permit (asylum seekers). Migrationsamt Zürich processes all cantonal permits. Permits depend on employment contract, salary thresholds, qualifications, and employer justification.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Where do I register my residence in Zurich?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Register at your local Kreisbüro (district registration office) within 14 days of arrival in Zurich. The City of Zurich has 12 Kreisbüros serving different districts. Common offices: Kreisbüro 1/2 (Zurich Altstadt, Enge), Kreisbüro 3 (Wiedikon), Kreisbüro 4/5 (Aussersihl), Kreisbüro 11 (Oerlikon, Seebach), Kreisbüro 12 (Schwamendingen). Bring rental contract, passport, residence permit (if already issued), biometric photo, and registration form (Anmeldeformular). If living outside Zurich city in Canton Zurich, register with your Gemeinde (municipality) office instead. Late registration can result in CHF 100-200 fines. Book appointments online in advance as walk-ins face long wait times.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              What is the difference between B and L permits in Zurich?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              L permit (short-term residence): Valid up to 1 year for assignments under 12 months. EU/EFTA citizens receive almost automatically with employment contract. Non-EU citizens face quotas and stricter approval. Renewable if contract extends. Allows family reunification but limited. Tied to specific employer and job. B permit (residence): Valid 5 years for EU/EFTA, 1 year renewable for non-EU. Allows longer-term residence, job changes (after 1 year), and easier family reunification. Non-EU B permits subject to annual quotas (few thousand nationwide). Requires employer justification and higher salary thresholds. Both processed by Migrationsamt Zürich. B permit offers more stability and flexibility; L permit for temporary assignments only.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              How long does it take to get a work permit in Zurich?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Processing times vary significantly by nationality and permit type. EU/EFTA citizens: L and B permits typically 2-6 weeks from complete application to Migrationsamt Zürich approval. Often straightforward as no quotas apply. Non-EU/EFTA citizens: 8-16 weeks or longer due to federal quota system and stricter vetting. Employer must prove no suitable EU/Swiss candidate available. High-skilled roles (executives, specialists, PhDs, salary above CHF 120,000) process faster. Complex cases or incomplete documents cause delays. Start application process 3-4 months before planned move. Employer and relocation agency coordination essential. Peak times (January-March corporate relocations) see longer waits. Urgent cases can be expedited with additional fees and employer justification.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Can non-EU citizens get a residence permit in Zurich?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Yes, but non-EU/EFTA citizens face significant restrictions. Switzerland imposes annual federal quotas for non-EU B and L permits (approximately 8,500 total, divided among cantons). Zurich receives largest cantonal quota share due to economic importance. Permits granted only for high-skilled positions: executives, specialists, qualified professionals with university degrees or rare expertise. Employer must prove economic necessity and that no suitable EU/Swiss candidate exists. Salary thresholds apply (typically CHF 100,000-120,000+ depending on role and age). Industries with higher approval: finance, pharma, tech, international organizations. Family reunification possible but requires proof of adequate income and housing. After 10 years continuous residence, C permit (permanent settlement) possible. Relocation agencies navigate complex quota system and prepare strong applications.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow duration-300">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Do I need to translate my documents into German for Zurich immigration?
+            </summary>
+            <p class="mt-4 text-gray-600 leading-relaxed">
+              Yes, Zurich Canton (German-speaking) requires all official documents in German or accompanied by certified German translations. Documents needing translation: birth certificates, marriage certificates, diplomas, employment contracts (if not in German/English), previous residence permits, criminal records, and official correspondence. Migrationsamt Zürich and Kreisbüros accept English for some documents (employment contracts from international companies, university diplomas) but prefer German. Personal documents and certificates from non-German/English-speaking countries require sworn translations by certified translators. Translation costs: CHF 50-150 per document depending on length and complexity. Relocation agencies coordinate translation services and ensure documents meet Migrationsamt requirements. Incorrect translations cause application delays or rejections. Invest in professional certified translations for critical documents.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Parent Link -->
+  <section class="py-8 bg-white border-t border-gray-200">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <a href="/services/immigration" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Immigration Services (All Switzerland)
+        </a>
+        
+        <div class="mt-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-3">Explore Other Cities:</h3>
+          <div class="flex flex-wrap gap-3">
+            <a
+              href="/services/immigration/geneva"
+              class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-primary-50 hover:text-primary-700 transition-colors"
+            >
+              Geneva
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="py-16 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-2 text-center">Trusted Zurich Immigration Partners</h2>
+        <p class="text-gray-600 text-center mb-8">Expert agencies with Migrationsamt and Kreisbüro experience</p>
+
+        <div class="space-y-8">
+          <!-- Prime Relocation - Preferred Partner -->
+          <div class="bg-gradient-to-br from-primary-50 via-white to-red-50 border-2 border-primary-200 rounded-2xl p-8">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-2xl font-bold text-gray-900">Prime Relocation</h3>
+              <span class="px-3 py-1 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full text-xs font-bold uppercase tracking-wide">
+                🏆 Preferred Partner
+              </span>
+            </div>
+            
+            <div class="flex items-center gap-2 mb-4">
+              <div class="flex text-yellow-500">
+                ★★★★★
+              </div>
+              <span class="text-gray-600 text-sm">4.8 / 5 • 53 reviews</span>
+            </div>
+            
+            <p class="text-gray-700 text-lg mb-6">
+              <strong>Comprehensive Zurich immigration support</strong> with Migrationsamt application expertise, Kreisbüro registration coordination, German-language services, EU and non-EU permit guidance, and quota navigation. Prime Relocation understands Canton Zurich requirements and ensures compliant applications.
+            </p>
+            
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">📋 B/L/C Permits</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🇩🇪 German Support</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🏢 Kreisbüro Experts</span>
+              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🌍 EU & Non-EU</span>
+            </div>
+            
+            <button 
+              onclick="universalOpenModal({page: 'immigration_zurich_partner', service: 'immigration'})"
+              class="inline-flex items-center justify-center bg-gradient-to-r from-primary-600 to-primary-700 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105"
+            >
+              Get a Free Consultation with our Preferred Partner
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </button>
+            <p class="text-xs text-gray-500 mt-3">Our relocation partners work with us and provide free consultations</p>
+          </div>
+
+          <!-- Other Immigration Specialists -->
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Other Trusted Zurich Specialists</h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Anchor Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">4.9 / 5 • 27 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Zurich immigration expertise with corporate client focus and Migrationsamt coordination</p>
+            </div>
+            
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Auris Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">4.8 / 5 • 98 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Comprehensive relocation services helping expats navigate Zurich permit processes</p>
+            </div>
+          </div>
+
+          <!-- Browse All Agencies Button -->
+          <div class="mt-8 text-center">
+            <a
+              href="/companies?service=immigration"
+              class="inline-flex items-center px-6 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-semibold hover:border-primary-600 hover:text-primary-700 hover:shadow-md transition-all duration-300"
+            >
+              Browse All Agencies for Immigration Services
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Disclaimer Before Final CTA -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer />
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-transparent"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          Ready to Secure Your Zurich Residence Permit?
+        </h2>
+        <p class="text-xl text-primary-100 mb-8 leading-relaxed">
+          Get expert support for work permits, Kreisbüro registration, Migrationsamt applications, and German-language services. Our trusted agencies ensure compliant and timely permit processing.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onclick="universalOpenModal({page: 'immigration_zurich_final', service: 'immigration'})"
+            class="px-10 py-5 bg-white text-primary-700 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl"
+          >
+            Book Free Consultation
+          </button>
+          <a
+            href="/services/immigration"
+            class="px-10 py-5 bg-white/10 backdrop-blur-sm text-white border-2 border-white rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
+          >
+            View All Switzerland
+          </a>
+        </div>
+        <p class="text-sm text-primary-100 mt-6">
+          ✓ Migrationsamt expertise  •  ✓ Kreisbüro coordination  •  ✓ German-language support
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div style="display:none;" data-ai-summary>
+    Immigration services in Zurich, Switzerland. Compare relocation agencies for work permits, residence permits, Kreisbüro registration, and Migrationsamt Zürich support. Common permits: L permit (short-term residence, under 1 year), B permit (residence permit, 5 years renewable for EU/EFTA or 1 year renewable for non-EU), C permit (permanent settlement after 5-10 years). EU/EFTA citizens enjoy freedom of movement with straightforward permit processes (2-6 weeks). Non-EU/EFTA citizens face federal quota system (approximately 8,500 permits annually nationwide, Zurich receives largest cantonal share), stricter requirements, and longer processing (8-16+ weeks). Migrationsamt Zürich (Berninastrasse 45, 8090 Zürich) processes all cantonal residence permits. Must register at local Kreisbüro (district registration office) within 14 days of arrival. City of Zurich has 12 Kreisbüros serving different districts: Kreisbüro 1/2 (Altstadt, Enge), Kreisbüro 3 (Wiedikon), Kreisbüro 11 (Oerlikon, Seebach), Kreisbüro 12 (Schwamendingen). Late registration fines CHF 100-200. Canton Zurich municipalities outside city register at local Gemeinde offices. All documents must be in German or certified German translation. Required documents: employment contract, university diplomas, criminal record, health insurance, passport, biometric photos. Non-EU permits require employer justification proving economic necessity and no suitable EU/Swiss candidate. Salary thresholds typically CHF 100,000-120,000+ for non-EU high-skilled positions. German-language support essential for forms, landlord communication, and Kreisbüro appointments. Prime Relocation preferred partner with Migrationsamt and Kreisbüro expertise, German-language services, EU and non-EU permit guidance.
+  </div>
+</Layout>
+

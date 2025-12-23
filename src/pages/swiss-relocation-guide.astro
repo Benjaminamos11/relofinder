@@ -1,0 +1,400 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SchemaMarkup from '../components/common/SchemaMarkup.astro';
+
+const title = "Swiss Relocation Guide 2025 | Complete Expat Moving Guide | ReloFinder";
+const description = "Complete guide to relocating to Switzerland. Housing, permits, banking, insurance, schools, and relocation services. Everything you need for a successful move to Switzerland.";
+const canonicalURL = "https://relofinder.ch/swiss-relocation-guide";
+const keywords = ['swiss relocation guide', 'moving to switzerland', 'relocation switzerland', 'expat guide switzerland', 'swiss relocation', 'moving to zurich', 'relocating to geneva', 'switzerland expat guide'];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://relofinder.ch"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Swiss Relocation Guide",
+      "item": "https://relofinder.ch/swiss-relocation-guide"
+    }
+  ]
+};
+
+const guideSchema = {
+  "@context": "https://schema.org",
+  "@type": "Guide",
+  "name": "Swiss Relocation Guide",
+  "description": "Complete guide to relocating to Switzerland covering housing, permits, banking, insurance, education, and relocation services",
+  "author": {
+    "@type": "Organization",
+    "name": "ReloFinder",
+    "url": "https://relofinder.ch"
+  },
+  "about": {
+    "@type": "Thing",
+    "name": "Relocating to Switzerland"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long does it take to relocate to Switzerland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A typical relocation takes 3-6 months from job offer to move-in. EU citizens have faster permit processing (2-4 weeks). Non-EU nationals face quota systems and longer timelines (2-3 months for permits). Housing is usually the bottleneck, taking 1-3 months to secure."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What permits do I need to live in Switzerland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "EU/EFTA citizens receive a B-Permit (resident, 5 years renewable) or L-Permit (short-term, up to 12 months) with an employment contract. Non-EU nationals need employer sponsorship and are subject to annual quotas. Your employer typically handles the application."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I find housing in Switzerland's competitive market?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Public portals like Homegate receive 100+ applications per listing. The most effective approach is using off-market networks, relocation agencies, or direct connections. Start your search 2-3 months before your move date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What insurance is mandatory in Switzerland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Health insurance (LAMal/KVG) is mandatory — you have 3 months to enroll after arrival. Liability insurance (Privathaftpflicht) is often required to sign a rental contract. Household insurance is strongly recommended."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I hire a relocation agency or do it myself?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hire an agency if you're a senior executive, have school-age children, or your company pays. Use DIY tools if you're digitally savvy and budget-conscious. Compare agencies on ReloFinder for transparent quotes."
+      }
+    }
+  ]
+};
+
+const combinedSchema = {
+  "@context": "https://schema.org",
+  "@graph": [breadcrumbSchema, guideSchema, faqSchema]
+};
+---
+
+<Layout 
+  title={title}
+  description={description}
+  canonical={canonicalURL}
+  keywords={keywords}
+  schema={combinedSchema}
+>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-[600px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800">
+    <div class="absolute inset-0 opacity-20">
+      <img 
+        src="https://res.cloudinary.com/dphbnwjtx/image/upload/w_1920,h_800,c_fill,f_webp,q_90/v1759820132/oksana-burki-B-AMV0437bw-unsplash_nvjrod.jpg"
+        alt="Swiss Alps and cities"
+        class="w-full h-full object-cover"
+      />
+    </div>
+    <div class="container relative z-10 py-20">
+      <div class="max-w-4xl mx-auto text-center text-white">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6">
+          Complete Swiss <span class="bg-gradient-to-r from-white to-primary-200 bg-clip-text text-transparent">Relocation Guide</span>
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 text-gray-100 leading-relaxed">
+          Everything you need to know about moving to Switzerland. From permits and housing to banking, insurance, and settling in.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="#services"
+            class="px-8 py-4 bg-white text-primary-700 rounded-xl font-bold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-lg"
+          >
+            Explore Services
+          </a>
+          <a
+            href="/companies"
+            class="px-8 py-4 bg-white/10 backdrop-blur-md text-white border-2 border-white/30 rounded-xl font-bold text-lg hover:bg-white/20 hover:scale-105 transition-all duration-300"
+          >
+            Find Relocation Agencies
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Navigation -->
+  <section class="py-12 bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#housing" class="px-4 py-2 text-gray-700 hover:text-primary-600 font-medium transition-colors">Housing</a>
+        <a href="#immigration" class="px-4 py-2 text-gray-700 hover:text-primary-600 font-medium transition-colors">Immigration</a>
+        <a href="#finance" class="px-4 py-2 text-gray-700 hover:text-primary-600 font-medium transition-colors">Finance</a>
+        <a href="#insurance" class="px-4 py-2 text-gray-700 hover:text-primary-600 font-medium transition-colors">Insurance</a>
+        <a href="#education" class="px-4 py-2 text-gray-700 hover:text-primary-600 font-medium transition-colors">Education</a>
+        <a href="#regions" class="px-4 py-2 text-gray-700 hover:text-primary-600 font-medium transition-colors">Regions</a>
+        <a href="#agencies" class="px-4 py-2 text-gray-700 hover:text-primary-600 font-medium transition-colors">Agencies</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Introduction -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <p class="text-xl text-gray-700 leading-relaxed">
+          Moving to Switzerland is a dream for many, but the logistical reality can be complex. The bureaucracy is precise, the housing market is competitive, and the cost of mistakes is high. This comprehensive guide breaks down the relocation process into manageable steps, helping you navigate your transition to Switzerland successfully.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section id="services" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Essential Services
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Your Swiss Relocation <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Services</span>
+          </h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            Navigate every aspect of your move with our comprehensive service guides
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Housing -->
+          <a href="/services/housing" class="group bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-700 transition-colors">Housing Services</h3>
+            <p class="text-gray-600 text-sm">Find apartments, understand rental markets, and navigate Switzerland's competitive housing landscape.</p>
+          </a>
+
+          <!-- Immigration -->
+          <a href="/services/immigration" class="group bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-700 transition-colors">Immigration & Permits</h3>
+            <p class="text-gray-600 text-sm">Work permits, residence permits, and visa requirements for moving to Switzerland.</p>
+          </a>
+
+          <!-- Finance -->
+          <a href="/services/finance" class="group bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-700 transition-colors">Finance & Banking</h3>
+            <p class="text-gray-600 text-sm">Open bank accounts, understand Swiss banking, and navigate tax requirements.</p>
+          </a>
+
+          <!-- Insurance -->
+          <a href="/services/insurance" class="group bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-700 transition-colors">Insurance</h3>
+            <p class="text-gray-600 text-sm">Mandatory health insurance, liability insurance, and understanding Swiss insurance requirements.</p>
+          </a>
+
+          <!-- Education -->
+          <a href="/services/education" class="group bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-700 transition-colors">Education</h3>
+            <p class="text-gray-600 text-sm">International schools, Swiss public schools, and education options for expat families.</p>
+          </a>
+
+          <!-- Advisory -->
+          <a href="/services/advisory" class="group bg-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-700 transition-colors">Advisory Services</h3>
+            <p class="text-gray-600 text-sm">Strategic relocation consulting, tax planning, and comprehensive relocation support.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Regions Section -->
+  <section id="regions" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Popular Regions
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Explore Swiss <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Regions</span>
+          </h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            Each Swiss region offers unique advantages. Find the perfect location for your relocation.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <a href="/regions/zurich" class="group bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-700 transition-colors">Zurich</h3>
+            <p class="text-gray-600 text-sm">Switzerland's financial capital. Banking, tech, and international business hub.</p>
+          </a>
+
+          <a href="/regions/geneva" class="group bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-700 transition-colors">Geneva</h3>
+            <p class="text-gray-600 text-sm">International organizations, UN, banking, and French-speaking lifestyle.</p>
+          </a>
+
+          <a href="/regions/basel" class="group bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-700 transition-colors">Basel</h3>
+            <p class="text-gray-600 text-sm">Pharmaceutical industry (Roche, Novartis), tri-border location, life sciences.</p>
+          </a>
+
+          <a href="/regions/lausanne" class="group bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-700 transition-colors">Lausanne</h3>
+            <p class="text-gray-600 text-sm">University hub, Olympic capital, lakeside living, French-speaking.</p>
+          </a>
+
+          <a href="/regions/zug" class="group bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-700 transition-colors">Zug</h3>
+            <p class="text-gray-600 text-sm">Tax advantages, Crypto Valley, business-friendly, low taxes.</p>
+          </a>
+
+          <a href="/regions/bern" class="group bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-700 transition-colors">Bern</h3>
+            <p class="text-gray-600 text-sm">Federal capital, bilingual, government, culture, and history.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            FAQ
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Frequently Asked <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Questions</span>
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          <details class="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              How long does it take to relocate to Switzerland?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              A typical relocation takes 3-6 months from job offer to move-in. EU citizens have faster permit processing (2-4 weeks). Non-EU nationals face quota systems and longer timelines (2-3 months for permits). Housing is usually the bottleneck, taking 1-3 months to secure.
+            </p>
+          </details>
+
+          <details class="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              What permits do I need to live in Switzerland?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              EU/EFTA citizens receive a B-Permit (resident, 5 years renewable) or L-Permit (short-term, up to 12 months) with an employment contract. Non-EU nationals need employer sponsorship and are subject to annual quotas. Your employer typically handles the application.
+            </p>
+          </details>
+
+          <details class="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              How do I find housing in Switzerland's competitive market?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Public portals like Homegate receive 100+ applications per listing. The most effective approach is using off-market networks, relocation agencies, or direct connections. Start your search 2-3 months before your move date.
+            </p>
+          </details>
+
+          <details class="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              What insurance is mandatory in Switzerland?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Health insurance (LAMal/KVG) is mandatory — you have 3 months to enroll after arrival. Liability insurance (Privathaftpflicht) is often required to sign a rental contract. Household insurance is strongly recommended.
+            </p>
+          </details>
+
+          <details class="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Should I hire a relocation agency or do it myself?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Hire an agency if you're a senior executive, have school-age children, or your company pays. Use DIY tools if you're digitally savvy and budget-conscious. Compare agencies on ReloFinder for transparent quotes.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center text-white">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">
+          Ready to Start Your Swiss Relocation?
+        </h2>
+        <p class="text-xl text-primary-100 mb-8 leading-relaxed">
+          Compare relocation agencies, get expert advice, and make your move to Switzerland smooth and successful.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/companies"
+            class="px-10 py-5 bg-white text-primary-700 rounded-xl font-bold text-lg hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-2xl"
+          >
+            Find Relocation Agencies
+          </a>
+          <button
+            onclick="universalOpenModal()"
+            class="px-10 py-5 bg-white/10 backdrop-blur-sm text-white border-2 border-white rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
+          >
+            Get Free Consultation
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="display:none;" data-ai-summary>
+    Complete Swiss relocation guide covering housing, immigration, finance, insurance, education, and relocation services. Essential information for moving to Switzerland including permits (B-Permit, L-Permit), housing market navigation, mandatory health insurance, banking setup, international schools, and regional guides for Zurich, Geneva, Basel, Lausanne, Zug, and Bern. Timeline: 3-6 months typical relocation. EU citizens: 2-4 weeks permit processing. Non-EU: 2-3 months with quotas. Housing is the main bottleneck (1-3 months). Compare relocation agencies on ReloFinder for transparent quotes and expert support.
+  </div>
+</Layout>
+

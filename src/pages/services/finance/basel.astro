@@ -1,0 +1,1002 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SchemaMarkup from '../../../components/common/SchemaMarkup.astro';
+import PlatformDisclaimer from '../../../components/common/PlatformDisclaimer.astro';
+import ServiceHero from '../../../components/services/ServiceHero.astro';
+
+const title = "Finance in Zurich | Expat Banking & Wealth Services | ReloFinder";
+const description = "Compare finance providers in Zurich. ReloFinder helps you evaluate expat-friendly banks like Yapeal, Neon, Revolut, UBS, and Credit Suisse. Insurance via Expat-Savvy.ch.";
+const canonicalURL = "https://relofinder.ch/services/finance/zurich";
+const keywords = ['finance zurich', 'banking zurich', 'expat banking zurich', 'UBS zurich', 'credit suisse zurich', 'neobank zurich', 'insurance zurich', 'wealth management zurich'];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://relofinder.ch"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Services",
+      "item": "https://relofinder.ch/services"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Finance",
+      "item": "https://relofinder.ch/services/finance"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Zurich",
+      "item": "https://relofinder.ch/services/finance/zurich"
+    }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Finance Services in Zurich",
+  "description": "Compare banking and finance providers for expats in Zurich, Switzerland including traditional banks (UBS, Credit Suisse, Raiffeisen) and neobanks (Yapeal, Neon, Revolut)",
+  "provider": {
+    "@type": "Organization",
+    "name": "ReloFinder",
+    "url": "https://relofinder.ch"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Zurich",
+    "containedIn": {
+      "@type": "Country",
+      "name": "Switzerland"
+    }
+  },
+  "serviceType": "Banking & Finance Services"
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which banks in Zurich are most expat-friendly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most expat-friendly: Neobanks (Yapeal, Neon) for English apps and fast setup; Revolut for multi-currency. Traditional banks: UBS and Credit Suisse offer English support for premium/private banking; Raiffeisen provides local presence with competitive rates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I open a bank account as an expat in Zurich?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Neobanks (Yapeal, Neon): Download app, upload documents (passport, permit, address proof), activate in 1-3 days. Traditional banks: Book branch appointment, bring employment contract and documents, account opens in 1-3 weeks. Most employers require Swiss IBAN (CH prefix)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What neobanks can expats use in Switzerland?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yapeal (Swiss FINMA-licensed, CH IBAN, multi-currency), Neon (Swiss digital bank, free account, cashback), Revolut (multi-currency champion, 30+ currencies, real-time FX, crypto support). All require Swiss residence permit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Revolut accepted in Switzerland for daily use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, widely accepted for purchases and ATMs. However, Revolut provides Lithuanian IBAN (LT prefix) which most Swiss employers won't accept for salary. Solution: Use Swiss neobank (Yapeal/Neon) for salary, Revolut for spending and currency exchange."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What documents are required to open an account in Zurich?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mandatory: Valid passport (6+ months), Swiss residence permit (B/L/C), proof of Zurich address. Traditional banks also require employment contract and salary slips. Neobanks need only passport, permit, and address proof for basic accounts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where can I get help with insurance and tax planning in Zurich?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Health insurance (mandatory): Expat-Savvy.ch provides specialized consulting, comparing providers (Helsana, CSS, Swica). Premiums CHF 300-500/month. Tax planning: Relocation agencies coordinate with Zurich tax advisors for progressive cantonal rates (25-35% combined) and wealth tax optimization."
+      }
+    }
+  ]
+};
+
+const siblingCities = [
+  { name: 'Geneva', slug: 'geneva' },
+  { name: 'Zug', slug: 'zug' }
+];
+---
+
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonicalURL}
+  keywords={keywords}
+  schema={{
+    "@context": "https://schema.org",
+    "@graph": [breadcrumbSchema, serviceSchema, faqSchema]
+  }}
+>
+
+  <ServiceHero
+    title="Finance in Zurich"
+    subtitle="Banking & Wealth Services for Expats"
+    description="Zurich is Switzerland's financial capital with UBS, Credit Suisse, and innovative neobanks (Yapeal, Neon, Revolut). ReloFinder helps you compare providers and open accounts efficiently. We connect you to trusted partners — we don't provide banking services ourselves."
+    icon="bank"
+    badge="Finance in Zurich"
+  />
+
+  <!-- Platform Disclaimer -->
+  <section class="py-8 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer compact={true} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Primary CTA after Hero -->
+  <section class="py-12 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">
+          Need Help Setting Up Your Zurich Finances?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8">
+          Get expert support for banking, wealth management, and tax planning
+        </p>
+        <button
+          onclick="universalOpenModal({page: 'finance_zurich', service: 'finance'})"
+          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+        >
+          Get a Free Consultation with our Preferred Partner
+        </button>
+        <p class="text-sm text-gray-500 mt-3">
+          Our relocation partners with us and gives free consultations to users
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- InfoCard Grid: Why Finance in Zurich Matters -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Why It Matters
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Why Finance in Zurich <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Matters for Expats</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Card 1: Global Banking Hub -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Global Banking Hub</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              Paradeplatz houses UBS & Credit Suisse headquarters. Access world-class private banking, wealth management, and comprehensive financial services.
+            </p>
+            <a href="#deep-dive-accordion" class="text-primary-600 hover:text-primary-700 text-sm font-semibold inline-flex items-center">
+              Learn more
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Card 2: Neobank Options -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Neobank Options</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              Yapeal, Neon, and Revolut offer English-friendly digital banking with fast onboarding (1-3 days), no minimum balance, and multi-currency support.
+            </p>
+            <a href="#comparison-table" class="text-primary-600 hover:text-primary-700 text-sm font-semibold inline-flex items-center">
+              Compare neobanks
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Card 3: Private Banking -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Private Banking & Wealth</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              CHF 1+ million: Access UBS Wealth Management, Credit Suisse Private Banking, Julius Baer. Portfolio management, estate planning, alternative investments.
+            </p>
+            <a href="#deep-dive-accordion" class="text-primary-600 hover:text-primary-700 text-sm font-semibold inline-flex items-center">
+              Explore wealth services
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Card 4: Tax System -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Progressive Tax System</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              Canton Zurich: 25-35% combined income tax. Wealth tax 0.1-0.5%. Pillar 3a retirement savings (CHF 7,056/year) tax-deductible. Professional planning essential.
+            </p>
+            <a href="#deep-dive-accordion" class="text-primary-600 hover:text-primary-700 text-sm font-semibold inline-flex items-center">
+              Tax details
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Card 5: Documentation -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Documentation Requirements</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              Passport, Swiss permit (B/L/C), Zurich address proof, employment contract. Traditional banks require more docs; neobanks streamline the process.
+            </p>
+            <a href="#docs-checklist" class="text-primary-600 hover:text-primary-700 text-sm font-semibold inline-flex items-center">
+              See checklist
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Card 6: Insurance -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Insurance & Compliance</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+              Health insurance mandatory within 3 months (CHF 300-500/month). Expert guidance via <a href="https://expat-savvy.ch" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700 font-semibold underline">Expat-Savvy.ch</a>.
+            </p>
+            <a href="https://expat-savvy.ch" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700 text-sm font-semibold inline-flex items-center">
+              Get insurance help
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table: Neobanks vs Traditional Banks -->
+  <section id="comparison-table" class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Compare Options
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Neobanks vs <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Traditional Banks</span>
+          </h2>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-gray-50 border-b border-gray-200">
+                  <th class="px-4 py-3 text-left font-bold text-gray-900">Provider</th>
+                  <th class="px-4 py-3 text-left font-bold text-gray-900">Swiss IBAN</th>
+                  <th class="px-4 py-3 text-left font-bold text-gray-900">Onboarding</th>
+                  <th class="px-4 py-3 text-left font-bold text-gray-900">Multi-Currency</th>
+                  <th class="px-4 py-3 text-left font-bold text-gray-900">Min. Balance</th>
+                  <th class="px-4 py-3 text-left font-bold text-gray-900">Typical Use</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="px-4 py-3 font-semibold text-gray-900">Yapeal</td>
+                  <td class="px-4 py-3 text-gray-700">✅ Yes (CH)</td>
+                  <td class="px-4 py-3 text-gray-700">1-3 days</td>
+                  <td class="px-4 py-3 text-gray-700">✅ Yes</td>
+                  <td class="px-4 py-3 text-gray-700">None</td>
+                  <td class="px-4 py-3 text-gray-700">Salary + daily banking</td>
+                </tr>
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="px-4 py-3 font-semibold text-gray-900">Neon</td>
+                  <td class="px-4 py-3 text-gray-700">✅ Yes (CH)</td>
+                  <td class="px-4 py-3 text-gray-700">1-3 days</td>
+                  <td class="px-4 py-3 text-gray-700">Limited</td>
+                  <td class="px-4 py-3 text-gray-700">None</td>
+                  <td class="px-4 py-3 text-gray-700">Basic account + bills</td>
+                </tr>
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="px-4 py-3 font-semibold text-gray-900">Revolut</td>
+                  <td class="px-4 py-3 text-gray-700">⚠️ LT IBAN</td>
+                  <td class="px-4 py-3 text-gray-700">Instant (app)</td>
+                  <td class="px-4 py-3 text-gray-700">✅ Excellent (30+)</td>
+                  <td class="px-4 py-3 text-gray-700">None</td>
+                  <td class="px-4 py-3 text-gray-700">FX + intl. transfers</td>
+                </tr>
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="px-4 py-3 font-semibold text-gray-900">UBS</td>
+                  <td class="px-4 py-3 text-gray-700">✅ Yes (CH)</td>
+                  <td class="px-4 py-3 text-gray-700">1-3 weeks</td>
+                  <td class="px-4 py-3 text-gray-700">✅ Yes</td>
+                  <td class="px-4 py-3 text-gray-700">Varies</td>
+                  <td class="px-4 py-3 text-gray-700">Full-service (loans, investing)</td>
+                </tr>
+                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                  <td class="px-4 py-3 font-semibold text-gray-900">Credit Suisse</td>
+                  <td class="px-4 py-3 text-gray-700">✅ Yes (CH)</td>
+                  <td class="px-4 py-3 text-gray-700">1-3 weeks</td>
+                  <td class="px-4 py-3 text-gray-700">✅ Yes</td>
+                  <td class="px-4 py-3 text-gray-700">Varies</td>
+                  <td class="px-4 py-3 text-gray-700">Full-service, private banking</td>
+                </tr>
+                <tr class="hover:bg-gray-50">
+                  <td class="px-4 py-3 font-semibold text-gray-900">Raiffeisen</td>
+                  <td class="px-4 py-3 text-gray-700">✅ Yes (CH)</td>
+                  <td class="px-4 py-3 text-gray-700">1-2 weeks</td>
+                  <td class="px-4 py-3 text-gray-700">✅ Yes</td>
+                  <td class="px-4 py-3 text-gray-700">Low</td>
+                  <td class="px-4 py-3 text-gray-700">Mortgages, local presence</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="mt-6 p-6 bg-white rounded-xl border border-gray-200">
+          <p class="text-gray-700 leading-relaxed">
+            <strong>Recommended hybrid approach:</strong> Use Swiss neobank (Yapeal/Neon) for salary & bills with CH IBAN + Revolut for FX and international transfers. Add UBS/Credit Suisse/Raiffeisen later for mortgages, investments, or wealth management.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Documents Checklist -->
+  <section id="docs-checklist" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Preparation
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Documents <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Checklist</span>
+          </h2>
+        </div>
+
+        <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border-2 border-gray-200">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                <svg class="w-5 h-5 text-primary-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Essential for All Banks
+              </h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Valid passport (6+ months validity)</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Swiss residence permit (B, L, C, or legitimation card)</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Proof of Zurich address (rental contract or Kreisbüro confirmation)</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                <svg class="w-5 h-5 text-primary-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                Additional (Traditional Banks)
+              </h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Employment contract (showing salary, role, employer)</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Recent salary slips (2-3 months if already working)</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Tax returns or wealth statements (for private banking)</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"></span>
+                  <span class="text-gray-700">Business docs (for company accounts)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-8 p-4 bg-primary-50 rounded-lg border border-primary-200">
+            <p class="text-gray-700 text-sm">
+              <strong>💡 Pro tip:</strong> Arriving soon? Start with Yapeal/Neon for immediate banking (1-3 days), then layer a traditional bank (UBS/CS/Raiffeisen) later if you need mortgages, investments, or wealth management.
+            </p>
+          </div>
+
+          <div class="mt-6 flex gap-4">
+            <button
+              onclick="universalOpenModal({page: 'finance_zurich_docs', service: 'finance'})"
+              class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-lg font-semibold hover:from-primary-700 hover:to-primary-800 transition-all"
+            >
+              Get Help with Documents
+            </button>
+            <button class="inline-flex items-center px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:border-primary-600 hover:text-primary-700 transition-all">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Download PDF Checklist
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Stepper: 5-Step Process -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Step-by-Step
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Your Zurich Finance <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Setup Process</span>
+          </h2>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Step 1 -->
+          <div class="bg-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              1
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Choose Banking Strategy</h3>
+              <p class="text-gray-600">
+                Basic expats: Neobank (Yapeal/Neon) + Revolut. Middle-income: Add UBS/CS premium. HNWI (CHF 500k+): Private banking via agency introductions.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="bg-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              2
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Gather Required Documents</h3>
+              <p class="text-gray-600">
+                Passport, permit, address proof (all banks). Employment contract & salary slips (traditional banks). See checklist above for complete list.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="bg-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              3
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Open Account & Activate Payments</h3>
+              <p class="text-gray-600">
+                Neobanks: Download app, upload docs, activate in 1-3 days. Traditional: Branch appointment, account opens in 1-3 weeks. Provide IBAN to employer for salary.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="bg-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              4
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Tax Consultation (Zurich Canton)</h3>
+              <p class="text-gray-600">
+                Arrange consultation within 3 months. Understand 25-35% combined rates, wealth tax, pillar 3a deductions (CHF 7,056/year). Agencies coordinate with Zurich tax advisors.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="bg-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              5
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Insurance Setup via Expat-Savvy.ch</h3>
+              <p class="text-gray-600">
+                Health insurance mandatory within 3 months (CHF 300-500/month). Expert guidance at <a href="https://expat-savvy.ch" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700 font-semibold underline">Expat-Savvy.ch</a>. Compare providers: Helsana, CSS, Swica, Sanitas.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center">
+          <button
+            onclick="universalOpenModal({page: 'finance_zurich_steps', service: 'finance'})"
+            class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            Book Your Free Finance Consultation
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accordion: Deep-Dive Sections -->
+  <section id="deep-dive-accordion" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Deep Dive
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Explore <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Zurich Banking</span>
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Accordion 1: Paradeplatz -->
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center">
+              <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+              Paradeplatz & Traditional Banking
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">Zurich's Paradeplatz (Parade Square) is the epicenter of Swiss banking:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>UBS</strong> headquarters: World's largest wealth manager, expat banking services, English-speaking staff at major branches</li>
+                <li><strong>Credit Suisse</strong>: Private banking for HNWI, investment services, premium accounts</li>
+                <li><strong>Raiffeisen</strong>: Cooperative bank, competitive mortgage rates, local presence across Zurich</li>
+                <li><strong>Bahnhofstrasse</strong>: Flagship branches of all major banks connecting Paradeplatz to main train station</li>
+              </ul>
+              <p class="text-gray-700 mt-2">Traditional banks require employment contracts, residence permits, and often significant deposits (CHF 50k-250k for private banking).</p>
+            </div>
+          </details>
+
+          <!-- Accordion 2: Neobanks -->
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center">
+              <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+              Neobank Details (Yapeal, Neon, Revolut)
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">Digital-first banking revolutionizing expat finance in Zurich:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>Yapeal</strong>: Swiss FINMA-licensed, CH IBAN, multi-currency, English app, instant onboarding, sustainability focus</li>
+                <li><strong>Neon</strong>: Swiss digital bank via Hypothekarbank Lenzburg, free account, cashback programs, excellent UX</li>
+                <li><strong>Revolut</strong>: Multi-currency champion (30+ currencies), real-time FX, crypto support, Lithuanian IBAN (LT prefix)</li>
+              </ul>
+              <p class="text-gray-700 mt-2"><strong>Hybrid strategy:</strong> Use Swiss neobank for salary (CH IBAN required by employers) + Revolut for spending and currency exchange. Add traditional bank later for mortgages/investments.</p>
+            </div>
+          </details>
+
+          <!-- Accordion 3: Private Banking -->
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center">
+              <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              Private Banking & Wealth (CHF 1M+)
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">Zurich leads globally in private banking and wealth management:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>UBS Wealth Management</strong>: World's largest wealth manager, global investment platform</li>
+                <li><strong>Credit Suisse Private Banking</strong>: Discretionary portfolio management, alternative investments</li>
+                <li><strong>Julius Baer</strong>: Swiss private banking specialist, art financing, family office services</li>
+                <li><strong>Lombard Odier & Pictet</strong>: Independent Swiss banks, estate planning, cross-border expertise</li>
+              </ul>
+              <p class="text-gray-700 mt-2">Services: Portfolio management, retirement planning, estate planning (trusts, inheritance), tax-efficient investing, mortgages for property purchases. Relocation agencies facilitate introductions to private bankers.</p>
+            </div>
+          </details>
+
+          <!-- Accordion 4: Tax -->
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center">
+              <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+              Zurich Tax Overview (25-35% Combined)
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">Canton Zurich progressive tax system:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>Federal tax</strong>: 0-11.5% (applies nationwide)</li>
+                <li><strong>Cantonal tax</strong>: 2-15% (varies by municipality)</li>
+                <li><strong>Municipal tax</strong>: 2-10% (varies)</li>
+                <li><strong>Combined</strong>: ~25-35% in Zurich city (lower in suburbs like Zollikon, Küsnacht)</li>
+                <li><strong>Wealth tax</strong>: 0.1-0.5% on worldwide net assets</li>
+              </ul>
+              <p class="text-gray-700 mt-2"><strong>Tax-deductible:</strong> Pillar 3a retirement savings (CHF 7,056/year), mortgage interest, professional expenses, commuting costs. Declaration deadline: March 31. Agencies coordinate with Zurich tax advisors for double taxation treaties and optimization.</p>
+            </div>
+          </details>
+
+          <!-- Accordion 5: Insurance -->
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 transition-all">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center">
+              <svg class="w-5 h-5 text-primary-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              Insurance Essentials (Mandatory Health)
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">Swiss health insurance mandatory within 3 months of arrival:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>Premiums</strong>: CHF 300-500/month basic coverage (Zurich canton, varies by age and franchise)</li>
+                <li><strong>Providers</strong>: Helsana, CSS, Swica, Sanitas, Assura</li>
+                <li><strong>Franchise options</strong>: CHF 300, 500, 1000, 1500, 2000, 2500 (higher franchise = lower premiums)</li>
+                <li><strong>Expert consulting</strong>: <a href="https://expat-savvy.ch" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700 font-semibold underline">Expat-Savvy.ch</a> compares providers and explains coverage options</li>
+              </ul>
+              <p class="text-gray-700 mt-2"><strong>Other insurance:</strong> Household contents (CHF 100-300/year), personal liability (CHF 50-100/year, highly recommended), vehicle (mandatory for cars), life/disability (optional, common for families).</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Facts (LLM-SEO Block) -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            Quick Facts
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Key Facts for <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Zurich Finance</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-start">
+            <svg class="w-6 h-6 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700"><strong>UBS & Credit Suisse</strong> headquartered at Paradeplatz (Zurich banking capital)</span>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-start">
+            <svg class="w-6 h-6 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700"><strong>Yapeal/Neon</strong>: English-friendly, fast onboarding (1-3 days), CH IBAN for salary</span>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-start">
+            <svg class="w-6 h-6 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700"><strong>Revolut</strong>: Multi-currency & FX champion (pair with Swiss IBAN for salary payments)</span>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-start">
+            <svg class="w-6 h-6 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700"><strong>Required docs</strong>: ID, permit, address, employment contract (traditional banks)</span>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-start">
+            <svg class="w-6 h-6 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700"><strong>Zurich taxes</strong>: Combined ~25-35% (city); suburbs lower; wealth tax 0.1-0.5%</span>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl border border-gray-200 flex items-start">
+            <svg class="w-6 h-6 text-primary-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700"><strong>Insurance mandatory</strong> within 3 months → <a href="https://expat-savvy.ch" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700 font-semibold underline">Expat-Savvy.ch</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section (Concise Answers) -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+            FAQ
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-6">
+            Frequently Asked <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Questions</span>
+          </h2>
+        </div>
+
+        <div class="space-y-4">
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Which banks in Zurich are most expat-friendly?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Most expat-friendly: Neobanks (Yapeal, Neon) for English apps and fast setup; Revolut for multi-currency. Traditional banks: UBS and Credit Suisse offer English support for premium/private banking; Raiffeisen provides local presence with competitive rates.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              How do I open a bank account as an expat in Zurich?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Neobanks (Yapeal, Neon): Download app, upload documents (passport, permit, address proof), activate in 1-3 days. Traditional banks: Book branch appointment, bring employment contract and documents, account opens in 1-3 weeks. Most employers require Swiss IBAN (CH prefix).
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              What neobanks can expats use in Switzerland?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Yapeal (Swiss FINMA-licensed, CH IBAN, multi-currency), Neon (Swiss digital bank, free account, cashback), Revolut (multi-currency champion, 30+ currencies, real-time FX, crypto support). All require Swiss residence permit.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Is Revolut accepted in Switzerland for daily use?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Yes, widely accepted for purchases and ATMs. However, Revolut provides Lithuanian IBAN (LT prefix) which most Swiss employers won't accept for salary. Solution: Use Swiss neobank (Yapeal/Neon) for salary, Revolut for spending and currency exchange.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              What documents are required to open an account in Zurich?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Mandatory: Valid passport (6+ months), Swiss residence permit (B/L/C), proof of Zurich address. Traditional banks also require employment contract and salary slips. Neobanks need only passport, permit, and address proof for basic accounts.
+            </p>
+          </details>
+
+          <details class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer">
+              Where can I get help with insurance and tax planning in Zurich?
+            </summary>
+            <p class="mt-4 text-gray-700">
+              Health insurance (mandatory): <a href="https://expat-savvy.ch" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700 font-semibold underline">Expat-Savvy.ch</a> provides specialized consulting, comparing providers (Helsana, CSS, Swica). Premiums CHF 300-500/month. Tax planning: Relocation agencies coordinate with Zurich tax advisors for progressive cantonal rates (25-35% combined) and wealth tax optimization.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back to Parent Link -->
+  <section class="py-8 bg-white border-t border-gray-200">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <a href="/services/finance" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Finance Services (All Switzerland)
+        </a>
+        
+        <div class="mt-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-3">Explore Other Cities:</h3>
+          <div class="flex flex-wrap gap-3">
+            {siblingCities.map((city) => (
+              <a
+                href={`/services/finance/${city.slug}`}
+                class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-primary-50 hover:text-primary-700 transition-colors"
+              >
+                {city.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="py-16 bg-gradient-to-br from-gray-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-gray-900 mb-2 text-center">Trusted Zurich Finance Partners</h2>
+        <p class="text-gray-600 text-center mb-8">Expert agencies with banking and wealth management experience</p>
+
+        <div class="space-y-8">
+          <!-- Prime Relocation - Preferred Partner -->
+          <div class="bg-gradient-to-br from-primary-50 via-white to-red-50 border-2 border-primary-200 rounded-2xl p-8">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-2xl font-bold text-gray-900">Prime Relocation</h3>
+              <span class="px-3 py-1 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full text-xs font-bold uppercase tracking-wide">
+                🏆 Preferred Partner
+              </span>
+            </div>
+            
+            <div class="flex items-center gap-2 mb-4">
+              <div class="flex text-yellow-500">
+                ★★★★★
+              </div>
+              <span class="text-gray-600 text-sm">4.8 / 5 • 53 reviews</span>
+            </div>
+            
+            <ul class="text-gray-700 space-y-2 mb-6">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-primary-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Bank account opening (neobanks & traditional banks)
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-primary-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Introductions to UBS/Credit Suisse wealth managers
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-primary-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Tax planning coordination & insurance setup
+              </li>
+            </ul>
+            
+            <button 
+              onclick="universalOpenModal({page: 'finance_zurich_partner', service: 'finance'})"
+              class="inline-flex items-center justify-center bg-gradient-to-r from-primary-600 to-primary-700 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105"
+            >
+              Get a Free Consultation with our Preferred Partner
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              </svg>
+            </button>
+            <p class="text-xs text-gray-500 mt-3">Our relocation partners work with us and provide free consultations</p>
+          </div>
+
+          <!-- Other Specialists -->
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Other Trusted Zurich Specialists</h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Anchor Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">4.9 / 5 • 27 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Zurich banking expertise with corporate client focus and wealth management introductions</p>
+            </div>
+            
+            <div class="bg-white border border-gray-200 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">Auris Relocation</h4>
+              <div class="flex items-center gap-2 mb-3">
+                <div class="flex text-yellow-500 text-sm">
+                  ★★★★★
+                </div>
+                <span class="text-gray-600 text-sm">4.8 / 5 • 98 reviews</span>
+              </div>
+              <p class="text-gray-700 text-sm">Comprehensive relocation services helping expats navigate Zurich finance setup</p>
+            </div>
+          </div>
+
+          <!-- Browse All Agencies Button -->
+          <div class="mt-8 text-center">
+            <a
+              href="/companies?service=finance"
+              class="inline-flex items-center px-6 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-semibold hover:border-primary-600 hover:text-primary-700 hover:shadow-md transition-all duration-300"
+            >
+              Browse All Agencies for Finance Services
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Disclaimer Before Final CTA -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <PlatformDisclaimer />
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-transparent"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          Ready to Set Up Your Finances in Zurich?
+        </h2>
+        <p class="text-xl text-primary-100 mb-8 leading-relaxed">
+          Get expert support for banking (Yapeal, Neon, Revolut, UBS, Credit Suisse), wealth management, tax planning, and insurance. Our trusted agencies ensure seamless financial setup in Switzerland's financial capital.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onclick="universalOpenModal({page: 'finance_zurich_final', service: 'finance'})"
+            class="px-10 py-5 bg-white text-primary-700 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl"
+          >
+            Book Free Consultation
+          </button>
+          <a
+            href="/services/finance"
+            class="px-10 py-5 bg-white/10 backdrop-blur-sm text-white border-2 border-white rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
+          >
+            View All Switzerland
+          </a>
+        </div>
+        <p class="text-sm text-primary-100 mt-6">
+          ✓ Banking setup  •  ✓ Wealth management  •  ✓ Tax planning  •  ✓ Insurance via Expat-Savvy
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div style="display:none;" data-ai-summary>
+    Finance services in Zurich, Switzerland. Compare banking and finance providers for expats. Zurich is Switzerland's financial capital with UBS and Credit Suisse headquarters at Paradeplatz. Traditional banks: UBS (Switzerland's largest, wealth management, expat services, English staff), Credit Suisse (private banking HNWI, investment services), Raiffeisen (cooperative, local presence, competitive rates). Neobanks popular: Yapeal (Swiss FINMA-licensed, CH IBAN, multi-currency, instant onboarding 1-3 days), Neon (Swiss digital bank, free account, cashback, fast setup), Revolut (multi-currency 30+ currencies, real-time FX, crypto, Lithuanian IBAN requires Swiss complement for salary). Documents: passport, residence permit B/L/C, Zurich address proof, employment contract (traditional banks). Hybrid strategy: Swiss neobank for salary (CH IBAN required) plus Revolut for spending/currency exchange. Tax planning: Canton Zurich 25-35% combined rates, wealth tax 0.1-0.5%, pillar 3a CHF 7,056/year tax-deductible. Insurance mandatory within 3 months: health CHF 300-500/month, Expat-Savvy.ch specialized consulting. Private banking CHF 1+ million: UBS Wealth Management, Credit Suisse Private Banking, Julius Baer. Prime Relocation preferred partner.
+  </div>
+</Layout>
