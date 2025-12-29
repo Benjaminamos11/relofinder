@@ -19,8 +19,8 @@ export const POST: APIRoute = async ({ request, redirect }) => {
         // We check against contact_email, specific email column, OR website domain match
         const { data: partner, error: dbError } = await supabase
             .from('relocators')
-            .select('id, company_name')
-            .or(`contact_email.eq.${email},email.eq.${email},website.ilike.%${domain}%`)
+            .select('id, name')
+            .or(`contact_email.eq.${email},website.ilike.%${domain}%`)
             .limit(1)
             .single();
 
@@ -31,7 +31,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
             }), { status: 404 });
         }
 
-        console.log(`Login attempt for ${email} matched partner: ${partner.company_name}`);
+        console.log(`Login attempt for ${email} matched partner: ${partner.name}`);
 
         // 2. Send Magic Link
         // NOTE: Uses Supabase default email template because explicit 'MagicLinkEmail' 
@@ -48,7 +48,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
             return new Response(JSON.stringify({ message: authError.message }), { status: 500 });
         }
 
-        return new Response(JSON.stringify({ success: true, companyName: partner.company_name }), { status: 200 });
+        return new Response(JSON.stringify({ success: true, companyName: partner.name }), { status: 200 });
 
     } catch (error: any) {
         return new Response(JSON.stringify({ message: error.message }), { status: 500 });

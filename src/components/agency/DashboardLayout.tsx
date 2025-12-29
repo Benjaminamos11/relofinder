@@ -86,15 +86,15 @@ export default function DashboardLayout() {
             const isGeneric = ['gmail.com', 'outlook.com', 'yahoo.com', 'hotmail.com'].includes(domain);
 
             if (domain && !isGeneric) {
-                query = query.or(`contact_email.eq.${session.user.email},email.eq.${session.user.email},website.ilike.%${domain}%`);
+                query = query.or(`contact_email.eq.${session.user.email},website.ilike.%${domain}%`);
             } else {
-                query = query.or(`contact_email.eq.${session.user.email},email.eq.${session.user.email}`);
+                query = query.or(`contact_email.eq.${session.user.email}`);
             }
 
             const { data: byEmail } = await query.limit(1).single();
 
             if (byEmail) {
-                console.log("✅ Managed to link profile by Email/Domain", byEmail.company_name);
+                console.log("✅ Managed to link profile by Email/Domain", byEmail.name);
                 profile = byEmail;
 
                 // Optional: Attempt to link this user permanently to the relocator row
