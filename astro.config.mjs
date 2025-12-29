@@ -15,15 +15,15 @@ export default defineConfig({
       config: {
         content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
       }
-    }), 
+    }),
     react(),
     // preact({
     //   include: 'src/components/common/InteractiveCTAModal.tsx'
     // }),
     mdx(),
     sitemap({
-      filter: (page) => !page.includes('/admin') 
-        && !page.includes('/private') 
+      filter: (page) => !page.includes('/admin')
+        && !page.includes('/private')
         && !page.includes('/api')
         && !page.includes('/netlify-forms')
         && !page.includes('/login')
@@ -69,6 +69,11 @@ export default defineConfig({
     },
     ssr: {
       noExternal: ['@nanostores/react', 'nanostores']
+    },
+    resolve: {
+      alias: {
+        '@': './src'
+      }
     }
   }
 });

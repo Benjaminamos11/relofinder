@@ -1,5 +1,5 @@
 ---
-import { Building2, Lock, Menu, X } from 'lucide-react';
+import { IconBuilding, IconLock, IconMenu, IconX } from './NavIcons';
 
 const currentPath = Astro.url.pathname;
 function isActive(path: string) {
@@ -61,7 +61,7 @@ const initialNavOpacity = variant === 'solid' ? '' : 'opacity-0 translate-y-[-10
           href="/contact" 
           class="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-[#FF6F61] transition-colors"
         >
-          <Lock className="w-4 h-4" />
+          <IconLock className="w-4 h-4" />
           <span>Agency Login</span>
         </a>
         
@@ -70,7 +70,7 @@ const initialNavOpacity = variant === 'solid' ? '' : 'opacity-0 translate-y-[-10
           href="/corporate" 
           class="bg-slate-900 text-white text-sm font-medium px-5 py-2.5 rounded-lg hover:bg-slate-800 transition-all shadow-md hover:shadow-lg flex items-center gap-2"
         >
-          <Building2 className="w-4 h-4" />
+          <IconBuilding className="w-4 h-4" />
           <span>For Corporate HR</span>
         </a>
       </div>
@@ -81,8 +81,8 @@ const initialNavOpacity = variant === 'solid' ? '' : 'opacity-0 translate-y-[-10
         class="md:hidden p-2 text-white hover:text-slate-200 transition-colors mobile-toggle"
         aria-label="Toggle menu"
       >
-        <Menu className="w-6 h-6" id="menu-icon-open" />
-        <X className="w-6 h-6 hidden" id="menu-icon-close" />
+        <IconMenu className="w-6 h-6" id="menu-icon-open" />
+        <IconX className="w-6 h-6 hidden" id="menu-icon-close" />
       </button>
 
     </div>
@@ -105,7 +105,7 @@ const initialNavOpacity = variant === 'solid' ? '' : 'opacity-0 translate-y-[-10
       id="mobile-drawer-close"
       class="absolute top-5 right-4 p-2 text-slate-400 hover:text-slate-600 transition-colors"
     >
-      <X className="w-6 h-6" />
+      <IconX className="w-6 h-6" />
     </button>
 
     <div class="flex-1 overflow-y-auto px-6 pb-6">
@@ -128,11 +128,11 @@ const initialNavOpacity = variant === 'solid' ? '' : 'opacity-0 translate-y-[-10
         <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Partners</h3>
         <nav class="flex flex-col gap-4">
           <a href="/contact" class="flex items-center gap-3 py-2 text-slate-600 hover:text-[#FF6F61] font-medium">
-            <Lock className="w-4 h-4" />
+            <IconLock className="w-4 h-4" />
             Agency Login
           </a>
           <a href="/corporate" class="flex items-center justify-center gap-2 w-full bg-slate-900 text-white font-medium py-3 rounded-lg shadow-sm">
-            <Building2 className="w-4 h-4" />
+            <IconBuilding className="w-4 h-4" />
             For Corporate HR
           </a>
         </nav>
