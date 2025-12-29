@@ -21,11 +21,11 @@ const UniversalContactModal: React.FC<ModalContentProps> = () => {
   const modalOpen = useStore(isModalOpen);
   const oldContext = useStore(modalContext);
   const containerRef = React.useRef<HTMLDivElement>(null);
-  
+
   // Expose nanostores to window for inline script access
   useEffect(() => {
     console.log('🎯 UniversalContactModal mounted');
-    
+
     // Expose stores to window so inline script can access them
     (window as any).relofinderModalStores = {
       modalContext,
@@ -33,12 +33,12 @@ const UniversalContactModal: React.FC<ModalContentProps> = () => {
       setContext: (ctx: ModalContext) => modalContext.set(ctx),
       setOpen: (open: boolean) => isModalOpen.set(open),
     };
-    
+
     // Add DOM marker for MutationObserver detection
     if (containerRef.current) {
       containerRef.current.setAttribute('data-relofinder-modal', 'ready');
     }
-    
+
     const handleOpenModal = (event: CustomEvent) => {
       console.log('🔔 OpenModal event:', event.detail);
       try {
@@ -49,21 +49,21 @@ const UniversalContactModal: React.FC<ModalContentProps> = () => {
         console.error('❌ Error opening modal:', error);
       }
     };
-    
+
     const handleCloseModal = () => {
       console.log('🔔 CloseModal event');
       isModalOpen.set(false);
     };
-    
+
     window.addEventListener('openModal', handleOpenModal as EventListener);
     window.addEventListener('closeModal', handleCloseModal);
-    
+
     // Mark as ready and process queue immediately
     (window as any).modalReady = true;
     if (typeof (window as any).processModalQueue === 'function') {
       (window as any).processModalQueue();
     }
-    
+
     return () => {
       console.log('🔌 UniversalContactModal unmounting');
       window.removeEventListener('openModal', handleOpenModal as EventListener);
@@ -75,9 +75,24 @@ const UniversalContactModal: React.FC<ModalContentProps> = () => {
       }
     };
   }, []);
-  
+
   // Convert old context format to new context format
   const convertContext = (oldCtx: ModalContext): ContextType => {
+    // Check for explicit corporate page or nested corporate flag
+    const isCorporate = oldCtx.page === 'corporate' || (oldCtx as any).context?.isCorporate === true;
+
+    if (isCorporate) {
+      return {
+        type: 'corporate',
+        initialData: {
+          company: oldCtx.company,
+          volume: oldCtx.volume,
+          where: oldCtx.where
+        },
+        selectedAgencies: oldCtx.selectedAgencies
+      };
+    }
+
     switch (oldCtx.page) {
       case 'service':
         return {
@@ -89,17 +104,21 @@ const UniversalContactModal: React.FC<ModalContentProps> = () => {
           type: 'region',
           regionName: oldCtx.region || 'Switzerland'
         };
-      case 'corporate':
-        return { type: 'home' };
       case 'blog':
         return { type: 'home' };
+      case 'results':
+        return {
+          type: 'results',
+          // @ts-ignore - selectedAgencies might not be in the strict ModalContext type yet
+          selectedAgencies: oldCtx.selectedAgencies
+        };
       default:
         return { type: 'home' };
     }
   };
 
   const context = convertContext(oldContext);
-  
+
   const closeModal = () => {
     console.log('🚪 Closing modal');
     isModalOpen.set(false);

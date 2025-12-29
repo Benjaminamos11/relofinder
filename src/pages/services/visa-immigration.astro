@@ -1,0 +1,650 @@
+---
+import { 
+  Building2, 
+  Users, 
+  Clock, 
+  TrendingUp,
+  ShieldCheck,
+  Search,
+  Key,
+  ChevronDown,
+  ArrowRight,
+  CheckCircle2,
+  XCircle,
+  FileText,
+  Globe,
+  Briefcase,
+  AlertTriangle
+} from 'lucide-react';
+import '../../styles/global.css';
+import '../../styles/alpine-clarity.css';
+import SEOHead from '../../components/common/SEOHead.astro';
+import UniversalContactModal from '../../components/common/UniversalContactModal.tsx';
+import '../../lib/expose-modal-stores.client.ts';
+import Navbar from '../../components/layout/Navbar.astro';
+import Footer from '../../components/layout/Footer.astro';
+import HeroSearch from '../../components/home/HeroSearch.tsx';
+
+// --- Assets ---
+import heroImage from '/Users/benjaminamoswagner/.gemini/antigravity/brain/f947e50e-b2dc-47b6-968d-6f1f8b4c1204/visa_hero_passport_1766847174403.png';
+import documentsImage from '/Users/benjaminamoswagner/.gemini/antigravity/brain/f947e50e-b2dc-47b6-968d-6f1f8b4c1204/visa_documents_permit_1766847191355.png';
+import officeImage from '/Users/benjaminamoswagner/.gemini/antigravity/brain/f947e50e-b2dc-47b6-968d-6f1f8b4c1204/visa_office_consult_1766847207356.png';
+
+// --- Data ---
+const faqs = [
+  {
+    q: "How long does a Swiss work permit take?",
+    a: "For EU/EFTA citizens, the process is largely administrative and takes 2-4 weeks. For Third-Country Nationals (Non-EU), the process involves federal approval and quota checks, typically taking 8-12 weeks."
+  },
+  {
+    q: "Can my spouse work in Switzerland?",
+    a: "Yes. If you hold a valid work permit (L, B, or C), your spouse and accompanying children essentially have the right to work and attend school in Switzerland. Family reunification rights are strong."
+  },
+  {
+    q: "What is the Non-EU Quota?",
+    a: "The Swiss Federal Council sets a strict annual limit on the number of L and B permits issued to non-EU/EFTA nationals. Once these quotas are exhausted, no new permits can be issued until the next year."
+  },
+  {
+      q: "Do I need a visa to enter Switzerland?",
+      a: "EU/EFTA citizens do not need a visa. Non-EU citizens may need a 'Visa D' (long-stay visa) to enter the country for work, even if they have a work contract. This must be collected at a glorious Swiss embassy abroad before entering."
+  }
+];
+
+// --- Structured Data (LLM/SEO) ---
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Swiss Visa & Immigration Service",
+  "provider": {
+    "@type": "Organization",
+    "name": "ReloFinder",
+    "url": "https://relofinder.ch"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Switzerland"
+  },
+  "description": "Expert immigration services for EU and Non-EU nationals moving to Switzerland. We handle quotas, work permits (L, B, C), and family reunification.",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Immigration Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Non-EU Work Permit Application"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "EU Registration Support"
+        }
+      }
+    ]
+  }
+};
+
+const definedTermSchema = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "name": "Swiss Immigration Terminology",
+  "hasDefinedTerm": [
+    {
+      "@type": "DefinedTerm",
+      "termCode": "Permit B",
+      "name": "Residence Permit B",
+      "description": "A residence permit granted to foreign nationals who work in Switzerland for an extended period. Typically valid for 5 years for EU citizens and 1 year (renewable) for Non-EU."
+    },
+    {
+      "@type": "DefinedTerm",
+      "termCode": "Third-Country National",
+      "name": "Drittstaatangehörige",
+      "description": "Citizens of countries outside the EU/EFTA (e.g., UK, USA, Canada). They face stricter entry requirements and quotas."
+    }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+};
+
+const structuredData = [serviceSchema, definedTermSchema, faqSchema];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <SEOHead 
+      title="Swiss Immigration & Visa Service | ReloFinder"
+      description="Secure your Swiss work permit with confidence. Expert support for EU registration and Non-EU quota applications."
+      keywords={["swiss work permit", "immigration switzerland", "visa quota switzerland", "relocation agency visa", "residence permit b"]}
+      schema={structuredData}
+      openGraph={{
+        title: "Swiss Immigration: Navigating the Quota System",
+        description: "Mistakes with your work permit can delay your start date by months. Compare expert immigration providers.",
+        image: heroImage.src,
+        type: "service",
+        url: "https://relofinder.ch/services/visa-immigration"
+      }}
+      twitter={{
+        card: "summary_large_image",
+        site: "@relofinder",
+        title: "Swiss Immigration Guide",
+        description: "Navigating Swiss work permits and quotas.",
+        image: heroImage.src
+      }}
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans text-slate-800 bg-white antialiased">
+
+    <!-- Navbar -->
+    <Navbar />
+
+    <!-- 1. The "Border Control" Hero -->
+    <section class="relative min-h-[95vh] flex items-center pt-20 pb-32 overflow-hidden bg-slate-950 group">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-transparent to-slate-950/80 z-20 pointer-events-none"></div>
+            <img 
+                src={heroImage.src} 
+                alt="Stack of passports on a desk at border control" 
+                class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 transition-all duration-[2000ms] ease-in-out z-10"
+            />
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-30">
+            <div class="max-w-5xl mx-auto mb-16">
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF6F61]/10 border border-[#FF6F61]/20 text-[#FF6F61] text-[10px] font-black uppercase tracking-[0.3em] mb-8 animate-fade-in shadow-[0_0_20px_rgba(255,111,97,0.1)]">
+                    <ShieldCheck className="w-4 h-4" />
+                    Visa & Immigration
+                </span>
+                <h1 class="text-6xl md:text-8xl font-black tracking-tighter text-white mb-8 leading-[0.9] text-balance">
+                    Swiss Immigration: <br/>
+                    <span class="relative">
+                        <span class="bg-gradient-to-r from-slate-200 via-white to-slate-200 bg-clip-text text-transparent">The Quota System.</span>
+                        <div class="absolute -bottom-4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#FF6F61]/50 to-transparent"></div>
+                    </span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed mb-16 antialiased">
+                    Securing a work permit is the foundation of your move. Whether you are an EU citizen or a Third-Country National, mistakes here can delay your start date by months.
+                </p>
+                
+                <div class="max-w-4xl mx-auto text-left transform hover:scale-[1.01] transition-all duration-700">
+                    <HeroSearch client:load />
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator (Flows under content) -->
+            <div class="relative mt-20 flex flex-col items-center justify-center gap-2 animate-bounce z-20 pointer-events-none">
+                <span class="text-[10px] font-black text-[#FF6F61] uppercase tracking-[0.4em]">Explore Permits</span>
+                <ChevronDown className="w-5 h-5 text-[#FF6F61]/40" />
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. "The Two-Tier System" (Refined Split Layout) -->
+    <section class="py-32 bg-white border-b border-slate-100 relative overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-24">
+                    <span class="text-[#FF6F61] font-black uppercase tracking-[0.4em] text-xs mb-4 block">System Overview</span>
+                    <h2 class="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight">The Two-Tier System</h2>
+                    <p class="text-slate-500 mt-6 text-xl max-w-2xl mx-auto font-light">Switzerland divides the world into two categories. Knowing where you stand is the first step to successful strategic planning.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-24 items-center">
+                    <div class="relative order-2 md:order-1">
+                        <div class="absolute -inset-10 bg-[#FF6F61]/5 blur-[80px] rounded-full"></div>
+                        <img 
+                            src={documentsImage.src} 
+                            alt="Swiss Work Permit Documents" 
+                            class="relative rounded-[5rem] shadow-[0_64px_96px_-12px_rgba(0,0,0,0.15)] border border-slate-100 grayscale hover:grayscale-0 transition-all duration-[2000ms] ease-in-out transform hover:scale-[1.02]"
+                        />
+                    </div>
+                    
+                    <div class="space-y-8 order-1 md:order-2">
+                        <!-- EU/EFTA Card -->
+                        <div class="p-10 bg-slate-50 rounded-[3rem] border border-slate-100 hover:border-[#FF6F61]/20 transition-all group">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-[#FF6F61] shadow-sm group-hover:bg-[#FF6F61] group-hover:text-white transition-all">
+                                    <Globe className="w-6 h-6" />
+                                </div>
+                                <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase tracking-wide">Streamlined</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-900 mb-4">EU-27 / EFTA</h3>
+                            <p class="text-slate-600 leading-relaxed mb-6 font-light">
+                                Freedom of Movement. If you have a valid employment contract, you legally have a <em>right</em> to a permit. No quotas apply, but administrative delays can still occur.
+                            </p>
+                        </div>
+
+                        <!-- Third-Country Card -->
+                        <div class="p-10 bg-slate-900 rounded-[3rem] border border-slate-800 text-white relative overflow-hidden group shadow-xl">
+                            <div class="absolute -top-10 -right-10 w-40 h-40 bg-[#FF6F61]/10 blur-[60px] group-hover:bg-[#FF6F61]/20 transition-all"></div>
+                            <div class="flex items-center justify-between mb-6 relative z-10">
+                                <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center text-[#FF6F61] shadow-sm group-hover:bg-[#FF6F61] group-hover:text-white transition-all">
+                                    <ShieldCheck className="w-6 h-6" />
+                                </div>
+                                <span class="px-3 py-1 bg-[#FF6F61] text-white text-xs font-bold rounded-full uppercase tracking-wide">Strict Quotas</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-4 relative z-10">Third-Country Nationals</h3>
+                            <p class="text-slate-400 leading-relaxed mb-6 font-light relative z-10">
+                                The Quota System. Your employer must prove that no Swiss or EU candidate could be found ("Inländervorrang"). Expert legal preparation is non-negotiable.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. "The Permit Alphabet" (Refined Grid) -->
+    <section class="py-32 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-24">
+                <span class="text-[#FF6F61] font-black uppercase tracking-[0.4em] text-xs mb-4 block">Definitions</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">The Permit Alphabet</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Permit L -->
+                <div class="bg-white p-10 rounded-[3rem] border border-slate-100 hover:border-[#FF6F61]/30 hover:shadow-xl transition-all duration-300 group">
+                    <div class="text-6xl font-black text-slate-100 mb-8 group-hover:text-slate-900 transition-colors">L</div>
+                    <div class="text-xs font-bold text-slate-900 uppercase tracking-widest mb-3">Short-Term</div>
+                    <p class="text-slate-500 text-base leading-relaxed font-light">
+                        Valid for <strong class="text-slate-900">&lt; 1 year</strong>. Often tied to a specific project. Hard to renew for Non-EU.
+                    </p>
+                </div>
+
+                <!-- Permit B -->
+                <div class="bg-slate-900 p-10 rounded-[3rem] border border-slate-800 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group">
+                    <div class="absolute -inset-10 bg-[#FF6F61]/5 blur-[60px]"></div>
+                    <div class="text-6xl font-black text-[#FF6F61] mb-8 relative z-10">B</div>
+                    <div class="text-xs font-bold text-white uppercase tracking-widest mb-3 relative z-10">Residence</div>
+                    <p class="text-slate-400 text-base leading-relaxed font-light relative z-10">
+                        The gold standard. Valid for <strong class="text-white">5 years (EU)</strong> or <strong class="text-white">1 year (Non-EU)</strong>. Renewable annually.
+                    </p>
+                </div>
+
+                <!-- Permit C -->
+                <div class="bg-white p-10 rounded-[3rem] border border-slate-100 hover:border-[#FF6F61]/30 hover:shadow-xl transition-all duration-300 group">
+                    <div class="text-6xl font-black text-slate-100 mb-8 group-hover:text-slate-900 transition-colors">C</div>
+                    <div class="text-xs font-bold text-slate-900 uppercase tracking-widest mb-3">Settlement</div>
+                    <p class="text-slate-500 text-base leading-relaxed font-light">
+                        Permanent residency. Granted after 5-10 years. Near-citizenship rights including open job mobility.
+                    </p>
+                </div>
+
+                 <!-- Permit G -->
+                 <div class="bg-white p-10 rounded-[3rem] border border-slate-100 hover:border-[#FF6F61]/30 hover:shadow-xl transition-all duration-300 group">
+                    <div class="text-6xl font-black text-slate-100 mb-8 group-hover:text-slate-900 transition-colors">G</div>
+                    <div class="text-xs font-bold text-slate-900 uppercase tracking-widest mb-3">Cross-Border</div>
+                    <p class="text-slate-500 text-base leading-relaxed font-light">
+                        For cross-border commuters living in EU border zones (DE/FR/IT) returning at least weekly.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. "The Ecosystem Advantage" (Rounded Comparison) -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
+                 <!-- Left: Complex Cases -->
+                 <div>
+                     <h3 class="text-3xl font-bold text-slate-900 mb-6">Complex Cases</h3>
+                     <p class="text-slate-600 mb-8 text-lg font-light leading-relaxed">
+                         Non-EU moves, Family Reunification, and HR Departments transferring critical talent. Rejection is costly and appeals are difficult.
+                     </p>
+                     
+                     <ul class="space-y-6 mb-10 border-t border-slate-200 pt-8">
+                         <div class="flex items-baseline gap-4">
+                             <span class="flex items-center justify-center w-8 h-8 rounded-full bg-[#FF6F61]/10 text-[#FF6F61] font-bold text-sm shrink-0">1</span>
+                             <div>
+                                 <h4 class="font-bold text-slate-900 text-sm uppercase tracking-wide mb-1">Legal Strategy</h4>
+                                 <p class="text-slate-500 text-sm">Crafting the legal brief for "Economic Interest" and quotas.</p>
+                             </div>
+                         </div>
+                         <div class="flex items-baseline gap-4">
+                             <span class="flex items-center justify-center w-8 h-8 rounded-full bg-[#FF6F61]/10 text-[#FF6F61] font-bold text-sm shrink-0">2</span>
+                             <div>
+                                 <h4 class="font-bold text-slate-900 text-sm uppercase tracking-wide mb-1">Embassy Liaison</h4>
+                                 <p class="text-slate-500 text-sm">Coordinating between Bern and the Swiss embassy in your home country.</p>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+
+                 <!-- Right: Lead Magnet - Expert Consultation -->
+                 <div class="bg-white p-12 rounded-3xl border border-slate-200 shadow-lg relative overflow-hidden group hover:shadow-2xl transition-all duration-300">
+                    <!-- Icon -->
+                    <div class="w-16 h-16 bg-[#FF6F61]/10 rounded-2xl flex items-center justify-center mb-6">
+                        <Briefcase className="w-8 h-8 text-[#FF6F61]" />
+                    </div>
+                    
+                    <h3 class="text-2xl font-bold text-slate-900 mb-3">Expert Visa Consultation</h3>
+                    <div class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full uppercase tracking-wide mb-6">Verified Providers</div>
+                    
+                    <p class="text-slate-600 mb-8 text-base leading-relaxed">
+                        Connect with licensed Swiss immigration specialists who can manage your quota strategy, document preparation, and direct liaison with cantonal authorities.
+                    </p>
+                    
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3 text-slate-700 text-sm">
+                            <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
+                            <span>Detailed Quota Analysis & Strategy</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-700 text-sm">
+                            <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
+                            <span>Legal-Grade Document Review</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-700 text-sm">
+                            <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0" />
+                            <span>Priority Cantonal Liaison</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="/search/results?service=visa-immigration" class="inline-flex items-center justify-center w-full py-4 bg-[#FF6F61] text-white text-center font-bold text-sm uppercase tracking-widest hover:bg-[#e5574d] rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl no-underline">
+                        Find Your Specialist Now <ArrowRight className="w-4 h-4 ml-2" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Why Use a Relocation Agency for Immigration -->
+    <section class="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Why Use an Agency?</h2>
+                <div class="h-1.5 w-24 bg-[#FF6F61] mx-auto mb-8 rounded-full"></div>
+                <p class="text-white/90 text-xl font-light max-w-3xl mx-auto leading-relaxed">
+                    Immigration is the single point of failure for any Swiss move. A relocation agency provides the legal weight and local connections to ensure your permit is handled correctly the first time.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-20">
+                <!-- Point 1: Expert Advocacy -->
+                <a href="/search/results?service=visa-immigration" class="p-10 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 hover:scale-[1.03] hover:shadow-2xl hover:shadow-[#FF6F61]/10 transition-all duration-500 group no-underline">
+                    <div class="w-16 h-16 bg-[#FF6F61]/20 text-[#FF6F61] rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 shadow-[0_0_20px_rgba(255,111,97,0.2)]">
+                        <ShieldCheck className="w-8 h-8" />
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Expert Advocacy</h3>
+                    <p class="text-slate-300 leading-relaxed text-sm">
+                        Agencies act as a professional bridge between your employer and the Cantonal Migration Office, ensuring your application is complete and prioritized.
+                    </p>
+                    <div class="mt-6 flex items-center gap-2 text-[#FF6F61] font-bold text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        View Experts <ArrowRight className="w-3 h-3" />
+                    </div>
+                </a>
+
+                <!-- Point 2: Quota Management -->
+                <a href="/search/results?service=visa-immigration" class="p-10 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 hover:scale-[1.03] hover:shadow-2xl hover:shadow-[#FF6F61]/10 transition-all duration-500 group no-underline">
+                    <div class="w-16 h-16 bg-[#FF6F61]/20 text-[#FF6F61] rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 shadow-[0_0_20px_rgba(255,111,97,0.2)]">
+                        <TrendingUp className="w-8 h-8" />
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Quota Strategy</h3>
+                    <p class="text-slate-300 leading-relaxed text-sm">
+                        For Non-EU nationals, timing is everything. Agencies understand the federal quota cycles and can advise on the best window for submission.
+                    </p>
+                    <div class="mt-6 flex items-center gap-2 text-[#FF6F61] font-bold text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        View Experts <ArrowRight className="w-3 h-3" />
+                    </div>
+                </a>
+
+                <!-- Point 3: Precision Timing -->
+                <a href="/search/results?service=visa-immigration" class="p-10 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 hover:scale-[1.03] hover:shadow-2xl hover:shadow-[#FF6F61]/10 transition-all duration-500 group no-underline">
+                    <div class="w-16 h-16 bg-[#FF6F61]/20 text-[#FF6F61] rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 shadow-[0_0_20px_rgba(255,111,97,0.2)]">
+                        <Clock className="w-8 h-8" />
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Precision Timing</h3>
+                    <p class="text-slate-300 leading-relaxed text-sm">
+                        Synchronizing work permits, family reunification, and housing start dates. One mistake in the sequence can lead to months of separation.
+                    </p>
+                    <div class="mt-6 flex items-center gap-2 text-[#FF6F61] font-bold text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        View Experts <ArrowRight className="w-3 h-3" />
+                    </div>
+                </a>
+            </div>
+
+            <!-- DIY vs Managed Table -->
+            <div class="bg-white rounded-[2.5rem] overflow-hidden text-slate-900 shadow-2xl ring-1 ring-white/10">
+                <div class="p-8 md:p-12">
+                    <h3 class="text-3xl font-bold mb-10 text-center tracking-tight">Compare Your Options</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-100 text-xs font-bold uppercase tracking-widest text-slate-400">
+                                    <th class="py-6 px-4">Immigration Stage</th>
+                                    <th class="py-6 px-4">DIY Risks</th>
+                                    <th class="py-6 px-4 text-slate-900">Managed (ReloFinder)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm">
+                                <tr class="border-b border-slate-50 group transition-colors hover:bg-slate-50/50">
+                                    <td class="py-6 px-4 font-bold flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 group-hover:text-[#FF6F61] transition-colors">
+                                            <FileText className="w-4 h-4" />
+                                        </div>
+                                        Document Prep
+                                    </td>
+                                    <td class="py-6 px-4 text-slate-500">Missing/Incorrect translations</td>
+                                    <td class="py-6 px-4 font-bold text-[#FF6F61] flex items-center gap-2">
+                                        <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                        Legal-grade Document review
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-slate-50 group transition-colors hover:bg-slate-50/50">
+                                    <td class="py-6 px-4 font-bold flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 group-hover:text-[#FF6F61] transition-colors">
+                                            <Globe className="w-4 h-4" />
+                                        </div>
+                                        Authority Liaison
+                                    </td>
+                                    <td class="py-6 px-4 text-slate-500">Limited communication</td>
+                                    <td class="py-6 px-4 font-bold text-[#FF6F61] flex items-center gap-2">
+                                        <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                        Direct migration office contact
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-slate-50 group transition-colors hover:bg-slate-50/50">
+                                    <td class="py-6 px-4 font-bold flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 group-hover:text-[#FF6F61] transition-colors">
+                                            <Briefcase className="w-4 h-4" />
+                                        </div>
+                                        Rejection Handling
+                                    </td>
+                                    <td class="py-6 px-4 text-slate-500">Opaque feedback</td>
+                                    <td class="py-6 px-4 font-bold text-[#FF6F61] flex items-center gap-2">
+                                        <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                        Formal appeal support
+                                    </td>
+                                </tr>
+                                <tr class="group transition-colors hover:bg-slate-50/50">
+                                    <td class="py-6 px-4 font-bold flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 group-hover:text-[#FF6F61] transition-colors">
+                                            <Users className="w-4 h-4" />
+                                        </div>
+                                        Family Sync
+                                    </td>
+                                    <td class="py-6 px-4 text-slate-500">Likely separate timelines</td>
+                                    <td class="py-6 px-4 font-bold text-[#FF6F61] flex items-center gap-2">
+                                        <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                        Synchronized arrival
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-slate-50 to-white p-12 text-center border-t border-slate-100 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-[#FF6F61]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <p class="text-slate-600 mb-8 font-medium text-lg relative z-10">Want to find the top immigration relocation agency for your specific canton?</p>
+                    <a 
+                        href="/search/results?service=visa-immigration" 
+                        class="inline-flex items-center gap-3 bg-slate-900 text-white px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-[#FF6F61] hover:scale-105 hover:shadow-2xl hover:shadow-[#FF6F61]/20 transition-all duration-300 relative z-10 shadow-xl no-underline"
+                    >
+                        Find & Compare Immigration Experts
+                        <ArrowRight className="w-4 h-4" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Relocation Timeline (Refined) -->
+    <section class="py-24 bg-white border-b border-slate-100">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-slate-900 mb-16 text-center">The Typical Process</h2>
+            
+            <div class="space-y-0">
+                
+                <!-- Step 1 -->
+                <div class="flex gap-8 group">
+                    <div class="flex flex-col items-center">
+                        <div class="text-3xl font-light text-slate-300 group-hover:text-[#FF6F61] transition-colors">01</div>
+                        <div class="w-px h-24 bg-slate-200 mt-4 group-last:hidden"></div>
+                    </div>
+                    <div class="pt-2 pb-12">
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Contract Signed</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">Employment contract is finalized. This triggers the legal clock.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flex gap-8 group">
+                    <div class="flex flex-col items-center">
+                        <div class="text-3xl font-light text-slate-300 group-hover:text-[#FF6F61] transition-colors">02</div>
+                        <div class="w-px h-24 bg-slate-200 mt-4 group-last:hidden"></div>
+                    </div>
+                    <div class="pt-2 pb-12">
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Cantonal Application</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">Employer submits specific forms to the Canton's migration office (e.g., Zurich Migration Office).</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flex gap-8 group">
+                    <div class="flex flex-col items-center">
+                         <div class="text-3xl font-light text-slate-300 group-hover:text-[#FF6F61] transition-colors">03</div>
+                        <div class="w-px h-24 bg-slate-200 mt-4 group-last:hidden"></div>
+                    </div>
+                    <div class="pt-2 pb-12">
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Federal Approval (SEM)</h4>
+                         <span class="inline-block px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] font-bold uppercase tracking-wider mb-2 rounded-md">Non-EU Only</span>
+                        <p class="text-slate-600 text-sm leading-relaxed">Bern reviews the case. This is where quotas are checked and approved.</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flex gap-8 group">
+                    <div class="flex flex-col items-center">
+                        <div class="text-3xl font-light text-slate-300 group-hover:text-[#FF6F61] transition-colors">04</div>
+                        <div class="w-px h-24 bg-slate-200 mt-4 group-last:hidden"></div>
+                    </div>
+                    <div class="pt-2 pb-12">
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Visa Entry Authorization</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">Authorization is sent to the Swiss embassy in your home country. You collect the Visa D.</p>
+                    </div>
+                </div>
+
+                 <!-- Step 5 -->
+                 <div class="flex gap-8 group">
+                    <div class="flex flex-col items-center">
+                        <div class="text-3xl font-light text-slate-300 group-hover:text-[#FF6F61] transition-colors">05</div>
+                    </div>
+                    <div class="pt-2">
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Registration</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">Arrival in Switzerland. You must register at the local town hall (Kreisbüro) within 14 days.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-24 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                {faqs.map((faq) => (
+                    <details class="group bg-white border border-slate-200 overflow-hidden rounded-xl">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-900 hover:bg-slate-50 transition-colors select-none text-lg">
+                            {faq.q}
+                            <ChevronDown className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" />
+                        </summary>
+                        <div class="px-6 pb-8 pt-2 text-slate-600 leading-relaxed border-t border-slate-100/50">
+                            {faq.a}
+                        </div>
+                    </details>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <Footer theme="light" />
+
+    <!-- Modal Globals -->
+    <div id="relofinder-modal-marker" data-relofinder-modal="pending" style="display: none;" aria-hidden="true"></div>
+    <UniversalContactModal client:load />
+
+    <!-- Scripts -->
+    <script is:inline>
+      if (typeof window !== 'undefined') {
+        window.modalEventQueue = window.modalEventQueue || [];
+        window.modalReady = false;
+        
+        window.universalOpenModal = function(context) {
+          const resolvedContext = context && typeof context === 'object' ? context : { page: 'visa_service', topic: context };
+          console.log('📞 universalOpenModal called', resolvedContext);
+          if (window.modalReady && window.relofinderModalStores) {
+            window.relofinderModalStores.setContext(resolvedContext);
+            window.relofinderModalStores.setOpen(true);
+            return;
+          }
+          window.modalEventQueue.push({ kind: 'open', payload: resolvedContext });
+        };
+
+        window.closeModal = function() {
+           if (window.modalReady && window.relofinderModalStores) {
+            window.relofinderModalStores.setOpen(false);
+          } else {
+            window.modalEventQueue.push({ kind: 'close' });
+          }
+        };
+      }
+      
+      if (typeof window !== 'undefined') {
+        const checkInterval = setInterval(() => {
+            if (window.relofinderModalStores) {
+                window.modalReady = true;
+                window.modalEventQueue.forEach(item => {
+                    if (item.kind === 'open') window.relofinderModalStores.setContext(item.payload), window.relofinderModalStores.setOpen(true);
+                    if (item.kind === 'close') window.relofinderModalStores.setOpen(false);
+                });
+                window.modalEventQueue = [];
+                clearInterval(checkInterval);
+            }
+        }, 100);
+      }
+    </script>
+</body>
+</html>

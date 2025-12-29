@@ -155,3 +155,6 @@ All 58 companies in Supabase have been successfully migrated, including:
 
 *All 58 companies in Supabase now have rich content fields populated from the Astro content collection.*
 
+
+
+

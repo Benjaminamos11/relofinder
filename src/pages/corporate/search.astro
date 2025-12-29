@@ -1,0 +1,133 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AgencyList from '../../components/search/AgencyList.tsx';
+import { createClient } from '@supabase/supabase-js';
+import { Building2, ShieldCheck, BarChart3 } from 'lucide-react';
+
+// Server Side Data Fetching
+const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+const supabaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+const { searchParams } = Astro.url;
+// Extract parameters
+const cantonFilter = searchParams.get('where') || 'zurich'; 
+const companyName = searchParams.get('company') || '';
+const volume = searchParams.get('volume') || '';
+
+// Fetch Providers
+const { data: relocators, error } = await supabase
+  .from('relocators')
+  .select('*')
+  .order('relo_score', { ascending: false });
+
+if (error) {
+  console.error("Error fetching relocators:", error);
+}
+
+// Map RELOCATORS DB structure to Component Props
+const mappedAgencies = (relocators || [])
+  .filter(p => {
+     // 1. Show all agencies per user request (removed corporate_ready restriction)
+     
+     // 2. Filter by canton/region (case insensitive check)
+     const regions = p.regions_served || [];
+     if (!Array.isArray(regions)) return false;
+     
+     const matchesRegion = !cantonFilter || regions.some(r => r && r.toLowerCase().includes(cantonFilter.toLowerCase()));
+     if (!matchesRegion) return false;
+
+     return true;
+  })
+  .map(p => ({
+  id: p.slug, 
+  name: p.name,
+  logo: p.logo, 
+  avg_rating: Number(p.rating) || Number(p.google_rating) || 5.0,
+  reviews_count: 0, 
+  verified: p.tier === 'preferred' || p.tier === 'partner', 
+  corporate_ready: true, 
+  description: p.bio || p.seo_summary || "B2B Relocation Partner.",
+  tags: p.languages || [], 
+  price_tier: 2, 
+  slug: p.slug
+}));
+
+// Sort: Preferred/Verified first
+mappedAgencies.sort((a, b) => {
+    if (a.verified && !b.verified) return -1;
+    if (!a.verified && b.verified) return 1;
+    return b.avg_rating - a.avg_rating;
+});
+
+---
+
+<Layout 
+  title={`Corporate Relocation Partners in ${cantonFilter.charAt(0).toUpperCase() + cantonFilter.slice(1)} | ReloFinder`} 
+  navbarVariant="solid"
+>
+  <div class="bg-slate-50 min-h-screen pb-20 pt-20">
+    
+    <!-- B2B Header Area -->
+    <div class="bg-white border-b border-slate-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+             <div class="flex items-center gap-3 text-sm font-bold text-[#FF6F61] uppercase tracking-widest mb-4">
+                <Building2 className="w-4 h-4" />
+                <span>Managed Procurement Mode</span>
+            </div>
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+                <div class="max-w-3xl">
+                    <h1 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">
+                        Select Partners for your <span class="text-[#FF6F61]">Managed Tender.</span>
+                    </h1>
+                    <p class="text-slate-500 text-lg leading-relaxed">
+                        Compare enterprise-ready agencies in <span class="text-slate-900 font-bold capitalize">{cantonFilter}</span>. 
+                        Select up to 3 providers to receive structured benchmarks for {companyName || 'your mobility program'}.
+                    </p>
+                </div>
+                
+                <!-- B2B Trust Badges -->
+                <div class="flex gap-4">
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 flex items-center gap-3">
+                        <ShieldCheck className="w-5 h-5 text-slate-400" />
+                        <div class="text-left">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Compliance</p>
+                            <p class="text-xs font-bold text-slate-700 font-mono">VETTED</p>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 flex items-center gap-3">
+                        <BarChart3 className="w-5 h-5 text-slate-400" />
+                        <div class="text-left">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Benchmarking</p>
+                            <p class="text-xs font-bold text-slate-700 font-mono">ACTIVE</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="bg-[#FF6F61]/5 border border-[#FF6F61]/20 rounded-2xl p-6 mb-10 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
+                    <span class="text-[#FF6F61] font-bold text-lg">!</span>
+                </div>
+                <p class="text-slate-700 font-medium">
+                    Corporate Advantage: All selected agencies must adhere to our standardized B2B reporting and transparency guidelines.
+                </p>
+            </div>
+        </div>
+
+        <!-- List Component -->
+        <AgencyList 
+            client:load 
+            agencies={mappedAgencies} 
+            initialCanton={cantonFilter} 
+            isCorporate={true}
+        />
+    </div>
+
+  </div>
+</Layout>

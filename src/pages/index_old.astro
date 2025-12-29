@@ -1,0 +1,161 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/home/Hero.astro';
+import RegionsShowcase from '../components/home/RegionsShowcase.astro';
+import ServicesShowcase from '../components/home/ServicesShowcase.astro';
+import AgenciesCarousel from '../components/home/AgenciesCarousel';
+import CTASection from '../components/home/CTASection.astro';
+import Footer from '../components/common/Footer.astro';
+import { getAgenciesCarouselData } from '../utils/agenciesCarouselData';
+
+// Fetch agencies for the unified carousel
+const carouselAgencies = await getAgenciesCarouselData(8);
+
+// Debug: Log what we got
+console.log('[Homepage] Carousel agencies count:', carouselAgencies.length);
+if (carouselAgencies.length > 0) {
+  console.log('[Homepage] First agency:', carouselAgencies[0].name);
+}
+
+const title = "Switzerland Relocation Made Simple | Compare Providers & Regions | ReloFinder";
+const description = "Compare vetted relocation agencies, explore top Swiss regions, and plan your move with transparent services and free consultations.";
+const canonical = "https://relofinder.ch";
+
+const keywords = [
+  'swiss relocation services',
+  'moving to switzerland',
+  'switzerland relocation companies',
+  'expat services switzerland',
+  'relocation zurich',
+  'relocation geneva',
+  'international move switzerland',
+  'swiss immigration services',
+  'expat relocation switzerland'
+];
+
+// Enhanced Schema markup for homepage
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "ReloFinder",
+      "url": "https://relofinder.ch",
+      "description": description,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://relofinder.ch/companies?search={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "name": "ReloFinder",
+      "url": "https://relofinder.ch",
+      "description": description,
+      "logo": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1751047383/SVG_sdmxdo.svg",
+      "foundingDate": "2023",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "CH"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "hello@relofinder.ch",
+        "contactType": "customer service"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/relofinder"
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "name": "Featured Relocation Companies",
+      "description": "Top-rated Swiss relocation service providers",
+      "itemListElement": carouselAgencies.slice(0, 5).map((agency, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "Organization",
+          "name": agency.name,
+          "url": `https://relofinder.ch/companies/${agency.slug}`,
+          "aggregateRating": agency.rating ? {
+            "@type": "AggregateRating",
+            "ratingValue": agency.rating,
+            "reviewCount": agency.reviews_count || 0
+          } : undefined
+        }
+      }))
+    }
+  ]
+};
+---
+
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonical}
+  keywords={keywords}
+  schema={schema}
+>
+
+	<!-- 1. Hero - Welcome & Value Proposition -->
+	<Hero />
+	
+	<!-- 2. Regions - Where do you want to move? -->
+	<RegionsShowcase />
+	
+	<!-- 3. Services - What do you need help with? -->
+	<ServicesShowcase />
+	
+	<!-- 4. Agencies Carousel - Featured agencies with reviews & AI summaries -->
+	<AgenciesCarousel agencies={carouselAgencies} client:visible />
+	
+	<!-- 5. CTA - How to get started -->
+	<CTASection />
+</Layout>
+
+<script>
+  // Animate elements on scroll
+  document.addEventListener('DOMContentLoaded', function() {
+    const animateOnScrollElements = document.querySelectorAll('.animate-on-scroll');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+    
+    animateOnScrollElements.forEach(element => {
+      observer.observe(element);
+    });
+  });
+
+  // Modal functionality
+  function openModal(modalId: string) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeModal(modalId: string) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+  }
+
+  // Global modal functions
+  (window as any).openModal = openModal;
+  (window as any).closeModal = closeModal;
+</script>

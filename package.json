@@ -7,8 +7,10 @@
     "@astrojs/react": "^3.0.10",
     "@astrojs/sitemap": "^3.4.0",
     "@astrojs/tailwind": "^5.1.0",
+    "@headlessui/react": "^2.2.9",
     "@nanostores/preact": "^1.0.0",
     "@nanostores/react": "^1.0.0",
+    "@react-email/components": "1.0.2",
     "@supabase/auth-helpers-shared": "^0.6.1",
     "@supabase/auth-ui-react": "^0.4.7",
     "@supabase/auth-ui-shared": "^0.1.8",
@@ -29,11 +31,13 @@
     "openai": "^3.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-email": "5.1.0",
     "react-icons": "^5.5.0",
     "resend": "^1.1.0",
     "serpapi": "^2.1.0"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "typescript": "^5.0.0"

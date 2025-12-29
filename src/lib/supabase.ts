@@ -10,6 +10,8 @@ const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || 'placeholder
 if (!import.meta.env.PUBLIC_SUPABASE_URL || !import.meta.env.PUBLIC_SUPABASE_ANON_KEY) {
   console.warn('⚠️ Supabase env vars not configured. Features requiring Supabase will not work.');
   console.warn('Set PUBLIC_SUPABASE_URL and PUBLIC_SUPABASE_ANON_KEY in your environment or .env file');
+} else {
+  console.log('✅ Supabase Client Initialized with URL:', import.meta.env.PUBLIC_SUPABASE_URL);
 }
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);

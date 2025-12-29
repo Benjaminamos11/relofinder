@@ -1,0 +1,32 @@
+---
+import AdminDashboardClient from '../../components/admin/AdminDashboard';
+import '../../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Mission Control | ReloFinder Admin</title>
+    <style>
+      html, body { 
+        height: 100%; 
+        margin: 0; 
+        padding: 0;
+        overflow: hidden;
+      }
+      /* Critical: Astro hydration wrapper must also be full height */
+      astro-island, 
+      astro-island > div,
+      astro-island > * {
+        display: block;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body class="h-full m-0 p-0 bg-slate-100">
+    <AdminDashboardClient client:only="react" />
+  </body>
+</html>

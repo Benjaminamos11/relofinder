@@ -1,0 +1,139 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Mail, Phone, ExternalLink } from 'lucide-react';
+
+const title = 'Impressum | ReloFinder.ch';
+const description = 'Legal notice and company information for ReloFinder.ch.';
+const canonical = 'https://relofinder.ch/impressum';
+const lastUpdated = 'January 28, 2025';
+
+const combinedSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://relofinder.ch"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Impressum",
+          "item": "https://relofinder.ch/impressum"
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "name": title,
+      "description": description,
+      "url": canonical,
+      "datePublished": "2025-01-28",
+      "dateModified": "2025-01-28"
+    }
+  ]
+};
+---
+
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonical}
+  schema={combinedSchema}
+>
+  <main class="bg-white">
+    
+    <!-- Hero / Header -->
+    <section class="pt-24 pb-12 lg:pt-32">
+      <div class="container mx-auto px-6 lg:px-8 max-w-3xl">
+        <span class="inline-block py-1 px-3 rounded-full bg-gray-100 text-gray-600 text-xs font-bold uppercase tracking-widest mb-6">
+          Legal
+        </span>
+        <h1 class="text-5xl lg:text-6xl font-serif font-bold text-gray-900 mb-6 leading-tight">
+          Impressum
+        </h1>
+        <div class="flex items-center gap-4 text-gray-500 text-sm border-b border-gray-100 pb-12">
+           <span>Updated: {lastUpdated}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="pb-24">
+      <div class="container mx-auto px-6 lg:px-8 max-w-3xl">
+        <div class="prose prose-lg prose-headings:font-serif prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-600 prose-p:leading-relaxed prose-a:text-[#FF6F61] prose-a:no-underline hover:prose-a:underline">
+          
+          <h2>Operator & Legal Entity</h2>
+          <p>
+            <strong>Lang + Partner | Finanzdienstleistungen GmbH</strong><br />
+            Chilegässli 12a<br />
+            8904 Aesch ZH<br />
+            Switzerland
+          </p>
+          
+          <h3>Swiss Headquarters</h3>
+          <p>
+            Chilegässli 12a<br/>
+            8904 Aesch ZH<br/>
+            Switzerland
+          </p>
+
+          <h2>Contact</h2>
+          <ul class="list-none pl-0 space-y-2">
+            <li class="pl-0">
+               <a href="mailto:hello@relofinder.ch" class="inline-flex items-center font-medium">
+                  hello@relofinder.ch
+               </a>
+            </li>
+            <li class="pl-0">
+               <a href="tel:+41763648888" class="inline-flex items-center font-medium">
+                  +41 76 364 88 88
+               </a>
+            </li>
+            <li class="pl-0">
+               <a href="https://relofinder.ch" class="inline-flex items-center font-medium">
+                  www.relofinder.ch
+               </a>
+            </li>
+          </ul>
+
+          <h2>Design & Development</h2>
+          <p>
+            This website was designed and developed by:
+          </p>
+          <p>
+            <a href="https://vibestudio.ch" target="_blank" rel="noopener" class="font-bold inline-flex items-center gap-1">
+              vibestudio.ch <ExternalLink className="w-4 h-4" />
+            </a>
+            <br/>
+            <span class="text-sm text-gray-400">Made with <span class="text-[#FF6F61]">❤</span> in Switzerland</span>
+          </p>
+
+          <hr />
+
+          <h2>Disclaimer</h2>
+          <h3>Limitation of Liability</h3>
+          <p>
+             The content of our website has been compiled with meticulous care and to the best of our knowledge. However, we cannot assume any liability for the up-to-dateness, completeness or accuracy of any of the pages.
+          </p>
+          
+          <h3>External Links</h3>
+          <p>
+             Our website contains links to the websites of third parties ("external links"). As the content of these websites is not under our control, we cannot assume any liability for such external content. In all cases, the provider of information of the linked websites is liable for the content and accuracy of the information provided.
+          </p>
+
+          <h3>Copyright</h3>
+          <p>
+             The content and works published on this website are governed by the copyright laws of Switzerland and the USA. Any duplication, processing, distribution or any form of utilization beyond the scope of copyright law shall require the prior written consent of the author or authors in question.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Layout>

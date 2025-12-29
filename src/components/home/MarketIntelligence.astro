@@ -1,0 +1,89 @@
+---
+import { getCollection } from 'astro:content';
+import { ArrowRight, Calendar } from 'lucide-react';
+
+// Fetch latest 3 blog posts
+const allPosts = await getCollection('blog');
+const latestPosts = allPosts
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 3);
+
+// Helper for formatting dates
+function formatDate(date: Date) {
+  return new Intl.DateTimeFormat('en-CH', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  }).format(date);
+}
+---
+
+<section class="py-32 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Editorial Header "The Divider" -->
+    <div class="border-b border-black mb-16 pb-6 flex items-end justify-between">
+      <div>
+        <span class="block text-[#FF6F61] text-[10px] font-bold uppercase tracking-widest mb-2">Market Intelligence</span>
+        <h2 class="text-4xl md:text-5xl font-playfair italic text-black">
+          The Journal.
+        </h2>
+      </div>
+      <a href="/blog" class="hidden md:flex items-center gap-2 text-xs font-bold uppercase tracking-widest border-b border-transparent hover:border-black transition-all pb-1">
+        View Archive <ArrowRight className="w-3 h-3" />
+      </a>
+    </div>
+
+    <!-- Soft Grid -->
+    <div class="grid md:grid-cols-3 gap-8">
+      {latestPosts.map((post) => (
+        <article class="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group flex flex-col h-full">
+          <!-- Image -->
+          <a href={`/blog/${post.slug}`} class="block relative aspect-[4/3] overflow-hidden bg-slate-100">
+            <img 
+              src={post.data.heroImage} 
+              alt={post.data.title}
+              class="w-full h-full object-cover grayscale contrast-[1.05] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-in-out"
+            />
+             <div class="absolute top-4 left-4">
+              <span class="px-3 py-1 bg-white/90 backdrop-blur-md text-slate-900 text-[10px] font-bold uppercase tracking-wider rounded-full shadow-sm">
+                {post.data.category}
+              </span>
+            </div>
+          </a>
+
+          <!-- Content Column -->
+          <div class="p-8 flex flex-col flex-grow">
+            <div class="flex items-center gap-2 mb-4 text-[10px] font-medium text-slate-400 uppercase tracking-widest">
+                <Calendar className="w-3 h-3" />
+                {formatDate(post.data.publishDate)}
+            </div>
+
+            <h3 class="text-xl font-playfair font-bold leading-tight text-slate-900 mb-3 group-hover:text-[#FF6F61] transition-colors">
+              <a href={`/blog/${post.slug}`}>
+                {post.data.title}
+              </a>
+            </h3>
+            
+            <p class="text-slate-500 text-sm leading-relaxed line-clamp-3 mb-6">
+              {post.data.description}
+            </p>
+
+            <div class="mt-auto pt-6 border-t border-slate-50">
+                <a href={`/blog/${post.slug}`} class="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-slate-900 group-hover:text-[#FF6F61] transition-colors">
+                    Read Story <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+                </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="mt-16 text-center md:hidden">
+        <a href="/blog" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest border-b border-black pb-1">
+            View Archive
+        </a>
+    </div>
+
+  </div>
+</section>

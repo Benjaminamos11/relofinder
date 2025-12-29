@@ -1,153 +1,39 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import SchemaMarkup from '../../components/common/SchemaMarkup.astro';
-import ServiceHero from '../../components/services/ServiceHero.astro';
-import PlatformDisclaimer from '../../components/common/PlatformDisclaimer.astro';
-import ServiceRelated from '../../components/services/ServiceRelated.astro';
-import ServiceBlog from '../../components/services/ServiceBlog.astro';
+import HeroSearch from '../../components/home/HeroSearch';
+import UniversalContactModal from '../../components/common/UniversalContactModal';
+import { 
+    Truck, 
+    ShieldCheck, 
+    FileText, 
+    ArrowRight, 
+    CheckCircle2, 
+    Scale, 
+    Anchor, 
+    Dog, 
+    Gem,
+    ChevronDown,
+    Lock,
+    Clock,
+    UserCheck,
+    Globe,
+    Building2,
+    Briefcase
+} from 'lucide-react';
 
-interface BlogPost {
-  title: string;
-  slug: string;
-  excerpt: string;
-  category: string;
-  readTime: string;
-}
+const title = "Moving & Logistics: Swiss Border & Customs Guide | ReloFinder.ch";
+const description = "The definitive guide to Swiss move logistics. Navigate Form 18.44, customs clearance, vehicle imports, and pet relocation with elite Swiss moving partners.";
 
-interface ServiceCompany {
-  name: string;
-  description: string;
-  rating: number;
-  reviews: number;
-  featured?: boolean;
-}
-
-interface RelatedService {
-  title: string;
-  description: string;
-  link: string;
-}
-
-const relatedBlogs: BlogPost[] = [
-  {
-    title: "International Moving to Switzerland Guide",
-    slug: "international-moving-switzerland",
-    excerpt: "Complete guide to international relocation including shipping, customs clearance, documentation, and timeline expectations for moving to Switzerland.",
-    category: "Moving",
-    readTime: "15 min read"
-  },
-  {
-    title: "Swiss Customs for Household Goods",
-    slug: "swiss-customs-household-goods",
-    excerpt: "Everything you need to know about Swiss customs regulations, duty-free household goods import, required documents, and clearance procedures.",
-    category: "Customs",
-    readTime: "12 min read"
-  },
-  {
-    title: "Pet Relocation to Switzerland",
-    slug: "pet-relocation-switzerland",
-    excerpt: "Complete guide to bringing your pets to Switzerland including vaccination requirements, microchip rules, import permits, and quarantine regulations.",
-    category: "Pets",
-    readTime: "10 min read"
-  },
-  {
-    title: "Moving Day in Swiss Cities",
-    slug: "moving-day-swiss-cities",
-    excerpt: "Practical tips for moving day in Switzerland including parking permits, building access, elevator reservations, and neighbor considerations.",
-    category: "Logistics",
-    readTime: "8 min read"
-  }
-];
-
-const companies: ServiceCompany[] = [
-  {
-    name: "Prime Relocation",
-    description: "Official ReloFinder partner providing comprehensive moving and logistics services including international shipping, customs coordination, and complete relocation support",
-    rating: 4.8,
-    reviews: 53,
-    featured: true
-  },
-  {
-    name: "Auris Relocation",
-    description: "Expert moving and logistics coordination for international relocations to Switzerland",
-    rating: 4.8,
-    reviews: 98
-  },
-  {
-    name: "Lodge Relocation",
-    description: "Comprehensive moving services with 25+ years experience in Swiss relocations",
-    rating: 4.8,
-    reviews: 134
-  }
-];
-
-const relatedServices: RelatedService[] = [
-  {
-    title: "Housing Services",
-    description: "Find your perfect home and coordinate move-in dates with landlords",
-    link: "/services/housing"
-  },
-  {
-    title: "Settling-In Services",
-    description: "Complete registration, health insurance, and admin setup after arrival",
-    link: "/services/settling-in"
-  },
-  {
-    title: "Departure Services",
-    description: "End-of-assignment moving, repatriation, and exit support",
-    link: "/services/departure"
-  },
-  {
-    title: "Advisory Services",
-    description: "Strategic relocation planning and comprehensive move coordination",
-    link: "/services/advisory"
-  }
-];
-
-const title = "Moving & Logistics Switzerland | International Relocation & Customs Support | ReloFinder";
-const description = "International moving, customs, pet relocation & logistics support for expats in Switzerland. Book a free consultation with Prime Relocation.";
-const canonicalURL = "https://relofinder.ch/services/moving-logistics";
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://relofinder.ch"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Services",
-      "item": "https://relofinder.ch/services"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Moving & Logistics",
-      "item": "https://relofinder.ch/services/moving-logistics"
-    }
-  ]
-};
-
-const serviceSchema = {
+const seoSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Swiss Moving & Logistics Services",
-  "description": "Professional international moving, customs clearance, pet relocation, and logistics coordination for expats relocating to Switzerland",
+  "name": "Swiss Moving & Logistics Advisory",
+  "description": "Professional coordination of international moves to Switzerland, including customs clearance (Form 18.44) and specialized transport.",
   "provider": {
     "@type": "Organization",
-    "name": "ReloFinder",
-    "url": "https://relofinder.ch"
+    "name": "ReloFinder.ch"
   },
-  "areaServed": {
-    "@type": "Country",
-    "name": "Switzerland"
-  },
-  "serviceType": "Moving & Logistics Services"
+  "areaServed": "Switzerland"
 };
 
 const faqSchema = {
@@ -156,10 +42,18 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What documents are needed for Swiss customs clearance?",
+      "name": "Can I import my car to Switzerland tax-free?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "You need: detailed inventory list with item values, passport copy, Swiss residence permit, employment contract or proof of relocation, bill of lading from shipping company, and sometimes proof of previous residence. Household goods are duty-free if relocating as resident but documentation must prove genuine relocation not commercial import."
+        "text": "Yes, if you have owned the vehicle for at least 6 months prior to your relocation and it is part of your household effects. You must file Form 18.44 and subsequent Form 13.20A for registration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Form 18.44?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Form 18.44 is the mandatory Swiss Customs declaration for the 'Declaration of personal effects' which allows you to import your household goods tax-free upon relocation."
       }
     },
     {
@@ -167,822 +61,462 @@ const faqSchema = {
       "name": "How long does an international move to Switzerland take?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Timeline varies by origin: Europe 1-2 weeks door-to-door, USA/Canada 4-8 weeks by sea (2-3 weeks by air), Asia/Middle East 6-10 weeks by sea, Australia 8-12 weeks. Add 3-7 days for customs clearance. Exact timing depends on shipping method (sea vs air), customs efficiency, and whether you use direct or consolidated shipments."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do I need insurance for my move in Switzerland?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, two types: Moving insurance covers goods in transit (highly recommended for international moves). Building/liability insurance is mandatory in most Swiss buildings during move-in/move-out to protect against damage to common areas, elevators, walls, floors. Buildings require proof of coverage before allowing moving truck access."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are parking permits required for moving trucks in Zurich?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, parking permits (Parkplatz-Reservation) are required in most Swiss cities including Zurich, Geneva, Basel, and Bern. Apply 1-2 weeks in advance through city authorities (CHF 50-150 fee). Some buildings require elevator reservations separately. Without permits, moving trucks risk fines and towing, causing major delays."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What are the rules for bringing pets to Switzerland?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Dogs and cats must have: microchip (ISO 11784/11785 compliant), valid rabies vaccination (minimum 21 days before entry), EU pet passport or veterinary certificate, tapeworm treatment for dogs (1-5 days before entry). Dangerous dog breeds have additional restrictions. Birds, exotic animals require special permits. No quarantine needed if requirements met."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I arrange short-term storage during my move?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, short-term storage (1-6 months typical) is common for Switzerland moves. Useful when: move-out and move-in dates don't align, housing search takes longer than expected, temporary accommodation before permanent housing. Costs vary by volume and duration (CHF 100-500/month for typical household). Climate-controlled options available for sensitive items."
+        "text": "Moves within Europe typically take 2-5 days door-to-door. Sea freight from the US or Asia generally takes 4-8 weeks depending on the customs clearance speed."
       }
     }
   ]
 };
 ---
 
-<Layout title={title} description={description}>
-  <SchemaMarkup schema={breadcrumbSchema} />
-  <SchemaMarkup schema={serviceSchema} />
-  <SchemaMarkup schema={faqSchema} />
+<Layout 
+    title={title} 
+    description={description}
+    navbarVariant="transparent"
+>
+    <!-- SEO Schemas -->
+    <script type="application/ld+json" set:html={JSON.stringify(seoSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
-  <ServiceHero
-    title="Moving & Logistics"
-    subtitle="International Relocation to Switzerland"
-    description="From international shipping and customs clearance to pet relocation and storage, our trusted partners ensure your move to Switzerland is seamless and stress-free."
-    badge="Moving & Logistics"
-  />
-
-  <section class="py-12 bg-gradient-to-br from-gray-50 via-white to-primary-50">
-    <div class="container mx-auto px-4 text-center">
-      <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">
-          Ready for a Seamless International Move?
-        </h2>
-        <p class="text-lg text-gray-600 mb-8">
-          Get expert support with shipping, customs clearance, pet relocation, and complete logistics coordination
-        </p>
-        <button
-          onclick="universalOpenModal({page: 'moving_service', service: 'moving'})"
-          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
-        >
-          Get a Free Consultation with our Preferred Partner
-        </button>
-        <p class="text-sm text-gray-500 mt-3">
-          Our relocation partners with us and gives free consultations to users
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-20 bg-white">
-    <div class="container mx-auto px-4">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-12">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
-            The Challenge
-          </span>
-          <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Why Moving to Switzerland Is a <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Challenge</span>
-          </h2>
-          <p class="text-xl text-gray-600">
-            International relocation to Switzerland involves complex logistics and strict regulations
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
-            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
+    <main class="bg-slate-900 overflow-x-hidden">
+        <!-- 1. The "Border Control" Hero -->
+            <!-- Background Image with Overlay -->
+            <div class="absolute inset-0 z-0">
+                <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-transparent to-slate-950/80 z-20 pointer-events-none"></div>
+                <!-- Customs Hero Image -->
+                <div class="absolute inset-0 bg-[url('/images/services/moving_hero_customs.png')] bg-cover bg-center grayscale opacity-80 group-hover:grayscale-0 transition-all duration-[2000ms] ease-in-out z-10"></div>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Customs Requirements for Household Goods</h3>
-            <p class="text-gray-600 leading-relaxed">
-              Swiss customs requires detailed inventory lists with item values, proof of genuine relocation, and proper documentation. Duty-free import is allowed only for residents with valid permits. Missing documentation causes delays, storage fees, and potential duty charges on household goods.
-            </p>
-          </div>
 
-          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
-            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Timing Move-In Dates with Rental Handovers</h3>
-            <p class="text-gray-600 leading-relaxed">
-              Swiss rental contracts have strict handover dates with no flexibility. International shipping timelines (4-12 weeks) don't always align perfectly. Coordination gaps mean temporary storage or rushed moving decisions. Late delivery can breach rental agreements or leave you without furniture.
-            </p>
-          </div>
+            <div class="container mx-auto px-4 relative z-30 pt-32 pb-48">
+                <div class="max-w-5xl mx-auto text-center">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF6F61]/10 border border-[#FF6F61]/20 text-[#FF6F61] text-[10px] font-black uppercase tracking-[0.3em] mb-6 animate-fade-in shadow-[0_0_20px_rgba(255,111,97,0.1)]">
+                        <Anchor className="w-4 h-4" />
+                        International Move Coordination
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter leading-[0.9] select-none">
+                        Moving & Logistics: <br/>
+                        <span class="relative">
+                            <span class="bg-gradient-to-r from-slate-200 via-white to-slate-200 bg-clip-text text-transparent">Crossing the Swiss Border.</span>
+                            <div class="absolute -bottom-4 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#FF6F61]/50 to-transparent"></div>
+                        </span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-slate-400 font-light mb-10 leading-relaxed max-w-3xl mx-auto">
+                        Switzerland is not in the EU Customs Union. Importing household goods, vehicles, and pets requires professional Form 18.44 clearance to avoid heavy VAT penalties.
+                    </p>
 
-          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
-            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Elevator & Parking Permits in Swiss Cities</h3>
-            <p class="text-gray-600 leading-relaxed">
-              Most Swiss buildings require advance elevator reservations and building insurance proof. City parking permits for moving trucks must be secured 1-2 weeks ahead (CHF 50-150). Without permits, trucks can't access buildings, movers can't work, and you face fines. Coordination with building management is mandatory.
-            </p>
-          </div>
-
-          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
-            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Risk of Delays, Damage & Miscommunication</h3>
-            <p class="text-gray-600 leading-relaxed">
-              International moves involve multiple parties across borders: origin mover, shipping company, customs brokers, destination mover, building management. Communication gaps cause missed deliveries, damaged goods, or lost items. Language barriers add complexity when coordinating with Swiss partners.
-            </p>
-          </div>
-
-          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
-            <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Special Requirements for Pet Import</h3>
-            <p class="text-gray-600 leading-relaxed">
-              Pets need microchips (ISO compliant), rabies vaccinations (21+ days before entry), EU pet passports or vet certificates, and tapeworm treatment for dogs. Dangerous breeds face restrictions. Missing documentation means quarantine or refused entry. Pet-friendly airlines and ground transport must be arranged separately.
-            </p>
-          </div>
-        </div>
-
-        <div class="mt-12 p-8 bg-gradient-to-br from-primary-50 via-white to-red-50 rounded-2xl border-2 border-primary-100">
-          <div class="flex items-start">
-            <div class="flex-shrink-0">
-              <svg class="w-8 h-8 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
-              </svg>
-            </div>
-            <div class="ml-4">
-              <h4 class="text-xl font-bold text-gray-900 mb-2">Expert Insight</h4>
-              <p class="text-gray-700 leading-relaxed">
-                <strong>Without professional coordination, expats often:</strong> Miss customs documents causing weeks of delays and storage fees, book moves without elevator access forcing manual carrying, underinsure valuable items leading to financial losses, forget parking permits resulting in fines and failed move-ins, or prepare pet documents incorrectly risking entry refusal. Expert moving logistics save time, money, and stress.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
-    <div class="container mx-auto px-4">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
-            Our Solution
-          </span>
-          <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            How <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">ReloFinder</span> Helps With Moving & Logistics
-          </h2>
-          <p class="text-xl text-gray-600">
-            We connect you with moving specialists who handle every detail of your international relocation
-          </p>
-        </div>
-
-        <div class="space-y-6">
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-            <div class="flex items-start">
-              <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
-                  1
+                    <!-- Hero Search Integration -->
+                    <div class="max-w-4xl mx-auto px-4 transform hover:scale-[1.01] transition-all duration-700">
+                        <HeroSearch client:load initialService="moving-logistics" />
+                    </div>
                 </div>
-              </div>
-              <div class="ml-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">International Shipping & Customs Coordination</h3>
-                <p class="text-gray-600 leading-relaxed mb-4">
-                  Complete shipping management from origin to Switzerland including sea/air freight options, detailed inventory preparation for customs, Swiss customs clearance coordination, duty-free resident import processing, and tracking throughout transit.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Sea/Air Freight</span>
-                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Customs Clearance</span>
-                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Inventory Prep</span>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 inset-x-0 flex flex-col items-center justify-center gap-2 animate-bounce z-20 pointer-events-none">
+                <span class="text-[10px] font-black text-[#FF6F61] uppercase tracking-[0.4em]">Bureaucracy Guarded</span>
+                <ChevronDown className="w-5 h-5 text-[#FF6F61]/40" />
+            </div>
+        </section>
+
+        <!-- 2. Section: The Swiss Difference (Customs Strategy) -->
+        <section class="py-32 bg-white relative overflow-hidden">
+            <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto">
+                    <div class="grid md:grid-cols-2 gap-24 items-center">
+                        <div>
+                            <span class="text-[#FF6F61] font-black uppercase tracking-[0.4em] text-xs mb-8 block">The 18.44 Regulation</span>
+                            <h2 class="text-5xl md:text-6xl font-bold text-slate-900 mb-10 tracking-tight leading-tight">The Swiss Border is Not a Mere Formality.</h2>
+                            <p class="text-slate-600 text-lg leading-relaxed mb-8 font-light">
+                                Unlike moving within the EU, entering Switzerland is a **formal import event**. Every item in your truck must be inventoried and declared.
+                            </p>
+                            
+                            <div class="space-y-6 mb-12">
+                                <div class="p-8 bg-slate-50 rounded-[2.5rem] border border-slate-100 hover:border-[#FF6F61]/20 transition-all group">
+                                    <h4 class="text-slate-900 font-bold mb-2 flex items-center gap-3">
+                                        <Scale className="w-5 h-5 text-[#FF6F61]" />
+                                        The 6-Month Rule
+                                    </h4>
+                                    <p class="text-slate-500 text-sm leading-relaxed">
+                                        Goods owned for less than 6 months are considered "new" and are subject to 8.1% VAT plus customs duties at the border.
+                                    </p>
+                                </div>
+                                <div class="p-8 bg-[#FF6F61]/5 rounded-[2.5rem] border border-[#FF6F61]/10">
+                                    <h4 class="text-slate-900 font-bold mb-2 flex items-center gap-3">
+                                        <ShieldCheck className="w-5 h-5 text-[#FF6F61]" />
+                                        Border Risk Mitigation
+                                    </h4>
+                                    <p class="text-slate-500 text-sm leading-relaxed">
+                                        Without a signed Swiss lease and a stamped 18.44 form, customs officers may hold your truck at the border, incurring thousands in storage fees.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <a href="/search/results?service=moving-logistics" class="inline-flex items-center gap-4 text-slate-900 font-black hover:text-[#FF6F61] transition-colors uppercase tracking-widest text-xs group no-underline">
+                                Find Customs Clearance Experts <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform text-[#FF6F61]" />
+                            </a>
+                        </div>
+                        <div class="relative group">
+                            <div class="absolute -inset-10 bg-[#FF6F61]/5 blur-[80px] rounded-full"></div>
+                            <img 
+                                src="/images/services/moving_packers.png" 
+                                alt="Professional Swiss Packing Experts" 
+                                class="relative rounded-[5rem] shadow-[0_64px_96px_-12px_rgba(0,0,0,0.15)] border border-slate-100 grayscale opacity-80 group-hover:grayscale-0 transition-all duration-[2000ms] ease-in-out transform group-hover:scale-[1.02]"
+                            />
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </section>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-            <div class="flex items-start">
-              <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
-                  2
+        <!-- 3. Section: Logistics Services Breakdown (Grid) -->
+        <section class="py-32 bg-slate-50 relative overflow-hidden">
+             <div class="container mx-auto px-4">
+                <div class="text-center mb-24">
+                    <span class="text-[#FF6F61] font-black uppercase tracking-[0.4em] text-xs mb-4 block">Service Capabilities</span>
+                    <h2 class="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight">Specialized Logistic Streams</h2>
                 </div>
-              </div>
-              <div class="ml-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">Building Access, Permits & Insurance</h3>
-                <p class="text-gray-600 leading-relaxed mb-4">
-                  Complete coordination with Swiss building management including elevator reservations, city parking permits for moving trucks (CHF 50-150), building liability insurance arrangement, access key coordination, and compliance with building move-in rules and timing restrictions.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Parking Permits</span>
-                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Building Insurance</span>
-                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Access Coordination</span>
+
+                <div class="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                    <!-- International Movers -->
+                    <div class="group bg-white p-12 rounded-[4rem] border border-slate-100 hover:border-[#FF6F61]/30 hover:shadow-2xl transition-all duration-700">
+                        <div class="w-20 h-20 bg-slate-50 rounded-3xl flex items-center justify-center text-slate-900 mb-10 group-hover:bg-[#FF6F61] group-hover:text-white transition-all transform group-hover:rotate-6">
+                            <Truck className="w-10 h-10" />
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6">International Movers</h3>
+                        <p class="text-slate-500 leading-relaxed mb-8 font-light italic">"Door-to-door execution."</p>
+                        <ul class="space-y-4">
+                            {["White-glove packing", "Global shipping networks", "Crating for fragile assets"].map(item => (
+                                <li class="flex items-center gap-4 text-slate-600 text-sm font-medium">
+                                    <CheckCircle2 className="w-4 h-4 text-[#FF6F61]" /> {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <!-- Vehicle Import -->
+                    <div class="group bg-white p-12 rounded-[4rem] border border-slate-100 hover:border-[#FF6F61]/30 hover:shadow-2xl transition-all duration-700">
+                        <div class="w-20 h-20 bg-slate-50 rounded-3xl flex items-center justify-center text-slate-900 mb-10 group-hover:bg-[#FF6F61] group-hover:text-white transition-all transform group-hover:rotate-6">
+                            <Globe className="w-10 h-10" />
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6">Vehicle Technical Import</h3>
+                        <p class="text-slate-500 leading-relaxed mb-8 font-light italic">"Plate changes & compliance."</p>
+                        <ul class="space-y-4">
+                            {["Form 13.20A preparation", "MFK technical inspections", "Swiss emissions compliance"].map(item => (
+                                <li class="flex items-center gap-4 text-slate-600 text-sm font-medium">
+                                    <CheckCircle2 className="w-4 h-4 text-[#FF6F61]" /> {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <!-- Pet Relocation -->
+                    <div class="group bg-white p-12 rounded-[4rem] border border-slate-100 hover:border-[#FF6F61]/30 hover:shadow-2xl transition-all duration-700">
+                        <div class="w-20 h-20 bg-slate-50 rounded-3xl flex items-center justify-center text-slate-900 mb-10 group-hover:bg-[#FF6F61] group-hover:text-white transition-all transform group-hover:rotate-6">
+                            <Dog className="w-10 h-10" />
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6">Pet Relocation</h3>
+                        <p class="text-slate-500 leading-relaxed mb-8 font-light italic">"Living assets coordination."</p>
+                        <ul class="space-y-4">
+                            {["IATA kennel compliance", "Vaccination audit", "Amicus database registration"].map(item => (
+                                <li class="flex items-center gap-4 text-slate-600 text-sm font-medium">
+                                    <CheckCircle2 className="w-4 h-4 text-[#FF6F61]" /> {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
+             </div>
+        </section>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-            <div class="flex items-start">
-              <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
-                  3
-                </div>
-              </div>
-              <div class="ml-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">Pet Relocation & Import Compliance</h3>
-                <p class="text-gray-600 leading-relaxed mb-4">
-                  Complete pet relocation services including microchip verification, rabies vaccination coordination, EU pet passport or vet certificate preparation, tapeworm treatment scheduling, pet-friendly airline booking, ground transport arrangement, and customs documentation for smooth pet entry.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Pet Documents</span>
-                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Vaccination Coordination</span>
-                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Transport Booking</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-            <div class="flex items-start">
-              <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
-                  4
-                </div>
-              </div>
-              <div class="ml-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">Short-Term Storage & Delivery Scheduling</h3>
-                <p class="text-gray-600 leading-relaxed mb-4">
-                  Flexible storage solutions (1-6 months) when move-in dates don't align with shipping arrival. Climate-controlled facilities, secure storage in major Swiss cities, partial delivery coordination, and precise delivery scheduling to match your rental handover dates and building access times.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Storage Solutions</span>
-                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Flexible Delivery</span>
-                  <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">Date Coordination</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-16 bg-white">
-    <div class="container mx-auto px-4 text-center">
-      <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">
-          Talk to a Moving Expert
-        </h2>
-        <p class="text-lg text-gray-600 mb-8">
-          Get personalized support for international shipping, customs, and complete logistics coordination
-        </p>
-        <button
-          onclick="universalOpenModal({page: 'moving_service', service: 'moving'})"
-          class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
-        >
-          Get a Free Consultation with our Preferred Partner
-        </button>
-        <p class="text-sm text-gray-500 mt-3">
-          Our relocation partners with us and gives free consultations to users
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
-    <div class="container mx-auto px-4">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
-            Regional Focus
-          </span>
-          <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Moving Services Across <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Switzerland</span>
-          </h2>
-          <p class="text-xl text-gray-600">
-            Logistics requirements and moving challenges vary significantly by region
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <div class="bg-gradient-to-r from-primary-600 to-primary-700 p-6">
-              <h3 class="text-2xl font-bold text-white mb-2">Zürich</h3>
-              <p class="text-primary-100">Tight City Access, Parking Permits Required</p>
-            </div>
-            <div class="p-8">
-              <p class="text-gray-600 leading-relaxed">
-                Zurich's dense urban layout requires mandatory parking permits for moving trucks (CHF 100-150, apply 2 weeks advance). Most buildings have strict elevator reservation systems and narrow stairwells. Weekend moves often restricted. High demand means booking movers 4-6 weeks ahead essential. Old town areas have particularly tight access requiring experienced Swiss movers familiar with local constraints.
-              </p>
-            </div>
-          </div>
-
-          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <div class="bg-gradient-to-r from-primary-600 to-primary-700 p-6">
-              <h3 class="text-2xl font-bold text-white mb-2">Geneva</h3>
-              <p class="text-primary-100">Customs Bottlenecks, High Expat Volume</p>
-            </div>
-            <div class="p-8">
-              <p class="text-gray-600 leading-relaxed">
-                Geneva handles high volumes of international arrivals creating customs processing delays (3-7 days typical). Proximity to French border means cross-border coordination often needed. International organizations (UN, WHO) have specific moving protocols. Geneva's customs office (Route de Pré-Bois) requires appointments for clearance. Storage facilities near airport/customs frequently at capacity during peak seasons.
-              </p>
-            </div>
-          </div>
-
-          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <div class="bg-gradient-to-r from-primary-600 to-primary-700 p-6">
-              <h3 class="text-2xl font-bold text-white mb-2">Basel</h3>
-              <p class="text-primary-100">Cross-Border Complexities</p>
-            </div>
-            <div class="p-8">
-              <p class="text-gray-600 leading-relaxed">
-                Basel's tripoint location (Switzerland, Germany, France) creates unique customs considerations for cross-border movers. Weil am Rhein (Germany) and Saint-Louis (France) proximity means some shipments route through neighboring countries. Special documentation needed for goods stored temporarily across borders. Basel-Stadt has strict building access rules with most moves requiring liability insurance proof.
-              </p>
-            </div>
-          </div>
-
-          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <div class="bg-gradient-to-r from-primary-600 to-primary-700 p-6">
-              <h3 class="text-2xl font-bold text-white mb-2">Zug</h3>
-              <p class="text-primary-100">Executive Relocations, Secure Storage Demand</p>
-            </div>
-            <div class="p-8">
-              <p class="text-gray-600 leading-relaxed">
-                Zug attracts many executive and HNWI relocations requiring white-glove moving services, secure storage for valuables, and complete discretion. High-value art, wine collections, and luxury goods need specialized handling. Climate-controlled storage facilities in high demand. Shorter notice periods common as corporate relocations move quickly. Premium moving services with enhanced insurance coverage standard for Zug relocations.
-              </p>
-            </div>
-          </div>
-
-          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <div class="bg-gradient-to-r from-primary-600 to-primary-700 p-6">
-              <h3 class="text-2xl font-bold text-white mb-2">Lausanne</h3>
-              <p class="text-primary-100">Limited Turnover, Storage Needs</p>
-            </div>
-            <div class="p-8">
-              <p class="text-gray-600 leading-relaxed">
-                Lausanne's tight housing market means move-in dates often don't align perfectly with shipping arrivals. Short-term storage (1-3 months) frequently needed while securing permanent housing. Lake Geneva location means some shipments route through Geneva then transfer to Lausanne. University calendar creates seasonal peaks (September, February) when moving services book out weeks in advance requiring early planning.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-20 bg-white">
-    <div class="container mx-auto px-4">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
-            Step-by-Step Guide
-          </span>
-          <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Your Moving <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Process</span>
-          </h2>
-          <p class="text-xl text-gray-600">
-            Follow this proven process for a successful international relocation
-          </p>
-        </div>
-
-        <div class="space-y-8">
-          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
-              1
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">Pre-Move Survey & Quotation</h3>
-            <p class="text-gray-600 leading-relaxed mb-4">
-              Comprehensive assessment of household goods volume, special items requiring careful handling (pianos, art, antiques), origin location accessibility, destination address in Switzerland, timeline constraints, and budget considerations. Detailed quotation provided covering sea/air freight options, insurance levels, customs fees, and delivery coordination.
-            </p>
-            <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1-2 weeks for survey and quotation approval</p>
-            </div>
-          </div>
-
-          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
-              2
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">Packing & Customs Inventory Preparation</h3>
-            <p class="text-gray-600 leading-relaxed mb-4">
-              Professional packing services with quality materials, detailed inventory list creation with item values for Swiss customs, labeling and documentation for each box, special crating for fragile items, and preparation of customs declaration forms including residence permit copies and employment documentation.
-            </p>
-            <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1-3 days for packing, 2-3 days for documentation</p>
-            </div>
-          </div>
-
-          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
-              3
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">International Shipping & Border Clearance</h3>
-            <p class="text-gray-600 leading-relaxed mb-4">
-              Sea or air freight to Switzerland with container loading coordination, transit tracking updates, Swiss customs clearance management with duty-free resident import processing, customs inspection coordination if required, and temporary storage at Swiss warehouse if delivery dates need flexibility.
-            </p>
-            <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1-2 weeks (Europe), 4-12 weeks (overseas) plus 3-7 days customs</p>
-            </div>
-          </div>
-
-          <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
-              4
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">Delivery, Building Access & Insurance Coverage</h3>
-            <p class="text-gray-600 leading-relaxed mb-4">
-              Coordination with Swiss building management for elevator reservations and access times, city parking permit acquisition (CHF 50-150), building liability insurance arrangement, professional unpacking services, furniture assembly, and placement of items according to your specifications.
-            </p>
-            <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1 day for delivery, permits obtained 1-2 weeks advance</p>
-            </div>
-          </div>
-
-          <div class="relative pl-8">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
-              5
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">Post-Move Support & Storage Solutions</h3>
-            <p class="text-gray-600 leading-relaxed mb-4">
-              Follow-up to address any damage claims or missing items, disposal of packing materials and boxes, short-term or long-term storage coordination for items not immediately needed, and additional delivery coordination if staged move-in required. Claims support for insurance if issues arise.
-            </p>
-            <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Available for 30 days post-delivery</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="mt-12 text-center">
-          <button
-            onclick="universalOpenModal({page: 'moving_steps', service: 'moving'})"
-            class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl hover:from-primary-700 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
-          >
-            Book Your Free Moving Consultation
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
-    <div class="container mx-auto px-4">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
-            Essential Information
-          </span>
-          <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Key Facts for <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Expats</span>
-          </h2>
-          <p class="text-xl text-gray-600">
-            Critical information every relocating family should know about moving to Switzerland
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Duty-Free Import</h3>
-            <p class="text-gray-600 leading-relaxed">
-              Household goods are <strong>duty-free</strong> if relocating as resident with valid permit. Commercial items or goods for sale subject to duties. Documentation must prove genuine personal relocation.
-            </p>
-          </div>
-
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Customs Inventory</h3>
-            <p class="text-gray-600 leading-relaxed">
-              Swiss customs require <strong>detailed inventory list</strong> with item values. Professional movers prepare this during packing. Incomplete lists cause delays and storage fees.
-            </p>
-          </div>
-
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Pet Import Requirements</h3>
-            <p class="text-gray-600 leading-relaxed">
-              <strong>Microchip + rabies vaccination</strong> (21+ days before) mandatory. EU pet passport or vet certificate required. Dogs need tapeworm treatment 1-5 days before entry.
-            </p>
-          </div>
-
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Parking Permits</h3>
-            <p class="text-gray-600 leading-relaxed">
-              <strong>Mandatory in most Swiss cities</strong>. Apply 1-2 weeks advance through municipal authorities. Cost CHF 50-150. Without permits, moving trucks face fines and towing.
-            </p>
-          </div>
-
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Building Insurance</h3>
-            <p class="text-gray-600 leading-relaxed">
-              <strong>Mandatory</strong> for building access during moves. Covers damage to elevators, walls, floors, common areas. Buildings require proof before allowing movers access.
-            </p>
-          </div>
-
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Storage Solutions</h3>
-            <p class="text-gray-600 leading-relaxed">
-              <strong>Short-term storage (1-6 months)</strong> available for timing mismatches. Cost CHF 100-500/month depending on volume. Climate-controlled options for sensitive items.
-            </p>
-          </div>
-
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Shipping Timelines</h3>
-            <p class="text-gray-600 leading-relaxed">
-              Europe: 1-2 weeks. USA/Canada: 4-8 weeks sea, 2-3 weeks air. Asia: 6-10 weeks. Australia: 8-12 weeks. Add 3-7 days for customs clearance.
-            </p>
-          </div>
-
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Moving Costs</h3>
-            <p class="text-gray-600 leading-relaxed">
-              Varies by volume and distance. Europe: CHF 5,000-15,000. USA: CHF 10,000-25,000. Includes packing, shipping, customs, delivery. Air freight 2-3x more expensive than sea.
-            </p>
-          </div>
-
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Building Restrictions</h3>
-            <p class="text-gray-600 leading-relaxed">
-              Most buildings restrict moves to weekdays, business hours only. Weekend/evening moves often prohibited. Elevator reservations required. Some buildings charge move-in fees.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-16 bg-white">
-    <div class="container mx-auto px-4">
-      <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl font-bold text-gray-900 mb-2 text-center">Trusted Moving Partners</h2>
-        <p class="text-gray-600 text-center mb-8">Expert international shipping, customs, and logistics coordination across Switzerland</p>
-
-        <div class="space-y-8">
-          <!-- Prime Relocation - Preferred Partner -->
-          <div class="bg-gradient-to-br from-primary-50 via-white to-red-50 border-2 border-primary-200 rounded-2xl p-8">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-2xl font-bold text-gray-900">Prime Relocation</h3>
-              <span class="px-3 py-1 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full text-xs font-bold uppercase tracking-wide">
-                🏆 Preferred Partner
-              </span>
+        <!-- 4. Section: The Housing Dependency (Offlist Integration) -->
+        <section class="py-32 bg-slate-900 relative overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <div class="absolute top-1/2 left-0 w-full h-[600px] bg-[#FF6F61]/5 -skew-y-6 blur-[120px]"></div>
             </div>
             
-            <div class="flex items-center gap-2 mb-4">
-              <div class="flex text-yellow-500">
-                ★★★★★
-              </div>
-              <span class="text-gray-600 text-sm">4.8 / 5 • 53 reviews</span>
-            </div>
-            
-            <p class="text-gray-700 text-lg mb-6">
-              <strong>Expert international moving and logistics</strong> for expats relocating to Switzerland. Prime Relocation coordinates international shipping, customs clearance, pet relocation, and complete moving logistics. Get comprehensive support from packing to delivery with experienced Swiss-based moving specialists.
-            </p>
-            
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🚚 International Shipping</span>
-              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">📦 Customs Clearance</span>
-              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🐾 Pet Relocation</span>
-              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🏢 Building Coordination</span>
-            </div>
-            
-            <button 
-              onclick="universalOpenModal({page: 'moving_service', service: 'moving'})"
-              class="inline-flex items-center justify-center bg-gradient-to-r from-primary-600 to-primary-700 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105"
-            >
-              Get a Free Consultation with our Preferred Partner
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-              </svg>
-            </button>
-            <p class="text-xs text-gray-500 mt-3">Our relocation partners work with us and provide free consultations</p>
-          </div>
-
-          <!-- Other Moving Specialists -->
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Other Trusted Moving Specialists</h3>
-          <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-white border border-gray-200 rounded-lg p-6">
-              <h4 class="text-lg font-semibold text-gray-900 mb-2">Lodge Relocation</h4>
-              <div class="flex items-center gap-2 mb-3">
-                <div class="flex text-yellow-500 text-sm">
-                  ★★★★★
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="max-w-6xl mx-auto">
+                    <div class="grid md:grid-cols-2 gap-24 items-center">
+                        <div class="order-2 md:order-1 relative group">
+                            <div class="absolute -inset-10 bg-[#FF6F61]/10 blur-[100px] rounded-full"></div>
+                            <img 
+                                src="/images/services/moving_truck.png" 
+                                alt="Swiss Logistics Operations" 
+                                class="relative rounded-[5rem] shadow-[0_64px_128px_-12px_rgba(0,0,0,0.9)] grayscale opacity-80 group-hover:grayscale-0 transition-all duration-[2000ms] ease-in-out transform group-hover:scale-[1.02]"
+                            />
+                            <div class="absolute -bottom-6 -right-6 bg-white p-8 rounded-[2.5rem] shadow-2xl max-w-xs border border-slate-100">
+                                <p class="text-[10px] font-black text-[#FF6F61] uppercase tracking-[0.4em] mb-4">The Logic Gate</p>
+                                <p class="text-slate-900 font-bold text-lg mb-4 leading-tight italic">"No Swiss Lease? No Customs Clearance."</p>
+                                <p class="text-slate-500 text-xs leading-relaxed">
+                                    You cannot legally import a container of goods without a target address in Switzerland.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="order-1 md:order-2">
+                            <span class="text-[#FF6F61] font-black uppercase tracking-[0.4em] text-xs mb-8 block">Offlist Integration</span>
+                            <h2 class="text-5xl md:text-7xl font-bold text-white mb-10 tracking-tight leading-[1.1]">The Housing Dependency.</h2>
+                            <p class="text-slate-400 text-xl leading-relaxed mb-10 font-light">
+                                Customs requires a **signed Swiss lease** to prove your change of residence. Many expats fail at the border because they haven't secured a home yet.
+                            </p>
+                            <div class="bg-white/5 backdrop-blur-3xl border border-white/10 p-10 rounded-[3rem] mb-12 shadow-inner">
+                                <p class="text-slate-200 text-lg leading-relaxed font-light">
+                                    "Our partners use <a href='https://offlist.ch' target='_blank' class='text-[#FF6F61] font-bold hover:text-[#ff8a7d] underline decoration-[#FF6F61]/30 underline-offset-8 decoration-2 transition-all'>Offlist.ch</a> to helps clients secure a Swiss lease *before* the truck leaves, ensuring the border crossing is a non-event."
+                                </p>
+                            </div>
+                            <a href="https://offlist.ch" target="_blank" class="inline-flex items-center gap-4 bg-[#FF6F61]/10 text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest text-[10px] hover:bg-[#FF6F61]/20 border border-[#FF6F61]/30 transition-all no-underline group shadow-lg">
+                                Access Off-Market Secure Leases <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform text-[#FF6F61]" />
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <span class="text-gray-600 text-sm">4.8 / 5 • 134 reviews</span>
-              </div>
-              <p class="text-gray-700 text-sm">Comprehensive moving services with 25+ years experience in Swiss relocations</p>
             </div>
-            
-            <div class="bg-white border border-gray-200 rounded-lg p-6">
-              <h4 class="text-lg font-semibold text-gray-900 mb-2">Auris Relocation</h4>
-              <div class="flex items-center gap-2 mb-3">
-                <div class="flex text-yellow-500 text-sm">
-                  ★★★★★
+        </section>
+
+        <!-- 5. Section: Protecting Your Assets (Expat-Savvy Integration) -->
+        <section class="py-32 bg-white relative">
+            <div class="container mx-auto px-4">
+                <div class="max-w-6xl mx-auto">
+                    <div class="grid md:grid-cols-2 gap-24 items-center">
+                        <div>
+                            <span class="text-[#FF6F61] font-black uppercase tracking-[0.4em] text-xs mb-8 block">Global Risk Cover</span>
+                            <h2 class="text-4xl md:text-6xl font-bold text-slate-900 mb-10 tracking-tight">Security in Transit.</h2>
+                            <p class="text-slate-500 text-xl leading-relaxed mb-12 font-light">
+                                Standard moving liability is calculated by weight, not value. For high-value art, wine, and heirloom furniture, specialized transit insurance is mandatory.
+                            </p>
+                            <div class="bg-slate-50 border border-slate-100 p-12 rounded-[4rem] mb-12 relative group hover:border-[#FF6F61]/20 transition-all duration-700 overflow-hidden">
+                                <div class="absolute top-0 right-0 w-40 h-40 bg-[#FF6F61]/5 blur-[60px] pointer-events-none"></div>
+                                <div class="flex items-start gap-8">
+                                    <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-[#FF6F61] shadow-xl shrink-0 group-hover:scale-110 transition-transform">
+                                        <ShieldCheck className="w-8 h-8" />
+                                    </div>
+                                    <div>
+                                        <p class="text-slate-800 text-lg leading-relaxed italic font-medium mb-4">
+                                            "Secure comprehensive **Household Goods In-Transit Insurance** and setup your permanent Swiss Household Insurance before the first box is opened."
+                                        </p>
+                                        <p class="text-slate-500 text-sm">
+                                            Recommended Partner: <a href='https://expat-savvy.ch' target='_blank' class='text-[#FF6F61] font-bold hover:underline underline-offset-4 transition-all'>Expat-Savvy.ch</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="https://expat-savvy.ch" target="_blank" class="inline-flex items-center gap-4 text-slate-900 font-extrabold hover:text-[#FF6F61] transition-colors uppercase tracking-[0.3em] text-[10px] no-underline group">
+                                Compare Transit Insurance Rates <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform text-[#FF6F61]" />
+                            </a>
+                        </div>
+                        <div class="relative group">
+                            <img 
+                                src="/images/services/moving_happy_family.png" 
+                                alt="Stress-Free Swiss Arrival" 
+                                class="rounded-[5rem] shadow-2xl grayscale opacity-80 group-hover:grayscale-0 transition-all duration-[2000ms] ease-in-out border border-slate-100 transform group-hover:scale-[1.02]"
+                            />
+                        </div>
+                    </div>
                 </div>
-                <span class="text-gray-600 text-sm">4.8 / 5 • 98 reviews</span>
-              </div>
-              <p class="text-gray-700 text-sm">Expert moving and logistics coordination for international relocations to Switzerland</p>
             </div>
-          </div>
-        </div>
+        </section>
 
-          <!-- Browse All Agencies Button -->
-          <div class="mt-8 text-center">
-            <a
-              href="/companies?service=moving-logistics"
-              class="inline-flex items-center px-6 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-semibold hover:border-primary-600 hover:text-primary-700 hover:shadow-md transition-all duration-300"
-            >
-              Browse All Agencies for Moving & Logistics Services
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </a>
-          </div>
-        
+        <!-- 6. Section: The Move Process (Vertical Timeline) -->
+        <section class="py-32 bg-slate-50 relative overflow-hidden">
+             <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-24">
+                        <span class="text-[#FF6F61] font-black uppercase tracking-[0.4em] text-xs mb-4 block">Deployment Protocol</span>
+                        <h2 class="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight">The 5-Step Move Protocol</h2>
+                    </div>
 
-      </div>
-    </div>
-  </section>
+                    <div class="space-y-12">
+                        {[
+                            { 
+                                step: "01", 
+                                title: "Pre-Move Audit", 
+                                text: "The 6-month ownership check. We identify assets that will trigger VAT and advise on specialized packing for high-value items.",
+                                icon: FileText
+                            },
+                            { 
+                                step: "02", 
+                                title: "Housing Lock", 
+                                text: "Secure your Swiss lease via Offlist. Without the signed 'Mietvertrag', customs agent can't begin Form 18.44 preparation.",
+                                icon: UserCheck
+                            },
+                            { 
+                                step: "03", 
+                                title: "Customs Preparation", 
+                                text: "Finalizing the inventory list (packing list). Our agents translate and format your contents to Swiss customs standards.",
+                                icon: Scale
+                            },
+                            { 
+                                step: "04", 
+                                title: "The High-Risk Bridge", 
+                                text: "The physical border crossing. Our partners handle the officers, duties, and temporary admissions for vehicles.",
+                                icon: Anchor
+                            },
+                            { 
+                                step: "05", 
+                                title: "White-Glove Delivery", 
+                                text: "Unpacking, furniture assembly, and disposal of materials at your new Swiss residence. Full insurance closure.",
+                                icon: Truck
+                            }
+                        ].map((item, idx) => (
+                            <div class="group relative bg-white p-12 rounded-[3.5rem] border border-slate-100 hover:border-[#FF6F61]/30 hover:shadow-xl transition-all duration-700 flex gap-12 items-center">
+                                <div class="hidden md:flex flex-col items-center gap-2">
+                                    <span class="text-4xl font-black text-slate-100 group-hover:text-[#FF6F61]/10 transition-colors duration-700">{item.step}</span>
+                                    <div class="w-[2px] h-12 bg-slate-50"></div>
+                                </div>
+                                <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-[#FF6F61] shrink-0 group-hover:bg-[#FF6F61] group-hover:text-white transition-all transform group-hover:rotate-12 group-hover:scale-110 shadow-sm">
+                                    <item.icon className="w-8 h-8" />
+                                </div>
+                                <div>
+                                    <h4 class="text-2xl font-bold text-slate-900 mb-3 group-hover:text-[#FF6F61] transition-colors">{item.title}</h4>
+                                    <p class="text-slate-500 leading-relaxed font-light text-lg">{item.text}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+             </div>
+        </section>
 
-  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50">
-    <div class="container mx-auto px-4">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
-            FAQ
-          </span>
-          <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Frequently Asked <span class="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Questions</span>
-          </h2>
-          <p class="text-xl text-gray-600">
-            Common questions about moving to Switzerland
-          </p>
-        </div>
+        <!-- 7. Section: DIY vs Managed Move (Comparison) -->
+        <section class="py-32 bg-slate-950 relative overflow-hidden">
+            <div class="container mx-auto px-4">
+                <div class="max-w-5xl mx-auto">
+                    <div class="text-center mb-24">
+                        <span class="text-[#FF6F61] font-black uppercase tracking-[0.4em] text-xs mb-4 block">Risk Assessment</span>
+                        <h2 class="text-5xl font-bold text-white tracking-tight">Move Management Options</h2>
+                    </div>
 
-        <div class="space-y-6">
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-primary-600 transition-colors">
-              <span>What documents are needed for Swiss customs clearance?</span>
-              <svg class="w-6 h-6 text-primary-600 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              You need: detailed inventory list with item values, passport copy, Swiss residence permit, employment contract or proof of relocation, bill of lading from shipping company, and sometimes proof of previous residence. Household goods are duty-free if relocating as resident but documentation must prove genuine relocation not commercial import. Professional movers prepare customs documentation during packing to ensure compliance.
+                    <div class="grid md:grid-cols-2 gap-10">
+                        <!-- DIY Move -->
+                        <div class="p-12 bg-slate-900/50 rounded-[4rem] border border-slate-800 opacity-60 hover:opacity-100 transition-opacity">
+                            <h4 class="text-2xl font-bold text-slate-400 mb-8 border-b border-slate-800 pb-8 flex items-center gap-4">
+                                <Lock className="w-6 h-6" /> The DIY Route
+                            </h4>
+                            <ul class="space-y-6">
+                                {[
+                                    "You drive the truck through customs",
+                                    "Individual Form 18.44 filing at border",
+                                    "High risk of VAT audits and delays",
+                                    "Standard carrier liability (minimal)",
+                                    "Self-packing risk (insurance voids)"
+                                ].map(item => (
+                                    <li class="flex items-center gap-4 text-slate-500 text-sm">
+                                        <div class="w-2 h-2 rounded-full bg-slate-700"></div> {item}
+                                    </li>
+                                ))}
+                            </ul>
+                            <div class="mt-12 pt-8 border-t border-slate-800">
+                                <span class="text-xs text-slate-600 font-bold uppercase tracking-widest block mb-1">Estimated Stress</span>
+                                <div class="flex gap-1">
+                                    {[1,2,3,4,5].map(() => <div class="w-full h-1 bg-[#FF6F61]"></div>)}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Managed Move -->
+                        <div class="p-12 bg-[#FF6F61] rounded-[4rem] shadow-[0_48px_96px_-12px_rgba(255,111,97,0.3)] transform -rotate-1 relative overflow-hidden group">
+                             <div class="absolute -top-10 -right-10 w-40 h-40 bg-white/10 blur-3xl rounded-full"></div>
+                             <h4 class="text-2xl font-black text-white mb-8 border-b border-white/20 pb-8 flex items-center justify-between">
+                                <span>Relofinder Managed</span>
+                                <div class="bg-white text-[#FF6F61] text-[8px] font-black px-3 py-1 rounded-full uppercase tracking-widest">Elite Standard</div>
+                            </h4>
+                            <ul class="space-y-6">
+                                {[
+                                    "Pre-cleared customs documentation",
+                                    "Single point of move management",
+                                    "Zero-VAT strategy implementation",
+                                    "White-glove origin to destination",
+                                    "High-value transit insurance closure"
+                                ].map(item => (
+                                    <li class="flex items-center gap-4 text-white text-sm font-bold">
+                                        <CheckCircle2 className="w-5 h-5 text-white shadow-sm" /> {item}
+                                    </li>
+                                ))}
+                            </ul>
+                             <div class="mt-12 pt-8 border-t border-white/20">
+                                <span class="text-xs text-white/70 font-bold uppercase tracking-widest block mb-1">Estimated Stress</span>
+                                <div class="flex gap-1">
+                                    <div class="w-1/5 h-1 bg-white"></div>
+                                    <div class="w-4/5 h-1 bg-white/20"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </details>
+        </section>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-primary-600 transition-colors">
-              <span>How long does an international move to Switzerland take?</span>
-              <svg class="w-6 h-6 text-primary-600 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Timeline varies by origin: <strong>Europe 1-2 weeks</strong> door-to-door, <strong>USA/Canada 4-8 weeks</strong> by sea (2-3 weeks by air), <strong>Asia/Middle East 6-10 weeks</strong> by sea, <strong>Australia 8-12 weeks</strong>. Add 3-7 days for customs clearance. Exact timing depends on shipping method (sea vs air), customs efficiency, and whether you use direct or consolidated shipments. Book movers 6-8 weeks before desired move date for best availability.
+        <!-- 8. Section: FAQ (Journal Links) -->
+        <section class="py-32 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+                        <div>
+                            <span class="text-[#FF6F61] font-black uppercase tracking-widest text-[10px] mb-4 block">Archive & Intelligence</span>
+                            <h3 class="text-4xl font-bold text-slate-900 tracking-tight">Customs & Logistics Briefs</h3>
+                        </div>
+                        <a href="/blog" class="text-slate-900 font-black text-xs uppercase tracking-widest hover:text-[#FF6F61] transition-colors border-b-2 border-slate-900 pb-2 mb-2 no-underline">Browse Archive</a>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                         {[
+                            { title: "Form 18.44: The Tax-Free Import Protocol", link: "/blog/moving-to-switzerland-checklist-timeline", category: "Customs" },
+                            { title: "Vehicle Import: MFK & Emissions Guide", link: "/blog/ultimate-guide-relocation-switzerland-2026", category: "Logistics" }
+                        ].map(post => (
+                            <a href={post.link} class="group p-10 bg-slate-50 rounded-[3rem] border border-slate-100 hover:border-[#FF6F61]/20 hover:bg-white hover:shadow-2xl transition-all duration-700 no-underline flex flex-col items-start text-left">
+                                <span class="text-[10px] font-black text-[#FF6F61] uppercase tracking-widest mb-6 block">{post.category}</span>
+                                <h4 class="text-2xl font-bold text-slate-900 group-hover:text-[#FF6F61] transition-colors mb-6 leading-tight">{post.title}</h4>
+                                <span class="mt-auto inline-flex items-center gap-2 text-slate-900 font-black text-[10px] uppercase tracking-widest group-hover:translate-x-2 transition-transform italic">
+                                    Access Report <ArrowRight className="w-4 h-4 text-[#FF6F61]" />
+                                </span>
+                            </a>
+                        ))}
+                    </div>
+                </div>
             </div>
-          </details>
+        </section>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-primary-600 transition-colors">
-              <span>Do I need insurance for my move in Switzerland?</span>
-              <svg class="w-6 h-6 text-primary-600 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Yes, two types: <strong>Moving insurance</strong> covers goods in transit (highly recommended for international moves, typically 1-3% of declared value). <strong>Building/liability insurance</strong> is mandatory in most Swiss buildings during move-in/move-out to protect against damage to common areas, elevators, walls, floors. Buildings require proof of coverage before allowing moving truck access. Professional movers include this in quotes.
+        <!-- Final CTA Section -->
+        <section class="py-32 bg-slate-50">
+            <div class="container mx-auto px-4">
+                <div class="max-w-4xl mx-auto bg-slate-950 rounded-[5rem] p-16 md:p-24 text-center relative overflow-hidden shadow-3xl">
+                    <div class="absolute inset-0 bg-gradient-to-br from-[#FF6F61]/10 via-transparent to-transparent"></div>
+                    <div class="relative z-10">
+                        <Lock className="w-16 h-16 text-[#FF6F61] mx-auto mb-10 opacity-30" />
+                        <h2 class="text-4xl md:text-6xl font-black text-white mb-8 tracking-tighter leading-tight">Secure Your Move Strategy.</h2>
+                        <p class="text-slate-400 text-xl font-light mb-16 leading-relaxed">
+                            Connect with accredited Swiss move managers and customs agents. Our partners currently support moves into 26 Swiss cantons.
+                        </p>
+                        <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+                            <a 
+                                href="/search/results?service=moving-logistics" 
+                                class="inline-flex items-center gap-4 bg-[#FF6F61] text-white px-12 py-6 rounded-full font-black uppercase tracking-widest text-xs hover:bg-[#ff8a7d] transition-all no-underline shadow-2xl shadow-[#FF6F61]/20 hover:scale-105"
+                            >
+                                View Logistics Partners <ArrowRight className="w-5 h-5" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </details>
+        </section>
+    </main>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-primary-600 transition-colors">
-              <span>Are parking permits required for moving trucks in Zurich?</span>
-              <svg class="w-6 h-6 text-primary-600 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Yes, parking permits (Parkplatz-Reservation) are <strong>required in most Swiss cities</strong> including Zurich, Geneva, Basel, and Bern. Apply 1-2 weeks in advance through city authorities (<strong>CHF 50-150 fee</strong>). Some buildings require elevator reservations separately. Without permits, moving trucks risk fines (CHF 100-200) and towing, causing major delays. Professional movers handle permit applications as part of moving coordination.
-            </div>
-          </details>
+    <UniversalContactModal client:load />
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-primary-600 transition-colors">
-              <span>What are the rules for bringing pets to Switzerland?</span>
-              <svg class="w-6 h-6 text-primary-600 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Dogs and cats must have: <strong>microchip</strong> (ISO 11784/11785 compliant), <strong>valid rabies vaccination</strong> (minimum 21 days before entry), EU pet passport or veterinary certificate, <strong>tapeworm treatment for dogs</strong> (1-5 days before entry). Dangerous dog breeds have additional restrictions. Birds, exotic animals require special permits. No quarantine needed if requirements met. Pet-friendly airlines must be booked separately, and ground transport arranged for entry.
-            </div>
-          </details>
-
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-primary-600 transition-colors">
-              <span>Can I arrange short-term storage during my move?</span>
-              <svg class="w-6 h-6 text-primary-600 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Yes, short-term storage (<strong>1-6 months typical</strong>) is common for Switzerland moves. Useful when: move-out and move-in dates don't align, housing search takes longer than expected, temporary accommodation before permanent housing. Costs vary by volume and duration (<strong>CHF 100-500/month</strong> for typical household). Climate-controlled options available for sensitive items. Most moving companies offer integrated storage solutions near Swiss entry points.
-            </div>
-          </details>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <ServiceRelated services={relatedServices} />
-
-  <ServiceBlog posts={relatedBlogs} />
-
-  <section class="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-transparent"></div>
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-          Ready for a Seamless International Move?
-        </h2>
-        <p class="text-xl text-primary-100 mb-8 leading-relaxed">
-          Our moving specialists handle everything from international shipping and customs clearance to pet relocation and building coordination. Get expert support for a stress-free relocation to Switzerland with complete logistics management.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button
-            onclick="universalOpenModal({page: 'moving_final', service: 'moving'})"
-            class="px-10 py-5 bg-white text-primary-700 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl"
-          >
-            Book Free Moving Consultation
-          </button>
-          <a
-            href="/services/housing"
-            class="px-10 py-5 bg-white/10 backdrop-blur-sm text-white border-2 border-white rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
-          >
-            Explore Housing Services
-          </a>
-        </div>
-        <p class="text-sm text-primary-100 mt-6">
-          ✓ Free consultation with preferred partners  •  ✓ International shipping expertise  •  ✓ Complete logistics support
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <div style="display:none;" data-ai-summary>
-    Moving and logistics services for international relocation to Switzerland. Complete guide to international shipping (sea/air freight), customs clearance, pet relocation, building access coordination, and storage solutions. Shipping timelines: Europe 1-2 weeks, USA/Canada 4-8 weeks by sea (2-3 weeks air), Asia 6-10 weeks, Australia 8-12 weeks, plus 3-7 days customs. Customs requirements: detailed inventory with values, residence permit, employment contract, bill of lading. Household goods duty-free for residents with documentation. Parking permits mandatory in Swiss cities (CHF 50-150, apply 1-2 weeks advance). Building liability insurance required for move-in access. Pet import requirements: microchip ISO compliant, rabies vaccination 21+ days before entry, EU pet passport or vet certificate, tapeworm treatment for dogs 1-5 days before. Regional considerations: Zurich (tight access, permit requirements), Geneva (customs bottlenecks, high volume), Basel (cross-border complexities), Zug (executive moves, secure storage), Lausanne (storage needs, limited turnover). Short-term storage CHF 100-500/month for 1-6 months typical. Moving costs: Europe CHF 5,000-15,000, USA CHF 10,000-25,000 including packing, shipping, customs, delivery. Five-step process: pre-move survey and quotation, packing and customs inventory, international shipping and clearance, delivery with building access, post-move support. Building restrictions: weekday moves typical, elevator reservations required, insurance proof mandatory. Expert assistance from Prime Relocation for international moving coordination, customs documentation, pet relocation support, and complete logistics management from origin to Swiss delivery.
-  </div>
+    <script is:inline>
+        // Ensure standard hover reveal works with the specific duration
+        // (Tailwind duration-[2000ms] classes handle this, but adding a sanity console log)
+        console.log('✨ Moving & Logistics: High-End Visuals Initialized');
+    </script>
 </Layout>
+
+<style>
+    @keyframes fade-in {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+        animation: fade-in 1s ease-out forwards;
+    }
+    .shadow-3xl {
+        box-shadow: 0 64px 128px -12px rgba(0, 0, 0, 1);
+    }
+</style>

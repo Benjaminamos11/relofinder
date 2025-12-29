@@ -330,7 +330,7 @@ export default function TrustedProfessionalsSlider({ companies }: Props) {
               {generationState === 'error' && (
                 <div className="bg-white rounded-xl p-6 border border-red-200 shadow-sm">
                   <div className="text-center">
-                    <p className="text-sm font-medium text-red-600 mb-3">Failed to generate AI summary</p>
+                    <p className="text-sm font-medium text-[#FF6F61] mb-3">Failed to generate AI summary</p>
                     <button
                       onClick={handleGenerateAI}
                       className="px-6 py-2 bg-gray-100 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-200 transition-colors"

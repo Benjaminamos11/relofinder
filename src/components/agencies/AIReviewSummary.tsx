@@ -211,9 +211,9 @@ export default function AIReviewSummary({ relocatorId, relocatorName, existingSu
 
   if (error) {
     return (
-      <div className="bg-red-50 rounded-2xl p-8 border border-red-200">
+      <div className="bg-[#FF6F61]/5 rounded-2xl p-8 border border-red-200">
         <div className="flex items-start gap-4">
-          <div className="flex-shrink-0 w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
+          <div className="flex-shrink-0 w-10 h-10 bg-[#FF6F61]/50 rounded-full flex items-center justify-center">
             <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -226,7 +226,7 @@ export default function AIReviewSummary({ relocatorId, relocatorName, existingSu
                 setError(null);
                 setShowBanner(true);
               }}
-              className="mt-4 text-sm text-red-700 hover:text-red-900 font-medium underline"
+              className="mt-4 text-sm text-[#FF6F61] hover:text-red-900 font-medium underline"
             >
               Try again
             </button>

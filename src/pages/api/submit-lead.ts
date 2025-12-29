@@ -9,9 +9,9 @@ import { supabase } from '../../lib/supabase';
 export const POST: APIRoute = async ({ request }) => {
   try {
     const payload = await request.json();
-    
+
     const { mode, context, contact, move, services, notes, source_context } = payload;
-    
+
     // Validation
     if (!mode || !contact || !move || !services) {
       return new Response(
@@ -19,7 +19,7 @@ export const POST: APIRoute = async ({ request }) => {
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
-    
+
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(contact.email)) {
@@ -28,7 +28,7 @@ export const POST: APIRoute = async ({ request }) => {
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
-    
+
     // Validate services array
     if (!Array.isArray(services) || services.length === 0) {
       return new Response(
@@ -36,94 +36,112 @@ export const POST: APIRoute = async ({ request }) => {
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
-    
+
     // Get IP hash for anti-spam (basic implementation)
-    const clientIP = request.headers.get('x-forwarded-for')?.split(',')[0] || 
-                     request.headers.get('x-real-ip') || 
-                     'unknown';
-    
+    const clientIP = request.headers.get('x-forwarded-for')?.split(',')[0] ||
+      request.headers.get('x-real-ip') ||
+      'unknown';
+
     const enhancedContext = {
       ...source_context,
       ip_hash: await hashIP(clientIP),
       timestamp: new Date().toISOString(),
     };
-    
+
     let result;
-    
+
     if (mode === 'quotes') {
-      // Insert quote request
+      // Insert lead
       const { data, error } = await supabase
-        .from('quote_requests')
+        .from('leads')
         .insert({
-          source_context: enhancedContext,
-          contact,
-          move,
-          services,
-          notes,
+          source_page: source_context?.page || 'quote_wizard',
+          name: contact.name,
+          email: contact.email,
+          phone: contact.phone,
+          current_country: move.from,
+          destination_canton: move.to,
+          move_date: move.date ? new Date(move.date) : null,
+          intent: 'relocation',
+          services_needed: services,
+          message: notes,
           status: 'new',
+          metadata: {
+            ...enhancedContext,
+            household: move.household,
+            budget: move.budget
+          }
         })
         .select()
         .single();
-      
+
       if (error) {
-        console.error('Error inserting quote request:', error);
+        console.error('Error inserting lead:', error);
         return new Response(
           JSON.stringify({ error: 'Failed to submit request' }),
           { status: 500, headers: { 'Content-Type': 'application/json' } }
         );
       }
-      
+
       result = data;
-      
+
       // Route lead to partners
       await routeLead(data.id, mode, context, services, move.to);
-      
+
       // Increment KPI counter
       await incrementKPI('matches_count');
-      
+
     } else if (mode === 'consultation') {
       // Determine target company
       let targetCompanyId = null;
-      
+
       if (context.type === 'profile' && context.companyId) {
         targetCompanyId = context.companyId;
       } else {
         // Default to Prime Relocation
         targetCompanyId = 'prime-relocation';
       }
-      
-      // Insert consultation request
+
+      // Insert as lead with specific relocator_id if consultation
       const { data, error } = await supabase
-        .from('consultation_requests')
+        .from('leads')
         .insert({
-          source_context: enhancedContext,
-          contact,
-          move,
-          services,
-          notes,
-          target_company_id: targetCompanyId,
+          source_page: source_context?.page || 'consultation_request',
+          name: contact.name,
+          email: contact.email,
+          phone: contact.phone,
+          current_country: move.from,
+          destination_canton: move.to,
+          relocator_id: targetCompanyId === 'prime-relocation' ? null : targetCompanyId, // Link to agency if specific
+          intent: 'consultation',
+          services_needed: services,
+          message: notes,
           status: 'new',
+          metadata: {
+            ...enhancedContext,
+            target_company: targetCompanyId
+          }
         })
         .select()
         .single();
-      
+
       if (error) {
-        console.error('Error inserting consultation request:', error);
+        console.error('Error inserting consultation lead:', error);
         return new Response(
           JSON.stringify({ error: 'Failed to submit request' }),
           { status: 500, headers: { 'Content-Type': 'application/json' } }
         );
       }
-      
+
       result = data;
-      
+
       // Route lead to target company
       await routeLead(data.id, mode, context, services, move.to, targetCompanyId);
-      
+
       // Increment KPI counter
       await incrementKPI('consultations_booked');
     }
-    
+
     return new Response(
       JSON.stringify({
         success: true,
@@ -132,7 +150,7 @@ export const POST: APIRoute = async ({ request }) => {
       }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
-    
+
   } catch (error) {
     console.error('Submit lead error:', error);
     return new Response(
@@ -159,18 +177,18 @@ async function routeLead(
       await notifyPartner(targetCompanyId, leadId, mode);
       return;
     }
-    
+
     // For quotes, match partners based on routing rules
     const region = extractRegion(destination, context);
     const partnerIds = await getMatchingPartners(region, services);
-    
+
     // Notify partners (limit to 5)
     const partnersToNotify = partnerIds.slice(0, 5);
-    
+
     for (const partnerId of partnersToNotify) {
       await notifyPartner(partnerId, leadId, mode);
     }
-    
+
   } catch (error) {
     console.error('Error routing lead:', error);
   }
@@ -187,20 +205,20 @@ async function getMatchingPartners(region: string, services: string[]): Promise<
       .eq('active', true)
       .or(`region.eq.${region},region.eq.default`)
       .in('service', services);
-    
+
     if (!rules || rules.length === 0) {
       // Fallback to default partners
       return ['prime-relocation', 'executive-relocation', 'connectiv-relocation', 'anchor-relocation'];
     }
-    
+
     // Collect all unique partner IDs, maintaining order preference
     const partnerSet = new Set<string>();
     rules.forEach(rule => {
       rule.partner_ids.forEach((id: string) => partnerSet.add(id));
     });
-    
+
     return Array.from(partnerSet);
-    
+
   } catch (error) {
     console.error('Error getting matching partners:', error);
     return ['prime-relocation', 'executive-relocation', 'connectiv-relocation'];
@@ -216,12 +234,12 @@ async function notifyPartner(partnerId: string, leadId: string, mode: string) {
     // In production, implement email notification via SendGrid, Resend, or similar
     // For now, just log
     console.log(`[NOTIFY] Partner ${partnerId} about ${mode} lead ${leadId}`);
-    
+
     // TODO: Implement email notification
     // - Fetch partner email from relocators table
     // - Send email with lead details
     // - Log notification in notifications table
-    
+
   } catch (error) {
     console.error('Error notifying partner:', error);
   }
@@ -232,18 +250,18 @@ async function notifyPartner(partnerId: string, leadId: string, mode: string) {
  */
 function extractRegion(destination: string, context: any): string {
   const dest = destination.toLowerCase();
-  
+
   if (context.type === 'region') {
     return context.regionName.toLowerCase();
   }
-  
+
   if (dest.includes('zurich') || dest.includes('zürich')) return 'zurich';
   if (dest.includes('geneva') || dest.includes('genève')) return 'geneva';
   if (dest.includes('basel')) return 'basel';
   if (dest.includes('zug')) return 'zug';
   if (dest.includes('lausanne')) return 'geneva'; // Western Switzerland
   if (dest.includes('bern')) return 'zurich'; // Central Switzerland
-  
+
   return 'default';
 }
 
@@ -253,14 +271,14 @@ function extractRegion(destination: string, context: any): string {
 async function incrementKPI(field: 'matches_count' | 'consultations_booked' | 'quotes_sent') {
   try {
     const today = new Date().toISOString().split('T')[0];
-    
+
     // Try to update existing record
     const { data: existing } = await supabase
       .from('kpis_daily')
       .select('*')
       .eq('date', today)
       .single();
-    
+
     if (existing) {
       await supabase
         .from('kpis_daily')
@@ -275,7 +293,7 @@ async function incrementKPI(field: 'matches_count' | 'consultations_booked' | 'q
           [field]: 1,
         });
     }
-    
+
   } catch (error) {
     console.error('Error incrementing KPI:', error);
   }

@@ -1,6 +1,8 @@
 ---
-import BlogLayout from '../../layouts/BlogLayout.astro';
+import Layout from '../../layouts/Layout.astro';
+import CloudinaryImage from '../../components/common/CloudinaryImage.astro';
 import { getCollection } from 'astro:content';
+import { Clock, Calendar, User, ChevronDown, Facebook, Twitter, Linkedin, Link as LinkIcon } from 'lucide-react';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -11,6 +13,321 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const { Content, headings } = await post.render();
+
+// Helper for date
+function formatDate(date: Date) {
+  return new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+// SEO & Schema
+const title = post.data.seo?.title || post.data.title;
+const description = post.data.seo?.description || post.data.description;
+const canonical = `https://relofinder.ch/blog/${post.slug}`;
+const shareImage = post.data.heroImage;
+
+// Author Data (Mock or from Collection if extended)
+const authorData = {
+    name: post.data.author || 'ReloFinder Editorial Team',
+    role: 'Relocation Expert',
+    bio: 'Providing expert insights and practical guides for internationals moving to Switzerland.',
+    image: null // Add author image logic if available
+};
+
+// JSON-LD Schema
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "image": [shareImage],
+  "datePublished": post.data.publishDate.toISOString(),
+  "dateModified": post.data.updatedDate?.toISOString() || post.data.publishDate.toISOString(),
+  "author": [{
+      "@type": "Person",
+      "name": authorData.name,
+      "url": "https://relofinder.ch/about" // Fallback
+  }],
+  "publisher": {
+      "@type": "Organization",
+      "name": "ReloFinder",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://relofinder.ch/logo.png"
+      }
+  },
+  "description": description
+};
+
+const faqSchema = post.data.faqs ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": post.data.faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+        }
+    }))
+} : null;
+
+// Filter top-level headings for TOC
+const toc = headings.filter(h => h.depth === 2 || h.depth === 3);
 ---
 
-<BlogLayout post={post} />
+<Layout 
+    title={title} 
+    description={description} 
+    canonical={canonical}
+    image={shareImage}
+>
+    <!-- Inject Schemas -->
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+    {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+
+    <main class="bg-white min-h-screen pb-20">
+        
+        <!-- Progress Bar -->
+        <div id="progress-container" class="fixed top-0 left-0 w-full h-1 z-50 bg-gray-100">
+             <div id="progress-bar" class="h-full bg-[#FF6F61] w-0 transition-all duration-100 ease-out"></div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
+             <div class="absolute inset-0 bg-gray-900">
+                 {post.data.heroImage && (
+                    <CloudinaryImage 
+                        src={post.data.heroImage} 
+                        alt={post.data.title}
+                        width={1600}
+                        height={900}
+                        class="w-full h-full object-cover opacity-60"
+                        loading="eager"
+                    />
+                 )}
+                 <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
+             </div>
+
+             <div class="absolute inset-0 flex items-center justify-center text-center">
+                 <div class="container px-6 max-w-4xl pt-20">
+                     {post.data.category && (
+                        <span class="inline-block bg-[#FF6F61] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-6 animate-fade-in-up">
+                            {post.data.category}
+                        </span>
+                     )}
+                     <h1 class="text-4xl md:text-5xl lg:text-7xl font-serif text-white font-bold leading-tight mb-8 drop-shadow-lg tracking-tight animate-fade-in-up delay-100">
+                        {post.data.title}
+                     </h1>
+                     <div class="flex flex-wrap items-center justify-center gap-6 text-gray-300 font-medium text-sm md:text-base animate-fade-in-up delay-200">
+                         <div class="flex items-center gap-2">
+                             <User className="w-4 h-4 text-[#FF6F61]" />
+                             <span>{authorData.name}</span>
+                         </div>
+                         <div class="flex items-center gap-2">
+                             <Calendar className="w-4 h-4 text-[#FF6F61]" />
+                             <span>{formatDate(post.data.publishDate)}</span>
+                         </div>
+                         <div class="flex items-center gap-2">
+                             <Clock className="w-4 h-4 text-[#FF6F61]" />
+                             <span>{post.data.readingTime} min read</span>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+        </div>
+
+        </div>
+
+        <div class="container mx-auto px-6 lg:px-8 max-w-7xl relative z-10 py-12">
+            <div class="flex flex-col lg:flex-row gap-12 lg:gap-20">
+                
+                {/* Main Content */}
+                <article class="flex-1 bg-white">
+                    
+                    {/* Lead Paragraph */}
+                    <div class="prose prose-lg md:prose-xl max-w-none mb-10 text-gray-600 font-serif leading-relaxed first-letter:text-5xl first-letter:font-bold first-letter:text-gray-900 first-letter:mr-3 first-letter:float-left">
+                        {post.data.description}
+                    </div>
+
+                    <div class="prose prose-lg md:prose-xl max-w-none 
+                        prose-headings:font-serif prose-headings:font-bold prose-headings:text-gray-900 prose-headings:mt-12 prose-headings:mb-6
+                        prose-p:text-gray-600 prose-p:leading-loose prose-p:mb-8
+                        prose-a:text-[#FF6F61] prose-a:no-underline hover:prose-a:text-[#FF6F61]
+                        prose-strong:text-gray-900 prose-strong:font-bold
+                        prose-li:text-gray-600 prose-li:marker:text-[#FF6F61]
+                        prose-img:rounded-xl prose-img:shadow-lg prose-img:my-12
+                        prose-blockquote:border-l-4 prose-blockquote:border-[#FF6F61] prose-blockquote:bg-gray-50 prose-blockquote:py-6 prose-blockquote:px-8 prose-blockquote:rounded-r-lg prose-blockquote:font-serif prose-blockquote:italic prose-blockquote:text-gray-700
+                        "
+                    >
+                        <Content />
+                    </div>
+
+                    {/* FAQ Section */}
+                    {post.data.faqs && post.data.faqs.length > 0 && (
+                        <div class="mt-16 pt-10 border-t border-gray-100">
+                             <h2 class="text-3xl font-serif font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
+                             <div class="space-y-4">
+                                {post.data.faqs.map((faq) => (
+                                    <details class="group bg-gray-50 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                                        <summary class="flex items-center justify-between p-6 cursor-pointer text-lg font-bold text-gray-900 hover:text-[#FF6F61] transition-colors">
+                                            {faq.question}
+                                            <span class="ml-4 transition-transform group-open:rotate-180">
+                                                <ChevronDown className="w-5 h-5" />
+                                            </span>
+                                        </summary>
+                                        <div class="px-6 pb-6 text-gray-600 leading-relaxed font-light">
+                                            {faq.answer}
+                                        </div>
+                                    </details>
+                                ))}
+                             </div>
+                        </div>
+                    )}
+
+                    {/* Tag Cloud */}
+                    <div class="mt-16 pt-10 border-t border-gray-100">
+                        <h4 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Topics</h4>
+                        <div class="flex flex-wrap gap-2">
+                            {post.data.tags.map(tag => (
+                                <span class="bg-gray-100 hover:bg-gray-200 text-gray-600 text-sm px-4 py-2 rounded-lg transition-colors cursor-pointer">
+                                    #{tag}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                </article>
+
+                {/* Sidebar Sticky */}
+                <aside class="lg:w-80 lg:shrink-0 space-y-8 lg:pt-0">
+                     <div class="sticky top-24 space-y-8">
+                         
+                         {/* Table of Contents */}
+                         {toc.length > 0 && (
+                            <div class="hidden lg:block bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                                <h4 class="text-xs font-bold text-gray-900 uppercase tracking-widest mb-6 flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#FF6F61]"></span>
+                                    On This Page
+                                </h4>
+                                <nav class="space-y-3 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+                                    {toc.map(heading => (
+                                        <a 
+                                            href={`#${heading.slug}`} 
+                                            class={`block text-sm transition-all duration-200 hover:text-[#FF6F61] hover:translate-x-1 ${heading.depth === 3 ? 'pl-4 text-gray-500 text-xs' : 'text-gray-700 font-medium'}`}
+                                        >
+                                            {heading.text}
+                                        </a>
+                                    ))}
+                                </nav>
+                            </div>
+                         )}
+
+                         {/* Author Bio Card */}
+                         <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+                             <div class="flex items-center gap-4 mb-4">
+                                <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden">
+                                     <User className="w-8 h-8 text-gray-400" />
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-[#FF6F61] uppercase tracking-wider mb-1">Written By</p>
+                                    <h4 class="font-serif text-lg font-bold text-gray-900 leading-none">{authorData.name}</h4>
+                                </div>
+                             </div>
+                             <p class="text-sm text-gray-500 leading-relaxed mb-6">
+                                {authorData.bio}
+                             </p>
+                             <button 
+                                onclick="window.universalOpenModal && window.universalOpenModal('concierge')"
+                                class="w-full bg-gray-900 hover:bg-black text-white text-sm font-bold py-3 rounded-xl transition-colors"
+                             >
+                                Ask an Expert
+                             </button>
+                         </div>
+
+                         {/* Share Buttons */}
+                         <div class="flex gap-2 justify-center">
+                            <button class="p-3 bg-gray-100 rounded-lg hover:bg-[#1877F2] hover:text-white transition-colors">
+                                <Facebook className="w-5 h-5" />
+                            </button>
+                            <button class="p-3 bg-gray-100 rounded-lg hover:bg-[#1DA1F2] hover:text-white transition-colors">
+                                <Twitter className="w-5 h-5" />
+                            </button>
+                            <button class="p-3 bg-gray-100 rounded-lg hover:bg-[#0A66C2] hover:text-white transition-colors">
+                                <Linkedin className="w-5 h-5" />
+                            </button>
+                            <button class="p-3 bg-gray-100 rounded-lg hover:bg-gray-800 hover:text-white transition-colors" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied!')">
+                                <LinkIcon className="w-5 h-5" />
+                            </button>
+                         </div>
+
+                     </div>
+                </aside>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Scroll Progress Script -->
+    <script>
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            const bar = document.getElementById("progress-bar");
+            if(bar) bar.style.width = scrolled + "%";
+        });
+    </script>
+
+    <style is:global>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.2);
+            border-radius: 20px;
+        }
+
+        /* Robust Table Styling */
+        .prose table {
+            width: 100%;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            border-collapse: collapse;
+            font-size: 0.875rem; /* text-sm */
+        }
+        @media (min-width: 768px) {
+            .prose table {
+                font-size: 1rem; /* text-base */
+            }
+        }
+        .prose thead {
+            background-color: #f9fafb; /* bg-gray-50 */
+            border-bottom: 2px solid #e5e7eb; /* border-gray-200 */
+        }
+        .prose th {
+            color: #111827; /* text-gray-900 */
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.75rem; /* text-xs */
+            padding: 1rem;
+            text-align: left;
+        }
+        .prose td {
+            padding: 1rem;
+            border-bottom: 1px solid #f3f4f6; /* border-gray-100 */
+            vertical-align: top;
+            color: #4b5563; /* text-gray-600 */
+        }
+        .prose tr:nth-child(even) {
+            background-color: #f9fafb; /* bg-gray-50 */
+        }
+        .prose tr:hover {
+            background-color: rgba(249, 250, 251, 0.8);
+        }
+    </style>
+</Layout>

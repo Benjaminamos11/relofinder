@@ -4,7 +4,7 @@ description: "Is Switzerland really that expensive? We break down monthly costs 
 publishDate: 2026-01-07
 readingTime: 12
 author: "ReloFinder Editorial Team"
-heroImage: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=600&fit=crop"
+heroImage: "/images/blog/cost-of-living.png"
 category: "Guides"
 tags: ["cost of living", "finance", "budget", "zurich", "geneva", "switzerland", "expats", "taxes"]
 featured: true

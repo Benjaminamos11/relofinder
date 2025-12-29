@@ -204,7 +204,7 @@ const blog = defineCollection({
     author: z.string(),
     publishDate: z.date(),
     updatedDate: z.date().optional(),
-    heroImage: z.string().url(),
+    heroImage: z.string(),
     category: z.string(),
     tags: z.array(z.string()),
     readingTime: z.number(), // in minutes

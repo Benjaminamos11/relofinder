@@ -1,460 +1,265 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Mail, Phone, MapPin, Clock, MessageSquare, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const title = 'Contact Us | ReloFinder.ch';
-const description = 'Get in touch with ReloFinder for personalized assistance with your relocation to Switzerland or to inquire about our services. We respond within 24 hours.';
+const description = 'Get in touch with ReloFinder for personalized assistance with your relocation to Switzerland. We respond within 24 hours.';
 const canonical = 'https://relofinder.ch/contact';
-const keywords = ['contact relofinder', 'swiss relocation contact', 'relocation help switzerland', 'expat support switzerland', 'relocation inquiry', 'swiss relocation assistance'];
 
-const combinedSchema = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://relofinder.ch"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Contact",
-          "item": "https://relofinder.ch/contact"
-        }
-      ]
-    },
-    {
-      "@type": "ContactPage",
-      "name": title,
-      "description": description,
-      "url": canonical
-    },
-    {
-      "@type": "Organization",
-      "name": "ReloFinder",
-      "url": "https://relofinder.ch",
-      "logo": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1751047383/SVG_sdmxdo.svg",
-      "contactPoint": [
-        {
-          "@type": "ContactPoint",
-          "telephone": "+41-XX-XXX-XXXX",
-          "email": "hello@relofinder.ch",
-          "contactType": "customer service",
-          "areaServed": "CH",
-          "availableLanguage": ["English", "German", "French"]
-        }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How quickly will you respond to my inquiry?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We respond to all inquiries within 24 hours during business days. For urgent relocation needs, you can also schedule a free consultation directly through our platform."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is there a fee for contacting ReloFinder?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No, contacting ReloFinder is completely free. We never charge individuals or companies for using our platform or getting quotes from relocation agencies."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I request quotes from multiple agencies?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, you can request quotes from multiple relocation agencies through our platform. We'll connect you with specialists that match your specific needs and location in Switzerland."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What information do I need to provide?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Basic information about your relocation timeline, services needed, and destination in Switzerland. The more details you provide, the better we can match you with the right relocation partners."
-          }
-        }
-      ]
-    }
-  ]
-};
+const inputClasses = "w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6F61]/20 focus:border-[#FF6F61] transition-all duration-200 placeholder:text-slate-400 text-slate-900";
+const labelClasses = "block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2";
+
 ---
 
-<Layout 
-  title={title} 
-  description={description}
-  canonical={canonical}
-  keywords={keywords}
-  schema={combinedSchema}
->
+<Layout title={title} description={description} canonical={canonical}>
+  
   <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20">
-    <div class="container max-w-4xl mx-auto px-4 text-center">
-      <h1 class="text-4xl lg:text-5xl font-bold mb-6 text-gray-900">Get in Touch</h1>
-      <p class="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-        Have questions about relocating to Switzerland? Looking for specific services? Our team at Lang + Partner is here to help you with professional relocation solutions.
+  <section class="pt-32 pb-16 md:pt-40 md:pb-24 bg-white">
+    <div class="container mx-auto px-4 text-center max-w-4xl">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-[11px] font-bold uppercase tracking-widest mb-6">
+        <MessageSquare class="w-3 h-3 text-[#FF6F61]" />
+        We're here to help
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 mb-6 font-serif">
+        Let's Start the <br/>
+        <span class="text-[#FF6F61] italic">Conversation.</span>
+      </h1>
+      <p class="text-xl text-slate-500 font-normal leading-relaxed max-w-2xl mx-auto">
+        Whether you're planning a move or just have a few questions, our team is ready to provide the answers you need.
       </p>
-      <div class="mt-8 inline-flex items-center gap-2 bg-white rounded-full px-6 py-3 shadow-lg border border-gray-200">
-        <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-        </svg>
-        <span class="text-gray-700 font-medium">Response within 24 hours</span>
+    </div>
+  </section>
+
+  <!-- Main Content Split -->
+  <section class="pb-24 bg-white">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-24">
+        
+        <!-- Left: Contact Details -->
+        <div class="space-y-12">
+            
+            <div class="space-y-8">
+                <h2 class="text-2xl font-bold text-slate-900">Direct Contact</h2>
+                
+                <!-- Email -->
+                <div class="flex items-start gap-4 p-6 bg-slate-50 rounded-2xl border border-slate-100 transition-colors hover:border-slate-200">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center border border-slate-100 shrink-0 text-[#FF6F61]">
+                        <Mail class="w-5 h-5" />
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide mb-1">Email Us</h3>
+                        <p class="text-sm text-slate-500 mb-2">For general inquiries and support</p>
+                        <a href="mailto:hello@relofinder.ch" class="text-lg font-medium text-slate-900 hover:text-[#FF6F61] transition-colors">
+                            hello@relofinder.ch
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Phone -->
+                <div class="flex items-start gap-4 p-6 bg-slate-50 rounded-2xl border border-slate-100 transition-colors hover:border-slate-200">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center border border-slate-100 shrink-0 text-[#FF6F61]">
+                        <Phone class="w-5 h-5" />
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide mb-1">Call Us</h3>
+                        <p class="text-sm text-slate-500 mb-2">Mon-Fri from 9am to 6pm CET</p>
+                        <a href="tel:+41763648888" class="text-lg font-medium text-slate-900 hover:text-[#FF6F61] transition-colors">
+                            +41 76 364 88 88
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Office -->
+                <div class="flex items-start gap-4 p-6 bg-slate-50 rounded-2xl border border-slate-100 transition-colors hover:border-slate-200">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center border border-slate-100 shrink-0 text-[#FF6F61]">
+                        <MapPin class="w-5 h-5" />
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wide mb-1">Visit Us</h3>
+                        <p class="text-slate-500 leading-relaxed max-w-xs">
+                            Lang + Partner<br/>
+                            Chilegässli 12a<br/>
+                            8904 Aesch ZH<br/>
+                            Switzerland
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Teaser -->
+            <div class="border-t border-slate-100 pt-12">
+                <h3 class="text-lg font-bold text-slate-900 mb-4">Common Questions</h3>
+                <div class="space-y-4">
+                    <details class="group">
+                        <summary class="flex items-center justify-between cursor-pointer list-none text-slate-600 hover:text-[#FF6F61] font-medium transition-colors">
+                            <span>How does the service work?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-slate-500 mt-3 text-sm leading-relaxed group-open:animate-fadeIn">
+                            We act as a neutral platform connecting you with vetted relocation agencies. You submit a request, receive quotes, and choose the best partner.
+                        </p>
+                    </details>
+                    <details class="group">
+                        <summary class="flex items-center justify-between cursor-pointer list-none text-slate-600 hover:text-[#FF6F61] font-medium transition-colors">
+                            <span>Is it free for expats?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-slate-500 mt-3 text-sm leading-relaxed group-open:animate-fadeIn">
+                            Yes, our matching service is completely free for individuals. You only pay the agency you choose to hire.
+                        </p>
+                    </details>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right: Contact Form -->
+        <div class="bg-white rounded-[2rem] p-8 md:p-10 shadow-2xl shadow-slate-200/50 border border-slate-100 relative overflow-hidden">
+             <!-- Decorative Element -->
+             <div class="absolute top-0 right-0 w-32 h-32 bg-[#FF6F61]/5 rounded-bl-[4rem] -z-0"></div>
+
+            <div class="relative z-10">
+                <div id="contact-form-container">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-2">Send a Message</h2>
+                    <p class="text-slate-500 mb-8 text-sm">Fill out the form below and we'll get back to you shortly.</p>
+
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="firstName" class={labelClasses}>First Name</label>
+                                <input type="text" id="firstName" name="firstName" required class={inputClasses} placeholder="Jane" />
+                            </div>
+                            <div>
+                                <label for="lastName" class={labelClasses}>Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required class={inputClasses} placeholder="Doe" />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="email" class={labelClasses}>Email Address</label>
+                            <input type="email" id="email" name="email" required class={inputClasses} placeholder="jane@example.com" />
+                        </div>
+
+                        <div>
+                            <label for="message" class={labelClasses}>Message</label>
+                            <textarea id="message" name="message" rows="4" required class={inputClasses} placeholder="How can we help you?"></textarea>
+                        </div>
+
+                        <div class="flex items-start gap-3 pt-2">
+                            <div class="flex items-center h-5 mt-1">
+                                <input id="privacy" name="privacy" type="checkbox" required class="h-4 w-4 text-[#FF6F61] focus:ring-[#FF6F61] border-slate-300 rounded" />
+                            </div>
+                            <label for="privacy" class="text-xs text-slate-500">
+                                I agree to the <a href="/privacy" class="text-slate-900 underline hover:text-[#FF6F61]">Privacy Policy</a>.
+                            </label>
+                        </div>
+
+                        <div id="form-error" class="hidden p-3 bg-red-50 text-red-600 text-xs rounded-lg border border-red-100"></div>
+
+                        <button type="submit" id="submit-btn" class="w-full bg-[#FF6F61] text-white py-4 px-6 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-[#ff5a4d] transition-all duration-300 shadow-lg shadow-red-900/10 hover:shadow-red-900/20 flex items-center justify-center gap-2 group">
+                            <span id="btn-text">Send Message</span>
+                            <ArrowRight id="btn-icon" class="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Success State -->
+                <div id="contact-success" class="hidden text-center py-12 animate-fadeIn">
+                    <div class="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6 text-green-500">
+                        <CheckCircle2 class="w-10 h-10" />
+                    </div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Message Sent!</h2>
+                    <p class="text-slate-600 mb-8 max-w-sm mx-auto">
+                        Thank you for reaching out. Our team has received your inquiry and will get back to you within 24 hours.
+                    </p>
+                    <button onclick="window.location.reload()" class="text-[#FF6F61] font-bold hover:underline">Send another message</button>
+                </div>
+            </div>
+        </div>
+
       </div>
     </div>
   </section>
-  
-  <!-- Main Content -->
-  <section class="py-16 bg-white">
-    <div class="container max-w-6xl mx-auto px-4">
-      <div class="grid lg:grid-cols-2 gap-12">
-        
-        <!-- Contact Form -->
-        <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 border border-gray-200 shadow-lg">
-          <div class="flex items-center gap-3 mb-8">
-            <div class="w-12 h-12 bg-gradient-to-br from-red-600 to-red-700 rounded-xl flex items-center justify-center shadow-lg">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-              </svg>
-            </div>
-        <div>
-              <h2 class="text-2xl font-bold text-gray-900">Send Us a Message</h2>
-              <p class="text-gray-600">We'll respond within 24 hours</p>
-            </div>
-          </div>
-          
-          <form name="contact" method="POST" netlify netlify-honeypot="bot-field" class="space-y-6">
-            <!-- Hidden field for bot detection -->
-            <input type="hidden" name="form-name" value="contact" />
-            <p class="hidden">
-              <label>
-                Don't fill this out if you're human: <input name="bot-field" />
-              </label>
-            </p>
 
-            <div class="grid md:grid-cols-2 gap-6">
-              <div>
-                <label for="firstName" class="block text-sm font-semibold text-gray-900 mb-2">First Name*</label>
-                <input 
-                  type="text" 
-                  id="firstName" 
-                  name="firstName" 
-                  required 
-                  class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 shadow-sm"
-                  placeholder="Enter your first name"
-                />
-              </div>
-              <div>
-                <label for="lastName" class="block text-sm font-semibold text-gray-900 mb-2">Last Name*</label>
-                <input 
-                  type="text" 
-                  id="lastName" 
-                  name="lastName" 
-                  required 
-                  class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 shadow-sm"
-                  placeholder="Enter your last name"
-                />
-              </div>
-            </div>
-            
-            <div>
-              <label for="email" class="block text-sm font-semibold text-gray-900 mb-2">Email Address*</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                required 
-                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 shadow-sm"
-                placeholder="your.email@example.com"
-              />
-            </div>
-            
-            <div>
-              <label for="phone" class="block text-sm font-semibold text-gray-900 mb-2">Phone Number</label>
-              <input 
-                type="tel" 
-                id="phone" 
-                name="phone" 
-                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 shadow-sm"
-                placeholder="+41 XX XXX XX XX"
-              />
-            </div>
-            
-            <div>
-              <label for="inquiryType" class="block text-sm font-semibold text-gray-900 mb-2">Inquiry Type*</label>
-              <select 
-                id="inquiryType" 
-                name="inquiryType" 
-                required 
-                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 appearance-none shadow-sm"
-              >
-                <option value="">Select an inquiry type</option>
-                <option value="general">General Information</option>
-                <option value="services">Service Inquiry</option>
-                <option value="partnership">Business Partnership</option>
-                <option value="feedback">Feedback</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            
-            <div>
-              <label for="message" class="block text-sm font-semibold text-gray-900 mb-2">Message*</label>
-              <textarea 
-                id="message" 
-                name="message" 
-                rows="5" 
-                required 
-                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200 resize-none shadow-sm"
-                placeholder="Please describe how we can help you with your Swiss relocation..."
-              ></textarea>
-            </div>
-            
-            <div class="flex items-start gap-3">
-              <div class="flex items-center h-5 mt-1">
-                <input 
-                  id="privacy" 
-                  name="privacy" 
-                  type="checkbox" 
-                  required 
-                  class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded"
-                />
-              </div>
-              <div class="text-sm">
-                <label for="privacy" class="text-gray-700">
-                  I agree to the <a href="/privacy" class="text-red-600 hover:text-red-700 font-semibold underline">Privacy Policy</a> and consent to having my data processed by Lang + Partner for relocation assistance purposes.
-                </label>
-              </div>
-            </div>
-            
-            <div>
-              <button type="submit" class="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-4 px-6 rounded-xl font-bold text-lg hover:from-red-700 hover:to-red-800 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg">
-                Send Message
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                </svg>
-              </button>
-            </div>
-          </form>
-        </div>
-        
-        <!-- Contact Information -->
-        <div class="space-y-8">
-          
-          <!-- Company Information -->
-          <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
-            <div class="flex items-center gap-3 mb-6">
-              <div class="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-700 rounded-xl flex items-center justify-center shadow-lg">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h1a1 1 0 011 1v5m-4 0h4"/>
-                </svg>
-              </div>
-              <div>
-                <h2 class="text-2xl font-bold text-gray-900">Contact Information</h2>
-                <p class="text-gray-600">ReloFinder platform operated by</p>
-              </div>
-            </div>
-            
-            <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 shadow-sm mb-6">
-              <h3 class="text-lg font-semibold text-gray-900 mb-4">Lang + Partner | Finanzdienstleistungen GmbH</h3>
-              
-              <div class="space-y-4">
-                <div class="flex items-start gap-3">
-                  <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center flex-shrink-0 mt-1 shadow-sm border border-gray-200">
-                    <span class="text-gray-600 text-lg">📍</span>
-              </div>
-              <div>
-                    <h4 class="font-semibold text-gray-900 mb-1">Address</h4>
-                    <p class="text-gray-700 leading-relaxed">
-                      Chilegässli 12a<br/>
-                      8904 Aesch ZH<br/>
-                      Switzerland
-                </p>
-              </div>
-            </div>
-            
-                <div class="flex items-start gap-3">
-                  <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center flex-shrink-0 mt-1 shadow-sm border border-gray-200">
-                    <span class="text-gray-600 text-lg">☎</span>
-                  </div>
-                  <div>
-                    <h4 class="font-semibold text-gray-900 mb-1">Phone</h4>
-                    <a href="tel:+41763648888" class="text-red-600 hover:text-red-700 font-medium">
-                      +41 76 364 88 88
-                    </a>
-                  </div>
-                </div>
-
-                <div class="flex items-start gap-3">
-                  <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center flex-shrink-0 mt-1 shadow-sm border border-gray-200">
-                    <span class="text-gray-600 text-lg">✉</span>
-              </div>
-              <div>
-                    <h4 class="font-semibold text-gray-900 mb-1">Email</h4>
-                    <a href="mailto:hello@relofinder.ch" class="text-red-600 hover:text-red-700 font-medium">
-                      hello@relofinder.ch
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Business Hours -->
-            <div class="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 shadow-sm">
-              <div class="flex items-center gap-3 mb-4">
-                <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-sm border border-gray-200">
-                  <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                </div>
-                <h4 class="font-semibold text-gray-900">Business Hours</h4>
-              </div>
-              <div class="space-y-2 text-sm text-gray-700">
-                <div class="flex justify-between">
-                  <span>Monday - Friday:</span>
-                  <span class="font-medium">9:00 AM - 6:00 PM CET</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Saturday:</span>
-                  <span class="font-medium">10:00 AM - 2:00 PM CET</span>
-                </div>
-                <div class="flex justify-between">
-                  <span>Sunday:</span>
-                  <span class="font-medium text-red-600">Closed</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Quick Stats -->
-          <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
-            <h3 class="text-xl font-bold text-gray-900 mb-6">Why Choose ReloFinder?</h3>
-            
-            <div class="grid grid-cols-2 gap-6">
-              <div class="text-center">
-                <div class="text-2xl font-bold text-red-600 mb-1">50+</div>
-                <div class="text-sm text-gray-700">Verified Partners</div>
-              </div>
-              <div class="text-center">
-                <div class="text-2xl font-bold text-gray-600 mb-1">26</div>
-                <div class="text-sm text-gray-700">Swiss Cantons</div>
-              </div>
-              <div class="text-center">
-                <div class="text-2xl font-bold text-red-600 mb-1">100%</div>
-                <div class="text-sm text-gray-700">Transparent</div>
-              </div>
-              <div class="text-center">
-                <div class="text-2xl font-bold text-gray-600 mb-1">24/7</div>
-                <div class="text-sm text-gray-700">Platform Access</div>
-              </div>
-            </div>
-
-            <div class="mt-6 pt-6 border-t border-gray-200">
-              <p class="text-center text-gray-700 text-sm">
-                <strong>Professional relocation support</strong> across all Swiss regions since 2023
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- FAQ Section -->
-  <section class="py-16 bg-gradient-to-br from-gray-50 to-gray-100">
-    <div class="container max-w-4xl mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        <p class="text-lg text-gray-600">Quick answers to common questions about our services</p>
-      </div>
-      
-      <div class="space-y-6">
-        <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
-          <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-            <div class="w-8 h-8 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center shadow-sm">
-              <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-      </div>
-            How quickly can you respond to my inquiry?
-          </h3>
-          <p class="text-gray-700 leading-relaxed">
-            We aim to respond to all inquiries within 24 hours during business days. For urgent matters, please call our office directly at <a href="tel:+41763648888" class="text-red-600 hover:text-red-700 font-semibold">+41 76 364 88 88</a>.
-            </p>
-          </div>
-          
-        <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
-          <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-            <div class="w-8 h-8 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center shadow-sm">
-              <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-              </svg>
-            </div>
-            Do you provide services for all regions in Switzerland?
-          </h3>
-          <p class="text-gray-700 leading-relaxed">
-            Yes, we connect expats with relocation services throughout Switzerland, covering all 26 cantons and major cities. Our network includes specialists in every region from Zurich to Geneva, Basel to Bern.
-            </p>
-          </div>
-          
-        <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
-          <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-            <div class="w-8 h-8 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center shadow-sm">
-              <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
-              </svg>
-            </div>
-            Are your services free for expats?
-          </h3>
-          <p class="text-gray-700 leading-relaxed">
-            Basic information and connections to service providers are free for expats. Some specialized consulting services may involve fees, which will be clearly communicated in advance. Our goal is to make Swiss relocation accessible and transparent.
-            </p>
-          </div>
-          
-        <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
-          <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-            <div class="w-8 h-8 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center shadow-sm">
-              <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-              </svg>
-            </div>
-            How can companies partner with ReloFinder?
-          </h3>
-          <p class="text-gray-700 leading-relaxed mb-4">
-            If you provide relocation services in Switzerland and would like to be featured on our platform, we'd love to hear from you. Our partnerships team can help you reach more clients and grow your business.
+  <!-- Simple CTA Banner -->
+  <section class="py-20 bg-slate-50 border-t border-slate-200">
+      <div class="container mx-auto px-4 text-center">
+          <h2 class="text-3xl font-bold text-slate-900 mb-6">Need a custom plan?</h2>
+          <p class="text-slate-500 max-w-2xl mx-auto mb-10">
+              For complex moves or corporate inquiries, our relocation concierges can build a tailored roadmap for you.
           </p>
-          <a href="/partners" class="inline-block bg-gradient-to-r from-red-600 to-red-700 text-white py-3 px-6 rounded-lg font-semibold hover:from-red-700 hover:to-red-800 transition-all duration-300 shadow-lg">
-            Become a Partner
-          </a>
-            </div>
-          </div>
-        </div>
+           <button onclick={`universalOpenModal({page: "contact", topic: "consultation"})`} class="bg-white text-slate-900 border border-slate-200 py-4 px-8 rounded-full font-bold text-sm uppercase tracking-widest hover:border-[#FF6F61] hover:text-[#FF6F61] transition-all shadow-sm hover:shadow-md inline-flex items-center gap-2">
+              Book Free Consultation
+           </button>
+      </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="py-16 bg-gradient-to-r from-red-600 to-red-700">
-    <div class="container max-w-4xl mx-auto px-4 text-center text-white">
-      <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your Swiss Journey?</h2>
-      <p class="text-xl mb-8 text-red-100">
-        Join thousands of successful expats who found their perfect Swiss life through our platform.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button onclick={`universalOpenModal({page: "contact", service: "relocation"})`} class="bg-white text-red-600 py-4 px-8 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg">
-          Get Started Today
-        </button>
-        <a href="/swiss-relocation-guide" class="border-2 border-white text-white py-4 px-8 rounded-lg font-bold text-lg hover:bg-white hover:text-red-600 transition-colors shadow-lg">
-          Read Our Guide
-        </a>
-      </div>
-    </div>
-  </section>
 </Layout>
+
+<script is:inline>
+    const form = document.getElementById('contact-form');
+    const container = document.getElementById('contact-form-container');
+    const success = document.getElementById('contact-success');
+    const errorEl = document.getElementById('form-error');
+    const submitBtn = document.getElementById('submit-btn');
+    const btnText = document.getElementById('btn-text');
+
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // UI State
+            errorEl.classList.add('hidden');
+            submitBtn.disabled = true;
+            btnText.innerText = 'Sending...';
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            data.source_page = 'contact_page';
+
+            try {
+                const res = await fetch('/api/leads/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await res.json();
+
+                if (!res.ok) throw new Error(result.error || 'Failed to send message');
+
+                // Success
+                container.classList.add('hidden');
+                success.classList.remove('hidden');
+                success.scrollIntoView({ behavior: 'smooth' });
+
+            } catch (err) {
+                console.error(err);
+                errorEl.innerText = err.message;
+                errorEl.classList.remove('hidden');
+                submitBtn.disabled = false;
+                btnText.innerText = 'Send Message';
+            }
+        });
+    }
+</script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+  
+  .font-serif {
+    font-family: 'Playfair Display', serif;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+</style>

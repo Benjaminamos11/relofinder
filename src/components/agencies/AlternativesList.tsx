@@ -40,7 +40,7 @@ export default function AlternativesList({ alternatives, currentAgencyName }: Al
             {/* Header */}
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
-                <h3 className="font-bold text-gray-900 group-hover:text-red-600 transition-colors mb-1">
+                <h3 className="font-bold text-gray-900 group-hover:text-[#FF6F61] transition-colors mb-1">
                   {agency.name}
                 </h3>
                 <span className="inline-block px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
@@ -113,7 +113,7 @@ export default function AlternativesList({ alternatives, currentAgencyName }: Al
 
             {/* CTA */}
             <div className="mt-4 pt-4 border-t border-gray-100">
-              <span className="text-sm font-medium text-red-600 group-hover:text-red-700 flex items-center gap-1">
+              <span className="text-sm font-medium text-[#FF6F61] group-hover:text-[#FF6F61] flex items-center gap-1">
                 View Profile
                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

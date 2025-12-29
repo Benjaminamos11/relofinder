@@ -86,7 +86,8 @@ export interface Agency {
   phone?: string;
   email?: string;
   meeting_url?: string;
-  status: AgencyStatus;
+  status?: AgencyStatus; // Legacy support
+  tier: AgencyStatus;
   created_at?: string;
   updated_at?: string;
   // Rich content fields (from relocators table)
@@ -95,7 +96,25 @@ export interface Agency {
   rating_breakdown?: RatingBreakdown | null;
   content_blocks?: ContentBlocks | null;
   social_proof?: SocialProof | null;
+  logo?: string;
+  is_verified?: boolean;
   meta_description?: string;
+  phone_number?: string;
+  contact_email?: string;
+  website?: string;
+  regions_served?: string[];
+  internal_notes?: string;
+  manager_name?: string;
+  manager_email?: string;
+  manager_phone?: string;
+  address_street?: string;
+  address_city?: string;
+  address_zip?: string;
+  founded_year?: number;
+  employee_count?: string;
+  services?: string[];
+  offices?: Office[];
+  team?: ConsultantAssignment[];
 }
 
 export interface Service {
@@ -166,10 +185,41 @@ export interface Lead {
   service_code?: string;
   source_page?: string;
   sent_to_agency?: boolean;
+  requested_agencies?: string[]; // Array of agency IDs or Names
+  assigned_agencies?: string[]; // Array of agency IDs or Names
+  status?: string; // 'new' | 'pending_review' | 'distributed' | 'quotes_received'
   created_at?: string;
 }
 
-export interface AgencyWithRelations extends Agency {
+export interface Office {
+  id?: string;
+  relocator_id?: string;
+  street: string;
+  city: string;
+  zip: string;
+  is_main: boolean;
+  created_at?: string;
+}
+
+export interface Consultant {
+  id: string;
+  name: string;
+  email?: string;
+  phone?: string;
+  bio?: string;
+  created_at?: string;
+}
+
+export interface ConsultantAssignment {
+  consultant_id: string;
+  relocator_id: string;
+  role?: string;
+  is_primary?: boolean;
+  // Join data
+  consultant?: Consultant;
+}
+
+export interface AgencyWithRelations extends Omit<Agency, 'services'> {
   services: Service[];
   regions: Region[];
 }

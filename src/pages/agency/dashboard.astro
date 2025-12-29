@@ -1,0 +1,11 @@
+
+---
+import AgencyLayout from '../../layouts/AgencyLayout.astro';
+import DashboardLayout from '../../components/agency/DashboardLayout';
+
+const title = "Partner Dashboard | ReloFinder";
+---
+
+<AgencyLayout title={title}>
+    <DashboardLayout client:only="react" />
+</AgencyLayout>

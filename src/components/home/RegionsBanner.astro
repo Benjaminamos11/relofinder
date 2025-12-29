@@ -205,14 +205,14 @@ const defaultRegion = regions[0];
 
 <div class="py-12 bg-gray-50">
   <div class="container">
-    <h2 class="text-3xl font-bold text-center mb-8">Choose a <span class="text-primary-600">Region</span></h2>
+    <h2 class="text-3xl font-bold text-center mb-8">Choose a <span class="text-coral-500">Region</span></h2>
     
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
       <!-- Left: Region Selector -->
       <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
         <div class="p-5 border-b border-gray-100">
           <div class="flex items-center text-lg font-semibold text-gray-800">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-coral-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
@@ -223,7 +223,7 @@ const defaultRegion = regions[0];
         <div class="region-list">
           {regions.map((region, index) => (
             <button 
-              class={"w-full text-left py-4 px-5 border-b last:border-b-0 border-gray-100 hover:bg-gray-50 transition-colors " + (index === 0 ? 'bg-primary-50 text-primary-700 font-medium' : 'text-gray-700')}
+              class={"w-full text-left py-4 px-5 border-b last:border-b-0 border-gray-100 hover:bg-gray-50 transition-colors " + (index === 0 ? 'bg-primary-50 text-coral-600 font-medium' : 'text-gray-700')}
               data-region-id={region.id}
             >
               {region.name}
@@ -247,7 +247,7 @@ const defaultRegion = regions[0];
                 class="w-full h-full object-cover"
               />
               <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                <span class="inline-block bg-white/90 text-primary-700 text-xs font-medium px-2.5 py-1 rounded-full">
+                <span class="inline-block bg-white/90 text-coral-600 text-xs font-medium px-2.5 py-1 rounded-full">
                   Region
                 </span>
                 <h3 class="text-3xl font-bold text-white mt-2">{region.name}</h3>
@@ -265,7 +265,7 @@ const defaultRegion = regions[0];
                 <ul class="space-y-2">
                   {region.services.map(service => (
                     <li class="flex items-start">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-coral-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                       </svg>
                       {service}
@@ -276,7 +276,7 @@ const defaultRegion = regions[0];
               
               <a 
                 href={`/services?region=${region.id}`}
-                class="inline-flex items-center px-5 py-2.5 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors"
+                class="inline-flex items-center px-5 py-2.5 bg-coral-500 text-white font-medium rounded-lg hover:bg-coral-600 transition-colors"
               >
                 Explore {region.name} Services
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
@@ -304,18 +304,18 @@ const defaultRegion = regions[0];
     function activateRegion(regionId: string, buttonElement: HTMLButtonElement | null = null) {
       // Update button styles
       regionButtons.forEach(btn => {
-        btn.classList.remove('bg-primary-50', 'text-primary-700', 'font-medium');
+        btn.classList.remove('bg-primary-50', 'text-coral-600', 'font-medium');
         btn.classList.add('text-gray-700');
       });
       
       if (buttonElement) {
-        buttonElement.classList.add('bg-primary-50', 'text-primary-700', 'font-medium');
+        buttonElement.classList.add('bg-primary-50', 'text-coral-600', 'font-medium');
         buttonElement.classList.remove('text-gray-700');
       } else {
         // Find the button by region ID
         const button = document.querySelector<HTMLButtonElement>(`.region-list button[data-region-id="${regionId}"]`);
         if (button) {
-          button.classList.add('bg-primary-50', 'text-primary-700', 'font-medium');
+          button.classList.add('bg-primary-50', 'text-coral-600', 'font-medium');
           button.classList.remove('text-gray-700');
         }
       }

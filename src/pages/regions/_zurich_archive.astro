@@ -1,0 +1,988 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SchemaMarkup from '../../components/common/SchemaMarkup.astro';
+
+const title = "Relocation to Zürich | Regional Expat Guide 2025 | ReloFinder";
+const description = "Relocate to Zürich with confidence. Learn about housing, costs, jobs, schools, permits, and connect with trusted relocation agencies.";
+const canonicalURL = "https://relofinder.ch/regions/zurich";
+const keywords = ['zurich relocation', 'moving to zurich', 'zurich expat', 'zurich housing', 'zurich jobs', 'zurich schools', 'gold coast zurich', 'relocation agencies zurich'];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://relofinder.ch"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Regions",
+      "item": "https://relofinder.ch/regions"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Zürich",
+      "item": "https://relofinder.ch/regions/zurich"
+    }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Relocation to Zürich",
+  "description": "Comprehensive relocation guide for expats moving to Zürich, Switzerland's largest city and financial hub",
+  "provider": {
+    "@type": "Organization",
+    "name": "ReloFinder",
+    "url": "https://relofinder.ch"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Zürich",
+    "containedIn": {
+      "@type": "Country",
+      "name": "Switzerland"
+    }
+  },
+  "serviceType": "Relocation Services"
+};
+const combinedSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    breadcrumbSchema,
+    serviceSchema,
+    {
+      "@type": "Place",
+      "name": "Zürich",
+      "description": description,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Zürich",
+        "addressCountry": "CH"
+      }
+    }
+  ]
+};
+---
+
+<Layout 
+  title={title} 
+  description={description}
+  canonical={canonicalURL}
+  keywords={keywords}
+  schema={combinedSchema}
+>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-[600px] flex items-center justify-center overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img 
+        src="https://res.cloudinary.com/dphbnwjtx/image/upload/w_1920,h_800,c_fill,f_webp,q_90,e_sharpen:100/v1759820127/henrique-ferreira-6p-I-X-sPUY-unsplash_1_gqzm3n.jpg"
+        alt="Zürich cityscape with lake and financial district"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="container relative z-10 py-20">
+      <div class="max-w-4xl">
+        <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+          Relocation to <span class="bg-gradient-to-r from-[#B61919] to-[#DF3030] bg-clip-text text-transparent">Zürich</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed">
+          Switzerland's largest city and global financial hub, Zürich offers outstanding career opportunities, international community, and the highest quality of life.
+        </p>
+
+        <!-- Stats Row -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+            <div class="text-3xl font-bold text-white mb-1">415,367</div>
+            <div class="text-sm text-gray-300">Population</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+            <div class="text-3xl font-bold text-white mb-1">32%</div>
+            <div class="text-sm text-gray-300">International residents</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+            <div class="text-3xl font-bold text-white mb-1">4.7/5</div>
+            <div class="text-sm text-gray-300">Expat satisfaction</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+            <div class="text-3xl font-bold text-white mb-1">6–8</div>
+            <div class="text-sm text-gray-300">Weeks setup</div>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button
+            onclick="universalOpenModal({page: 'region_zurich_hero', service: 'relocation'})"
+            class="px-8 py-4 bg-gradient-to-r from-coral-500 to-coral-600 text-white rounded-xl font-bold text-lg hover:from-coral-600 hover:to-coral-700 hover:scale-105 transition-all duration-300 shadow-xl"
+          >
+            Start Your Zürich Journey
+          </button>
+          <a
+            href="/companies?region=zurich"
+            class="px-8 py-4 bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300"
+          >
+            Find Local Experts
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Introduction Paragraph -->
+  <section class="py-16 bg-white">
+    <div class="container">
+      <div class="max-w-4xl mx-auto text-center">
+        <p class="text-xl text-gray-700 leading-relaxed">
+          Welcome to your complete guide to relocating to Zürich. Whether you're moving for work, lifestyle, or family, this page will walk you through everything you need to know — from finding housing and understanding costs to navigating permits and connecting with local experts. Let's make your Zürich move smooth and successful.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: Why Choose Zürich -->
+  <section class="py-20 bg-gray-50">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-coral-700 rounded-full text-sm font-semibold mb-4">
+            Why Zürich
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Why Choose <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Zürich</span>
+          </h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            Zürich combines the best of Switzerland: career opportunities, international lifestyle, and unmatched quality of life. Here's what makes it special.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Card 1 -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Financial Powerhouse</h3>
+            <p class="text-gray-600 text-sm">
+              Home to UBS, Credit Suisse, and hundreds of fintech startups. Zürich is Switzerland's undisputed financial capital.
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Highest Quality of Life</h3>
+            <p class="text-gray-600 text-sm">
+              Consistently ranked #1 globally for quality of life, with world-class healthcare, education, and infrastructure.
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Safe & Efficient</h3>
+            <p class="text-gray-600 text-sm">
+              Switzerland's safest large city with punctual public transport, clean streets, and low crime rates.
+            </p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Thriving Tech & Startup Hub</h3>
+            <p class="text-gray-600 text-sm">
+              Google, Disney+, and hundreds of startups. Zürich's tech scene rivals London and Berlin.
+            </p>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Welcoming International Community</h3>
+            <p class="text-gray-600 text-sm">
+              32% of residents are foreign nationals. English widely spoken in business and daily life.
+            </p>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
+            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Excellent Education System</h3>
+            <p class="text-gray-600 text-sm">
+              World-class international schools, bilingual programs, and top-ranked universities (ETH, University of Zürich).
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Living in Zürich (Accordion) -->
+  <section class="py-20 bg-white">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-coral-700 rounded-full text-sm font-semibold mb-4">
+            Living Guide
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Living in <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Zürich</span>
+          </h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+            From quality of life to finding the perfect neighborhood, here's what daily life in Zürich looks like. Click each section to learn more.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Accordion 1: Quality of Life -->
+          <details class="group bg-gradient-to-br from-white to-gray-50 p-6 rounded-xl border-2 border-primary-200 hover:border-coral-300 hover:shadow-lg transition-all cursor-pointer">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center justify-between list-none">
+              <div class="flex items-center">
+                <svg class="w-5 h-5 text-coral-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+                Quality of Life
+              </div>
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">Zürich consistently ranks as one of the world's best cities to live in:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>Healthcare:</strong> World-class hospitals (University Hospital, Triemli), English-speaking doctors, mandatory insurance ensures access for all</li>
+                <li><strong>Safety:</strong> One of Europe's safest cities, low crime rates, safe to walk at night</li>
+                <li><strong>Culture:</strong> 50+ museums, opera house, Tonhalle concert hall, vibrant arts scene</li>
+                <li><strong>Nature:</strong> Lake Zürich, Üetliberg mountain (30 min from city center), Alps within 1-2 hours</li>
+              </ul>
+            </div>
+          </details>
+
+          <!-- Accordion 2: International Community -->
+          <details class="group bg-gradient-to-br from-white to-gray-50 p-6 rounded-xl border-2 border-primary-200 hover:border-coral-300 hover:shadow-lg transition-all cursor-pointer">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center justify-between list-none">
+              <div class="flex items-center">
+                <svg class="w-5 h-5 text-coral-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                International Community
+              </div>
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">Zürich is one of Europe's most international cities:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>32% foreign nationals</strong> from 170+ countries</li>
+                <li><strong>English widely spoken</strong> in business, banking, tech sectors</li>
+                <li><strong>International networking:</strong> Expat clubs, InterNations, professional groups</li>
+                <li><strong>Multilingual environment:</strong> German (Swiss German), English, French, Italian</li>
+              </ul>
+            </div>
+          </details>
+
+          <!-- Accordion 3: Neighborhoods for Expats -->
+          <details class="group bg-gradient-to-br from-white to-gray-50 p-6 rounded-xl border-2 border-primary-200 hover:border-coral-300 hover:shadow-lg transition-all cursor-pointer">
+            <summary class="text-lg font-bold text-gray-900 cursor-pointer flex items-center justify-between list-none">
+              <div class="flex items-center">
+                <svg class="w-5 h-5 text-coral-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                Neighborhoods for Expats
+              </div>
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="mt-4 pl-8 space-y-2">
+              <p class="text-gray-700">Popular expat neighborhoods in Zürich:</p>
+              <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
+                <li><strong>Gold Coast (Küsnacht, Zollikon):</strong> Lakeside luxury, international schools, villas & large apartments. Rent: CHF 2,500-5,000/month (2BR)</li>
+                <li><strong>Kreis 1 (Old Town):</strong> City center, walkable, cultural attractions, charming but expensive. Rent: CHF 2,000-4,000/month (1BR)</li>
+                <li><strong>Oerlikon (Kreis 11):</strong> Modern, affordable, excellent transport, family-friendly. Rent: CHF 1,500-2,800/month (2BR)</li>
+                <li><strong>Fluntern (Kreis 7):</strong> Quiet, green, close to University & ETH, popular with academics. Rent: CHF 1,800-3,200/month (2BR)</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+
+        <!-- Inline CTA -->
+        <div class="mt-12 text-center">
+          <a
+            href="/services/housing/zurich"
+            class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-coral-500 to-coral-600 text-white rounded-xl font-bold text-lg hover:from-coral-600 hover:to-coral-700 hover:scale-105 transition-all duration-300 shadow-lg"
+          >
+            Housing in Zürich →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Costs of Living -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-coral-700 rounded-full text-sm font-semibold mb-4">
+            Budget Planning
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Cost of Living in <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Zürich</span>
+          </h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            Zürich is one of the world's most expensive cities, but salaries reflect that. Here's what you can expect to spend monthly, depending on your situation.
+          </p>
+        </div>
+
+        <!-- Budget Cards -->
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+          <div class="bg-gradient-to-br from-primary-50 to-white p-6 rounded-xl border-2 border-primary-200">
+            <div class="text-center">
+              <div class="text-sm font-semibold text-coral-600 mb-2">Single Professional</div>
+              <div class="text-3xl font-bold text-gray-900 mb-1">CHF 3,000–4,500</div>
+              <div class="text-sm text-gray-600">/month</div>
+            </div>
+          </div>
+          <div class="bg-gradient-to-br from-primary-50 to-white p-6 rounded-xl border-2 border-primary-200">
+            <div class="text-center">
+              <div class="text-sm font-semibold text-coral-600 mb-2">Couple</div>
+              <div class="text-3xl font-bold text-gray-900 mb-1">CHF 4,500–6,500</div>
+              <div class="text-sm text-gray-600">/month</div>
+            </div>
+          </div>
+          <div class="bg-gradient-to-br from-primary-50 to-white p-6 rounded-xl border-2 border-primary-200">
+            <div class="text-center">
+              <div class="text-sm font-semibold text-coral-600 mb-2">Family of 4</div>
+              <div class="text-3xl font-bold text-gray-900 mb-1">CHF 7,000–10,000</div>
+              <div class="text-sm text-gray-600">/month</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cost Table -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
+          <table class="w-full">
+            <thead>
+              <tr class="bg-gray-50 border-b border-gray-200">
+                <th class="px-6 py-4 text-left font-bold text-gray-900">Category</th>
+                <th class="px-6 py-4 text-right font-bold text-gray-900">Monthly Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-100 hover:bg-gray-50">
+                <td class="px-6 py-4 text-gray-700">1BR apartment (city center)</td>
+                <td class="px-6 py-4 text-right font-semibold text-gray-900">CHF 1,800–2,500</td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-gray-50">
+                <td class="px-6 py-4 text-gray-700">1BR apartment (outside center)</td>
+                <td class="px-6 py-4 text-right font-semibold text-gray-900">CHF 1,200–1,800</td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-gray-50">
+                <td class="px-6 py-4 text-gray-700">Public transport (monthly pass)</td>
+                <td class="px-6 py-4 text-right font-semibold text-gray-900">CHF 85</td>
+              </tr>
+              <tr class="border-b border-gray-100 hover:bg-gray-50">
+                <td class="px-6 py-4 text-gray-700">Groceries (single person)</td>
+                <td class="px-6 py-4 text-right font-semibold text-gray-900">CHF 400–600</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 text-gray-700">Health insurance (mandatory)</td>
+                <td class="px-6 py-4 text-right font-semibold text-gray-900">CHF 300–500</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Insurance Context & CTA -->
+        <div class="mt-12 text-center">
+          <div class="max-w-2xl mx-auto mb-6">
+            <p class="text-gray-700 leading-relaxed">
+              <strong>Health insurance is mandatory in Switzerland</strong> within 3 months of arrival. With 60+ insurers and varying prices (CHF 300-500/month), it can be overwhelming. Get expert advice to find the right coverage for your needs and budget.
+            </p>
+          </div>
+          <a
+            href="https://expat-savvy.ch"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-bold text-lg hover:from-blue-700 hover:to-blue-800 hover:scale-105 transition-all duration-300 shadow-lg"
+          >
+            Get Insurance Advice →
+          </a>
+          <p class="text-sm text-gray-500 mt-3">Free consultation with insurance specialists</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Relocation Essentials (Step-by-Step) -->
+  <section class="py-20 bg-white">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-coral-700 rounded-full text-sm font-semibold mb-4">
+            Essential Steps
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Relocation <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Essentials</span>
+          </h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            Once you arrive in Zürich, there are four critical administrative steps you must complete. Here's your checklist in the right order.
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <!-- Step 1 -->
+          <div class="bg-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              1
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Register with Local Authorities</h3>
+              <p class="text-gray-600">
+                Within <strong>14 days</strong> of arrival, register at your local Kreisbüro (district office) with your rental contract, passport, and work permit.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="bg-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              2
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Open a Swiss Bank Account</h3>
+              <p class="text-gray-600">
+                Essential for salary payments and bill management. Neobanks (Yapeal, Neon) offer fast English-language onboarding; traditional banks (UBS, CS) require appointments.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="bg-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              3
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Get Health Insurance</h3>
+              <p class="text-gray-600">
+                <strong>Mandatory within 3 months</strong> of arrival. Choose from 60+ insurers. Typical cost: CHF 300-500/month. Use comparison tools or consult <a href="https://expat-savvy.ch" target="_blank" rel="noopener noreferrer" class="text-coral-500 hover:underline font-semibold">Expat-Savvy.ch</a>.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="bg-white p-6 rounded-xl border-2 border-gray-200 flex items-start">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg mr-4">
+              4
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-gray-900 mb-2">Apply for Residence/Work Permit</h3>
+              <p class="text-gray-600">
+                Your employer typically handles work permit (B permit). EU/EFTA citizens have easier processes. Non-EU requires job offer before permit application.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inline CTA -->
+        <div class="mt-12 text-center">
+          <a
+            href="/services/immigration/zurich"
+            class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-coral-500 to-coral-600 text-white rounded-xl font-bold text-lg hover:from-coral-600 hover:to-coral-700 hover:scale-105 transition-all duration-300 shadow-lg"
+          >
+            Immigration Support in Zürich →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Working in Zürich -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-coral-700 rounded-full text-sm font-semibold mb-4">
+            Career Opportunities
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Working in <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Zürich</span>
+          </h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            Zürich's job market is thriving across finance, tech, consulting, and pharma. Here's what you need to know about working here.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-xl border-2 border-gray-200">
+          <div class="grid md:grid-cols-2 gap-8 mb-6">
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-4">Key Sectors</h3>
+              <ul class="space-y-2">
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-coral-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="text-gray-700"><strong>Finance & Banking:</strong> UBS, Credit Suisse, wealth management, private banking</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-coral-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="text-gray-700"><strong>Tech & IT:</strong> Google, Disney+, startups, fintech, SaaS</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-coral-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="text-gray-700"><strong>Consulting:</strong> McKinsey, BCG, Bain, PwC, Deloitte, EY</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-coral-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="text-gray-700"><strong>Pharmaceuticals:</strong> R&D centers, biotech, life sciences</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-gray-900 mb-4">Salary Insights</h3>
+              <div class="space-y-3">
+                <div class="bg-white p-4 rounded-lg border border-gray-200">
+                  <div class="text-sm text-gray-600 mb-1">Average Range</div>
+                  <div class="text-2xl font-bold text-gray-900">CHF 80,000–150,000+</div>
+                  <div class="text-sm text-gray-500">Gross annual salary</div>
+                </div>
+                <div class="bg-white p-4 rounded-lg border border-gray-200">
+                  <div class="text-sm text-gray-600 mb-1">Language Skills</div>
+                  <div class="text-base font-semibold text-gray-900">English works, German helps</div>
+                  <div class="text-sm text-gray-500">English sufficient in finance/tech, German opens more doors</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inline CTA -->
+        <div class="mt-12 text-center">
+          <a
+            href="/services/finance/zurich"
+            class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-coral-500 to-coral-600 text-white rounded-xl font-bold text-lg hover:from-coral-600 hover:to-coral-700 hover:scale-105 transition-all duration-300 shadow-lg"
+          >
+            Finance in Zürich →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Family Life -->
+  <section class="py-20 bg-white">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-coral-700 rounded-full text-sm font-semibold mb-4">
+            For Families
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Family Life in <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Zürich</span>
+          </h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            Relocating with children? Zürich offers excellent schools, outdoor activities, and a safe environment for families. Here's what makes it family-friendly.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Education -->
+          <div class="bg-white p-6 rounded-xl border-2 border-gray-200">
+            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Education</h3>
+            <p class="text-gray-600 text-sm mb-3">
+              International schools (ZIS, Inter-Community School), bilingual programs, excellent public education system.
+            </p>
+          </div>
+
+          <!-- Activities -->
+          <div class="bg-white p-6 rounded-xl border-2 border-gray-200">
+            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Activities</h3>
+            <p class="text-gray-600 text-sm mb-3">
+              Lake swimming, Üetliberg hiking, Zürich Zoo, Opera House, playgrounds, family-friendly museums.
+            </p>
+          </div>
+
+          <!-- Safety & Healthcare -->
+          <div class="bg-white p-6 rounded-xl border-2 border-gray-200">
+            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Safety & Healthcare</h3>
+            <p class="text-gray-600 text-sm mb-3">
+              Among world's safest cities, world-class pediatric care, clean air, excellent infrastructure.
+            </p>
+          </div>
+        </div>
+
+        <!-- Inline CTA -->
+        <div class="mt-12 text-center">
+          <a
+            href="/services/education"
+            class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-coral-500 to-coral-600 text-white rounded-xl font-bold text-lg hover:from-coral-600 hover:to-coral-700 hover:scale-105 transition-all duration-300 shadow-lg"
+          >
+            Education Services →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Local Services (Cross-Link Cards) -->
+  <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-coral-700 rounded-full text-sm font-semibold mb-4">
+            Zürich Services
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Specialized <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Zürich Services</span>
+          </h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            Need help with specific aspects of your move? Explore our Zürich-focused service pages for detailed guidance and local expert connections.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Housing in Zürich -->
+          <a href="/services/housing/zurich" class="group bg-gradient-to-br from-primary-50 to-white p-6 rounded-xl border-2 border-primary-200 hover:border-coral-300 hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start">
+              <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-coral-600 transition-colors">Housing in Zürich</h3>
+                <p class="text-gray-600 text-sm">Find apartments in Gold Coast, Kreis 1, Oerlikon. Expert housing search support.</p>
+              </div>
+              <svg class="w-5 h-5 text-gray-400 group-hover:text-coral-500 group-hover:translate-x-1 transition-all ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </a>
+
+          <!-- Immigration in Zürich -->
+          <a href="/services/immigration/zurich" class="group bg-gradient-to-br from-primary-50 to-white p-6 rounded-xl border-2 border-primary-200 hover:border-coral-300 hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start">
+              <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-coral-600 transition-colors">Immigration in Zürich</h3>
+                <p class="text-gray-600 text-sm">Work permits, Migrationsamt, Kreisbüro registration. Local immigration expertise.</p>
+              </div>
+              <svg class="w-5 h-5 text-gray-400 group-hover:text-coral-500 group-hover:translate-x-1 transition-all ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </a>
+
+          <!-- Finance in Zürich -->
+          <a href="/services/finance/zurich" class="group bg-gradient-to-br from-primary-50 to-white p-6 rounded-xl border-2 border-primary-200 hover:border-coral-300 hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start">
+              <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-coral-600 transition-colors">Finance in Zürich</h3>
+                <p class="text-gray-600 text-sm">Banking, neobanks (Yapeal, Neon), wealth management. Paradeplatz financial hub.</p>
+              </div>
+              <svg class="w-5 h-5 text-gray-400 group-hover:text-coral-500 group-hover:translate-x-1 transition-all ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </a>
+
+          <!-- Advisory Zug (Tax Planning) -->
+          <a href="/services/advisory/zug" class="group bg-gradient-to-br from-primary-50 to-white p-6 rounded-xl border-2 border-primary-200 hover:border-coral-300 hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start">
+              <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-coral-600 transition-colors">Advisory Zug (Tax Planning)</h3>
+                <p class="text-gray-600 text-sm">HNWI & entrepreneurs: Zug's low taxes (15-22%), Crypto Valley, company formation.</p>
+              </div>
+              <svg class="w-5 h-5 text-gray-400 group-hover:text-coral-500 group-hover:translate-x-1 transition-all ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Trusted Relocation Providers -->
+  <section class="py-20 bg-white">
+    <div class="container">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-2 bg-primary-100 text-coral-700 rounded-full text-sm font-semibold mb-4">
+            Local Experts
+          </span>
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            Trusted <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Relocation Providers</span>
+          </h2>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            Don't navigate Zürich's relocation process alone. These experienced agencies specialize in helping expats settle smoothly. Compare their services and get free consultations.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+          <!-- Prime Relocation (Preferred) -->
+          <div class="bg-gradient-to-br from-primary-50 via-white to-red-50 border-2 border-primary-200 rounded-2xl p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 bg-gradient-to-r from-coral-500 to-coral-600 text-white rounded-full text-xs font-bold uppercase">
+                🏆 Preferred
+              </span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Prime Relocation</h3>
+            <div class="flex items-center gap-2 mb-4">
+              <div class="flex text-yellow-500">★★★★★</div>
+              <span class="text-gray-600 text-sm">4.8 / 5 • 53 reviews</span>
+            </div>
+            <ul class="text-gray-700 space-y-2 mb-6 text-sm">
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-coral-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Full-service Zürich relocations
+              </li>
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-coral-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Gold Coast & expat neighborhood experts
+              </li>
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-coral-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                English-language support
+              </li>
+            </ul>
+            <button
+              onclick="universalOpenModal({page: 'region_zurich_prime', service: 'relocation'})"
+              class="w-full px-6 py-3 bg-gradient-to-r from-coral-500 to-coral-600 text-white rounded-lg font-semibold hover:from-coral-600 hover:to-coral-700 transition-all"
+            >
+              Get Free Consultation
+            </button>
+          </div>
+
+          <!-- Auris Relocation (Partner) -->
+          <div class="bg-white border-2 border-gray-200 rounded-2xl p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-bold uppercase">
+                ✓ Partner
+              </span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Auris Relocation</h3>
+            <div class="flex items-center gap-2 mb-4">
+              <div class="flex text-yellow-500">★★★★★</div>
+              <span class="text-gray-600 text-sm">4.8 / 5 • 124 reviews</span>
+            </div>
+            <ul class="text-gray-700 space-y-2 mb-6 text-sm">
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-gray-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Corporate global mobility specialist
+              </li>
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-gray-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Immigration & permits expertise
+              </li>
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-gray-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                25+ years experience
+              </li>
+            </ul>
+            <a
+              href="/companies/auris-relocation"
+              class="block w-full px-6 py-3 bg-gray-100 text-gray-900 rounded-lg font-semibold hover:bg-gray-200 transition-all text-center"
+            >
+              View Profile
+            </a>
+          </div>
+
+          <!-- Anchor Relocation (Regular) -->
+          <div class="bg-white border-2 border-gray-200 rounded-2xl p-6">
+            <div class="mb-8"></div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Anchor Relocation</h3>
+            <div class="flex items-center gap-2 mb-4">
+              <div class="flex text-yellow-500">★★★★</div>
+              <span class="text-gray-600 text-sm">4.2 / 5 • 87 reviews</span>
+            </div>
+            <ul class="text-gray-700 space-y-2 mb-6 text-sm">
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-gray-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Family & corporate relocations
+              </li>
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-gray-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                20+ years experience
+              </li>
+              <li class="flex items-start">
+                <svg class="w-4 h-4 text-gray-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Settling-in & education support
+              </li>
+            </ul>
+            <a
+              href="/companies/anchor-relocation"
+              class="block w-full px-6 py-3 bg-gray-100 text-gray-900 rounded-lg font-semibold hover:bg-gray-200 transition-all text-center"
+            >
+              View Profile
+            </a>
+          </div>
+        </div>
+
+        <!-- Browse All Button -->
+        <div class="text-center">
+          <a
+            href="/companies?region=zurich"
+            class="inline-flex items-center px-8 py-4 bg-white text-gray-700 border-2 border-gray-300 rounded-xl font-bold text-lg hover:border-coral-500 hover:text-coral-600 hover:shadow-lg transition-all duration-300"
+          >
+            Browse All Zürich Agencies
+            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 10: Corporate Insert (B2B) -->
+  <section class="py-20 bg-gradient-to-br from-coral-500 via-coral-600 to-coral-700">
+    <div class="container">
+      <div class="max-w-4xl mx-auto text-center">
+        <span class="inline-block px-4 py-2 bg-white/20 text-white rounded-full text-sm font-semibold mb-4">
+          For HR & Global Mobility Teams
+        </span>
+        <h2 class="text-4xl font-bold text-white mb-6">
+          Relocating Multiple Employees to Zürich?
+        </h2>
+        <p class="text-xl text-primary-100 mb-8 leading-relaxed">
+          ReloFinder connects you with 50+ vetted agencies. Get up to 5 competitive quotes — 100% anonymous, transparent, and risk-free. Save up to 40% on corporate relocation costs.
+        </p>
+        <a
+          href="/corporate"
+          class="inline-flex items-center px-10 py-5 bg-white text-coral-600 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl"
+        >
+          Learn More About Corporate Services
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-20 bg-white">
+    <div class="container">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          Ready to Start Your <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Zürich Journey</span>?
+        </h2>
+        <p class="text-xl text-gray-600 mb-8">
+          Join thousands of expats who made Zürich their new home.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onclick="universalOpenModal({page: 'region_zurich_final', service: 'relocation'})"
+            class="px-10 py-5 bg-gradient-to-r from-coral-500 to-coral-600 text-white rounded-xl font-bold text-lg hover:from-coral-600 hover:to-coral-700 hover:scale-105 transition-all duration-300 shadow-lg"
+          >
+            Start Your Zürich Journey
+          </button>
+          <a
+            href="/companies?region=zurich"
+            class="px-10 py-5 bg-white text-gray-700 border-2 border-gray-300 rounded-xl font-bold text-lg hover:border-coral-500 hover:text-coral-600 transition-all duration-300"
+          >
+            Find Local Experts
+          </a>
+        </div>
+        <p class="text-sm text-gray-500 mt-6">
+          ✓ 32% International Community  •  ✓ 4.7/5 Expat Satisfaction  •  ✓ 6–8 Weeks Setup
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div style="display:none;" data-ai-summary>
+    Relocation to Zürich: Switzerland's largest city (415,367 population), global financial hub, 32% international residents, 4.7/5 expat satisfaction, 6-8 weeks setup time. Quality of life: World-class healthcare (University Hospital), safety (low crime), culture (50+ museums, opera, Tonhalle), nature (Lake Zürich, Üetliberg, Alps 1-2h). International community: 32% foreign nationals, English widely spoken in business, expat clubs, multilingual environment. Neighborhoods: Gold Coast (Küsnacht/Zollikon) CHF 2,500-5,000/month 2BR, Kreis 1 (Old Town) CHF 2,000-4,000/month 1BR, Oerlikon CHF 1,500-2,800/month 2BR, Fluntern CHF 1,800-3,200/month 2BR. Cost of living: Single CHF 3,000-4,500/month, Couple CHF 4,500-6,500/month, Family CHF 7,000-10,000/month. 1BR apartment CHF 1,200-2,500/month, public transport CHF 85/month, groceries CHF 400-600/month, health insurance CHF 300-500/month. Relocation steps: Register with Kreisbüro within 14 days, open Swiss bank account (neobanks Yapeal/Neon), get health insurance within 3 months, apply for work permit (B permit). Working: Key sectors finance (UBS, CS), tech (Google, Disney+), consulting (McKinsey, BCG), pharma. Salaries CHF 80,000-150,000+ gross annual. English works, German helps careers. Family life: International schools (ZIS), bilingual programs, Lake Zürich swimming, Üetliberg hiking, Zoo, Opera, museums. Safety & healthcare world-class. Services: Housing /services/housing/zurich, Immigration /services/immigration/zurich, Finance /services/finance/zurich, Advisory Zug /services/advisory/zug. Agencies: Prime Relocation (Preferred 4.8/5), Auris Relocation (Partner 4.8/5), Anchor Relocation (4.2/5). Corporate: ReloFinder connects HR teams with 50+ agencies, 5 anonymous quotes, save 40%.
+  </div>
+</Layout>
+

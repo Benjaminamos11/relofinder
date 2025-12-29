@@ -1,0 +1,129 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AgencyList from '../../components/search/AgencyList.tsx';
+import { createClient } from '@supabase/supabase-js';
+
+// Server Side Data Fetching
+const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+const supabaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+const { searchParams } = Astro.url;
+// Extract parameters
+const cantonFilter = searchParams.get('where') || 'zurich'; 
+const whenFilter = searchParams.get('when') || '';
+const serviceFilter = searchParams.get('service') || '';
+const isCorporate = searchParams.get('type') === 'corporate';
+const compareIdsParam = searchParams.get('compare_ids');
+const compareIds = compareIdsParam ? compareIdsParam.split(',') : [];
+
+// Fetch Providers
+const { data: relocators, error } = await supabase
+  .from('relocators')
+  .select('*')
+  .order('relo_score', { ascending: false });
+
+if (error) {
+  console.error("Error fetching relocators:", error);
+}
+
+// Map RELOCATORS DB structure to Component Props
+const mappedAgencies = (relocators || [])
+  .filter(p => {
+     // 1. Filter by canton/region (case insensitive check)
+     const regions = p.regions_served || [];
+     if (!Array.isArray(regions)) return false;
+
+     // 0. If compare_ids are present, ONLY match those IDs (ignore other filters)
+     if (compareIds.length > 0) {
+         // Check slug (preferred) or name/id as fallback
+         return compareIds.includes(p.slug) || compareIds.includes(p.name) || compareIds.includes(p.id.toString());
+     }
+     
+     const matchesRegion = !cantonFilter || regions.some(r => r && r.toLowerCase().includes(cantonFilter.toLowerCase()));
+     if (!matchesRegion) return false;
+
+     // 2. Filter by service if specified (and not 'full-package')
+     if (serviceFilter && serviceFilter !== 'full-package') {
+        const services = p.services || [];
+        if (!Array.isArray(services)) return false;
+        
+        // Map slug from hero to possible DB values
+        // hero: 'housing-search', 'visa-immigration', 'moving-logistics', 'school-search'
+        const matchesService = services.some(s => s && s.toLowerCase().replace(/ /g, '-').includes(serviceFilter.toLowerCase()));
+        if (!matchesService) return false;
+     }
+     
+     return true;
+  })
+  .map(p => ({
+  id: p.slug, // Use slug as ID for consistency with Comparison
+  name: p.name,
+  logo: p.logo, 
+  avg_rating: Number(p.rating) || Number(p.google_rating) || 5.0,
+  reviews_count: 0, 
+  verified: p.tier === 'preferred' || p.tier === 'partner', 
+  corporate_ready: true, 
+  description: p.bio || p.seo_summary || "Professional relocation service provider.",
+  tags: p.languages || [], 
+  price_tier: 2, 
+  slug: p.slug
+}));
+
+// Sort: Preferred/Verified first
+mappedAgencies.sort((a, b) => {
+    if (a.verified && !b.verified) return -1;
+    if (!a.verified && b.verified) return 1;
+    return b.avg_rating - a.avg_rating;
+});
+
+---
+
+<Layout 
+  title={`${serviceFilter ? serviceFilter.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'Relocation Agencies'} in ${cantonFilter.charAt(0).toUpperCase() + cantonFilter.slice(1)} | ReloFinder`} 
+  navbarVariant="solid"
+>
+  <div class="bg-slate-50 min-h-screen pb-20 pt-20">
+    
+    <!-- Header / Breadcrumb Area -->
+    <div class="bg-white border-b border-slate-200 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+             <div class="flex items-center gap-2 text-sm text-slate-400 mb-2">
+                <a href="/" class="hover:text-slate-600">Home</a>
+                <span>/</span>
+                <span class="text-slate-800 font-medium capitalize">Search: {cantonFilter}</span>
+            </div>
+            <h1 class="text-2xl font-bold text-slate-900">
+                {compareIds.length > 0 ? (
+                    `Comparing ${mappedAgencies.length} Selected Agencies`
+                ) : (
+                    <>
+                        {mappedAgencies.length} agencies found 
+                        {serviceFilter && `for ${serviceFilter.replace(/-/g, ' ')}`} 
+                        in {cantonFilter.charAt(0).toUpperCase() + cantonFilter.slice(1)}
+                    </>
+                )}
+            </h1>
+            {whenFilter && (
+                <p class="text-slate-500 mt-1">Timeline: <span class="text-slate-800 font-medium capitalize">{whenFilter.replace(/-/g, ' ')}</span></p>
+            )}
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <!-- List Component -->
+        <AgencyList 
+            client:load 
+            agencies={mappedAgencies} 
+            initialCanton={cantonFilter} 
+            initialService={serviceFilter}
+            initialWhen={whenFilter}
+            isCorporate={isCorporate}
+        />
+    </div>
+
+  </div>
+  
+  <!-- "Concierge" Modal is global in Layout, but we ensure functionality via AgencyList -->
+</Layout>

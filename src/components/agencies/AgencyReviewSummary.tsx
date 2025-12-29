@@ -103,13 +103,13 @@ export default function AgencyReviewSummary({
     return (
       <div class="bg-gradient-to-br from-gray-50 to-primary-50 rounded-2xl p-8 lg:p-10 border-2 border-primary-200 relative overflow-hidden shadow-sm">
         <div class="absolute inset-0 opacity-5">
-          <div class="absolute top-0 left-0 w-32 h-32 bg-primary-400 rounded-full blur-3xl animate-pulse"></div>
-          <div class="absolute bottom-0 right-0 w-40 h-40 bg-primary-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '700ms' }}></div>
+          <div class="absolute top-0 left-0 w-32 h-32 bg-coral-300 rounded-full blur-3xl animate-pulse"></div>
+          <div class="absolute bottom-0 right-0 w-40 h-40 bg-coral-200 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '700ms' }}></div>
         </div>
 
         <div class="relative z-10">
           <div class="flex items-start gap-4 mb-6">
-            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl flex items-center justify-center shadow-lg">
+            <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-coral-500 to-coral-600 rounded-xl flex items-center justify-center shadow-lg">
               <span class="text-2xl">✨</span>
             </div>
             <div class="flex-1">
@@ -127,7 +127,7 @@ export default function AgencyReviewSummary({
           <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <button
               onClick={generateSummary}
-              class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-xl hover:from-primary-700 hover:to-primary-800 transition-all shadow-lg hover:shadow-xl hover:scale-105"
+              class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-coral-500 to-coral-600 text-white font-semibold rounded-xl hover:from-coral-600 hover:to-coral-700 transition-all shadow-lg hover:shadow-xl hover:scale-105"
             >
               Generate AI Summary
               <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -150,7 +150,7 @@ export default function AgencyReviewSummary({
       <div class="bg-white rounded-2xl p-8 lg:p-10 border border-gray-200 shadow-sm">
         <div class="max-w-2xl mx-auto">
           <div class="text-center mb-8">
-            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl mb-4 animate-pulse shadow-lg">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-coral-500 to-coral-600 rounded-2xl mb-4 animate-pulse shadow-lg">
               <span class="text-3xl">🤖</span>
             </div>
             <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
@@ -177,7 +177,7 @@ export default function AgencyReviewSummary({
                   step.completed
                     ? 'bg-green-500'
                     : index === currentStepIndex
-                    ? 'bg-primary-600 animate-spin'
+                    ? 'bg-coral-500 animate-spin'
                     : 'bg-gray-300'
                 }`}>
                   {step.completed ? (
@@ -195,7 +195,7 @@ export default function AgencyReviewSummary({
                     step.completed
                       ? 'text-green-800'
                       : index === currentStepIndex
-                      ? 'text-primary-800'
+                      ? 'text-coral-700'
                       : 'text-gray-500'
                   }`}>
                     {step.label}
@@ -207,7 +207,7 @@ export default function AgencyReviewSummary({
 
           <div class="mt-8 text-center">
             <div class="inline-flex items-center gap-2 text-sm text-gray-500">
-              <div class="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></div>
+              <div class="w-2 h-2 bg-coral-400 rounded-full animate-pulse"></div>
               Processing...
             </div>
           </div>
@@ -218,9 +218,9 @@ export default function AgencyReviewSummary({
 
   if (error) {
     return (
-      <div class="bg-red-50 rounded-2xl p-8 border-2 border-red-200">
+      <div class="bg-[#FF6F61]/5 rounded-2xl p-8 border-2 border-red-200">
         <div class="flex items-start gap-4">
-          <div class="flex-shrink-0 w-10 h-10 bg-red-500 rounded-full flex items-center justify-center shadow-sm">
+          <div class="flex-shrink-0 w-10 h-10 bg-[#FF6F61]/50 rounded-full flex items-center justify-center shadow-sm">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -233,7 +233,7 @@ export default function AgencyReviewSummary({
                 setError(null);
                 setShowBanner(true);
               }}
-              class="mt-4 text-sm text-red-700 hover:text-red-900 font-medium underline"
+              class="mt-4 text-sm text-[#FF6F61] hover:text-red-900 font-medium underline"
             >
               Try again
             </button>
@@ -252,7 +252,7 @@ export default function AgencyReviewSummary({
       {/* Header */}
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl flex items-center justify-center shadow-lg">
+          <div class="w-10 h-10 bg-gradient-to-r from-coral-500 to-coral-600 rounded-xl flex items-center justify-center shadow-lg">
             <span class="text-xl">🤖</span>
           </div>
           <div>
@@ -266,7 +266,7 @@ export default function AgencyReviewSummary({
         </div>
         <button
           onClick={() => setShowBanner(true)}
-          class="px-4 py-2 text-sm text-primary-700 hover:text-primary-900 font-medium border border-primary-300 rounded-lg hover:bg-white transition-colors"
+          class="px-4 py-2 text-sm text-coral-600 hover:text-coral-800 font-medium border border-coral-200 rounded-lg hover:bg-white transition-colors"
         >
           ↻ Regenerate
         </button>
@@ -293,7 +293,7 @@ export default function AgencyReviewSummary({
         <div class="bg-white rounded-xl p-4 border border-gray-200">
           <p class="text-sm text-gray-600 mb-1">Platform Reviews</p>
           <div class="flex items-center gap-2">
-            <span class="text-2xl font-bold text-primary-600">
+            <span class="text-2xl font-bold text-coral-500">
               {summary.internal_review_count}
             </span>
             <span class="text-sm text-gray-500">reviews</span>

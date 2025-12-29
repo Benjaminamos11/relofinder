@@ -132,7 +132,7 @@ export default function ReviewForm({ relocatorId, relocatorName }: ReviewFormPro
           <div
             key={s}
             className={`h-2 rounded-full flex-1 transition-all ${
-              step >= s ? 'bg-red-600' : 'bg-gray-200'
+              step >= s ? 'bg-[#FF6F61]' : 'bg-gray-200'
             }`}
           />
         ))}
@@ -211,7 +211,7 @@ export default function ReviewForm({ relocatorId, relocatorName }: ReviewFormPro
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               placeholder="Summarize your experience"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent"
             />
           </div>
           <div>
@@ -223,7 +223,7 @@ export default function ReviewForm({ relocatorId, relocatorName }: ReviewFormPro
               onChange={(e) => setFormData({ ...formData, text: e.target.value })}
               rows={6}
               placeholder="Share details about your experience..."
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent"
             />
           </div>
           <div className="flex gap-3">

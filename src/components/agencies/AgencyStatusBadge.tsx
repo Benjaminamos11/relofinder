@@ -21,7 +21,7 @@ const statusConfig: Record<AgencyStatus, { label: string; className: string }> =
   },
   preferred: {
     label: 'Preferred',
-    className: 'bg-gradient-to-r from-red-50 to-orange-50 text-red-700 border-red-300',
+    className: 'bg-gradient-to-r from-red-50 to-orange-50 text-[#FF6F61] border-red-300',
   },
 };
 

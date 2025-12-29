@@ -74,3 +74,6 @@ Always use these exact Tailwind colors or CSS variables:
 - Structure layouts using CSS Grid (`grid-cols-12`) for complex alignments.
 - Ensure accessible contrast ratios (Alpine Slate text on Glacier White is standard).
 
+
+
+

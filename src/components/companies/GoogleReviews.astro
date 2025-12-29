@@ -16,7 +16,71 @@ try {
   console.error(`Error loading reviews for ${companySlug}:`, error);
 }
 
-// Fallback to company's own reviews if Google ones aren't available
+// Fallback to Supabase data if local collection is missing (Real Data)
+if (!reviewData) {
+  try {
+    const { createClient } = await import('@supabase/supabase-js');
+    const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+    const supabaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+    
+    if (supabaseUrl && supabaseKey) {
+      const supabase = createClient(supabaseUrl, supabaseKey);
+      
+      // 1. Get relocator details to find ID by name (companySlug might match name or need lookup)
+      // Trying to match slug to name in companies collection first to get the real name
+      const companies = await getCollection('companies');
+      const company = companies.find(c => c.id === companySlug);
+      
+      if (company) {
+        // Fetch all relocators to perform robust matching in JS (same as index.astro/carousel)
+        const { data: allRelocators } = await supabase
+          .from('relocators')
+          .select('id, name');
+          
+        if (allRelocators) {
+          const normalizedInput = company.data.name.toLowerCase().trim();
+          const relocator = allRelocators.find(r => {
+            const dbName = r.name.toLowerCase().trim();
+            return dbName === normalizedInput || dbName.includes(normalizedInput) || normalizedInput.includes(dbName);
+          });
+          
+          if (relocator) {
+            const { data: reviews } = await supabase
+              .from('google_reviews')
+              .select('*')
+              .eq('relocator_id', relocator.id)
+              .order('rating', { ascending: false })
+              .limit(10);
+              
+            if (reviews && reviews.length > 0) {
+              // Calculate rating
+              const avgRating = reviews.reduce((acc, r: any) => acc + (r.rating || 0), 0) / reviews.length;
+              
+              reviewData = {
+                data: {
+                  companyName: company.data.name,
+                  rating: avgRating,
+                  reviewCount: reviews.length, 
+                  reviews: reviews.map((r: any) => ({
+                    author: r.author_name,
+                    authorImage: r.profile_photo_url,
+                    content: r.text,
+                    rating: r.rating,
+                    date: r.relative_time_description
+                  }))
+                }
+              };
+            }
+          }
+        }
+      }
+    }
+  } catch (error) {
+    console.error(`Error fetching Supabase reviews for ${companySlug}:`, error);
+  }
+}
+
+// Fallback to locally defined reviews in companies collection
 if (!reviewData) {
   try {
     const companies = await getCollection('companies');

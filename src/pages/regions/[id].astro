@@ -231,9 +231,9 @@ const regionSchema = {
         <div class="space-y-8 text-center lg:text-left">
           <!-- Breadcrumb -->
           <nav class="flex items-center justify-center lg:justify-start space-x-2 text-sm text-gray-600" aria-label="Breadcrumb">
-            <a href="/" class="hover:text-primary-600 transition-colors">Home</a>
+            <a href="/" class="hover:text-coral-500 transition-colors">Home</a>
             <span>→</span>
-            <a href="/regions" class="hover:text-primary-600 transition-colors">Regions</a>
+            <a href="/regions" class="hover:text-coral-500 transition-colors">Regions</a>
             <span>→</span>
             <span class="text-gray-900">{region.data.name}</span>
           </nav>
@@ -250,7 +250,7 @@ const regionSchema = {
           <div class="space-y-4">
             <h1 class="text-4xl lg:text-6xl font-bold leading-tight tracking-tight">
               Relocation to
-              <span class="bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-600 bg-clip-text text-transparent block lg:inline">
+              <span class="bg-gradient-to-r from-coral-500 via-coral-400 to-secondary-600 bg-clip-text text-transparent block lg:inline">
                 {region.data.name}
               </span>
             </h1>
@@ -281,13 +281,13 @@ const regionSchema = {
 
           <!-- CTA Buttons -->
           <div class="flex flex-col sm:flex-row gap-4">
-            <button onclick={`universalOpenModal({page: "region", region: "${region.data.id}"})`} class="group relative inline-flex items-center justify-center px-8 py-4 font-semibold text-white bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            <button onclick={`universalOpenModal({page: "region", region: "${region.data.id}"})`} class="group relative inline-flex items-center justify-center px-8 py-4 font-semibold text-white bg-gradient-to-r from-coral-500 to-coral-600 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
               Start Your {region.data.name} Journey
               <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
               </svg>
             </button>
-                      <a href={"/companies?region=" + region.data.id} class="group inline-flex items-center justify-center px-8 py-4 font-semibold text-primary-700 bg-white border-2 border-primary-200 rounded-xl hover:bg-primary-50 transition-all duration-300">
+                      <a href={"/companies?region=" + region.data.id} class="group inline-flex items-center justify-center px-8 py-4 font-semibold text-coral-600 bg-white border-2 border-primary-200 rounded-xl hover:bg-primary-50 transition-all duration-300">
             Find Local Experts
           </a>
           </div>
@@ -296,7 +296,7 @@ const regionSchema = {
         <!-- Right Side - Regional Image -->
         <div class="relative order-first lg:order-last">
           <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-3xl rotate-3 transform scale-105 opacity-20"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-coral-300 to-secondary-400 rounded-3xl rotate-3 transform scale-105 opacity-20"></div>
             <div class="relative bg-white rounded-3xl shadow-2xl overflow-hidden">
               <img 
                 src={heroImage} 
@@ -321,7 +321,7 @@ const regionSchema = {
   </section>
 
   <!-- Quick Overview Banner -->
-  <section class="py-16 bg-gradient-to-r from-primary-600 to-primary-700 text-white">
+  <section class="py-16 bg-gradient-to-r from-coral-500 to-coral-600 text-white">
     <div class="container">
       <div class="max-w-4xl mx-auto text-center">
         <h2 class="text-3xl font-bold mb-6">Why Choose {region.data.name} for Your Relocation?</h2>
@@ -343,7 +343,7 @@ const regionSchema = {
         <!-- Section Header -->
         <div class="text-center mb-16">
           <h2 class="text-4xl font-bold mb-6">
-            Complete Guide to <span class="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">{region.data.name}</span>
+            Complete Guide to <span class="bg-gradient-to-r from-coral-500 to-secondary-600 bg-clip-text text-transparent">{region.data.name}</span>
           </h2>
           <p class="text-xl text-gray-600 max-w-2xl mx-auto">
             Everything you need to know about living, working, and thriving in {region.data.name}
@@ -353,7 +353,7 @@ const regionSchema = {
         <!-- Introduction Card -->
         <div class="bg-white rounded-3xl shadow-lg border border-gray-100 p-8 mb-12">
           <div class="text-center mb-8">
-            <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-secondary-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
               </svg>
@@ -371,7 +371,7 @@ const regionSchema = {
           <!-- Why Choose Section -->
           <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
             <div class="flex items-center mb-6">
-              <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mr-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mr-4">
                 <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
@@ -380,7 +380,7 @@ const regionSchema = {
             </div>
             
             <div class="space-y-6">
-              <div class="border-l-4 border-primary-500 pl-4">
+              <div class="border-l-4 border-coral-400 pl-4">
                 <h4 class="font-bold text-gray-900 mb-2">Economic Powerhouse</h4>
                 <p class="text-gray-700 text-sm">Home to global financial giants like UBS and Credit Suisse, {region.data.name} is the undisputed financial capital of Switzerland. The city also hosts European headquarters for tech companies like Google, Microsoft, and numerous successful startups.</p>
               </div>
@@ -405,7 +405,7 @@ const regionSchema = {
           <!-- Districts & Neighborhoods -->
           <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
             <div class="flex items-center mb-6">
-              <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mr-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mr-4">
                 <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                 </svg>
@@ -418,7 +418,7 @@ const regionSchema = {
                 <div class="border border-gray-200 rounded-lg p-4">
                   <div class="flex justify-between items-start mb-2">
                     <h4 class="font-bold text-gray-900">{district.name}</h4>
-                    <span class="text-xs bg-primary-100 text-primary-700 px-2 py-1 rounded-full">{district.avgRent}</span>
+                    <span class="text-xs bg-primary-100 text-coral-600 px-2 py-1 rounded-full">{district.avgRent}</span>
                   </div>
                   <p class="text-gray-700 text-sm mb-3">{district.description}</p>
                   <div class="flex flex-wrap gap-1">
@@ -429,7 +429,7 @@ const regionSchema = {
                 </div>
               )) : (
                 <div class="space-y-3">
-                  <div class="border-l-4 border-primary-500 pl-4">
+                  <div class="border-l-4 border-coral-400 pl-4">
                     <h4 class="font-bold text-gray-900 mb-1">City Center</h4>
                     <p class="text-gray-700 text-sm">Perfect for those wanting to be in the heart of the action with walking distance to major offices and cultural attractions.</p>
                   </div>
@@ -447,7 +447,7 @@ const regionSchema = {
             
             <!-- Link to Housing Service -->
             <div class="mt-6 pt-4 border-t border-gray-200">
-              <a href="/services/housing" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium text-sm">
+              <a href="/services/housing" class="inline-flex items-center text-coral-500 hover:text-coral-600 font-medium text-sm">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                 </svg>
@@ -459,7 +459,7 @@ const regionSchema = {
           <!-- Living Costs -->
           <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
             <div class="flex items-center mb-6">
-              <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mr-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mr-4">
                 <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
                 </svg>
@@ -472,8 +472,8 @@ const regionSchema = {
                 <h4 class="font-bold text-gray-900 mb-3">Monthly Budget Estimates</h4>
                 <div class="grid grid-cols-3 gap-3">
                   <div class="text-center p-3 bg-primary-50 rounded-lg">
-                    <div class="font-bold text-primary-700">CHF 3,000-4,500</div>
-                    <div class="text-xs text-primary-600">Single Professional</div>
+                    <div class="font-bold text-coral-600">CHF 3,000-4,500</div>
+                    <div class="text-xs text-coral-500">Single Professional</div>
                   </div>
                   <div class="text-center p-3 bg-secondary-50 rounded-lg">
                     <div class="font-bold text-secondary-700">CHF 4,500-6,500</div>
@@ -513,7 +513,7 @@ const regionSchema = {
           <!-- Getting Started -->
           <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
             <div class="flex items-center mb-6">
-              <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center mr-4">
+              <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mr-4">
                 <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                 </svg>
@@ -524,7 +524,7 @@ const regionSchema = {
             <div class="space-y-4">
               <div class="flex items-start space-x-3">
                 <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <span class="text-sm font-bold text-primary-700">1</span>
+                  <span class="text-sm font-bold text-coral-600">1</span>
                 </div>
                 <div>
                   <h4 class="font-bold text-gray-900 text-sm">Register with authorities</h4>
@@ -544,7 +544,7 @@ const regionSchema = {
               
               <div class="flex items-start space-x-3">
                 <div class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <span class="text-sm font-bold text-primary-700">3</span>
+                  <span class="text-sm font-bold text-coral-600">3</span>
                 </div>
                 <div>
                   <h4 class="font-bold text-gray-900 text-sm">Get health insurance</h4>
@@ -565,7 +565,7 @@ const regionSchema = {
             
             <!-- Link to Immigration Service -->
             <div class="mt-6 pt-4 border-t border-gray-200">
-              <a href="/services/immigration" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium text-sm">
+              <a href="/services/immigration" class="inline-flex items-center text-coral-500 hover:text-coral-600 font-medium text-sm">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
                 </svg>
@@ -582,7 +582,7 @@ const regionSchema = {
           <!-- Working -->
           <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
             <div class="flex items-center mb-4">
-              <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center mr-3">
+              <div class="w-10 h-10 bg-gradient-to-br from-coral-400 to-coral-500 rounded-lg flex items-center justify-center mr-3">
                 <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2h8z"/>
                 </svg>
@@ -660,7 +660,7 @@ const regionSchema = {
 
         <!-- Full Content Toggle -->
         <div class="text-center mt-12">
-          <button onclick="toggleFullContent()" id="toggle-btn" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-medium rounded-xl hover:shadow-lg transition-all duration-300">
+          <button onclick="toggleFullContent()" id="toggle-btn" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-coral-500 to-coral-600 text-white font-medium rounded-xl hover:shadow-lg transition-all duration-300">
             <span id="toggle-text">Read Complete Guide</span>
             <svg id="toggle-arrow" class="w-5 h-5 ml-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -674,14 +674,14 @@ const regionSchema = {
             <div class="prose prose-xl prose-gray max-w-none 
                         prose-headings:font-bold prose-headings:text-gray-900 
                         prose-h1:text-4xl prose-h1:mb-8 prose-h1:text-center prose-h1:border-b prose-h1:border-gray-200 prose-h1:pb-6
-                        prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-8 prose-h2:text-primary-700 prose-h2:border-l-4 prose-h2:border-primary-500 prose-h2:pl-6
+                        prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-8 prose-h2:text-coral-600 prose-h2:border-l-4 prose-h2:border-coral-400 prose-h2:pl-6
                         prose-h3:text-2xl prose-h3:mt-12 prose-h3:mb-6 prose-h3:text-gray-800 prose-h3:font-semibold
                         prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6
                         prose-strong:text-gray-900 prose-strong:font-semibold
                         prose-ul:my-6 prose-li:text-gray-700 prose-li:mb-2
-                        prose-li:marker:text-primary-500
-                        prose-a:text-primary-600 prose-a:no-underline hover:prose-a:underline
-                        prose-blockquote:border-l-primary-500 prose-blockquote:bg-primary-50 prose-blockquote:rounded-r-lg prose-blockquote:p-6
+                        prose-li:marker:text-coral-400
+                        prose-a:text-coral-500 prose-a:no-underline hover:prose-a:underline
+                        prose-blockquote:border-l-coral-400 prose-blockquote:bg-primary-50 prose-blockquote:rounded-r-lg prose-blockquote:p-6
                         prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm
                         prose-pre:bg-gray-900 prose-pre:rounded-lg
                         prose-table:my-8
@@ -702,7 +702,7 @@ const regionSchema = {
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
           <h2 class="text-4xl font-bold mb-6">
-            Essential Reading for <span class="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">{region.data.name}</span> Relocators
+            Essential Reading for <span class="bg-gradient-to-r from-coral-500 to-secondary-600 bg-clip-text text-transparent">{region.data.name}</span> Relocators
           </h2>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
             In-depth guides and expert insights to help you navigate your relocation to {region.data.name}
@@ -713,9 +713,9 @@ const regionSchema = {
           {relatedBlogPosts.map((post) => (
             <article class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all duration-300 group">
               <div class="mb-4">
-                <span class="text-xs font-medium px-3 py-1 bg-primary-100 text-primary-700 rounded-full">{post.category}</span>
+                <span class="text-xs font-medium px-3 py-1 bg-primary-100 text-coral-600 rounded-full">{post.category}</span>
               </div>
-              <h3 class="text-lg font-bold text-gray-900 mb-3 group-hover:text-primary-600 transition-colors">
+              <h3 class="text-lg font-bold text-gray-900 mb-3 group-hover:text-coral-500 transition-colors">
                 {post.title}
               </h3>
               <p class="text-gray-600 text-sm mb-4 leading-relaxed">
@@ -723,7 +723,7 @@ const regionSchema = {
               </p>
               <div class="flex items-center justify-between text-xs text-gray-500">
                 <span>{post.readTime}</span>
-                <a href={"/blog/" + post.slug} class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium">
+                <a href={"/blog/" + post.slug} class="inline-flex items-center text-coral-500 hover:text-coral-600 font-medium">
                   Read More
                   <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -743,7 +743,7 @@ const regionSchema = {
       <div class="container">
         <div class="text-center mb-16">
           <h2 class="text-4xl font-bold mb-6">
-            Professional Relocators in <span class="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">{region.data.name}</span>
+            Professional Relocators in <span class="bg-gradient-to-r from-coral-500 to-secondary-600 bg-clip-text text-transparent">{region.data.name}</span>
           </h2>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
             Trusted relocation companies with proven expertise in {region.data.name}
@@ -777,7 +777,7 @@ const regionSchema = {
                 <div class="text-xs font-semibold text-gray-700 mb-3 text-center">Services:</div>
                 <div class="flex flex-wrap gap-2 justify-center">
                   {relocator.services.slice(0, 3).map((service) => (
-                    <span class="px-3 py-1 rounded-full text-xs bg-primary-100 text-primary-700">
+                    <span class="px-3 py-1 rounded-full text-xs bg-primary-100 text-coral-600">
                       {service}
                     </span>
                   ))}
@@ -785,10 +785,10 @@ const regionSchema = {
               </div>
 
               <div class="flex space-x-2">
-                <a href={"/companies/" + relocator.id} class="flex-1 text-center py-3 font-medium rounded-xl bg-gradient-to-r from-primary-600 to-primary-700 text-white hover:shadow-lg transition-all duration-300 text-sm">
+                <a href={"/companies/" + relocator.id} class="flex-1 text-center py-3 font-medium rounded-xl bg-gradient-to-r from-coral-500 to-coral-600 text-white hover:shadow-lg transition-all duration-300 text-sm">
                   View Details
                 </a>
-                <button onclick={`universalOpenModal({page: "region", region: "${region.data.id}"})`} class="px-4 py-3 border-2 border-primary-300 text-primary-700 hover:bg-primary-50 rounded-xl transition-all duration-300">
+                <button onclick={`universalOpenModal({page: "region", region: "${region.data.id}"})`} class="px-4 py-3 border-2 border-primary-300 text-coral-600 hover:bg-primary-50 rounded-xl transition-all duration-300">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
                   </svg>
@@ -802,7 +802,7 @@ const regionSchema = {
   )}
 
   <!-- Final CTA -->
-  <section class="py-32 bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+  <section class="py-32 bg-gradient-to-br from-coral-500 to-secondary-600 text-white">
     <div class="container">
       <div class="text-center max-w-4xl mx-auto">
         <h2 class="text-4xl md:text-5xl font-bold mb-8">
@@ -813,7 +813,7 @@ const regionSchema = {
         </p>
         
         <div class="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-          <button onclick={`universalOpenModal({page: "region", region: "${region.data.id}"})`} class="bg-white text-primary-600 font-bold px-10 py-5 rounded-xl hover:bg-gray-50 transition-colors text-lg">
+          <button onclick={`universalOpenModal({page: "region", region: "${region.data.id}"})`} class="bg-white text-coral-500 font-bold px-10 py-5 rounded-xl hover:bg-gray-50 transition-colors text-lg">
             Start My {region.data.name} Journey
           </button>
           <a href={"/companies?region=" + region.data.id} class="border-2 border-white text-white font-bold px-10 py-5 rounded-xl hover:bg-white/10 transition-colors text-lg">

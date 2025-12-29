@@ -305,3 +305,6 @@ async function migrateCompanies() {
 // Run migration
 migrateCompanies().catch(console.error);
 
+
+
+

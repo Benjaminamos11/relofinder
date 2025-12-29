@@ -1,0 +1,149 @@
+---
+import AgencyLayout from '../../layouts/AgencyLayout.astro';
+import { Lock, ArrowRight, ShieldCheck } from 'lucide-react';
+
+const title = "Partner Login | ReloFinder";
+const description = "Secure access for ReloFinder partners.";
+---
+
+<AgencyLayout title={title} description={description}>
+  <div class="min-h-screen bg-slate-50 flex items-center justify-center p-4">
+    
+    <!-- Explicit Max Width Container -->
+    <div class="w-full" style="max-width: 440px;">
+      
+      <!-- Brand Header -->
+      <div class="text-center mb-10">
+        <div class="mx-auto h-12 w-12 bg-slate-900 rounded-xl flex items-center justify-center shadow-md mb-6 transition-transform hover:scale-110 duration-300">
+             <Lock className="h-6 w-6 text-white" />
+        </div>
+        <h2 class="text-3xl font-bold text-slate-900 font-serif mb-2">
+          Partner Portal
+        </h2>
+        <p class="text-slate-500 text-sm">
+          Enter your registered email to dashboard.
+        </p>
+      </div>
+
+      <!-- Login Card -->
+      <div class="bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl border border-slate-100">
+        
+        <form class="space-y-5" id="login-form">
+          <div class="space-y-2">
+            <label for="email" class="text-xs font-bold uppercase tracking-wide text-slate-400">
+              Business Email
+            </label>
+            <input 
+              id="email" 
+              name="email" 
+              type="email" 
+              autocomplete="email" 
+              required 
+              class="block w-full rounded-xl border border-slate-200 px-4 py-3 text-slate-900 focus:border-slate-900 focus:ring-1 focus:ring-slate-900 outline-none transition-all placeholder:text-slate-300"
+              placeholder="name@company.com"
+            />
+          </div>
+
+          <button 
+              type="submit" 
+              id="submit-btn"
+              class="w-full rounded-xl bg-slate-900 py-3.5 text-sm font-bold text-white shadow-lg shadow-slate-900/10 hover:bg-slate-800 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+          >
+            Send Magic Link
+          </button>
+        </form>
+
+        <div id="success-message" class="hidden mt-6 rounded-xl bg-emerald-50 p-4 border border-emerald-100 animate-in fade-in slide-in-from-top-2">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <ShieldCheck className="h-5 w-5 text-emerald-600" aria-hidden="true" />
+            </div>
+            <div class="ml-3">
+              <h3 class="text-sm font-bold text-emerald-900">Magic Link Sent</h3>
+              <p class="text-xs text-emerald-700 mt-1">Check your inbox for the access link.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="error-message" class="hidden mt-6 text-center text-sm font-medium text-red-600 bg-red-50 p-3 rounded-xl border border-red-100 animate-in fade-in"></div>
+
+      </div>
+      
+      <!-- Footer -->
+      <p class="text-center text-xs text-slate-300 mt-8 font-medium">
+        &copy; {new Date().getFullYear()} ReloFinder Switzerland
+      </p>
+
+    </div>
+  </div>
+</AgencyLayout>
+
+<script>
+    import { supabase } from '../../lib/supabase';
+
+    const form = document.getElementById('login-form');
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const emailInput = document.getElementById('email') as HTMLInputElement;
+    const successMessage = document.getElementById('success-message');
+    const errorMessage = document.getElementById('error-message');
+
+    form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = emailInput.value;
+        
+        if (!email) return;
+
+        // Reset UI
+        errorMessage?.classList.add('hidden');
+        successMessage?.classList.add('hidden');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Verifying...';
+
+        try {
+            // 1. Check if email exists in relocators table (Security Check)
+            const { data: partners, error: checkError } = await supabase
+                .from('relocators')
+                .select('id, company_name')
+                .ilike('contact_email', email) // Assuming contact_email exists, or we check against a stored email field
+                .limit(1);
+
+            // Note: Since RLS is on, this check might fail if public can't read contact_email. 
+            // However, we set Public Read on 'relocators' earlier. 
+            // If contact_email is private, we'd need an Edge Function. 
+            // For MVP, if public read allows reading everything, we can verify client-side.
+            // If strictly secure, use an API route. 
+            
+            // Let's rely on Supabase Auth directly sending the magic link, 
+            // but we want to prevent non-partners from signing up.
+            // Supabase "Sign Up" vs "Sign In" is fuzzy with Magic Links.
+            // If the user doesn't exist in Auth, Supabase creates them.
+            // We want to restrict this.
+            
+            // BETTER APPROACH: Call our own API route to handle the check + send.
+            
+            const response = await fetch('/api/auth/agency-login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Login failed');
+            }
+
+            // Success
+            form.classList.add('hidden');
+            successMessage?.classList.remove('hidden');
+
+        } catch (error: any) {
+            console.error(error);
+            errorMessage.textContent = error.message;
+            errorMessage?.classList.remove('hidden');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Magic Link';
+        }
+    });
+
+</script>

@@ -65,3 +65,6 @@ COMMENT ON COLUMN relocators.content_blocks IS 'JSONB object containing rich con
 COMMENT ON COLUMN relocators.social_proof IS 'JSONB object containing testimonials and stats: { stats: [{ label, value }], testimonials: [{ author, role, rating, quote }] }';
 COMMENT ON COLUMN relocators.meta_description IS 'SEO meta description for the company profile page';
 
+
+
+

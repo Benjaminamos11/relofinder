@@ -23,7 +23,7 @@ const tierConfig: Record<TierType, { label: string; className: string; icon: str
   },
   preferred: {
     label: 'Preferred Partner',
-    className: 'bg-gradient-to-r from-primary-50 to-primary-100 text-primary-700 border-primary-200',
+    className: 'bg-gradient-to-r from-primary-50 to-primary-100 text-coral-600 border-primary-200',
     icon: '⭐',
   },
 };

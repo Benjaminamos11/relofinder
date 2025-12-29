@@ -1,10 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Mail } from 'lucide-react';
 
 const title = 'Cookie Policy | ReloFinder.ch';
-const description = 'Learn about how ReloFinder.ch uses cookies and tracking technologies to enhance your browsing experience and provide better services.';
+const description = 'Information about how ReloFinder uses cookies and tracking technologies.';
 const canonical = 'https://relofinder.ch/cookies';
-const keywords = ['cookie policy', 'cookies', 'tracking', 'web analytics', 'privacy settings'];
+const lastUpdated = 'January 28, 2025';
 
 const combinedSchema = {
   "@context": "https://schema.org",
@@ -42,293 +43,98 @@ const combinedSchema = {
   title={title} 
   description={description}
   canonical={canonical}
-  keywords={keywords}
   schema={combinedSchema}
 >
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-gray-50 via-white to-gray-100 py-20">
-    <div class="container max-w-4xl mx-auto px-4 text-center">
-      <h1 class="text-4xl lg:text-5xl font-bold mb-6 text-gray-900">Cookie Policy</h1>
-      <p class="text-xl text-gray-600 leading-relaxed">
-        Understanding how we use cookies to improve your experience and provide better services.
-      </p>
-      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mt-8 text-left">
-        <div class="grid md:grid-cols-2 gap-4 text-sm text-gray-600">
-          <div>
-            <strong class="text-gray-900">Last updated:</strong> January 28, 2025
-          </div>
-          <div>
-            <strong class="text-gray-900">Effective:</strong> January 1, 2025
-          </div>
+  <main class="bg-white">
+    
+    <!-- Hero / Header -->
+    <section class="pt-24 pb-12 lg:pt-32">
+      <div class="container mx-auto px-6 lg:px-8 max-w-3xl">
+        <span class="inline-block py-1 px-3 rounded-full bg-gray-100 text-gray-600 text-xs font-bold uppercase tracking-widest mb-6">
+          Legal
+        </span>
+        <h1 class="text-5xl lg:text-6xl font-serif font-bold text-gray-900 mb-6 leading-tight">
+          Cookie Policy
+        </h1>
+        <div class="flex items-center gap-4 text-gray-500 text-sm border-b border-gray-100 pb-12">
+           <span>Last Updated: {lastUpdated}</span>
+           <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+           <span>Effective Date: January 1, 2025</span>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Main Content -->
-  <section class="py-16 bg-white">
-    <div class="container max-w-4xl mx-auto px-4">
-
-      <!-- What Are Cookies -->
-      <div class="bg-white rounded-2xl p-8 mb-12 border border-gray-200 shadow-lg">
-        <div class="text-center mb-8">
-          <div class="w-20 h-20 bg-gradient-to-br from-[#bd3f32] to-[#9c2d4a] rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-          </div>
-          <h2 class="text-2xl font-bold text-gray-900 mb-4">What Are Cookies?</h2>
-          <p class="text-gray-700 leading-relaxed max-w-2xl mx-auto">
-            Cookies are small text files stored on your device when you visit websites. They help us remember your preferences, keep you logged in, and provide a personalized experience. Think of them as digital bookmarks that help websites recognize you.
-              </p>
-            </div>
-
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="bg-white rounded-xl p-6 text-center shadow-sm">
-            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-              <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-              </svg>
-            </div>
-            <h3 class="font-semibold text-gray-900 mb-2">Safe & Secure</h3>
-            <p class="text-sm text-gray-600">Cookies cannot access your personal files or install software</p>
-          </div>
-
-          <div class="bg-white rounded-xl p-6 text-center shadow-sm">
-            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-              <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-              </svg>
-            </div>
-            <h3 class="font-semibold text-gray-900 mb-2">Better Experience</h3>
-            <p class="text-sm text-gray-600">Remember your preferences and improve functionality</p>
-          </div>
-
-          <div class="bg-white rounded-xl p-6 text-center shadow-sm">
-            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-              <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-              </svg>
-            </div>
-            <h3 class="font-semibold text-gray-900 mb-2">Analytics</h3>
-            <p class="text-sm text-gray-600">Help us understand how to improve our platform</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Types of Cookies -->
-      <div class="space-y-8">
-        
-        <!-- Essential Cookies -->
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-12 h-12 bg-gradient-to-r from-[#bd3f32] to-[#9c2d4a] rounded-xl flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-              </svg>
-            </div>
-            <div>
-              <h2 class="text-2xl font-bold text-gray-900">Essential Cookies</h2>
-              <p class="text-gray-600">Always active - necessary for basic website functionality</p>
-            </div>
-            <div class="ml-auto bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-semibold">
-              Required
-            </div>
-          </div>
+    <!-- Content -->
+    <section class="pb-24">
+      <div class="container mx-auto px-6 lg:px-8 max-w-3xl">
+        <div class="prose prose-lg prose-headings:font-serif prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-600 prose-p:leading-relaxed prose-a:text-[#FF6F61] prose-a:no-underline hover:prose-a:underline prose-li:text-gray-600">
           
-          <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <h3 class="font-semibold text-gray-900 mb-2 text-sm">Session Management</h3>
-              <p class="text-xs text-gray-600">Keep you logged in and maintain your preferences during your visit</p>
-            </div>
-            <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <h3 class="font-semibold text-gray-900 mb-2 text-sm">Security</h3>
-              <p class="text-xs text-gray-600">Protect against fraud and ensure secure data transmission</p>
-            </div>
-            <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <h3 class="font-semibold text-gray-900 mb-2 text-sm">Basic Functionality</h3>
-              <p class="text-xs text-gray-600">Enable forms, navigation, and core platform features</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Analytics Cookies -->
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center">
-              <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-              </svg>
-            </div>
-            <div>
-              <h2 class="text-2xl font-bold text-gray-900">Analytics Cookies</h2>
-              <p class="text-gray-600">Help us understand how visitors use our platform</p>
-            </div>
-            <div class="ml-auto bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-semibold">
-              Optional
-            </div>
-          </div>
-          
-          <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <h3 class="font-semibold text-gray-900 mb-2 text-sm">Usage Tracking</h3>
-              <p class="text-xs text-gray-600">Monitor which pages are visited and how users navigate</p>
-            </div>
-            <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <h3 class="font-semibold text-gray-900 mb-2 text-sm">Performance Data</h3>
-              <p class="text-xs text-gray-600">Measure page loading times and technical performance</p>
-            </div>
-            <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <h3 class="font-semibold text-gray-900 mb-2 text-sm">Improvement Insights</h3>
-              <p class="text-xs text-gray-600">Help us identify areas for platform enhancement</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Functional Cookies -->
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center">
-              <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-              </svg>
-            </div>
-            <div>
-              <h2 class="text-2xl font-bold text-gray-900">Functional Cookies</h2>
-              <p class="text-gray-600">Remember your choices and personalize your experience</p>
-            </div>
-            <div class="ml-auto bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-semibold">
-              Optional
-            </div>
-          </div>
-          
-          <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <h3 class="font-semibold text-gray-900 mb-2 text-sm">Language Preferences</h3>
-              <p class="text-xs text-gray-600">Remember your selected language and regional settings</p>
-            </div>
-            <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <h3 class="font-semibold text-gray-900 mb-2 text-sm">Form Data</h3>
-              <p class="text-xs text-gray-600">Save form progress and preferences for better experience</p>
-            </div>
-            <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
-              <h3 class="font-semibold text-gray-900 mb-2 text-sm">Display Preferences</h3>
-              <p class="text-xs text-gray-600">Remember layout choices and customization settings</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Managing Cookies -->
-      <div class="mt-12 space-y-8">
-        
-        <!-- Browser Controls -->
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6">Managing Your Cookie Preferences</h2>
-          
-          <div class="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 class="font-semibold text-gray-900 mb-4">Browser Settings</h3>
-              <p class="text-gray-700 text-sm mb-4">You can control cookies through your browser settings:</p>
-              
-              <div class="space-y-3">
-                <div class="flex items-start gap-2">
-                  <div class="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span class="text-sm text-gray-700"><strong>Chrome:</strong> Settings → Privacy and Security → Cookies</span>
-                </div>
-                <div class="flex items-start gap-2">
-                  <div class="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span class="text-sm text-gray-700"><strong>Firefox:</strong> Preferences → Privacy & Security</span>
-                </div>
-                <div class="flex items-start gap-2">
-                  <div class="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span class="text-sm text-gray-700"><strong>Safari:</strong> Preferences → Privacy → Cookies</span>
-                </div>
-                <div class="flex items-start gap-2">
-                  <div class="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span class="text-sm text-gray-700"><strong>Edge:</strong> Settings → Cookies and Site Permissions</span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 class="font-semibold text-gray-900 mb-4">Cookie Options</h3>
-              <p class="text-gray-700 text-sm mb-4">You can choose how to handle cookies:</p>
-              
-              <div class="space-y-3">
-                <div class="flex items-start gap-2">
-                  <div class="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span class="text-sm text-gray-700"><strong>Accept All:</strong> Allow all cookies for full functionality</span>
-                </div>
-                <div class="flex items-start gap-2">
-                  <div class="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span class="text-sm text-gray-700"><strong>Block Third-Party:</strong> Allow only first-party cookies</span>
-                </div>
-                <div class="flex items-start gap-2">
-                  <div class="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span class="text-sm text-gray-700"><strong>Block All:</strong> Disable all cookies (may break functionality)</span>
-                </div>
-                <div class="flex items-start gap-2">
-                  <div class="w-1.5 h-1.5 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <span class="text-sm text-gray-700"><strong>Ask Each Time:</strong> Prompt for permission for each cookie</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-6 p-4 bg-gray-50 rounded-xl border border-gray-200">
-            <p class="text-sm text-gray-700">
-              <strong>Important:</strong> Blocking essential cookies may prevent the website from functioning properly. Analytics and functional cookies can be disabled without affecting core functionality.
-            </p>
-          </div>
-        </div>
-
-        <!-- Third-Party Cookies -->
-        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6">Third-Party Services</h2>
-          
-          <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
-              <h3 class="font-semibold text-gray-900 mb-3">Google Analytics</h3>
-              <p class="text-gray-700 text-sm mb-3">
-                We use Google Analytics to understand how visitors interact with our website.
-              </p>
-              <a href="https://policies.google.com/privacy" target="_blank" class="text-red-600 hover:text-red-700 text-sm font-semibold">
-                Google Privacy Policy →
-              </a>
-            </div>
-
-            <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
-              <h3 class="font-semibold text-gray-900 mb-3">Contact Forms</h3>
-              <p class="text-gray-700 text-sm mb-3">
-                Our contact forms use Formspree for secure form submission and processing.
-              </p>
-              <a href="https://formspree.io/legal/privacy-policy/" target="_blank" class="text-red-600 hover:text-red-700 text-sm font-semibold">
-                Formspree Privacy Policy →
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Contact -->
-        <div class="bg-gradient-to-r from-[#bd3f32] to-[#9c2d4a] rounded-2xl p-8 text-white text-center">
-          <h2 class="text-2xl font-bold mb-4">Questions About Cookies?</h2>
-          <p class="text-red-100 mb-6">
-            Need more information about our cookie usage or have concerns about privacy?
+          <p class="lead text-xl text-gray-500 mb-12">
+            This Cookie Policy explains how ReloFinder.ch uses cookies and similar technologies to recognize you when you visit our website. It explains what these technologies are and why we use them, as well as your rights to control our use of them.
           </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="mailto:hello@relofinder.ch" class="bg-white text-red-600 py-3 px-6 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-              Contact Privacy Team
-            </a>
-            <a href="/privacy" class="border-2 border-white text-white py-3 px-6 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors">
-              View Privacy Policy
+
+          <h2>1. What are Cookies?</h2>
+          <p>
+            Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners in order to make their websites work, or to work more efficiently, as well as to provide reporting information.
+          </p>
+
+          <h2>2. Types of Cookies We Use</h2>
+          
+          <h3>Essential Cookies</h3>
+          <p>
+            These cookies are strictly necessary to provide you with services available through our website and to use some of its features, such as access to secure areas. Because these cookies are strictly necessary to deliver the website, you cannot refuse them without impacting how our website functions.
+          </p>
+
+          <h3>Performance & Analytics Cookies</h3>
+          <p>
+            These cookies collect information that is used either in aggregate form to help us understand how our website is being used or how effective our marketing campaigns are, or to help us customize our website for you.
+          </p>
+          <ul>
+            <li><strong>Google Analytics:</strong> We use Google Analytics to measure traffic and usage trends.</li>
+            <li><strong>PostHog/Hotjar:</strong> We may use these tools to understand user interaction flows.</li>
+          </ul>
+
+          <h3>Functional Cookies</h3>
+          <p>
+            These cookies allow our website to remember choices you make (such as your user name, language or the region you are in) and provide enhanced, more personal features.
+          </p>
+
+          <h2>3. Managing Your Preferences</h2>
+          <p>
+            You have the right to decide whether to accept or reject cookies. You can exercise your cookie rights by setting your preferences in the Cookie Consent Manager or by changing your browser settings.
+          </p>
+          <p>
+            Most web browsers allow you to control cookies through their settings preferences. If you choose to reject cookies, you may still use our website though your access to some functionality and areas of our website may be restricted.
+          </p>
+
+          <h2>4. Third Party Services</h2>
+          <p>
+            We use trusted third-party services that may also place cookies on your device. These include:
+          </p>
+          <ul>
+            <li><strong>Google Analytics:</strong> <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a></li>
+            <li><strong>Formspree:</strong> Used for our contact forms. <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a></li>
+          </ul>
+
+          <h2>5. Updates</h2>
+          <p>
+            We may update this Cookie Policy from time to time in order to reflect specific changes to the cookies we use or for other operational, legal or regulatory reasons. Please therefore re-visit this Cookie Policy regularly to stay informed about our use of cookies and related technologies.
+          </p>
+
+          <h2>6. Contact</h2>
+          <p>
+            If you have questions about our use of cookies, please contact us:
+          </p>
+          <div class="not-prose mt-6">
+            <a href="mailto:hello@relofinder.ch" class="flex items-center text-lg font-bold text-gray-900 hover:text-[#FF6F61] transition-colors">
+              <Mail className="w-5 h-5 mr-3" />
+              hello@relofinder.ch
             </a>
           </div>
-        </div>
 
         </div>
       </div>
     </section>
-</Layout> 
+
+  </main>
+</Layout>

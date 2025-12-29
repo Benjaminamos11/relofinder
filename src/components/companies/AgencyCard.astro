@@ -51,7 +51,7 @@ const getPrimaryCTA = () => {
       label: `Book Meeting with ${name}`,
       href: schedulingUrl,
       action: 'external',
-      classes: 'bg-gradient-to-r from-primary-600 to-primary-700 text-white hover:from-primary-700 hover:to-primary-800'
+      classes: 'bg-gradient-to-r from-coral-500 to-coral-600 text-white hover:from-coral-600 hover:to-coral-700'
     };
   }
   if (tier === 'partner' && contactEmail) {
@@ -59,7 +59,7 @@ const getPrimaryCTA = () => {
       label: `Contact ${name}`,
       href: `mailto:${contactEmail}`,
       action: 'email',
-      classes: 'bg-primary-600 text-white hover:bg-primary-700'
+      classes: 'bg-coral-500 text-white hover:bg-coral-600'
     };
   }
   // Regular tier - request introduction via modal

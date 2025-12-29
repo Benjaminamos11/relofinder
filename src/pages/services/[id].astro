@@ -53,9 +53,9 @@ const faq = service.data.faq || [
         <div class="space-y-8">
           <!-- Breadcrumb -->
           <nav class="flex items-center space-x-2 text-sm text-gray-600">
-            <a href="/" class="hover:text-primary-600 transition-colors">Home</a>
+            <a href="/" class="hover:text-coral-500 transition-colors">Home</a>
             <span>→</span>
-            <a href="/services" class="hover:text-primary-600 transition-colors">Services</a>
+            <a href="/services" class="hover:text-coral-500 transition-colors">Services</a>
             <span>→</span>
             <span class="text-gray-900">{service.data.title}</span>
           </nav>
@@ -81,19 +81,19 @@ const faq = service.data.faq || [
           <!-- Stats -->
           <div class="grid grid-cols-2 md:grid-cols-4 gap-6 py-6">
             <div class="text-center">
-              <div class="text-2xl font-bold text-primary-600">{stats.providers}</div>
+              <div class="text-2xl font-bold text-coral-500">{stats.providers}</div>
               <div class="text-sm text-gray-600">Providers</div>
             </div>
             <div class="text-center">
-              <div class="text-2xl font-bold text-primary-600">{stats.avgTime}</div>
+              <div class="text-2xl font-bold text-coral-500">{stats.avgTime}</div>
               <div class="text-sm text-gray-600">Average Time</div>
             </div>
             <div class="text-center">
-              <div class="text-2xl font-bold text-primary-600">{stats.satisfaction}</div>
+              <div class="text-2xl font-bold text-coral-500">{stats.satisfaction}</div>
               <div class="text-sm text-gray-600">Satisfaction</div>
             </div>
             <div class="text-center">
-              <div class="text-2xl font-bold text-primary-600">{stats.completionRate}</div>
+              <div class="text-2xl font-bold text-coral-500">{stats.completionRate}</div>
               <div class="text-sm text-gray-600">Success Rate</div>
             </div>
           </div>
@@ -111,7 +111,7 @@ const faq = service.data.faq || [
 
         <!-- Right Side - Image -->
         <div class="relative">
-          <div class="absolute inset-0 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-3xl rotate-3 transform scale-105 opacity-20"></div>
+          <div class="absolute inset-0 bg-gradient-to-r from-coral-300 to-secondary-400 rounded-3xl rotate-3 transform scale-105 opacity-20"></div>
           <div class="relative bg-white rounded-3xl shadow-2xl overflow-hidden">
             <img 
               src={service.data.image} 
@@ -155,7 +155,7 @@ const faq = service.data.faq || [
             <div class="grid md:grid-cols-2 gap-4">
               {features.map((feature) => (
                 <div class="flex items-center space-x-3">
-                  <div class="w-2 h-2 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full"></div>
+                  <div class="w-2 h-2 bg-gradient-to-r from-coral-400 to-secondary-500 rounded-full"></div>
                   <span class="text-gray-700 font-medium">{feature}</span>
                 </div>
               ))}
@@ -188,7 +188,7 @@ const faq = service.data.faq || [
             <div class="bg-white rounded-2xl p-6 shadow-sm">
               <div class="flex items-center justify-between mb-4">
                 <h4 class="text-lg font-semibold">Professional Service</h4>
-                <span class="text-2xl font-bold text-primary-600">{pricing.range}</span>
+                <span class="text-2xl font-bold text-coral-500">{pricing.range}</span>
               </div>
               <p class="text-gray-600 mb-4">Comprehensive support with expert guidance throughout your journey.</p>
               <div class="text-sm text-gray-500">
@@ -230,7 +230,7 @@ const faq = service.data.faq || [
           <div class="flex flex-col md:flex-row items-start gap-8 group">
             <!-- Step Number -->
             <div class="flex-shrink-0">
-              <div class="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
                 {step.step}
               </div>
             </div>
@@ -239,7 +239,7 @@ const faq = service.data.faq || [
             <div class="flex-1 bg-white rounded-2xl p-8 shadow-sm group-hover:shadow-lg transition-shadow duration-300">
               <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                 <h3 class="text-xl font-bold text-gray-900">{step.title}</h3>
-                <span class="text-sm font-medium text-primary-600 bg-primary-50 px-3 py-1 rounded-full mt-2 md:mt-0">
+                <span class="text-sm font-medium text-coral-500 bg-primary-50 px-3 py-1 rounded-full mt-2 md:mt-0">
                   {step.duration}
                 </span>
               </div>
@@ -299,7 +299,7 @@ const faq = service.data.faq || [
   </section>
 
   <!-- CTA Section -->
-  <section class="py-20 bg-gradient-to-br from-primary-600 to-secondary-600 text-white">
+  <section class="py-20 bg-gradient-to-br from-coral-500 to-secondary-600 text-white">
     <div class="container">
       <div class="text-center max-w-4xl mx-auto">
         <h2 class="text-3xl md:text-4xl font-bold mb-6">
