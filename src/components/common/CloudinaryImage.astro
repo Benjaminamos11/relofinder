@@ -32,9 +32,9 @@ const isCloudinaryUrl = src && (src.includes('cloudinary.com') || src.includes('
 const isLocalPath = src && src.startsWith('/') && !src.startsWith('//');
 
 // In development, we cannot use Cloudinary Fetch API for local images because localhost is not publicly accessible.
-// We only optimize local images in production.
+// We also temporarily disable it in production to ensure stability until the domain is fully accessible.
 const isDev = import.meta.env.DEV;
-const shouldOptimizeLocal = isLocalPath && !isDev;
+const shouldOptimizeLocal = false; // Disabled for now to fix production image loading
 
 let optimizedSrc = src || '';
 let srcSet = '';
