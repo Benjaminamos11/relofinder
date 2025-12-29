@@ -3,14 +3,14 @@ import Layout from '../../layouts/Layout.astro';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 // Import Assets (Selective Color Series)
-import visaImage from '/Users/benjaminamoswagner/.gemini/antigravity/brain/f947e50e-b2dc-47b6-968d-6f1f8b4c1204/visa_immigration_bw_orange_1766894828459.png';
-import housingImage from '/Users/benjaminamoswagner/.gemini/antigravity/brain/f947e50e-b2dc-47b6-968d-6f1f8b4c1204/housing_search_bw_orange_1766894845459.png';
-import movingImage from '/Users/benjaminamoswagner/.gemini/antigravity/brain/f947e50e-b2dc-47b6-968d-6f1f8b4c1204/moving_logistics_bw_orange_1766894862489.png';
+const visaImage = '/images/services/visa-card.png';
+const housingImage = '/images/services/housing-card.png';
+const movingImage = '/images/services/moving-card.png';
 
 // New Generated Assets
-import educationImage from '/Users/benjaminamoswagner/.gemini/antigravity/brain/f947e50e-b2dc-47b6-968d-6f1f8b4c1204/education_desk_bw_orange_1766969576384.png';
-import advisoryImage from '/Users/benjaminamoswagner/.gemini/antigravity/brain/f947e50e-b2dc-47b6-968d-6f1f8b4c1204/advisory_boardroom_bw_orange_1766969595553.png';
-import insuranceImage from '/Users/benjaminamoswagner/.gemini/antigravity/brain/f947e50e-b2dc-47b6-968d-6f1f8b4c1204/insurance_safety_bw_orange_1766969610527.png';
+const educationImage = '/images/services/education-card.png';
+const advisoryImage = '/images/services/advisory-card.png';
+const insuranceImage = '/images/services/insurance-card.png';
 
 const services = [
   {
@@ -96,7 +96,7 @@ const canonical = "https://relofinder.ch/services";
             <!-- Background Image with Selective Color Logic -->
             <div class="absolute inset-0 w-full h-full">
                <img 
-                  src={service.image.src} 
+                  src={service.image} 
                   alt={service.title} 
                   class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[2000ms] ease-in-out scale-100 group-hover:scale-105"
                />
