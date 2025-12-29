@@ -21,11 +21,13 @@ import MarketIntelligence from '../components/home/MarketIntelligence.astro';
 import Navbar from '../components/layout/Navbar.astro';
 import Footer from '../components/layout/Footer.astro';
 import HeroSearch from '../components/home/HeroSearch.tsx';
-import heroLake from '../assets/images/home/swiss-lake-drone-hero.png';
-import heroBoutique from '../assets/images/home/swiss-boutique-hero-color.png';
-import heroDarkInterior from '../assets/images/home/swiss-modern-dark-interior.jpg';
+// Cloudinary Assets
+const cloudinaryBase = 'https://res.cloudinary.com/dphbnwjtx/image/upload/f_auto,q_auto';
+const heroLake = { src: `${cloudinaryBase}/home/swiss-lake-drone-hero` };
+const heroBoutique = { src: `${cloudinaryBase}/home/swiss-boutique-hero-color` };
+const heroDarkInterior = { src: `${cloudinaryBase}/home/swiss-modern-dark-interior` };
+const swissMapWhiteOrange = { src: `${cloudinaryBase}/home/swiss-map-white-orange` };
 import swissMapImg from '../assets/swiss-map-filled.png';
-import swissMapWhiteOrange from '../assets/images/home/swiss-map-white-orange.jpg';
 
 // data fetch
 const carouselAgencies = await getAgenciesCarouselData(3);
