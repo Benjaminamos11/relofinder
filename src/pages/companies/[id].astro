@@ -5,7 +5,7 @@
  */
 
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getEntry } from 'astro:content';
 import { supabase } from '../../lib/supabase';
 import UniversalContactModal from '../../components/common/UniversalContactModal';
 import ReviewSubmissionWrapper from '../../components/reviews/ReviewSubmissionWrapper';
@@ -28,15 +28,18 @@ import {
   Award
 } from 'lucide-react';
 
-export async function getStaticPaths() {
-  const companies = await getCollection('companies');
-  return companies.map((company: any) => ({
-    params: { id: company.data.id },
-    props: { company },
-  }));
+const { id } = Astro.params;
+
+if (!id) {
+  return Astro.redirect('/404');
 }
 
-const { company } = Astro.props;
+const company = await getEntry('companies', id);
+
+if (!company) {
+  return Astro.redirect('/404');
+}
+
 const companyData = company.data;
 
 // --- Data Fetching Logic (Preserved) ---

@@ -321,7 +321,49 @@ export default function AdminDashboard() {
 
             <main className="flex-1 overflow-y-auto bg-slate-100 p-8 h-full">
                 {/* VIEWS */}
-                {view === 'cockpit' && <h1 className="text-2xl font-bold">Cockpit (Details hidden for edit focus)</h1>}
+                {view === 'cockpit' && (
+                    <div className="space-y-8">
+                        <div>
+                            <h1 className="text-3xl font-serif font-bold text-gray-900 mb-2">Welcome back, Admin</h1>
+                            <p className="text-gray-500">Here is what's happening today.</p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div className="bg-[#FF6F61] text-white p-6 rounded-2xl shadow-lg shadow-[#FF6F61]/20">
+                                <div className="flex justify-between items-start mb-4">
+                                    <div className="p-3 bg-white/20 rounded-xl">
+                                        <BriefcaseIcon size={24} className="text-white" />
+                                    </div>
+                                    <span className="bg-white/20 px-2 py-1 rounded text-xs font-bold">Action Needed</span>
+                                </div>
+                                <div className="text-4xl font-bold mb-1">{stats.unassignedValues}</div>
+                                <div className="text-white/80 text-sm font-medium">New Leads (Unassigned)</div>
+                            </div>
+
+                            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                                <div className="flex justify-between items-start mb-4">
+                                    <div className="p-3 bg-slate-100 rounded-xl">
+                                        <Users size={24} className="text-slate-600" />
+                                    </div>
+                                    {stats.activePartners > 0 && <span className="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-bold">Healthy</span>}
+                                </div>
+                                <div className="text-4xl font-bold text-slate-900 mb-1">{stats.activePartners}</div>
+                                <div className="text-slate-500 text-sm font-medium">Active Partners</div>
+                            </div>
+
+                            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                                <div className="flex justify-between items-start mb-4">
+                                    <div className="p-3 bg-slate-100 rounded-xl">
+                                        <Database size={24} className="text-slate-600" />
+                                    </div>
+                                    <span className="bg-slate-100 text-slate-500 px-2 py-1 rounded text-xs font-bold">Total</span>
+                                </div>
+                                <div className="text-4xl font-bold text-slate-900 mb-1">{leads.length}</div>
+                                <div className="text-slate-500 text-sm font-medium">Total Evaluations</div>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {view === 'partners' && (
                     <div className="space-y-6">
