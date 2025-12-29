@@ -1035,6 +1035,90 @@ export default function AdminDashboard() {
                                             </div>
                                         </div>
 
+                                        {/* Section: Company Details */}
+                                        <div className="space-y-4">
+                                            <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                                                <span className="w-1 h-4 bg-[#FF6F61] rounded-full"></span>
+                                                Company Information
+                                            </h3>
+                                            <div className="grid grid-cols-2 gap-4">
+                                                <div>
+                                                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Founded Year</label>
+                                                    <input
+                                                        type="number"
+                                                        value={editingPartner.founded_year || ''}
+                                                        onChange={(e) => setEditingPartner({ ...editingPartner, founded_year: parseInt(e.target.value) || undefined })}
+                                                        placeholder="e.g. 1998"
+                                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#FF6F61] transition-all"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Employee Count</label>
+                                                    <select
+                                                        value={editingPartner.employee_count || ''}
+                                                        onChange={(e) => setEditingPartner({ ...editingPartner, employee_count: e.target.value })}
+                                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#FF6F61] transition-all cursor-pointer"
+                                                    >
+                                                        <option value="">Select size...</option>
+                                                        <option value="1-10">1-10 Employees</option>
+                                                        <option value="11-50">11-50 Employees</option>
+                                                        <option value="51-200">51-200 Employees</option>
+                                                        <option value="201-500">201-500 Employees</option>
+                                                        <option value="500+">500+ Employees</option>
+                                                    </select>
+                                                </div>
+                                                <div className="col-span-2">
+                                                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Website</label>
+                                                    <div className="relative">
+                                                        <ExternalLink className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+                                                        <input
+                                                            type="url"
+                                                            value={editingPartner.website || ''}
+                                                            onChange={(e) => setEditingPartner({ ...editingPartner, website: e.target.value })}
+                                                            placeholder="https://www.company.ch"
+                                                            className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-[#FF6F61] transition-all"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Section: Public Contact Info */}
+                                        <div className="space-y-4">
+                                            <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                                                <span className="w-1 h-4 bg-[#FF6F61] rounded-full"></span>
+                                                Public Contact Channels
+                                            </h3>
+                                            <div className="grid grid-cols-2 gap-4">
+                                                <div>
+                                                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">General Phone</label>
+                                                    <div className="relative">
+                                                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+                                                        <input
+                                                            type="tel"
+                                                            value={editingPartner.phone_number || ''}
+                                                            onChange={(e) => setEditingPartner({ ...editingPartner, phone_number: e.target.value })}
+                                                            placeholder="+41 44 ..."
+                                                            className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-[#FF6F61] transition-all"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">General Email</label>
+                                                    <div className="relative">
+                                                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+                                                        <input
+                                                            type="email"
+                                                            value={editingPartner.contact_email || ''}
+                                                            onChange={(e) => setEditingPartner({ ...editingPartner, contact_email: e.target.value })}
+                                                            placeholder="info@company.ch"
+                                                            className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-[#FF6F61] transition-all"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         {/* Section: Status & Verification */}
                                         <div className="space-y-4">
                                             <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
