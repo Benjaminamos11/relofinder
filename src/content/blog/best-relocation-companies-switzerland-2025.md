@@ -4,7 +4,7 @@ description: "Compare the top 10 relocation companies in Switzerland based on ve
 publishDate: 2025-01-08
 readingTime: 15
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/relocation-companies.png"
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009360/images/blog/relocation-companies.jpg"
 category: "Guides"
 tags: ["relocation", "switzerland", "expats", "corporate-relocation", "moving-to-switzerland"]
 featured: true

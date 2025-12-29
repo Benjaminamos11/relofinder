@@ -4,7 +4,7 @@ description: "Don't forget a single step. Our timeline guides you from visa appl
 publishDate: 2026-01-06
 readingTime: 9
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/moving-checklist.png"
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009357/images/blog/moving-checklist.jpg"
 category: "Guides"
 tags: ["checklist", "planning", "logistics", "timeline", "moving", "switzerland", "expats"]
 featured: true

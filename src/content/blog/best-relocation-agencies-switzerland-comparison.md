@@ -4,7 +4,7 @@ description: "How to choose between full-service relocation, boutique agencies, 
 publishDate: 2026-01-02
 readingTime: 12
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/relocation-agencies.png"
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009358/images/blog/relocation-agencies.jpg"
 category: "Guides"
 tags: ["relocation", "comparison", "costs", "zurich", "geneva", "switzerland", "agencies", "expat-services"]
 featured: true

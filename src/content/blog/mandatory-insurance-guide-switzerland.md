@@ -4,7 +4,7 @@ description: "You cannot sign a lease without Liability Insurance, and you canno
 publishDate: 2026-01-04
 readingTime: 11
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/mandatory-insurance.png"
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009355/images/blog/mandatory-insurance.jpg"
 category: "Guides"
 tags: ["insurance", "health", "liability", "finance", "lamal", "expats", "switzerland"]
 featured: true

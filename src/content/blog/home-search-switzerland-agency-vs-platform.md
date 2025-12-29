@@ -4,7 +4,7 @@ description: "Finding an apartment in Zürich or Geneva is a full-time job. Lear
 publishDate: 2026-01-03
 readingTime: 10
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/home-search.png"
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009351/images/blog/home-search.jpg"
 category: "Guides"
 tags: ["housing", "zurich", "geneva", "off-market", "offlist", "vacancy-rates", "home-search", "switzerland"]
 featured: true

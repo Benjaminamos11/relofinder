@@ -4,7 +4,7 @@ description: "Discover the top 7 FINMA-certified health insurance consultants fo
 publishDate: 2025-01-08
 readingTime: 15
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/health-insurance-consultants.png"
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009350/images/blog/health-insurance-consultants.jpg"
 category: "Guides"
 tags: ["health-insurance", "expat-services", "switzerland", "insurance-consultants", "finma", "expat-health"]
 featured: true

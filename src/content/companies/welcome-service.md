@@ -2,7 +2,7 @@
 id: "welcome-service"
 name: "Welcome Service"
 description: "Family-owned relocation and immigration services provider founded in 1990 with over 34 years of industry expertise, operating from Geneva, Lausanne, and Zurich as full member of SARA and EuRA."
-logo: "/images/companies/welcome-service-logo.jpg"
+logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009367/images/companies/welcome-service-logo.jpg"
 
 website: "https://www.welcome-service.ch/"
 phone: "+41 22 707 61 50"

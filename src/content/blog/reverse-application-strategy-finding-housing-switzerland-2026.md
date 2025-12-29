@@ -4,7 +4,7 @@ description: "Discover Offlist.ch - Switzerland's first 'Tenant Visibility' plat
 publishDate: 2026-01-01
 readingTime: 8
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/reverse-application-strategy.png"
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009361/images/blog/reverse-application-strategy.jpg"
 category: "Guides"
 tags: ["housing", "switzerland", "offlist", "off-market", "relocation-strategy", "tenant-visibility", "expats", "international-professionals"]
 featured: true

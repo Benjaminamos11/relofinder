@@ -2,7 +2,7 @@
 id: "prime-relocation"
 name: "Prime Relocation"
 description: "Switzerland's leading corporate relocation specialist helping international professionals and families successfully relocate with over 10 years of expertise across all major Swiss regions."
-logo: "/images/companies/prime-relocation-logo.png"
+logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009366/images/companies/prime-relocation-logo.png"
 
 website: "https://www.primerelocation.ch/"
 phone: "+41 41 760 74 41"

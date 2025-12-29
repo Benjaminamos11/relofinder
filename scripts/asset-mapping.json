@@ -1,0 +1,292 @@
+[
+  {
+    "localPath": "/images/about-hero.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009345/images/about-hero.jpg",
+    "publicId": "images/about-hero"
+  },
+  {
+    "localPath": "/images/blog/cost-of-living.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009347/images/blog/cost-of-living.jpg",
+    "publicId": "images/blog/cost-of-living"
+  },
+  {
+    "localPath": "/images/blog/health-insurance-consultants.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009350/images/blog/health-insurance-consultants.jpg",
+    "publicId": "images/blog/health-insurance-consultants"
+  },
+  {
+    "localPath": "/images/blog/home-search.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009351/images/blog/home-search.jpg",
+    "publicId": "images/blog/home-search"
+  },
+  {
+    "localPath": "/images/blog/mandatory-insurance.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009355/images/blog/mandatory-insurance.jpg",
+    "publicId": "images/blog/mandatory-insurance"
+  },
+  {
+    "localPath": "/images/blog/moving-checklist.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009357/images/blog/moving-checklist.jpg",
+    "publicId": "images/blog/moving-checklist"
+  },
+  {
+    "localPath": "/images/blog/relocation-agencies.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009358/images/blog/relocation-agencies.jpg",
+    "publicId": "images/blog/relocation-agencies"
+  },
+  {
+    "localPath": "/images/blog/relocation-companies.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009360/images/blog/relocation-companies.jpg",
+    "publicId": "images/blog/relocation-companies"
+  },
+  {
+    "localPath": "/images/blog/reverse-application-strategy.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009361/images/blog/reverse-application-strategy.jpg",
+    "publicId": "images/blog/reverse-application-strategy"
+  },
+  {
+    "localPath": "/images/blog/ultimate-guide.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009363/images/blog/ultimate-guide.jpg",
+    "publicId": "images/blog/ultimate-guide"
+  },
+  {
+    "localPath": "/images/companies/anchor-relocation-logo.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009364/images/companies/anchor-relocation-logo.png",
+    "publicId": "images/companies/anchor-relocation-logo"
+  },
+  {
+    "localPath": "/images/companies/anchor-relocation-logo.svg",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009364/images/companies/anchor-relocation-logo.png",
+    "publicId": "images/companies/anchor-relocation-logo"
+  },
+  {
+    "localPath": "/images/companies/prime-relocation-logo.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009366/images/companies/prime-relocation-logo.png",
+    "publicId": "images/companies/prime-relocation-logo"
+  },
+  {
+    "localPath": "/images/companies/welcome-service-logo.jpg",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009367/images/companies/welcome-service-logo.jpg",
+    "publicId": "images/companies/welcome-service-logo"
+  },
+  {
+    "localPath": "/images/companies/welcome-service-logo.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009367/images/companies/welcome-service-logo.jpg",
+    "publicId": "images/companies/welcome-service-logo"
+  },
+  {
+    "localPath": "/images/companies/welcome-service-logo.svg",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009367/images/companies/welcome-service-logo.jpg",
+    "publicId": "images/companies/welcome-service-logo"
+  },
+  {
+    "localPath": "/images/partners/hero_handshake.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009370/images/partners/hero_handshake.jpg",
+    "publicId": "images/partners/hero_handshake"
+  },
+  {
+    "localPath": "/images/partners/leads_analysis.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009371/images/partners/leads_analysis.jpg",
+    "publicId": "images/partners/leads_analysis"
+  },
+  {
+    "localPath": "/images/partners/meeting_room.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009372/images/partners/meeting_room.jpg",
+    "publicId": "images/partners/meeting_room"
+  },
+  {
+    "localPath": "/images/partners/trust_badge.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009374/images/partners/trust_badge.jpg",
+    "publicId": "images/partners/trust_badge"
+  },
+  {
+    "localPath": "/images/placeholder-logo.svg",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009376/images/placeholder-logo.svg",
+    "publicId": "images/placeholder-logo"
+  },
+  {
+    "localPath": "/images/regions/zurich-hero-v2.webp",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009378/images/regions/zurich-hero-v2.webp",
+    "publicId": "images/regions/zurich-hero-v2"
+  },
+  {
+    "localPath": "/images/regions/zurich-hero.webp",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009380/images/regions/zurich-hero.webp",
+    "publicId": "images/regions/zurich-hero"
+  },
+  {
+    "localPath": "/images/regions/zurich-isometric.webp",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009381/images/regions/zurich-isometric.webp",
+    "publicId": "images/regions/zurich-isometric"
+  },
+  {
+    "localPath": "/images/relofinder-logo-real.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009382/images/relofinder-logo-real.png",
+    "publicId": "images/relofinder-logo-real"
+  },
+  {
+    "localPath": "/images/relofinder-logo.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009384/images/relofinder-logo.png",
+    "publicId": "images/relofinder-logo"
+  },
+  {
+    "localPath": "/images/relofinder-logo.svg",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009384/images/relofinder-logo.png",
+    "publicId": "images/relofinder-logo"
+  },
+  {
+    "localPath": "/images/services/advisory-card.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009386/images/services/advisory-card.jpg",
+    "publicId": "images/services/advisory-card"
+  },
+  {
+    "localPath": "/images/services/advisory_assets.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009388/images/services/advisory_assets.jpg",
+    "publicId": "images/services/advisory_assets"
+  },
+  {
+    "localPath": "/images/services/advisory_hero_boardroom.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009394/images/services/advisory_hero_boardroom.jpg",
+    "publicId": "images/services/advisory_hero_boardroom"
+  },
+  {
+    "localPath": "/images/services/advisory_luxury_housing.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009395/images/services/advisory_luxury_housing.jpg",
+    "publicId": "images/services/advisory_luxury_housing"
+  },
+  {
+    "localPath": "/images/services/corporate-handshake.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009397/images/services/corporate-handshake.jpg",
+    "publicId": "images/services/corporate-handshake"
+  },
+  {
+    "localPath": "/images/services/corporate-hero.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009400/images/services/corporate-hero.jpg",
+    "publicId": "images/services/corporate-hero"
+  },
+  {
+    "localPath": "/images/services/education-card.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009401/images/services/education-card.jpg",
+    "publicId": "images/services/education-card"
+  },
+  {
+    "localPath": "/images/services/housing-card.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009402/images/services/housing-card.jpg",
+    "publicId": "images/services/housing-card"
+  },
+  {
+    "localPath": "/images/services/housing-crowd.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009404/images/services/housing-crowd.jpg",
+    "publicId": "images/services/housing-crowd"
+  },
+  {
+    "localPath": "/images/services/housing-hero.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009405/images/services/housing-hero.jpg",
+    "publicId": "images/services/housing-hero"
+  },
+  {
+    "localPath": "/images/services/housing-keys.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009407/images/services/housing-keys.jpg",
+    "publicId": "images/services/housing-keys"
+  },
+  {
+    "localPath": "/images/services/housing-paperwork.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009409/images/services/housing-paperwork.jpg",
+    "publicId": "images/services/housing-paperwork"
+  },
+  {
+    "localPath": "/images/services/insurance-card.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009410/images/services/insurance-card.jpg",
+    "publicId": "images/services/insurance-card"
+  },
+  {
+    "localPath": "/images/services/insurance_family_home.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009411/images/services/insurance_family_home.jpg",
+    "publicId": "images/services/insurance_family_home"
+  },
+  {
+    "localPath": "/images/services/insurance_global_traveler.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009412/images/services/insurance_global_traveler.jpg",
+    "publicId": "images/services/insurance_global_traveler"
+  },
+  {
+    "localPath": "/images/services/insurance_health_healthcare.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009414/images/services/insurance_health_healthcare.jpg",
+    "publicId": "images/services/insurance_health_healthcare"
+  },
+  {
+    "localPath": "/images/services/insurance_hero_shield.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009416/images/services/insurance_hero_shield.jpg",
+    "publicId": "images/services/insurance_hero_shield"
+  },
+  {
+    "localPath": "/images/services/insurance_tax_wealth.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009417/images/services/insurance_tax_wealth.jpg",
+    "publicId": "images/services/insurance_tax_wealth"
+  },
+  {
+    "localPath": "/images/services/moving-card.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009419/images/services/moving-card.jpg",
+    "publicId": "images/services/moving-card"
+  },
+  {
+    "localPath": "/images/services/moving_happy_family.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009420/images/services/moving_happy_family.jpg",
+    "publicId": "images/services/moving_happy_family"
+  },
+  {
+    "localPath": "/images/services/moving_hero_customs.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009423/images/services/moving_hero_customs.jpg",
+    "publicId": "images/services/moving_hero_customs"
+  },
+  {
+    "localPath": "/images/services/moving_packers.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009425/images/services/moving_packers.jpg",
+    "publicId": "images/services/moving_packers"
+  },
+  {
+    "localPath": "/images/services/moving_truck.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009426/images/services/moving_truck.jpg",
+    "publicId": "images/services/moving_truck"
+  },
+  {
+    "localPath": "/images/services/offlist-ui.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009427/images/services/offlist-ui.png",
+    "publicId": "images/services/offlist-ui"
+  },
+  {
+    "localPath": "/images/services/school_search_hero.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009428/images/services/school_search_hero.jpg",
+    "publicId": "images/services/school_search_hero"
+  },
+  {
+    "localPath": "/images/services/settling-content.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009430/images/services/settling-content.jpg",
+    "publicId": "images/services/settling-content"
+  },
+  {
+    "localPath": "/images/services/settling-hero.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009431/images/services/settling-hero.jpg",
+    "publicId": "images/services/settling-hero"
+  },
+  {
+    "localPath": "/images/services/visa-card.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009433/images/services/visa-card.jpg",
+    "publicId": "images/services/visa-card"
+  },
+  {
+    "localPath": "/images/services/visa-consult.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009434/images/services/visa-consult.jpg",
+    "publicId": "images/services/visa-consult"
+  },
+  {
+    "localPath": "/images/services/visa-documents.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009436/images/services/visa-documents.jpg",
+    "publicId": "images/services/visa-documents"
+  },
+  {
+    "localPath": "/images/services/visa-hero.png",
+    "cloudinaryUrl": "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009438/images/services/visa-hero.jpg",
+    "publicId": "images/services/visa-hero"
+  }
+]

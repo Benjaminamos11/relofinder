@@ -249,6 +249,83 @@ export default function AdminDashboard() {
             }
         }
 
+        if (editingPartner.team) {
+            // 1. Remove existing team links for this relocator (sync strategy)
+            const { error: deleteError } = await supabase
+                .from('relocator_consultants')
+                .delete()
+                .eq('relocator_id', editingPartner.id);
+
+            if (deleteError) {
+                console.error('Error clearing old team links:', deleteError);
+            }
+
+            const newLinks = [];
+
+            // 2. Process each team member in the UI state
+            for (const member of editingPartner.team) {
+                let consultantId = member.consultant_id;
+                const consultantData = (member.consultant || {}) as any;
+
+                // Only proceed if we have at least a name
+                if (!consultantData.name) continue;
+
+                if (consultantId) {
+                    // Start updates, but don't await to block loop unless necessary? 
+                    // Better to await to ensure data integrity before linking.
+                    await supabase
+                        .from('relocation_consultants')
+                        .update({
+                            name: consultantData.name,
+                            email: consultantData.email,
+                            // phone: consultantData.phone, // Add if in future UI
+                            // bio: consultantData.bio      // Add if in future UI
+                        })
+                        .eq('id', consultantId);
+                } else {
+                    // Create new consultant
+                    const { data: newConsultant, error: createError } = await supabase
+                        .from('relocation_consultants')
+                        .insert({
+                            name: consultantData.name,
+                            email: consultantData.email,
+                            // phone: consultantData.phone,
+                            // bio: consultantData.bio
+                        })
+                        .select()
+                        .single();
+
+                    if (!createError && newConsultant) {
+                        consultantId = newConsultant.id;
+                    } else {
+                        console.error('Error creating consultant:', createError);
+                        continue;
+                    }
+                }
+
+                if (consultantId) {
+                    newLinks.push({
+                        relocator_id: editingPartner.id,
+                        consultant_id: consultantId,
+                        role: member.role || 'Consultant',
+                        is_primary: member.is_primary || false
+                    });
+                }
+            }
+
+            // 3. Insert new links
+            if (newLinks.length > 0) {
+                const { error: linkError } = await supabase
+                    .from('relocator_consultants')
+                    .insert(newLinks);
+
+                if (linkError) {
+                    console.error('Error linking consultants:', linkError);
+                    alert('Warning: Some team members might not have been linked correctly.');
+                }
+            }
+        }
+
         await fetchPartners();
         setEditingPartner(null);
         setIsSaving(false);

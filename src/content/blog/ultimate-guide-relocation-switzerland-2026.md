@@ -4,7 +4,7 @@ description: "Everything you need to know about moving to Switzerland. From secu
 publishDate: 2026-01-05
 readingTime: 18
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/ultimate-guide.png"
+heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009363/images/blog/ultimate-guide.jpg"
 category: "Guides"
 tags: ["relocation", "guide", "checklist", "permits", "housing", "insurance", "banking", "expats", "switzerland"]
 featured: true

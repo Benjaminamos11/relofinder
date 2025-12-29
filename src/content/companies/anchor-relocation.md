@@ -2,7 +2,7 @@
 id: "anchor-relocation"
 name: "Anchor Relocation"
 description: "Relocation and property services specialist with 20+ years experience, offering integrated home finding and real estate solutions in Zurich and Central Switzerland."
-logo: "/images/companies/anchor-relocation-logo.png"
+logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009364/images/companies/anchor-relocation-logo.png"
 
 website: "https://anchor-relocation.ch/"
 phone: "+41 44 383 23 23"
