@@ -4,6 +4,7 @@ import react from '@astrojs/react';
 // import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
+import netlify from '@astrojs/netlify';
 
 export default defineConfig({
   prefetch: {
