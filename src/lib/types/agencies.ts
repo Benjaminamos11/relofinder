@@ -115,6 +115,15 @@ export interface Agency {
   services?: string[];
   offices?: Office[];
   team?: ConsultantAssignment[];
+  // SEO & Optimization
+  google_maps_url?: string;
+  google_place_id?: string;
+  seo_summary?: string;
+  bio?: string;
+  meta_title?: string;
+  // Ops
+  accepting_new_customers?: boolean;
+  contact_through_us?: boolean;
 }
 
 export interface Service {

@@ -59,12 +59,10 @@ export default function QuoteInterface({ token: propToken }: QuoteInterfaceProps
             }
 
             try {
-                // 1. Fetch Quote based on Token
+                // 1. Fetch Quote SECURELY via RPC
+                // This bypasses RLS for the exact token provided
                 const { data: quote, error: quoteFetchError } = await supabase
-                    .from('quotes')
-                    .select('*, lead:leads(*)')
-                    .eq('token', token)
-                    .single();
+                    .rpc('get_quote_by_token', { token_val: token });
 
                 if (quoteFetchError || !quote) {
                     console.error('Error fetching quote:', quoteFetchError);
@@ -102,7 +100,7 @@ export default function QuoteInterface({ token: propToken }: QuoteInterfaceProps
             const { error: updateError } = await supabase
                 .from('quotes')
                 .update({
-                    price: parseFloat(price),
+                    price_estimated: parseFloat(price),
                     availability,
                     message,
                     meeting_link: meetingLink,

@@ -65,27 +65,17 @@ export default function UserDashboard({ token: propToken }: UserDashboardProps) 
                     return;
                 }
 
-                // 1. Fetch Lead by Token/ID
-                const { data: leadData, error: leadError } = await supabase
-                    .from('leads')
-                    .select('*')
-                    .eq('id', token)
-                    .single();
+                // 1. Fetch Dashboard Data via Secure RPC
+                const { data: dashboardData, error: rpcError } = await supabase
+                    .rpc('get_user_dashboard', { lead_id_val: token });
 
-                if (leadError || !leadData) {
-                    throw new Error('User not found.');
+                if (rpcError || !dashboardData) {
+                    console.error('Error fetching dashboard:', rpcError);
+                    throw new Error('User dashboard not found.');
                 }
-                setLead(leadData);
 
-                // 2. Fetch Quotes
-                const { data: quotesData, error: quotesError } = await supabase
-                    .from('quotes')
-                    .select('*')
-                    .eq('lead_id', leadData.id)
-                    .eq('status', 'submitted');
-
-                if (quotesError) throw quotesError;
-                setQuotes(quotesData || []);
+                setLead(dashboardData.lead);
+                setQuotes(dashboardData.quotes);
 
             } catch (err: any) {
                 console.error('Error fetching dashboard:', err);

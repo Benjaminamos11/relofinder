@@ -60,6 +60,45 @@ try {
   if (relocatorData) {
     relocatorId = relocatorData.id;
     tier = relocatorData.tier || 'standard';
+
+    // FETCH FULL DB DATA TO OVERRIDE MARKDOWN (Single Source of Truth)
+    const { data: fullProfile } = await supabase
+        .from('relocators')
+        .select(`
+            *,
+            offices:relocator_offices(*)
+        `)
+        .eq('id', relocatorId)
+        .single();
+    
+    if (fullProfile) {
+        // OVERRIDE MARKDOWN VALUES WITH DB VALUES
+        if (fullProfile.contact_email) companyData.email = fullProfile.contact_email;
+        if (fullProfile.phone_number) companyData.phone = fullProfile.phone_number;
+        if (fullProfile.website) companyData.website = fullProfile.website;
+        if (fullProfile.founded_year) companyData.founded = fullProfile.founded_year;
+        // employee_count might be text or number in DB, ensure string for display
+        if (fullProfile.employee_count) companyData.employees = String(fullProfile.employee_count);
+
+        // Handle Address (Prioritize Main Office)
+        const mainOffice = fullProfile.offices?.find((o: any) => o.is_main) || fullProfile.offices?.[0];
+        if (mainOffice) {
+            companyData.address = {
+                street: mainOffice.street,
+                city: mainOffice.city,
+                postalCode: mainOffice.zip,
+                canton: companyData.address?.canton || '' // Keep canton from MD if missing in DB
+            };
+        } else if (fullProfile.address_street || fullProfile.address_city) {
+             // Fallback to legacy flat columns if no office rows
+             companyData.address = {
+                street: fullProfile.address_street || companyData.address?.street,
+                city: fullProfile.address_city || companyData.address?.city,
+                postalCode: fullProfile.address_zip || companyData.address?.postalCode,
+                canton: companyData.address?.canton || ''
+             };
+        }
+    }
   }
 
   if (relocatorId) {
