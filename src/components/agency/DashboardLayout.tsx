@@ -67,14 +67,50 @@ export default function DashboardLayout() {
         }
 
         // Fetch Partner Profile
-        const { data: profile, error } = await supabase
+        // 1. Try by Auth User ID (Linked Account)
+        let { data: profile, error } = await supabase
             .from('relocators')
             .select('*')
             .eq('auth_user_id', session.user.id)
             .single();
 
-        if (error || !profile) {
-            console.error("Profile fetch error", error);
+        // 2. Fallback: Try by Email or Domain (Auto-Link logic)
+        if (!profile && session.user.email) {
+            const domain = session.user.email.split('@')[1];
+
+            // Construct query: match contact_email directly OR email directly OR website domain
+            let query = supabase.from('relocators').select('*');
+
+            // If we have a valid domain (and not generic like gmail), check website too
+            // Note: Preventing generic domains is hard without a list, but assuming B2B emails.
+            const isGeneric = ['gmail.com', 'outlook.com', 'yahoo.com', 'hotmail.com'].includes(domain);
+
+            if (domain && !isGeneric) {
+                query = query.or(`contact_email.eq.${session.user.email},email.eq.${session.user.email},website.ilike.%${domain}%`);
+            } else {
+                query = query.or(`contact_email.eq.${session.user.email},email.eq.${session.user.email}`);
+            }
+
+            const { data: byEmail } = await query.limit(1).single();
+
+            if (byEmail) {
+                console.log("✅ Managed to link profile by Email/Domain", byEmail.company_name);
+                profile = byEmail;
+
+                // Optional: Attempt to link this user permanently to the relocator row
+                // This might fail if RLS prevents update, so we silence the error
+                supabase.from('relocators')
+                    .update({ auth_user_id: session.user.id })
+                    .eq('id', byEmail.id)
+                    .then(({ error: updateErr }) => {
+                        if (updateErr) console.warn("Could not auto-link auth_id (RLS likely):", updateErr.message);
+                    });
+            }
+        }
+
+        if (!profile) {
+            console.error("Profile fetch error or not found for user:", session.user.email);
+            // Optionally redirect to an 'Access Denied' or 'Onboarding' page
         } else {
             setPartner(profile);
         }

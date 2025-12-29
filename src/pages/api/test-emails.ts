@@ -7,12 +7,18 @@ import { AgencyOpportunity } from '../../emails/AgencyOpportunity';
 import { AgencyWin } from '../../emails/AgencyWin';
 import { AdminAlert } from '../../emails/AdminAlert';
 
+import { MagicLinkEmail } from '../../emails/MagicLinkEmail';
+
 const resend = new Resend(import.meta.env.RESEND_API_KEY || process.env.RESEND_API_KEY);
 const TO_EMAIL = 'bw@expat-savvy.ch';
 
 export const GET: APIRoute = async () => {
     try {
         const emails = [
+            {
+                subject: 'Relofinder: Sign In Link',
+                react: MagicLinkEmail({ magicLink: 'https://relofinder.ch/api/auth/verify?token=test_token' })
+            },
             {
                 subject: 'Relofinder: Request Received',
                 react: RequestReceived({ userName: 'Ben', destination: 'Zurich' })
@@ -41,7 +47,7 @@ export const GET: APIRoute = async () => {
 
         const results = await Promise.all(emails.map(email =>
             resend.emails.send({
-                from: 'Relofinder <onboarding@resend.dev>',
+                from: 'Relofinder <hello@relofinder.ch>',
                 to: TO_EMAIL,
                 subject: email.subject,
                 react: email.react as any,

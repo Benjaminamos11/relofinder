@@ -1,4 +1,4 @@
-import { Text, Section, Code } from '@react-email/components';
+import { Text, Section } from '@react-email/components';
 import * as React from 'react';
 import { EmailLayout, colors } from './components/EmailLayout';
 
@@ -16,7 +16,7 @@ export const AdminAlert: React.FC<AdminAlertProps> = ({
             <Text style={h1}>🛎️ Admin Alert: {type}</Text>
 
             <Section style={codeBlock}>
-                <Code style={code}>{JSON.stringify(data, null, 2)}</Code>
+                <pre style={{ margin: 0, ...code }}>{JSON.stringify(data, null, 2)}</pre>
             </Section>
 
             <Text style={footer}>

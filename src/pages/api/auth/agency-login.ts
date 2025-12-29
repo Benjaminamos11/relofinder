@@ -10,32 +10,33 @@ export const POST: APIRoute = async ({ request, redirect }) => {
             return new Response(JSON.stringify({ message: 'Email is required' }), { status: 400 });
         }
 
-        // 1. Verify Partner Existence
-        // We check if this email is listed as an 'admin' or contact for any relocator
-        // Since we don't have a strict 'contact_email' on relocators yet, let's assume we search match on the 'email' column if it exists, 
-        // OR we might need to add it.
-        // For now, let's check against a known list or column.
-        // WAIT, `relocators` usually has an email field. Let's check schema.
+        const domain = email.split('@')[1];
+        if (!domain) {
+            return new Response(JSON.stringify({ message: 'Invalid email address' }), { status: 400 });
+        }
 
-        // Check if email exists in 'relocators' table
-        // Adjust column name 'email' based on actual schema if needed.
+        // 1. Verify Partner Existence via Email OR Domain
+        // We check against contact_email, specific email column, OR website domain match
         const { data: partner, error: dbError } = await supabase
             .from('relocators')
             .select('id, company_name')
-            .or(`contact_email.eq.${email},email.eq.${email}`) // Try both common fields
+            .or(`contact_email.eq.${email},email.eq.${email},website.ilike.%${domain}%`)
             .limit(1)
             .single();
 
         if (dbError || !partner) {
-            // Security: Don't reveal if user exists or not? 
-            // For a partner portal, explicit error is better UX: "You are not a registered partner."
+            console.warn(`Login attempt failed for ${email} (Domain: ${domain}) - Not found`);
             return new Response(JSON.stringify({
-                message: 'No partner account found with this email. Please contact support@relofinder.ch to apply.'
+                message: 'No partner account found matching this email or domain. Please contact support@relofinder.ch.'
             }), { status: 404 });
         }
 
+        console.log(`Login attempt for ${email} matched partner: ${partner.company_name}`);
+
         // 2. Send Magic Link
-        // Supabase Auth will handle the actual email sending
+        // NOTE: Uses Supabase default email template because explicit 'MagicLinkEmail' 
+        // template sending requires Service Role Key to generate tokens manually.
+        // To use the custom template, Supabase SMTP must be configured to use Resend.
         const { error: authError } = await supabase.auth.signInWithOtp({
             email,
             options: {
@@ -47,7 +48,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
             return new Response(JSON.stringify({ message: authError.message }), { status: 500 });
         }
 
-        return new Response(JSON.stringify({ success: true }), { status: 200 });
+        return new Response(JSON.stringify({ success: true, companyName: partner.company_name }), { status: 200 });
 
     } catch (error: any) {
         return new Response(JSON.stringify({ message: error.message }), { status: 500 });

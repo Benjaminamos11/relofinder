@@ -23,18 +23,22 @@ export default function UnifiedLogin() {
         setFeedback(null);
 
         try {
-            const { error } = await supabase.auth.signInWithOtp({
-                email,
-                options: {
-                    emailRedirectTo: `${window.location.origin}/agency/dashboard`, // Default redirect for agencies
-                },
+            // Use custom API endpoint to verify domain/email against partner database first
+            const res = await fetch('/api/auth/agency-login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email }),
             });
 
-            if (error) throw error;
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.message || 'Failed to send magic link.');
+            }
 
             setFeedback({
                 type: 'success',
-                message: 'Check your email for the secure login link.',
+                message: `Welcome back, ${data.companyName || 'Partner'}! Check your email for the login link.`,
             });
         } catch (err: any) {
             setFeedback({
