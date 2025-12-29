@@ -35,12 +35,8 @@ const findRelocator = (companyName: string) => {
   });
 };
 
-// Separate relocation companies from insurance agencies
-const relocationCompanies = companies.filter(c => 
-  !c.data.name.toLowerCase().includes('expat savvy') &&
-  !c.data.name.toLowerCase().includes('expat services switzerland') &&
-  !c.data.name.toLowerCase().includes('swiss prime international')
-);
+// Get all relocation companies (no exclusions)
+const relocationCompanies = companies;
 
 // Sort remaining companies by rating
 const sortedCompanies = relocationCompanies
