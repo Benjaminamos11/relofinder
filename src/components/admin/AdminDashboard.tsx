@@ -243,7 +243,13 @@ export default function AdminDashboard() {
             await supabase.from('relocator_offices').delete().eq('relocator_id', editingPartner.id);
             const officesToInsert = editingPartner.offices
                 .filter(o => o.street && o.city)
-                .map(o => ({ ...o, relocator_id: editingPartner.id }));
+                .map(o => ({
+                    relocator_id: editingPartner.id,
+                    street: o.street,
+                    city: o.city,
+                    zip: o.zip,
+                    is_main: o.is_main || false
+                }));
             if (officesToInsert.length > 0) {
                 await supabase.from('relocator_offices').insert(officesToInsert);
             }
