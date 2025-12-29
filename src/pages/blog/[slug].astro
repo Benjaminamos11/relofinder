@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+export const prerender = true;
 import CloudinaryImage from '../../components/common/CloudinaryImage.astro';
 import { getCollection } from 'astro:content';
 import { Clock, Calendar, User, ChevronDown, Facebook, Twitter, Linkedin, Link as LinkIcon } from 'lucide-react';
@@ -135,10 +136,7 @@ const toc = headings.filter(h => h.depth === 2 || h.depth === 3);
                  </div>
              </div>
         </div>
-
-        </div>
-
-        <div class="container mx-auto px-6 lg:px-8 max-w-7xl relative z-10 py-12">
+<div class="container mx-auto px-6 lg:px-8 max-w-7xl relative z-10 py-12">
             <div class="flex flex-col lg:flex-row gap-12 lg:gap-20">
                 
                 {/* Main Content */}

@@ -156,9 +156,7 @@ const structuredData = [serviceSchema, breadcrumbSchema, definedTermSchema, faqS
       keywords={["housing search switzerland", "relocation agency zurich", "apartment hunting geneva", "nachmieter switzerland", "expat housing service"]}
       schema={structuredData}
       openGraph={{
-        title: "Housing in Switzerland: How to Find a Home in a 0.06% Market",
-        description: "Don't fight 50 other applicants. Use our ecosystem to access pre-market listings and secure your Swiss home.",
-        image: heroImage.src,
+        image: heroImage,
         type: "service",
         url: "https://relofinder.ch/services/housing-search"
       }}
@@ -167,7 +165,7 @@ const structuredData = [serviceSchema, breadcrumbSchema, definedTermSchema, faqS
         site: "@relofinder",
         title: "Swiss Housing Search: The 0.06% Guide",
         description: "Navigate the competitive Swiss housing market. Access off-market listings and bypass mass viewings.",
-        image: heroImage.src
+        image: heroImage
       }}
     />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -190,7 +188,7 @@ const structuredData = [serviceSchema, breadcrumbSchema, definedTermSchema, faqS
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-transparent to-slate-950/80 z-20 pointer-events-none"></div>
             <img 
-                src={heroImage.src} 
+                src={heroImage} 
                 alt="Swiss Apartment Building with For Rent Sign" 
                 class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 transition-all duration-[2000ms] ease-in-out z-10"
             />
@@ -241,7 +239,7 @@ const structuredData = [serviceSchema, breadcrumbSchema, definedTermSchema, faqS
         <div class="group bg-white rounded-2xl p-2 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-slate-100">
                     <div class="mb-6 relative aspect-[4/3] overflow-hidden rounded-xl shadow-inner group-hover:shadow-2xl transition-all duration-700">
                         <img 
-                            src={crowdImage.src} 
+                            src={crowdImage} 
                             alt="Crowd of people waiting"
                             class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[2000ms] ease-in-out"
                         />
@@ -259,7 +257,7 @@ const structuredData = [serviceSchema, breadcrumbSchema, definedTermSchema, faqS
                 <div class="group bg-white rounded-2xl p-2 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-slate-100">
                     <div class="mb-6 relative aspect-[4/3] overflow-hidden rounded-xl shadow-inner group-hover:shadow-2xl transition-all duration-700">
                         <img 
-                            src={paperImage.src} 
+                            src={paperImage} 
                             alt="Rejected document stamp"
                             class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[2000ms] ease-in-out"
                         />
@@ -277,7 +275,7 @@ const structuredData = [serviceSchema, breadcrumbSchema, definedTermSchema, faqS
                 <div class="group bg-white rounded-2xl p-2 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-slate-100">
                     <div class="mb-6 relative aspect-[4/3] overflow-hidden rounded-xl shadow-inner group-hover:shadow-2xl transition-all duration-700">
                         <img 
-                            src={keysImage.src}
+                            src={keysImage}
                             alt="Hand holding keys"
                             class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[2000ms] ease-in-out"
                         />
@@ -417,7 +415,7 @@ const structuredData = [serviceSchema, breadcrumbSchema, definedTermSchema, faqS
                 <div class="relative order-1 md:order-2 group">
                     <div class="absolute inset-0 bg-gradient-to-tr from-[#FF6F61]/20 to-transparent rounded-3xl blur-3xl transform group-hover:scale-105 transition-transform duration-700"></div>
                     <img 
-                        src={offlistUiImage.src} 
+                        src={offlistUiImage} 
                         alt="Offlist.ch Dashboard Interface" 
                         class="relative rounded-2xl shadow-2xl border border-slate-200 transform group-hover:-rotate-1 transition-transform duration-500 w-full"
                     />
