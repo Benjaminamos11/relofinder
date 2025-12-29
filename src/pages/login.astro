@@ -1,0 +1,53 @@
+---
+import UnifiedLogin from '../components/auth/UnifiedLogin';
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en" class="h-full">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>Sign In | ReloFinder</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=playfair+display:ital,wght@0,400..900;1,400..900&family=inter:wght@100..900&display=swap" rel="stylesheet">
+	</head>
+	<body class="h-full m-0 p-0 bg-slate-100 font-sans antialiased text-slate-800 flex flex-col">
+        
+        {/* Simple Navbar */}
+        <nav class="w-full bg-white/80 backdrop-blur-md border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <a href="/" class="text-xl font-bold tracking-tight text-[#FF6F61] font-serif">
+                        Relofinder
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        {/* Login Container */}
+		<main class="flex-1 flex flex-col items-center justify-center p-4 sm:p-8 relative overflow-hidden">
+            {/* Background Ambience */}
+            <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#FF6F61]/5 rounded-full blur-[100px]"></div>
+                <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-slate-200/20 rounded-full blur-[80px]"></div>
+            </div>
+
+			<div class="w-full max-w-md relative z-10">
+                <UnifiedLogin client:load />
+
+                <div class="mt-8 text-center">
+                    <p class="text-sm text-slate-400">
+                        Need help? <a href="mailto:support@relofinder.ch" class="text-slate-600 hover:text-[#FF6F61] font-medium transition-colors">Contact Support</a>
+                    </p>
+                </div>
+			</div>
+		</main>
+
+        <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-400">
+            &copy; {new Date().getFullYear()} ReloFinder Switzerland. All rights reserved.
+        </footer>
+	</body>
+</html>

@@ -512,6 +512,16 @@ export default function AdminDashboard() {
         : [];
 
     useEffect(() => {
+        // Auth Guard
+        const checkAuth = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user || user.email !== 'admin@relofinder.ch') {
+                window.location.href = '/login';
+                return;
+            }
+        };
+        checkAuth();
+
         fetchPartners();
         fetchLeads();
 
