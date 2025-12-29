@@ -35,8 +35,11 @@ const findRelocator = (companyName: string) => {
   });
 };
 
-// Get all relocation companies (no exclusions)
-const relocationCompanies = companies;
+// Get all relocation companies (only exclude non-relocation for testing)
+const relocationCompanies = companies.filter(c => 
+  !c.data.name.toLowerCase().includes('expat services switzerland') &&
+  !c.data.name.toLowerCase().includes('swiss prime international')
+);
 
 // Sort remaining companies by rating
 const sortedCompanies = relocationCompanies
