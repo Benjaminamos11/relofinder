@@ -8,7 +8,7 @@ import netlify from '@astrojs/netlify';
 
 export default defineConfig({
   prefetch: {
-    prefetchAll: true,
+    prefetchAll: false,
     defaultStrategy: 'hover'
   },
   integrations: [

@@ -112,6 +112,18 @@ const {
     
     <!-- Use client:load to ensure React is ready before hydration -->
     <UniversalContactModal client:load />
+
+    <!-- Performance & Infrastructure: Ensure legacy SW are removed -->
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(registrations => {
+          for (const registration of registrations) {
+            registration.unregister();
+            console.log('♻️ Legacy Service Worker removed');
+          }
+        });
+      }
+    </script>
     
     <!-- Global Modal Functions - Synchronous Setup Before React Loads -->
     <script is:inline>
