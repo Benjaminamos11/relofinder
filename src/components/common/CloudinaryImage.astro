@@ -27,119 +27,116 @@ const {
   priority = false
 } = Astro.props;
 
-// Check if it's a Cloudinary URL
-const isCloudinaryUrl = src.includes('cloudinary.com') || src.includes('res.cloudinary.com');
+// Check if it's a Cloudinary URL or a local reference that can be optimized via Fetch
+const isCloudinaryUrl = src && (src.includes('cloudinary.com') || src.includes('res.cloudinary.com'));
+const isLocalPath = src && src.startsWith('/') && !src.startsWith('//');
 
-let optimizedSrc = src;
+// In development, we cannot use Cloudinary Fetch API for local images because localhost is not publicly accessible.
+// We only optimize local images in production.
+const isDev = import.meta.env.DEV;
+const shouldOptimizeLocal = isLocalPath && !isDev;
+
+let optimizedSrc = src || '';
 let srcSet = '';
 let avifSrcSet = '';
 let webpSrcSet = '';
+let isOptimizable = isCloudinaryUrl || shouldOptimizeLocal;
 
-if (isCloudinaryUrl) {
+if (!src) {
+  isOptimizable = false;
+}
+
+if (isOptimizable) {
   try {
-    // Extract base URL and public ID from Cloudinary URL
-    const urlParts = src.split('/upload/');
-    if (urlParts.length === 2) {
-      const baseUrl = urlParts[0] + '/upload/';
-      const pathAfterUpload = urlParts[1];
-      
-      // Remove any existing transformations (if they exist)
-      const publicIdParts = pathAfterUpload.split('/');
-      const publicId = publicIdParts[publicIdParts.length - 1];
-      
-      // Build transformation parameters with advanced compression
+    let baseUrl = '';
+    let publicId = '';
+
+    if (isCloudinaryUrl) {
+      // Handle existing Cloudinary upload URLs
+      const urlParts = src.split('/upload/');
+      if (urlParts.length === 2) {
+        baseUrl = urlParts[0] + '/upload/';
+        const pathAfterUpload = urlParts[1];
+        
+        // Robustly separate transformations from public ID
+        // If there's a slash, the first part might be transformations (e.g., w_200/v123/path)
+        // or just folders/version (e.g., v123/folder/path). 
+        // Cloudinary handles transformations separately if they are separated by commas.
+        // For simplicity, we assume everything after the last transformation segment or version is the public ID.
+        const pathSegments = pathAfterUpload.split('/');
+        
+        // Find the index where transformations end (usually the last segment is the filename/publicId)
+        // We'll keep the folders and version if present.
+        publicId = pathAfterUpload; 
+        
+        // Remove existing transformations if they are in the first segment and contain underscores/commas
+        if (pathSegments.length > 1 && (pathSegments[0].includes('_') || pathSegments[0].includes(','))) {
+           publicId = pathSegments.slice(1).join('/');
+        }
+      }
+    } else if (shouldOptimizeLocal) {
+      // Handle local paths via Cloudinary Fetch API (Only in Production)
+      baseUrl = 'https://res.cloudinary.com/dphbnwjtx/image/fetch/';
+      publicId = `https://relofinder.ch${src}`;
+    }
+
+    if (baseUrl && publicId) {
+      // Build transformation parameters
       const transforms: string[] = [];
-      
-      // Enhanced quality and format optimization with higher compression for mobile
-      // Use q_auto:eco for mobile (smaller files) and q_auto:good for desktop
       const qualityParam = width <= 640 ? 'q_auto:eco' : 'q_auto:good';
       transforms.push(qualityParam);
       
-      // Responsive sizing with crop
       if (height) {
         transforms.push(`w_${width},h_${height},c_${crop}`);
       } else {
         transforms.push(`w_${width},c_${crop}`);
       }
       
-      // Gravity for smart cropping
       if (gravity && gravity !== 'auto') {
         transforms.push(`g_${gravity}`);
       }
       
-      // DPR (Device Pixel Ratio) for retina displays
       transforms.push('dpr_auto');
-      
-      // Additional performance optimizations
-      transforms.push('fl_progressive'); // Progressive JPEG
-      transforms.push('fl_immutable_cache'); // Better caching
+      transforms.push('fl_progressive');
+      transforms.push('fl_immutable_cache');
       
       const baseTransformString = transforms.join(',');
-      
-      // Create optimized srcSets for different formats
-      // Use smaller sizes for better mobile performance (match actual display sizes)
       const sizes = [320, 384, 640, 768, 1024, 1280];
-      const relevantSizes = sizes.filter(size => size <= width * 1.5); // Limit to 1.5x for better perf
+      const relevantSizes = sizes.filter(size => size <= width * 1.5);
       
-      // AVIF format (best compression, modern browsers)
       avifSrcSet = relevantSizes.map(size => {
-        const sizeTransforms = transforms.map((t: string) => {
-          if (t.startsWith('w_')) {
-            return `w_${size}`;
-          }
-          return t;
-        });
-        return `${baseUrl}f_avif,${sizeTransforms.join(',')}/${publicId} ${size}w`;
+        return `${baseUrl}f_avif,${baseTransformString.replace(/w_\d+/, `w_${size}`)}/${publicId} ${size}w`;
       }).join(', ');
       
-      // WebP format (good compression, wide support)
       webpSrcSet = relevantSizes.map(size => {
-        const sizeTransforms = transforms.map((t: string) => {
-          if (t.startsWith('w_')) {
-            return `w_${size}`;
-          }
-          return t;
-        });
-        return `${baseUrl}f_webp,${sizeTransforms.join(',')}/${publicId} ${size}w`;
+        return `${baseUrl}f_webp,${baseTransformString.replace(/w_\d+/, `w_${size}`)}/${publicId} ${size}w`;
       }).join(', ');
       
-      // Default format srcSet
       srcSet = relevantSizes.map(size => {
-        const sizeTransforms = transforms.map((t: string) => {
-          if (t.startsWith('w_')) {
-            return `w_${size}`;
-          }
-          return t;
-        });
         const formatParam = format === 'auto' ? 'f_auto' : `f_${format}`;
-        return `${baseUrl}${formatParam},${sizeTransforms.join(',')}/${publicId} ${size}w`;
+        return `${baseUrl}${formatParam},${baseTransformString.replace(/w_\d+/, `w_${size}`)}/${publicId} ${size}w`;
       }).join(', ');
       
-      // Main optimized source
       const formatParam = format === 'auto' ? 'f_auto' : `f_${format}`;
       optimizedSrc = `${baseUrl}${formatParam},${baseTransformString}/${publicId}`;
     }
   } catch (error) {
-    // Fallback to original URL if transformation fails
-    console.warn('Cloudinary transformation failed, using original URL:', error);
+    console.warn('Cloudinary optimization failed:', error);
     optimizedSrc = src;
-    srcSet = '';
   }
 }
 
-// Enhanced sizes attribute for better responsive loading
-// More accurate viewport-based sizing for mobile-first approach
+// Enhanced sizes attribute
 const responsiveSizes = priority 
   ? '(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 70vw'
   : '(max-width: 384px) 364px, (max-width: 640px) 90vw, (max-width: 768px) 80vw, (max-width: 1024px) 70vw, 60vw';
 
-// Determine optimal loading strategy
 const finalLoading = priority ? 'eager' : loading;
 const fetchPriority = priority ? 'high' : 'auto';
 ---
 
 <!-- Enhanced picture element for better format support and performance -->
-{isCloudinaryUrl ? (
+{isOptimizable ? (
   <picture>
     <!-- AVIF format for modern browsers (best compression) -->
     {avifSrcSet && (

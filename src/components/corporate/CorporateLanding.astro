@@ -1,0 +1,378 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import RFPForm from './RFPForm';
+import { 
+  Building2, 
+  TrendingDown, 
+  Users, 
+  ShieldCheck, 
+  CheckCircle2, 
+  ArrowRight, 
+  BarChart3,
+  Globe,
+  Lock,
+  Search,
+  FileText
+} from 'lucide-react';
+import '../../styles/global.css';
+import { corporateTranslations } from '../../i18n/corporate';
+
+// Helper to get nested translations safely (though TypeScript helps ensure valid access)
+// In this case, we have a strict shape so we can use the lang key directly.
+interface Props {
+  lang: 'en' | 'de' | 'fr';
+}
+
+const { lang } = Astro.props;
+const t = corporateTranslations[lang];
+
+// Assets
+const heroDashboard = 'https://res.cloudinary.com/dphbnwjtx/image/upload/f_auto,q_auto/v1766976877/services/corporate-hero.jpg';
+const handshakeImage = 'https://res.cloudinary.com/dphbnwjtx/image/upload/f_auto,q_auto/v1766976875/services/corporate-handshake.jpg';
+
+// Metadata
+const title = lang === 'en' 
+  ? "Corporate Relocation Switzerland | The Operating System for Global Mobility" 
+  : lang === 'de'
+  ? "Corporate Relocation Schweiz | Das Betriebssystem für Global Mobility"
+  : "Relocation d'Entreprise Suisse | Le système d'exploitation pour la mobilité mondiale";
+
+const description = lang === 'en'
+  ? "Stop overpaying for static retainer contracts. Benchmark, source, and manage Swiss relocation providers with a transparent procurement platform. Average 25% savings."
+  : lang === 'de'
+  ? "Stoppen Sie statische Mandate. Vergleichen, prüfen und verwalten Sie Relocation-Partner transparent. Senken Sie Kosten durch anonyme Ausschreibungen."
+  : "Fini les contrats statiques. Comparez, auditez et gérez vos partenaires de relocation en toute transparence. Réduisez vos coûts grâce aux appels d'offres anonymes.";
+
+const canonical = `https://relofinder.ch/${lang === 'en' ? '' : lang + '/'}corporate`;
+---
+
+<Layout title={title} description={description} canonical={canonical}>
+  
+  <!-- 1. The Procurement Hero -->
+  <section class="relative pt-16 pb-16 md:pt-24 md:pb-24 bg-slate-50 overflow-hidden">
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-4xl mx-auto text-center mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-200/50 border border-slate-200 text-slate-600 text-[11px] font-bold uppercase tracking-widest mb-6 animate-fade-in">
+          <Building2 className="w-3 h-3" />
+          {t.hero.tag}
+        </div>
+        <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 mb-6 leading-[1.05] text-balance" set:html={t.hero.title}>
+        </h1>
+        <p class="text-xl text-slate-500 font-normal leading-relaxed max-w-2xl mx-auto mb-10">
+            {t.hero.description}
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+            <a href="#rfp-engine" class="bg-[#FF6F61] hover:bg-[#ff3333] text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center gap-2">
+                {t.hero.cta} <ArrowRight className="w-5 h-5" />
+            </a>
+            <span class="text-slate-400 text-sm font-medium">{t.hero.subcta}</span>
+        </div>
+      </div>
+
+      <!-- Hero Visual: Live Interactive Table -->
+      <div class="max-w-5xl mx-auto relative group perspective-1000">
+        <div class="absolute -inset-1 bg-gradient-to-r from-slate-200 to-slate-100 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+        <div class="relative bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden transform group-hover:rotate-x-2 transition-transform duration-700">
+             <!-- Top Bar Mockup -->
+             <div class="h-10 bg-slate-50 border-b border-slate-100 flex items-center justify-between px-4">
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-red-400/20 border border-red-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-400/20 border border-yellow-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-400/20 border border-green-400"></div>
+                </div>
+                <div class="text-[10px] font-mono text-slate-400 uppercase tracking-widest">Live Market Benchmarks</div>
+             </div>
+
+             <!-- Table Header -->
+             <div class="grid grid-cols-12 gap-4 px-6 py-3 bg-slate-50/50 border-b border-slate-100 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                <div class="col-span-3">{t.hero.tableHeader.provider}</div>
+                <div class="col-span-2">{t.hero.tableHeader.cost}</div>
+                <div class="col-span-4">{t.hero.tableHeader.scope}</div>
+                <div class="col-span-2">{t.hero.tableHeader.availability}</div>
+                <div class="col-span-1 text-right">{t.hero.tableHeader.rating}</div>
+             </div>
+
+             <!-- Row 1: Expensive/Slow -->
+             <div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-slate-50 items-center hover:bg-slate-50 transition-colors group/row">
+                <div class="col-span-3 font-semibold text-slate-400 blur-[3px] select-none">{t.hero.tableRows.row1.name}</div>
+                <div class="col-span-2 font-mono text-slate-600">CHF 6,200</div>
+                <div class="col-span-4 flex flex-wrap gap-1">
+                    <span class="text-[10px] px-2 py-0.5 bg-slate-100 text-slate-600 rounded">Visa</span>
+                    <span class="text-[10px] px-2 py-0.5 bg-slate-100 text-slate-600 rounded">Housing</span>
+                </div>
+                <div class="col-span-2 text-sm text-amber-600 font-medium">{t.hero.tableRows.row1.time}</div>
+                <div class="col-span-1 text-right font-bold text-slate-700">4.2</div>
+             </div>
+
+             <!-- Row 2: WINNER -->
+             <div class="grid grid-cols-12 gap-4 px-6 py-5 bg-[#FF6F61]/5 border-l-4 border-[#FF6F61] items-center relative shadow-sm scale-[1.01] z-10 transition-all duration-300 hover:bg-[#FF6F61]/10 hover:shadow-[0_0_30px_rgba(255,75,75,0.15)]">
+                <div class="col-span-3 font-bold text-slate-700 blur-[3px] select-none flex items-center gap-2">
+                    {t.hero.tableRows.row2.name}
+                </div>
+                <div class="col-span-2 font-mono text-[#FF6F61] font-bold">CHF 4,800</div>
+                <div class="col-span-4 flex flex-wrap gap-1">
+                    <span class="text-[10px] px-2 py-0.5 bg-white border border-[#FF6F61]/20 text-slate-700 rounded shadow-sm">Visa (L/B)</span>
+                    <span class="text-[10px] px-2 py-0.5 bg-white border border-[#FF6F61]/20 text-slate-700 rounded shadow-sm">Home Search</span>
+                    <span class="text-[10px] px-2 py-0.5 bg-white border border-[#FF6F61]/20 text-slate-700 rounded shadow-sm">Schooling</span>
+                </div>
+                <div class="col-span-2 text-sm text-green-600 font-bold flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> {t.hero.tableRows.row2.time}
+                </div>
+                <div class="col-span-1 text-right font-bold text-slate-900">4.9</div>
+                
+                <!-- Hover Tooltip Hint -->
+                <div class="absolute right-4 top-1/2 -translate-y-1/2 translate-x-full opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300">
+                    <div class="flex items-center gap-2 bg-slate-900 text-white text-xs px-3 py-1 rounded-full shadow-lg whitespace-nowrap">
+                         <CheckCircle2 className="w-3 h-3 text-[#FF6F61]" />
+                         <span>{t.hero.tableRows.row2.badge}</span>
+                    </div>
+                </div>
+             </div>
+
+             <!-- Row 3: Limited Scope -->
+             <div class="grid grid-cols-12 gap-4 px-6 py-4 items-center hover:bg-slate-50 transition-colors group/row opacity-70 hover:opacity-100">
+                <div class="col-span-3 font-semibold text-slate-400 blur-[3px] select-none">{t.hero.tableRows.row3.name}</div>
+                <div class="col-span-2 font-mono text-slate-600">CHF 7,500</div>
+                <div class="col-span-4 flex gap-1">
+                    <span class="text-[10px] px-2 py-0.5 bg-slate-100 text-slate-600 rounded">Visa Only</span>
+                </div>
+                <div class="col-span-2 text-sm text-slate-400 font-medium">{t.hero.tableRows.row3.time}</div>
+                <div class="col-span-1 text-right font-bold text-slate-700">3.8</div>
+             </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Background Elements -->
+    <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+    <div class="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+  </section>
+
+  <!-- 2. The Efficiency Gap (Split Layout with Reveal) -->
+  <section class="py-16 bg-white border-b border-slate-100">
+    <div class="container mx-auto px-4">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            
+            <!-- Left: Scope/Metrics -->
+            <div class="space-y-12">
+                <!-- Cost Control -->
+                <div class="group flex gap-6 items-start">
+                    <div class="w-12 h-12 bg-slate-50 rounded-lg flex items-center justify-center text-slate-900 border border-slate-100 shrink-0 group-hover:bg-[#FF6F61] group-hover:text-white group-hover:border-[#FF6F61] transition-colors">
+                        <TrendingDown className="w-6 h-6" />
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">{t.efficiency.cost.title}</h3>
+                        <p class="text-slate-500 leading-relaxed text-sm" set:html={t.efficiency.cost.desc}>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Vendor Agility -->
+                <div class="group flex gap-6 items-start">
+                    <div class="w-12 h-12 bg-slate-50 rounded-lg flex items-center justify-center text-slate-900 border border-slate-100 shrink-0 group-hover:bg-[#FF6F61] group-hover:text-white group-hover:border-[#FF6F61] transition-colors">
+                        <Users className="w-6 h-6" />
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">{t.efficiency.agility.title}</h3>
+                        <p class="text-slate-500 leading-relaxed text-sm">
+                            {t.efficiency.agility.desc}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Quality Assurance -->
+                <div class="group flex gap-6 items-start">
+                    <div class="w-12 h-12 bg-slate-50 rounded-lg flex items-center justify-center text-slate-900 border border-slate-100 shrink-0 group-hover:bg-[#FF6F61] group-hover:text-white group-hover:border-[#FF6F61] transition-colors">
+                        <ShieldCheck className="w-6 h-6" />
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">{t.efficiency.quality.title}</h3>
+                        <p class="text-slate-500 leading-relaxed text-sm">
+                            {t.efficiency.quality.desc}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Image Reveal -->
+            <div class="relative h-[600px] rounded-[2rem] overflow-hidden border border-slate-100 bg-slate-100 group shadow-2xl">
+                <img 
+                    src={handshakeImage} 
+                    alt="Corporate Partnership" 
+                    class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[2000ms] ease-in-out"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-100 group-hover:opacity-40 transition-opacity duration-1000"></div>
+                
+                <!-- Corner Detail -->
+                <div class="absolute bottom-8 left-8">
+                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-xs font-bold uppercase tracking-widest mb-2">
+                        <CheckCircle2 className="w-4 h-4 text-[#FF6F61]" />
+                        {t.efficiency.imageReveal.verified}
+                     </div>
+                     <p class="text-white text-2xl font-bold tracking-tight max-w-xs">{t.efficiency.imageReveal.text}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+  </section>
+
+  <!-- 3. How the Tender Process Works (Timeline) -->
+  <section class="py-20 bg-slate-50 border-b border-slate-200">
+    <!-- ... (Timeline Content Same as Before) ... -->
+    <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight">{t.process.title}</h2>
+            <p class="text-slate-500 text-lg">{t.process.subtitle}</p>
+        </div>
+
+        <div class="max-w-5xl mx-auto relative">
+            <!-- Connecting Line (Desktop) -->
+            <div class="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-slate-200 z-0"></div>
+
+            <div class="grid md:grid-cols-4 gap-8 relative z-10">
+                <!-- Step 1 -->
+                <div class="relative group">
+                    <div class="w-24 h-24 bg-white rounded-full border-4 border-slate-100 flex items-center justify-center mx-auto mb-6 group-hover:border-[#FF6F61] transition-colors relative z-10 shadow-sm">
+                        <FileText className="w-8 h-8 text-slate-400 group-hover:text-[#FF6F61] transition-colors" />
+                        <div class="absolute top-0 right-0 w-6 h-6 bg-slate-900 text-white text-xs font-bold rounded-full flex items-center justify-center">1</div>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">{t.process.steps[1].title}</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed">{t.process.steps[1].desc}</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative group">
+                    <div class="w-24 h-24 bg-white rounded-full border-4 border-slate-100 flex items-center justify-center mx-auto mb-6 group-hover:border-[#FF6F61] transition-colors relative z-10 shadow-sm">
+                        <Globe className="w-8 h-8 text-slate-400 group-hover:text-[#FF6F61] transition-colors" />
+                         <div class="absolute top-0 right-0 w-6 h-6 bg-slate-900 text-white text-xs font-bold rounded-full flex items-center justify-center">2</div>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">{t.process.steps[2].title}</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed">{t.process.steps[2].desc}</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative group">
+                    <div class="w-24 h-24 bg-white rounded-full border-4 border-slate-100 flex items-center justify-center mx-auto mb-6 group-hover:border-[#FF6F61] transition-colors relative z-10 shadow-sm">
+                        <BarChart3 className="w-8 h-8 text-slate-400 group-hover:text-[#FF6F61] transition-colors" />
+                         <div class="absolute top-0 right-0 w-6 h-6 bg-slate-900 text-white text-xs font-bold rounded-full flex items-center justify-center">3</div>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">{t.process.steps[3].title}</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed">{t.process.steps[3].desc}</p>
+                    </div>
+                </div>
+
+                 <!-- Step 4 -->
+                 <div class="relative group">
+                    <div class="w-24 h-24 bg-white rounded-full border-4 border-slate-100 flex items-center justify-center mx-auto mb-6 group-hover:border-[#FF6F61] transition-colors relative z-10 shadow-sm">
+                        <CheckCircle2 className="w-8 h-8 text-slate-400 group-hover:text-[#FF6F61] transition-colors" />
+                         <div class="absolute top-0 right-0 w-6 h-6 bg-slate-900 text-white text-xs font-bold rounded-full flex items-center justify-center">4</div>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">{t.process.steps[4].title}</h4>
+                        <p class="text-slate-500 text-xs leading-relaxed">{t.process.steps[4].desc}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- 4. FAQ Section (New) -->
+  <section class="py-20 bg-white border-b border-slate-100">
+      <div class="container mx-auto px-4">
+          <div class="max-w-3xl mx-auto">
+              <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">{t.faq.title}</h2>
+              
+              <div class="space-y-6">
+                  <!-- Q1 -->
+                  <div class="border border-slate-200 rounded-xl p-6 hover:border-[#FF6F61]/30 transition-colors">
+                      <h3 class="text-lg font-bold text-slate-900 mb-2">{t.faq.q1.title}</h3>
+                      <p class="text-slate-500 leading-relaxed text-sm" set:html={t.faq.q1.desc}>
+                      </p>
+                  </div>
+
+                  <!-- Q2 -->
+                  <div class="border border-slate-200 rounded-xl p-6 hover:border-[#FF6F61]/30 transition-colors">
+                      <h3 class="text-lg font-bold text-slate-900 mb-2">{t.faq.q2.title}</h3>
+                      <p class="text-slate-500 leading-relaxed text-sm">
+                          {t.faq.q2.desc}
+                      </p>
+                  </div>
+
+                   <!-- Q3 -->
+                   <div class="border border-slate-200 rounded-xl p-6 hover:border-[#FF6F61]/30 transition-colors">
+                      <h3 class="text-lg font-bold text-slate-900 mb-2">{t.faq.q3.title}</h3>
+                      <p class="text-slate-500 leading-relaxed text-sm">
+                          {t.faq.q3.desc}
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- 4. Data & Compliance (Trust Bar) -->
+  <section class="py-12 bg-white border-b border-slate-100">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-wrap justify-center gap-8 md:gap-16 items-center opacity-70 hover:opacity-100 transition-opacity">
+            <div class="flex items-center gap-3">
+                <ShieldCheck className="w-5 h-5 text-slate-400" />
+                <span class="text-sm font-semibold text-slate-600 uppercase tracking-wider">{t.trust.gdpr}</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <Lock className="w-5 h-5 text-slate-400" />
+                <span class="text-sm font-semibold text-slate-600 uppercase tracking-wider">{t.trust.hosted}</span>
+            </div>
+             <div class="flex items-center gap-3">
+                <Search className="w-5 h-5 text-slate-400" />
+                <span class="text-sm font-semibold text-slate-600 uppercase tracking-wider">{t.trust.vetted}</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <FileText className="w-5 h-5 text-slate-400" />
+                <span class="text-sm font-semibold text-slate-600 uppercase tracking-wider">{t.trust.fees}</span>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- 5. MMP Engine (Conversion) -->
+  <section id="rfp-engine" class="py-32 bg-slate-900 text-white">
+      <div class="container mx-auto px-4">
+          <div class="grid md:grid-cols-2 gap-16 items-start max-w-6xl mx-auto">
+              <!-- Context -->
+              <div class="sticky top-12">
+                  <h2 class="text-4xl md:text-5xl font-bold mb-8 tracking-tight" set:html={t.engine.title}></h2>
+                  <p class="text-slate-400 text-xl leading-relaxed mb-12">
+                      {t.engine.desc}
+                  </p>
+                  
+                  <ul class="space-y-6">
+                      {t.engine.list.map((item) => (
+                        <li class="flex items-center gap-4">
+                            <div class="w-8 h-8 rounded-full bg-[#FF6F61]/20 flex items-center justify-center text-[#FF6F61]">
+                                <CheckCircle2 className="w-5 h-5" />
+                            </div>
+                            <span class="text-lg font-medium">{item}</span>
+                        </li>
+                      ))}
+                  </ul>
+              </div>
+
+              <!-- React Form -->
+              <div class="bg-white rounded-2xl p-2 shadow-2xl">
+                   <div class="bg-slate-50 rounded-xl p-6 md:p-8">
+                        <RFPForm client:load lang={lang} translations={t.form} />
+                   </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+</Layout>

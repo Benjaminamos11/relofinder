@@ -10,6 +10,7 @@ import { supabase } from '../../lib/supabase';
 import UniversalContactModal from '../../components/common/UniversalContactModal';
 import ReviewSubmissionWrapper from '../../components/reviews/ReviewSubmissionWrapper';
 import swissMapImg from '../../assets/swiss-map-filled.png';
+import CloudinaryImage from '../../components/common/CloudinaryImage.astro';
 import { 
   Star, 
   MapPin, 
@@ -264,6 +265,7 @@ const schema = {
           "@type": "PostalAddress",
           "streetAddress": companyData.address.street,
           "addressLocality": companyData.address.city,
+          "addressRegion": companyData.address.canton,
           "postalCode": companyData.address.postalCode,
           "addressCountry": "CH"
         }
@@ -338,20 +340,20 @@ const schema = {
                   <div class="text-4xl md:text-5xl font-bold text-[#FF6F61] mb-1">
                      {weightedRating > 0 ? weightedRating.toFixed(1) : '-'}
                   </div>
-                  <div class="text-xs uppercase tracking-widest text-gray-400 font-bold">Rating</div>
+                  <div class="text-xs uppercase tracking-widest text-gray-600 font-bold">Rating</div>
                </div>
                <div>
                   <div class="text-4xl md:text-5xl font-bold text-gray-900 mb-1">
                      {totalReviewCount}
                   </div>
-                  <div class="text-xs uppercase tracking-widest text-gray-400 font-bold">Reviews</div>
+                  <div class="text-xs uppercase tracking-widest text-gray-600 font-bold">Reviews</div>
                </div>
                {yearsExperience && (
                <div>
                   <div class="text-4xl md:text-5xl font-bold text-gray-900 mb-1">
                      {yearsExperience}
                   </div>
-                  <div class="text-xs uppercase tracking-widest text-gray-400 font-bold">Years Exp.</div>
+                  <div class="text-xs uppercase tracking-widest text-gray-600 font-bold">Years Exp.</div>
                </div>
                )}
             </div>
@@ -371,7 +373,7 @@ const schema = {
           <div class="lg:col-span-4 self-center">
              <div class="bg-gray-50 p-8 rounded-[2.5rem] border border-gray-100 relative group overflow-hidden">
                 <div class="absolute inset-0 bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6">Headquarters</h3>
+                <h3 class="text-sm font-bold text-gray-600 uppercase tracking-widest mb-6">Headquarters</h3>
                 <div class="space-y-6">
                    {companyData.address && (
                      <div class="flex gap-4">
@@ -395,7 +397,7 @@ const schema = {
                    </div>
                 </div>
                 <div class="mt-8 pt-8 border-t border-gray-200">
-                    <p class="text-xs text-gray-400 leading-relaxed">
+                    <p class="text-xs text-gray-600 leading-relaxed">
                        Information verified by Lang + Partner. Last updated {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}.
                     </p>
                 </div>
@@ -505,9 +507,11 @@ const schema = {
                       - Base Drop Shadow (subtle outline)
                       - Hover: Stronger Orange Drop Shadow + Higher Opacity
                    */}
-                   <img 
+                   <CloudinaryImage 
                      src={swissMapImg.src} 
                      alt="Swiss Active Regions" 
+                     width={800}
+                     height={510}
                      class="block w-full h-full object-contain filter invert opacity-25 drop-shadow-[0_0_1px_rgba(255,75,75,0.5)] transition-all duration-700 ease-out select-none group-hover:drop-shadow-[0_0_8px_rgba(255,75,75,0.8)] group-hover:opacity-40 group-hover:scale-[1.02]"
                    />
                </div>
@@ -559,11 +563,11 @@ const schema = {
             </div>
 
             <!-- Review Summary Cards -->
-            <div class="grid md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
+             <div class="grid md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
                 <!-- ReloFinder Internal -->
                 <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm flex items-center justify-between">
                     <div>
-                        <div class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-2">ReloFinder Score</div>
+                        <div class="text-sm font-bold text-gray-600 uppercase tracking-widest mb-2">ReloFinder Score</div>
                         <div class="flex items-baseline gap-2">
                             <span class="text-5xl font-bold text-[#FF6F61]">{weightedRating.toFixed(1)}</span>
                             <span class="text-gray-400">/ 5.0</span>
@@ -582,7 +586,7 @@ const schema = {
                 <!-- Google External -->
                 <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm flex items-center justify-between">
                     <div>
-                        <div class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-2 flex items-center gap-2">
+                        <div class="text-sm font-bold text-gray-600 uppercase tracking-widest mb-2 flex items-center gap-2">
                              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .533 5.333.533 12S5.867 24 12.48 24c3.44 0 6.04-1.133 8.147-3.253 2.187-2.187 2.867-5.413 2.867-8.12 0-.8-.067-1.587-.173-2.36h-10.84z"/></svg> 
                              Google Rating
                         </div>
@@ -720,7 +724,7 @@ const schema = {
             </div>
             
             <div class="text-center">
-                 <p class="text-gray-400 text-sm">
+                 <p class="text-gray-600 text-sm">
                     Only verified reviews from genuine clients are published on ReloFinder.
                  </p>
             </div>

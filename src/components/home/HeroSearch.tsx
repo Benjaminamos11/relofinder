@@ -94,10 +94,11 @@ export default function HeroSearch({ initialDestination = '', initialService = '
 
                             {/* When? */}
                             <div className="relative">
-                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2.5 text-left">When?</label>
+                                <label htmlFor="when-select" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2.5 text-left">When?</label>
                                 <div className="relative">
                                     <Calendar className="absolute left-3.5 top-3.5 w-5 h-5 text-slate-400" />
                                     <select
+                                        id="when-select"
                                         value={when}
                                         onChange={(e) => setWhen(e.target.value)}
                                         className="w-full pl-11 pr-8 py-3.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-[#FF6F61]/20 focus:border-[#FF6F61] outline-none appearance-none cursor-pointer transition-all font-medium"
@@ -115,10 +116,11 @@ export default function HeroSearch({ initialDestination = '', initialService = '
 
                             {/* Where? */}
                             <div className="relative">
-                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2.5 text-left">Where?</label>
+                                <label htmlFor="where-select" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2.5 text-left">Where?</label>
                                 <div className="relative">
                                     <MapPin className="absolute left-3.5 top-3.5 w-5 h-5 text-slate-400" />
                                     <select
+                                        id="where-select"
                                         value={where}
                                         onChange={(e) => setWhere(e.target.value)}
                                         className="w-full pl-11 pr-8 py-3.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-[#FF6F61]/20 focus:border-[#FF6F61] outline-none appearance-none cursor-pointer transition-all font-medium"
@@ -134,10 +136,11 @@ export default function HeroSearch({ initialDestination = '', initialService = '
 
                             {/* Service? */}
                             <div className="relative">
-                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2.5 text-left">Service Needed</label>
+                                <label htmlFor="service-select" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2.5 text-left">Service Needed</label>
                                 <div className="relative">
                                     <FileText className="absolute left-3.5 top-3.5 w-5 h-5 text-slate-400" />
                                     <select
+                                        id="service-select"
                                         value={service}
                                         onChange={(e) => setService(e.target.value)}
                                         className="w-full pl-11 pr-8 py-3.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-[#FF6F61]/20 focus:border-[#FF6F61] outline-none appearance-none cursor-pointer transition-all font-medium"
@@ -155,12 +158,12 @@ export default function HeroSearch({ initialDestination = '', initialService = '
 
                         <button
                             type="submit"
-                            className="block w-full py-4 bg-[#FF6F61] hover:bg-[#f65d4e] text-white font-bold rounded-lg shadow-lg shadow-[#FF6F61]/20 transition-all transform hover:-translate-y-0.5 text-lg flex items-center justify-center"
+                            className="block w-full py-4 bg-[#FF6F61] hover:bg-[#eb5d50] text-white font-bold rounded-lg shadow-lg shadow-[#FF6F61]/20 transition-all transform hover:-translate-y-0.5 text-lg flex items-center justify-center"
                         >
                             See Available Agencies
                         </button>
 
-                        <p className="text-xs text-slate-400 text-center font-medium mt-3">
+                        <p className="text-xs text-slate-500 text-center font-medium mt-3">
                             Compare 50+ vetted agencies. 100% free & anonym.
                         </p>
                     </form>
@@ -173,10 +176,11 @@ export default function HeroSearch({ initialDestination = '', initialService = '
 
                             {/* Company Name */}
                             <div className="relative">
-                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2.5 text-left">Company Name</label>
+                                <label htmlFor="company-name" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2.5 text-left">Company Name</label>
                                 <div className="relative">
                                     <Building2 className="absolute left-3.5 top-3.5 w-5 h-5 text-slate-400" />
                                     <input
+                                        id="company-name"
                                         type="text"
                                         placeholder="Enter Company Name"
                                         value={companyName}
@@ -188,10 +192,11 @@ export default function HeroSearch({ initialDestination = '', initialService = '
 
                             {/* Yearly Volume */}
                             <div className="relative">
-                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2.5 text-left">Yearly Volume</label>
+                                <label htmlFor="yearly-volume" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2.5 text-left">Yearly Volume</label>
                                 <div className="relative">
                                     <Briefcase className="absolute left-3.5 top-3.5 w-5 h-5 text-slate-400" />
                                     <select
+                                        id="yearly-volume"
                                         value={yearlyVolume}
                                         onChange={(e) => setYearlyVolume(e.target.value)}
                                         className="w-full pl-11 pr-8 py-3.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-[#FF6F61]/20 focus:border-[#FF6F61] outline-none appearance-none cursor-pointer transition-all font-medium"
@@ -207,10 +212,11 @@ export default function HeroSearch({ initialDestination = '', initialService = '
 
                             {/* Primary Destination */}
                             <div className="relative">
-                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2.5 text-left">Primary Destination</label>
+                                <label htmlFor="hub-select" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2.5 text-left">Primary Destination</label>
                                 <div className="relative">
                                     <MapPin className="absolute left-3.5 top-3.5 w-5 h-5 text-slate-400" />
                                     <select
+                                        id="hub-select"
                                         value={primaryDestination}
                                         onChange={(e) => setPrimaryDestination(e.target.value)}
                                         className="w-full pl-11 pr-8 py-3.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-[#FF6F61]/20 focus:border-[#FF6F61] outline-none appearance-none cursor-pointer transition-all font-medium"
@@ -228,16 +234,17 @@ export default function HeroSearch({ initialDestination = '', initialService = '
 
                         <button
                             type="submit"
-                            className="block w-full py-4 bg-[#FF6F61] hover:bg-[#f65d4e] text-white font-bold rounded-lg shadow-lg shadow-[#FF6F61]/20 transition-all transform hover:-translate-y-0.5 text-lg flex items-center justify-center"
+                            className="block w-full py-4 bg-[#FF6F61] hover:bg-[#eb5d50] text-white font-bold rounded-lg shadow-lg shadow-[#FF6F61]/20 transition-all transform hover:-translate-y-0.5 text-lg flex items-center justify-center"
                         >
                             Start Anonymous Tender
                         </button>
 
-                        <p className="text-xs text-slate-400 text-center font-medium mt-3">
+                        <p className="text-xs text-slate-500 text-center font-medium mt-3">
                             Streamline your mobility program. Free for HR teams.
                         </p>
                     </form>
                 )}
+
             </div>
         </div>
     );

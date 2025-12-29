@@ -70,7 +70,7 @@ export default defineConfig({
       force: true
     },
     ssr: {
-      noExternal: ['@nanostores/react', 'nanostores']
+      noExternal: ['@nanostores/react', 'nanostores', 'lucide-react']
     },
     resolve: {
       alias: {

@@ -1,18 +1,11 @@
----
-import { Linkedin, Twitter, Heart } from 'lucide-react';
 
+---
 interface Props {
   theme?: 'light' | 'dark';
 }
 
 const { theme = 'light' } = Astro.props;
 const bgClass = theme === 'dark' ? 'bg-[#0B1120] border-slate-800' : 'bg-white border-slate-100';
-const textClass = theme === 'dark' ? 'text-slate-400' : 'text-slate-500';
-// Updated Heading Class: Smaller, uppercase, tighter tracking for "high end" look
-const headingClass = theme === 'dark' ? 'text-white text-xs font-bold uppercase tracking-widest' : 'text-slate-900 text-xs font-bold uppercase tracking-widest';
-const hoverClass = 'hover:text-[#FF6F61]';
-const borderClass = theme === 'dark' ? 'border-slate-800' : 'border-slate-100';
-const socialBgClass = theme === 'dark' ? 'bg-slate-800 text-slate-400 hover:bg-[#FF6F61] hover:text-white' : 'bg-slate-50 text-slate-400 hover:bg-[#0077b5] hover:text-white';
 ---
 
 <footer class={`${bgClass} border-t border-slate-100 pt-24 pb-12 text-sm transition-colors duration-300`}>
@@ -26,7 +19,7 @@ const socialBgClass = theme === 'dark' ? 'bg-slate-800 text-slate-400 hover:bg-[
         <a href="/" class="block text-2xl font-bold text-[#FF6F61] tracking-tight mb-6" style="font-family: 'Playfair Display', serif;">
           Relofinder.
         </a>
-        <div class="space-y-4 text-[11px] text-slate-400 leading-relaxed font-medium">
+        <div class="space-y-4 text-[11px] text-slate-500 leading-relaxed font-medium">
           <p>
             Chilegässli 12a<br/>
             8904 Aesch ZH<br/>
@@ -37,8 +30,9 @@ const socialBgClass = theme === 'dark' ? 'bg-slate-800 text-slate-400 hover:bg-[
           </p>
         </div>
         <div class="flex gap-4 mt-8">
-            <a href="#" class="text-slate-300 hover:text-slate-900 transition-colors"><Linkedin className="w-4 h-4" /></a>
-            <a href="#" class="text-slate-300 hover:text-slate-900 transition-colors"><Twitter className="w-4 h-4" /></a>
+            <a href="https://www.linkedin.com/company/5613839" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-slate-900 transition-colors" aria-label="Follow us on LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
         </div>
       </div>
 
@@ -46,11 +40,11 @@ const socialBgClass = theme === 'dark' ? 'bg-slate-800 text-slate-400 hover:bg-[
       <div class="col-span-1">
         <h3 class="text-[11px] font-bold uppercase tracking-widest text-slate-900 mb-6">Regions</h3>
         <ul class="space-y-4">
-          <li><a href="/regions/zurich" class="block text-[13px] font-medium text-slate-500 hover:text-[#FF6F61] transition-colors">Zürich</a></li>
-          <li><a href="/regions/geneva" class="block text-[13px] font-medium text-slate-500 hover:text-[#FF6F61] transition-colors">Geneva</a></li>
-          <li><a href="/regions/basel" class="block text-[13px] font-medium text-slate-500 hover:text-[#FF6F61] transition-colors">Basel</a></li>
-          <li><a href="/regions/zug" class="block text-[13px] font-medium text-slate-500 hover:text-[#FF6F61] transition-colors">Zug</a></li>
-          <li><a href="/regions" class="block text-[13px] font-medium text-slate-500 hover:text-[#FF6F61] transition-colors text-[#FF6F61]">All Regions</a></li>
+          <li><a href="/regions/zurich" class="block text-[13px] font-medium text-slate-600 hover:text-[#FF6F61] transition-colors">Zürich</a></li>
+          <li><a href="/regions/geneva" class="block text-[13px] font-medium text-slate-600 hover:text-[#FF6F61] transition-colors">Geneva</a></li>
+          <li><a href="/regions/basel" class="block text-[13px] font-medium text-slate-600 hover:text-[#FF6F61] transition-colors">Basel</a></li>
+          <li><a href="/regions/zug" class="block text-[13px] font-medium text-slate-600 hover:text-[#FF6F61] transition-colors">Zug</a></li>
+          <li><a href="/regions" class="block text-[13px] font-medium text-[#FF6F61] hover:text-[#e05548] transition-colors">All Regions</a></li>
         </ul>
       </div>
 
@@ -58,11 +52,11 @@ const socialBgClass = theme === 'dark' ? 'bg-slate-800 text-slate-400 hover:bg-[
       <div class="col-span-1">
         <h3 class="text-[11px] font-bold uppercase tracking-widest text-slate-900 mb-6">Expertise</h3>
         <ul class="space-y-4">
-          <li><a href="/services/housing-search" class="block text-[13px] font-medium text-slate-500 hover:text-[#FF6F61] transition-colors">Housing</a></li>
-          <li><a href="/services/immigration" class="block text-[13px] font-medium text-slate-500 hover:text-[#FF6F61] transition-colors">Immigration</a></li>
-          <li><a href="/services/education" class="block text-[13px] font-medium text-slate-500 hover:text-[#FF6F61] transition-colors">Education</a></li>
-          <li><a href="/services/moving-logistics" class="block text-[13px] font-medium text-slate-500 hover:text-[#FF6F61] transition-colors">Logistics</a></li>
-          <li><a href="/services" class="block text-[13px] font-medium text-slate-500 hover:text-[#FF6F61] transition-colors text-[#FF6F61]">All Services</a></li>
+          <li><a href="/services/housing" class="block text-[13px] font-medium text-slate-600 hover:text-[#FF6F61] transition-colors">Housing</a></li>
+          <li><a href="/services/immigration" class="block text-[13px] font-medium text-slate-600 hover:text-[#FF6F61] transition-colors">Immigration</a></li>
+          <li><a href="/services/education" class="block text-[13px] font-medium text-slate-600 hover:text-[#FF6F61] transition-colors">Education</a></li>
+          <li><a href="/services/moving-logistics" class="block text-[13px] font-medium text-slate-600 hover:text-[#FF6F61] transition-colors">Logistics</a></li>
+          <li><a href="/services" class="block text-[13px] font-medium text-[#FF6F61] hover:text-[#e05548] transition-colors">All Services</a></li>
         </ul>
       </div>
 
@@ -70,10 +64,10 @@ const socialBgClass = theme === 'dark' ? 'bg-slate-800 text-slate-400 hover:bg-[
       <div class="col-span-1">
         <h3 class="text-[11px] font-bold uppercase tracking-widest text-slate-900 mb-6">Corporate</h3>
         <ul class="space-y-4">
-          <li><a href="/about" class="block text-[13px] font-medium text-slate-500 hover:text-[#FF6F61] transition-colors">About</a></li>
-          <li><a href="/partners" class="block text-[13px] font-medium text-slate-500 hover:text-[#FF6F61] transition-colors">Partners</a></li>
-          <li><a href="/blog" class="block text-[13px] font-medium text-slate-500 hover:text-[#FF6F61] transition-colors">Journal</a></li>
-          <li><a href="/contact" class="block text-[13px] font-medium text-slate-500 hover:text-[#FF6F61] transition-colors">Contact</a></li>
+          <li><a href="/about" class="block text-[13px] font-medium text-slate-600 hover:text-[#FF6F61] transition-colors">About</a></li>
+          <li><a href="/partners" class="block text-[13px] font-medium text-slate-600 hover:text-[#FF6F61] transition-colors">Partners</a></li>
+          <li><a href="/blog" class="block text-[13px] font-medium text-slate-600 hover:text-[#FF6F61] transition-colors">Journal</a></li>
+          <li><a href="/contact" class="block text-[13px] font-medium text-slate-600 hover:text-[#FF6F61] transition-colors">Contact</a></li>
         </ul>
       </div>
 
@@ -82,25 +76,24 @@ const socialBgClass = theme === 'dark' ? 'bg-slate-800 text-slate-400 hover:bg-[
     <!-- Bottom Bar -->
     <div class="flex flex-col md:flex-row justify-between items-center gap-6">
       <div class="flex items-center gap-8">
-        <p class="text-[10px] uppercase tracking-widest text-slate-400 font-medium">
+        <p class="text-[10px] uppercase tracking-widest text-slate-500 font-medium">
           &copy; 2026 Relofinder AG
         </p>
         <div class="hidden md:block h-px w-8 bg-slate-200"></div>
-        <p class="text-[10px] uppercase tracking-widest text-slate-400 font-medium hidden md:block">
+        <p class="text-[10px] uppercase tracking-widest text-slate-500 font-medium hidden md:block">
             Swiss Quality Verified
         </p>
       </div>
 
-      <div class="text-[11px] text-slate-400 flex items-center gap-1.5 font-medium">
-        Made with <Heart className="w-3 h-3 fill-[#FF6F61] text-[#FF6F61]" /> in Switzerland 
-        <a href="https://www.vibestudio.ch" target="_blank" class="hover:text-[#FF6F61] transition-colors ml-1">vibestudio.ch</a>
+      <div class="text-[11px] text-slate-500 flex items-center gap-1.5 font-medium">
+        Made with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 fill-[#FF6F61] text-[#FF6F61]"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> in Switzerland 
+        <a href="https://www.vibestudio.ch" target="_blank" rel="noopener noreferrer" class="hover:text-[#FF6F61] transition-colors ml-1">vibestudio.ch</a>
       </div>
       
-      <div class="flex gap-8 text-[11px] font-medium text-slate-500">
+      <div class="flex gap-8 text-[11px] font-medium text-slate-600">
         <a href="/privacy" class="hover:text-black transition-colors">Privacy</a>
         <a href="/terms" class="hover:text-black transition-colors">Terms</a>
         <a href="/impressum" class="hover:text-black transition-colors">Impressum</a>
       </div>
-    </div>
   </div>
 </footer>

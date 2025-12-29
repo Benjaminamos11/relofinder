@@ -1,33 +1,27 @@
 ---
 import { 
   MapPin, 
-  Building2, 
   Star, 
   ArrowRight, 
-  Home, 
   ChevronDown,
   FileText,
-  Download,
   Feather,
   Search
 } from 'lucide-react';
 import '../styles/global.css';
 import '../styles/alpine-clarity.css';
 import { getAgenciesCarouselData } from '../utils/agenciesCarouselData';
-import SEOHead from '../components/common/SEOHead.astro';
-import UniversalContactModal from '../components/common/UniversalContactModal.tsx';
-import '../lib/expose-modal-stores.client.ts';
 import MarketIntelligence from '../components/home/MarketIntelligence.astro';
-import Navbar from '../components/layout/Navbar.astro';
-import Footer from '../components/layout/Footer.astro';
 import HeroSearch from '../components/home/HeroSearch.tsx';
+import Layout from '../layouts/Layout.astro';
+import CloudinaryImage from '../components/common/CloudinaryImage.astro';
+
 // Cloudinary Assets
 const cloudinaryBase = 'https://res.cloudinary.com/dphbnwjtx/image/upload/f_auto,q_auto';
 const heroLake = { src: `${cloudinaryBase}/home/swiss-lake-drone-hero` };
 const heroBoutique = { src: `${cloudinaryBase}/home/swiss-boutique-hero-color` };
 const heroDarkInterior = { src: `${cloudinaryBase}/home/swiss-modern-dark-interior` };
 const swissMapWhiteOrange = { src: `${cloudinaryBase}/home/swiss-map-white-orange` };
-import swissMapImg from '../assets/swiss-map-filled.png';
 
 // data fetch
 const carouselAgencies = await getAgenciesCarouselData(3);
@@ -45,19 +39,19 @@ const topAgencies = carouselAgencies.map(agency => ({
 const cantons = [
   { name: "Zurich", code: "ZH", slug: "zurich" },
   { name: "Geneva", code: "GE", slug: "geneva" },
-  { name: "Basel-Stadt", code: "BS", slug: "basel-stadt" },
+  { name: "Basel-Stadt", code: "BS", slug: "basel" },
   { name: "Zug", code: "ZG", slug: "zug" },
-  { name: "Vaud", code: "VD", slug: "vaud" },
+  { name: "Vaud", code: "VD", slug: "lausanne" },
   { name: "Bern", code: "BE", slug: "bern" },
   { name: "Lucerne", code: "LU", slug: "lucerne" },
   { name: "St. Gallen", code: "SG", slug: "st-gallen" }
 ];
 
-const services = [
-  { name: "Housing Search", slug: "housing-search" },
-  { name: "Visa & Immigration", slug: "visa-immigration" },
+const servicesArr = [
+  { name: "Housing Search", slug: "housing" },
+  { name: "Visa & Immigration", slug: "immigration" },
   { name: "Moving Logistics", slug: "moving-logistics" },
-  { name: "School Search", slug: "school-search" }
+  { name: "School Search", slug: "education" }
 ];
 
 const faqs = [
@@ -74,37 +68,27 @@ const faqs = [
     a: "For EU citizens, permits are often issued within 2-4 weeks. For non-EU nationals, the work permit approval process typically takes 8-12 weeks involving both cantonal and federal approval."
   }
 ];
+
+const title = "Compare Best Relocation Agencies Switzerland | ReloFinder";
+const description = "Find and compare verified Swiss relocation agencies. Get free quotes, read analyst summaries, and download our 2025 Cost Benchmark Guide.";
+
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ReloFinder",
+  "url": "https://relofinder.ch/",
+  "description": description
+};
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <SEOHead 
-      title="Compare Best Relocation Agencies Switzerland | ReloFinder"
-      description="Find and compare verified Swiss relocation agencies. Get free quotes, read analyst summaries, and download our 2025 Cost Benchmark Guide."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        /* Swiss Passport Style Canton Cards */
-        .canton-card-bg {
-            font-family: 'Inter', sans-serif;
-            font-weight: 800;
-            color: #F1F5F9; /* slate-100 */
-            opacity: 0.4;
-            line-height: 1;
-        }
-    </style>
-</head>
-<body class="font-sans text-slate-600 bg-[#F9FAFB] antialiased">
-
-    <!-- 1. Split Header -->
-    <Navbar />
-
-    <!-- 2. Premium Hero: "Editorial Luxury" (Light Version) -->
+<Layout 
+  title={title} 
+  description={description}
+  canonical="https://relofinder.ch/"
+  keywords={['relocation switzerland', 'swiss relocation services', 'moving to switzerland', 'compare relocation agencies']}
+  schema={homeSchema}
+>
+    <!-- Premium Hero: "Editorial Luxury" (Light Version) -->
     <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-950 group">
         
         <!-- Background Visual -->
@@ -142,43 +126,9 @@ const faqs = [
                 <HeroSearch client:load />
             </div>
         </div>
-
-
     </section>
 
-    <script>
-        // Smart Cross-Fade Logic
-        function initHeroSlider() {
-            const slides = document.querySelectorAll('.hero-slide');
-            if (!slides.length) return;
-            
-            let currentSlide = 0;
-
-            function nextSlide() {
-                // Remove opacity from current
-                slides[currentSlide].classList.remove('opacity-100');
-                slides[currentSlide].classList.add('opacity-0');
-
-                // Increment index
-                currentSlide = (currentSlide + 1) % slides.length;
-
-                // Add opacity to next
-                slides[currentSlide].classList.remove('opacity-0');
-                slides[currentSlide].classList.add('opacity-100');
-            }
-
-            // Initialize the interval (10 seconds)
-            setInterval(nextSlide, 10000);
-        }
-
-        // Run on load
-        initHeroSlider();
-        
-        // Also run on view transitions if enabled
-        document.addEventListener('astro:page-load', initHeroSlider);
-    </script>
-
-    <!-- 3. "Editorial" Agency Cards (Powered by Real Data) -->
+    <!-- Agency Cards Section -->
     <section class="py-24 bg-white border-y border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-end mb-16">
@@ -200,7 +150,14 @@ const faqs = [
                             <div class="flex items-center justify-between mb-6">
                                 <div class="h-14 w-auto min-w-[60px] max-w-[180px] bg-white rounded-lg border border-slate-100 px-3 py-1 flex items-center justify-center shadow-sm relative overflow-hidden">
                                      {agency.logo ? (
-                                        <img src={agency.logo} class="h-full w-auto object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-105" alt={`${agency.name} Logo`} />
+                                        <CloudinaryImage 
+                                          src={agency.logo} 
+                                          alt={`${agency.name} Logo`} 
+                                          width={200}
+                                          height={60}
+                                          crop="fit"
+                                          class="h-full w-auto object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-105" 
+                                        />
                                       ) : (
                                         <span class="text-xs font-bold text-slate-300">LOGO</span>
                                       )}
@@ -213,7 +170,7 @@ const faqs = [
                                         <Star className="w-4 h-4 fill-current" />
                                         <Star className="w-4 h-4 fill-current" />
                                     </div>
-                                    <span class="text-xs font-semibold text-slate-400">{agency.count} Verified Reviews</span>
+                                    <span class="text-xs font-semibold text-slate-500">{agency.count} Verified Reviews</span>
                                 </div>
                             </div>
                             <h3 class="font-bold text-slate-800 text-xl mb-2 flex items-center gap-2">
@@ -225,8 +182,8 @@ const faqs = [
                         <!-- Analyst Note - Editorial Style -->
                         <div class="bg-stone-50 border-y border-slate-100 px-8 py-6 flex-grow">
                             <div class="flex items-center gap-2 mb-3">
-                                <Feather className="w-3 h-3 text-slate-400" />
-                                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Analyst Summary</span>
+                                <Feather className="w-3 h-3 text-slate-500" />
+                                <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Analyst Summary</span>
                             </div>
                             <p class="text-slate-700 leading-relaxed font-serif italic text-lg line-clamp-4">
                                 "{agency.analystNote}"
@@ -261,7 +218,7 @@ const faqs = [
         </div>
     </section>
 
-    <!-- 4. Interactive Regions Map -->
+    <!-- Interactive Regions Map -->
     <section class="py-32 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -278,7 +235,7 @@ const faqs = [
                         <span class="text-[#FF6F61]">Region by Region.</span>
                     </h2>
                     
-                    <p class="text-slate-500 text-lg leading-relaxed mb-10 max-w-md">
+                    <p class="text-slate-600 text-lg leading-relaxed mb-10 max-w-md">
                         From the banking hubs of Zurich and Geneva to the tax-efficient cantons of Zug and Schwyz. Connect with specialists who know the local housing market inside out.
                     </p>
 
@@ -288,7 +245,7 @@ const faqs = [
                                 {canton.name}
                             </a>
                         ))}
-                        <a href="/regions" class="px-5 py-3 rounded-lg bg-slate-50 text-slate-500 font-semibold hover:bg-slate-100 transition-colors flex items-center gap-2">
+                        <a href="/regions" class="px-5 py-3 rounded-lg bg-slate-50 text-slate-600 font-semibold hover:bg-slate-100 transition-colors flex items-center gap-2">
                             View All <ArrowRight className="w-4 h-4" />
                         </a>
                     </div>
@@ -296,25 +253,22 @@ const faqs = [
 
                 <!-- Map Side -->
                 <div class="relative w-full max-w-2xl mx-auto group mt-8 lg:mt-0 perspective-1000">
-                     <!-- Map Image Container (Rounded Box + No Zoom) -->
                      <div class="relative w-full aspect-[4/3] flex items-center justify-center rounded-3xl overflow-hidden shadow-2xl border border-slate-100 bg-white">
-                        
-                        <img 
+                        <CloudinaryImage 
                              src={swissMapWhiteOrange.src} 
-                             alt="Swiss Active Regions" 
+                             alt="Swiss Active Regions Map" 
+                             width={800}
+                             height={600}
                              class="w-full h-full object-cover grayscale opacity-90 transition-all duration-700 ease-in-out group-hover:grayscale-0 group-hover:opacity-100"
                         />
-                        
-                        <!-- Hover Overlay Effect (Brand Shine) -->
                         <div class="absolute inset-0 bg-gradient-to-tr from-[#FF6F61]/20 via-transparent to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none mix-blend-overlay"></div>
                      </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- 5. Lead Magnet "Compare Agencies" -->
+    <!-- Lead Magnet -->
     <section class="bg-white py-24">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white rounded-3xl p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-12 border border-slate-100 shadow-2xl relative overflow-hidden text-center md:text-left">
@@ -324,7 +278,7 @@ const faqs = [
                     <h2 class="text-3xl md:text-5xl font-playfair font-bold text-slate-900 mb-6 leading-tight">
                         Compare the best <br/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6F61] to-orange-400">relocation agencies.</span>
                     </h2>
-                    <p class="text-slate-500 text-lg leading-relaxed mb-8">
+                    <p class="text-slate-600 text-lg leading-relaxed mb-8">
                         Don't rely on random Google searches. Browse verified profiles, read client reviews, and find the perfect match for your move to Switzerland.
                     </p>
                     
@@ -334,32 +288,28 @@ const faqs = [
                     </a>
                 </div>
 
-                <!-- Decorative Illustration / Icon -->
                 <div class="relative z-10 hidden md:block">
                      <div class="w-24 h-24 bg-slate-50 rounded-2xl flex items-center justify-center rotate-3 shadow-lg border border-slate-100">
                         <Search className="w-10 h-10 text-[#FF6F61]" />
                      </div>
                 </div>
-                
-                <!-- Background Decoration -->
                 <div class="absolute right-0 top-0 w-1/2 h-full bg-gradient-to-l from-slate-50/50 to-transparent pointer-events-none"></div>
             </div>
         </div>
     </section>
 
-    <!-- 6. Market Intelligence -->
     <MarketIntelligence />
 
-    <!-- 7. LLM FAQ Section -->
+    <!-- FAQ Section -->
     <section class="py-24 bg-white">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-2xl font-bold text-slate-800 mb-10 text-center">Common Questions about Moving to Switzerland</h2>
             <div class="space-y-4">
-                {faqs.map((faq, i) => (
+                {faqs.map((faq) => (
                     <details class="group bg-[#F9FAFB] border border-slate-200 rounded-lg overflow-hidden">
                         <summary class="flex justify-between items-center p-5 cursor-pointer font-semibold text-slate-800 hover:bg-slate-100 transition-colors select-none text-lg">
                             {faq.q}
-                            <ChevronDown className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" />
+                            <ChevronDown className="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform" />
                         </summary>
                         <div class="px-5 pb-6 pt-2 text-slate-600 leading-relaxed border-t border-slate-100">
                             {faq.a}
@@ -370,368 +320,35 @@ const faqs = [
         </div>
     </section>
 
-    <!-- 7. Footer -->
-    <Footer theme="dark" />
-
-    <!-- Hidden marker div - always present in DOM for MutationObserver -->
-    <div id="relofinder-modal-marker" data-relofinder-modal="pending" style="display: none;" aria-hidden="true"></div>
-    
-    <!-- Use client:load to ensure React is ready before hydration -->
-    <UniversalContactModal client:load />
-
     <script>
-        // Tab Logic
-        const tabs = document.querySelectorAll('#hero-tabs button');
-        const ctaButton = document.getElementById('hero-cta') as HTMLAnchorElement;
-        
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(t => {
-                    t.classList.remove('bg-white', 'text-slate-800', 'border-b-2', 'border-[#FF6F61]');
-                    t.classList.add('bg-slate-50', 'text-slate-500', 'border-transparent');
-                });
-                tab.classList.remove('bg-slate-50', 'text-slate-500', 'border-transparent');
-                tab.classList.add('bg-white', 'text-slate-800', 'border-b-2', 'border-[#FF6F61]');
-
-                const action = tab.getAttribute('data-action');
-                if (action && ctaButton) {
-                    ctaButton.href = action;
-                }
-            });
-        });
-    </script>
-
-    <!-- Global Modal Functions - Synchronous Setup Before React Loads -->
-    <script is:inline>
-      // Initialize globals FIRST (before browser check) so functions are always defined
-      if (typeof window !== 'undefined') {
-        window.modalEventQueue = window.modalEventQueue || [];
-        window.modalReady = false;
-        window.reactHydrationFailed = false;
-        
-        // Define functions immediately so they're always available
-        window.universalOpenModal = function(context) {
-          const resolvedContext =
-            context && typeof context === 'object'
-              ? context
-              : typeof context === 'string'
-                ? { page: 'legacy', topic: context }
-                : { page: 'home' };
-
-          console.log('📞 universalOpenModal called', resolvedContext);
-
-          if (window.modalReady && window.relofinderModalStores) {
-            window.relofinderModalStores.setContext(resolvedContext);
-            window.relofinderModalStores.setOpen(true);
-            return;
-          }
-
-          // Queue event until React is ready
-          console.log('⏳ Modal not ready, queuing context', resolvedContext);
-          window.modalEventQueue.push({ kind: 'open', payload: resolvedContext });
-        };
-
-        const legacyModalContextMap = {
-          'individual-lead-modal': { page: 'service', service: 'relocation' },
-        };
-
-        window.openModal = function(legacyContext) {
-          console.log('📞 legacy openModal shim invoked with', legacyContext);
-
-          if (typeof legacyContext === 'string') {
-            const mappedContext = legacyModalContextMap[legacyContext] || { page: 'home', topic: legacyContext };
-            window.universalOpenModal(mappedContext);
-            return;
-          }
-
-          if (legacyContext && typeof legacyContext === 'object') {
-            window.universalOpenModal(legacyContext);
-            return;
-          }
-
-          window.universalOpenModal({ page: 'home' });
-        };
-        
-        window.closeModal = function() {
-          console.log('🚪 closeModal called');
-          
-          if (window.modalReady && window.relofinderModalStores) {
-            window.relofinderModalStores.setOpen(false);
-          } else {
-            window.modalEventQueue.push({ kind: 'close' });
-          }
-        };
-      }
-      
-      // Guard all DOM access - only run in browser (SSR-safe)
-      if (typeof window === 'undefined' || typeof document === 'undefined') {
-        // SSR - exit early, do nothing
-      } else {
-        // Initialize modal system synchronously before React loads
-        window.reactLoadPromise = null;
-        
-        // Preload React to ensure it's ready before hydration
-        if (!window.reactLoadPromise) {
-          window.reactLoadPromise = new Promise((resolve) => {
-            // Check if React is already loaded
-            if (window.React || document.querySelector('script[src*="react"]')) {
-              resolve();
-              return;
-            }
+        function initHeroSlider() {
+            const slides = document.querySelectorAll('.hero-slide');
+            if (!slides.length) return;
             
-            // Wait for React to load (check every 50ms, max 5 seconds)
-            let checks = 0;
-            const checkReact = setInterval(() => {
-              checks++;
-              if (window.React || document.querySelector('script[src*="react"]') || checks > 100) {
-                clearInterval(checkReact);
-                resolve();
-              }
-            }, 50);
-          });
-        }
-        
-        // Listen for React hydration errors and set up fallback event listeners
-        window.addEventListener('error', function(e) {
-        if (e.message && (e.message.includes('hydrating') || e.message.includes('unstable_now'))) {
-          console.error('🚨 React hydration error detected:', e.message);
-          window.reactHydrationFailed = true;
-          
-          // Set up event listeners that work even without React
-          const setupFallbackListeners = () => {
-            // Try to access nanostores via window (they might be exposed even if React fails)
-            const checkStores = setInterval(() => {
-              if (window.relofinderModalStores) {
-                console.log('✅ Found nanostores, setting up fallback listeners');
-                clearInterval(checkStores);
-                
-                // Set up listeners that use nanostores directly
-                window.addEventListener('openModal', function(e) {
-                  if (window.relofinderModalStores && e.detail) {
-                    console.log('🔔 Fallback: Opening modal via nanostores', e.detail);
-                    window.relofinderModalStores.setContext(e.detail);
-                    window.relofinderModalStores.setOpen(true);
-                  }
-                });
-                
-                window.addEventListener('closeModal', function() {
-                  if (window.relofinderModalStores) {
-                    console.log('🔔 Fallback: Closing modal via nanostores');
-                    window.relofinderModalStores.setOpen(false);
-                  }
-                });
-              }
-            }, 100);
-            
-            // Stop checking after 5 seconds
-            setTimeout(() => clearInterval(checkStores), 5000);
-          };
-          
-          setupFallbackListeners();
-          
-          // If React fails, mark as ready anyway after a delay to process queue
-          setTimeout(() => {
-            if (!window.modalReady) {
-              console.warn('⚠️ React hydration failed, forcing modal ready state');
-              const marker = document.getElementById('relofinder-modal-marker');
-              if (marker) {
-                marker.setAttribute('data-relofinder-modal', 'ready');
-              }
-              window.modalReady = true;
-              if (typeof window.processModalQueue === 'function') {
-                window.processModalQueue();
-              }
+            let currentSlide = 0;
+
+            function nextSlide() {
+                slides[currentSlide].classList.remove('opacity-100');
+                slides[currentSlide].classList.add('opacity-0');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.remove('opacity-0');
+                slides[currentSlide].classList.add('opacity-100');
             }
-          }, 2000);
-        }
-      }, true);
-      
-      const dispatchModalContext = (context) => {
-        try {
-          // Try to use nanostores directly if available (works even if React hasn't mounted)
-          if (window.relofinderModalStores) {
-            console.log('📦 Using nanostores directly');
-            window.relofinderModalStores.setContext(context);
-            window.relofinderModalStores.setOpen(true);
-            return true;
-          }
-          
-          // Fallback to event dispatch (requires React component to be mounted)
-          const event = new CustomEvent('openModal', { detail: context });
-          window.dispatchEvent(event);
-          return true;
-        } catch (error) {
-          console.error('❌ Failed to dispatch modal context', error);
-          return false;
-        }
-      };
-      
-      const dispatchCloseModal = () => {
-        try {
-          // Try to use nanostores directly if available
-          if (window.relofinderModalStores) {
-            window.relofinderModalStores.setOpen(false);
-            return true;
-          }
-          
-          // Fallback to event dispatch
-          const event = new CustomEvent('closeModal');
-          window.dispatchEvent(event);
-          return true;
-        } catch (error) {
-          console.error('❌ Failed to dispatch close modal', error);
-          return false;
-        }
-      };
 
-      // Universal modal opener - queues events until React is ready
-      // MUST be exposed to window OUTSIDE IIFE so it's globally accessible
-      window.universalOpenModal = function(context) {
-        const resolvedContext =
-          context && typeof context === 'object'
-            ? context
-            : typeof context === 'string'
-              ? { page: 'legacy', topic: context }
-              : { page: 'home' };
-
-        console.log('📞 universalOpenModal called', resolvedContext);
-
-        if (window.modalReady) {
-          dispatchModalContext(resolvedContext);
-          return;
+            setInterval(nextSlide, 10000);
         }
 
-        // Queue event until React is ready
-        console.log('⏳ Modal not ready, queuing context', resolvedContext);
-        window.modalEventQueue.push({ kind: 'open', payload: resolvedContext });
-      };
-
-      // Legacy compatibility for old openModal calls
-      const legacyModalContextMap = {
-        'individual-lead-modal': { page: 'service', service: 'relocation' },
-      };
-
-      window.openModal = function(legacyContext) {
-        console.log('📞 legacy openModal shim invoked with', legacyContext);
-
-        if (typeof legacyContext === 'string') {
-          const mappedContext = legacyModalContextMap[legacyContext] || { page: 'home', topic: legacyContext };
-          window.universalOpenModal(mappedContext);
-          return;
-        }
-
-        if (legacyContext && typeof legacyContext === 'object') {
-          window.universalOpenModal(legacyContext);
-          return;
-        }
-
-        window.universalOpenModal({ page: 'home' });
-      };
-      
-      window.closeModal = function() {
-        console.log('🚪 closeModal called');
-        
-        if (window.modalReady) {
-          dispatchCloseModal();
-        } else {
-          window.modalEventQueue.push({ kind: 'close' });
-        }
-      };
-      
-      // Process queued events when React component confirms readiness
-      window.processModalQueue = function() {
-        // Prevent double processing
-        if (window.modalReady && window.modalEventQueue.length === 0) {
-          return;
-        }
-        
-        console.log('🚀 Processing modal queue:', window.modalEventQueue.length, 'events');
-        window.modalReady = true;
-        
-        const queuedItems = [...window.modalEventQueue];
-        window.modalEventQueue = [];
-
-        queuedItems.forEach(item => {
-          if (item?.kind === 'open') {
-            dispatchModalContext(item.payload);
-          } else if (item?.kind === 'close') {
-            dispatchCloseModal();
-          }
-        });
-      };
-      
-      // MutationObserver to detect when React component mounts in DOM
-      const observeReactMount = () => {
-        let checkCount = 0;
-        const maxChecks = 40; // 20 seconds max for mobile
-        
-        const checkAndProcess = () => {
-          // Check both the marker div and any React-rendered markers
-          const markerDiv = document.getElementById('relofinder-modal-marker');
-          const reactMarker = document.querySelector('[data-relofinder-modal="ready"]');
-          const marker = reactMarker || markerDiv;
-          
-          if (marker && marker.getAttribute('data-relofinder-modal') === 'ready' && !window.modalReady) {
-            console.log('✅ Modal marker detected in DOM');
-            window.modalReady = true;
-            if (typeof window.processModalQueue === 'function') {
-              window.processModalQueue();
-            }
-            return true;
-          }
-          return false;
-        };
-
-        const observer = new MutationObserver((mutations, obs) => {
-          if (checkAndProcess()) {
-            obs.disconnect();
-            if (checkInterval) clearInterval(checkInterval);
-          }
-        });
-
-        // Start observing immediately
-        observer.observe(document.body, {
-          childList: true,
-          subtree: true,
-          attributes: true,
-          attributeFilter: ['data-relofinder-modal']
-        });
-
-        // Check immediately
-        if (checkAndProcess()) {
-          observer.disconnect();
-        }
-
-        // Periodic check for slow devices or hydration failures
-        const checkInterval = setInterval(() => {
-          checkCount++;
-          if (checkAndProcess()) {
-            observer.disconnect();
-            clearInterval(checkInterval);
-          } else if (checkCount >= maxChecks) {
-            // Force ready state if React never mounts (hydration failure)
-            console.warn('⚠️ React component not detected after 20 seconds, forcing ready state');
-            const markerDiv = document.getElementById('relofinder-modal-marker');
-            if (markerDiv && !window.modalReady) {
-              markerDiv.setAttribute('data-relofinder-modal', 'ready');
-              window.modalReady = true;
-              if (typeof window.processModalQueue === 'function') {
-                window.processModalQueue();
-              }
-            }
-            observer.disconnect();
-            clearInterval(checkInterval);
-          }
-        }, 500);
-      };
-
-      // Start observing when script loads
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', observeReactMount);
-      } else {
-        observeReactMount();
-      }
-      } // End browser check
+        initHeroSlider();
+        document.addEventListener('astro:page-load', initHeroSlider);
     </script>
-</body>
-</html>
+</Layout>
+
+<style>
+    .canton-card-bg {
+        font-family: 'Inter', sans-serif;
+        font-weight: 800;
+        color: #F1F5F9; /* slate-100 */
+        opacity: 0.4;
+        line-height: 1;
+    }
+</style>

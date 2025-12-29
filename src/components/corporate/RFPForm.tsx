@@ -25,9 +25,11 @@ interface RFPFormProps {
     };
     selectedAgencies?: string[];
     onComplete?: () => void;
+    lang: 'en' | 'de' | 'fr';
+    translations: any;
 }
 
-export default function RFPForm({ initialData, selectedAgencies, onComplete }: RFPFormProps) {
+export default function RFPForm({ initialData, selectedAgencies, onComplete, lang, translations: t }: RFPFormProps) {
     const [step, setStep] = useState<1 | 2 | 3>(1);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -41,7 +43,8 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete }: R
         painPoints: [] as string[],
         destinations: initialData?.where ? [initialData.where.charAt(0).toUpperCase() + initialData.where.slice(1)] : [] as string[],
         specificRequest: '',
-        services: [] as string[]
+        services: [] as string[],
+        lang: lang // Pass lang to server
     });
 
     // Pre-fill from URL params (Secondary fallback)
@@ -139,7 +142,7 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete }: R
     const renderStep1 = () => (
         <div className="space-y-6 animate-fadeIn">
             <h2 className="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-4">
-                Let's benchmark your needs.
+                {t.title}
             </h2>
 
             {errorMsg && (
@@ -150,7 +153,7 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete }: R
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="col-span-2">
-                    <label className="block text-sm font-semibold text-slate-700 mb-1">Company Name</label>
+                    <label className="block text-sm font-semibold text-slate-700 mb-1">{t.company}</label>
                     <div className="relative">
                         <Building2 className="absolute left-3 top-2.5 w-5 h-5 text-slate-400" />
                         <input
@@ -164,7 +167,7 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete }: R
                 </div>
 
                 <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-1">HR Contact Name</label>
+                    <label className="block text-sm font-semibold text-slate-700 mb-1">{t.hrName}</label>
                     <input
                         type="text"
                         className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#FF6F61] outline-none"
@@ -175,7 +178,7 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete }: R
                 </div>
 
                 <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-1">Job Title</label>
+                    <label className="block text-sm font-semibold text-slate-700 mb-1">{t.hrTitle}</label>
                     <input
                         type="text"
                         className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#FF6F61] outline-none"
@@ -186,7 +189,7 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete }: R
                 </div>
 
                 <div className="col-span-2">
-                    <label className="block text-sm font-semibold text-slate-700 mb-1">Work Email</label>
+                    <label className="block text-sm font-semibold text-slate-700 mb-1">{t.email}</label>
                     <div className="relative">
                         <Mail className="absolute left-3 top-2.5 w-5 h-5 text-slate-400" />
                         <input
@@ -197,11 +200,11 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete }: R
                             placeholder="name@company.com"
                         />
                     </div>
-                    <p className="text-xs text-slate-500 mt-1">Please use your corporate email domain.</p>
+                    <p className="text-xs text-slate-500 mt-1">{t.emailHint}</p>
                 </div>
 
                 <div className="col-span-2">
-                    <label className="block text-sm font-semibold text-slate-700 mb-2">Estimated Annual Moves</label>
+                    <label className="block text-sm font-semibold text-slate-700 mb-2">{t.moves}</label>
                     <div className="flex flex-wrap gap-2">
                         {MOVES_OPTIONS.map(opt => (
                             <button
@@ -224,7 +227,7 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete }: R
                     onClick={handleNext}
                     className="px-6 py-3 bg-[#FF6F61] text-white font-bold rounded-lg hover:bg-[#e85a4d] transition-colors flex items-center gap-2"
                 >
-                    Next: Define Scope <ArrowRight className="w-5 h-5" />
+                    {t.next} <ArrowRight className="w-5 h-5" />
                 </button>
             </div>
         </div>
@@ -234,12 +237,12 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete }: R
     const renderStep2 = () => (
         <div className="space-y-6 animate-slideUp">
             <h2 className="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-4">
-                What are your challenges?
+                {t.step2Title}
             </h2>
 
             {/* Services Section */}
             <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-3">How can we assist your employees?</label>
+                <label className="block text-sm font-semibold text-slate-700 mb-3">{t.assist}</label>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                     {SERVICES.map(svc => (
                         <button
@@ -258,7 +261,7 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete }: R
             </div>
 
             <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-3">Current Pain Points</label>
+                <label className="block text-sm font-semibold text-slate-700 mb-3">{t.painPoints}</label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {PAIN_POINTS.map(point => (
                         <button
@@ -277,7 +280,7 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete }: R
             </div>
 
             <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-3">Primary Destinations</label>
+                <label className="block text-sm font-semibold text-slate-700 mb-3">{t.destinations}</label>
                 <div className="flex flex-wrap gap-2">
                     {DESTINATIONS.map(city => (
                         <button
@@ -295,11 +298,11 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete }: R
             </div>
 
             <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Specific Request / Context</label>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">{t.specific}</label>
                 <textarea
                     rows={4}
                     className="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-[#FF6F61] outline-none"
-                    placeholder="e.g. We need a VIP package for a VP moving from USA to Zurich with a family of 4. Needs school search and temporary housing."
+                    placeholder={t.specificPlaceholder}
                     value={formData.specificRequest}
                     onChange={e => setFormData({ ...formData, specificRequest: e.target.value })}
                 />
@@ -316,14 +319,14 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete }: R
                     onClick={() => setStep(1)}
                     className="text-slate-500 hover:text-slate-800 font-medium px-4"
                 >
-                    Back
+                    {t.back}
                 </button>
                 <button
                     onClick={handleSubmit}
                     disabled={isSubmitting}
                     className="px-8 py-3 bg-[#FF6F61] text-white font-bold rounded-lg hover:bg-[#e85a4d] transition-colors shadow-lg shadow-red-500/20 flex items-center gap-2 disabled:opacity-70"
                 >
-                    {isSubmitting ? 'Submitting...' : 'Request Corporate Benchmarks'}
+                    {isSubmitting ? t.submitting : t.submit}
                 </button>
             </div>
         </div>
@@ -335,24 +338,22 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete }: R
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle className="w-10 h-10 text-green-600" />
             </div>
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">Request Received.</h2>
-            <p className="text-slate-600 text-lg mb-8 leading-relaxed">
-                We are curating your proposals.<br />
-                Check your inbox at <strong>{formData.hrEmail}</strong> for confirmation.
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">{t.success.title}</h2>
+            <p className="text-slate-600 text-lg mb-8 leading-relaxed" dangerouslySetInnerHTML={{ __html: t.success.desc.replace('{email}', formData.hrEmail) }}>
             </p>
 
             <div className="bg-slate-50 p-4 rounded-xl text-sm text-slate-500 flex items-center gap-3 text-left">
                 <Lock className="w-8 h-8 text-slate-400 flex-shrink-0" />
-                <p>Your request is handled discreetly by our Corporate Team. No data is shared publicly.</p>
+                <p>{t.success.discrete}</p>
             </div>
 
             <div className="mt-8">
                 {onComplete ? (
                     <button onClick={onComplete} className="text-[#FF6F61] font-bold hover:underline">
-                        Close & Return
+                        {t.success.close}
                     </button>
                 ) : (
-                    <a href="/" className="text-[#FF6F61] font-bold hover:underline">Return to Homepage</a>
+                    <a href="/" className="text-[#FF6F61] font-bold hover:underline">{t.success.return}</a>
                 )}
             </div>
         </div>
@@ -374,14 +375,14 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete }: R
                 {/* Header with Title and Selected Agents Badge */}
                 <div className="px-6 md:px-8 pt-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
-                        <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Relocation RFP Engine</h2>
-                        <p className="text-slate-500 text-sm">Managed benchmarking for your mobility program.</p>
+                        <h2 className="text-2xl font-bold text-slate-900 tracking-tight">{t.header.title}</h2>
+                        <p className="text-slate-500 text-sm">{t.header.subtitle}</p>
                     </div>
                     {selectedAgencies && selectedAgencies.length > 0 && (
                         <div className="flex items-center gap-2 px-3 py-1.5 bg-[#FF6F61]/10 border border-[#FF6F61]/20 rounded-lg shrink-0">
                             <Users className="w-4 h-4 text-[#FF6F61]" />
                             <span className="text-[11px] font-black text-[#FF6F61] uppercase tracking-wider">
-                                {selectedAgencies.length} Partners Selected
+                                {selectedAgencies.length} {t.header.selected}
                             </span>
                         </div>
                     )}
@@ -390,7 +391,7 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete }: R
                 {/* Privacy Banner */}
                 <div className="bg-slate-50 border-b border-slate-100 py-3 px-4 flex items-center justify-center gap-2 text-[#FF6F61] text-sm font-medium">
                     <Shield className="w-4 h-4" />
-                    Anonymous Request Mode Active. Agencies will not see your contact details.
+                    {t.privacy}
                 </div>
 
                 <div className="p-6 md:p-8">

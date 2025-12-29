@@ -3,38 +3,22 @@ import CloudinaryImage from '../common/CloudinaryImage.astro';
 
 const { post, formatDate } = Astro.props;
 
-// Author info - using Robert Kolar for all posts with his image
 const authorInfo = {
   name: "Robert Kolar",
   image: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1747501071/6758848048b5cdaf6ebe884f_WhatsApp_Image_2024-12-11_at_01.55.01_oruhjs.webp"
 };
-
-// Mobile-optimized image URL - smaller size for better mobile performance
-const mobileOptimizedImage = post.image.includes('cloudinary.com') 
-  ? post.image.replace('/upload/', '/upload/w_400,h_300,c_fill,f_webp,q_auto:good/') 
-  : post.image;
 ---
 
 <a href={`/blog/${post.id}`} class="card group h-full flex flex-col hover:shadow-card-hover transition-all duration-300">
   <div class="relative overflow-hidden h-72">
-    <picture>
-      <!-- Mobile optimized image -->
-      <source 
-        media="(max-width: 768px)" 
-        srcset={mobileOptimizedImage}
-        type="image/webp"
-      />
-      <!-- Desktop image -->
-      <img
-        src={post.image}
-        alt={post.title}
-        width="400"
-        height="300"
-        class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
-        loading="lazy"
-        decoding="async"
-      />
-    </picture>
+    <CloudinaryImage 
+      src={post.image} 
+      alt={post.title}
+      width={400}
+      height={300}
+      class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+      loading="lazy"
+    />
     <div class="absolute top-0 right-0 bg-coral-500 text-white px-3 py-1 text-sm font-medium rounded-bl-lg">
       {post.category}
     </div>
@@ -42,14 +26,13 @@ const mobileOptimizedImage = post.image.includes('cloudinary.com')
   
   <div class="p-6 flex flex-col flex-grow">
     <div class="flex items-center mb-4">
-      <img
+      <CloudinaryImage
         src={authorInfo.image}
         alt={authorInfo.name}
-        width="32"
-        height="32"
+        width={32}
+        height={32}
         class="w-8 h-8 rounded-full mr-3 object-cover"
         loading="lazy"
-        decoding="async"
       />
       <div>
         <p class="text-sm font-medium">{authorInfo.name}</p>

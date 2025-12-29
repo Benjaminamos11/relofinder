@@ -1,0 +1,17 @@
+---
+import CorporateLanding from '../../../components/corporate/CorporateLanding.astro';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } },
+    { params: { lang: 'de' } },
+    { params: { lang: 'fr' } },
+  ];
+}
+
+const { lang } = Astro.params;
+---
+
+<CorporateLanding lang={lang as 'en' | 'de' | 'fr'} />
