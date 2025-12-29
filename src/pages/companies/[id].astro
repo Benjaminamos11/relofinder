@@ -102,6 +102,14 @@ try {
                 canton: companyData.address?.canton || ''
              };
         }
+
+        // Sync Arrays (Services & Regions)
+        if (fullProfile.services && Array.isArray(fullProfile.services) && fullProfile.services.length > 0) {
+            companyData.services = fullProfile.services;
+        }
+        if (fullProfile.regions_served && Array.isArray(fullProfile.regions_served) && fullProfile.regions_served.length > 0) {
+            companyData.regions = fullProfile.regions_served;
+        }
     }
   }
 
