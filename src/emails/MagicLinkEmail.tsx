@@ -4,11 +4,15 @@ import { EmailLayout, colors } from './components/EmailLayout';
 
 interface MagicLinkEmailProps {
     magicLink: string;
+    companyName?: string;
 }
 
-export const MagicLinkEmail: React.FC<MagicLinkEmailProps> = ({ magicLink }) => {
+export const MagicLinkEmail: React.FC<MagicLinkEmailProps> = ({ magicLink, companyName }) => {
     return (
         <EmailLayout previewText="Log in to your Relofinder Partner Dashboard">
+            <Text style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '20px', color: colors.text }}>
+                {companyName ? `Hello ${companyName},` : 'Hello,'}
+            </Text>
             <Text style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '20px', color: colors.text }}>
                 Your Login Link
             </Text>
