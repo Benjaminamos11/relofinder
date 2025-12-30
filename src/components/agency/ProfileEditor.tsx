@@ -53,7 +53,7 @@ export default function ProfileEditor({ partner, onUpdate }: any) {
                     bio: formData.bio,
                     website: formData.website,
                     contact_email: formData.contact_email,
-                    contact_phone: formData.contact_phone,
+                    phone_number: formData.phone_number,
                     logo: formData.logo,
                     founded: formData.founded,
                     employees: formData.employees,
@@ -83,6 +83,35 @@ export default function ProfileEditor({ partner, onUpdate }: any) {
     };
 
     // --- SUB-COMPONENTS FOR REUSE ---
+
+    const CollapsibleSection = ({ icon: Icon, title, children, defaultOpen = true }: any) => {
+        const [isOpen, setIsOpen] = useState(defaultOpen);
+        return (
+            <div className="bg-white p-6 rounded-2xl shadow-xl shadow-slate-200/40 transition-all">
+                <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="w-full flex items-center justify-between pb-4 border-b border-slate-100 group"
+                >
+                    <div className="flex items-center gap-3">
+                        <div className="p-2 bg-slate-50 text-[#FF6F61] rounded-lg group-hover:bg-[#FF6F61]/10 transition-colors">
+                            <Icon size={18} />
+                        </div>
+                        <h3 className="text-xl font-bold text-slate-900 font-serif tracking-tight">{title}</h3>
+                    </div>
+                    {/* Chevron Animation */}
+                    <div className={`text-slate-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+                    </div>
+                </button>
+
+                <div className={`grid transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0 mt-0'}`}>
+                    <div className="overflow-hidden min-h-0">
+                        {children}
+                    </div>
+                </div>
+            </div>
+        );
+    };
 
     const SectionHeader = ({ icon: Icon, title }: any) => (
         <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
@@ -153,8 +182,7 @@ export default function ProfileEditor({ partner, onUpdate }: any) {
                 <div className="lg:col-span-2 space-y-8">
 
                     {/* Identity Card */}
-                    <section className="bg-white p-8 rounded-2xl shadow-xl shadow-slate-200/40 hover:shadow-2xl hover:shadow-slate-200/50 transition-all">
-                        <SectionHeader icon={Globe} title="Company Identity" />
+                    <CollapsibleSection icon={Globe} title="Company Identity" defaultOpen={true}>
 
                         <div className="flex flex-col md:flex-row gap-8 mb-8">
                             {/* Logo */}
@@ -196,12 +224,10 @@ export default function ProfileEditor({ partner, onUpdate }: any) {
                                 className="w-full px-4 py-3 bg-slate-50 border border-transparent rounded-lg text-slate-700 text-sm focus:bg-white focus:border-slate-200 focus:ring-2 focus:ring-[#FF6F61]/20 outline-none transition-all placeholder:text-slate-300 resize-none leading-relaxed"
                             />
                         </div>
-                    </section>
+                    </CollapsibleSection>
 
                     {/* Contact Card */}
-                    <section className="bg-white p-8 rounded-2xl shadow-xl shadow-slate-200/40 hover:shadow-2xl hover:shadow-slate-200/50 transition-all">
-                        <SectionHeader icon={MapPin} title="Contact & Location" />
-
+                    <CollapsibleSection icon={MapPin} title="Contact & Location" defaultOpen={true}>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                             <div className="md:col-span-3">
                                 <InputField label="Street Address" name="address_street" placeholder="Bahnhofstrasse 1" />
@@ -235,25 +261,23 @@ export default function ProfileEditor({ partner, onUpdate }: any) {
                             </div>
                             <p className="text-[10px] text-slate-400 mt-2 px-1">Adding a calendar link increases conversion by 30%.</p>
                         </div>
-                    </section>
+                    </CollapsibleSection>
                 </div>
 
                 {/* Right Column: Capabilities & Team */}
                 <div className="space-y-8">
 
                     {/* Team Manager */}
-                    <section className="bg-white p-8 rounded-2xl shadow-xl shadow-slate-200/40">
-                        <SectionHeader icon={Briefcase} title="Team Manager" />
+                    <CollapsibleSection icon={Briefcase} title="Team Manager" defaultOpen={false}>
                         <div className="space-y-5">
                             <InputField label="Full Name" name="manager_name" placeholder="John Doe" />
                             <InputField label="Job Title" name="manager_role" placeholder="Head of Global Mobility" />
                             <InputField label="Direct Email" name="manager_email" placeholder="john@company.ch" />
                         </div>
-                    </section>
+                    </CollapsibleSection>
 
                     {/* Capabilities */}
-                    <section className="bg-white p-8 rounded-2xl shadow-xl shadow-slate-200/40">
-                        <SectionHeader icon={Award} title="Capabilities" />
+                    <CollapsibleSection icon={Award} title="Capabilities" defaultOpen={true}>
 
                         {/* Regions */}
                         <div className="mb-8">
@@ -323,7 +347,7 @@ export default function ProfileEditor({ partner, onUpdate }: any) {
                             </div>
                         </div>
 
-                    </section>
+                    </CollapsibleSection>
                 </div>
             </div>
         </div>
