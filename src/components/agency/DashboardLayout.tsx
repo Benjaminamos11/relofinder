@@ -291,6 +291,7 @@ export default function DashboardLayout() {
                         />
                     )}
                     {view === 'leads' && <LeadsView partner={partner} />}
+                    {view === 'settings' && <SettingsView partner={partner} />}
                 </div>
             </main>
         </div>
@@ -350,4 +351,123 @@ const LeadsView = ({ partner }: any) => {
         </div>
     );
 };
+
+function SettingsView({ partner }: any) {
+    const [updating, setUpdating] = useState(false);
+    const [accepting, setAccepting] = useState(partner.accepting_new_customers);
+
+    const handleToggle = async () => {
+        setUpdating(true);
+        const newValue = !accepting;
+        setAccepting(newValue);
+
+        const { error } = await supabase
+            .from('relocators')
+            .update({ accepting_new_customers: newValue })
+            .eq('id', partner.id);
+
+        setUpdating(false);
+        if (error) {
+            setAccepting(!newValue);
+            console.error(error);
+            alert('Failed to update setting.');
+        }
+    };
+
+    return (
+        <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+
+            {/* Account Info */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+                    <div className="p-2 bg-slate-50 text-slate-500 rounded-lg">
+                        <UserCircle size={18} />
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900 font-serif tracking-tight">Account Information</h3>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Registered Email</label>
+                        <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-200">
+                            <span className="text-slate-700 font-medium">{partner.contact_email}</span>
+                            <span className="text-[10px] bg-green-100 text-green-700 px-2 py-1 rounded-full font-bold uppercase tracking-wide">Verified</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Partner ID</label>
+                        <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 font-mono text-xs text-slate-500 truncate">
+                            {partner.id}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Application Settings */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+                    <div className="p-2 bg-slate-50 text-slate-500 rounded-lg">
+                        <Settings size={18} />
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900 font-serif tracking-tight">Preferences</h3>
+                </div>
+
+                <div className="space-y-6">
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <h4 className="text-base font-bold text-slate-900">Accept New Inquiries</h4>
+                            <p className="text-sm text-slate-500 max-w-md mt-1">
+                                When enabled, your profile will be visible in search results and you can receive new leads.
+                            </p>
+                        </div>
+                        <div className="relative inline-flex items-center cursor-pointer">
+                            <input
+                                type="checkbox"
+                                className="sr-only peer"
+                                checked={accepting}
+                                onChange={handleToggle}
+                                disabled={updating}
+                            />
+                            <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#FF6F61] transition-colors"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Support */}
+            <div className="bg-[#0F172A] p-8 rounded-2xl shadow-lg relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-12 opacity-5 scale-150 transform group-hover:scale-110 transition-transform duration-700">
+                    <Star size={120} />
+                </div>
+
+                <div className="relative z-10">
+                    <h3 className="text-xl font-bold text-white font-serif mb-2">Need Priority Support?</h3>
+                    <p className="text-slate-400 max-w-lg mb-8">
+                        Our dedicated partner success team is here to help you optimize your profile and close more deals.
+                    </p>
+
+                    <a
+                        href="mailto:support@relofinder.ch"
+                        className="inline-flex items-center gap-2 bg-[#FF6F61] text-white px-6 py-3 rounded-lg font-bold text-sm hover:bg-[#ff5a4d] transition-colors"
+                    >
+                        Contact Support
+                    </a>
+                </div>
+            </div>
+
+            <div className="text-center pt-8">
+                <button
+                    onClick={async () => {
+                        await supabase.auth.signOut();
+                        window.location.href = '/agency/login';
+                    }}
+                    className="text-red-500 text-sm font-medium hover:text-red-600 transition-colors flex items-center justify-center gap-2 mx-auto"
+                >
+                    <LogOut size={16} /> Sign out of Partner Portal
+                </button>
+            </div>
+
+        </div>
+    );
+}
 
