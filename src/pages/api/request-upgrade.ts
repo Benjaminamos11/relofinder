@@ -12,7 +12,7 @@ export const POST: APIRoute = async ({ request }) => {
             return new Response(JSON.stringify({ error: 'Missing Required Fields' }), { status: 400 });
         }
 
-        const { data, error } = await resend.emails.send({
+        const { data, error }: any = await resend.emails.send({
             from: 'Relofinder Partner Portal <system@relofinder.ch>',
             to: ['partner@relofinder.ch'],
             reply_to: partnerEmail,

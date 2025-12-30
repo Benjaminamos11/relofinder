@@ -118,7 +118,9 @@ export default function DashboardLayout() {
                 languages: ['English', 'German', 'French', 'Italian', 'Spanish', 'Portuguese', 'Russian', 'Mandarin'],
                 certifications: ['EuRA Member', 'EuRA Global Quality Seal', 'SARA Member', 'FIDI FAIM', 'CERC', 'IAM', 'Worldwide ERC'],
                 founded: 2016,
-                employees: '1-10'
+                employees: '1-10',
+                accepting_new_customers: true,
+                tier: 'standard'
             });
             setLoading(false);
             return;
@@ -441,8 +443,9 @@ const LeadsView = ({ partner }: any) => {
 };
 
 function SettingsView({ partner }: any) {
+    if (!partner) return null;
     const [updating, setUpdating] = useState(false);
-    const [accepting, setAccepting] = useState(partner.accepting_new_customers);
+    const [accepting, setAccepting] = useState(partner?.accepting_new_customers ?? false);
 
     const handleToggle = async () => {
         setUpdating(true);
