@@ -14,8 +14,7 @@ import {
     Languages,
     Building2
 } from 'lucide-react';
-import { regions } from '../../data/regions'; // Fallback or use DB
-import { services as servicesList } from '../../data/services'; // Fallback or use DB
+
 
 export default function ProfileEditor({ partner, onUpdate }: any) {
     const [formData, setFormData] = useState(partner || {});
