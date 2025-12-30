@@ -1,5 +1,6 @@
 ---
 id: relocation-geneva
+label: "Freelancer"
 name: Relocation Geneva
 description: Relocation Geneva provides relocation services in the Geneva region, assisting individuals and families with moving and settling in Switzerland.
 logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166492/logo-relocation-geneva-anne-laure-teroni_sgnw09.webp

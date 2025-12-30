@@ -237,9 +237,14 @@ const canonical = 'https://relofinder.ch/companies';
                                 {/* Body: Name & Desc - Only show name if no logo was shown above, or always show for clarity? Let's hide name if logo exists to be super clean, or keep it small. Strategy: Always show name for SEO/Clarity but smaller. */}
                                 
                                 <div class="mb-8 flex-grow">
-                                     <h3 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-[#FF6F61] transition-colors duration-300">
-                                        {company.data.name}
-                                     </h3>
+                                     <h3 class="font-serif text-xl font-bold text-slate-900 group-hover:text-[#FF6F61] transition-colors line-clamp-1">
+                            {company.data.name}
+                        </h3>
+                        {company.data.label && (
+                            <span class="inline-block px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 text-[10px] font-bold uppercase tracking-wide border border-slate-200 mt-1">
+                                {company.data.label}
+                            </span>
+                        )}
                                      <p class="text-sm text-slate-500 leading-relaxed line-clamp-3">
                                         {company.data.description}
                                      </p>

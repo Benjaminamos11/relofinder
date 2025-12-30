@@ -1,5 +1,6 @@
 ---
 id: "schweizer-relocation"
+label: "Part of Welcome Service"
 name: "Schweizer Relocation"
 description: "Schweizer Relocation provides comprehensive, tailored relocation support for companies and private individuals moving to Switzerland, featuring digital tools like the ReX communication platform."
 logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166881/schweizwr-relocation_w1itkg.webp"

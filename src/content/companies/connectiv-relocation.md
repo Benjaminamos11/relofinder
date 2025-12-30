@@ -1,5 +1,6 @@
 ---
 id: connectiv-relocation
+label: "Part of Packimpex"
 name: Connectiv Relocation AG
 description: Connectiv Relocation offers personalized relocation services in Basel, Zurich, Geneva and across Switzerland. Established in 2011 with a perfect 5.0/5 rating from Google reviews.
 logo: https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167564/connectiv-logo_hfwy6e.webp

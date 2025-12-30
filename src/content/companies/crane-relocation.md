@@ -1,5 +1,6 @@
 ---
 id: "crane-relocation"
+label: "Freelancer"
 name: "Crane Relocation"
 description: "Crane Relocation GmbH offers discrete, efficient, and reliable relocation services for expats in Zug, Zurich, and Lucerne. Perfect 5.0/5 Google rating."
 logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166865/crane_logo_wqg9ds.webp"

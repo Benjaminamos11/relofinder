@@ -336,7 +336,13 @@ const schema = {
           <!-- Text Content -->
           <div class="lg:col-span-8">
             <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-gray-900 leading-[0.95] tracking-tight mb-8">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-gray-900 leading-[0.95] tracking-tight mb-8">
               {companyData.name}
+              {companyData.label && (
+                  <span class="block text-2xl md:text-3xl text-gray-400 font-sans font-medium mt-2 tracking-normal">
+                      {companyData.label}
+                  </span>
+              )}
             </h1>
             <p class="text-lg md:text-xl text-gray-500 font-light leading-relaxed max-w-2xl mb-12">
               {companyData.description}

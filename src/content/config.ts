@@ -29,6 +29,7 @@ const companies = defineCollection({
     verified: z.boolean().default(false),
     featured: z.boolean().default(false),
     hidden: z.boolean().default(false),
+    label: z.string().optional(),
     rating: z.object({
       score: z.number().min(1).max(5),
       reviews: z.number(),

@@ -1,5 +1,6 @@
 ---
 id: "xpat-relocation"
+label: "Freelancer"
 name: "Xpat Relocation"
 description: "Xpat Relocation, founded by expat Marianne Blommers, offers personalized relocation services in Zug, Luzern & Zurich. Packages & a-la-carte options available."
 logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748166875/xpat-relocation-logo_j8xxfd.webp"

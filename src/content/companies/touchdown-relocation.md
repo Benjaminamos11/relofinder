@@ -1,5 +1,6 @@
 ---
 id: "touchdown-relocation"
+label: "Part of Welcome Service"
 name: "Touchdown Relocation Services"
 description: "Established in 1997, Touchdown Relocation Services provides personalized, modular relocation assistance for individuals and companies moving to the greater Zurich area and the cantons of Aargau, Zug, and Schwyz. Part of Welcome Service Sàrl."
 logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167559/logo-touchdown-relocation_btnyub.webp"

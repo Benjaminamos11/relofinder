@@ -1,5 +1,6 @@
 ---
 id: "de-peri-relocation"
+label: "Freelancer"
 name: "De Peri Relocation Services"
 description: "De Peri Relocation Services, founded by Catherine De Peri, offers highly personal and professional relocation assistance for individuals and companies moving to Switzerland, covering all regions."
 logo: "https://placehold.co/200x80/png?text=De+Peri+Logo"
