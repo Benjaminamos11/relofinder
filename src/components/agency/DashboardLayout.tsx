@@ -188,7 +188,11 @@ export default function DashboardLayout() {
                                 </div>
                             )}
                             <div className="h-8 w-px bg-slate-200 mx-2 hidden md:block"></div>
-                            <a href={`/companies/${partner?.id || 'mock-id'}`} target="_blank" className="flex items-center gap-2 text-sm text-[#FF6F61] font-medium hover:underline">
+                            <a
+                                href={`/companies/${partner?.slug || partner?.name.toLowerCase().replace(/(\s+ag|\s+gmbh|\s+sarl|\s+sa|\s+ltd|\s+services$)/g, '').trim().split(' ').join('-').replace(/[^a-z0-9-]/g, '')}`}
+                                target="_blank"
+                                className="flex items-center gap-2 text-sm text-[#FF6F61] font-medium hover:underline"
+                            >
                                 <ExternalLink size={14} />
                                 View Public Profile
                             </a>
