@@ -54,7 +54,7 @@ export default function DashboardLayout() {
     const [partner, setPartner] = useState<any>(null);
     const [refreshKey, setRefreshKey] = useState(0);
 
-    const [stats, setStats] = useState({ views: 0, leads: 0, rating: 5.0 });
+    const [stats, setStats] = useState({ views: 0, leads: 0, rating: '5.0' });
 
     useEffect(() => {
         checkSession();
@@ -262,23 +262,23 @@ export default function DashboardLayout() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                             <StatCard
                                 icon={Eye}
-                                label="Profile Views (30d)"
-                                value="1,248"
+                                label="Profile Impressions"
+                                value={stats.views.toLocaleString()}
                                 trend="+12%"
                                 trendUp={true}
                             />
                             <StatCard
                                 icon={Users}
-                                label="Active Inquiries"
-                                value="3"
-                                trend="New"
+                                label="Active Opportunities"
+                                value={stats.leads}
+                                trend="Live"
                                 trendUp={true}
                             />
                             <StatCard
                                 icon={Star}
                                 label="Average Rating"
-                                value="5.0"
-                                trend="Perfect"
+                                value={stats.rating}
+                                trend="Verified"
                                 trendUp={true}
                             />
                         </div>
