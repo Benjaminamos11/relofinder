@@ -141,8 +141,10 @@ export default function DashboardLayout() {
         <div className="min-h-screen bg-[#FDFDFD] flex font-sans text-slate-600">
             {/* Dark Sidebar - The "Private Bank" Look */}
             <aside className="fixed top-0 left-0 h-full w-72 bg-[#0F172A] z-40 flex flex-col shadow-2xl">
-                <div className="p-8 pb-10 flex items-center">
-                    <h1 className="font-serif text-2xl text-white tracking-wide">Relofinder<span className="text-[#FF6F61]">.</span></h1>
+                <div className="p-8 pb-10 flex items-center border-b border-slate-800/50">
+                    <h1 className="text-2xl font-bold tracking-tight text-[#FF6F61]" style={{ fontFamily: "'Playfair Display', serif" }}>
+                        Relofinder
+                    </h1>
                 </div>
 
                 <nav className="space-y-1 px-4 flex-1 overflow-y-auto">
