@@ -54,9 +54,50 @@ export default function DashboardLayout() {
     const [partner, setPartner] = useState<any>(null);
     const [refreshKey, setRefreshKey] = useState(0);
 
+    const [stats, setStats] = useState({ views: 0, leads: 0, rating: 5.0 });
+
     useEffect(() => {
         checkSession();
     }, [refreshKey]);
+
+    useEffect(() => {
+        if (partner?.id) fetchStats();
+    }, [partner]);
+
+    const fetchStats = async () => {
+        if (!partner) return;
+
+        // 1. Real Leads Count
+        const { count: leadsCount } = await supabase
+            .from('leads')
+            .select('*', { count: 'exact', head: true })
+            .eq('relocator_id', partner.id);
+
+        // 2. Views (Real + Exaggerated Logic)
+        let views = 0;
+        const { data: analytics } = await supabase
+            .from('company_analytics')
+            .select('views_count')
+            .eq('company_id', partner.id)
+            .single();
+
+        if (analytics && analytics.views_count > 0) {
+            views = analytics.views_count * 3 + 127; // "Exaggerated" as requested
+        } else {
+            // Fallback exaggeration based on ID to be consistent but "active"
+            const idSum = partner.id.split('').reduce((acc: any, char: any) => acc + char.charCodeAt(0), 0);
+            views = (idSum % 500) + 840;
+        }
+
+        // 3. Rating (Real from DB)
+        const rating = partner.rating || partner.google_rating || 5.0;
+
+        setStats({
+            leads: leadsCount || 0,
+            views: views,
+            rating: Number(rating).toFixed(1)
+        });
+    };
 
     const checkSession = async () => {
         // DEV MODE BYPASS
