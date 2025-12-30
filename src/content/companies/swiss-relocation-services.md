@@ -1,6 +1,6 @@
 ---
 id: "swiss-relocation-services"
-name: "Swiss Relocation Services (All-in-One)"
+name: "All in One Relocation"
 description: "Regensdorf-based destination services provider with nearly 20 years of experience serving over 1,700 clients, specializing in Fortune 500 companies with guaranteed 6-hour response time."
 logo: "/images/companies/swiss-relocation-services-logo.png"
 
