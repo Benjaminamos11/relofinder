@@ -184,7 +184,7 @@ export default function DashboardLayout() {
                         <div className="flex items-center gap-4">
                             {partner?.logo && (
                                 <div className="hidden md:block h-10 w-auto">
-                                    <img src={partner.logo} alt={partner.name} className="h-full w-auto object-contain" />
+                                    <img src={partner.logo} alt={partner.name} className={`h-full w-auto object-contain ${partner.name.includes('AM Relocation') ? 'invert' : ''}`} />
                                 </div>
                             )}
                             <div className="h-8 w-px bg-slate-200 mx-2 hidden md:block"></div>
