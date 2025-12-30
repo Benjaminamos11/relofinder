@@ -6,7 +6,10 @@ import { BadgeCheck, MapPin, Briefcase, Filter, X } from 'lucide-react';
 import ComparisonBar from '../../components/ComparisonBar';
 
 // Fetch companies from content collection
-const companies = await getCollection('companies');
+// Fetch companies from content collection
+const companies = await getCollection('companies', ({ id }) => {
+  return !id.startsWith('_archived/');
+});
 
 // Fetch real stats from Supabase
 const { data: relocators } = await supabase
