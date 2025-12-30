@@ -148,23 +148,29 @@ export default function ProfileEditor({ partner, onUpdate }: { partner: any, onU
                                 <div className="shrink-0 w-full md:w-auto">
                                     <label className="block text-xs font-bold uppercase tracking-wide text-slate-500 mb-2">Company Logo</label>
                                     <div className="flex flex-col gap-3">
-                                        <div className="w-32 h-32 bg-slate-100 rounded-lg border border-slate-200 flex items-center justify-center overflow-hidden">
+                                        <div className="w-32 h-32 bg-slate-100 rounded-lg border border-slate-200 flex items-center justify-center overflow-hidden relative group">
                                             {formData.logo ? (
-                                                <img src={formData.logo} alt="Logo Preview" className="w-full h-full object-contain p-2" />
+                                                <img
+                                                    src={formData.logo}
+                                                    alt="Logo Preview"
+                                                    className={`w-full h-full object-contain p-2 ${formData.name.includes('AM Relocation') ? 'invert' : ''}`}
+                                                />
                                             ) : (
                                                 <span className="text-xs text-slate-400">No Logo</span>
                                             )}
                                         </div>
-                                        <div>
-                                            <label className="block text-xs text-slate-400 mb-1">Image URL</label>
+
+                                        <div className="relative">
                                             <input
                                                 type="url"
                                                 name="logo"
+                                                id="logoInput"
                                                 value={formData.logo}
                                                 onChange={handleChange}
                                                 placeholder="https://..."
-                                                className="w-full md:w-48 px-2 py-1 text-xs border border-slate-200 rounded focus:border-slate-400 outline-none"
+                                                className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:border-slate-900 outline-none transition-all"
                                             />
+                                            <p className="text-[10px] text-slate-400 mt-1">Paste a direct image URL.</p>
                                         </div>
                                     </div>
                                 </div>
