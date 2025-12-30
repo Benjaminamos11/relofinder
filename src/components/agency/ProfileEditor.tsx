@@ -1,51 +1,37 @@
-
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Save, Upload, MapPin, Globe, Loader2, Mail, Phone, User, Briefcase, Award } from 'lucide-react';
+import {
+    Save,
+    Upload,
+    Globe,
+    MapPin,
+    Briefcase,
+    Award,
+    Phone,
+    Mail,
+    Calendar,
+    Check,
+    Languages,
+    Building2
+} from 'lucide-react';
+import { regions } from '../../data/regions'; // Fallback or use DB
+import { services as servicesList } from '../../data/services'; // Fallback or use DB
 
-const REGIONS_OPTIONS = ['Zurich', 'Geneva', 'Basel', 'Bern', 'Zug', 'Vaud', 'Lucerne', 'Ticino'];
-const SERVICES_OPTIONS = ['Home Search', 'Visa & Immigration', 'School Search', 'Settling In', 'Departure Support', 'Short-term Accommodation', 'Spouse Support'];
-const LANGUAGES_OPTIONS = ['English', 'German', 'French', 'Italian', 'Spanish', 'Portuguese', 'Russian', 'Mandarin'];
-const CERTIFICATIONS_OPTIONS = ['EuRA Member', 'EuRA Global Quality Seal', 'SARA Member', 'FIDI FAIM', 'CERC', 'IAM', 'Worldwide ERC'];
-
-export default function ProfileEditor({ partner, onUpdate }: { partner: any, onUpdate: () => void }) {
-    const [loading, setLoading] = useState(false);
-    const [formData, setFormData] = useState<any>(null);
+export default function ProfileEditor({ partner, onUpdate }: any) {
+    const [formData, setFormData] = useState(partner || {});
+    const [saving, setSaving] = useState(false);
     const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
     useEffect(() => {
-        if (partner) {
-            setFormData({
-                name: partner.name || '',
-                founded_year: partner.founded_year || '',
-                employee_count: partner.employee_count || '',
-                website: partner.website || '',
-                bio: partner.bio || '',
-                address_street: partner.address_street || '',
-                address_city: partner.address_city || '',
-                address_zip: partner.address_zip || '',
-                phone_number: partner.phone_number || '',
-                contact_email: partner.contact_email || '', // Critical: Matches DB column
-                regions_served: partner.regions_served || [],
-                services: partner.services || [],
-                languages: partner.languages || [],
-                manager_name: partner.manager_name || '',
-                manager_title: partner.manager_title || '',
-                manager_email: partner.manager_email || '',
-                manager_phone: partner.manager_phone || '',
-                logo: partner.logo || '',
-                meeting_url: partner.meeting_url || '',
-                certifications: partner.certifications || []
-            });
-        }
+        if (partner) setFormData(partner);
     }, [partner]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (e: any) => {
         const { name, value } = e.target;
         setFormData((prev: any) => ({ ...prev, [name]: value }));
     };
 
-    const handleMultiSelect = (field: string, value: string) => {
+    const handleArrayToggle = (field: string, value: string) => {
         setFormData((prev: any) => {
             const current = prev[field] || [];
             if (current.includes(value)) {
@@ -56,323 +42,291 @@ export default function ProfileEditor({ partner, onUpdate }: { partner: any, onU
         });
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setLoading(true);
+    const handleSave = async () => {
+        setSaving(true);
         setMessage(null);
 
         try {
-            // Explicit payload to avoid sending unwanted fields
-            const payload = {
-                name: formData.name,
-                founded_year: formData.founded_year ? parseInt(formData.founded_year) : null,
-                employee_count: formData.employee_count ? parseInt(formData.employee_count) : null,
-                website: formData.website,
-                bio: formData.bio,
-                address_street: formData.address_street,
-                address_city: formData.address_city,
-                address_zip: formData.address_zip,
-                phone_number: formData.phone_number,
-                contact_email: formData.contact_email,
-                regions_served: formData.regions_served,
-                services: formData.services,
-                languages: formData.languages,
-                manager_name: formData.manager_name,
-                manager_title: formData.manager_title,
-                manager_email: formData.manager_email,
-                manager_phone: formData.manager_phone,
-                logo: formData.logo,
-                meeting_url: formData.meeting_url,
-                certifications: formData.certifications
-            };
-
             const { error } = await supabase
                 .from('relocators')
-                .update(payload)
+                .update({
+                    name: formData.name,
+                    bio: formData.bio,
+                    website: formData.website,
+                    contact_email: formData.contact_email,
+                    contact_phone: formData.contact_phone,
+                    logo: formData.logo,
+                    founded: formData.founded,
+                    employees: formData.employees,
+                    address_street: formData.address_street,
+                    address_city: formData.address_city,
+                    address_zip: formData.address_zip,
+                    calendar_link: formData.calendar_link,
+                    regions_served: formData.regions_served,
+                    services: formData.services,
+                    languages: formData.languages,
+                    certifications: formData.certifications,
+                    manager_name: formData.manager_name,
+                    manager_role: formData.manager_role,
+                    manager_email: formData.manager_email
+                })
                 .eq('id', partner.id);
 
             if (error) throw error;
-
-            setMessage({ type: 'success', text: 'Profile updated successfully!' });
-            onUpdate(); // Refresh parent state
-        } catch (error: any) {
-            console.error('Error updating profile:', error);
-            setMessage({ type: 'error', text: `Failed to update profile: ${error.message}` });
+            setMessage({ type: 'success', text: 'Profile updated successfully.' });
+            if (onUpdate) onUpdate();
+        } catch (err: any) {
+            console.error(err);
+            setMessage({ type: 'error', text: 'Failed to save changes.' });
         } finally {
-            setLoading(false);
+            setSaving(false);
         }
     };
 
-    if (!formData) return <div>Loading...</div>;
+    // --- SUB-COMPONENTS FOR REUSE ---
+
+    const SectionHeader = ({ icon: Icon, title }: any) => (
+        <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+            <div className="p-2 bg-slate-50 text-[#FF6F61] rounded-lg">
+                <Icon size={18} />
+            </div>
+            <h3 className="text-xl font-bold text-slate-900 font-serif tracking-tight">{title}</h3>
+        </div>
+    );
+
+    const InputField = ({ label, name, type = "text", placeholder, width = "w-full" }: any) => (
+        <div className={width}>
+            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">{label}</label>
+            <input
+                type={type}
+                name={name}
+                value={formData[name] || ''}
+                onChange={handleChange}
+                placeholder={placeholder}
+                className="w-full px-4 py-3 bg-slate-50 border border-transparent rounded-lg text-slate-700 text-sm focus:bg-white focus:border-slate-200 focus:ring-2 focus:ring-[#FF6F61]/20 outline-none transition-all placeholder:text-slate-300"
+            />
+        </div>
+    );
+
+    const SmartChip = ({ label, active, onClick }: any) => (
+        <button
+            onClick={onClick}
+            className={`px-4 py-2 rounded-full text-xs font-bold tracking-wide transition-all border ${active
+                ? 'bg-[#0F172A] text-white border-[#0F172A] shadow-md transform scale-105'
+                : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300 hover:text-slate-700'
+                }`}
+        >
+            {label}
+        </button>
+    );
+
+    // --- DATA LISTS ---
+    const allServices = ['Home Search', 'Visa & Immigration', 'School Search', 'Settling In', 'Departure Support', 'Short-term Accommodation', 'Spouse Support', 'Moving Managment', 'Legal Advice', 'Tax Advice'];
+    const allRegions = ['Zurich', 'Geneva', 'Basel', 'Bern', 'Zug', 'Vaud', 'Lucerne', 'Ticino', 'St. Gallen', 'Fribourg', 'Valais'];
+    const allLanguages = ['English', 'German', 'French', 'Italian', 'Spanish', 'Portuguese', 'Russian', 'Mandarin', 'Arabic', 'Japanese'];
+    const allCerts = ['EuRA Member', 'EuRA Global Quality Seal', 'SARA Member', 'FIDI FAIM', 'CERC', 'IAM', 'Worldwide ERC'];
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-8 max-w-7xl mx-auto pb-40">
+        <div className="space-y-8 animate-in fade-in duration-500">
 
-            {/* Sticky Header with Actions */}
-            <div className="sticky top-0 z-20 bg-slate-50/80 backdrop-blur-md py-4 border-b border-slate-200 mb-6 flex justify-between items-center -mx-4 px-4 md:-mx-8 md:px-8">
+            {/* Action Bar */}
+            <div className="flex justify-between items-center bg-white p-4 rounded-xl shadow-lg shadow-slate-200/50 sticky top-24 z-20 border border-slate-50/50">
                 <div>
-                    <h2 className="text-xl font-serif font-bold text-slate-900">Edit Profile</h2>
-                    <p className="text-sm text-slate-500">Update your agency details and visibility settings.</p>
+                    {message && (
+                        <span className={`text-sm font-medium px-3 py-1 rounded-full ${message.type === 'success' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
+                            {message.text}
+                        </span>
+                    )}
+                    {!message && <span className="text-sm text-slate-400 italic">Example tip: Keep your bio concise.</span>}
                 </div>
                 <button
-                    type="submit"
-                    disabled={loading}
-                    className="flex items-center gap-2 bg-slate-900 text-white px-5 py-2.5 rounded-lg font-bold hover:bg-slate-800 transition-all disabled:opacity-50 shadow-lg shadow-slate-900/10"
+                    onClick={handleSave}
+                    disabled={saving}
+                    className="flex items-center gap-2 bg-[#0F172A] hover:bg-slate-800 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all shadow-md hover:shadow-lg disabled:opacity-50"
                 >
-                    {loading ? <Loader2 className="animate-spin" size={18} /> : <Save size={18} />}
-                    Save Changes
+                    {saving ? 'Saving...' : <><Save size={16} /> Save Changes</>}
                 </button>
             </div>
 
-            {message && (
-                <div className={`p-4 rounded-lg text-sm font-medium mb-6 ${message.type === 'success' ? 'bg-green-50 text-green-700 border border-green-100' : 'bg-red-50 text-red-700 border border-red-100'}`}>
-                    {message.text}
-                </div>
-            )}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+                {/* Left Column: Identity & Contact */}
+                <div className="lg:col-span-2 space-y-8">
 
-                {/* LEFT COLUMN: Core Identity & Contact */}
-                <div className="xl:col-span-2 space-y-6">
+                    {/* Identity Card */}
+                    <section className="bg-white p-8 rounded-2xl shadow-xl shadow-slate-200/40 hover:shadow-2xl hover:shadow-slate-200/50 transition-all">
+                        <SectionHeader icon={Globe} title="Company Identity" />
 
-                    {/* Section A: Company Identity */}
-                    <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-                        <div className="px-6 py-4 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
-                            <h3 className="font-bold text-slate-800 flex items-center gap-2">
-                                <Globe size={18} className="text-slate-400" /> Company Identity
-                            </h3>
-                        </div>
-                        <div className="p-6 space-y-6">
-                            <div className="flex flex-col md:flex-row gap-6">
-                                {/* LOGO INPUT - SIMPLIFIED */}
-                                <div className="shrink-0 w-full md:w-auto">
-                                    <label className="block text-xs font-bold uppercase tracking-wide text-slate-500 mb-2">Company Logo</label>
-                                    <div className="flex flex-col gap-3">
-                                        <div className="w-32 h-32 bg-slate-100 rounded-lg border border-slate-200 flex items-center justify-center overflow-hidden relative group">
-                                            {formData.logo ? (
-                                                <img
-                                                    src={formData.logo}
-                                                    alt="Logo Preview"
-                                                    className={`w-full h-full object-contain p-2 ${formData.name.includes('AM Relocation') ? 'invert' : ''}`}
-                                                />
-                                            ) : (
-                                                <span className="text-xs text-slate-400">No Logo</span>
-                                            )}
-                                        </div>
-
-                                        <div className="relative">
-                                            <input
-                                                type="url"
-                                                name="logo"
-                                                id="logoInput"
-                                                value={formData.logo}
-                                                onChange={handleChange}
-                                                placeholder="https://..."
-                                                className="w-full text-xs px-3 py-2 border border-slate-200 rounded-lg focus:border-slate-900 outline-none transition-all"
-                                            />
-                                            <p className="text-[10px] text-slate-400 mt-1">Paste a direct image URL.</p>
-                                        </div>
-                                    </div>
+                        <div className="flex flex-col md:flex-row gap-8 mb-8">
+                            {/* Logo */}
+                            <div className="shrink-0 flex flex-col items-center gap-3">
+                                <div className="w-32 h-32 bg-slate-50 rounded-xl flex items-center justify-center overflow-hidden border border-slate-100 shadow-inner group relative">
+                                    {formData.logo ? (
+                                        <img src={formData.logo} alt="Logo" className={`w-24 h-24 object-contain ${formData.name?.includes('AM Relocation') ? 'invert' : ''}`} />
+                                    ) : (
+                                        <span className="text-xs text-slate-300 font-bold uppercase">No Logo</span>
+                                    )}
+                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors"></div>
                                 </div>
-
-                                <div className="flex-1 space-y-4">
-                                    <div className="grid md:grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-1">Company Name</label>
-                                            <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-slate-900/10 outline-none font-bold text-slate-900" required />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-1">Website</label>
-                                            <div className="relative">
-                                                <Globe size={16} className="absolute left-3 top-3 text-slate-400" />
-                                                <input type="url" name="website" value={formData.website} onChange={handleChange} className="w-full pl-10 pr-3 py-2 border border-slate-200 rounded-lg text-slate-600" placeholder="https://" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-1">Founded Year</label>
-                                            <input type="number" name="founded_year" value={formData.founded_year} onChange={handleChange} className="w-full px-3 py-2 border border-slate-200 rounded-lg" />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-1">Employees</label>
-                                            <input type="number" name="employee_count" value={formData.employee_count} onChange={handleChange} className="w-full px-3 py-2 border border-slate-200 rounded-lg" />
-                                        </div>
-                                    </div>
+                                <div className="w-full">
+                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1 text-center">Image URL</label>
+                                    <input
+                                        type="url" name="logo" value={formData.logo || ''} onChange={handleChange}
+                                        className="w-32 text-[10px] text-slate-500 bg-slate-50 px-2 py-1 rounded text-center focus:bg-white focus:ring-1 border-none"
+                                        placeholder="https://..."
+                                    />
                                 </div>
                             </div>
-                            <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">Description</label>
-                                <textarea name="bio" value={formData.bio} onChange={handleChange} className="w-full px-3 py-2 border border-slate-200 rounded-lg text-slate-600 focus:border-slate-400 outline-none" rows={4} placeholder="Describe your agency..." />
+
+                            {/* Core Fields */}
+                            <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <InputField label="Company Name" name="name" placeholder="e.g. Swiss Relo" />
+                                <InputField label="Website" name="website" placeholder="https://" />
+                                <InputField label="Founded Year" name="founded" type="number" placeholder="2010" />
+                                <InputField label="Team Size" name="employees" placeholder="1-10" />
                             </div>
                         </div>
-                    </div>
 
-                    {/* Section B: Contact & Address */}
-                    <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-                        <div className="px-6 py-4 bg-slate-50 border-b border-slate-100 flex items-center gap-2">
-                            <MapPin size={18} className="text-slate-400" />
-                            <h3 className="font-bold text-slate-800">Contact Details</h3>
+                        <div className="w-full">
+                            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Company Bio</label>
+                            <textarea
+                                name="bio"
+                                value={formData.bio || ''}
+                                onChange={handleChange}
+                                rows={4}
+                                className="w-full px-4 py-3 bg-slate-50 border border-transparent rounded-lg text-slate-700 text-sm focus:bg-white focus:border-slate-200 focus:ring-2 focus:ring-[#FF6F61]/20 outline-none transition-all placeholder:text-slate-300 resize-none leading-relaxed"
+                            />
                         </div>
-                        <div className="p-6">
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <div className="md:col-span-2">
-                                    <label className="block text-sm font-medium text-slate-700 mb-1">Street Address</label>
-                                    <input type="text" name="address_street" value={formData.address_street} onChange={handleChange} className="w-full px-3 py-2 border border-slate-200 rounded-lg" placeholder="Bahnhofstrasse 1" />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-slate-700 mb-1">City</label>
-                                    <input type="text" name="address_city" value={formData.address_city} onChange={handleChange} className="w-full px-3 py-2 border border-slate-200 rounded-lg" placeholder="Zurich" />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-slate-700 mb-1">Zip Code</label>
-                                    <input type="text" name="address_zip" value={formData.address_zip} onChange={handleChange} className="w-full px-3 py-2 border border-slate-200 rounded-lg" placeholder="8001" />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-slate-700 mb-1">General Phone</label>
-                                    <div className="relative">
-                                        <Phone size={16} className="absolute left-3 top-3 text-slate-400" />
-                                        <input type="tel" name="phone_number" value={formData.phone_number} onChange={handleChange} className="w-full pl-10 pr-3 py-2 border border-slate-200 rounded-lg" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-slate-700 mb-1">General Email</label>
-                                    <div className="relative">
-                                        <Mail size={16} className="absolute left-3 top-3 text-slate-400" />
-                                        <input type="email" name="contact_email" value={formData.contact_email} onChange={handleChange} className="w-full pl-10 pr-3 py-2 border border-slate-200 rounded-lg" />
-                                    </div>
-                                </div>
-                                <div className="md:col-span-2">
-                                    <label className="block text-sm font-medium text-slate-700 mb-1">Calendar / Booking Link</label>
-                                    <div className="flex">
-                                        <span className="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-slate-200 bg-slate-50 text-slate-500 text-sm">https://</span>
-                                        <input type="text" name="meeting_url" value={formData.meeting_url ? formData.meeting_url.replace('https://', '') : ''} onChange={(e) => setFormData({ ...formData, meeting_url: 'https://' + e.target.value.replace('https://', '') })} className="flex-1 px-3 py-2 border border-slate-200 rounded-r-lg outline-none focus:border-slate-400" placeholder="calendly.com/..." />
-                                    </div>
-                                </div>
+                    </section>
+
+                    {/* Contact Card */}
+                    <section className="bg-white p-8 rounded-2xl shadow-xl shadow-slate-200/40 hover:shadow-2xl hover:shadow-slate-200/50 transition-all">
+                        <SectionHeader icon={MapPin} title="Contact & Location" />
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                            <div className="md:col-span-3">
+                                <InputField label="Street Address" name="address_street" placeholder="Bahnhofstrasse 1" />
                             </div>
+                            <div className="md:col-span-2">
+                                <InputField label="City" name="address_city" placeholder="Zurich" />
+                            </div>
+                            <InputField label="Postal Code" name="address_zip" placeholder="8001" />
                         </div>
-                    </div>
 
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <InputField label="General Phone" name="contact_phone" placeholder="+41 ..." />
+                            <InputField label="General Email" name="contact_email" placeholder="hello@company.ch" />
+                        </div>
+
+                        {/* Calendar Link - Special Styling */}
+                        <div className="w-full">
+                            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center gap-2">
+                                <Calendar size={12} className="text-[#FF6F61]" /> Booking Link
+                            </label>
+                            <div className="relative">
+                                <span className="absolute left-4 top-3.5 text-slate-400 text-sm font-medium">https://</span>
+                                <input
+                                    type="text"
+                                    name="calendar_link"
+                                    value={formData.calendar_link?.replace('https://', '') || ''}
+                                    onChange={(e) => handleChange({ target: { name: 'calendar_link', value: 'https://' + e.target.value.replace('https://', '') } })}
+                                    className="w-full pl-16 pr-4 py-3 bg-slate-50 border border-transparent rounded-lg text-slate-700 text-sm focus:bg-white focus:border-slate-200 focus:ring-2 focus:ring-[#FF6F61]/20 outline-none transition-all"
+                                    placeholder="calendly.com/your-org"
+                                />
+                            </div>
+                            <p className="text-[10px] text-slate-400 mt-2 px-1">Adding a calendar link increases conversion by 30%.</p>
+                        </div>
+                    </section>
                 </div>
 
-                {/* RIGHT COLUMN: Operations & Manager */}
-                <div className="space-y-6">
+                {/* Right Column: Capabilities & Team */}
+                <div className="space-y-8">
 
-                    {/* Section D: Dedicated Manager */}
-                    <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-                        <div className="px-6 py-4 bg-slate-50 border-b border-slate-100 flex items-center gap-2">
-                            <User size={18} className="text-slate-400" />
-                            <h3 className="font-bold text-slate-800">Team Manager</h3>
+                    {/* Team Manager */}
+                    <section className="bg-white p-8 rounded-2xl shadow-xl shadow-slate-200/40">
+                        <SectionHeader icon={Briefcase} title="Team Manager" />
+                        <div className="space-y-5">
+                            <InputField label="Full Name" name="manager_name" placeholder="John Doe" />
+                            <InputField label="Job Title" name="manager_role" placeholder="Head of Global Mobility" />
+                            <InputField label="Direct Email" name="manager_email" placeholder="john@company.ch" />
                         </div>
-                        <div className="p-6 space-y-4">
-                            <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
-                                <input type="text" name="manager_name" value={formData.manager_name} onChange={handleChange} className="w-full px-3 py-2 border border-slate-200 rounded-lg" />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">Job Title</label>
-                                <input type="text" name="manager_title" value={formData.manager_title} onChange={handleChange} className="w-full px-3 py-2 border border-slate-200 rounded-lg" />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">Direct Email</label>
-                                <input type="email" name="manager_email" value={formData.manager_email} onChange={handleChange} className="w-full px-3 py-2 border border-slate-200 rounded-lg" />
-                            </div>
-                        </div>
-                    </div>
+                    </section>
 
-                    {/* Section C: Operations Tags */}
-                    <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-                        <div className="px-6 py-4 bg-slate-50 border-b border-slate-100 flex items-center gap-2">
-                            <Briefcase size={18} className="text-slate-400" />
-                            <h3 className="font-bold text-slate-800">Capabilities</h3>
-                        </div>
-                        <div className="p-6 space-y-6">
+                    {/* Capabilities */}
+                    <section className="bg-white p-8 rounded-2xl shadow-xl shadow-slate-200/40">
+                        <SectionHeader icon={Award} title="Capabilities" />
 
-                            {/* REGIONS */}
-                            <div>
-                                <label className="block text-xs font-bold uppercase tracking-wide text-slate-500 mb-3">Regions Served</label>
-                                <div className="flex flex-wrap gap-2">
-                                    {REGIONS_OPTIONS.map(region => (
-                                        <button
-                                            key={region}
-                                            type="button"
-                                            onClick={() => handleMultiSelect('regions_served', region)}
-                                            className={`px-2 py-1 rounded text-[10px] font-bold uppercase border transition-all ${formData.regions_served.includes(region)
-                                                ? 'bg-slate-800 text-white border-slate-800'
-                                                : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'
-                                                }`}
-                                        >
-                                            {region}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* SERVICES */}
-                            <div>
-                                <label className="block text-xs font-bold uppercase tracking-wide text-slate-500 mb-3">Services</label>
-                                <div className="flex flex-wrap gap-2">
-                                    {SERVICES_OPTIONS.map(service => (
-                                        <button
-                                            key={service}
-                                            type="button"
-                                            onClick={() => handleMultiSelect('services', service)}
-                                            className={`px-2 py-1 rounded text-[10px] font-bold uppercase border transition-all ${formData.services.includes(service)
-                                                ? 'bg-[#FF6F61] text-white border-[#FF6F61]'
-                                                : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'
-                                                }`}
-                                        >
-                                            {service}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* LANGUAGES - ADDED */}
-                            <div>
-                                <label className="block text-xs font-bold uppercase tracking-wide text-slate-500 mb-3">Languages</label>
-                                <div className="flex flex-wrap gap-2">
-                                    {LANGUAGES_OPTIONS.map(lang => (
-                                        <button
-                                            key={lang}
-                                            type="button"
-                                            onClick={() => handleMultiSelect('languages', lang)}
-                                            className={`px-2 py-1 rounded-full text-[10px] font-bold border transition-all ${formData.languages.includes(lang)
-                                                ? 'bg-blue-600 text-white border-blue-600'
-                                                : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'
-                                                }`}
-                                        >
-                                            {lang}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* CERTIFICATIONS */}
-                            <div>
-                                <label className="block text-xs font-bold uppercase tracking-wide text-slate-500 mb-3">Certifications</label>
-                                <div className="flex flex-wrap gap-2">
-                                    {CERTIFICATIONS_OPTIONS.map(cert => (
-                                        <button
-                                            key={cert}
-                                            type="button"
-                                            onClick={() => handleMultiSelect('certifications', cert)}
-                                            className={`px-2 py-1 rounded-full text-[10px] font-bold border transition-all ${formData.certifications?.includes(cert)
-                                                ? 'bg-green-600 text-white border-green-600'
-                                                : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300'
-                                                }`}
-                                        >
-                                            {cert}
-                                        </button>
-                                    ))}
-                                </div>
+                        {/* Regions */}
+                        <div className="mb-8">
+                            <label className="block text-xs font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+                                <MapPin size={12} /> Switzerland Regions
+                            </label>
+                            <div className="flex flex-wrap gap-2">
+                                {allRegions.map((region) => (
+                                    <SmartChip
+                                        key={region}
+                                        label={region}
+                                        active={formData.regions_served?.includes(region)}
+                                        onClick={() => handleArrayToggle('regions_served', region)}
+                                    />
+                                ))}
                             </div>
                         </div>
-                    </div>
 
+                        {/* Services */}
+                        <div className="mb-8">
+                            <label className="block text-xs font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+                                <Building2 size={12} /> Services
+                            </label>
+                            <div className="flex flex-wrap gap-2">
+                                {allServices.map((service) => (
+                                    <SmartChip
+                                        key={service}
+                                        label={service}
+                                        active={formData.services?.includes(service)}
+                                        onClick={() => handleArrayToggle('services', service)}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Languages */}
+                        <div className="mb-8">
+                            <label className="block text-xs font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+                                <Languages size={12} /> Languages
+                            </label>
+                            <div className="flex flex-wrap gap-2">
+                                {allLanguages.map((lang) => (
+                                    <SmartChip
+                                        key={lang}
+                                        label={lang}
+                                        active={formData.languages?.includes(lang)}
+                                        onClick={() => handleArrayToggle('languages', lang)}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Certifications */}
+                        <div>
+                            <label className="block text-xs font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+                                <Award size={12} /> Certifications
+                            </label>
+                            <div className="flex flex-wrap gap-2">
+                                {allCerts.map((cert) => (
+                                    <SmartChip
+                                        key={cert}
+                                        label={cert}
+                                        active={formData.certifications?.includes(cert)}
+                                        onClick={() => handleArrayToggle('certifications', cert)}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+
+                    </section>
                 </div>
             </div>
-
-        </form>
+        </div>
     );
 }
