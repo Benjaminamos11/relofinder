@@ -205,7 +205,7 @@ export default function DashboardLayout() {
                         icon={Settings}
                         label="Settings"
                         active={view === 'settings'}
-                        onClick={() => { }}
+                        onClick={() => setView('settings')}
                     />
                 </nav>
 
@@ -301,43 +301,131 @@ export default function DashboardLayout() {
 const LeadsView = ({ partner }: any) => {
     // Logic: Only "preferred" or "premium" users see leads. "standard" users see the upsell.
     const hasAccess = partner?.tier === 'preferred' || partner?.tier === 'premium';
+    const [showForm, setShowForm] = useState(false);
+    const [message, setMessage] = useState('');
+    const [sending, setSending] = useState(false);
+    const [sent, setSent] = useState(false);
 
-    if (!hasAccess) return (
-        <div className="flex flex-col items-center justify-center p-12 bg-white rounded-2xl border border-dashed border-slate-200 text-center animate-in fade-in zoom-in duration-500">
-            <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center text-slate-300 mb-6 relative">
-                <Users size={32} />
-                <div className="absolute -top-1 -right-1 bg-[#FF6F61] text-white p-1.5 rounded-full border-2 border-white">
-                    {/* Lock Icon */}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+        setSending(true);
+
+        try {
+            const res = await fetch('/api/request-upgrade', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    partnerId: partner.id,
+                    partnerName: partner.name,
+                    partnerEmail: partner.contact_email,
+                    message: message
+                })
+            });
+
+            if (res.ok) {
+                setSent(true);
+            } else {
+                alert('Something went wrong. Please try again or email us directly.');
+            }
+        } catch (err) {
+            console.error(err);
+            alert('Error sending request.');
+        } finally {
+            setSending(false);
+        }
+    };
+
+    if (!hasAccess) {
+        if (showForm) {
+            return (
+                <div className="flex flex-col items-center justify-center p-12 bg-white rounded-2xl border border-dashed border-slate-200 text-center animate-in fade-in zoom-in duration-500 max-w-lg mx-auto">
+                    {sent ? (
+                        <div className="text-center">
+                            <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center text-green-500 mb-6 mx-auto">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                            </div>
+                            <h3 className="text-xl font-bold text-slate-900 font-serif mb-2">Request Sent</h3>
+                            <p className="text-slate-500 mb-6">
+                                Thanks for your interest! Our team will review your profile and get back to you within 24 hours.
+                            </p>
+                            <button onClick={() => setShowForm(false)} className="text-sm font-bold text-slate-900 underline">
+                                Back to Dashboard
+                            </button>
+                        </div>
+                    ) : (
+                        <form onSubmit={handleSubmit} className="w-full text-left">
+                            <h3 className="text-xl font-bold text-slate-900 font-serif mb-6 text-center">Upgrade Request</h3>
+
+                            <div className="mb-4">
+                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Message (Optional)</label>
+                                <textarea
+                                    className="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6F61] min-h-[100px]"
+                                    placeholder="I'm interested in receiving leads for..."
+                                    value={message}
+                                    onChange={(e) => setMessage(e.target.value)}
+                                />
+                            </div>
+
+                            <div className="flex gap-3">
+                                <button
+                                    type="button"
+                                    onClick={() => setShowForm(false)}
+                                    className="flex-1 bg-white text-slate-600 border border-slate-200 px-4 py-3 rounded-lg font-bold text-sm hover:bg-slate-50 transition-all"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    disabled={sending}
+                                    className="flex-1 bg-[#0F172A] text-white px-4 py-3 rounded-lg font-bold text-sm hover:bg-slate-800 transition-all flex items-center justify-center gap-2"
+                                >
+                                    {sending ? 'Sending...' : 'Send Request'}
+                                </button>
+                            </div>
+                        </form>
+                    )}
                 </div>
+            );
+        }
+
+        return (
+            <div className="flex flex-col items-center justify-center p-12 bg-white rounded-2xl border border-dashed border-slate-200 text-center animate-in fade-in zoom-in duration-500">
+                <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center text-slate-300 mb-6 relative">
+                    <Users size={32} />
+                    <div className="absolute -top-1 -right-1 bg-[#FF6F61] text-white p-1.5 rounded-full border-2 border-white">
+                        {/* Lock Icon */}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
+                    </div>
+                </div>
+
+                <h3 className="text-2xl font-bold text-slate-900 font-serif mb-3">Unlock Active Opportunities</h3>
+                <p className="text-slate-500 max-w-md mb-8 leading-relaxed">
+                    You are currently on the <span className="font-semibold text-slate-700 capitalize">{partner?.tier || 'Basic'} Tier</span>.
+                    Upgrade to a Preferred Partner status to receive direct leads, higher visibility, and verified booking requests.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4 w-full max-w-sm">
+                    <button
+                        onClick={() => setShowForm(true)}
+                        className="flex-1 bg-[#0F172A] text-white px-6 py-3 rounded-lg font-bold text-sm hover:bg-slate-800 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                    >
+                        Request Access
+                    </button>
+                    <a
+                        href="/partner"
+                        target="_blank"
+                        className="flex-1 bg-white text-slate-600 border border-slate-200 px-6 py-3 rounded-lg font-bold text-sm hover:bg-slate-50 transition-all flex items-center justify-center gap-2"
+                    >
+                        Learn More
+                    </a>
+                </div>
+
+                <p className="text-[10px] text-slate-400 mt-6 uppercase tracking-widest">
+                    Trusted by 50+ Top Agencies
+                </p>
             </div>
-
-            <h3 className="text-2xl font-bold text-slate-900 font-serif mb-3">Unlock Active Opportunities</h3>
-            <p className="text-slate-500 max-w-md mb-8 leading-relaxed">
-                You are currently on the <span className="font-semibold text-slate-700 capitalize">{partner?.tier || 'Basic'} Tier</span>.
-                Upgrade to a Preferred Partner status to receive direct leads, higher visibility, and verified booking requests.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 w-full max-w-sm">
-                <a
-                    href="mailto:partner@relofinder.ch?subject=Upgrade%20Request%20-%20Preferred%20Partner&body=Hi%20Relofinder%20Team%2C%0A%0AI%20would%20like%20to%20upgrade%20my%20account%20to%20Preferred%20Partner%20status%20to%20access%20leads.%0A%0ACompany%3A%20"
-                    className="flex-1 bg-[#0F172A] text-white px-6 py-3 rounded-lg font-bold text-sm hover:bg-slate-800 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
-                >
-                    Request Access
-                </a>
-                <button
-                    onClick={() => window.alert('Our team will contact you shortly.')}
-                    className="flex-1 bg-white text-slate-600 border border-slate-200 px-6 py-3 rounded-lg font-bold text-sm hover:bg-slate-50 transition-all flex items-center justify-center gap-2"
-                >
-                    Learn More
-                </button>
-            </div>
-
-            <p className="text-[10px] text-slate-400 mt-6 uppercase tracking-widest">
-                Trusted by 50+ Top Agencies
-            </p>
-        </div>
-    );
+        );
+    }
 
     return (
         <div className="flex flex-col items-center justify-center p-20 bg-white rounded-2xl border border-dashed border-slate-200 text-center">
