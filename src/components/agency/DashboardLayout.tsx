@@ -182,6 +182,12 @@ export default function DashboardLayout() {
                         </div>
 
                         <div className="flex items-center gap-4">
+                            {partner?.logo && (
+                                <div className="hidden md:block h-10 w-auto">
+                                    <img src={partner.logo} alt={partner.name} className="h-full w-auto object-contain" />
+                                </div>
+                            )}
+                            <div className="h-8 w-px bg-slate-200 mx-2 hidden md:block"></div>
                             <a href={`/companies/${partner?.id || 'mock-id'}`} target="_blank" className="flex items-center gap-2 text-sm text-[#FF6F61] font-medium hover:underline">
                                 <ExternalLink size={14} />
                                 View Public Profile
