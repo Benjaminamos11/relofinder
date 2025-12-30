@@ -1,5 +1,6 @@
 ---
 id: "ap-executive"
+hidden: true
 name: "AP Executive"
 description: "AP Executive is a global executive search and recruitment consultancy specializing in finance, legal, and wealth management sectors, with offices worldwide including Geneva and Zurich. They offer relocation support as part of their recruitment services."
 logo: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1748167543/apexec-logo_hliyad.webp"

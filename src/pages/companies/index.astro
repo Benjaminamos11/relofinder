@@ -7,8 +7,8 @@ import ComparisonBar from '../../components/ComparisonBar';
 
 // Fetch companies from content collection
 // Fetch companies from content collection
-const companies = await getCollection('companies', ({ id }) => {
-  return !id.startsWith('_archived/');
+const companies = await getCollection('companies', ({ data }) => {
+  return !data.hidden;
 });
 
 // Fetch real stats from Supabase
