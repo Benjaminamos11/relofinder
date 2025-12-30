@@ -1,6 +1,6 @@
 ---
 id: "agoodday-relocation"
-name: "Agoodday Relocation & Real Estate"
+name: "A Good Day Relocation"
 description: "Lake Geneva region specialist founded in 2017 and restructured in 2020, providing integrated relocation and real estate services as SARA Full Member with Swiss real estate broker federal patent."
 logo: "/images/companies/agoodday-relocation-logo.png"
 
