@@ -65,6 +65,7 @@ export default function AdminDashboard() {
     const [assignmentModalOpen, setAssignmentModalOpen] = useState(false);
     const [selectedLead, setSelectedLead] = useState<any>(null);
     const [selectedPartners, setSelectedPartners] = useState<string[]>([]);
+    const [detailModalOpen, setDetailModalOpen] = useState(false);
 
     useEffect(() => {
         checkAuth();
@@ -514,7 +515,10 @@ export default function AdminDashboard() {
                                                     <div className="text-[10px] text-slate-400">{l.email}</div>
                                                 </td>
                                                 <td className="px-6 py-4">{l.dest}</td>
-                                                <td className="px-6 py-4 text-right"><button onClick={() => handleAssignClick(l)} className="bg-slate-900 text-white px-3 py-1 rounded text-xs font-bold">Review</button></td>
+                                                <td className="px-6 py-4 text-right flex justify-end gap-2">
+                                                    <button onClick={() => { setSelectedLead(l); setDetailModalOpen(true); }} className="bg-slate-100 text-slate-600 px-3 py-1 rounded text-xs font-bold hover:bg-slate-200">View Details</button>
+                                                    <button onClick={() => handleAssignClick(l)} className="bg-slate-900 text-white px-3 py-1 rounded text-xs font-bold shadow-sm hover:bg-slate-800">Review</button>
+                                                </td>
                                             </tr>
                                         ))
                                     ) : (
@@ -529,7 +533,7 @@ export default function AdminDashboard() {
                                                     <div className="text-[10px] text-slate-400">{l.hr_email}</div>
                                                 </td>
                                                 <td className="px-6 py-4 text-right">
-                                                    <button onClick={() => setSelectedLead(l)} className="bg-slate-100 text-slate-600 px-3 py-1 rounded text-xs font-bold hover:bg-slate-200">View RFP</button>
+                                                    <button onClick={() => { setSelectedLead(l); setDetailModalOpen(true); }} className="bg-slate-100 text-slate-600 px-3 py-1 rounded text-xs font-bold hover:bg-slate-200">View RFP</button>
                                                 </td>
                                             </tr>
                                         ))
@@ -864,6 +868,160 @@ export default function AdminDashboard() {
                             </div>
                         </div>
                         <div className="p-6 border-t border-slate-100 bg-slate-50 flex justify-end gap-3"><button onClick={() => setAssignmentModalOpen(false)} className="px-4 py-2 font-bold text-slate-500">Cancel</button><button onClick={handleDistribute} disabled={selectedPartners.length === 0} className="px-6 py-2 bg-[#FF6F61] text-white font-bold rounded-lg shadow-lg disabled:opacity-50">Distribute</button></div>
+                    </div>
+                </div>
+            )}
+
+            {detailModalOpen && selectedLead && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+                    <div className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden">
+                        <div className="px-8 py-6 border-b border-slate-100 flex justify-between items-center">
+                            <div>
+                                <h3 className="text-xl font-bold text-slate-900">{leadsFilter === 'corporate' ? 'Corporate RFP Details' : 'Lead Details'}</h3>
+                                <p className="text-sm text-slate-500">Submitted on {new Date(selectedLead.created_at).toLocaleDateString()}</p>
+                            </div>
+                            <button onClick={() => setDetailModalOpen(false)} className="p-2 hover:bg-slate-100 rounded-full transition-colors">
+                                <X size={24} className="text-slate-400" />
+                            </button>
+                        </div>
+
+                        <div className="flex-1 overflow-y-auto p-8 space-y-8">
+                            {leadsFilter === 'corporate' ? (
+                                <>
+                                    <div className="grid grid-cols-2 gap-6">
+                                        <div className="space-y-1">
+                                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Company</span>
+                                            <p className="font-bold text-lg text-slate-900">{selectedLead.company_name}</p>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Volume</span>
+                                            <p className="font-bold text-lg text-slate-900">{selectedLead.moves_per_year} moves/year</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="bg-slate-50 rounded-2xl p-6 space-y-4">
+                                        <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider border-b border-slate-200 pb-2">HR Contact</h4>
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <span className="text-[10px] text-slate-400">Name</span>
+                                                <p className="font-medium">{selectedLead.hr_name} ({selectedLead.hr_title})</p>
+                                            </div>
+                                            <div>
+                                                <span className="text-[10px] text-slate-400">Email</span>
+                                                <p className="font-medium text-[#FF6F61]">{selectedLead.hr_email}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-4">
+                                        <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider border-b border-slate-200 pb-2">RFP Scope</h4>
+                                        <div className="space-y-4">
+                                            <div>
+                                                <span className="text-[10px] text-slate-400">Destinations</span>
+                                                <div className="flex flex-wrap gap-2 mt-1">
+                                                    {selectedLead.destinations?.map((d: string) => (
+                                                        <span key={d} className="bg-slate-900 text-white text-[11px] font-bold px-2 py-1 rounded-md">{d}</span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <span className="text-[10px] text-slate-400">Services Requested</span>
+                                                <p className="text-sm font-medium">{selectedLead.metadata?.services_requested?.join(', ') || 'None'}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-4">
+                                        <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider border-b border-slate-200 pb-2">Challenges & Notes</h4>
+                                        <div>
+                                            <span className="text-[10px] text-slate-400">Pain Points</span>
+                                            <p className="text-sm italic">{selectedLead.pain_points?.join(', ') || 'None specified'}</p>
+                                        </div>
+                                        <div>
+                                            <span className="text-[10px] text-slate-400">Specific Request</span>
+                                            <p className="bg-slate-50 p-4 rounded-xl text-sm border border-slate-100 whitespace-pre-wrap leading-relaxed">{selectedLead.specific_request || 'No additional notes.'}</p>
+                                        </div>
+                                    </div>
+                                </>
+                            ) : (
+                                <div className="space-y-6">
+                                    <div className="grid grid-cols-2 gap-6">
+                                        <div className="space-y-1">
+                                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Name</span>
+                                            <p className="font-bold text-lg text-slate-900">{selectedLead.name}</p>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Email</span>
+                                            <p className="font-bold text-[#FF6F61]">{selectedLead.email}</p>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Phone</span>
+                                            <p className="font-medium text-slate-900">{selectedLead.phone || 'N/A'}</p>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Move Date</span>
+                                            <p className="font-medium text-slate-900">{selectedLead.move_date || 'N/A'}</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="grid grid-cols-2 gap-6 bg-slate-50 p-6 rounded-2xl">
+                                        <div>
+                                            <span className="text-[10px] text-slate-400 uppercase font-bold">Destination</span>
+                                            <p className="font-bold text-slate-900">{selectedLead.dest}</p>
+                                        </div>
+                                        <div>
+                                            <span className="text-[10px] text-slate-400 uppercase font-bold">Intent</span>
+                                            <p className="font-bold text-slate-900">{selectedLead.intent || 'Relocation'}</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Services Needed</span>
+                                        <div className="flex flex-wrap gap-2">
+                                            {selectedLead.services?.length > 0 ? selectedLead.services.map((s: string) => (
+                                                <span key={s} className="bg-slate-200 text-slate-700 text-xs font-bold px-2 py-1 rounded">{s}</span>
+                                            )) : <span className="text-sm text-slate-400 italic">None specified</span>}
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Message</span>
+                                        <div className="text-sm bg-blue-50/30 p-4 rounded-xl whitespace-pre-wrap leading-relaxed border border-blue-100/50 italic">
+                                            "{selectedLead.message || 'No additional message.'}"
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* COMMON SECTION: COMPARISON SELECTION */}
+                            <div className="pt-6 border-t border-slate-200">
+                                <div className="flex items-center gap-2 mb-4">
+                                    <Search size={16} className="text-[#FF6F61]" />
+                                    <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider">User's Comparison Selection</h4>
+                                </div>
+                                <div className="bg-blue-50/50 border border-blue-100 rounded-2xl p-6">
+                                    <p className="text-xs text-blue-600 font-medium mb-3">The user selected the following relocators to compare and receive quotes from:</p>
+                                    <div className="flex flex-wrap gap-2">
+                                        {(selectedLead.requested_agencies || []).length > 0 ? (
+                                            selectedLead.requested_agencies.map((agency: string) => (
+                                                <div key={agency} className="bg-white border border-blue-200 text-blue-800 text-sm font-bold px-4 py-2 rounded-xl shadow-sm flex items-center gap-2">
+                                                    <Check size={14} className="text-blue-500" />
+                                                    {agency}
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <p className="text-sm text-slate-400 italic">No relocators were explicitly selected for comparison.</p>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="p-8 border-t border-slate-100 bg-slate-50 flex justify-end">
+                            <button onClick={() => setDetailModalOpen(false)} className="px-8 py-3 bg-slate-900 text-white font-bold rounded-xl shadow-lg transition-transform hover:scale-105 active:scale-95">
+                                Got it
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}

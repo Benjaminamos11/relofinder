@@ -38,7 +38,8 @@ export const POST: APIRoute = async ({ request }) => {
             painPoints,
             destinations,
             specificRequest,
-            services // New field
+            services,
+            requestedAgencies // Added
         } = body;
 
         // 1. Basic Validation
@@ -60,6 +61,7 @@ export const POST: APIRoute = async ({ request }) => {
                     destinations: destinations,
                     specific_request: specificRequest,
                     status: 'new',
+                    requested_agencies: requestedAgencies || [],
                     metadata: {
                         services_requested: services
                     }
@@ -85,6 +87,7 @@ export const POST: APIRoute = async ({ request }) => {
       <p><strong>Services:</strong> ${services?.join(', ') || 'None specified'}</p>
       <p><strong>Pain Points:</strong> ${painPoints?.join(', ')}</p>
       <p><strong>Destinations:</strong> ${destinations?.join(', ')}</p>
+      <p><strong>Requested Agencies:</strong> ${requestedAgencies?.join(', ') || 'None'}</p>
       <p><strong>Request:</strong><br/>${specificRequest}</p>
     `;
         await sendEmailViaEdgeFunction('bw@relofinder.ch', `Corporate RFP: ${companyName}`, 'New Corporate Lead', adminHtml);

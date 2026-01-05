@@ -126,7 +126,10 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete, lan
             const res = await fetch('/api/corporate/submit', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                body: JSON.stringify({
+                    ...formData,
+                    requestedAgencies: selectedAgencies
+                })
             });
             const data = await res.json();
             if (!res.ok) throw new Error(data.error || 'Submission failed');
