@@ -5,6 +5,25 @@ const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
 const supabaseKey = import.meta.env.SUPABASE_SERVICE_ROLE_KEY || import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+// Email sending helper
+async function sendEmailViaEdgeFunction(to: string, subject: string, text: string, html?: string) {
+    const apiUrl = `${supabaseUrl}/functions/v1/send-email`;
+
+    const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${supabaseKey}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ to, subject, text, html }),
+    });
+
+    if (!response.ok) {
+        const err = await response.text();
+        console.error('Failed to send email:', err);
+    }
+}
+
 export const POST: APIRoute = async ({ request }) => {
     try {
         const body = await request.json();
@@ -68,6 +87,23 @@ export const POST: APIRoute = async ({ request }) => {
             console.error('Supabase Insert Error:', error);
             return new Response(JSON.stringify({ error: error.message }), { status: 500 });
         }
+
+        // Send Email Notifications
+        const adminHtml = `
+            <h2>New Individual Lead Submission</h2>
+            <p><strong>Name:</strong> ${fullName}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
+            <p><strong>Moving From:</strong> ${movingFrom || 'N/A'}</p>
+            <p><strong>Moving To:</strong> ${movingTo || canton || 'N/A'}</p>
+            <p><strong>Move Date:</strong> ${moveDate || 'N/A'}</p>
+            <p><strong>Reason:</strong> ${reason || 'N/A'}</p>
+            <p><strong>Services:</strong> ${services?.join(', ') || 'N/A'}</p>
+            <p><strong>Message:</strong> ${message || 'N/A'}</p>
+        `;
+
+        await sendEmailViaEdgeFunction('bw@relofinder.ch', `New Lead: ${fullName}`, 'New Individual Lead', adminHtml);
+        await sendEmailViaEdgeFunction('hello@relofinder.ch', `New Lead: ${fullName}`, 'New Individual Lead', adminHtml);
 
         return new Response(JSON.stringify({ success: true, lead: data?.[0] }), { status: 200 });
 

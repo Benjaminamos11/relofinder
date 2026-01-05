@@ -87,7 +87,7 @@ export const POST: APIRoute = async ({ request }) => {
       <p><strong>Destinations:</strong> ${destinations?.join(', ')}</p>
       <p><strong>Request:</strong><br/>${specificRequest}</p>
     `;
-        await sendEmailViaEdgeFunction('hello@relofinder.ch', `Corporate RFP: ${companyName}`, 'New Corporate Lead', adminHtml);
+        await sendEmailViaEdgeFunction('bw@relofinder.ch', `Corporate RFP: ${companyName}`, 'New Corporate Lead', adminHtml);
 
         // User Confirmation
         const userHtml = `
