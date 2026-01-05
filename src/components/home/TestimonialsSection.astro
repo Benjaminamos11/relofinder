@@ -2,33 +2,33 @@
 const testimonials = [
   {
     id: 1,
-    name: "Sarah Chen",
-    role: "Senior Software Engineer",
-    company: "Google Zurich",
-    image: "https://images.unsplash.com/photo-1494790108755-2616b612b242?w=150&h=150&fit=crop&crop=face",
-    quote: "ReloFinder made our family's move to Switzerland incredibly smooth. From finding our apartment in Zurich to setting up bank accounts, everything was handled professionally.",
+    name: "Richard Otto",
+    role: "Founder",
+    company: "Immo-Otti.ch",
+    image: null,
+    quote: "ReloFinder's platform is the most efficient way to match relocation needs with high-quality service providers in Switzerland. Their data-driven approach is unique.",
     rating: 5,
     location: "Zurich"
   },
   {
     id: 2,
-    name: "Michael Rodriguez",
-    role: "Finance Director",
-    company: "UBS",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-    quote: "The AI assistant helped me understand Swiss tax laws and connect with the right advisors. Saved me months of research and confusion.",
+    name: "Kati",
+    role: "Managing Director",
+    company: "Primerelocation.ch",
+    image: null,
+    quote: "Being a preferred partner on ReloFinder allows us to focus on what we do best—relocating families—while their platform handles the initial comparison and lead qualification flawlessly.",
     rating: 5,
-    location: "Basel"
+    location: "Zug"
   },
   {
     id: 3,
-    name: "Emma Thompson",
-    role: "Marketing Manager",
-    company: "Nestlé",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
-    quote: "Finding an international school for our kids was stress-free. The platform connected us with verified education consultants who understood our needs.",
+    name: "Chregu Sonderegger",
+    role: "Owner",
+    company: "Versicherigsheini.ch",
+    image: null,
+    quote: "The integration between insurance advisory and relocation is seamless. ReloFinder understands that a successful move involves more than just finding a house.",
     rating: 5,
-    location: "Vevey"
+    location: "Basel"
   }
 ];
 ---
@@ -68,11 +68,17 @@ const testimonials = [
 
             <!-- Author Info -->
             <div class="flex items-center">
-              <img 
-                src={testimonial.image} 
-                alt={testimonial.name}
-                class="w-14 h-14 rounded-full object-cover border-3 border-white shadow-lg"
-              />
+              {testimonial.image ? (
+                <img 
+                  src={testimonial.image} 
+                  alt={testimonial.name}
+                  class="w-14 h-14 rounded-full object-cover border-3 border-white shadow-lg"
+                />
+              ) : (
+                <div class="w-14 h-14 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-lg border-3 border-white shadow-lg uppercase">
+                  {testimonial.name.split(' ').map(n => n[0]).join('')}
+                </div>
+              )}
               <div class="ml-4">
                 <div class="font-semibold text-gray-900 text-lg">{testimonial.name}</div>
                 <div class="text-sm text-gray-600">{testimonial.role}</div>
