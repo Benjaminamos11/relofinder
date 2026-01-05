@@ -241,7 +241,7 @@ export default function HeroSearch({ initialDestination = '', initialService = '
                         </button>
 
                         <p className="text-xs text-slate-400 text-center font-medium mt-4 flex items-center justify-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-sky-500"></span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
                             Streamline your mobility program. Free for HR teams.
                         </p>
                     </form>
