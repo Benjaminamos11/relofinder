@@ -79,7 +79,9 @@ const UniversalContactModal: React.FC<ModalContentProps> = () => {
   // Convert old context format to new context format
   const convertContext = (oldCtx: ModalContext): ContextType => {
     // Check for explicit corporate page or nested corporate flag
-    const isCorporate = oldCtx.page === 'corporate' || (oldCtx as any).context?.isCorporate === true;
+    const isCorporate = oldCtx.page === 'corporate' ||
+      (oldCtx as any).topic === 'corporate' ||
+      (oldCtx as any).context?.isCorporate === true;
 
     if (isCorporate) {
       return {

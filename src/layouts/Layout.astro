@@ -139,7 +139,7 @@ const {
             context && typeof context === 'object'
               ? context
               : typeof context === 'string'
-                ? { page: 'legacy', topic: context }
+                ? (context === 'corporate' ? { page: 'corporate' } : { page: 'legacy', topic: context })
                 : { page: 'home' };
 
           console.log('📞 universalOpenModal called', resolvedContext);
@@ -315,7 +315,7 @@ const {
           context && typeof context === 'object'
             ? context
             : typeof context === 'string'
-              ? { page: 'legacy', topic: context }
+              ? (context === 'corporate' ? { page: 'corporate' } : { page: 'legacy', topic: context })
               : { page: 'home' };
 
         console.log('📞 universalOpenModal called', resolvedContext);
