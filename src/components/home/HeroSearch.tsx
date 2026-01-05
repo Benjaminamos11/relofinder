@@ -60,24 +60,24 @@ export default function HeroSearch({ initialDestination = '', initialService = '
     };
 
     return (
-        <div className="bg-white rounded-xl shadow-2xl shadow-slate-200/50 border border-slate-100 overflow-hidden w-full transition-all duration-300">
+        <div className={`bg-white rounded-3xl shadow-[0_40px_80px_-20px_rgba(0,0,0,0.2)] ring-1 ring-slate-900/5 overflow-hidden w-full transition-all duration-300 ${className}`}>
 
             {/* Tabs */}
             <div className="flex border-b border-slate-100">
                 <button
                     onClick={() => setActiveTab('private')}
-                    className={`flex-1 py-4 text-center font-semibold text-sm transition-all ${activeTab === 'private'
-                        ? 'bg-white text-slate-800 border-b-2 border-[#FF6F61]'
-                        : 'bg-slate-50 text-slate-500 border-b-2 border-transparent hover:text-slate-700 hover:bg-slate-100'
+                    className={`flex-1 py-5 text-center font-bold text-xs uppercase tracking-widest transition-all ${activeTab === 'private'
+                        ? 'bg-white text-slate-900 border-b-2 border-[#FF6F61]'
+                        : 'bg-slate-50/50 text-slate-400 border-b-2 border-transparent hover:text-slate-600 hover:bg-slate-50'
                         }`}
                 >
                     Private Move
                 </button>
                 <button
                     onClick={() => setActiveTab('corporate')}
-                    className={`flex-1 py-4 text-center font-semibold text-sm transition-all ${activeTab === 'corporate'
-                        ? 'bg-white text-slate-800 border-b-2 border-[#FF6F61]'
-                        : 'bg-slate-50 text-slate-500 border-b-2 border-transparent hover:text-slate-700 hover:bg-slate-100'
+                    className={`flex-1 py-5 text-center font-bold text-xs uppercase tracking-widest transition-all ${activeTab === 'corporate'
+                        ? 'bg-white text-slate-900 border-b-2 border-[#FF6F61]'
+                        : 'bg-slate-50/50 text-slate-400 border-b-2 border-transparent hover:text-slate-600 hover:bg-slate-50'
                         }`}
                 >
                     Corporate Inquiry
@@ -85,23 +85,23 @@ export default function HeroSearch({ initialDestination = '', initialService = '
             </div>
 
             {/* Content */}
-            <div className="p-6 md:p-8">
+            <div className="p-6 md:p-10">
 
                 {/* Private Tab Content */}
                 {activeTab === 'private' && (
-                    <form onSubmit={handlePrivateSubmit} className="space-y-6">
-                        <div className="grid md:grid-cols-3 gap-5">
+                    <form onSubmit={handlePrivateSubmit} className="space-y-8">
+                        <div className="grid md:grid-cols-3 gap-6">
 
                             {/* When? */}
-                            <div className="relative">
-                                <label htmlFor="when-select" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2.5 text-left">When?</label>
+                            <div className="relative group">
+                                <label htmlFor="when-select" className="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">When?</label>
                                 <div className="relative">
-                                    <Calendar className="absolute left-3.5 top-3.5 w-5 h-5 text-slate-400" />
+                                    <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-[#FF6F61] transition-colors duration-300" />
                                     <select
                                         id="when-select"
                                         value={when}
                                         onChange={(e) => setWhen(e.target.value)}
-                                        className="w-full pl-11 pr-8 py-3.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-[#FF6F61]/20 focus:border-[#FF6F61] outline-none appearance-none cursor-pointer transition-all font-medium"
+                                        className="w-full pl-12 pr-10 py-5 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 font-bold focus:bg-white focus:ring-4 focus:ring-[#FF6F61]/10 focus:border-[#FF6F61] outline-none appearance-none cursor-pointer transition-all duration-300"
                                     >
                                         <option value="" disabled>Select Timeline</option>
                                         <option value="immediately">Immediately</option>
@@ -110,40 +110,40 @@ export default function HeroSearch({ initialDestination = '', initialService = '
                                         <option value="6-months">Within 6 Months</option>
                                         <option value="1-year">Within 1 Year</option>
                                     </select>
-                                    <ChevronDown className="absolute right-3.5 top-4 w-5 h-5 text-slate-400 pointer-events-none" />
+                                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300 pointer-events-none group-hover:text-slate-500 transition-colors" />
                                 </div>
                             </div>
 
                             {/* Where? */}
-                            <div className="relative">
-                                <label htmlFor="where-select" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2.5 text-left">Where?</label>
+                            <div className="relative group">
+                                <label htmlFor="where-select" className="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">Where?</label>
                                 <div className="relative">
-                                    <MapPin className="absolute left-3.5 top-3.5 w-5 h-5 text-slate-400" />
+                                    <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-[#FF6F61] transition-colors duration-300" />
                                     <select
                                         id="where-select"
                                         value={where}
                                         onChange={(e) => setWhere(e.target.value)}
-                                        className="w-full pl-11 pr-8 py-3.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-[#FF6F61]/20 focus:border-[#FF6F61] outline-none appearance-none cursor-pointer transition-all font-medium"
+                                        className="w-full pl-12 pr-10 py-5 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 font-bold focus:bg-white focus:ring-4 focus:ring-[#FF6F61]/10 focus:border-[#FF6F61] outline-none appearance-none cursor-pointer transition-all duration-300"
                                     >
                                         <option value="" disabled>Select Destination</option>
                                         {cantons.map(c => (
                                             <option key={c.code} value={c.slug}>{c.name}</option>
                                         ))}
                                     </select>
-                                    <ChevronDown className="absolute right-3.5 top-4 w-5 h-5 text-slate-400 pointer-events-none" />
+                                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300 pointer-events-none group-hover:text-slate-500 transition-colors" />
                                 </div>
                             </div>
 
                             {/* Service? */}
-                            <div className="relative">
-                                <label htmlFor="service-select" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2.5 text-left">Service Needed</label>
+                            <div className="relative group">
+                                <label htmlFor="service-select" className="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">Service Needed</label>
                                 <div className="relative">
-                                    <FileText className="absolute left-3.5 top-3.5 w-5 h-5 text-slate-400" />
+                                    <FileText className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-[#FF6F61] transition-colors duration-300" />
                                     <select
                                         id="service-select"
                                         value={service}
                                         onChange={(e) => setService(e.target.value)}
-                                        className="w-full pl-11 pr-8 py-3.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-[#FF6F61]/20 focus:border-[#FF6F61] outline-none appearance-none cursor-pointer transition-all font-medium"
+                                        className="w-full pl-12 pr-10 py-5 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 font-bold focus:bg-white focus:ring-4 focus:ring-[#FF6F61]/10 focus:border-[#FF6F61] outline-none appearance-none cursor-pointer transition-all duration-300"
                                     >
                                         <option value="" disabled>Select Service</option>
                                         <option value="full-package">Full Package</option>
@@ -151,75 +151,76 @@ export default function HeroSearch({ initialDestination = '', initialService = '
                                             <option key={s.slug} value={s.slug}>{s.name}</option>
                                         ))}
                                     </select>
-                                    <ChevronDown className="absolute right-3.5 top-4 w-5 h-5 text-slate-400 pointer-events-none" />
+                                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300 pointer-events-none group-hover:text-slate-500 transition-colors" />
                                 </div>
                             </div>
                         </div>
 
                         <button
                             type="submit"
-                            className="block w-full py-4 bg-[#FF6F61] hover:bg-[#eb5d50] text-white font-bold rounded-lg shadow-lg shadow-[#FF6F61]/20 transition-all transform hover:-translate-y-0.5 text-lg flex items-center justify-center"
+                            className="block w-full py-5 bg-[#FF6F61] hover:bg-[#ff5d4d] text-white font-bold rounded-2xl shadow-lg shadow-[#FF6F61]/30 hover:shadow-xl hover:shadow-[#FF6F61]/40 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] text-lg flex items-center justify-center tracking-wide"
                         >
                             See Available Agencies
                         </button>
 
-                        <p className="text-xs text-slate-500 text-center font-medium mt-3">
-                            Compare 50+ vetted agencies. 100% free & anonym.
+                        <p className="text-xs text-slate-400 text-center font-medium mt-4 flex items-center justify-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                            Compare 50+ vetted agencies. 100% free & anonymous.
                         </p>
                     </form>
                 )}
 
                 {/* Corporate Tab Content */}
                 {activeTab === 'corporate' && (
-                    <form onSubmit={handleCorporateSubmit} className="space-y-6">
-                        <div className="grid md:grid-cols-3 gap-5">
+                    <form onSubmit={handleCorporateSubmit} className="space-y-8">
+                        <div className="grid md:grid-cols-3 gap-6">
 
                             {/* Company Name */}
-                            <div className="relative">
-                                <label htmlFor="company-name" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2.5 text-left">Company Name</label>
+                            <div className="relative group">
+                                <label htmlFor="company-name" className="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">Company Name</label>
                                 <div className="relative">
-                                    <Building2 className="absolute left-3.5 top-3.5 w-5 h-5 text-slate-400" />
+                                    <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-[#FF6F61] transition-colors duration-300" />
                                     <input
                                         id="company-name"
                                         type="text"
                                         placeholder="Enter Company Name"
                                         value={companyName}
                                         onChange={(e) => setCompanyName(e.target.value)}
-                                        className="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 placeholder:text-slate-400 focus:ring-2 focus:ring-[#FF6F61]/20 focus:border-[#FF6F61] outline-none transition-all font-medium"
+                                        className="w-full pl-12 pr-4 py-5 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 placeholder:text-slate-400 font-bold focus:bg-white focus:ring-4 focus:ring-[#FF6F61]/10 focus:border-[#FF6F61] outline-none transition-all duration-300"
                                     />
                                 </div>
                             </div>
 
                             {/* Yearly Volume */}
-                            <div className="relative">
-                                <label htmlFor="yearly-volume" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2.5 text-left">Yearly Volume</label>
+                            <div className="relative group">
+                                <label htmlFor="yearly-volume" className="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">Yearly Volume</label>
                                 <div className="relative">
-                                    <Briefcase className="absolute left-3.5 top-3.5 w-5 h-5 text-slate-400" />
+                                    <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-[#FF6F61] transition-colors duration-300" />
                                     <select
                                         id="yearly-volume"
                                         value={yearlyVolume}
                                         onChange={(e) => setYearlyVolume(e.target.value)}
-                                        className="w-full pl-11 pr-8 py-3.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-[#FF6F61]/20 focus:border-[#FF6F61] outline-none appearance-none cursor-pointer transition-all font-medium"
+                                        className="w-full pl-12 pr-10 py-5 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 font-bold focus:bg-white focus:ring-4 focus:ring-[#FF6F61]/10 focus:border-[#FF6F61] outline-none appearance-none cursor-pointer transition-all duration-300"
                                     >
                                         <option value="" disabled>Select Volume</option>
                                         <option value="1-5">1-5 Moves / Year</option>
                                         <option value="5-20">5-20 Moves / Year</option>
                                         <option value="20+">20+ Moves / Year</option>
                                     </select>
-                                    <ChevronDown className="absolute right-3.5 top-4 w-5 h-5 text-slate-400 pointer-events-none" />
+                                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300 pointer-events-none group-hover:text-slate-500 transition-colors" />
                                 </div>
                             </div>
 
                             {/* Primary Destination */}
-                            <div className="relative">
-                                <label htmlFor="hub-select" className="block text-xs font-bold text-slate-600 uppercase tracking-widest mb-2.5 text-left">Primary Destination</label>
+                            <div className="relative group">
+                                <label htmlFor="hub-select" className="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">Primary Destination</label>
                                 <div className="relative">
-                                    <MapPin className="absolute left-3.5 top-3.5 w-5 h-5 text-slate-400" />
+                                    <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 group-focus-within:text-[#FF6F61] transition-colors duration-300" />
                                     <select
                                         id="hub-select"
                                         value={primaryDestination}
                                         onChange={(e) => setPrimaryDestination(e.target.value)}
-                                        className="w-full pl-11 pr-8 py-3.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 focus:ring-2 focus:ring-[#FF6F61]/20 focus:border-[#FF6F61] outline-none appearance-none cursor-pointer transition-all font-medium"
+                                        className="w-full pl-12 pr-10 py-5 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 font-bold focus:bg-white focus:ring-4 focus:ring-[#FF6F61]/10 focus:border-[#FF6F61] outline-none appearance-none cursor-pointer transition-all duration-300"
                                     >
                                         <option value="" disabled>Select Hub</option>
                                         <option value="zurich">Zurich</option>
@@ -227,19 +228,20 @@ export default function HeroSearch({ initialDestination = '', initialService = '
                                         <option value="basel">Basel</option>
                                         <option value="other">Other / Multiple</option>
                                     </select>
-                                    <ChevronDown className="absolute right-3.5 top-4 w-5 h-5 text-slate-400 pointer-events-none" />
+                                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300 pointer-events-none group-hover:text-slate-500 transition-colors" />
                                 </div>
                             </div>
                         </div>
 
                         <button
                             type="submit"
-                            className="block w-full py-4 bg-[#FF6F61] hover:bg-[#eb5d50] text-white font-bold rounded-lg shadow-lg shadow-[#FF6F61]/20 transition-all transform hover:-translate-y-0.5 text-lg flex items-center justify-center"
+                            className="block w-full py-5 bg-[#FF6F61] hover:bg-[#ff5d4d] text-white font-bold rounded-2xl shadow-lg shadow-[#FF6F61]/30 hover:shadow-xl hover:shadow-[#FF6F61]/40 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] text-lg flex items-center justify-center tracking-wide"
                         >
                             Start Anonymous Tender
                         </button>
 
-                        <p className="text-xs text-slate-500 text-center font-medium mt-3">
+                        <p className="text-xs text-slate-400 text-center font-medium mt-4 flex items-center justify-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
                             Streamline your mobility program. Free for HR teams.
                         </p>
                     </form>

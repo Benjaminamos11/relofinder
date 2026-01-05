@@ -12,6 +12,7 @@ import {
   CheckCircle, Star, User, X
 } from 'lucide-react';
 import RFPForm from '../corporate/RFPForm';
+import { corporateTranslations } from '../../i18n/corporate';
 
 // ============================================================================
 // Types
@@ -450,10 +451,14 @@ export const ContactModal: FC<ContactModalProps> = ({
             </button>
           )}
 
+
           {context.type === 'corporate' ? (
             <RFPForm
               initialData={context.initialData}
+              selectedAgencies={context.selectedAgencies}
               onComplete={onClose}
+              lang="en"
+              translations={corporateTranslations.en.form}
             />
           ) : step === 3 ? (
             renderSuccess()
