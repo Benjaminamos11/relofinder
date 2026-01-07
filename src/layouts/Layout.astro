@@ -5,6 +5,9 @@ import SEOHead from '../components/common/SEOHead.astro';
 import '../styles/global.css';
 import { ViewTransitions } from 'astro:transitions';
 import UniversalContactModal from '../components/common/UniversalContactModal.tsx';
+import GoogleTag from '../components/tracking/GoogleTag';
+import FacebookPixel from '../components/tracking/FacebookPixel';
+import CookieBanner from '../components/tracking/CookieBanner';
 // Expose stores immediately (side-effect import)
 import '../lib/expose-modal-stores.client.ts';
 
@@ -112,6 +115,9 @@ const {
     
     <!-- Use client:load to ensure React is ready before hydration -->
     <UniversalContactModal client:load />
+    <GoogleTag client:load />
+    <FacebookPixel client:load />
+    <CookieBanner client:load />
 
     <!-- Performance & Infrastructure: Ensure legacy SW are removed -->
     <script is:inline>
