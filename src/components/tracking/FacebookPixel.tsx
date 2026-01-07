@@ -23,7 +23,7 @@ const FacebookPixel = () => {
             s.parentNode.insertBefore(t, s);
         }
 
-        n('init', '1393006485701609');
+        n('init', '1559068011804417');
         n('track', 'PageView');
     }, []);
 
@@ -33,7 +33,7 @@ const FacebookPixel = () => {
                 height="1"
                 width="1"
                 style={{ display: 'none' }}
-                src="https://www.facebook.com/tr?id=1393006485701609&ev=PageView&noscript=1"
+                src="https://www.facebook.com/tr?id=1559068011804417&ev=PageView&noscript=1"
                 alt=""
             />
         </noscript>
