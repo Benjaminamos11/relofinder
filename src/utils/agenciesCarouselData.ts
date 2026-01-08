@@ -133,8 +133,8 @@ export async function getAgenciesCarouselData(limit = 8): Promise<AgencyCarousel
       const specificOrder = [
         'prime relocation',
         'welcome service',
-        'anchor', // Matches "Anchor Relocation"
-        'auris'   // Matches "Auris Relocation"
+        'relonest', // Matches "ReloNest"
+        'auris'    // Matches "Auris Relocation"
       ];
 
       const getOrderIndex = (name: string) => {
