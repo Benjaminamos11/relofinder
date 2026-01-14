@@ -99,12 +99,16 @@ const UniversalContactModal: React.FC<ModalContentProps> = () => {
       case 'service':
         return {
           type: 'service',
-          serviceName: oldCtx.service || 'Relocation Services'
+          serviceName: oldCtx.service || 'Relocation Services',
+          // @ts-ignore
+          selectedAgencies: oldCtx.selectedAgencies
         };
       case 'region':
         return {
           type: 'region',
-          regionName: oldCtx.region || 'Switzerland'
+          regionName: oldCtx.region || 'Switzerland',
+          // @ts-ignore
+          selectedAgencies: oldCtx.selectedAgencies
         };
       case 'blog':
         return { type: 'home' };
@@ -112,10 +116,18 @@ const UniversalContactModal: React.FC<ModalContentProps> = () => {
         return {
           type: 'results',
           // @ts-ignore - selectedAgencies might not be in the strict ModalContext type yet
-          selectedAgencies: oldCtx.selectedAgencies
+          selectedAgencies: oldCtx.selectedAgencies,
+          // Support passing search params through
+          canton: (oldCtx as any).where || (oldCtx as any).canton,
+          service: (oldCtx as any).service,
+          when: (oldCtx as any).when
         };
       default:
-        return { type: 'home' };
+        return {
+          type: 'home',
+          // @ts-ignore
+          selectedAgencies: oldCtx.selectedAgencies
+        };
     }
   };
 

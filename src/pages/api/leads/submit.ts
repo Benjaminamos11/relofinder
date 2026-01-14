@@ -54,6 +54,11 @@ export const POST: APIRoute = async ({ request }) => {
             utm_campaign
         } = body;
 
+        // Fallback extraction from nested context if flat fields are missing
+        const finalAgencies = agencies || body.context?.selectedAgencies || body.context?.agencies;
+        const finalCanton = movingTo || canton || body.context?.canton || body.context?.regionName || body.context?.where;
+        const finalSourcePage = source_page || body.context?.page || body.context?.type || 'quote_request_modal';
+
         const { data, error } = await supabase
             .from('leads')
             .insert([
@@ -62,11 +67,11 @@ export const POST: APIRoute = async ({ request }) => {
                     email,
                     phone,
                     current_country: movingFrom,
-                    destination_canton: movingTo || canton,
+                    destination_canton: finalCanton,
                     move_date: moveDate ? new Date(moveDate) : null,
                     intent: reason,
                     services_needed: services,
-                    source_page: source_page || 'quote_request_modal',
+                    source_page: finalSourcePage,
                     status: 'new',
                     message: message || (isAnonymous ? 'User requested ANONYMOUS quote collection.' : undefined),
                     utm_source,
@@ -77,7 +82,7 @@ export const POST: APIRoute = async ({ request }) => {
                         budget_tier: budget,
                         employer,
                         is_anonymous: isAnonymous,
-                        target_agencies: agencies
+                        target_agencies: finalAgencies
                     }
                 }
             ])
@@ -99,11 +104,11 @@ export const POST: APIRoute = async ({ request }) => {
             <p><strong>Employer:</strong> ${employer || 'N/A'}</p>
             <p><strong>Keep Details Private (Anonymous):</strong> ${isAnonymous ? 'Yes' : 'No'}</p>
             <p><strong>Moving From:</strong> ${movingFrom || 'N/A'}</p>
-            <p><strong>Moving To:</strong> ${movingTo || canton || 'N/A'}</p>
+            <p><strong>Moving To:</strong> ${finalCanton || 'N/A'}</p>
             <p><strong>Move Date:</strong> ${moveDate || 'N/A'}</p>
             <p><strong>Reason:</strong> ${reason || 'N/A'}</p>
             <p><strong>Services:</strong> ${services?.join(', ') || 'N/A'}</p>
-            <p><strong>Target Agencies:</strong> ${agencies?.join(', ') || 'None'}</p>
+            <p><strong>Target Agencies:</strong> ${finalAgencies?.join(', ') || 'None'}</p>
             <p><strong>Message:</strong> ${message || 'N/A'}</p>
         `;
 

@@ -166,7 +166,11 @@ export const ContactModal: FC<ContactModalProps> = ({
     try {
       const payload = {
         ...formData,
-        context: context
+        context: context,
+        // Explicitly flatten these for the API
+        agencies: (context as any).selectedAgencies || [],
+        canton: (context as any).canton || (context as any).regionName || (context as any).where || formData.movingTo,
+        source_page: (context as any).page || context.type
       };
 
       const res = await fetch('/api/leads/submit', {
