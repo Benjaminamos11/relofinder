@@ -94,11 +94,16 @@ export const POST: APIRoute = async ({ request }) => {
             <p><strong>Name:</strong> ${fullName}</p>
             <p><strong>Email:</strong> ${email}</p>
             <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
+            <p><strong>Household:</strong> ${household || 'N/A'}</p>
+            <p><strong>Budget Tier:</strong> ${budget || 'N/A'}</p>
+            <p><strong>Employer:</strong> ${employer || 'N/A'}</p>
+            <p><strong>Keep Details Private (Anonymous):</strong> ${isAnonymous ? 'Yes' : 'No'}</p>
             <p><strong>Moving From:</strong> ${movingFrom || 'N/A'}</p>
             <p><strong>Moving To:</strong> ${movingTo || canton || 'N/A'}</p>
             <p><strong>Move Date:</strong> ${moveDate || 'N/A'}</p>
             <p><strong>Reason:</strong> ${reason || 'N/A'}</p>
             <p><strong>Services:</strong> ${services?.join(', ') || 'N/A'}</p>
+            <p><strong>Target Agencies:</strong> ${agencies?.join(', ') || 'None'}</p>
             <p><strong>Message:</strong> ${message || 'N/A'}</p>
         `;
 

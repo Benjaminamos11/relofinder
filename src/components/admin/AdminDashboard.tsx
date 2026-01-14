@@ -962,6 +962,18 @@ export default function AdminDashboard() {
                                             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Move Date</span>
                                             <p className="font-medium text-slate-900">{selectedLead.move_date || 'N/A'}</p>
                                         </div>
+                                        <div className="space-y-1">
+                                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Household</span>
+                                            <p className="font-medium text-slate-900">{selectedLead.metadata?.household || 'N/A'}</p>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Budget</span>
+                                            <p className="font-medium text-slate-900">{selectedLead.metadata?.budget_tier || 'N/A'}</p>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Employer</span>
+                                            <p className="font-medium text-slate-900">{selectedLead.metadata?.employer || 'N/A'}</p>
+                                        </div>
                                     </div>
 
                                     <div className="grid grid-cols-2 gap-6 bg-slate-50 p-6 rounded-2xl">
