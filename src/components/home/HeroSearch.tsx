@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MapPin, Home, FileText, ChevronDown, Building2, Calendar, Briefcase } from 'lucide-react';
+import AssessmentModal from '../individual/AssessmentModal';
 
 const cantons = [
     { name: "Zurich", code: "ZH", slug: "zurich" },
@@ -28,6 +29,7 @@ interface HeroSearchProps {
 
 export default function HeroSearch({ initialDestination = '', initialService = '', className = '' }: HeroSearchProps) {
     const [activeTab, setActiveTab] = useState<'private' | 'corporate'>('private');
+    const [isAssessmentModalOpen, setIsAssessmentModalOpen] = useState(false);
 
     // Form State - Private
     const [when, setWhen] = useState('');
@@ -41,11 +43,8 @@ export default function HeroSearch({ initialDestination = '', initialService = '
 
     const handlePrivateSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const params = new URLSearchParams();
-        if (when) params.set('when', when);
-        if (where) params.set('where', where);
-        if (service) params.set('service', service);
-        window.location.href = `/search/results?${params.toString()}`;
+        // Instead of redirecting, we now open the assessment modal
+        setIsAssessmentModalOpen(true);
     };
 
     const handleCorporateSubmit = (e: React.FormEvent) => {
@@ -158,9 +157,9 @@ export default function HeroSearch({ initialDestination = '', initialService = '
 
                         <button
                             type="submit"
-                            className="block w-full py-5 bg-[#FF6F61] hover:bg-[#ff5d4d] text-white font-bold rounded-2xl shadow-lg shadow-[#FF6F61]/30 hover:shadow-xl hover:shadow-[#FF6F61]/40 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] text-lg flex items-center justify-center tracking-wide"
+                            className="block w-full py-5 bg-[#FF5A5F] hover:bg-[#ff454a] text-white font-bold rounded-2xl shadow-lg shadow-[#FF5A5F]/30 hover:shadow-xl hover:shadow-[#FF5A5F]/40 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] text-lg flex items-center justify-center tracking-wide"
                         >
-                            See Available Agencies
+                            ANALYZE MY MOVE
                         </button>
 
                         <p className="text-xs text-slate-400 text-center font-medium mt-4 flex items-center justify-center gap-2">
@@ -247,6 +246,13 @@ export default function HeroSearch({ initialDestination = '', initialService = '
                     </form>
                 )}
 
+                {/* Assessment Modal */}
+                <AssessmentModal
+                    isOpen={isAssessmentModalOpen}
+                    onClose={() => setIsAssessmentModalOpen(false)}
+                    selectedDestination={where || 'Switzerland'}
+                    selectedService={service || 'full-package'}
+                />
             </div>
         </div>
     );
