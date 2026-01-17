@@ -174,32 +174,27 @@ export default function AssessmentModal({ isOpen, onClose, selectedDestination, 
         setIsSubmitting(true);
 
         try {
-            const { error } = await supabase.from('leads').insert([
-                {
-                    name: `${data.firstName} ${data.lastName}`,
-                    email: data.email,
-                    phone: data.phone,
-                    service_interest: selectedService,
-                    region_interest: selectedDestination,
-                    household_type: data.householdType,
-                    funding_type: data.funding,
-                    citizenship_status: data.citizenship,
-                    company_name: data.companyName,
-                    budget_range: data.budget,
-                    metadata: {
-                        ...data,
-                        complexity: data.complexity,
-                        source: 'concierge_assessment'
-                    },
-                    status: 'initial_submitted'
-                }
-            ]);
+            const response = await fetch('/api/leads/assessment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    selectedService,
+                    selectedDestination,
+                    data
+                }),
+            });
 
-            if (error) throw error;
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Failed to submit request');
+            }
+
             setSubmissionComplete(true);
-        } catch (error) {
+        } catch (error: any) {
             console.error('Error submitting lead:', error);
-            alert('There was an error submitting your request. Please try again.');
+            alert(error.message || 'There was an error submitting your request. Please try again.');
         } finally {
             setIsSubmitting(false);
         }
