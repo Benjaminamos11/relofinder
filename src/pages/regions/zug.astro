@@ -1,518 +1,788 @@
 ---
-import { 
-  MapPin, 
-  Building2, 
-  Star, 
-  ArrowRight, 
-  Home, 
-  ChevronDown,
-  FileText,
-  Download,
-  Feather,
-  CheckCircle2,
-  Info
-} from 'lucide-react';
-import '../../styles/global.css';
-import '../../styles/alpine-clarity.css';
-import SEOHead from '../../components/common/SEOHead.astro';
-import UniversalContactModal from '../../components/common/UniversalContactModal.tsx';
-import '../../lib/expose-modal-stores.client.ts';
-import Navbar from '../../components/layout/Navbar.astro';
-import Footer from '../../components/layout/Footer.astro';
-import HeroSearch from '../../components/home/HeroSearch.tsx';
+import {
+    MapPin,
+    Building2,
+    Star,
+    ArrowRight,
+    Home,
+    ChevronDown,
+    FileText,
+    Download,
+    Feather,
+    CheckCircle2,
+    Info,
+} from "lucide-react";
+import "../../styles/global.css";
+import "../../styles/alpine-clarity.css";
+import SEOHead from "../../components/common/SEOHead.astro";
+import UniversalContactModal from "../../components/common/UniversalContactModal.tsx";
+import "../../lib/expose-modal-stores.client.ts";
+import Navbar from "../../components/layout/Navbar.astro";
+import Footer from "../../components/layout/Footer.astro";
+import HeroSearch from "../../components/home/HeroSearch.tsx";
 
 // --- Data & Content ---
 
 const neighborhoods = [
-  {
-    name: "Zug City (Metalli/Casino)",
-    type: "Urban Core",
-    desc: "Walking distance to the lake, train station, and major HQs. High-density luxury living with restaurants, shops, and the famous Altstadt.",
-    rent: "CHF 4,500 - 8,000+",
-    vibe: "Central & Premium"
-  },
-  {
-    name: "Baar",
-    type: "The Engine Room",
-    desc: "Home to the Glencore campus and new high-end developments. Excellent tax rate and modern infrastructure. Popular with commodities traders.",
-    rent: "CHF 4,000 - 6,500",
-    vibe: "Modern & Corporate"
-  },
-  {
-    name: "Walchwil (The Riviera)",
-    type: "Tax Haven",
-    desc: "Located on the sunny side of the lake. Famous for its microclimate with palm trees and one of the lowest tax multipliers in Switzerland.",
-    rent: "CHF 5,000 - 10,000+",
-    vibe: "Exclusive & Sunny"
-  },
-  {
-    name: "Risch-Rotkreuz",
-    type: "Connectivity Hub",
-    desc: "Home to Roche Diagnostics. Perfect for easy access to both Lucerne and Zürich. New developments and excellent schools.",
-    rent: "CHF 3,500 - 5,500",
-    vibe: "Connected & Growing"
-  }
+    {
+        name: "Zug City (Metalli/Casino)",
+        type: "Urban Core",
+        desc: "Walking distance to the lake, train station, and major HQs. High-density luxury living with restaurants, shops, and the famous Altstadt.",
+        rent: "CHF 4,500 - 8,000+",
+        vibe: "Central & Premium",
+    },
+    {
+        name: "Baar",
+        type: "The Engine Room",
+        desc: "Home to the Glencore campus and new high-end developments. Excellent tax rate and modern infrastructure. Popular with commodities traders.",
+        rent: "CHF 4,000 - 6,500",
+        vibe: "Modern & Corporate",
+    },
+    {
+        name: "Walchwil (The Riviera)",
+        type: "Tax Haven",
+        desc: "Located on the sunny side of the lake. Famous for its microclimate with palm trees and one of the lowest tax multipliers in Switzerland.",
+        rent: "CHF 5,000 - 10,000+",
+        vibe: "Exclusive & Sunny",
+    },
+    {
+        name: "Risch-Rotkreuz",
+        type: "Connectivity Hub",
+        desc: "Home to Roche Diagnostics. Perfect for easy access to both Lucerne and Zürich. New developments and excellent schools.",
+        rent: "CHF 3,500 - 5,500",
+        vibe: "Connected & Growing",
+    },
 ];
 
 const costOfLiving = [
-  { category: "Rent (3.5 rooms)", cost: "CHF 4,000 - 8,000+", note: "Tax savings priced into rent" },
-  { category: "Health Insurance", cost: "CHF 300 - 450", note: "Per adult / month" },
-  { category: "Public Transport", cost: "CHF 76", note: "ZVB Monthly Pass" },
-  { category: "Tax Rate", cost: "Very Low", note: "Lowest municipal multipliers in CH" },
+    {
+        category: "Rent (3.5 rooms)",
+        cost: "CHF 4,000 - 8,000+",
+        note: "Tax savings priced into rent",
+    },
+    {
+        category: "Health Insurance",
+        cost: "CHF 300 - 450",
+        note: "Per adult / month",
+    },
+    { category: "Public Transport", cost: "CHF 76", note: "ZVB Monthly Pass" },
+    {
+        category: "Tax Rate",
+        cost: "Very Low",
+        note: "Lowest municipal multipliers in CH",
+    },
 ];
 
 const faqs = [
-  {
-    q: "Is rent higher in Zug than Zürich?",
-    a: "Yes, often by 20-40%. The tax savings are literally priced into the rent. Landlords know that high earners save CHF 50,000-200,000+ annually in taxes, so they charge premium rents. Demand vastly outstrips the tiny housing supply."
-  },
-  {
-    q: "Can I pay rent in Bitcoin?",
-    a: "Taxes in Zug can be paid in BTC/ETH up to CHF 100,000 per year, making it the most crypto-friendly canton. However, most landlords still require rent in CHF. Some newer developments and crypto-native landlords may accept stablecoins."
-  },
-  {
-    q: "How fast do apartments go in Zug?",
-    a: "Often within 24-48 hours of becoming available. Many never hit public listings at all. You need to be ready to sign immediately with all documents prepared. Working with an agency that has off-market access is essentially mandatory."
-  }
+    {
+        q: "Is rent higher in Zug than Zürich?",
+        a: "Yes, often by 20-40%. The tax savings are literally priced into the rent. Landlords know that high earners save CHF 50,000-200,000+ annually in taxes, so they charge premium rents. Demand vastly outstrips the tiny housing supply.",
+    },
+    {
+        q: "Can I pay rent in Bitcoin?",
+        a: "Taxes in Zug can be paid in BTC/ETH up to CHF 100,000 per year, making it the most crypto-friendly canton. However, most landlords still require rent in CHF. Some newer developments and crypto-native landlords may accept stablecoins.",
+    },
+    {
+        q: "How fast do apartments go in Zug?",
+        a: "Often within 24-48 hours of becoming available. Many never hit public listings at all. You need to be ready to sign immediately with all documents prepared. Working with an agency that has off-market access is essentially mandatory.",
+    },
 ];
-
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <SEOHead 
-      title="Relocation to Zug: The Complete 2026 Guide | ReloFinder"
-      description="The definitive guide for moving to Zug. Crypto Valley housing, tax optimization, and relocation checklists. Compare verified agencies and get free quotes."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        /* Swiss Passport Style Canton Cards Pattern */
-        .canton-card-bg {
-            font-family: 'Inter', sans-serif;
-            font-weight: 800;
-            color: #F1F5F9; 
-            opacity: 0.4;
-            line-height: 1;
-        }
-        
-        /* Custom Gradient Text */
-        .text-gradient {
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-image: linear-gradient(90deg, #2C3E50 0%, #FF6F61 100%);
-        }
-    </style>
-</head>
-<body class="font-sans text-slate-600 bg-[#F9FAFB] antialiased">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <SEOHead
+            title="Relocation to Zug: The Complete 2026 Guide | ReloFinder"
+            description="The definitive guide for moving to Zug. Crypto Valley housing, tax optimization, and relocation checklists. Compare verified agencies and get free quotes."
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            /* Swiss Passport Style Canton Cards Pattern */
+            .canton-card-bg {
+                font-family: "Inter", sans-serif;
+                font-weight: 800;
+                color: #f1f5f9;
+                opacity: 0.4;
+                line-height: 1;
+            }
 
-    <!-- 1. Navbar -->
-    <Navbar />
+            /* Custom Gradient Text */
+            .text-gradient {
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-image: linear-gradient(
+                    90deg,
+                    #2c3e50 0%,
+                    #ff6f61 100%
+                );
+            }
+        </style>
+    </head>
+    <body class="font-sans text-slate-600 bg-[#F9FAFB] antialiased">
+        <!-- 1. Navbar -->
+        <Navbar />
 
-
-    <!-- Hero Section -->
-    <section class="relative py-20 lg:py-32 overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img 
-                src="https://res.cloudinary.com/dphbnwjtx/image/upload/f_webp,q_auto:best/v1766820973/claudio-schwarz-SFUjHAztHcM-unsplash_3_c1ckym" 
-                alt="Zug lakefront with mountains and city skyline" 
-                class="w-full h-full object-cover"
-            />
-            <!-- Gradient overlay: darker at top for navbar contrast -->
-            <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/55"></div>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div class="max-w-4xl mx-auto mb-12">
-                <span class="inline-block py-1.5 px-4 rounded-full bg-black/80 border border-black/20 text-white text-sm font-bold mb-6 tracking-wide uppercase">
-                    2026 City Guide
-                </span>
-                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6 leading-[1.1] drop-shadow-lg">
-                    Relocation to <span class="text-[#FF6F61]">Zug</span>.
-                </h1>
-                <p class="text-lg md:text-xl text-white/90 font-medium max-w-2xl mx-auto drop-shadow-md">
-                    The global hub for Crypto, Commodities, and Tax Efficiency. 
-                    A guide to securing residency in Switzerland's most competitive canton.
-                </p>
+        <!-- Hero Section -->
+        <section class="relative py-20 lg:py-32 overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img
+                    src="https://res.cloudinary.com/dphbnwjtx/image/upload/f_webp,q_auto:best/v1766820973/claudio-schwarz-SFUjHAztHcM-unsplash_3_c1ckym"
+                    alt="Zug lakefront with mountains and city skyline"
+                    class="w-full h-full object-cover"
+                />
+                <!-- Gradient overlay: darker at top for navbar contrast -->
+                <div
+                    class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/55"
+                >
+                </div>
             </div>
 
-            <!-- Lead Magnet: Hero Search (Lead Wizard) -->
-            <div class="max-w-3xl mx-auto relative z-10 text-left">
-               <div class="bg-white rounded-2xl shadow-xl shadow-slate-900/5 border border-slate-200 p-1">
-                   <HeroSearch client:load prefilledDestination="zug" />
-               </div>
-               <p class="text-center text-sm text-white/80 mt-6 font-medium drop-shadow">
-                   Compare verified Zug relocation agencies. Get 3 quotes in 24h.
-               </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. Strategic Overview: Why You Need Help -->
-    <section class="py-24 bg-white border-y border-slate-100">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-8 text-center">
-                Why relocating to Zug is a race against time.
-            </h2>
-            <div class="prose prose-lg prose-slate mx-auto text-slate-600 leading-relaxed">
-                <p class="text-lg mb-6 text-center max-w-3xl mx-auto">
-                    Zug offers the <span class="font-bold text-slate-900">lowest taxes in Switzerland</span>, 
-                    making it the primary target for HNWIs and international founders. 
-                    However, the housing stock is tiny. Vacancy is virtually non-existent.
-                </p>
-                
-                <div class="bg-[#F9FAFB] p-8 rounded-2xl border border-slate-200 my-10">
-                    <p class="text-lg leading-relaxed mb-6">
-                        The challenge in Zug isn't just affordability — it's <strong>availability</strong>. 
-                        Properties are leased days after becoming available, often <a href="https://offlist.ch" class="text-[#FF6F61] font-medium hover:underline">off-market</a>.
-                        Every day you delay registration means lost tax savings on the "Tax Clock."
+            <div
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"
+            >
+                <div class="max-w-4xl mx-auto mb-12">
+                    <span
+                        class="inline-block py-1.5 px-4 rounded-full bg-black/80 border border-black/20 text-white text-sm font-bold mb-6 tracking-wide uppercase"
+                    >
+                        2026 City Guide
+                    </span>
+                    <h1
+                        class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6 leading-[1.1] drop-shadow-lg"
+                    >
+                        Relocation to <span class="text-[#FF6F61]">Zug</span>.
+                    </h1>
+                    <p
+                        class="text-lg md:text-xl text-white/90 font-medium max-w-2xl mx-auto drop-shadow-md"
+                    >
+                        The global hub for Crypto, Commodities, and Tax
+                        Efficiency. A guide to securing residency in
+                        Switzerland's most competitive canton.
                     </p>
-                    <p class="text-lg leading-relaxed font-medium text-slate-800">
-                        <strong>Relofinder</strong> connects you with local specialists who understand the urgency and have access to the hidden inventory in Baar and Walchwil.
+                </div>
+
+                <!-- Lead Magnet: Hero Search (Lead Wizard) -->
+                <div class="max-w-3xl mx-auto relative z-10 text-left">
+                    <div
+                        class="bg-white rounded-2xl shadow-xl shadow-slate-900/5 border border-slate-200 p-1"
+                    >
+                        <HeroSearch client:load initialDestination="zug" />
+                    </div>
+                    <p
+                        class="text-center text-sm text-white/80 mt-6 font-medium drop-shadow"
+                    >
+                        Compare verified Zug relocation agencies. Get 3 quotes
+                        in 24h.
                     </p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 4. Neighborhood Decoder -->
-    <section class="py-24 bg-[#F9FAFB] border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Where Crypto Valley Lives</h2>
-                <p class="text-slate-500 text-lg">Tax-optimized municipalities for founders and executives.</p>
-            </div>
+        <!-- 3. Strategic Overview: Why You Need Help -->
+        <section class="py-24 bg-white border-y border-slate-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2
+                    class="text-3xl md:text-4xl font-bold text-slate-800 mb-8 text-center"
+                >
+                    Why relocating to Zug is a race against time.
+                </h2>
+                <div
+                    class="prose prose-lg prose-slate mx-auto text-slate-600 leading-relaxed"
+                >
+                    <p class="text-lg mb-6 text-center max-w-3xl mx-auto">
+                        Zug offers the <span class="font-bold text-slate-900"
+                            >lowest taxes in Switzerland</span
+                        >, making it the primary target for HNWIs and
+                        international founders. However, the housing stock is
+                        tiny. Vacancy is virtually non-existent.
+                    </p>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {neighborhoods.map(hood => (
-                    <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
-                        <div class="mb-6">
-                            <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full uppercase tracking-wider">
-                                {hood.type}
-                            </span>
-                        </div>
-                        <h3 class="text-2xl font-bold text-slate-800 mb-3">{hood.name}</h3>
-                        <p class="text-slate-600 mb-8 leading-relaxed flex-grow">
-                            {hood.desc}
+                    <div
+                        class="bg-[#F9FAFB] p-8 rounded-2xl border border-slate-200 my-10"
+                    >
+                        <p class="text-lg leading-relaxed mb-6">
+                            The challenge in Zug isn't just affordability — it's <strong
+                                >availability</strong
+                            >. Properties are leased days after becoming
+                            available, often <a
+                                href="https://offlist.ch"
+                                class="text-[#FF6F61] font-medium hover:underline"
+                                >off-market</a
+                            >. Every day you delay registration means lost tax
+                            savings on the "Tax Clock."
                         </p>
-                        <div class="border-t border-slate-100 pt-6 mt-auto">
-                            <div class="flex justify-between items-center mb-3">
-                                <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">Est. Rent</span>
-                                <span class="text-sm font-bold text-slate-800">{hood.rent}</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">Vibe</span>
-                                <span class="text-sm font-bold text-[#FF6F61]">{hood.vibe}</span>
-                            </div>
-                        </div>
+                        <p
+                            class="text-lg leading-relaxed font-medium text-slate-800"
+                        >
+                            <strong>Relofinder</strong> connects you with local specialists
+                            who understand the urgency and have access to the hidden
+                            inventory in Baar and Walchwil.
+                        </p>
                     </div>
-                ))}
-            </div>
-            
-            <div class="mt-16 p-6 bg-white border border-slate-200 rounded-xl flex flex-col md:flex-row gap-6 items-center max-w-3xl mx-auto shadow-sm">
-                <div class="p-3 bg-[#FF6F61]/10 rounded-full flex-shrink-0">
-                    <Info className="w-6 h-6 text-[#FF6F61]" />
                 </div>
-                <div class="text-center md:text-left">
-                    <p class="text-slate-800 text-sm leading-relaxed">
-                        <strong class="block text-base mb-1">Speed is Everything</strong> 
-                        Apartments in Zug go within 24-48 hours. 
-                        Use <a href="https://offlist.ch" target="_blank" class="font-bold underline decoration-[#FF6F61] decoration-2 underline-offset-2 hover:text-[#FF6F61] transition-colors">Offlist.ch</a> 
-                        to access pre-market listings and get notified before properties go public.
+            </div>
+        </section>
+
+        <!-- 4. Neighborhood Decoder -->
+        <section class="py-24 bg-[#F9FAFB] border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2
+                        class="text-3xl md:text-4xl font-bold text-slate-800 mb-4"
+                    >
+                        Where Crypto Valley Lives
+                    </h2>
+                    <p class="text-slate-500 text-lg">
+                        Tax-optimized municipalities for founders and
+                        executives.
                     </p>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- 5. Cost of Living -->
-    <section class="py-24 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Cost of Living 2026</h2>
-                <div class="w-24 h-1 bg-[#FF6F61] mx-auto rounded-full mb-8"></div>
-                <p class="text-slate-500 text-lg max-w-2xl mx-auto mb-4">
-                    A family of four requires approximately <span class="font-bold text-slate-900 bg-slate-100 px-2 py-0.5 rounded">CHF 15,000+</span> net monthly — but saves significantly more in taxes.
-                </p>
-                <p class="text-slate-500 text-base max-w-2xl mx-auto">
-                    The higher rents are offset by <strong>massive tax savings</strong>. High earners can save CHF 50,000-200,000+ annually compared to Zürich or Geneva.
-                </p>
-            </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {
+                        neighborhoods.map((hood) => (
+                            <div class="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+                                <div class="mb-6">
+                                    <span class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full uppercase tracking-wider">
+                                        {hood.type}
+                                    </span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-slate-800 mb-3">
+                                    {hood.name}
+                                </h3>
+                                <p class="text-slate-600 mb-8 leading-relaxed flex-grow">
+                                    {hood.desc}
+                                </p>
+                                <div class="border-t border-slate-100 pt-6 mt-auto">
+                                    <div class="flex justify-between items-center mb-3">
+                                        <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">
+                                            Est. Rent
+                                        </span>
+                                        <span class="text-sm font-bold text-slate-800">
+                                            {hood.rent}
+                                        </span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">
+                                            Vibe
+                                        </span>
+                                        <span class="text-sm font-bold text-[#FF6F61]">
+                                            {hood.vibe}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
 
-            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-                <table class="w-full text-left">
-                    <thead class="bg-slate-50 border-b border-slate-200">
-                        <tr>
-                            <th class="p-6 text-xs font-bold text-slate-400 uppercase tracking-widest">Item</th>
-                            <th class="p-6 text-xs font-bold text-slate-400 uppercase tracking-widest">Cost Estimate</th>
-                            <th class="p-6 text-xs font-bold text-slate-400 uppercase tracking-widest hidden sm:table-cell">Notes</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-100">
-                        {costOfLiving.map(item => (
-                            <tr class="hover:bg-slate-50/50 transition-colors group">
-                                <td class="p-6 font-bold text-slate-800 group-hover:text-[#FF6F61] transition-colors">{item.category}</td>
-                                <td class="p-6 font-bold text-slate-700">{item.cost}</td>
-                                <td class="p-6 text-slate-500 text-sm hidden sm:table-cell">{item.note}</td>
+                <div
+                    class="mt-16 p-6 bg-white border border-slate-200 rounded-xl flex flex-col md:flex-row gap-6 items-center max-w-3xl mx-auto shadow-sm"
+                >
+                    <div class="p-3 bg-[#FF6F61]/10 rounded-full flex-shrink-0">
+                        <Info className="w-6 h-6 text-[#FF6F61]" />
+                    </div>
+                    <div class="text-center md:text-left">
+                        <p class="text-slate-800 text-sm leading-relaxed">
+                            <strong class="block text-base mb-1"
+                                >Speed is Everything</strong
+                            >
+                            Apartments in Zug go within 24-48 hours. Use <a
+                                href="https://offlist.ch"
+                                target="_blank"
+                                class="font-bold underline decoration-[#FF6F61] decoration-2 underline-offset-2 hover:text-[#FF6F61] transition-colors"
+                                >Offlist.ch</a
+                            >
+                            to access pre-market listings and get notified before
+                            properties go public.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Cost of Living -->
+        <section class="py-24 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2
+                        class="text-3xl md:text-4xl font-bold text-slate-800 mb-4"
+                    >
+                        Cost of Living 2026
+                    </h2>
+                    <div
+                        class="w-24 h-1 bg-[#FF6F61] mx-auto rounded-full mb-8"
+                    >
+                    </div>
+                    <p class="text-slate-500 text-lg max-w-2xl mx-auto mb-4">
+                        A family of four requires approximately <span
+                            class="font-bold text-slate-900 bg-slate-100 px-2 py-0.5 rounded"
+                            >CHF 15,000+</span
+                        > net monthly — but saves significantly more in taxes.
+                    </p>
+                    <p class="text-slate-500 text-base max-w-2xl mx-auto">
+                        The higher rents are offset by <strong
+                            >massive tax savings</strong
+                        >. High earners can save CHF 50,000-200,000+ annually
+                        compared to Zürich or Geneva.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm"
+                >
+                    <table class="w-full text-left">
+                        <thead class="bg-slate-50 border-b border-slate-200">
+                            <tr>
+                                <th
+                                    class="p-6 text-xs font-bold text-slate-400 uppercase tracking-widest"
+                                    >Item</th
+                                >
+                                <th
+                                    class="p-6 text-xs font-bold text-slate-400 uppercase tracking-widest"
+                                    >Cost Estimate</th
+                                >
+                                <th
+                                    class="p-6 text-xs font-bold text-slate-400 uppercase tracking-widest hidden sm:table-cell"
+                                    >Notes</th
+                                >
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            {
+                                costOfLiving.map((item) => (
+                                    <tr class="hover:bg-slate-50/50 transition-colors group">
+                                        <td class="p-6 font-bold text-slate-800 group-hover:text-[#FF6F61] transition-colors">
+                                            {item.category}
+                                        </td>
+                                        <td class="p-6 font-bold text-slate-700">
+                                            {item.cost}
+                                        </td>
+                                        <td class="p-6 text-slate-500 text-sm hidden sm:table-cell">
+                                            {item.note}
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Interstitial CTA: Polished Dark Version -->
+                <div
+                    class="mt-20 bg-[#1E293B] rounded-3xl p-12 md:p-16 text-center text-white relative overflow-hidden ring-1 ring-white/10 shadow-2xl"
+                >
+                    <div class="relative z-10 max-w-2xl mx-auto">
+                        <h3
+                            class="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-white"
+                        >
+                            Get Accurate Relocation Rates.
+                        </h3>
+                        <p class="text-slate-300 text-lg mb-10 leading-relaxed">
+                            Don't guess with your budget. Request verified
+                            quotes from our network of Zug relocation
+                            specialists.
+                        </p>
+                        <button
+                            onclick="window.universalOpenModal({ page: 'zug_guide', topic: 'cost_cta' })"
+                            class="inline-flex items-center gap-3 px-8 py-4 bg-[#FF6F61] hover:bg-[#f65d4e] text-white font-bold text-lg rounded-xl transition-all transform hover:-translate-y-1 shadow-lg"
+                        >
+                            <FileText className="w-5 h-5" />
+                            Get Free Quotes
+                        </button>
+                        <p class="mt-6 text-slate-400 text-sm">
+                            Free service. No obligation.
+                        </p>
+                    </div>
+                </div>
             </div>
+        </section>
 
+        <!-- 6. Relocation Timeline: Simple Card Layout -->
+        <section class="py-24 bg-[#F9FAFB] border-t border-slate-200">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2
+                    class="text-3xl md:text-4xl font-bold text-slate-800 mb-16 text-center"
+                >
+                    Your Relocation Timeline
+                </h2>
 
-
-
-            <!-- Interstitial CTA: Polished Dark Version -->
-            <div class="mt-20 bg-[#1E293B] rounded-3xl p-12 md:p-16 text-center text-white relative overflow-hidden ring-1 ring-white/10 shadow-2xl">
-                <div class="relative z-10 max-w-2xl mx-auto">
-                    <h3 class="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-white">Get Accurate Relocation Rates.</h3>
-                    <p class="text-slate-300 text-lg mb-10 leading-relaxed">
-                        Don't guess with your budget. Request verified quotes from our network of Zug relocation specialists.
-                    </p>
-                    <button onclick="window.universalOpenModal({ page: 'zug_guide', topic: 'cost_cta' })" class="inline-flex items-center gap-3 px-8 py-4 bg-[#FF6F61] hover:bg-[#f65d4e] text-white font-bold text-lg rounded-xl transition-all transform hover:-translate-y-1 shadow-lg">
-                        <FileText className="w-5 h-5" />
-                        Get Free Quotes
-                    </button>
-                    <p class="mt-6 text-slate-400 text-sm">Free service. No obligation.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. Relocation Timeline: Simple Card Layout -->
-    <section class="py-24 bg-[#F9FAFB] border-t border-slate-200">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-16 text-center">Your Relocation Timeline</h2>
-            
-            <div class="space-y-8">
-                <!-- Step 1 -->
-                <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-start gap-6">
-                        <div class="shrink-0 w-14 h-14 bg-[#FF6F61] rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg">
-                            01
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="px-3 py-1 bg-slate-100 text-slate-500 text-xs font-bold rounded-full uppercase tracking-wider border border-slate-200">ASAP</span>
+                <div class="space-y-8">
+                    <!-- Step 1 -->
+                    <div
+                        class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
+                    >
+                        <div class="flex items-start gap-6">
+                            <div
+                                class="shrink-0 w-14 h-14 bg-[#FF6F61] rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                            >
+                                01
                             </div>
-                            <h3 class="text-xl font-bold text-slate-800 mb-2">Housing Search</h3>
-                            <p class="text-slate-600 leading-relaxed">
-                                Start immediately. Use <a href="https://offlist.ch" class="text-[#FF6F61] font-medium hover:underline">Offlist.ch</a> to find "Business Apartments" 
-                                to bridge the gap while searching for permanent housing. Zug moves fast.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-start gap-6">
-                        <div class="shrink-0 w-14 h-14 bg-slate-200 rounded-xl flex items-center justify-center text-slate-500 font-bold text-lg">
-                            02
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="px-3 py-1 bg-slate-100 text-slate-500 text-xs font-bold rounded-full uppercase tracking-wider border border-slate-200">Arrival Day</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-800 mb-2">Registration at Amt für Migration</h3>
-                            <p class="text-slate-600 leading-relaxed">
-                                Register immediately to activate your tax residency. Every day counts for the "Tax Clock." 
-                                The <strong>Amt für Migration</strong> in Zug City handles all registrations.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-start gap-6">
-                        <div class="shrink-0 w-14 h-14 bg-slate-200 rounded-xl flex items-center justify-center text-slate-500 font-bold text-lg">
-                            03
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="px-3 py-1 bg-slate-100 text-slate-500 text-xs font-bold rounded-full uppercase tracking-wider border border-slate-200">Week 1</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-800 mb-2">Banking Setup</h3>
-                            <p class="text-slate-600 leading-relaxed">
-                                Zug banks are crypto-friendly but compliance-heavy. Prepare your <strong>Source of Funds</strong> documentation. 
-                                Seba Bank and Sygnum are popular for crypto entrepreneurs.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 4: Health Insurance -->
-                <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex items-start gap-6">
-                        <div class="shrink-0 w-14 h-14 bg-slate-200 rounded-xl flex items-center justify-center text-slate-500 font-bold text-lg">
-                            04
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center gap-3 mb-3">
-                                <span class="px-3 py-1 bg-slate-100 text-slate-500 text-xs font-bold rounded-full uppercase tracking-wider border border-slate-200">Within 3 Months</span>
-                            </div>
-                            <h3 class="text-xl font-bold text-slate-800 mb-2">Health Insurance</h3>
-                            <p class="text-slate-600 leading-relaxed mb-4">
-                                While taxes in Zug are low, insurance is a private cost. Secure your coverage back-dated to your arrival date.
-                            </p>
-                            <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
-                                <p class="text-slate-700 text-sm leading-relaxed">
-                                    <span class="font-bold">💡 Expert Tip:</span> Health insurance premiums vary by zip code. Use the 
-                                    <a href="https://expat-savvy.ch/healthcare/best-health-insurance-switzerland/" target="_blank" rel="noopener" class="text-[#FF6F61] underline hover:text-[#f65d4e]">best health insurance guide</a> 
-                                    at Expat-Savvy to compare providers and find the right plan.
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span
+                                        class="px-3 py-1 bg-slate-100 text-slate-500 text-xs font-bold rounded-full uppercase tracking-wider border border-slate-200"
+                                        >ASAP</span
+                                    >
+                                </div>
+                                <h3
+                                    class="text-xl font-bold text-slate-800 mb-2"
+                                >
+                                    Housing Search
+                                </h3>
+                                <p class="text-slate-600 leading-relaxed">
+                                    Start immediately. Use <a
+                                        href="https://offlist.ch"
+                                        class="text-[#FF6F61] font-medium hover:underline"
+                                        >Offlist.ch</a
+                                    > to find "Business Apartments" to bridge the
+                                    gap while searching for permanent housing. Zug
+                                    moves fast.
                                 </p>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Step 2 -->
+                    <div
+                        class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
+                    >
+                        <div class="flex items-start gap-6">
+                            <div
+                                class="shrink-0 w-14 h-14 bg-slate-200 rounded-xl flex items-center justify-center text-slate-500 font-bold text-lg"
+                            >
+                                02
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span
+                                        class="px-3 py-1 bg-slate-100 text-slate-500 text-xs font-bold rounded-full uppercase tracking-wider border border-slate-200"
+                                        >Arrival Day</span
+                                    >
+                                </div>
+                                <h3
+                                    class="text-xl font-bold text-slate-800 mb-2"
+                                >
+                                    Registration at Amt für Migration
+                                </h3>
+                                <p class="text-slate-600 leading-relaxed">
+                                    Register immediately to activate your tax
+                                    residency. Every day counts for the "Tax
+                                    Clock." The <strong
+                                        >Amt für Migration</strong
+                                    > in Zug City handles all registrations.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div
+                        class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
+                    >
+                        <div class="flex items-start gap-6">
+                            <div
+                                class="shrink-0 w-14 h-14 bg-slate-200 rounded-xl flex items-center justify-center text-slate-500 font-bold text-lg"
+                            >
+                                03
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span
+                                        class="px-3 py-1 bg-slate-100 text-slate-500 text-xs font-bold rounded-full uppercase tracking-wider border border-slate-200"
+                                        >Week 1</span
+                                    >
+                                </div>
+                                <h3
+                                    class="text-xl font-bold text-slate-800 mb-2"
+                                >
+                                    Banking Setup
+                                </h3>
+                                <p class="text-slate-600 leading-relaxed">
+                                    Zug banks are crypto-friendly but
+                                    compliance-heavy. Prepare your <strong
+                                        >Source of Funds</strong
+                                    > documentation. Seba Bank and Sygnum are popular
+                                    for crypto entrepreneurs.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Health Insurance -->
+                    <div
+                        class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
+                    >
+                        <div class="flex items-start gap-6">
+                            <div
+                                class="shrink-0 w-14 h-14 bg-slate-200 rounded-xl flex items-center justify-center text-slate-500 font-bold text-lg"
+                            >
+                                04
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span
+                                        class="px-3 py-1 bg-slate-100 text-slate-500 text-xs font-bold rounded-full uppercase tracking-wider border border-slate-200"
+                                        >Within 3 Months</span
+                                    >
+                                </div>
+                                <h3
+                                    class="text-xl font-bold text-slate-800 mb-2"
+                                >
+                                    Health Insurance
+                                </h3>
+                                <p class="text-slate-600 leading-relaxed mb-4">
+                                    While taxes in Zug are low, insurance is a
+                                    private cost. Secure your coverage
+                                    back-dated to your arrival date.
+                                </p>
+                                <div
+                                    class="bg-slate-50 rounded-lg p-4 border border-slate-200"
+                                >
+                                    <p
+                                        class="text-slate-700 text-sm leading-relaxed"
+                                    >
+                                        <span class="font-bold"
+                                            >💡 Expert Tip:</span
+                                        > Health insurance premiums vary by zip code.
+                                        Use the
+                                        <a
+                                            href="https://expat-savvy.ch/healthcare/best-health-insurance-switzerland/"
+                                            target="_blank"
+                                            rel="noopener"
+                                            class="text-[#FF6F61] underline hover:text-[#f65d4e]"
+                                            >best health insurance guide</a
+                                        >
+                                        at Expat-Savvy to compare providers and find
+                                        the right plan.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
+        <section class="py-24 bg-white border-t border-slate-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2
+                        class="text-3xl md:text-4xl font-bold text-slate-800 mb-4"
+                    >
+                        Deep Dives & Market Insights
+                    </h2>
+                    <p class="text-slate-500 text-lg">
+                        Expert analysis for your Zug relocation.
+                    </p>
+                </div>
 
-    <section class="py-24 bg-white border-t border-slate-100">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Deep Dives & Market Insights</h2>
-                <p class="text-slate-500 text-lg">Expert analysis for your Zug relocation.</p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <a
+                        href="/blog/best-relocation-agencies-switzerland-comparison"
+                        class="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 block"
+                    >
+                        <div class="aspect-[16/9] overflow-hidden bg-slate-100">
+                            <img
+                                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=340&fit=crop&fm=webp"
+                                alt="Agency meeting"
+                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                            />
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-3">
+                                <span
+                                    class="inline-block px-3 py-1 bg-[#FF6F61]/10 text-[#FF6F61] text-xs font-bold rounded-full uppercase tracking-wider"
+                                    >Agencies</span
+                                >
+                            </div>
+                            <h3
+                                class="text-lg font-bold text-slate-800 mb-2 group-hover:text-[#FF6F61] transition-colors"
+                            >
+                                Best Relocation Agencies Switzerland: A
+                                Transparency Guide
+                            </h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                How to find professional support in Crypto
+                                Valley and the greater Zug area.
+                            </p>
+                        </div>
+                    </a>
+
+                    <!-- Card 2 -->
+                    <a
+                        href="/blog/cost-of-living-switzerland-breakdown-2026"
+                        class="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 block"
+                    >
+                        <div class="aspect-[16/9] overflow-hidden bg-slate-100">
+                            <img
+                                src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=340&fit=crop&fm=webp"
+                                alt="Swiss finance"
+                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                            />
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-3">
+                                <span
+                                    class="inline-block px-3 py-1 bg-[#FF6F61]/10 text-[#FF6F61] text-xs font-bold rounded-full uppercase tracking-wider"
+                                    >Finance</span
+                                >
+                            </div>
+                            <h3
+                                class="text-lg font-bold text-slate-800 mb-2 group-hover:text-[#FF6F61] transition-colors"
+                            >
+                                The Real Cost of Living in Switzerland: 2026
+                                Guide
+                            </h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                A detailed breakdown of how tax savings and
+                                higher rents balance out in Zug.
+                            </p>
+                        </div>
+                    </a>
+
+                    <!-- Card 3 -->
+                    <a
+                        href="/blog/home-search-switzerland-agency-vs-platform"
+                        class="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 block"
+                    >
+                        <div class="aspect-[16/9] overflow-hidden bg-slate-100">
+                            <img
+                                src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=340&fit=crop&fm=webp"
+                                alt="Luxury Swiss apartment"
+                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                            />
+                        </div>
+                        <div class="p-6">
+                            <div class="mb-3">
+                                <span
+                                    class="inline-block px-3 py-1 bg-[#FF6F61]/10 text-[#FF6F61] text-xs font-bold rounded-full uppercase tracking-wider"
+                                    >Housing</span
+                                >
+                            </div>
+                            <h3
+                                class="text-lg font-bold text-slate-800 mb-2 group-hover:text-[#FF6F61] transition-colors"
+                            >
+                                Relocation Agencies vs. Selection Platforms
+                                (2026)
+                            </h3>
+                            <p class="text-slate-600 text-sm leading-relaxed">
+                                How to decide between high-touch human service
+                                and digital efficiency in Zug.
+                            </p>
+                        </div>
+                    </a>
+                </div>
             </div>
+        </section>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <a href="/blog/best-relocation-agencies-switzerland-comparison" class="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 block">
-                    <div class="aspect-[16/9] overflow-hidden bg-slate-100">
-                        <img 
-                            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=340&fit=crop&fm=webp" 
-                            alt="Agency meeting" 
-                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
-                        />
-                    </div>
-                    <div class="p-6">
-                        <div class="mb-3">
-                            <span class="inline-block px-3 py-1 bg-[#FF6F61]/10 text-[#FF6F61] text-xs font-bold rounded-full uppercase tracking-wider">Agencies</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2 group-hover:text-[#FF6F61] transition-colors">Best Relocation Agencies Switzerland: A Transparency Guide</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">How to find professional support in Crypto Valley and the greater Zug area.</p>
-                    </div>
-                </a>
-
-                <!-- Card 2 -->
-                <a href="/blog/cost-of-living-switzerland-breakdown-2026" class="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 block">
-                    <div class="aspect-[16/9] overflow-hidden bg-slate-100">
-                        <img 
-                            src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=340&fit=crop&fm=webp" 
-                            alt="Swiss finance" 
-                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
-                        />
-                    </div>
-                    <div class="p-6">
-                        <div class="mb-3">
-                            <span class="inline-block px-3 py-1 bg-[#FF6F61]/10 text-[#FF6F61] text-xs font-bold rounded-full uppercase tracking-wider">Finance</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2 group-hover:text-[#FF6F61] transition-colors">The Real Cost of Living in Switzerland: 2026 Guide</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">A detailed breakdown of how tax savings and higher rents balance out in Zug.</p>
-                    </div>
-                </a>
-
-                <!-- Card 3 -->
-                <a href="/blog/home-search-switzerland-agency-vs-platform" class="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 block">
-                    <div class="aspect-[16/9] overflow-hidden bg-slate-100">
-                        <img 
-                            src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=340&fit=crop&fm=webp" 
-                            alt="Luxury Swiss apartment" 
-                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
-                        />
-                    </div>
-                    <div class="p-6">
-                        <div class="mb-3">
-                            <span class="inline-block px-3 py-1 bg-[#FF6F61]/10 text-[#FF6F61] text-xs font-bold rounded-full uppercase tracking-wider">Housing</span>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 mb-2 group-hover:text-[#FF6F61] transition-colors">Relocation Agencies vs. Selection Platforms (2026)</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">How to decide between high-touch human service and digital efficiency in Zug.</p>
-                    </div>
-                </a>
+        <!-- 8. FAQ Section -->
+        <section class="py-24 bg-white border-t border-slate-100">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2
+                    class="text-2xl md:text-3xl font-bold text-slate-800 mb-10 text-center"
+                >
+                    Frequently Asked Questions
+                </h2>
+                <div class="space-y-4">
+                    {
+                        faqs.map((faq) => (
+                            <details class="group bg-[#F9FAFB] border border-slate-200 rounded-lg overflow-hidden">
+                                <summary class="flex justify-between items-center p-5 cursor-pointer font-semibold text-slate-800 hover:bg-slate-100 transition-colors select-none text-lg">
+                                    {faq.q}
+                                    <ChevronDown className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" />
+                                </summary>
+                                <div class="px-5 pb-6 pt-2 text-slate-600 leading-relaxed border-t border-slate-100">
+                                    {faq.a}
+                                </div>
+                            </details>
+                        ))
+                    }
+                </div>
             </div>
+        </section>
+
+        <!-- 8. Footer -->
+        <Footer theme="dark" />
+
+        <!-- Modal Globals -->
+        <div
+            id="relofinder-modal-marker"
+            data-relofinder-modal="pending"
+            style="display: none;"
+            aria-hidden="true"
+        >
         </div>
-    </section>
+        <UniversalContactModal client:load />
 
+        <!-- Scripts (Exact same as index.astro for modal handling) -->
+        <script is:inline>
+            if (typeof window !== "undefined") {
+                window.modalEventQueue = window.modalEventQueue || [];
+                window.modalReady = false;
 
-    <!-- 8. FAQ Section -->
-    <section class="py-24 bg-white border-t border-slate-100">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mb-10 text-center">Frequently Asked Questions</h2>
-            <div class="space-y-4">
-                {faqs.map((faq) => (
-                    <details class="group bg-[#F9FAFB] border border-slate-200 rounded-lg overflow-hidden">
-                        <summary class="flex justify-between items-center p-5 cursor-pointer font-semibold text-slate-800 hover:bg-slate-100 transition-colors select-none text-lg">
-                            {faq.q}
-                            <ChevronDown className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" />
-                        </summary>
-                        <div class="px-5 pb-6 pt-2 text-slate-600 leading-relaxed border-t border-slate-100">
-                            {faq.a}
-                        </div>
-                    </details>
-                ))}
-            </div>
-        </div>
-    </section>
+                // Define functions immediately
+                window.universalOpenModal = function (context) {
+                    const resolvedContext =
+                        context && typeof context === "object"
+                            ? context
+                            : { page: "zug_guide", topic: context };
+                    console.log(
+                        "📞 universalOpenModal called",
+                        resolvedContext,
+                    );
+                    if (window.modalReady && window.relofinderModalStores) {
+                        window.relofinderModalStores.setContext(
+                            resolvedContext,
+                        );
+                        window.relofinderModalStores.setOpen(true);
+                        return;
+                    }
+                    window.modalEventQueue.push({
+                        kind: "open",
+                        payload: resolvedContext,
+                    });
+                };
 
-    <!-- 8. Footer -->
-    <Footer theme="dark" />
-
-    <!-- Modal Globals -->
-    <div id="relofinder-modal-marker" data-relofinder-modal="pending" style="display: none;" aria-hidden="true"></div>
-    <UniversalContactModal client:load />
-    
-    <!-- Scripts (Exact same as index.astro for modal handling) -->
-    <script is:inline>
-      if (typeof window !== 'undefined') {
-        window.modalEventQueue = window.modalEventQueue || [];
-        window.modalReady = false;
-        
-        // Define functions immediately
-        window.universalOpenModal = function(context) {
-          const resolvedContext = context && typeof context === 'object' ? context : { page: 'zug_guide', topic: context };
-          console.log('📞 universalOpenModal called', resolvedContext);
-          if (window.modalReady && window.relofinderModalStores) {
-            window.relofinderModalStores.setContext(resolvedContext);
-            window.relofinderModalStores.setOpen(true);
-            return;
-          }
-          window.modalEventQueue.push({ kind: 'open', payload: resolvedContext });
-        };
-
-        window.closeModal = function() {
-           if (window.modalReady && window.relofinderModalStores) {
-            window.relofinderModalStores.setOpen(false);
-          } else {
-            window.modalEventQueue.push({ kind: 'close' });
-          }
-        };
-      }
-      
-      // Browser-only setup
-      if (typeof window !== 'undefined') {
-        // Listen for React/Nanostores availability
-        const checkInterval = setInterval(() => {
-            if (window.relofinderModalStores) {
-                window.modalReady = true;
-                // Process queue
-                window.modalEventQueue.forEach(item => {
-                    if (item.kind === 'open') window.relofinderModalStores.setContext(item.payload), window.relofinderModalStores.setOpen(true);
-                    if (item.kind === 'close') window.relofinderModalStores.setOpen(false);
-                });
-                window.modalEventQueue = [];
-                clearInterval(checkInterval);
+                window.closeModal = function () {
+                    if (window.modalReady && window.relofinderModalStores) {
+                        window.relofinderModalStores.setOpen(false);
+                    } else {
+                        window.modalEventQueue.push({ kind: "close" });
+                    }
+                };
             }
-        }, 100);
-      }
-    </script>
-</body>
+
+            // Browser-only setup
+            if (typeof window !== "undefined") {
+                // Listen for React/Nanostores availability
+                const checkInterval = setInterval(() => {
+                    if (window.relofinderModalStores) {
+                        window.modalReady = true;
+                        // Process queue
+                        window.modalEventQueue.forEach((item) => {
+                            if (item.kind === "open")
+                                (window.relofinderModalStores.setContext(
+                                    item.payload,
+                                ),
+                                    window.relofinderModalStores.setOpen(true));
+                            if (item.kind === "close")
+                                window.relofinderModalStores.setOpen(false);
+                        });
+                        window.modalEventQueue = [];
+                        clearInterval(checkInterval);
+                    }
+                }, 100);
+            }
+        </script>
+    </body>
 </html>

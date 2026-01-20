@@ -49,13 +49,10 @@ export default function HeroSearch({ initialDestination = '', initialService = '
 
     const handleCorporateSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const params = new URLSearchParams();
-        if (companyName) params.set('company', companyName);
-        if (yearlyVolume) params.set('volume', yearlyVolume);
-        if (primaryDestination) params.set('where', primaryDestination);
-
-        // Redirect to specialized corporate search results page
-        window.location.href = `/corporate/search?${params.toString()}`;
+        // Trigger the assessment modal with 'corporate' service
+        setService('corporate');
+        setWhere(primaryDestination);
+        setIsAssessmentModalOpen(true);
     };
 
     return (
@@ -79,7 +76,7 @@ export default function HeroSearch({ initialDestination = '', initialService = '
                         : 'bg-slate-50/50 text-slate-400 border-b-2 border-transparent hover:text-slate-600 hover:bg-slate-50'
                         }`}
                 >
-                    Corporate Inquiry
+                    Corporate / HR
                 </button>
             </div>
 
@@ -234,14 +231,14 @@ export default function HeroSearch({ initialDestination = '', initialService = '
 
                         <button
                             type="submit"
-                            className="block w-full py-5 bg-[#FF6F61] hover:bg-[#ff5d4d] text-white font-bold rounded-2xl shadow-lg shadow-[#FF6F61]/30 hover:shadow-xl hover:shadow-[#FF6F61]/40 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] text-lg flex items-center justify-center tracking-wide"
+                            className="block w-full py-5 bg-[#FF5A5F] hover:bg-[#ff454a] text-white font-bold rounded-2xl shadow-lg shadow-[#FF5A5F]/30 hover:shadow-xl hover:shadow-[#FF5A5F]/40 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] text-lg flex items-center justify-center tracking-wide"
                         >
                             Start Anonymous Tender
                         </button>
 
                         <p className="text-xs text-slate-400 text-center font-medium mt-4 flex items-center justify-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                            Streamline your mobility program. Free for HR teams.
+                            Analyze relocation benchmarks and get transparent market quotes.
                         </p>
                     </form>
                 )}

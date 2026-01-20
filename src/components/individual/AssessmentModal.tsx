@@ -34,7 +34,15 @@ import {
     Search,
     Star,
     Zap,
-    Coffee
+    Coffee,
+    TrendingUp,
+    Gavel,
+    Scale,
+    PhoneCall,
+    FileText,
+    Layout,
+    Target,
+    AlertCircle
 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 
@@ -59,6 +67,11 @@ type StepType =
     | 'temp_housing'
     | 'vip_budget'
     | 'funding'
+    | 'corp_volume'
+    | 'corp_scope'
+    | 'corp_regions'
+    | 'corp_pain_points'
+    | 'corp_outcome'
     | 'illusion'
     | 'lead';
 
@@ -77,11 +90,19 @@ interface AssessmentData {
     needsTempHousing?: string;
     vipBudgetCategory?: string;
     funding: string;
+    // Corporate fields
+    corpVolume?: string;
+    corpScope?: string[];
+    corpRegions?: string[];
+    corpPainPoints?: string[];
+    corpOutcome?: 'tender' | 'consultation';
+    // Lead fields
     firstName: string;
     lastName: string;
     email: string;
     phone: string;
     companyName?: string;
+    jobTitle?: string;
 }
 
 export default function AssessmentModal({ isOpen, onClose, selectedDestination, selectedService }: AssessmentModalProps) {
@@ -102,13 +123,14 @@ export default function AssessmentModal({ isOpen, onClose, selectedDestination, 
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = 'hidden';
-            setCurrentStep('household');
+            const isCorporate = selectedService.toLowerCase() === 'corporate';
+            setCurrentStep(isCorporate ? 'corp_volume' : 'household');
             setHistory([]);
         } else {
             document.body.style.overflow = 'unset';
         }
         return () => { document.body.style.overflow = 'unset'; };
-    }, [isOpen]);
+    }, [isOpen, selectedService]);
 
     const navigateTo = (nextStep: StepType) => {
         setHistory(prev => [...prev, currentStep]);
@@ -155,6 +177,15 @@ export default function AssessmentModal({ isOpen, onClose, selectedDestination, 
             if (current === 'household') return navigateTo('ages');
             if (current === 'ages') return navigateTo('system');
             if (current === 'system') return navigateTo('funding');
+        }
+
+        // BRANCH 5: Corporate
+        if (service === 'corporate') {
+            if (current === 'corp_volume') return navigateTo('corp_scope');
+            if (current === 'corp_scope') return navigateTo('corp_regions');
+            if (current === 'corp_regions') return navigateTo('corp_pain_points');
+            if (current === 'corp_pain_points') return navigateTo('corp_outcome');
+            if (current === 'corp_outcome') return navigateTo('illusion');
         }
 
         // FINAL GLOBAL STEPS
@@ -205,16 +236,29 @@ export default function AssessmentModal({ isOpen, onClose, selectedDestination, 
     const getProgress = () => {
         if (currentStep === 'illusion') return 90;
         if (currentStep === 'lead') return 100;
-        // Map current step to a sequence for better visual progress
+
+        const isCorporate = selectedService.toLowerCase() === 'corporate';
+
+        if (isCorporate) {
+            const steps: StepType[] = ['corp_volume', 'corp_scope', 'corp_regions', 'corp_pain_points', 'corp_outcome'];
+            const idx = steps.indexOf(currentStep);
+            return ((idx + 1) / (steps.length + 1)) * 100;
+        }
+
         const steps: StepType[] = ['household', 'area', 'budget', 'engagement', 'citizenship', 'purpose', 'employment', 'ages', 'system', 'priority', 'temp_housing', 'vip_budget', 'funding'];
         const idx = steps.indexOf(currentStep);
-        return ((idx + 1) / (steps.length)) * 100;
+        return ((idx + 1) / (steps.length + 1)) * 100;
     };
 
     const progressWidth = `${getProgress()}%`;
 
     const getResultHeadline = () => {
         const s = selectedService.toLowerCase();
+        if (s === 'corporate') {
+            return data.corpOutcome === 'tender'
+                ? 'Your Anonymous Market Tender is Ready.'
+                : 'Strategy Consultation Verified.';
+        }
         if (s.includes('full') || s.includes('vip')) return 'We have identified a Premium Relocation Partner.';
         if (s.includes('housing')) return `We found a Housing Specialist for ${selectedDestination}.`;
         if (s.includes('visa') || s.includes('immigration')) return 'We found an Immigration Expert for your permit type.';
@@ -567,17 +611,240 @@ export default function AssessmentModal({ isOpen, onClose, selectedDestination, 
                         {currentStep === 'illusion' && (
                             <motion.div key="illusion" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-16 py-12 text-center">
                                 <div className="space-y-8">
-                                    <h2 className="text-4xl md:text-6xl font-bold text-slate-900 tracking-tighter">Analyzing your move profile...</h2>
+                                    <h2 className="text-4xl md:text-6xl font-bold text-slate-900 tracking-tighter">
+                                        {selectedService.toLowerCase() === 'corporate' ? 'Analyzing market benchmarks...' : 'Analyzing your move profile...'}
+                                    </h2>
                                     <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden max-w-xl mx-auto">
                                         <motion.div initial={{ width: 0 }} animate={{ width: '100%' }} transition={{ duration: 3, ease: "easeInOut" }} onAnimationComplete={() => navigateTo('lead')} className="h-full bg-[#FF5A5F]" />
                                     </div>
                                     <div className="h-10 md:h-12 overflow-hidden flex items-center justify-center">
                                         <motion.div animate={{ y: [0, -40, -80] }} transition={{ duration: 3, times: [0, 0.5, 1], ease: "linear" }} className="text-slate-400 font-medium text-lg md:text-2xl">
-                                            <div className="h-10 md:h-12 flex items-center justify-center">Filtering {selectedService.replace('-', ' ')} specialists in {selectedDestination}...</div>
-                                            <div className="h-10 md:h-12 flex items-center justify-center">Matching your budget profile...</div>
-                                            <div className="h-10 md:h-12 flex items-center justify-center font-bold text-[#FF5A5F]">Expert Identified.</div>
+                                            {selectedService.toLowerCase() === 'corporate' ? (
+                                                <>
+                                                    <div className="h-10 md:h-12 flex items-center justify-center">Benchmarking current Swiss vacancy rates...</div>
+                                                    <div className="h-10 md:h-12 flex items-center justify-center">Aggregating agency fee structures...</div>
+                                                    <div className="h-10 md:h-12 flex items-center justify-center font-bold text-[#FF5A5F]">Market Analysis Complete.</div>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <div className="h-10 md:h-12 flex items-center justify-center">Filtering {selectedService.replace('-', ' ')} specialists in {selectedDestination}...</div>
+                                                    <div className="h-10 md:h-12 flex items-center justify-center">Matching your budget profile...</div>
+                                                    <div className="h-10 md:h-12 flex items-center justify-center font-bold text-[#FF5A5F]">Expert Identified.</div>
+                                                </>
+                                            )}
                                         </motion.div>
                                     </div>
+                                </div>
+                            </motion.div>
+                        )}
+
+                        {/* CORPORATE BRANCH START */}
+                        {currentStep === 'corp_volume' && (
+                            <motion.div key="corp_volume" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="space-y-12">
+                                <div className="text-center space-y-4">
+                                    <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight leading-tight">What is your estimated annual <br className="hidden md:block" /> relocation volume to Switzerland?</h2>
+                                </div>
+                                <div className="space-y-4 max-w-2xl mx-auto">
+                                    {[
+                                        { id: '1-5', label: '< 5 Moves per Year', sub: 'Strategic High-Level Hires', icon: User },
+                                        { id: '5-20', label: '5 – 20 Moves per Year', sub: 'Consistent Talent Growth', icon: Users },
+                                        { id: '20+', label: '20+ Moves per Year', sub: 'Enterprise Scale Mobility', icon: Building2 }
+                                    ].map((option) => (
+                                        <button key={option.id} onClick={() => handleStepCompletion({ corpVolume: option.label })}
+                                            className="w-full flex items-center justify-between p-8 bg-white border-2 border-slate-100 rounded-3xl hover:border-[#FF5A5F] transition-all group cursor-pointer"
+                                        >
+                                            <div className="flex items-center gap-6">
+                                                <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center group-hover:bg-[#FF5A5F]/10 transition-colors">
+                                                    <option.icon className="w-8 h-8 text-slate-400 group-hover:text-[#FF5A5F]" />
+                                                </div>
+                                                <div className="text-left">
+                                                    <div className="font-bold text-xl md:text-2xl text-slate-800">{option.label}</div>
+                                                    <div className="text-slate-400 font-medium mt-1">{option.sub}</div>
+                                                </div>
+                                            </div>
+                                            <ChevronRight className="w-8 h-8 text-slate-200 group-hover:text-[#FF5A5F] group-hover:translate-x-1 transition-all" />
+                                        </button>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        )}
+
+                        {currentStep === 'corp_scope' && (
+                            <motion.div key="corp_scope" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="space-y-12">
+                                <div className="text-center space-y-4">
+                                    <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight leading-tight">Select the services you want <br className="hidden md:block" /> to include in this market tender</h2>
+                                    <p className="text-slate-400 font-medium">Multi-select enabled for comprehensive analysis.</p>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                                    {[
+                                        { id: 'housing', label: 'Housing Search', icon: Home, sub: 'Zurich/Geneva/Basel specialist' },
+                                        { id: 'immigration', label: 'Immigration & Permits', icon: ShieldCheck, sub: 'Compliance & Quota Management' },
+                                        { id: 'schooling', label: 'Schooling & Family', icon: GraduationCap, sub: 'Educational & Spouse Support' },
+                                        { id: 'vip', label: 'VIP / Exec Concierge', icon: Gem, sub: 'White-glove 1:1 assistance' }
+                                    ].map((option) => {
+                                        const isSelected = data.corpScope?.includes(option.label);
+                                        return (
+                                            <button
+                                                key={option.id}
+                                                onClick={() => {
+                                                    const current = data.corpScope || [];
+                                                    const next = current.includes(option.label)
+                                                        ? current.filter(i => i !== option.label)
+                                                        : [...current, option.label];
+                                                    setData({ ...data, corpScope: next });
+                                                }}
+                                                className={`flex items-center gap-6 p-6 bg-white border-2 rounded-3xl transition-all group cursor-pointer text-left ${isSelected ? 'border-[#FF5A5F] bg-red-50/10' : 'border-slate-100'}`}
+                                            >
+                                                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-colors ${isSelected ? 'bg-[#FF5A5F] text-white' : 'bg-slate-50 text-slate-400 group-hover:bg-[#FF5A5F]/10 group-hover:text-[#FF5A5F]'}`}>
+                                                    <option.icon className="w-7 h-7" />
+                                                </div>
+                                                <div className="flex-1">
+                                                    <div className="font-bold text-lg text-slate-800">{option.label}</div>
+                                                    <div className="text-slate-400 text-sm">{option.sub}</div>
+                                                </div>
+                                                {isSelected && <Check className="w-6 h-6 text-[#FF5A5F]" />}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                                <div className="flex justify-center pt-8">
+                                    <button
+                                        disabled={!data.corpScope || data.corpScope.length === 0}
+                                        onClick={() => handleNextLogic('corp_scope')}
+                                        className="px-12 py-5 bg-slate-900 text-white font-bold rounded-2xl shadow-xl hover:bg-black transition-all text-xl disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-3"
+                                    >
+                                        CONTINUE <ChevronRight className="w-6 h-6" />
+                                    </button>
+                                </div>
+                            </motion.div>
+                        )}
+
+                        {currentStep === 'corp_regions' && (
+                            <motion.div key="corp_regions" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="space-y-12">
+                                <div className="text-center space-y-4">
+                                    <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight leading-tight">Which Swiss regions are <br className="hidden md:block" /> your highest priority?</h2>
+                                    <p className="text-slate-400 font-medium">Market insights available for selected locations.</p>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+                                    {[
+                                        { id: 'zh', label: 'Zurich Area', icon: Building2, tag: 'High Difficulty' },
+                                        { id: 'ge', label: 'Geneva / Vaud', icon: Waves, tag: 'Scalability Issues' },
+                                        { id: 'bs', label: 'Basel / NW CH', icon: Layout, tag: 'Corporate Hub' },
+                                        { id: 'zg', label: 'Zug / Central', icon: Coins, tag: 'Tax Optimization' },
+                                        { id: 'ls', label: 'Lausanne', icon: TreePine, tag: 'Growing Tech' },
+                                        { id: 'other', label: 'Other Cantons', icon: MapPin, tag: 'Regional Coverage' }
+                                    ].map((option) => {
+                                        const isSelected = data.corpRegions?.includes(option.label);
+                                        return (
+                                            <button
+                                                key={option.id}
+                                                onClick={() => {
+                                                    const current = data.corpRegions || [];
+                                                    const next = current.includes(option.label)
+                                                        ? current.filter(i => i !== option.label)
+                                                        : [...current, option.label];
+                                                    setData({ ...data, corpRegions: next });
+                                                }}
+                                                className={`flex flex-col items-center gap-4 p-8 bg-white border-2 rounded-[2rem] transition-all group cursor-pointer text-center relative ${isSelected ? 'border-[#FF5A5F] bg-red-50/10' : 'border-slate-100'}`}
+                                            >
+                                                {option.tag && (
+                                                    <span className={`absolute top-4 right-4 text-[9px] font-black uppercase tracking-widest px-2 py-1 rounded-md ${isSelected ? 'bg-[#FF5A5F] text-white' : 'bg-slate-100 text-slate-400'}`}>
+                                                        {option.tag}
+                                                    </span>
+                                                )}
+                                                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-colors ${isSelected ? 'bg-[#FF5A5F] text-white' : 'bg-slate-50 text-slate-400 group-hover:bg-[#FF5A5F]/10 group-hover:text-[#FF5A5F]'}`}>
+                                                    <option.icon className="w-6 h-6" />
+                                                </div>
+                                                <span className="font-bold text-slate-800">{option.label}</span>
+                                                {isSelected && <Check className="w-5 h-5 text-[#FF5A5F] absolute bottom-4" />}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                                <div className="flex justify-center pt-8">
+                                    <button
+                                        disabled={!data.corpRegions || data.corpRegions.length === 0}
+                                        onClick={() => handleNextLogic('corp_regions')}
+                                        className="px-12 py-5 bg-slate-900 text-white font-bold rounded-2xl shadow-xl hover:bg-black transition-all text-xl disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-3"
+                                    >
+                                        CONTINUE <ChevronRight className="w-6 h-6" />
+                                    </button>
+                                </div>
+                            </motion.div>
+                        )}
+
+                        {currentStep === 'corp_pain_points' && (
+                            <motion.div key="corp_pain_points" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="space-y-12">
+                                <div className="text-center space-y-4">
+                                    <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight leading-tight">What is currently your biggest <br className="hidden md:block" /> bottleneck in Swiss relocation?</h2>
+                                    <p className="text-slate-400 font-medium">Helping us tailor the tender to your specific needs.</p>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                                    {[
+                                        { id: 'housing', label: 'Finding housing fast enough', icon: Home, sub: 'Market Speed' },
+                                        { id: 'permits', label: 'Permit delays / Compliance', icon: ShieldCheck, sub: 'Legal Risks' },
+                                        { id: 'quality', label: 'Inconsistent service quality', icon: Star, sub: 'Account Management' },
+                                        { id: 'transparency', label: 'Lack of fee transparency', icon: Scale, sub: 'Budget Control' }
+                                    ].map((option) => {
+                                        const isSelected = data.corpPainPoints?.includes(option.label);
+                                        return (
+                                            <button
+                                                key={option.id}
+                                                onClick={() => {
+                                                    const current = data.corpPainPoints || [];
+                                                    const next = current.includes(option.label)
+                                                        ? current.filter(i => i !== option.label)
+                                                        : [...current, option.label];
+                                                    setData({ ...data, corpPainPoints: next });
+                                                }}
+                                                className={`flex items-center gap-6 p-6 bg-white border-2 rounded-3xl transition-all group cursor-pointer text-left ${isSelected ? 'border-[#FF5A5F] bg-red-50/10' : 'border-slate-100'}`}
+                                            >
+                                                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-colors ${isSelected ? 'bg-[#FF5A5F] text-white' : 'bg-slate-50 text-slate-400 group-hover:bg-[#FF5A5F]/10 group-hover:text-[#FF5A5F]'}`}>
+                                                    <option.icon className="w-7 h-7" />
+                                                </div>
+                                                <div className="flex-1">
+                                                    <div className="font-bold text-lg text-slate-800">{option.label}</div>
+                                                    <div className="text-slate-400 text-sm">{option.sub}</div>
+                                                </div>
+                                                {isSelected && <Check className="w-6 h-6 text-[#FF5A5F]" />}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                                <div className="flex justify-center pt-8">
+                                    <button
+                                        disabled={!data.corpPainPoints || data.corpPainPoints.length === 0}
+                                        onClick={() => handleNextLogic('corp_pain_points')}
+                                        className="px-12 py-5 bg-slate-900 text-white font-bold rounded-2xl shadow-xl hover:bg-black transition-all text-xl disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-3"
+                                    >
+                                        CONTINUE <ChevronRight className="w-6 h-6" />
+                                    </button>
+                                </div>
+                            </motion.div>
+                        )}
+
+                        {currentStep === 'corp_outcome' && (
+                            <motion.div key="corp_outcome" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="space-y-12">
+                                <div className="text-center space-y-4">
+                                    <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight leading-tight">How would you like to <br className="hidden md:block" /> receive your analysis?</h2>
+                                </div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                                    {[
+                                        { id: 'tender', label: 'Anonymous Tender', sub: 'Get rates from 5+ agencies', icon: Gavel, color: 'bg-slate-900 text-white hover:bg-black' },
+                                        { id: 'consultation', label: 'Expert Consultation', sub: 'Book 15-min scoping call', icon: PhoneCall, color: 'bg-white border-2 border-slate-100 hover:border-[#FF5A5F]' }
+                                    ].map((option) => (
+                                        <button key={option.id} onClick={() => handleStepCompletion({ corpOutcome: option.id as any })}
+                                            className={`flex flex-col items-center gap-6 p-10 rounded-[2.5rem] transition-all group cursor-pointer text-center ${option.color}`}
+                                        >
+                                            <div className={`w-16 h-16 rounded-2xl flex items-center justify-center transition-colors ${option.id === 'tender' ? 'bg-white/10' : 'bg-slate-50 group-hover:bg-[#FF5A5F]/10'}`}>
+                                                <option.icon className={`w-8 h-8 ${option.id === 'tender' ? 'text-white' : 'text-slate-400 group-hover:text-[#FF5A5F]'}`} />
+                                            </div>
+                                            <div>
+                                                <div className="font-bold text-2xl mb-2">{option.label}</div>
+                                                <div className={`${option.id === 'tender' ? 'text-slate-400' : 'text-slate-400 group-hover:text-slate-500'} font-medium`}>{option.sub}</div>
+                                            </div>
+                                        </button>
+                                    ))}
                                 </div>
                             </motion.div>
                         )}
@@ -605,16 +872,28 @@ export default function AssessmentModal({ isOpen, onClose, selectedDestination, 
                                                     <input required type="text" placeholder="Doe" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none font-bold text-lg focus:border-[#FF5A5F] transition-colors" value={data.lastName} onChange={(e) => setData({ ...data, lastName: e.target.value })} />
                                                 </div>
                                             </div>
-                                            <div className="space-y-2">
-                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Email</label>
-                                                <input required type="email" placeholder="john@company.com" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none font-bold text-lg focus:border-[#FF5A5F] transition-colors" value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div className="space-y-2">
+                                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">{selectedService.toLowerCase() === 'corporate' ? 'Business Email' : 'Email'}</label>
+                                                    <input required type="email" placeholder="john@company.com" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none font-bold text-lg focus:border-[#FF5A5F] transition-colors" value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
+                                                </div>
+                                                <div className="space-y-2">
+                                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Phone</label>
+                                                    <input required type="tel" placeholder="+41 ..." className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none font-bold text-lg focus:border-[#FF5A5F] transition-colors" value={data.phone} onChange={(e) => setData({ ...data, phone: e.target.value })} />
+                                                </div>
                                             </div>
-                                            <div className="space-y-2">
-                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Phone</label>
-                                                <input required type="tel" placeholder="+41 ..." className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none font-bold text-lg focus:border-[#FF5A5F] transition-colors" value={data.phone} onChange={(e) => setData({ ...data, phone: e.target.value })} />
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                                <div className="space-y-2">
+                                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Company Name</label>
+                                                    <input required type="text" placeholder="Acme AG" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none font-bold text-lg focus:border-[#FF5A5F] transition-colors" value={data.companyName} onChange={(e) => setData({ ...data, companyName: e.target.value })} />
+                                                </div>
+                                                <div className="space-y-2">
+                                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Job Title</label>
+                                                    <input required={selectedService.toLowerCase() === 'corporate'} type="text" placeholder="HR Manager" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none font-bold text-lg focus:border-[#FF5A5F] transition-colors" value={data.jobTitle} onChange={(e) => setData({ ...data, jobTitle: e.target.value })} />
+                                                </div>
                                             </div>
                                             <button type="submit" disabled={isSubmitting} className="w-full py-6 bg-slate-900 hover:bg-black text-white font-black rounded-3xl transition-all flex items-center justify-center gap-4 disabled:opacity-50 cursor-pointer text-xl tracking-wide uppercase mt-4">
-                                                {isSubmitting ? <Loader2 className="w-8 h-8 animate-spin" /> : <>REQUEST INTRODUCTION <ChevronRight className="w-6 h-6" /></>}
+                                                {isSubmitting ? <Loader2 className="w-8 h-8 animate-spin" /> : <>{selectedService.toLowerCase() === 'corporate' ? (data.corpOutcome === 'tender' ? 'START ANONYMOUS TENDER' : 'BOOK STRATEGIC CALL') : 'REQUEST INTRODUCTION'} <ChevronRight className="w-6 h-6" /></>}
                                             </button>
                                         </form>
                                     </>
