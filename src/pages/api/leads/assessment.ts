@@ -39,7 +39,7 @@ export const POST: APIRoute = async ({ request }) => {
 
         // 1. Basic Validation
         if (!data.email || !data.firstName) {
-            return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400 });
+            return new Response(JSON.stringify({ error: 'Missing first name and email' }), { status: 400 });
         }
 
         // 2. Insert into Supabase
@@ -47,7 +47,7 @@ export const POST: APIRoute = async ({ request }) => {
             .from('leads')
             .insert([
                 {
-                    name: `${data.firstName} ${data.lastName}`,
+                    name: data.lastName ? `${data.firstName} ${data.lastName}` : data.firstName,
                     email: data.email,
                     phone: data.phone,
                     service_interest: selectedService,

@@ -255,8 +255,8 @@ export default function AssessmentModal({ isOpen, onClose, selectedDestination, 
                 </div>
             </div>
 
-            <div className="w-full flex-1 overflow-y-auto px-6 py-24 flex items-center justify-center">
-                <div className="w-full max-w-4xl mx-auto">
+            <div className="w-full flex-1 overflow-y-auto px-6 py-32 md:py-24 flex items-start md:items-center justify-center">
+                <div className="w-full max-w-4xl mx-auto mt-8 md:mt-0">
                     <AnimatePresence mode="wait">
 
                         {/* STEP: Household (All) */}

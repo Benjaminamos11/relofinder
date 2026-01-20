@@ -16,14 +16,14 @@ const AGENCY_ADMIN_EMAILS = [
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const body = await request.json() as Partial<ReviewReply> & { 
+    const body = await request.json() as Partial<ReviewReply> & {
       admin_email?: string;
     };
 
     // Validate required fields
     if (!body.review_id || !body.agency_id || !body.body) {
-      return new Response(JSON.stringify({ 
-        error: 'Review ID, agency ID, and reply body are required' 
+      return new Response(JSON.stringify({
+        error: 'Review ID, agency ID, and reply body are required'
       }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
@@ -42,49 +42,49 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Simple admin check (TODO: implement proper agency_admins table)
     if (!userEmail || !AGENCY_ADMIN_EMAILS.includes(userEmail)) {
-      return new Response(JSON.stringify({ 
-        error: 'Unauthorized: Only agency administrators can reply' 
+      return new Response(JSON.stringify({
+        error: 'Unauthorized: Only agency administrators can reply'
       }), {
         status: 403,
         headers: { 'Content-Type': 'application/json' }
       });
     }
 
-    // Verify agency is partner or preferred
-    const { data: agency } = await supabase
-      .from('agencies')
-      .select('id, status, name')
+    // Verify relocator exists
+    const { data: relocator } = await supabase
+      .from('relocators')
+      .select('id, tier, name')
       .eq('id', body.agency_id)
       .single();
 
-    if (!agency) {
-      return new Response(JSON.stringify({ 
-        error: 'Agency not found' 
+    if (!relocator) {
+      return new Response(JSON.stringify({
+        error: 'Relocator not found'
       }), {
         status: 404,
         headers: { 'Content-Type': 'application/json' }
       });
     }
 
-    if (!['partner', 'preferred'].includes(agency.status)) {
-      return new Response(JSON.stringify({ 
-        error: 'Only partner and preferred agencies can reply to reviews' 
+    if (!['partner', 'preferred'].includes(relocator.tier)) {
+      return new Response(JSON.stringify({
+        error: 'Only partner and preferred relocators can reply to reviews'
       }), {
         status: 403,
         headers: { 'Content-Type': 'application/json' }
       });
     }
 
-    // Verify review belongs to this agency
+    // Verify review belongs to this relocator
     const { data: review } = await supabase
       .from('reviews')
-      .select('agency_id')
+      .select('relocator_id')
       .eq('id', body.review_id)
       .single();
 
-    if (!review || review.agency_id !== body.agency_id) {
-      return new Response(JSON.stringify({ 
-        error: 'Review not found or does not belong to this agency' 
+    if (!review || review.relocator_id !== body.agency_id) {
+      return new Response(JSON.stringify({
+        error: 'Review not found or does not belong to this relocator'
       }), {
         status: 404,
         headers: { 'Content-Type': 'application/json' }
@@ -96,8 +96,8 @@ export const POST: APIRoute = async ({ request }) => {
       .from('review_replies')
       .insert({
         review_id: body.review_id,
-        agency_id: body.agency_id,
-        author_name: body.author_name || `${agency.name} Team`,
+        relocator_id: body.agency_id,
+        author_name: body.author_name || `${relocator.name} Team`,
         body: body.body,
       })
       .select()
@@ -105,17 +105,17 @@ export const POST: APIRoute = async ({ request }) => {
 
     if (error) {
       console.error('Supabase error creating reply:', error);
-      return new Response(JSON.stringify({ 
-        error: 'Failed to create reply' 
+      return new Response(JSON.stringify({
+        error: 'Failed to create reply'
       }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' }
       });
     }
 
-    return new Response(JSON.stringify({ 
-      success: true, 
-      reply_id: reply.id 
+    return new Response(JSON.stringify({
+      success: true,
+      reply_id: reply.id
     }), {
       status: 201,
       headers: { 'Content-Type': 'application/json' }
@@ -123,8 +123,8 @@ export const POST: APIRoute = async ({ request }) => {
 
   } catch (err) {
     console.error('Error in /api/replies:', err);
-    return new Response(JSON.stringify({ 
-      error: 'Internal server error' 
+    return new Response(JSON.stringify({
+      error: 'Internal server error'
     }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }

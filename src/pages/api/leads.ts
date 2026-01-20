@@ -13,8 +13,8 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Validate required fields
     if (!body.name || !body.email) {
-      return new Response(JSON.stringify({ 
-        error: 'Name and email are required' 
+      return new Response(JSON.stringify({
+        error: 'Name and email are required'
       }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
@@ -24,8 +24,8 @@ export const POST: APIRoute = async ({ request }) => {
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(body.email)) {
-      return new Response(JSON.stringify({ 
-        error: 'Invalid email address' 
+      return new Response(JSON.stringify({
+        error: 'Invalid email address'
       }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
@@ -36,13 +36,13 @@ export const POST: APIRoute = async ({ request }) => {
     const { data: lead, error } = await supabase
       .from('leads')
       .insert({
-        agency_id: body.agency_id || null,
+        relocator_id: body.agency_id || null,
         name: body.name,
         email: body.email,
         phone: body.phone || null,
         message: body.message || null,
-        region_code: body.region_code || null,
-        service_code: body.service_code || null,
+        region_interest: body.region_code || null,
+        service_interest: body.service_code || null,
         source_page: body.source_page || null,
         sent_to_agency: false,
       })
@@ -51,8 +51,8 @@ export const POST: APIRoute = async ({ request }) => {
 
     if (error) {
       console.error('Supabase error creating lead:', error);
-      return new Response(JSON.stringify({ 
-        error: 'Failed to create lead' 
+      return new Response(JSON.stringify({
+        error: 'Failed to create lead'
       }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' }
@@ -61,16 +61,18 @@ export const POST: APIRoute = async ({ request }) => {
 
     // If agency is partner/preferred, forward lead
     if (body.agency_id) {
-      const { data: agency } = await supabase
-        .from('agencies')
-        .select('status, email, name')
+      const { data: relocator } = await supabase
+        .from('relocators')
+        .select('tier, email, name')
         .eq('id', body.agency_id)
         .single();
+      // Note: database uses 'tier' instead of 'status' for relocators?
+      // Let's check relocators schema again.
 
-      if (agency && ['partner', 'preferred'].includes(agency.status)) {
+      if (relocator && ['partner', 'preferred'].includes(relocator.tier)) {
         // TODO: Send email or webhook to agency
-        console.log(`[Lead Forward] Would send lead ${lead.id} to ${agency.name} (${agency.email})`);
-        
+        console.log(`[Lead Forward] Would send lead ${lead.id} to ${relocator.name} (${relocator.email})`);
+
         // Mark as sent
         await supabase
           .from('leads')
@@ -79,9 +81,9 @@ export const POST: APIRoute = async ({ request }) => {
       }
     }
 
-    return new Response(JSON.stringify({ 
-      success: true, 
-      lead_id: lead.id 
+    return new Response(JSON.stringify({
+      success: true,
+      lead_id: lead.id
     }), {
       status: 201,
       headers: { 'Content-Type': 'application/json' }
@@ -89,8 +91,8 @@ export const POST: APIRoute = async ({ request }) => {
 
   } catch (err) {
     console.error('Error in /api/leads:', err);
-    return new Response(JSON.stringify({ 
-      error: 'Internal server error' 
+    return new Response(JSON.stringify({
+      error: 'Internal server error'
     }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' }

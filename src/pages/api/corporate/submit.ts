@@ -42,9 +42,19 @@ export const POST: APIRoute = async ({ request }) => {
             requestedAgencies // Added
         } = body;
 
-        // 1. Basic Validation
-        if (!hrEmail || !companyName) {
-            return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400 });
+        // 1. Basic Validation (Check all NOT NULL fields in DB)
+        if (!hrEmail || !companyName || !hrName || !hrTitle || !movesPerYear) {
+            const missing = [];
+            if (!hrEmail) missing.push('hrEmail');
+            if (!companyName) missing.push('companyName');
+            if (!hrName) missing.push('hrName');
+            if (!hrTitle) missing.push('hrTitle');
+            if (!movesPerYear) missing.push('movesPerYear');
+
+            return new Response(JSON.stringify({
+                error: 'Missing required fields',
+                fields: missing
+            }), { status: 400 });
         }
 
         // 2. Insert into DB

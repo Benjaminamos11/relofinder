@@ -13,9 +13,17 @@ export const POST: APIRoute = async ({ request }) => {
     const { mode, context, contact, move, services, notes, source_context } = payload;
 
     // Validation
-    if (!mode || !contact || !move || !services) {
+    if (!mode || !contact || !move || !services || !contact.name || !contact.email) {
+      const missing = [];
+      if (!mode) missing.push('mode');
+      if (!contact) missing.push('contact');
+      if (contact && !contact.name) missing.push('contact.name');
+      if (contact && !contact.email) missing.push('contact.email');
+      if (!move) missing.push('move');
+      if (!services) missing.push('services');
+
       return new Response(
-        JSON.stringify({ error: 'Missing required fields' }),
+        JSON.stringify({ error: 'Missing required fields', fields: missing }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
