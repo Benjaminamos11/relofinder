@@ -62,7 +62,7 @@ export const POST: APIRoute = async ({ request }) => {
                         complexity: data.complexity,
                         source: 'concierge_assessment'
                     },
-                    status: 'initial_submitted'
+                    status: 'new'
                 }
             ])
             .select()
