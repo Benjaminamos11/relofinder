@@ -1,6 +1,13 @@
 ---
 export interface Props {
-  type: 'homepage' | 'company' | 'service' | 'location';
+  type:
+    | "homepage"
+    | "company"
+    | "service"
+    | "location"
+    | "breadcrumb"
+    | "faq"
+    | "manual";
   data?: any;
 }
 
@@ -8,20 +15,20 @@ const { type, data = {} } = Astro.props;
 
 const getSchemaMarkup = (type: string, data: any) => {
   // Allow full JSON-LD passthrough if provided (must contain @context and @type)
-  if (data && typeof data === 'object' && data['@context'] && data['@type']) {
+  if (data && typeof data === "object" && data["@context"] && data["@type"]) {
     return data;
   }
-  const baseUrl = 'https://relofinder.ch';
-  
+  const baseUrl = "https://relofinder.ch";
+
   const toPostalAddress = (addr: any) => {
-    if (!addr || typeof addr !== 'object') return undefined;
+    if (!addr || typeof addr !== "object") return undefined;
     return {
       "@type": "PostalAddress",
-      "streetAddress": addr.street || addr.streetAddress || '',
-      "addressLocality": addr.city || addr.addressLocality || '',
-      "postalCode": addr.postalCode || '',
-      "addressRegion": addr.canton || addr.addressRegion || '',
-      "addressCountry": addr.country || 'CH'
+      streetAddress: addr.street || addr.streetAddress || "",
+      addressLocality: addr.city || addr.addressLocality || "",
+      postalCode: addr.postalCode || "",
+      addressRegion: addr.canton || addr.addressRegion || "",
+      addressCountry: addr.country || "CH",
     };
   };
 
@@ -29,89 +36,99 @@ const getSchemaMarkup = (type: string, data: any) => {
     homepage: {
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "ReloFinder",
-      "url": baseUrl,
-      "logo": `${baseUrl}/logo.png`,
-      "description": "Switzerland's leading platform connecting expats with trusted relocation services across all Swiss regions.",
-      "address": {
+      name: "ReloFinder",
+      url: baseUrl,
+      logo: `${baseUrl}/logo.png`,
+      description:
+        "Switzerland's leading platform connecting expats with trusted relocation services across all Swiss regions.",
+      address: {
         "@type": "PostalAddress",
-        "addressCountry": "CH",
-        "addressLocality": "Switzerland"
+        addressCountry: "CH",
+        addressLocality: "Switzerland",
       },
-      "sameAs": [
+      sameAs: [
         "https://linkedin.com/company/relofinder",
-        "https://twitter.com/relofinder"
+        "https://twitter.com/relofinder",
       ],
-      "contactPoint": {
+      contactPoint: {
         "@type": "ContactPoint",
-        "contactType": "customer service",
-        "email": "info@relofinder.ch"
-      }
+        contactType: "customer service",
+        email: "info@relofinder.ch",
+      },
     },
-    
+
     company: {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
-      "name": data.name || '',
-      "description": data.description || '',
-      "url": data.url || data.website || '',
-      "telephone": data.phone || data.telephone || '',
-      "email": data.email || '',
-      "address": toPostalAddress(data.address),
-      "aggregateRating": data.aggregateRating || (data.rating ? {
-        "@type": "AggregateRating",
-        "ratingValue": data.rating,
-        "reviewCount": data.reviewCount || 1
-      } : undefined),
-      "review": Array.isArray(data.reviews) ? data.reviews.map((review: any) => ({
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": review.rating,
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": review.author
-        },
-        "reviewBody": review.text,
-        "datePublished": review.date
-      })) : undefined,
-      "areaServed": data.serviceArea || data.regions || "Switzerland"
+      name: data.name || "",
+      description: data.description || "",
+      url: data.url || data.website || "",
+      telephone: data.phone || data.telephone || "",
+      email: data.email || "",
+      address: toPostalAddress(data.address),
+      aggregateRating:
+        data.aggregateRating ||
+        (data.rating
+          ? {
+              "@type": "AggregateRating",
+              ratingValue: data.rating,
+              reviewCount: data.reviewCount || 1,
+            }
+          : undefined),
+      review: Array.isArray(data.reviews)
+        ? data.reviews.map((review: any) => ({
+            "@type": "Review",
+            reviewRating: {
+              "@type": "Rating",
+              ratingValue: review.rating,
+              bestRating: "5",
+            },
+            author: {
+              "@type": "Person",
+              name: review.author,
+            },
+            reviewBody: review.text,
+            datePublished: review.date,
+          }))
+        : undefined,
+      areaServed: data.serviceArea || data.regions || "Switzerland",
     },
-    
+
     service: {
       "@context": "https://schema.org",
       "@type": "Service",
-      "name": data.name || '',
-      "description": data.description || '',
-      "provider": {
+      name: data.name || "",
+      description: data.description || "",
+      provider: {
         "@type": "Organization",
-        "name": "ReloFinder"
+        name: "ReloFinder",
       },
-      "areaServed": data.areaServed || "Switzerland",
-      "serviceType": data.serviceType || "Relocation Services",
-      "category": data.category || "Moving & Relocation"
+      areaServed: data.areaServed || "Switzerland",
+      serviceType: data.serviceType || "Relocation Services",
+      category: data.category || "Moving & Relocation",
     },
-    
+
     location: {
       "@context": "https://schema.org",
       "@type": "Place",
-      "name": data.name || '',
-      "description": data.description || '',
-      "address": toPostalAddress(data.address || { city: data.city }),
-      "geo": data.coordinates ? {
-        "@type": "GeoCoordinates",
-        "latitude": data.coordinates.lat,
-        "longitude": data.coordinates.lng
-      } : undefined
-    }
+      name: data.name || "",
+      description: data.description || "",
+      address: toPostalAddress(data.address || { city: data.city }),
+      geo: data.coordinates
+        ? {
+            "@type": "GeoCoordinates",
+            latitude: data.coordinates.lat,
+            longitude: data.coordinates.lng,
+          }
+        : undefined,
+    },
   };
-  
-  return schemas[type as keyof typeof schemas] || schemas.homepage;
+
+  return schemas[type as keyof typeof schemas] || data || schemas.homepage;
 };
 
 const schemaMarkup = getSchemaMarkup(type, data);
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(schemaMarkup)}></script> 
+<script type="application/ld+json" set:html={JSON.stringify(schemaMarkup)} />
+

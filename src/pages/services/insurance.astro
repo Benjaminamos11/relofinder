@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import HeroSearch from "../../components/home/HeroSearch";
-import UniversalContactModal from "../../components/common/UniversalContactModal";
+import SchemaMarkup from "../../components/common/SchemaMarkup.astro";
 import {
     ShieldCheck,
     FileText,
@@ -78,8 +78,8 @@ const faqSchema = {
 
 <Layout title={title} description={description} navbarVariant="transparent">
     <!-- SEO Schemas -->
-    <script type="application/ld+json" set:html={JSON.stringify(seoSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <SchemaMarkup type="service" data={seoSchema} />
+    <SchemaMarkup type="faq" data={faqSchema} />
 
     <main class="bg-slate-900 overflow-x-hidden">
         <!-- 1. The "Safety Net" Hero -->
@@ -134,7 +134,7 @@ const faqSchema = {
                     <div
                         class="max-w-4xl mx-auto px-4 transform hover:scale-[1.01] transition-all duration-700"
                     >
-                        <HeroSearch client:load initialService="advisory" />
+                        <HeroSearch client:load initialService="finance" />
                     </div>
                 </div>
             </div>
@@ -621,23 +621,20 @@ const faqSchema = {
                         <div
                             class="flex flex-col md:flex-row gap-6 justify-center items-center"
                         >
-                            <a
-                                href="https://expat-savvy.ch"
-                                target="_blank"
+                            <button
+                                onclick="window.openAssessmentModal('insurance')"
                                 class="inline-flex items-center gap-4 bg-[#FF6F61] text-white px-12 py-6 rounded-full font-black uppercase tracking-widest text-xs hover:bg-[#ff8a7d] transition-all no-underline shadow-2xl shadow-[#FF6F61]/20 hover:scale-105"
                             >
                                 Get Your Insurance Audit <ArrowRight
                                     className="w-5 h-5"
                                 />
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
-    <UniversalContactModal client:load />
 
     <script is:inline>
         console.log("✨ Insurance & Finance: Security Optimized");

@@ -1,448 +1,696 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Navbar from '../../components/layout/Navbar.astro';
-import Footer from '../../components/layout/Footer.astro';
-import HeroSearch from '../../components/home/HeroSearch.tsx';
-import UniversalContactModal from '../../components/common/UniversalContactModal.tsx';
-import { 
-  GraduationCap, 
-  School, 
-  Globe, 
-  Languages, 
-  MapPin, 
-  ShieldCheck, 
-  Briefcase, 
-  ArrowRight, 
-  ChevronDown, 
-  CheckCircle2, 
-  Library, 
-  Bus,
-  Search,
-  BookOpen,
-  Users
-} from 'lucide-react';
+import ServiceHero from "../../components/services/ServiceHero.astro";
+import SchemaMarkup from "../../components/common/SchemaMarkup.astro";
+import Layout from "../../layouts/Layout.astro";
+import HeroSearch from "../../components/home/HeroSearch";
+import {
+    GraduationCap,
+    School,
+    Globe,
+    Languages,
+    MapPin,
+    ShieldCheck,
+    Briefcase,
+    ArrowRight,
+    ChevronDown,
+    CheckCircle2,
+    Library,
+    Bus,
+    Search,
+    BookOpen,
+    Users,
+} from "lucide-react";
 
-const title = "Education & School Search Switzerland | Best Schools Guide 2026 | ReloFinder";
-const description = "The definitive guide to the Swiss education system. Compare public vs. international schools, navigate admissions, and find school search experts for your family.";
+const title =
+    "Education & School Search Switzerland | Best Schools Guide 2026 | ReloFinder";
+const description =
+    "The definitive guide to the Swiss education system. Compare public vs. international schools, navigate admissions, and find school search experts for your family.";
 
 const faqs = [
-  {
-    q: "Are public schools free in Switzerland?",
-    a: "Yes, Swiss public schools are tax-funded and free of charge. They are known for their high academic standards and are the primary choice for local integration. Instruction is in the local language (German, French, or Italian)."
-  },
-  {
-    q: "How much do international schools cost?",
-    a: "Tuition for international day schools typically ranges from CHF 25,000 to CHF 40,000 per year. Boarding schools are significantly more expensive, often exceeding CHF 100,000 annually, covering tuition, room, and board."
-  },
-  {
-    q: "At what age does school start in Switzerland?",
-    a: "Compulsory education generally starts with Kindergarten at age 4. Mandatory primary school starts at age 6. Exact enrollment dates and ages can vary slightly by canton."
-  }
+    {
+        q: "Are public schools free in Switzerland?",
+        a: "Yes, Swiss public schools are tax-funded and free of charge. They are known for their high academic standards and are the primary choice for local integration. Instruction is in the local language (German, French, or Italian).",
+    },
+    {
+        q: "How much do international schools cost?",
+        a: "Tuition for international day schools typically ranges from CHF 25,000 to CHF 40,000 per year. Boarding schools are significantly more expensive, often exceeding CHF 100,000 annually, covering tuition, room, and board.",
+    },
+    {
+        q: "At what age does school start in Switzerland?",
+        a: "Compulsory education generally starts with Kindergarten at age 4. Mandatory primary school starts at age 6. Exact enrollment dates and ages can vary slightly by canton.",
+    },
 ];
 
 // Technical SEO Schema
 const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://relofinder.ch" },
-    { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://relofinder.ch/services" },
-    { "@type": "ListItem", "position": 3, "name": "Education & School Search", "item": "https://relofinder.ch/services/education" }
-  ]
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://relofinder.ch",
+        },
+        {
+            "@type": "ListItem",
+            position: 2,
+            name: "Services",
+            item: "https://relofinder.ch/services",
+        },
+        {
+            "@type": "ListItem",
+            position: 3,
+            name: "Education & School Search",
+            item: "https://relofinder.ch/services/education",
+        },
+    ],
 };
 
 const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Education & School Search Services Switzerland",
-  "serviceType": "Educational Consultancy",
-  "description": "Expert guidance for expat families navigating Swiss public, international, and boarding school systems.",
-  "provider": { "@type": "Organization", "name": "ReloFinder" },
-  "areaServed": { "@type": "Country", "name": "Switzerland" }
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Education & School Search Services Switzerland",
+    serviceType: "Educational Consultancy",
+    description:
+        "Expert guidance for expat families navigating Swiss public, international, and boarding school systems.",
+    provider: { "@type": "Organization", name: "ReloFinder" },
+    areaServed: { "@type": "Country", name: "Switzerland" },
 };
 
 const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.q,
-    "acceptedAnswer": { "@type": "Answer", "text": faq.a }
-  }))
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: { "@type": "Answer", text: faq.a },
+    })),
 };
 ---
 
 <Layout title={title} description={description}>
     <!-- SEO Schemas -->
-    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <SchemaMarkup type="breadcrumb" data={breadcrumbSchema} />
+    <SchemaMarkup type="service" data={serviceSchema} />
+    <SchemaMarkup type="faq" data={faqSchema} />
 
-    <Navbar client:load />
+    <ServiceHero
+        title="Education in Switzerland"
+        subtitle="Finding the Right Path"
+        description="Choosing the right school is the most critical decision an expat family makes in Switzerland. We provide the strategic guidance needed to navigate the world-class Swiss education system."
+        badge="Education & School Search 2026"
+        icon={GraduationCap}
+    />
 
-    <main class="bg-slate-900">
-        <!-- 1. The "Future-Proof" Hero -->
-        <section class="relative min-h-[85vh] flex items-center pt-20 pb-32 overflow-hidden bg-slate-950 group">
-            <!-- Background Image with Overlay -->
-            <div class="absolute inset-0 z-0">
-                <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-transparent to-slate-950/80 z-20 pointer-events-none"></div>
-                <img 
-                    src="https://res.cloudinary.com/dphbnwjtx/image/upload/f_auto,q_auto/v1766976902/services/school_search_hero.jpg" 
-                    alt="Modern Swiss Classroom with Orange Backpack" 
-                    class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 transition-all duration-[2000ms] ease-in-out z-10"
-                />
-            </div>
-
-            <div class="container mx-auto px-4 relative z-30">
-                <div class="max-w-4xl mx-auto text-center">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF6F61]/10 border border-[#FF6F61]/20 text-[#FF6F61] text-xs font-bold uppercase tracking-widest mb-8 animate-fade-in">
-                        <GraduationCap className="w-4 h-4" />
-                        Education & School Search 2026
-                    </div>
-                    <h1 class="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
-                        Education in Switzerland: <span class="text-[#FF6F61]">Finding the Right Path</span> for Your Child.
-                    </h1>
-                    <p class="text-xl md:text-2xl text-slate-300 font-light mb-16 leading-relaxed max-w-3xl mx-auto">
-                        Choosing the right school is the most critical decision an expat family makes in Switzerland. We provide the strategic guidance needed to navigate the world-class Swiss education system.
-                    </p>
-
-                    <!-- Hero Search Integration - Widened and Floated -->
-                    <div class="max-w-4xl mx-auto px-4">
-                        <div class="bg-white/5 backdrop-blur-md p-2 rounded-[2rem] border border-white/10 shadow-2xl">
-                            <HeroSearch client:load initialService="school-search" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Scroll Indicator -->
-            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce hidden md:block">
-                <ChevronDown className="w-6 h-6 text-white/30" />
-            </div>
-        </section>
-
-        <!-- 2. Section: Navigating Excellence & Complexity -->
-        <section class="py-32 bg-white relative overflow-hidden">
-            <div class="container mx-auto px-4">
-                <div class="max-w-5xl mx-auto">
-                    <div class="grid md:grid-cols-2 gap-16 items-center mb-32">
-                        <div>
-                            <span class="text-[#FF6F61] font-bold uppercase tracking-tighter text-sm mb-4 block">Swiss Education Standard</span>
-                            <h2 class="text-4xl font-bold text-slate-900 mb-6 leading-tight">World-Class Quality From Kindergarten to ETH Zurich.</h2>
-                            <p class="text-slate-600 text-lg leading-relaxed mb-6">
-                                Switzerland consistently ranks at the top of global education charts. The system is designed to provide diverse pathways, ensuring every child finds a trajectory that matches their strengths—whether that leads to a technical apprenticeship or the prestigious **ETH Zurich** or **EPFL**.
-                            </p>
-                            <p class="text-slate-500 text-sm leading-relaxed">
-                                However, this quality comes with complexity. Education is managed at the cantonal level, meaning rules in Zurich may differ significantly from those in Geneva or Zug.
-                            </p>
-                        </div>
-                        <div class="relative">
-                            <div class="absolute -inset-4 bg-[#FF6F61]/5 rounded-[3rem] blur-2xl"></div>
-                            <div class="relative bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100 shadow-sm">
-                                <h3 class="text-xl font-bold text-slate-900 mb-6">The Success Strategy</h3>
-                                <ul class="space-y-4">
-                                    <li class="flex items-start gap-4">
-                                        <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0">
-                                            <CheckCircle2 className="w-4 h-4 text-green-600" />
-                                        </div>
-                                        <span class="text-slate-700 text-sm">Determine your "Horizon" (How many years will you stay?)</span>
-                                    </li>
-                                    <li class="flex items-start gap-4">
-                                        <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0">
-                                            <CheckCircle2 className="w-4 h-4 text-green-600" />
-                                        </div>
-                                        <span class="text-slate-700 text-sm">Choose System: Public for integration, Private for mobility.</span>
-                                    </li>
-                                    <li class="flex items-start gap-4">
-                                        <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0">
-                                            <CheckCircle2 className="w-4 h-4 text-green-600" />
-                                        </div>
-                                        <span class="text-slate-700 text-sm">Select School before House (Geography is Destiny).</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="text-center mb-16">
-                        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">Public vs. Private: The First Decision</h2>
-                        <div class="h-1.5 w-24 bg-[#FF6F61] mx-auto mb-8 rounded-full"></div>
-                        <p class="text-slate-600 text-xl font-light leading-relaxed max-w-3xl mx-auto">
-                            The choice between the free, high-end Swiss public system and international private schools is the first strategic fork in the road for expat families.
-                        </p>
-                    </div>
-
-                    <div class="bg-white rounded-[2.5rem] overflow-hidden text-slate-900 shadow-2xl ring-1 ring-slate-100">
-                        <div class="p-4 md:p-8">
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left border-collapse">
-                                    <thead>
-                                        <tr class="border-b border-slate-100 text-xs font-bold uppercase tracking-widest text-slate-400">
-                                            <th class="py-6 px-4">Feature</th>
-                                            <th class="py-6 px-4">Public School</th>
-                                            <th class="py-6 px-4">International School</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="text-sm">
-                                        <tr class="border-b border-slate-50 group transition-colors hover:bg-slate-50/50">
-                                            <td class="py-6 px-4 font-bold text-slate-900">Cost</td>
-                                            <td class="py-6 px-4 text-slate-600">Free / Tax-funded</td>
-                                            <td class="py-6 px-4 text-slate-600 font-medium">CHF 25k – 45k+ / year</td>
-                                        </tr>
-                                        <tr class="border-b border-slate-50 group transition-colors hover:bg-slate-50/50">
-                                            <td class="py-6 px-4 font-bold text-slate-900">Language</td>
-                                            <td class="py-6 px-4 text-slate-600">Local (DE/FR/IT)</td>
-                                            <td class="py-6 px-4 text-slate-600 font-medium">Primarily English / Bilingual</td>
-                                        </tr>
-                                        <tr class="border-b border-slate-50 group transition-colors hover:bg-slate-50/50">
-                                            <td class="py-6 px-4 font-bold text-slate-900">Curriculum</td>
-                                            <td class="py-6 px-4 text-slate-600">Swiss National (Lehrplan 21)</td>
-                                            <td class="py-6 px-4 text-slate-600 font-medium">IB, British, or American</td>
-                                        </tr>
-                                        <tr class="group transition-colors hover:bg-slate-50/50">
-                                            <td class="py-6 px-4 font-bold text-slate-900">Best For</td>
-                                            <td class="py-6 px-4 text-slate-600 font-medium text-green-600">Long-term Integration</td>
-                                            <td class="py-6 px-4 text-slate-600 font-medium text-[#FF6F61]">Global Mobility</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="bg-slate-50 p-10 border-t border-slate-100">
-                            <div class="flex items-start gap-6">
-                                <div class="w-12 h-12 rounded-2xl bg-white border border-slate-200 flex items-center justify-center text-[#FF6F61] shrink-0 shadow-sm">
-                                    <Briefcase className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-bold text-slate-900 mb-2">The Expert Role</h4>
-                                    <p class="text-slate-600 text-sm leading-relaxed">
-                                        An education consultant helps you assess your child's age, language ability, and personality to make the right choice. They act as your advocate during school tours and admissions interviews.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. Section: The Education Tiers (Grid Layout) -->
-        <section class="py-32 bg-slate-50 border-y border-slate-100">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">The Education Tiers</h2>
-                    <p class="text-slate-500 text-xl font-light">Navigating the Swiss school ladder from age 0 to 18.</p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Early Years -->
-                    <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-xl hover:shadow-2xl transition-all group">
-                        <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400 mb-8 group-hover:bg-[#FF6F61]/10 group-hover:text-[#FF6F61] transition-colors">
-                            <BookOpen className="w-8 h-8" />
-                        </div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-4">Early Years (Kita)</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
-                            Waitlists for Swiss crèches (Kitas) can be extremely long. We help you find bilingual daycares near your home or office and manage the reservation process.
-                        </p>
-                        <ul class="space-y-3">
-                            <li class="flex items-center gap-3 text-xs font-bold text-slate-500">
-                                <CheckCircle2 className="w-4 h-4 text-[#FF6F61]" />
-                                BILINGUAL OPTIONS
-                            </li>
-                            <li class="flex items-center gap-3 text-xs font-bold text-slate-500">
-                                <CheckCircle2 className="w-4 h-4 text-[#FF6F61]" />
-                                WAITLIST MANAGEMENT
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Day Schools -->
-                    <div class="bg-white p-10 rounded-[2.5rem] border border-[#FF6F61]/20 shadow-xl hover:shadow-2xl transition-all group relative ring-2 ring-[#FF6F61]/5">
-                        <div class="absolute top-8 right-8 px-3 py-1 bg-[#FF6F61] text-white text-[10px] font-black uppercase tracking-widest rounded-full">Popular</div>
-                        <div class="w-16 h-16 bg-[#FF6F61]/10 rounded-2xl flex items-center justify-center text-[#FF6F61] mb-8">
-                            <School className="w-8 h-8" />
-                        </div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-4">International Day Schools</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
-                            Access top institutions like **ZIS** (Zurich), **Ecolint** (Geneva), or **ISB** (Basel). Our partners assist with application files, dossiers, and assessment preparation.
-                        </p>
-                        <ul class="space-y-3">
-                            <li class="flex items-center gap-3 text-xs font-bold text-slate-500">
-                                <CheckCircle2 className="w-4 h-4 text-[#FF6F61]" />
-                                IB & AP CURRICULUM
-                            </li>
-                            <li class="flex items-center gap-3 text-xs font-bold text-slate-500">
-                                <CheckCircle2 className="w-4 h-4 text-[#FF6F61]" />
-                                ADMISSION ADVOCACY
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Boarding Schools -->
-                    <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-xl hover:shadow-2xl transition-all group">
-                        <div class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400 mb-8 group-hover:bg-[#FF6F61]/10 group-hover:text-[#FF6F61] transition-colors">
-                            <Library className="w-8 h-8" />
-                        </div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-4">Boarding Schools</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
-                            For the ultimate elite education experience. Access world-renowned schools like **Le Rosey** or **Beau Soleil** with our specialized VIP advisory services.
-                        </p>
-                        <ul class="space-y-3">
-                            <li class="flex items-center gap-3 text-xs font-bold text-slate-500">
-                                <CheckCircle2 className="w-4 h-4 text-[#FF6F61]" />
-                                ELITE NETWORK ACCESS
-                            </li>
-                            <li class="flex items-center gap-3 text-xs font-bold text-slate-500">
-                                <CheckCircle2 className="w-4 h-4 text-[#FF6F61]" />
-                                VIP ADVISORY
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. Section: Geography is Destiny -->
-        <section class="py-32 bg-white">
-            <div class="container mx-auto px-4 text-center">
-                <div class="max-w-4xl mx-auto">
-                    <div class="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center text-slate-400 mx-auto mb-10 ring-8 ring-slate-50/50">
-                        <MapPin className="w-8 h-8" />
-                    </div>
-                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-8 tracking-tight">Geography is Destiny</h2>
-                    <p class="text-2xl text-slate-600 font-light leading-relaxed mb-12">
-                        "You cannot choose a home until you choose a school. The **School Run** defines your daily life."
-                    </p>
-                    <p class="text-slate-500 max-w-2xl mx-auto mb-12 leading-relaxed">
-                        In Switzerland, public school zones are strictly enforced based on your residence. For private and international schools, commuting patterns and school bus routes determine the feasibility of your housing choice.
-                    </p>
-                    <div class="flex flex-wrap justify-center gap-6">
-                        <a href="/regions/zurich" class="group flex items-center gap-4 px-8 py-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-[#FF6F61] transition-all no-underline">
-                            <span class="text-slate-900 font-bold">Zurich Districts</span>
-                            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#FF6F61] group-hover:translate-x-1 transition-all" />
-                        </a>
-                        <a href="/regions/geneva" class="group flex items-center gap-4 px-8 py-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-[#FF6F61] transition-all no-underline">
-                            <span class="text-slate-900 font-bold">Geneva Schools Guide</span>
-                            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#FF6F61] group-hover:translate-x-1 transition-all" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. Section: The Ecosystem Advantage -->
-        <section class="py-32 bg-slate-900 relative overflow-hidden">
-            <!-- Background Decoration -->
-            <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#FF6F61]/5 to-transparent pointer-events-none"></div>
-
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-20 text-white">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-6 tracking-tight">The Ecosystem Advantage</h2>
-                    <div class="h-1.5 w-24 bg-[#FF6F61] mx-auto mb-10 rounded-full"></div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-12">
-                    <!-- Offlist -->
-                    <div class="bg-white/5 border border-white/10 p-12 rounded-[3rem] hover:bg-white/10 transition-all group">
-                        <div class="flex items-center gap-4 mb-8">
-                            <div class="w-12 h-12 bg-[#FF6F61] text-white rounded-2xl flex items-center justify-center shadow-lg shadow-[#FF6F61]/20">
-                                <Search className="w-6 h-6" />
-                            </div>
-                            <h3 class="text-3xl font-bold text-white tracking-tight">Offlist.ch</h3>
-                        </div>
-                        <p class="text-slate-300 text-lg leading-relaxed mb-10">
-                            Once your school is secured, use **Offlist.ch** to find family homes within specific school bus zones or districts before they hit the open market.
-                        </p>
-                        <a href="https://offlist.ch" target="_blank" class="inline-flex items-center gap-3 text-white font-bold group-hover:text-[#FF6F61] transition-colors no-underline">
-                            Find School-Zone Housing <ArrowRight className="w-4 h-4" />
-                        </a>
-                    </div>
-
-                    <!-- Expat-Savvy -->
-                    <div class="bg-white/5 border border-white/10 p-12 rounded-[3rem] hover:bg-white/10 transition-all group">
-                        <div class="flex items-center gap-4 mb-8">
-                            <div class="w-12 h-12 bg-white text-slate-900 rounded-2xl flex items-center justify-center shadow-lg">
-                                <ShieldCheck className="w-6 h-6" />
-                            </div>
-                            <h3 class="text-3xl font-bold text-white tracking-tight">Expat-Savvy.ch</h3>
-                        </div>
-                        <p class="text-slate-300 text-lg leading-relaxed mb-10">
-                            Family Health Insurance is mandatory. Compare 'Family Packages' and specialized pediatric coverage at **Expat-Savvy.ch**.
-                        </p>
-                        <a href="https://expat-savvy.ch" target="_blank" class="inline-flex items-center gap-3 text-white font-bold group-hover:text-[#FF6F61] transition-colors no-underline">
-                            Compare Family Packages <ArrowRight className="w-4 h-4" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. Section: Why hire an Education Consultant? -->
-        <section class="py-32 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="max-w-5xl mx-auto">
-                    <div class="text-center mb-16">
-                        <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">Why hire an Education Consultant?</h2>
-                        <div class="h-1.5 w-24 bg-[#FF6F61] mx-auto mb-8 rounded-full"></div>
-                    </div>
-
-                    <div class="grid md:grid-cols-3 gap-12">
-                        <div class="text-center group">
-                            <div class="w-20 h-20 rounded-3xl bg-slate-50 flex items-center justify-center text-slate-400 mx-auto mb-8 group-hover:bg-[#FF6F61]/10 group-hover:text-[#FF6F61] transition-all">
-                                <Users className="w-10 h-10" />
-                            </div>
-                            <h4 class="text-xl font-bold text-slate-900 mb-4">Admissions Strategy</h4>
-                            <p class="text-slate-500 text-sm leading-relaxed">
-                                Top international schools are often oversubscribed. An agent knows the admissions directors and how to present your child's dossier for maximum impact.
-                            </p>
-                        </div>
-
-                        <div class="text-center group">
-                            <div class="w-20 h-20 rounded-3xl bg-slate-50 flex items-center justify-center text-slate-400 mx-auto mb-8 group-hover:bg-[#FF6F61]/10 group-hover:text-[#FF6F61] transition-all">
-                                <BookOpen className="w-10 h-10" />
-                            </div>
-                            <h4 class="text-xl font-bold text-slate-900 mb-4">Assessment Prep</h4>
-                            <p class="text-slate-500 text-sm leading-relaxed">
-                                Organizing overseas testing, coordinating virtual interviews, and ensuring your child is prepared for the specific Swiss academic benchmarks.
-                            </p>
-                        </div>
-
-                        <div class="text-center group">
-                            <div class="w-20 h-20 rounded-3xl bg-slate-50 flex items-center justify-center text-slate-400 mx-auto mb-8 group-hover:bg-[#FF6F61]/10 group-hover:text-[#FF6F61] transition-all">
-                                <Languages className="w-10 h-10" />
-                            </div>
-                            <h4 class="text-xl font-bold text-slate-900 mb-4">Integration</h4>
-                            <p class="text-slate-500 text-sm leading-relaxed">
-                                Organizing 'Schnuppertage' (Trial days) for public schools and navigating the complex language immersion requirements for each canton.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Final CTA -->
-                    <div class="mt-32 p-12 md:p-20 bg-slate-900 rounded-[3rem] text-center relative overflow-hidden group shadow-2xl">
-                        <div class="absolute inset-0 bg-gradient-to-r from-[#FF6F61]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 relative z-10">Secure Your Child's Academic Future</h2>
-                        <p class="text-slate-300 text-xl font-light mb-12 relative z-10 max-w-2xl mx-auto">
-                            Connect with top-rated education specialists who understand the Swiss market and can guarantee results.
-                        </p>
-                        <a 
-                            href="/search/results?service=school-search" 
-                            class="inline-flex items-center gap-3 bg-[#FF6F61] text-white px-12 py-5 rounded-full font-extrabold text-sm uppercase tracking-widest hover:scale-105 hover:shadow-2xl hover:shadow-[#FF6F61]/20 transition-all duration-300 relative z-10 shadow-xl no-underline"
+    <!-- 2. Section: Navigating Excellence & Complexity -->
+    <section class="py-32 bg-white relative overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-16 items-center mb-32">
+                    <div>
+                        <span
+                            class="text-[#FF6F61] font-bold uppercase tracking-tighter text-sm mb-4 block"
+                            >Swiss Education Standard</span
                         >
-                            Browse & Compare Education Experts
-                            <ArrowRight className="w-5 h-5" />
-                        </a>
+                        <h2
+                            class="text-4xl font-bold text-slate-900 mb-6 leading-tight"
+                        >
+                            World-Class Quality From Kindergarten to ETH Zurich.
+                        </h2>
+                        <p class="text-slate-600 text-lg leading-relaxed mb-6">
+                            Switzerland consistently ranks at the top of global
+                            education charts. The system is designed to provide
+                            diverse pathways, ensuring every child finds a
+                            trajectory that matches their strengths—whether that
+                            leads to a technical apprenticeship or the
+                            prestigious **ETH Zurich** or **EPFL**.
+                        </p>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            However, this quality comes with complexity.
+                            Education is managed at the cantonal level, meaning
+                            rules in Zurich may differ significantly from those
+                            in Geneva or Zug.
+                        </p>
+                    </div>
+                    <div class="relative">
+                        <div
+                            class="absolute -inset-4 bg-[#FF6F61]/5 rounded-[3rem] blur-2xl"
+                        >
+                        </div>
+                        <div
+                            class="relative bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100 shadow-sm"
+                        >
+                            <h3 class="text-xl font-bold text-slate-900 mb-6">
+                                The Success Strategy
+                            </h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-4">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0"
+                                    >
+                                        <CheckCircle2
+                                            className="w-4 h-4 text-green-600"
+                                        />
+                                    </div>
+                                    <span class="text-slate-700 text-sm"
+                                        >Determine your "Horizon" (How many
+                                        years will you stay?)</span
+                                    >
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0"
+                                    >
+                                        <CheckCircle2
+                                            className="w-4 h-4 text-green-600"
+                                        />
+                                    </div>
+                                    <span class="text-slate-700 text-sm"
+                                        >Choose System: Public for integration,
+                                        Private for mobility.</span
+                                    >
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0"
+                                    >
+                                        <CheckCircle2
+                                            className="w-4 h-4 text-green-600"
+                                        />
+                                    </div>
+                                    <span class="text-slate-700 text-sm"
+                                        >Select School before House (Geography
+                                        is Destiny).</span
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mb-16">
+                    <h2
+                        class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight"
+                    >
+                        Public vs. Private: The First Decision
+                    </h2>
+                    <div
+                        class="h-1.5 w-24 bg-[#FF6F61] mx-auto mb-8 rounded-full"
+                    >
+                    </div>
+                    <p
+                        class="text-slate-600 text-xl font-light leading-relaxed max-w-3xl mx-auto"
+                    >
+                        The choice between the free, high-end Swiss public
+                        system and international private schools is the first
+                        strategic fork in the road for expat families.
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white rounded-[2.5rem] overflow-hidden text-slate-900 shadow-2xl ring-1 ring-slate-100"
+                >
+                    <div class="p-4 md:p-8">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr
+                                        class="border-b border-slate-100 text-xs font-bold uppercase tracking-widest text-slate-400"
+                                    >
+                                        <th class="py-6 px-4">Feature</th>
+                                        <th class="py-6 px-4">Public School</th>
+                                        <th class="py-6 px-4"
+                                            >International School</th
+                                        >
+                                    </tr>
+                                </thead>
+                                <tbody class="text-sm">
+                                    <tr
+                                        class="border-b border-slate-50 group transition-colors hover:bg-slate-50/50"
+                                    >
+                                        <td
+                                            class="py-6 px-4 font-bold text-slate-900"
+                                            >Cost</td
+                                        >
+                                        <td class="py-6 px-4 text-slate-600"
+                                            >Free / Tax-funded</td
+                                        >
+                                        <td
+                                            class="py-6 px-4 text-slate-600 font-medium"
+                                            >CHF 25k – 45k+ / year</td
+                                        >
+                                    </tr>
+                                    <tr
+                                        class="border-b border-slate-50 group transition-colors hover:bg-slate-50/50"
+                                    >
+                                        <td
+                                            class="py-6 px-4 font-bold text-slate-900"
+                                            >Language</td
+                                        >
+                                        <td class="py-6 px-4 text-slate-600"
+                                            >Local (DE/FR/IT)</td
+                                        >
+                                        <td
+                                            class="py-6 px-4 text-slate-600 font-medium"
+                                            >Primarily English / Bilingual</td
+                                        >
+                                    </tr>
+                                    <tr
+                                        class="border-b border-slate-50 group transition-colors hover:bg-slate-50/50"
+                                    >
+                                        <td
+                                            class="py-6 px-4 font-bold text-slate-900"
+                                            >Curriculum</td
+                                        >
+                                        <td class="py-6 px-4 text-slate-600"
+                                            >Swiss National (Lehrplan 21)</td
+                                        >
+                                        <td
+                                            class="py-6 px-4 text-slate-600 font-medium"
+                                            >IB, British, or American</td
+                                        >
+                                    </tr>
+                                    <tr
+                                        class="group transition-colors hover:bg-slate-50/50"
+                                    >
+                                        <td
+                                            class="py-6 px-4 font-bold text-slate-900"
+                                            >Best For</td
+                                        >
+                                        <td
+                                            class="py-6 px-4 text-slate-600 font-medium text-green-600"
+                                            >Long-term Integration</td
+                                        >
+                                        <td
+                                            class="py-6 px-4 text-slate-600 font-medium text-[#FF6F61]"
+                                            >Global Mobility</td
+                                        >
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="bg-slate-50 p-10 border-t border-slate-100">
+                        <div class="flex items-start gap-6">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-white border border-slate-200 flex items-center justify-center text-[#FF6F61] shrink-0 shadow-sm"
+                            >
+                                <Briefcase className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h4
+                                    class="text-lg font-bold text-slate-900 mb-2"
+                                >
+                                    The Expert Role
+                                </h4>
+                                <p
+                                    class="text-slate-600 text-sm leading-relaxed"
+                                >
+                                    An education consultant helps you assess
+                                    your child's age, language ability, and
+                                    personality to make the right choice. They
+                                    act as your advocate during school tours and
+                                    admissions interviews.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- FAQ Section -->
-        <section class="py-32 bg-slate-50 border-t border-slate-100">
-            <div class="container mx-auto px-4 max-w-3xl">
-                <h2 class="text-4xl font-bold text-slate-900 mb-16 text-center tracking-tight">Frequently Asked Questions</h2>
-                <div class="space-y-4">
-                    {faqs.map((faq) => (
+    <!-- 3. Section: The Education Tiers (Grid Layout) -->
+    <section class="py-32 bg-slate-50 border-y border-slate-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight"
+                >
+                    The Education Tiers
+                </h2>
+                <p class="text-slate-500 text-xl font-light">
+                    Navigating the Swiss school ladder from age 0 to 18.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Early Years -->
+                <div
+                    class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-xl hover:shadow-2xl transition-all group"
+                >
+                    <div
+                        class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400 mb-8 group-hover:bg-[#FF6F61]/10 group-hover:text-[#FF6F61] transition-colors"
+                    >
+                        <BookOpen className="w-8 h-8" />
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">
+                        Early Years (Kita)
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        Waitlists for Swiss crèches (Kitas) can be extremely
+                        long. We help you find bilingual daycares near your home
+                        or office and manage the reservation process.
+                    </p>
+                    <ul class="space-y-3">
+                        <li
+                            class="flex items-center gap-3 text-xs font-bold text-slate-500"
+                        >
+                            <CheckCircle2 className="w-4 h-4 text-[#FF6F61]" />
+                            BILINGUAL OPTIONS
+                        </li>
+                        <li
+                            class="flex items-center gap-3 text-xs font-bold text-slate-500"
+                        >
+                            <CheckCircle2 className="w-4 h-4 text-[#FF6F61]" />
+                            WAITLIST MANAGEMENT
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Day Schools -->
+                <div
+                    class="bg-white p-10 rounded-[2.5rem] border border-[#FF6F61]/20 shadow-xl hover:shadow-2xl transition-all group relative ring-2 ring-[#FF6F61]/5"
+                >
+                    <div
+                        class="absolute top-8 right-8 px-3 py-1 bg-[#FF6F61] text-white text-[10px] font-black uppercase tracking-widest rounded-full"
+                    >
+                        Popular
+                    </div>
+                    <div
+                        class="w-16 h-16 bg-[#FF6F61]/10 rounded-2xl flex items-center justify-center text-[#FF6F61] mb-8"
+                    >
+                        <School className="w-8 h-8" />
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">
+                        International Day Schools
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        Access top institutions like **ZIS** (Zurich),
+                        **Ecolint** (Geneva), or **ISB** (Basel). Our partners
+                        assist with application files, dossiers, and assessment
+                        preparation.
+                    </p>
+                    <ul class="space-y-3">
+                        <li
+                            class="flex items-center gap-3 text-xs font-bold text-slate-500"
+                        >
+                            <CheckCircle2 className="w-4 h-4 text-[#FF6F61]" />
+                            IB & AP CURRICULUM
+                        </li>
+                        <li
+                            class="flex items-center gap-3 text-xs font-bold text-slate-500"
+                        >
+                            <CheckCircle2 className="w-4 h-4 text-[#FF6F61]" />
+                            ADMISSION ADVOCACY
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Boarding Schools -->
+                <div
+                    class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-xl hover:shadow-2xl transition-all group"
+                >
+                    <div
+                        class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400 mb-8 group-hover:bg-[#FF6F61]/10 group-hover:text-[#FF6F61] transition-colors"
+                    >
+                        <Library className="w-8 h-8" />
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4">
+                        Boarding Schools
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        For the ultimate elite education experience. Access
+                        world-renowned schools like **Le Rosey** or **Beau
+                        Soleil** with our specialized VIP advisory services.
+                    </p>
+                    <ul class="space-y-3">
+                        <li
+                            class="flex items-center gap-3 text-xs font-bold text-slate-500"
+                        >
+                            <CheckCircle2 className="w-4 h-4 text-[#FF6F61]" />
+                            ELITE NETWORK ACCESS
+                        </li>
+                        <li
+                            class="flex items-center gap-3 text-xs font-bold text-slate-500"
+                        >
+                            <CheckCircle2 className="w-4 h-4 text-[#FF6F61]" />
+                            VIP ADVISORY
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Section: Geography is Destiny -->
+    <section class="py-32 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-4xl mx-auto">
+                <div
+                    class="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center text-slate-400 mx-auto mb-10 ring-8 ring-slate-50/50"
+                >
+                    <MapPin className="w-8 h-8" />
+                </div>
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-8 tracking-tight"
+                >
+                    Geography is Destiny
+                </h2>
+                <p
+                    class="text-2xl text-slate-600 font-light leading-relaxed mb-12"
+                >
+                    "You cannot choose a home until you choose a school. The
+                    **School Run** defines your daily life."
+                </p>
+                <p
+                    class="text-slate-500 max-w-2xl mx-auto mb-12 leading-relaxed"
+                >
+                    In Switzerland, public school zones are strictly enforced
+                    based on your residence. For private and international
+                    schools, commuting patterns and school bus routes determine
+                    the feasibility of your housing choice.
+                </p>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a
+                        href="/regions/zurich"
+                        class="group flex items-center gap-4 px-8 py-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-[#FF6F61] transition-all no-underline"
+                    >
+                        <span class="text-slate-900 font-bold"
+                            >Zurich Districts</span
+                        >
+                        <ArrowRight
+                            className="w-4 h-4 text-slate-400 group-hover:text-[#FF6F61] group-hover:translate-x-1 transition-all"
+                        />
+                    </a>
+                    <a
+                        href="/regions/geneva"
+                        class="group flex items-center gap-4 px-8 py-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-[#FF6F61] transition-all no-underline"
+                    >
+                        <span class="text-slate-900 font-bold"
+                            >Geneva Schools Guide</span
+                        >
+                        <ArrowRight
+                            className="w-4 h-4 text-slate-400 group-hover:text-[#FF6F61] group-hover:translate-x-1 transition-all"
+                        />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Section: The Ecosystem Advantage -->
+    <section class="py-32 bg-slate-900 relative overflow-hidden">
+        <!-- Background Decoration -->
+        <div
+            class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#FF6F61]/5 to-transparent pointer-events-none"
+        >
+        </div>
+
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-20 text-white">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+                    The Ecosystem Advantage
+                </h2>
+                <div class="h-1.5 w-24 bg-[#FF6F61] mx-auto mb-10 rounded-full">
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Offlist -->
+                <div
+                    class="bg-white/5 border border-white/10 p-12 rounded-[3rem] hover:bg-white/10 transition-all group"
+                >
+                    <div class="flex items-center gap-4 mb-8">
+                        <div
+                            class="w-12 h-12 bg-[#FF6F61] text-white rounded-2xl flex items-center justify-center shadow-lg shadow-[#FF6F61]/20"
+                        >
+                            <Search className="w-6 h-6" />
+                        </div>
+                        <h3
+                            class="text-3xl font-bold text-white tracking-tight"
+                        >
+                            Offlist.ch
+                        </h3>
+                    </div>
+                    <p class="text-slate-300 text-lg leading-relaxed mb-10">
+                        Once your school is secured, use **Offlist.ch** to find
+                        family homes within specific school bus zones or
+                        districts before they hit the open market.
+                    </p>
+                    <button
+                        onclick="window.openAssessmentModal('education')"
+                        class="inline-flex items-center gap-3 text-white font-bold group-hover:text-[#FF6F61] transition-colors no-underline"
+                    >
+                        Find School-Zone Housing <ArrowRight
+                            className="w-4 h-4"
+                        />
+                    </button>
+                </div>
+
+                <!-- Expat-Savvy -->
+                <div
+                    class="bg-white/5 border border-white/10 p-12 rounded-[3rem] hover:bg-white/10 transition-all group"
+                >
+                    <div class="flex items-center gap-4 mb-8">
+                        <div
+                            class="w-12 h-12 bg-white text-slate-900 rounded-2xl flex items-center justify-center shadow-lg"
+                        >
+                            <ShieldCheck className="w-6 h-6" />
+                        </div>
+                        <h3
+                            class="text-3xl font-bold text-white tracking-tight"
+                        >
+                            Expat-Savvy.ch
+                        </h3>
+                    </div>
+                    <p class="text-slate-300 text-lg leading-relaxed mb-10">
+                        Family Health Insurance is mandatory. Compare 'Family
+                        Packages' and specialized pediatric coverage at
+                        **Expat-Savvy.ch**.
+                    </p>
+                    <button
+                        onclick="window.openAssessmentModal('insurance')"
+                        class="inline-flex items-center gap-3 text-white font-bold group-hover:text-[#FF6F61] transition-colors no-underline"
+                    >
+                        Compare Family Packages <ArrowRight
+                            className="w-4 h-4"
+                        />
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Section: Why hire an Education Consultant? -->
+    <section class="py-32 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2
+                        class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight"
+                    >
+                        Why hire an Education Consultant?
+                    </h2>
+                    <div
+                        class="h-1.5 w-24 bg-[#FF6F61] mx-auto mb-8 rounded-full"
+                    >
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-12">
+                    <div class="text-center group">
+                        <div
+                            class="w-20 h-20 rounded-3xl bg-slate-50 flex items-center justify-center text-slate-400 mx-auto mb-8 group-hover:bg-[#FF6F61]/10 group-hover:text-[#FF6F61] transition-all"
+                        >
+                            <Users className="w-10 h-10" />
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-4">
+                            Admissions Strategy
+                        </h4>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            Top international schools are often oversubscribed.
+                            An agent knows the admissions directors and how to
+                            present your child's dossier for maximum impact.
+                        </p>
+                    </div>
+
+                    <div class="text-center group">
+                        <div
+                            class="w-20 h-20 rounded-3xl bg-slate-50 flex items-center justify-center text-slate-400 mx-auto mb-8 group-hover:bg-[#FF6F61]/10 group-hover:text-[#FF6F61] transition-all"
+                        >
+                            <BookOpen className="w-10 h-10" />
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-4">
+                            Assessment Prep
+                        </h4>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            Organizing overseas testing, coordinating virtual
+                            interviews, and ensuring your child is prepared for
+                            the specific Swiss academic benchmarks.
+                        </p>
+                    </div>
+
+                    <div class="text-center group">
+                        <div
+                            class="w-20 h-20 rounded-3xl bg-slate-50 flex items-center justify-center text-slate-400 mx-auto mb-8 group-hover:bg-[#FF6F61]/10 group-hover:text-[#FF6F61] transition-all"
+                        >
+                            <Languages className="w-10 h-10" />
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-4">
+                            Integration
+                        </h4>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            Organizing 'Schnuppertage' (Trial days) for public
+                            schools and navigating the complex language
+                            immersion requirements for each canton.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Final CTA -->
+                <div
+                    class="mt-32 p-12 md:p-20 bg-slate-900 rounded-[3rem] text-center relative overflow-hidden group shadow-2xl"
+                >
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-[#FF6F61]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                    >
+                    </div>
+                    <h2
+                        class="text-3xl md:text-4xl font-bold text-white mb-6 relative z-10"
+                    >
+                        Secure Your Child's Academic Future
+                    </h2>
+                    <p
+                        class="text-slate-300 text-xl font-light mb-12 relative z-10 max-w-2xl mx-auto"
+                    >
+                        Connect with top-rated education specialists who
+                        understand the Swiss market and can guarantee results.
+                    </p>
+                    <button
+                        onclick="window.openAssessmentModal('education')"
+                        class="inline-flex items-center gap-3 bg-[#FF6F61] text-white px-12 py-5 rounded-full font-extrabold text-sm uppercase tracking-widest hover:scale-105 hover:shadow-2xl hover:shadow-[#FF6F61]/20 transition-all duration-300 relative z-10 shadow-xl no-underline"
+                    >
+                        Browse & Compare Education Experts
+                        <ArrowRight className="w-5 h-5" />
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-32 bg-slate-50 border-t border-slate-100">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2
+                class="text-4xl font-bold text-slate-900 mb-16 text-center tracking-tight"
+            >
+                Frequently Asked Questions
+            </h2>
+            <div class="space-y-4">
+                {
+                    faqs.map((faq) => (
                         <details class="group bg-white border border-slate-200 overflow-hidden rounded-[1.5rem] shadow-sm hover:shadow-md transition-all">
                             <summary class="flex justify-between items-center p-8 cursor-pointer font-bold text-slate-900 hover:bg-slate-50 transition-colors select-none text-lg">
                                 {faq.q}
@@ -452,39 +700,21 @@ const faqSchema = {
                                 {faq.a}
                             </div>
                         </details>
-                    ))}
-                </div>
+                    ))
+                }
             </div>
-        </section>
-    </main>
-
-    <UniversalContactModal client:load />
-
-    <script is:inline>
-      if (typeof window !== 'undefined') {
-        window.universalOpenModal = function(context) {
-          const resolvedContext = context && typeof context === 'object' ? context : { page: 'education', topic: context };
-          if (window.relofinderModalStores) {
-            window.relofinderModalStores.setContext(resolvedContext);
-            window.relofinderModalStores.setOpen(true);
-          }
-        };
-      }
-    </script>
+        </div>
+    </section>
+    <div style="display:none;" data-ai-summary>
+        Expert Swiss education and school search services. Guidance on
+        navigating public vs. international schools, admissions strategy for
+        elite institutions (ZIS, ISB, Ecolint), and the "School Run" geography.
+        Outlines the Swiss education ladder: Early Years (Kita/Daycare),
+        International Day Schools (IB/AP curriculum), and Elite Boarding Schools
+        (Le Rosey, Beau Soleil). Explains why expat families should hire
+        consultants for admissions advocacy, assessment preparation, and trial
+        days (Schnuppertage). Integration with Offlist.ch for school-zone
+        housing and Expat-Savvy.ch for family health insurance packages.
+        Provides typical tuition costs, starting ages, and curriculum overviews.
+    </div>
 </Layout>
-
-<style>
-    /* Smooth Scroll and Fade-in animations */
-    .animate-fade-in {
-        animation: fadeIn 1s ease-out forwards;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Custom shadow and ring effects */
-    .shadow-2xl {
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
-    }
-</style>

@@ -1,15 +1,16 @@
 ---
-import Navbar from '../components/layout/Navbar.astro';
-import Footer from '../components/layout/Footer.astro';
-import SEOHead from '../components/common/SEOHead.astro';
-import '../styles/global.css';
-import { ViewTransitions } from 'astro:transitions';
-import UniversalContactModal from '../components/common/UniversalContactModal.tsx';
-import GoogleTag from '../components/tracking/GoogleTag';
-import FacebookPixel from '../components/tracking/FacebookPixel';
-import CookieBanner from '../components/tracking/CookieBanner';
+import Navbar from "../components/layout/Navbar.astro";
+import Footer from "../components/layout/Footer.astro";
+import SEOHead from "../components/common/SEOHead.astro";
+import "../styles/global.css";
+import { ViewTransitions } from "astro:transitions";
+import UniversalContactModal from "../components/common/UniversalContactModal.tsx";
+import GlobalAssessmentModal from "../components/common/GlobalAssessmentModal.tsx";
+import GoogleTag from "../components/tracking/GoogleTag";
+import FacebookPixel from "../components/tracking/FacebookPixel";
+import CookieBanner from "../components/tracking/CookieBanner";
 // Expose stores immediately (side-effect import)
-import '../lib/expose-modal-stores.client.ts';
+import "../lib/expose-modal-stores.client.ts";
 
 export interface Props {
   title?: string;
@@ -32,18 +33,26 @@ export interface Props {
     description?: string;
     image?: string;
   };
-  navbarVariant?: 'transparent' | 'solid';
+  navbarVariant?: "transparent" | "solid";
+  footerTheme?: "light" | "dark";
 }
 
-const { 
-  title = 'ReloFinder.ch | Swiss Relocation Services for Expats',
-  description = 'Find the best relocation services, companies, and information about regions in Switzerland for expats looking to relocate.',
-  image = '/images/relofinder-og.jpg',
+const {
+  title = "ReloFinder.ch | Swiss Relocation Services for Expats",
+  description = "Find the best relocation services, companies, and information about regions in Switzerland for expats looking to relocate.",
+  image = "/images/relofinder-og.jpg",
   canonical,
-  keywords = ['relocation switzerland', 'swiss relocation services', 'moving to switzerland', 'expat services switzerland'],
+  keywords = [
+    "relocation switzerland",
+    "swiss relocation services",
+    "moving to switzerland",
+    "expat services switzerland",
+  ],
   schema,
   openGraph,
-  twitter
+  twitter,
+  navbarVariant,
+  footerTheme = "light",
 } = Astro.props;
 ---
 
@@ -56,10 +65,13 @@ const {
     <link rel="shortcut icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="facebook-domain-verification" content="bk6edk0v7p1c3csgv5u9h5ue059csw" />
-    
+    <meta
+      name="facebook-domain-verification"
+      content="bk6edk0v7p1c3csgv5u9h5ue059csw"
+    />
+
     <!-- Enhanced SEO Meta Tags -->
-    <SEOHead 
+    <SEOHead
       title={title}
       description={description}
       canonical={canonical}
@@ -69,400 +81,409 @@ const {
         title: openGraph?.title ?? title,
         description: openGraph?.description ?? description,
         image: openGraph?.image ?? image,
-        type: openGraph?.type ?? 'website',
-        url: openGraph?.url
+        type: openGraph?.type ?? "website",
+        url: openGraph?.url,
       }}
       twitter={{
-        card: twitter?.card ?? 'summary_large_image',
-        site: twitter?.site ?? '@relofinder',
+        card: twitter?.card ?? "summary_large_image",
+        site: twitter?.site ?? "@relofinder",
         title: twitter?.title ?? title,
         description: twitter?.description ?? description,
-        image: twitter?.image ?? image
+        image: twitter?.image ?? image,
       }}
     />
-    
+
     <!-- Fonts - Optimized for Performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <!-- Preload critical fonts -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"></noscript>
-    
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript
+      ><link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet"
+      /></noscript
+    >
+
     <!-- Preconnect to critical origins for LCP improvement -->
-    <link rel="preconnect" href="https://plausible.io">
-    <link rel="preconnect" href="https://res.cloudinary.com">
-    
+    <link rel="preconnect" href="https://plausible.io" />
+    <link rel="preconnect" href="https://res.cloudinary.com" />
+
     <!-- Resource hints for better performance -->
-    <link rel="dns-prefetch" href="//images.unsplash.com">
-    
+    <link rel="dns-prefetch" href="//images.unsplash.com" />
+
     <!-- Preload critical LCP image for mobile -->
-    <link rel="preload" as="image" href="https://res.cloudinary.com/dphbnwjtx/image/upload/w_400,h_300,c_fill,f_webp,q_auto:good/v1748002920/a-humorous-slightly-quirky-photograph-of_E3yQygvrSj2lK35PvdcPXA_jo8EU6MaTSePalCxA1yBzA_hnzcxp.webp" media="(max-width: 640px)">
-    <link rel="preload" as="image" href="https://res.cloudinary.com/dphbnwjtx/image/upload/w_600,h_400,c_fill,f_webp,q_auto:good/v1748002920/a-humorous-slightly-quirky-photograph-of_E3yQygvrSj2lK35PvdcPXA_jo8EU6MaTSePalCxA1yBzA_hnzcxp.webp" media="(min-width: 641px)">
-    
+    <link
+      rel="preload"
+      as="image"
+      href="https://res.cloudinary.com/dphbnwjtx/image/upload/w_400,h_300,c_fill,f_webp,q_auto:good/v1748002920/a-humorous-slightly-quirky-photograph-of_E3yQygvrSj2lK35PvdcPXA_jo8EU6MaTSePalCxA1yBzA_hnzcxp.webp"
+      media="(max-width: 640px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="https://res.cloudinary.com/dphbnwjtx/image/upload/w_600,h_400,c_fill,f_webp,q_auto:good/v1748002920/a-humorous-slightly-quirky-photograph-of_E3yQygvrSj2lK35PvdcPXA_jo8EU6MaTSePalCxA1yBzA_hnzcxp.webp"
+      media="(min-width: 641px)"
+    />
+
     <!-- Plausible Analytics (lightweight and privacy-friendly) -->
-    <script defer data-domain="relofinder.ch" src="https://plausible.io/js/script.js"></script>
+    <script
+      defer
+      data-domain="relofinder.ch"
+      src="https://plausible.io/js/script.js"></script>
+
+    <!-- View Transitions for smooth SPA-like navigation -->
+    <ViewTransitions />
   </head>
   <body class="min-h-screen flex flex-col bg-gray-50">
-    <Navbar variant={Astro.props.navbarVariant} />
-    
+    <Navbar variant={navbarVariant} />
+
     <main class="flex-grow">
       <slot />
     </main>
-    
-    <Footer />
+
+    <Footer theme={footerTheme} />
     <!-- Hidden marker div - always present in DOM for MutationObserver -->
-    <div id="relofinder-modal-marker" data-relofinder-modal="pending" style="display: none;" aria-hidden="true"></div>
-    
+    <div
+      id="relofinder-modal-marker"
+      data-relofinder-modal="pending"
+      style="display: none;"
+      aria-hidden="true"
+    >
+    </div>
+
     <!-- Use client:load to ensure React is ready before hydration -->
     <UniversalContactModal client:load />
+    <GlobalAssessmentModal client:load />
     <GoogleTag client:load />
     <FacebookPixel client:load />
     <CookieBanner client:load />
 
     <!-- Performance & Infrastructure: Ensure legacy SW are removed -->
     <script is:inline>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(registrations => {
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.getRegistrations().then((registrations) => {
           for (const registration of registrations) {
             registration.unregister();
-            console.log('♻️ Legacy Service Worker removed');
+            console.log("♻️ Legacy Service Worker removed");
           }
         });
       }
     </script>
-    
-    <!-- Global Modal Functions - Synchronous Setup Before React Loads -->
+
+    <!-- Global Modal Functions - Placeholder definitions for immediate availability -->
     <script is:inline>
-      // Initialize globals FIRST (before browser check) so functions are always defined
-      if (typeof window !== 'undefined') {
+      if (typeof window !== "undefined") {
         window.modalEventQueue = window.modalEventQueue || [];
         window.modalReady = false;
-        window.reactHydrationFailed = false;
-        
-        // Define functions immediately so they're always available
-        window.universalOpenModal = function(context) {
-          const resolvedContext =
-            context && typeof context === 'object'
-              ? context
-              : typeof context === 'string'
-                ? (context === 'corporate' ? { page: 'corporate' } : { page: 'legacy', topic: context })
-                : { page: 'home' };
 
-          console.log('📞 universalOpenModal called', resolvedContext);
-
-          if (window.modalReady && window.relofinderModalStores) {
-            window.relofinderModalStores.setContext(resolvedContext);
-            window.relofinderModalStores.setOpen(true);
-            return;
-          }
-
-          // Queue event until React is ready
-          console.log('⏳ Modal not ready, queuing context', resolvedContext);
-          window.modalEventQueue.push({ kind: 'open', payload: resolvedContext });
+        window.universalOpenModal = function (context) {
+          window.modalEventQueue.push({ kind: "open", payload: context });
         };
 
-        const legacyModalContextMap = {
-          'individual-lead-modal': { page: 'service', service: 'relocation' },
+        window.openAssessmentModal = function (
+          mode,
+          initialCanton,
+          initialService,
+        ) {
+          window.modalEventQueue.push({
+            kind: "openAssessment",
+            payload: { mode, initialCanton, initialService },
+          });
         };
 
-        window.openModal = function(legacyContext) {
-          console.log('📞 legacy openModal shim invoked with', legacyContext);
-
-          if (typeof legacyContext === 'string') {
-            const mappedContext = legacyModalContextMap[legacyContext] || { page: 'home', topic: legacyContext };
-            window.universalOpenModal(mappedContext);
-            return;
-          }
-
-          if (legacyContext && typeof legacyContext === 'object') {
-            window.universalOpenModal(legacyContext);
-            return;
-          }
-
-          window.universalOpenModal({ page: 'home' });
+        window.openModal = function (ctx) {
+          window.universalOpenModal(ctx);
         };
-        
-        window.closeModal = function() {
-          console.log('🚪 closeModal called');
-          
-          if (window.modalReady && window.relofinderModalStores) {
-            window.relofinderModalStores.setOpen(false);
-          } else {
-            window.modalEventQueue.push({ kind: 'close' });
-          }
+        window.closeModal = function () {
+          window.modalEventQueue.push({ kind: "close" });
         };
-      }
-      
-      // Guard all DOM access - only run in browser (SSR-safe)
-      if (typeof window === 'undefined' || typeof document === 'undefined') {
-        // SSR - exit early, do nothing
-      } else {
+
+        // Browser-only setup (SSR-safe)
         // Initialize modal system synchronously before React loads
         window.reactLoadPromise = null;
-        
+
         // Preload React to ensure it's ready before hydration
         if (!window.reactLoadPromise) {
           window.reactLoadPromise = new Promise((resolve) => {
-            // Check if React is already loaded
-            if (window.React || document.querySelector('script[src*="react"]')) {
+            if (
+              window.React ||
+              document.querySelector('script[src*="react"]')
+            ) {
               resolve();
               return;
             }
-            
-            // Wait for React to load (check every 50ms, max 5 seconds)
             let checks = 0;
             const checkReact = setInterval(() => {
               checks++;
-              if (window.React || document.querySelector('script[src*="react"]') || checks > 100) {
+              if (
+                window.React ||
+                document.querySelector('script[src*="react"]') ||
+                checks > 100
+              ) {
                 clearInterval(checkReact);
                 resolve();
               }
             }, 50);
           });
         }
-        
-        // Listen for React hydration errors and set up fallback event listeners
-        window.addEventListener('error', function(e) {
-        if (e.message && (e.message.includes('hydrating') || e.message.includes('unstable_now'))) {
-          console.error('🚨 React hydration error detected:', e.message);
-          window.reactHydrationFailed = true;
-          
-          // Set up event listeners that work even without React
-          const setupFallbackListeners = () => {
-            // Try to access nanostores via window (they might be exposed even if React fails)
-            const checkStores = setInterval(() => {
-              if (window.relofinderModalStores) {
-                console.log('✅ Found nanostores, setting up fallback listeners');
-                clearInterval(checkStores);
-                
-                // Set up listeners that use nanostores directly
-                window.addEventListener('openModal', function(e) {
-                  if (window.relofinderModalStores && e.detail) {
-                    console.log('🔔 Fallback: Opening modal via nanostores', e.detail);
-                    window.relofinderModalStores.setContext(e.detail);
-                    window.relofinderModalStores.setOpen(true);
-                  }
-                });
-                
-                window.addEventListener('closeModal', function() {
+
+        // Listen for React hydration errors
+        window.addEventListener(
+          "error",
+          function (e) {
+            if (
+              e.message &&
+              (e.message.includes("hydrating") ||
+                e.message.includes("unstable_now"))
+            ) {
+              console.error("🚨 React hydration error detected:", e.message);
+              window.reactHydrationFailed = true;
+
+              const setupFallbackListeners = () => {
+                const checkStores = setInterval(() => {
                   if (window.relofinderModalStores) {
-                    console.log('🔔 Fallback: Closing modal via nanostores');
-                    window.relofinderModalStores.setOpen(false);
+                    console.log(
+                      "✅ Found nanostores, setting up fallback listeners",
+                    );
+                    clearInterval(checkStores);
+                    window.addEventListener("openModal", function (ev) {
+                      if (window.relofinderModalStores && ev.detail) {
+                        window.relofinderModalStores.setContext(ev.detail);
+                        window.relofinderModalStores.setOpen(true);
+                      }
+                    });
+                    window.addEventListener("closeModal", function () {
+                      if (window.relofinderModalStores)
+                        window.relofinderModalStores.setOpen(false);
+                    });
                   }
-                });
-              }
-            }, 100);
-            
-            // Stop checking after 5 seconds
-            setTimeout(() => clearInterval(checkStores), 5000);
-          };
-          
-          setupFallbackListeners();
-          
-          // If React fails, mark as ready anyway after a delay to process queue
-          setTimeout(() => {
-            if (!window.modalReady) {
-              console.warn('⚠️ React hydration failed, forcing modal ready state');
-              const marker = document.getElementById('relofinder-modal-marker');
-              if (marker) {
-                marker.setAttribute('data-relofinder-modal', 'ready');
-              }
-              window.modalReady = true;
-              if (typeof window.processModalQueue === 'function') {
-                window.processModalQueue();
-              }
+                }, 100);
+                setTimeout(() => clearInterval(checkStores), 5000);
+              };
+              setupFallbackListeners();
+
+              setTimeout(() => {
+                if (!window.modalReady) {
+                  console.warn(
+                    "⚠️ React hydration failed, forcing modal ready state",
+                  );
+                  const marker = document.getElementById(
+                    "relofinder-modal-marker",
+                  );
+                  if (marker)
+                    marker.setAttribute("data-relofinder-modal", "ready");
+                  window.modalReady = true;
+                  if (typeof window.processModalQueue === "function")
+                    window.processModalQueue();
+                }
+              }, 2000);
             }
-          }, 2000);
-        }
-      }, true);
-      
-      const dispatchModalContext = (context) => {
-        try {
-          // Try to use nanostores directly if available (works even if React hasn't mounted)
-          if (window.relofinderModalStores) {
-            console.log('📦 Using nanostores directly');
-            window.relofinderModalStores.setContext(context);
-            window.relofinderModalStores.setOpen(true);
-            return true;
-          }
-          
-          // Fallback to event dispatch (requires React component to be mounted)
-          const event = new CustomEvent('openModal', { detail: context });
-          window.dispatchEvent(event);
-          return true;
-        } catch (error) {
-          console.error('❌ Failed to dispatch modal context', error);
-          return false;
-        }
-      };
-      
-      const dispatchCloseModal = () => {
-        try {
-          // Try to use nanostores directly if available
-          if (window.relofinderModalStores) {
-            window.relofinderModalStores.setOpen(false);
-            return true;
-          }
-          
-          // Fallback to event dispatch
-          const event = new CustomEvent('closeModal');
-          window.dispatchEvent(event);
-          return true;
-        } catch (error) {
-          console.error('❌ Failed to dispatch close modal', error);
-          return false;
-        }
-      };
+          },
+          true,
+        );
 
-      // Universal modal opener - queues events until React is ready
-      // MUST be exposed to window OUTSIDE IIFE so it's globally accessible
-      window.universalOpenModal = function(context) {
-        const resolvedContext =
-          context && typeof context === 'object'
-            ? context
-            : typeof context === 'string'
-              ? (context === 'corporate' ? { page: 'corporate' } : { page: 'legacy', topic: context })
-              : { page: 'home' };
-
-        console.log('📞 universalOpenModal called', resolvedContext);
-
-        if (window.modalReady) {
-          dispatchModalContext(resolvedContext);
-          return;
-        }
-
-        // Queue event until React is ready
-        console.log('⏳ Modal not ready, queuing context', resolvedContext);
-        window.modalEventQueue.push({ kind: 'open', payload: resolvedContext });
-      };
-
-      // Legacy compatibility for old openModal calls
-      const legacyModalContextMap = {
-        'individual-lead-modal': { page: 'service', service: 'relocation' },
-      };
-
-      window.openModal = function(legacyContext) {
-        console.log('📞 legacy openModal shim invoked with', legacyContext);
-
-        if (typeof legacyContext === 'string') {
-          const mappedContext = legacyModalContextMap[legacyContext] || { page: 'home', topic: legacyContext };
-          window.universalOpenModal(mappedContext);
-          return;
-        }
-
-        if (legacyContext && typeof legacyContext === 'object') {
-          window.universalOpenModal(legacyContext);
-          return;
-        }
-
-        window.universalOpenModal({ page: 'home' });
-      };
-      
-      window.closeModal = function() {
-        console.log('🚪 closeModal called');
-        
-        if (window.modalReady) {
-          dispatchCloseModal();
-        } else {
-          window.modalEventQueue.push({ kind: 'close' });
-        }
-      };
-      
-      // Process queued events when React component confirms readiness
-      window.processModalQueue = function() {
-        // Prevent double processing
-        if (window.modalReady && window.modalEventQueue.length === 0) {
-          return;
-        }
-        
-        console.log('🚀 Processing modal queue:', window.modalEventQueue.length, 'events');
-        window.modalReady = true;
-        
-        const queuedItems = [...window.modalEventQueue];
-        window.modalEventQueue = [];
-
-        queuedItems.forEach(item => {
-          if (item?.kind === 'open') {
-            dispatchModalContext(item.payload);
-          } else if (item?.kind === 'close') {
-            dispatchCloseModal();
-          }
-        });
-      };
-      
-      // MutationObserver to detect when React component mounts in DOM
-      const observeReactMount = () => {
-        let checkCount = 0;
-        const maxChecks = 40; // 20 seconds max for mobile
-        
-        const checkAndProcess = () => {
-          // Check both the marker div and any React-rendered markers
-          const markerDiv = document.getElementById('relofinder-modal-marker');
-          const reactMarker = document.querySelector('[data-relofinder-modal="ready"]');
-          const marker = reactMarker || markerDiv;
-          
-          if (marker && marker.getAttribute('data-relofinder-modal') === 'ready' && !window.modalReady) {
-            console.log('✅ Modal marker detected in DOM');
-            window.modalReady = true;
-            if (typeof window.processModalQueue === 'function') {
-              window.processModalQueue();
+        const dispatchModalContext = (context) => {
+          try {
+            if (window.relofinderModalStores) {
+              window.relofinderModalStores.setContext(context);
+              window.relofinderModalStores.setOpen(true);
+              return true;
             }
+            const event = new CustomEvent("openModal", { detail: context });
+            window.dispatchEvent(event);
             return true;
+          } catch (error) {
+            console.error("❌ Failed to dispatch modal context", error);
+            return false;
           }
-          return false;
         };
 
-        const observer = new MutationObserver((mutations, obs) => {
-          if (checkAndProcess()) {
-            obs.disconnect();
-            if (checkInterval) clearInterval(checkInterval);
+        const dispatchCloseModal = () => {
+          try {
+            if (window.relofinderModalStores) {
+              window.relofinderModalStores.setOpen(false);
+              return true;
+            }
+            const event = new CustomEvent("closeModal");
+            window.dispatchEvent(event);
+            return true;
+          } catch (error) {
+            console.error("❌ Failed to dispatch close modal", error);
+            return false;
           }
-        });
+        };
 
-        // Start observing immediately
-        observer.observe(document.body, {
-          childList: true,
-          subtree: true,
-          attributes: true,
-          attributeFilter: ['data-relofinder-modal']
-        });
+        // Unified Modal Functions (Browser version)
+        window.universalOpenModal = function (context) {
+          const resolvedContext =
+            context && typeof context === "object"
+              ? context
+              : typeof context === "string"
+                ? context === "corporate"
+                  ? { page: "corporate" }
+                  : { page: "legacy", topic: context }
+                : { page: "home" };
 
-        // Check immediately
-        if (checkAndProcess()) {
-          observer.disconnect();
-        }
+          console.log("📞 universalOpenModal called", resolvedContext);
+          if (window.modalReady) {
+            dispatchModalContext(resolvedContext);
+            return;
+          }
+          window.modalEventQueue.push({
+            kind: "open",
+            payload: resolvedContext,
+          });
+        };
 
-        // Periodic check for slow devices or hydration failures
-        const checkInterval = setInterval(() => {
-          checkCount++;
-          if (checkAndProcess()) {
-            observer.disconnect();
-            clearInterval(checkInterval);
-          } else if (checkCount >= maxChecks) {
-            // Force ready state if React never mounts (hydration failure)
-            console.warn('⚠️ React component not detected after 20 seconds, forcing ready state');
-            const markerDiv = document.getElementById('relofinder-modal-marker');
-            if (markerDiv && !window.modalReady) {
-              markerDiv.setAttribute('data-relofinder-modal', 'ready');
-              window.modalReady = true;
-              if (typeof window.processModalQueue === 'function') {
-                window.processModalQueue();
+        window.openAssessmentModal = function (
+          mode,
+          initialCanton,
+          initialService,
+        ) {
+          console.log("📞 openAssessmentModal called", {
+            mode,
+            initialCanton,
+            initialService,
+          });
+          if (
+            window.modalReady &&
+            window.relofinderModalStores?.setAssessmentContext
+          ) {
+            window.relofinderModalStores.setAssessmentContext({
+              mode,
+              initialCanton,
+              initialService,
+            });
+            window.relofinderModalStores.setAssessmentOpen(true);
+            return;
+          }
+          window.modalEventQueue.push({
+            kind: "openAssessment",
+            payload: { mode, initialCanton, initialService },
+          });
+        };
+
+        const legacyModalContextMap = {
+          "individual-lead-modal": { page: "service", service: "relocation" },
+        };
+
+        window.openModal = function (legacyContext) {
+          console.log("📞 legacy openModal shim invoked with", legacyContext);
+          if (typeof legacyContext === "string") {
+            const mappedContext = legacyModalContextMap[legacyContext] || {
+              page: "home",
+              topic: legacyContext,
+            };
+            window.universalOpenModal(mappedContext);
+          } else if (legacyContext && typeof legacyContext === "object") {
+            window.universalOpenModal(legacyContext);
+          } else {
+            window.universalOpenModal({ page: "home" });
+          }
+        };
+
+        window.closeModal = function () {
+          console.log("🚪 closeModal called");
+          if (window.modalReady) dispatchCloseModal();
+          else window.modalEventQueue.push({ kind: "close" });
+        };
+
+        window.processModalQueue = function () {
+          if (window.modalReady && window.modalEventQueue.length === 0) return;
+          console.log(
+            "🚀 Processing modal queue:",
+            window.modalEventQueue.length,
+            "events",
+          );
+          window.modalReady = true;
+          const queuedItems = [...window.modalEventQueue];
+          window.modalEventQueue = [];
+          queuedItems.forEach((item) => {
+            if (item?.kind === "open") dispatchModalContext(item.payload);
+            else if (item?.kind === "close") dispatchCloseModal();
+            else if (item?.kind === "openAssessment") {
+              if (window.relofinderModalStores?.setAssessmentContext) {
+                window.relofinderModalStores.setAssessmentContext(item.payload);
+                window.relofinderModalStores.setAssessmentOpen(true);
               }
             }
-            observer.disconnect();
-            clearInterval(checkInterval);
-          }
-        }, 500);
-      };
+          });
+        };
 
-      // Start observing when script loads
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', observeReactMount);
-      } else {
-        observeReactMount();
+        const observeReactMount = () => {
+          let checkCount = 0;
+          const maxChecks = 40;
+          const checkAndProcess = () => {
+            const markerDiv = document.getElementById(
+              "relofinder-modal-marker",
+            );
+            const reactMarker = document.querySelector(
+              '[data-relofinder-modal="ready"]',
+            );
+            const marker = reactMarker || markerDiv;
+            if (
+              marker &&
+              marker.getAttribute("data-relofinder-modal") === "ready" &&
+              !window.modalReady
+            ) {
+              window.modalReady = true;
+              if (typeof window.processModalQueue === "function")
+                window.processModalQueue();
+              return true;
+            }
+            return false;
+          };
+
+          const observer = new MutationObserver(() => {
+            if (checkAndProcess()) {
+              observer.disconnect();
+              if (checkInterval) clearInterval(checkInterval);
+            }
+          });
+
+          observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ["data-relofinder-modal"],
+          });
+          if (checkAndProcess()) observer.disconnect();
+
+          const checkInterval = setInterval(() => {
+            checkCount++;
+            if (checkAndProcess()) {
+              observer.disconnect();
+              clearInterval(checkInterval);
+            } else if (checkCount >= maxChecks) {
+              console.warn(
+                "⚠️ React component not detected after 20 seconds, forcing ready state",
+              );
+              const markerDiv = document.getElementById(
+                "relofinder-modal-marker",
+              );
+              if (markerDiv && !window.modalReady) {
+                markerDiv.setAttribute("data-relofinder-modal", "ready");
+                window.modalReady = true;
+                if (typeof window.processModalQueue === "function")
+                  window.processModalQueue();
+              }
+              observer.disconnect();
+              clearInterval(checkInterval);
+            }
+          }, 500);
+        };
+
+        if (document.readyState === "loading")
+          document.addEventListener("DOMContentLoaded", observeReactMount);
+        else observeReactMount();
       }
-      } // End browser check
     </script>
   </body>
 </html>

@@ -1,10 +1,11 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import SchemaMarkup from '../../components/common/SchemaMarkup.astro';
-import ServiceHero from '../../components/services/ServiceHero.astro';
-import PlatformDisclaimer from '../../components/common/PlatformDisclaimer.astro';
-import ServiceRelated from '../../components/services/ServiceRelated.astro';
-import ServiceBlog from '../../components/services/ServiceBlog.astro';
+import Layout from "../../layouts/Layout.astro";
+import SchemaMarkup from "../../components/common/SchemaMarkup.astro";
+import ServiceHero from "../../components/services/ServiceHero.astro";
+import PlatformDisclaimer from "../../components/common/PlatformDisclaimer.astro";
+import ServiceRelated from "../../components/services/ServiceRelated.astro";
+import ServiceBlog from "../../components/services/ServiceBlog.astro";
+import { Landmark } from "lucide-react";
 
 interface BlogPost {
   title: string;
@@ -32,202 +33,215 @@ const relatedBlogs: BlogPost[] = [
   {
     title: "Opening a Swiss Bank Account as an Expat",
     slug: "swiss-bank-account-expat-guide",
-    excerpt: "Complete guide to opening bank accounts in Switzerland including required documents, best banks for expats, and account types.",
+    excerpt:
+      "Complete guide to opening bank accounts in Switzerland including required documents, best banks for expats, and account types.",
     category: "Banking",
-    readTime: "12 min read"
+    readTime: "12 min read",
   },
   {
     title: "Swiss Tax System for Expats",
     slug: "swiss-tax-guide-expats",
-    excerpt: "Essential guide to Swiss taxation including income tax, wealth tax, municipal taxes, and tax optimization strategies for new residents.",
+    excerpt:
+      "Essential guide to Swiss taxation including income tax, wealth tax, municipal taxes, and tax optimization strategies for new residents.",
     category: "Taxation",
-    readTime: "15 min read"
+    readTime: "15 min read",
   },
   {
     title: "Wealth Management in Switzerland",
     slug: "wealth-management-switzerland",
-    excerpt: "Professional wealth management services, investment strategies, and financial planning for expats and high-net-worth individuals.",
+    excerpt:
+      "Professional wealth management services, investment strategies, and financial planning for expats and high-net-worth individuals.",
     category: "Investments",
-    readTime: "10 min read"
+    readTime: "10 min read",
   },
   {
     title: "Swiss Banking Fees and Hidden Costs",
     slug: "swiss-banking-fees",
-    excerpt: "Understanding Swiss banking fees, transaction costs, account maintenance charges, and how to minimize banking expenses.",
+    excerpt:
+      "Understanding Swiss banking fees, transaction costs, account maintenance charges, and how to minimize banking expenses.",
     category: "Finance",
-    readTime: "8 min read"
-  }
+    readTime: "8 min read",
+  },
 ];
 
 const companies: ServiceCompany[] = [
   {
     name: "Prime Relocation",
-    description: "Official ReloFinder partner offering expert banking setup, account opening assistance, and financial advisory for expats relocating to Switzerland",
+    description:
+      "Official ReloFinder partner offering expert banking setup, account opening assistance, and financial advisory for expats relocating to Switzerland",
     rating: 4.8,
     reviews: 53,
-    featured: true
+    featured: true,
   },
   {
     name: "UBS Switzerland",
-    description: "Switzerland's largest bank with comprehensive expat banking services and English-speaking advisors",
+    description:
+      "Switzerland's largest bank with comprehensive expat banking services and English-speaking advisors",
     rating: 4.6,
-    reviews: 2847
+    reviews: 2847,
   },
   {
     name: "Credit Suisse",
-    description: "Global banking services with specialized expat packages and multilingual support",
+    description:
+      "Global banking services with specialized expat packages and multilingual support",
     rating: 4.5,
-    reviews: 1923
-  }
+    reviews: 1923,
+  },
 ];
 
 const relatedServices: RelatedService[] = [
   {
     title: "Housing Services",
-    description: "Find your perfect Swiss apartment with expert housing search assistance",
-    link: "/services/housing"
+    description:
+      "Find your perfect Swiss apartment with expert housing search assistance",
+    link: "/services/housing",
   },
   {
     title: "Visa & Immigration",
-    description: "Navigate Swiss work permits and residence requirements for banking",
-    link: "/services/immigration"
+    description:
+      "Navigate Swiss work permits and residence requirements for banking",
+    link: "/services/immigration",
   },
   {
     title: "Advisory Services",
-    description: "Strategic financial planning and comprehensive relocation consulting",
-    link: "/services/advisory"
+    description:
+      "Strategic financial planning and comprehensive relocation consulting",
+    link: "/services/advisory",
   },
   {
     title: "Tax Services",
     description: "Expert Swiss tax planning and compliance guidance for expats",
-    link: "/services/finance"
-  }
+    link: "/services/finance",
+  },
 ];
 
 // SEO Metadata
-const title = "Banking & Finance Services Switzerland | Swiss Bank Account Setup | ReloFinder";
-const description = "Expert banking and financial services for expats moving to Switzerland. Open Swiss bank accounts, get tax advice, wealth management, and financial planning from trusted advisors.";
+const title =
+  "Banking & Finance Services Switzerland | Swiss Bank Account Setup | ReloFinder";
+const description =
+  "Expert banking and financial services for expats moving to Switzerland. Open Swiss bank accounts, get tax advice, wealth management, and financial planning from trusted advisors.";
 const canonicalURL = "https://relofinder.ch/services/finance";
 
 // Schema Data
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
+  itemListElement: [
     {
       "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://relofinder.ch"
+      position: 1,
+      name: "Home",
+      item: "https://relofinder.ch",
     },
     {
       "@type": "ListItem",
-      "position": 2,
-      "name": "Services",
-      "item": "https://relofinder.ch/services"
+      position: 2,
+      name: "Services",
+      item: "https://relofinder.ch/services",
     },
     {
       "@type": "ListItem",
-      "position": 3,
-      "name": "Banking & Finance",
-      "item": "https://relofinder.ch/services/finance"
-    }
-  ]
+      position: 3,
+      name: "Banking & Finance",
+      item: "https://relofinder.ch/services/finance",
+    },
+  ],
 };
 
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Swiss Banking & Finance Services",
-  "description": "Professional banking setup, account opening, tax advisory, and wealth management services for expats relocating to Switzerland",
-  "provider": {
+  name: "Swiss Banking & Finance Services",
+  description:
+    "Professional banking setup, account opening, tax advisory, and wealth management services for expats relocating to Switzerland",
+  provider: {
     "@type": "Organization",
-    "name": "ReloFinder",
-    "url": "https://relofinder.ch"
+    name: "ReloFinder",
+    url: "https://relofinder.ch",
   },
-  "areaServed": {
+  areaServed: {
     "@type": "Country",
-    "name": "Switzerland"
+    name: "Switzerland",
   },
-  "serviceType": "Financial Services"
+  serviceType: "Financial Services",
 };
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
+  mainEntity: [
     {
       "@type": "Question",
-      "name": "Can I open a Swiss bank account without residency?",
-      "acceptedAnswer": {
+      name: "Can I open a Swiss bank account without residency?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Generally, you need proof of Swiss residency (residence permit) to open a standard bank account. However, some banks offer account opening for incoming expats with a job contract and proof of relocation. Digital banks like Neon and Yuh may have more flexible requirements."
-      }
+        text: "Generally, you need proof of Swiss residency (residence permit) to open a standard bank account. However, some banks offer account opening for incoming expats with a job contract and proof of relocation. Digital banks like Neon and Yuh may have more flexible requirements.",
+      },
     },
     {
       "@type": "Question",
-      "name": "What documents do I need to open a Swiss bank account?",
-      "acceptedAnswer": {
+      name: "What documents do I need to open a Swiss bank account?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "You typically need: valid passport or ID, Swiss residence permit (B, C, or L permit), proof of address in Switzerland (rental contract or utility bill), and sometimes proof of income or employment contract. Requirements vary by bank."
-      }
+        text: "You typically need: valid passport or ID, Swiss residence permit (B, C, or L permit), proof of address in Switzerland (rental contract or utility bill), and sometimes proof of income or employment contract. Requirements vary by bank.",
+      },
     },
     {
       "@type": "Question",
-      "name": "How much does Swiss banking cost?",
-      "acceptedAnswer": {
+      name: "How much does Swiss banking cost?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Monthly account fees range from CHF 0 (digital banks like Neon) to CHF 5-15 for traditional banks. Additional costs include card fees (CHF 0-50/year), transaction fees, foreign exchange fees, and ATM withdrawal charges outside your bank's network."
-      }
+        text: "Monthly account fees range from CHF 0 (digital banks like Neon) to CHF 5-15 for traditional banks. Additional costs include card fees (CHF 0-50/year), transaction fees, foreign exchange fees, and ATM withdrawal charges outside your bank's network.",
+      },
     },
     {
       "@type": "Question",
-      "name": "What is Swiss wealth tax?",
-      "acceptedAnswer": {
+      name: "What is Swiss wealth tax?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Switzerland levies an annual wealth tax (Vermögenssteuer) on your worldwide assets based on net worth. Rates vary by canton (0.3%-1% typically) with exemptions for lower wealth brackets. This is separate from income tax and applies to savings, investments, real estate, and other assets."
-      }
+        text: "Switzerland levies an annual wealth tax (Vermögenssteuer) on your worldwide assets based on net worth. Rates vary by canton (0.3%-1% typically) with exemptions for lower wealth brackets. This is separate from income tax and applies to savings, investments, real estate, and other assets.",
+      },
     },
     {
       "@type": "Question",
-      "name": "Should I use a Swiss financial advisor?",
-      "acceptedAnswer": {
+      name: "Should I use a Swiss financial advisor?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Yes, especially for complex situations. Swiss financial advisors help with tax optimization, investment strategies, retirement planning (pillar 2 & 3a), and navigating Swiss banking requirements. They're particularly valuable for high earners, entrepreneurs, and those with international assets."
-      }
+        text: "Yes, especially for complex situations. Swiss financial advisors help with tax optimization, investment strategies, retirement planning (pillar 2 & 3a), and navigating Swiss banking requirements. They're particularly valuable for high earners, entrepreneurs, and those with international assets.",
+      },
     },
     {
       "@type": "Question",
-      "name": "What's the difference between traditional and digital Swiss banks?",
-      "acceptedAnswer": {
+      name: "What's the difference between traditional and digital Swiss banks?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Traditional banks (UBS, Credit Suisse, PostFinance) offer full services, physical branches, and personal advisors but charge higher fees. Digital banks (Neon, Yuh, Revolut) have lower/no fees, mobile-first interfaces, but limited services and no physical branches. Choose based on your needs."
-      }
+        text: "Traditional banks (UBS, Credit Suisse, PostFinance) offer full services, physical branches, and personal advisors but charge higher fees. Digital banks (Neon, Yuh, Revolut) have lower/no fees, mobile-first interfaces, but limited services and no physical branches. Choose based on your needs.",
+      },
     },
     {
       "@type": "Question",
-      "name": "How long does it take to open a Swiss bank account?",
-      "acceptedAnswer": {
+      name: "How long does it take to open a Swiss bank account?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Digital banks: 1-7 days with online application. Traditional banks: 1-3 weeks including in-person appointment, document verification, and compliance checks. Expedited services through relocation partners can reduce wait times significantly."
-      }
+        text: "Digital banks: 1-7 days with online application. Traditional banks: 1-3 weeks including in-person appointment, document verification, and compliance checks. Expedited services through relocation partners can reduce wait times significantly.",
+      },
     },
     {
       "@type": "Question",
-      "name": "Are Swiss banks safe for expats?",
-      "acceptedAnswer": {
+      name: "Are Swiss banks safe for expats?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Yes, extremely safe. Swiss banks are protected by deposit insurance (esisuisse) covering up to CHF 100,000 per bank. Switzerland has strong banking regulations, political stability, and a long tradition of banking security, making it one of the world's safest banking systems."
-      }
-    }
-  ]
+        text: "Yes, extremely safe. Swiss banks are protected by deposit insurance (esisuisse) covering up to CHF 100,000 per bank. Switzerland has strong banking regulations, political stability, and a long tradition of banking security, making it one of the world's safest banking systems.",
+      },
+    },
+  ],
 };
 ---
 
 <Layout title={title} description={description}>
-  <SchemaMarkup schema={breadcrumbSchema} />
-  <SchemaMarkup schema={serviceSchema} />
-  <SchemaMarkup schema={faqSchema} />
+  <SchemaMarkup type="breadcrumb" data={breadcrumbSchema} />
+  <SchemaMarkup type="service" data={serviceSchema} />
+  <SchemaMarkup type="faq" data={faqSchema} />
 
   <!-- Hero Section -->
   <ServiceHero
@@ -235,6 +249,7 @@ const faqSchema = {
     subtitle="Open Swiss Bank Accounts, Get Expert Tax Advice & Financial Planning"
     description="Navigate Swiss banking, taxation, and wealth management with confidence. Connect with trusted financial advisors and banks that understand expat needs."
     badge="Financial Services"
+    icon={Landmark}
   />
 
   <!-- CTA After Hero -->
@@ -245,10 +260,11 @@ const faqSchema = {
           Ready to Set Up Your Swiss Banking?
         </h2>
         <p class="text-lg text-gray-600 mb-8">
-          Get connected with expert financial advisors who specialize in expat banking and wealth management
+          Get connected with expert financial advisors who specialize in expat
+          banking and wealth management
         </p>
         <button
-          onclick="universalOpenModal({page: 'finance_service', service: 'finance'})"
+          onclick="window.openAssessmentModal('finance')"
           class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-coral-500 to-coral-600 rounded-xl hover:from-coral-600 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
         >
           Get a Free Consultation with our Preferred Partner
@@ -265,78 +281,172 @@ const faqSchema = {
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-12">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+          <span
+            class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4"
+          >
             The Challenge
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Why Swiss Banking is Complex for <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Expats</span>
+            Why Swiss Banking is Complex for <span
+              class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
+              >Expats</span
+            >
           </h2>
           <p class="text-xl text-gray-600">
-            Switzerland's banking system is world-renowned, but navigating it as a newcomer presents unique challenges
+            Switzerland's banking system is world-renowned, but navigating it as
+            a newcomer presents unique challenges
           </p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
-          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
-            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          <div
+            class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Strict Documentation Requirements</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Strict Documentation Requirements
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Swiss banks require extensive documentation including residence permits, proof of address, employment contracts, and source of funds. Missing or incorrect documents cause delays or rejections.
+              Swiss banks require extensive documentation including residence
+              permits, proof of address, employment contracts, and source of
+              funds. Missing or incorrect documents cause delays or rejections.
             </p>
           </div>
 
-          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
-            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <div
+            class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Complex Fee Structures</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Complex Fee Structures
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Banking fees vary dramatically by institution—from free digital banks to traditional banks charging CHF 10-30/month plus transaction fees. Hidden costs add up quickly without expert guidance.
+              Banking fees vary dramatically by institution—from free digital
+              banks to traditional banks charging CHF 10-30/month plus
+              transaction fees. Hidden costs add up quickly without expert
+              guidance.
             </p>
           </div>
 
-          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
-            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          <div
+            class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Multi-Level Taxation</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Multi-Level Taxation
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Swiss tax system operates on federal, cantonal, and municipal levels with wealth tax on assets. Tax rates vary by location (8-45% combined) requiring strategic planning for optimization.
+              Swiss tax system operates on federal, cantonal, and municipal
+              levels with wealth tax on assets. Tax rates vary by location
+              (8-45% combined) requiring strategic planning for optimization.
             </p>
           </div>
 
-          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
-            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <div
+            class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Pension System Complexity</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Pension System Complexity
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Understanding Switzerland's 3-pillar pension system (state pension, occupational pension, private savings) is crucial for long-term financial planning and tax advantages.
+              Understanding Switzerland's 3-pillar pension system (state
+              pension, occupational pension, private savings) is crucial for
+              long-term financial planning and tax advantages.
             </p>
           </div>
         </div>
 
-        <div class="mt-12 p-8 bg-gradient-to-br from-primary-50 via-white to-red-50 rounded-2xl border-2 border-primary-100">
+        <div
+          class="mt-12 p-8 bg-gradient-to-br from-primary-50 via-white to-red-50 rounded-2xl border-2 border-primary-100"
+        >
           <div class="flex items-start">
             <div class="flex-shrink-0">
-              <svg class="w-8 h-8 text-coral-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+              <svg
+                class="w-8 h-8 text-coral-500"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                  clip-rule="evenodd"></path>
               </svg>
             </div>
             <div class="ml-4">
-              <h4 class="text-xl font-bold text-gray-900 mb-2">Expert Insight</h4>
+              <h4 class="text-xl font-bold text-gray-900 mb-2">
+                Expert Insight
+              </h4>
               <p class="text-gray-700 leading-relaxed">
-                <strong>Without proper guidance, expats often:</strong> Choose wrong bank types for their needs, miss tax optimization opportunities, fail to open accounts before arrival causing housing application delays, overpay banking fees, or misunderstand pension contributions. Professional advisory saves thousands in the first year alone.
+                <strong>Without proper guidance, expats often:</strong> Choose wrong
+                bank types for their needs, miss tax optimization opportunities, fail
+                to open accounts before arrival causing housing application delays,
+                overpay banking fees, or misunderstand pension contributions. Professional
+                advisory saves thousands in the first year alone.
               </p>
             </div>
           </div>
@@ -350,97 +460,175 @@ const faqSchema = {
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+          <span
+            class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4"
+          >
             Our Solution
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            How <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">ReloFinder</span> Simplifies Swiss Banking
+            How <span
+              class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
+              >ReloFinder</span
+            > Simplifies Swiss Banking
           </h2>
           <p class="text-xl text-gray-600">
-            We connect you with trusted financial advisors and banks that specialize in expat services
+            We connect you with trusted financial advisors and banks that
+            specialize in expat services
           </p>
         </div>
 
         <div class="space-y-6">
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="flex items-start">
               <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg"
+                >
                   1
                 </div>
               </div>
               <div class="ml-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">Bank Account Setup Assistance</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                  Bank Account Setup Assistance
+                </h3>
                 <p class="text-gray-600 leading-relaxed mb-4">
-                  Get personalized recommendations for the best bank based on your needs (traditional vs. digital, fee structures, services). Our partners help with document preparation, application process, and expedited account opening.
+                  Get personalized recommendations for the best bank based on
+                  your needs (traditional vs. digital, fee structures,
+                  services). Our partners help with document preparation,
+                  application process, and expedited account opening.
                 </p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Document Checklist</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Bank Comparison</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Application Support</span>
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Document Checklist</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Bank Comparison</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Application Support</span
+                  >
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="flex items-start">
               <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg"
+                >
                   2
                 </div>
               </div>
               <div class="ml-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">Tax Advisory & Optimization</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                  Tax Advisory & Optimization
+                </h3>
                 <p class="text-gray-600 leading-relaxed mb-4">
-                  Understand your tax obligations across federal, cantonal, and municipal levels. Our advisors help with tax declaration, wealth tax planning, deduction optimization, and canton selection strategies for tax efficiency.
+                  Understand your tax obligations across federal, cantonal, and
+                  municipal levels. Our advisors help with tax declaration,
+                  wealth tax planning, deduction optimization, and canton
+                  selection strategies for tax efficiency.
                 </p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Tax Planning</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Declaration Support</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Canton Comparison</span>
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Tax Planning</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Declaration Support</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Canton Comparison</span
+                  >
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="flex items-start">
               <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg"
+                >
                   3
                 </div>
               </div>
               <div class="ml-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">Wealth & Investment Management</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                  Wealth & Investment Management
+                </h3>
                 <p class="text-gray-600 leading-relaxed mb-4">
-                  Access professional wealth management services including investment portfolio construction, pension pillar 3a/3b optimization, real estate investment advisory, and long-term financial planning for Swiss residents.
+                  Access professional wealth management services including
+                  investment portfolio construction, pension pillar 3a/3b
+                  optimization, real estate investment advisory, and long-term
+                  financial planning for Swiss residents.
                 </p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Investment Strategy</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Pension Planning</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Asset Allocation</span>
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Investment Strategy</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Pension Planning</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Asset Allocation</span
+                  >
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="flex items-start">
               <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg"
+                >
                   4
                 </div>
               </div>
               <div class="ml-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">Mortgage & Property Finance</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                  Mortgage & Property Finance
+                </h3>
                 <p class="text-gray-600 leading-relaxed mb-4">
-                  Explore Swiss mortgage options for property purchase including affordability calculations, mortgage comparison (fixed vs. variable), application process guidance, and connection to competitive lenders.
+                  Explore Swiss mortgage options for property purchase including
+                  affordability calculations, mortgage comparison (fixed vs.
+                  variable), application process guidance, and connection to
+                  competitive lenders.
                 </p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Mortgage Advisory</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Affordability Check</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Lender Comparison</span>
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Mortgage Advisory</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Affordability Check</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Lender Comparison</span
+                  >
                 </div>
               </div>
             </div>
@@ -458,10 +646,11 @@ const faqSchema = {
           Need Expert Banking Guidance?
         </h2>
         <p class="text-lg text-gray-600 mb-8">
-          Connect with financial advisors who understand expat needs and Swiss banking requirements
+          Connect with financial advisors who understand expat needs and Swiss
+          banking requirements
         </p>
         <button
-          onclick="universalOpenModal({page: 'finance_service', service: 'finance'})"
+          onclick="window.openAssessmentModal('finance')"
           class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-coral-500 to-coral-600 rounded-xl hover:from-coral-600 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
         >
           Get a Free Consultation with our Preferred Partner
@@ -478,20 +667,28 @@ const faqSchema = {
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+          <span
+            class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4"
+          >
             Regional Insights
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Banking & Finance by <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Swiss City</span>
+            Banking & Finance by <span
+              class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
+              >Swiss City</span
+            >
           </h2>
           <p class="text-xl text-gray-600">
-            Financial services and tax considerations vary significantly by location
+            Financial services and tax considerations vary significantly by
+            location
           </p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-8">
           <!-- Zurich -->
-          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="bg-gradient-to-r from-coral-500 to-coral-600 p-6">
               <h3 class="text-2xl font-bold text-white mb-2">Zürich</h3>
               <p class="text-primary-100">Financial Capital of Switzerland</p>
@@ -500,35 +697,62 @@ const faqSchema = {
               <div class="space-y-4">
                 <div>
                   <h4 class="font-bold text-gray-900 mb-2 flex items-center">
-                    <svg class="w-5 h-5 text-coral-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Banking Hub
                   </h4>
                   <p class="text-gray-600 leading-relaxed ml-7">
-                    Home to UBS, Credit Suisse headquarters and 300+ international banks. Widest range of banking services, wealth management firms, and English-speaking advisors.
+                    Home to UBS, Credit Suisse headquarters and 300+
+                    international banks. Widest range of banking services,
+                    wealth management firms, and English-speaking advisors.
                   </p>
                 </div>
                 <div>
                   <h4 class="font-bold text-gray-900 mb-2 flex items-center">
-                    <svg class="w-5 h-5 text-coral-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Tax Considerations
                   </h4>
                   <p class="text-gray-600 leading-relaxed ml-7">
-                    Competitive cantonal tax rates (combined ~22-30% for middle income). Municipal variations between city center and suburbs. Wealth tax 0.3-0.7%.
+                    Competitive cantonal tax rates (combined ~22-30% for middle
+                    income). Municipal variations between city center and
+                    suburbs. Wealth tax 0.3-0.7%.
                   </p>
                 </div>
                 <div>
                   <h4 class="font-bold text-gray-900 mb-2 flex items-center">
-                    <svg class="w-5 h-5 text-coral-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Best For
                   </h4>
                   <p class="text-gray-600 leading-relaxed ml-7">
-                    Finance professionals, corporate executives, high-net-worth individuals seeking premium wealth management and private banking services.
+                    Finance professionals, corporate executives, high-net-worth
+                    individuals seeking premium wealth management and private
+                    banking services.
                   </p>
                 </div>
               </div>
@@ -536,7 +760,9 @@ const faqSchema = {
           </div>
 
           <!-- Geneva -->
-          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="bg-gradient-to-r from-coral-500 to-coral-600 p-6">
               <h3 class="text-2xl font-bold text-white mb-2">Geneva</h3>
               <p class="text-primary-100">International Finance Hub</p>
@@ -545,35 +771,63 @@ const faqSchema = {
               <div class="space-y-4">
                 <div>
                   <h4 class="font-bold text-gray-900 mb-2 flex items-center">
-                    <svg class="w-5 h-5 text-coral-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Private Banking Excellence
                   </h4>
                   <p class="text-gray-600 leading-relaxed ml-7">
-                    Global private banking center with Pictet, Lombard Odier, and international bank branches. Strong focus on wealth management for international clients and diplomats.
+                    Global private banking center with Pictet, Lombard Odier,
+                    and international bank branches. Strong focus on wealth
+                    management for international clients and diplomats.
                   </p>
                 </div>
                 <div>
                   <h4 class="font-bold text-gray-900 mb-2 flex items-center">
-                    <svg class="w-5 h-5 text-coral-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Tax Environment
                   </h4>
                   <p class="text-gray-600 leading-relaxed ml-7">
-                    Higher cantonal rates than Zurich (combined ~25-35%). Lump-sum taxation options for qualifying residents. Cross-border workers (France) have special tax considerations.
+                    Higher cantonal rates than Zurich (combined ~25-35%).
+                    Lump-sum taxation options for qualifying residents.
+                    Cross-border workers (France) have special tax
+                    considerations.
                   </p>
                 </div>
                 <div>
                   <h4 class="font-bold text-gray-900 mb-2 flex items-center">
-                    <svg class="w-5 h-5 text-coral-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Best For
                   </h4>
                   <p class="text-gray-600 leading-relaxed ml-7">
-                    International organization staff, private banking clients, entrepreneurs seeking access to French market, wealth preservation focus.
+                    International organization staff, private banking clients,
+                    entrepreneurs seeking access to French market, wealth
+                    preservation focus.
                   </p>
                 </div>
               </div>
@@ -581,7 +835,9 @@ const faqSchema = {
           </div>
 
           <!-- Zug -->
-          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="bg-gradient-to-r from-coral-500 to-coral-600 p-6">
               <h3 class="text-2xl font-bold text-white mb-2">Zug</h3>
               <p class="text-primary-100">Tax-Optimized Canton</p>
@@ -590,35 +846,62 @@ const faqSchema = {
               <div class="space-y-4">
                 <div>
                   <h4 class="font-bold text-gray-900 mb-2 flex items-center">
-                    <svg class="w-5 h-5 text-coral-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Crypto Valley
                   </h4>
                   <p class="text-gray-600 leading-relaxed ml-7">
-                    Leading cryptocurrency and blockchain hub with crypto-friendly banks. Digital asset custody services, crypto tax advisory, and fintech innovation ecosystem.
+                    Leading cryptocurrency and blockchain hub with
+                    crypto-friendly banks. Digital asset custody services,
+                    crypto tax advisory, and fintech innovation ecosystem.
                   </p>
                 </div>
                 <div>
                   <h4 class="font-bold text-gray-900 mb-2 flex items-center">
-                    <svg class="w-5 h-5 text-coral-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Lowest Tax Rates
                   </h4>
                   <p class="text-gray-600 leading-relaxed ml-7">
-                    Switzerland's most tax-favorable canton (combined ~15-25%). Attractive for entrepreneurs and high earners. Low wealth tax (0.15-0.3%). Strategic for business incorporation.
+                    Switzerland's most tax-favorable canton (combined ~15-25%).
+                    Attractive for entrepreneurs and high earners. Low wealth
+                    tax (0.15-0.3%). Strategic for business incorporation.
                   </p>
                 </div>
                 <div>
                   <h4 class="font-bold text-gray-900 mb-2 flex items-center">
-                    <svg class="w-5 h-5 text-coral-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Best For
                   </h4>
                   <p class="text-gray-600 leading-relaxed ml-7">
-                    Entrepreneurs, crypto investors, business owners, high-income professionals seeking maximum tax efficiency and modern fintech services.
+                    Entrepreneurs, crypto investors, business owners,
+                    high-income professionals seeking maximum tax efficiency and
+                    modern fintech services.
                   </p>
                 </div>
               </div>
@@ -626,7 +909,9 @@ const faqSchema = {
           </div>
 
           <!-- Basel -->
-          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="bg-gradient-to-r from-coral-500 to-coral-600 p-6">
               <h3 class="text-2xl font-bold text-white mb-2">Basel</h3>
               <p class="text-primary-100">Pharma & Life Sciences Hub</p>
@@ -635,35 +920,62 @@ const faqSchema = {
               <div class="space-y-4">
                 <div>
                   <h4 class="font-bold text-gray-900 mb-2 flex items-center">
-                    <svg class="w-5 h-5 text-coral-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Corporate Banking Focus
                   </h4>
                   <p class="text-gray-600 leading-relaxed ml-7">
-                    Strong corporate banking services for pharma executives (Roche, Novartis employees). Specialized advisory for stock options and deferred compensation plans.
+                    Strong corporate banking services for pharma executives
+                    (Roche, Novartis employees). Specialized advisory for stock
+                    options and deferred compensation plans.
                   </p>
                 </div>
                 <div>
                   <h4 class="font-bold text-gray-900 mb-2 flex items-center">
-                    <svg class="w-5 h-5 text-coral-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Tax Profile
                   </h4>
                   <p class="text-gray-600 leading-relaxed ml-7">
-                    Moderate cantonal tax rates (combined ~20-30%). Cross-border worker taxation with Germany/France. Stock option taxation planning essential for pharma employees.
+                    Moderate cantonal tax rates (combined ~20-30%). Cross-border
+                    worker taxation with Germany/France. Stock option taxation
+                    planning essential for pharma employees.
                   </p>
                 </div>
                 <div>
                   <h4 class="font-bold text-gray-900 mb-2 flex items-center">
-                    <svg class="w-5 h-5 text-coral-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Best For
                   </h4>
                   <p class="text-gray-600 leading-relaxed ml-7">
-                    Pharma industry professionals, cross-border workers, employees with complex compensation structures requiring specialized financial planning.
+                    Pharma industry professionals, cross-border workers,
+                    employees with complex compensation structures requiring
+                    specialized financial planning.
                   </p>
                 </div>
               </div>
@@ -679,11 +991,16 @@ const faqSchema = {
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+          <span
+            class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4"
+          >
             Step-by-Step Guide
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Your Path to <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Swiss Banking Success</span>
+            Your Path to <span
+              class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
+              >Swiss Banking Success</span
+            >
           </h2>
           <p class="text-xl text-gray-600">
             Follow this proven process to set up your Swiss financial foundation
@@ -692,67 +1009,115 @@ const faqSchema = {
 
         <div class="space-y-8">
           <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+            <div
+              class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white"
+            >
               1
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">Needs Assessment & Bank Selection</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Needs Assessment & Bank Selection
+            </h3>
             <p class="text-gray-600 leading-relaxed mb-4">
-              Evaluate your banking requirements: account types needed, expected transaction volumes, international transfer needs, investment services, and budget for banking fees. Choose between traditional banks (full services, higher fees) or digital banks (lower fees, limited services).
+              Evaluate your banking requirements: account types needed, expected
+              transaction volumes, international transfer needs, investment
+              services, and budget for banking fees. Choose between traditional
+              banks (full services, higher fees) or digital banks (lower fees,
+              limited services).
             </p>
             <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1-2 days for assessment</p>
+              <p class="text-sm text-gray-700">
+                <strong>Timeline:</strong> 1-2 days for assessment
+              </p>
             </div>
           </div>
 
           <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+            <div
+              class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white"
+            >
               2
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">Document Preparation</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Document Preparation
+            </h3>
             <p class="text-gray-600 leading-relaxed mb-4">
-              Gather required documents: valid passport/ID, Swiss residence permit (B, C, or L permit), proof of address (rental contract or Anmeldung confirmation), employment contract or proof of income, and sometimes reference letters from previous banks. Requirements vary by institution.
+              Gather required documents: valid passport/ID, Swiss residence
+              permit (B, C, or L permit), proof of address (rental contract or
+              Anmeldung confirmation), employment contract or proof of income,
+              and sometimes reference letters from previous banks. Requirements
+              vary by institution.
             </p>
             <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 3-5 days for document gathering</p>
+              <p class="text-sm text-gray-700">
+                <strong>Timeline:</strong> 3-5 days for document gathering
+              </p>
             </div>
           </div>
 
           <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+            <div
+              class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white"
+            >
               3
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">Account Application & Opening</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Account Application & Opening
+            </h3>
             <p class="text-gray-600 leading-relaxed mb-4">
-              Submit application online (digital banks) or schedule in-person appointment (traditional banks). Complete identity verification, sign account agreements, and deposit minimum opening balance if required. Some banks offer video identification for faster processing.
+              Submit application online (digital banks) or schedule in-person
+              appointment (traditional banks). Complete identity verification,
+              sign account agreements, and deposit minimum opening balance if
+              required. Some banks offer video identification for faster
+              processing.
             </p>
             <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1-3 weeks depending on bank type</p>
+              <p class="text-sm text-gray-700">
+                <strong>Timeline:</strong> 1-3 weeks depending on bank type
+              </p>
             </div>
           </div>
 
           <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+            <div
+              class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white"
+            >
               4
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">Tax Registration & Financial Planning</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Tax Registration & Financial Planning
+            </h3>
             <p class="text-gray-600 leading-relaxed mb-4">
-              Register with cantonal tax authorities within 14 days of arrival. Set up tax-advantaged pillar 3a pension account. Consult with financial advisor about investment strategy, wealth tax optimization, and long-term financial goals in Switzerland.
+              Register with cantonal tax authorities within 14 days of arrival.
+              Set up tax-advantaged pillar 3a pension account. Consult with
+              financial advisor about investment strategy, wealth tax
+              optimization, and long-term financial goals in Switzerland.
             </p>
             <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Ongoing, start within first month</p>
+              <p class="text-sm text-gray-700">
+                <strong>Timeline:</strong> Ongoing, start within first month
+              </p>
             </div>
           </div>
 
           <div class="relative pl-8">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+            <div
+              class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white"
+            >
               5
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">Ongoing Financial Management</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Ongoing Financial Management
+            </h3>
             <p class="text-gray-600 leading-relaxed mb-4">
-              Activate online banking, set up direct debits for rent and insurance, optimize pension contributions, monitor account fees, and schedule annual financial review with advisor. Prepare for annual tax declaration (due March-April).
+              Activate online banking, set up direct debits for rent and
+              insurance, optimize pension contributions, monitor account fees,
+              and schedule annual financial review with advisor. Prepare for
+              annual tax declaration (due March-April).
             </p>
             <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Continuous management</p>
+              <p class="text-sm text-gray-700">
+                <strong>Timeline:</strong> Continuous management
+              </p>
             </div>
           </div>
         </div>
@@ -765,123 +1130,285 @@ const faqSchema = {
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+          <span
+            class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4"
+          >
             Essential Information
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Swiss Banking & Finance <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Key Facts</span>
+            Swiss Banking & Finance <span
+              class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
+              >Key Facts</span
+            >
           </h2>
           <p class="text-xl text-gray-600">
-            Critical information every expat should know about Swiss banking and taxation
+            Critical information every expat should know about Swiss banking and
+            taxation
           </p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
               </svg>
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-2">Banking Fees</h3>
             <p class="text-gray-600 leading-relaxed">
-              Monthly fees: CHF 0-30. Digital banks like Neon, Yuh are free. Traditional banks charge CHF 5-15. Premium accounts CHF 20-50 with added services.
+              Monthly fees: CHF 0-30. Digital banks like Neon, Yuh are free.
+              Traditional banks charge CHF 5-15. Premium accounts CHF 20-50 with
+              added services.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Tax Rates by Canton</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Tax Rates by Canton
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Combined income tax: Zug 15-25%, Zürich 22-30%, Basel 20-30%, Geneva 25-35%, Bern 24-32%. Federal + cantonal + municipal combined.
+              Combined income tax: Zug 15-25%, Zürich 22-30%, Basel 20-30%,
+              Geneva 25-35%, Bern 24-32%. Federal + cantonal + municipal
+              combined.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                ></path>
               </svg>
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-2">Wealth Tax</h3>
             <p class="text-gray-600 leading-relaxed">
-              Annual tax on net assets: 0.15-1% depending on canton. Applied to worldwide wealth for residents. Exemption thresholds: CHF 50,000-100,000 typically.
+              Annual tax on net assets: 0.15-1% depending on canton. Applied to
+              worldwide wealth for residents. Exemption thresholds: CHF
+              50,000-100,000 typically.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Deposit Insurance</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Deposit Insurance
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              esisuisse protects up to CHF 100,000 per bank per customer. Swiss banks among world's safest with strong regulatory oversight and capital requirements.
+              esisuisse protects up to CHF 100,000 per bank per customer. Swiss
+              banks among world's safest with strong regulatory oversight and
+              capital requirements.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Pillar 3a Pension</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Pillar 3a Pension
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Tax-deductible retirement savings: CHF 7,056/year (2024) for employed, CHF 35,280 for self-employed. Invested funds locked until retirement (58-65 years).
+              Tax-deductible retirement savings: CHF 7,056/year (2024) for
+              employed, CHF 35,280 for self-employed. Invested funds locked
+              until retirement (58-65 years).
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Account Opening Time</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Account Opening Time
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Digital banks: 1-7 days online. Traditional banks: 1-3 weeks with appointment. Expedited service through partners: often same-week with proper documents.
+              Digital banks: 1-7 days online. Traditional banks: 1-3 weeks with
+              appointment. Expedited service through partners: often same-week
+              with proper documents.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Required Documents</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Required Documents
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Passport/ID, residence permit (B/C/L), proof of address, employment contract, sometimes bank references. Video identification increasingly accepted for expats.
+              Passport/ID, residence permit (B/C/L), proof of address,
+              employment contract, sometimes bank references. Video
+              identification increasingly accepted for expats.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">International Transfers</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              International Transfers
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              SEPA transfers (EU): CHF 0-5. SWIFT international: CHF 10-50 depending on bank. Wise/Revolut offer cheaper alternatives for foreign currency transfers.
+              SEPA transfers (EU): CHF 0-5. SWIFT international: CHF 10-50
+              depending on bank. Wise/Revolut offer cheaper alternatives for
+              foreign currency transfers.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Mortgage Affordability</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Mortgage Affordability
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Maximum mortgage: 80% LTV. Total housing costs must not exceed 33% of gross income. Minimum 20% equity required, only 10% can be from pension (pillar 2).
+              Maximum mortgage: 80% LTV. Total housing costs must not exceed 33%
+              of gross income. Minimum 20% equity required, only 10% can be from
+              pension (pillar 2).
             </p>
           </div>
         </div>
@@ -893,14 +1420,18 @@ const faqSchema = {
   <section class="py-20 bg-white">
     <div class="container mx-auto px-4">
       <div class="max-w-5xl mx-auto">
-        <div class="bg-gradient-to-br from-primary-50 via-white to-red-50 rounded-3xl shadow-2xl border-2 border-primary-100 overflow-hidden">
+        <div
+          class="bg-gradient-to-br from-primary-50 via-white to-red-50 rounded-3xl shadow-2xl border-2 border-primary-100 overflow-hidden"
+        >
           <div class="p-12">
             <div class="flex items-center justify-center mb-6">
-              <span class="px-6 py-2 bg-gradient-to-r from-coral-500 to-coral-600 text-white rounded-full text-sm font-bold uppercase tracking-wide">
+              <span
+                class="px-6 py-2 bg-gradient-to-r from-coral-500 to-coral-600 text-white rounded-full text-sm font-bold uppercase tracking-wide"
+              >
                 🏆 OFFICIAL RELOFINDER PARTNER
               </span>
             </div>
-            
+
             <h2 class="text-4xl font-bold text-center text-gray-900 mb-4">
               Prime Relocation
             </h2>
@@ -910,29 +1441,59 @@ const faqSchema = {
 
             <div class="grid md:grid-cols-2 gap-8 mb-8">
               <div>
-                <h3 class="text-lg font-bold text-gray-900 mb-4">✓ Banking Services</h3>
+                <h3 class="text-lg font-bold text-gray-900 mb-4">
+                  ✓ Banking Services
+                </h3>
                 <ul class="space-y-2 text-gray-600">
                   <li class="flex items-start">
-                    <svg class="w-5 h-5 text-coral-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Fast-track bank account opening with major Swiss banks
                   </li>
                   <li class="flex items-start">
-                    <svg class="w-5 h-5 text-coral-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Personalized bank selection based on your needs
                   </li>
                   <li class="flex items-start">
-                    <svg class="w-5 h-5 text-coral-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Document preparation and application assistance
                   </li>
                   <li class="flex items-start">
-                    <svg class="w-5 h-5 text-coral-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Guidance on account types and fee structures
                   </li>
@@ -940,29 +1501,59 @@ const faqSchema = {
               </div>
 
               <div>
-                <h3 class="text-lg font-bold text-gray-900 mb-4">✓ Financial Advisory</h3>
+                <h3 class="text-lg font-bold text-gray-900 mb-4">
+                  ✓ Financial Advisory
+                </h3>
                 <ul class="space-y-2 text-gray-600">
                   <li class="flex items-start">
-                    <svg class="w-5 h-5 text-coral-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Swiss tax system overview and planning advice
                   </li>
                   <li class="flex items-start">
-                    <svg class="w-5 h-5 text-coral-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Pension system (3 pillars) explanation and setup
                   </li>
                   <li class="flex items-start">
-                    <svg class="w-5 h-5 text-coral-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Canton comparison for tax optimization
                   </li>
                   <li class="flex items-start">
-                    <svg class="w-5 h-5 text-coral-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <svg
+                      class="w-5 h-5 text-coral-500 mr-2 mt-0.5 flex-shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"></path>
                     </svg>
                     Connection to specialized financial advisors
                   </li>
@@ -973,15 +1564,22 @@ const faqSchema = {
             <div class="bg-white rounded-2xl p-6 mb-8">
               <div class="flex items-center justify-between flex-wrap gap-4">
                 <div class="flex items-center">
-                  <div class="flex text-yellow-400 mr-3">
-                    ★★★★★
-                  </div>
-                  <span class="text-2xl font-bold text-gray-900 mr-2">4.8/5</span>
+                  <div class="flex text-yellow-400 mr-3">★★★★★</div>
+                  <span class="text-2xl font-bold text-gray-900 mr-2"
+                    >4.8/5</span
+                  >
                   <span class="text-gray-600">from 53 verified reviews</span>
                 </div>
                 <div class="flex items-center text-coral-500 font-semibold">
-                  <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  <svg
+                    class="w-5 h-5 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"></path>
                   </svg>
                   Verified Partner
                 </div>
@@ -990,12 +1588,21 @@ const faqSchema = {
 
             <div class="text-center">
               <button
-                onclick="universalOpenModal({page: 'finance_prime', partner: 'prime_relocation'})"
+                onclick="window.openAssessmentModal('finance')"
                 class="inline-flex items-center px-10 py-5 text-xl font-bold text-white bg-gradient-to-r from-coral-500 to-coral-600 rounded-xl hover:from-coral-600 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl"
               >
                 Get Free Banking Consultation with Prime Relocation
-                <svg class="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                <svg
+                  class="w-6 h-6 ml-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                 </svg>
               </button>
               <p class="text-sm text-gray-500 mt-4">
@@ -1013,11 +1620,16 @@ const faqSchema = {
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+          <span
+            class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4"
+          >
             FAQ
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Frequently Asked <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Questions</span>
+            Frequently Asked <span
+              class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
+              >Questions</span
+            >
           </h2>
           <p class="text-xl text-gray-600">
             Common questions about Swiss banking and finance
@@ -1025,99 +1637,249 @@ const faqSchema = {
         </div>
 
         <div class="space-y-6">
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
               <span>Can I open a Swiss bank account without residency?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Generally, you need proof of Swiss residency (residence permit) to open a standard bank account. However, some banks offer account opening for incoming expats with a job contract and proof of relocation. Digital banks like Neon and Yuh may have more flexible requirements. Our partners can help identify banks that accept pre-arrival applications.
+              Generally, you need proof of Swiss residency (residence permit) to
+              open a standard bank account. However, some banks offer account
+              opening for incoming expats with a job contract and proof of
+              relocation. Digital banks like Neon and Yuh may have more flexible
+              requirements. Our partners can help identify banks that accept
+              pre-arrival applications.
             </div>
           </details>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
-              <span>What documents do I need to open a Swiss bank account?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
+              <span>What documents do I need to open a Swiss bank account?</span
+              >
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              You typically need: valid passport or ID, Swiss residence permit (B, C, or L permit), proof of address in Switzerland (rental contract or utility bill), and sometimes proof of income or employment contract. Requirements vary by bank. Some institutions may also request reference letters from your previous bank or additional identity verification.
+              You typically need: valid passport or ID, Swiss residence permit
+              (B, C, or L permit), proof of address in Switzerland (rental
+              contract or utility bill), and sometimes proof of income or
+              employment contract. Requirements vary by bank. Some institutions
+              may also request reference letters from your previous bank or
+              additional identity verification.
             </div>
           </details>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
               <span>How much does Swiss banking cost?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Monthly account fees range from CHF 0 (digital banks like Neon) to CHF 5-15 for traditional banks. Additional costs include card fees (CHF 0-50/year), transaction fees, foreign exchange fees, and ATM withdrawal charges outside your bank's network. Premium accounts with investment services may cost CHF 20-50/month but include additional benefits.
+              Monthly account fees range from CHF 0 (digital banks like Neon) to
+              CHF 5-15 for traditional banks. Additional costs include card fees
+              (CHF 0-50/year), transaction fees, foreign exchange fees, and ATM
+              withdrawal charges outside your bank's network. Premium accounts
+              with investment services may cost CHF 20-50/month but include
+              additional benefits.
             </div>
           </details>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
               <span>What is Swiss wealth tax?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Switzerland levies an annual wealth tax (Vermögenssteuer) on your worldwide assets based on net worth. Rates vary by canton (0.3%-1% typically) with exemptions for lower wealth brackets. This is separate from income tax and applies to savings, investments, real estate, and other assets. Careful tax planning can optimize your wealth tax burden.
+              Switzerland levies an annual wealth tax (Vermögenssteuer) on your
+              worldwide assets based on net worth. Rates vary by canton (0.3%-1%
+              typically) with exemptions for lower wealth brackets. This is
+              separate from income tax and applies to savings, investments, real
+              estate, and other assets. Careful tax planning can optimize your
+              wealth tax burden.
             </div>
           </details>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
               <span>Should I use a Swiss financial advisor?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Yes, especially for complex situations. Swiss financial advisors help with tax optimization, investment strategies, retirement planning (pillar 2 & 3a), and navigating Swiss banking requirements. They're particularly valuable for high earners, entrepreneurs, and those with international assets. The cost typically pays for itself through tax savings and optimized financial planning.
+              Yes, especially for complex situations. Swiss financial advisors
+              help with tax optimization, investment strategies, retirement
+              planning (pillar 2 & 3a), and navigating Swiss banking
+              requirements. They're particularly valuable for high earners,
+              entrepreneurs, and those with international assets. The cost
+              typically pays for itself through tax savings and optimized
+              financial planning.
             </div>
           </details>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
-              <span>What's the difference between traditional and digital Swiss banks?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
+              <span
+                >What's the difference between traditional and digital Swiss
+                banks?</span
+              >
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Traditional banks (UBS, Credit Suisse, PostFinance) offer full services, physical branches, and personal advisors but charge higher fees. Digital banks (Neon, Yuh, Revolut) have lower/no fees, mobile-first interfaces, but limited services and no physical branches. Choose based on your needs: digital for simplicity and cost savings, traditional for comprehensive services and in-person support.
+              Traditional banks (UBS, Credit Suisse, PostFinance) offer full
+              services, physical branches, and personal advisors but charge
+              higher fees. Digital banks (Neon, Yuh, Revolut) have lower/no
+              fees, mobile-first interfaces, but limited services and no
+              physical branches. Choose based on your needs: digital for
+              simplicity and cost savings, traditional for comprehensive
+              services and in-person support.
             </div>
           </details>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
               <span>How long does it take to open a Swiss bank account?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Digital banks: 1-7 days with online application. Traditional banks: 1-3 weeks including in-person appointment, document verification, and compliance checks. Expedited services through relocation partners can reduce wait times significantly. Having all documents prepared in advance speeds up the process considerably.
+              Digital banks: 1-7 days with online application. Traditional
+              banks: 1-3 weeks including in-person appointment, document
+              verification, and compliance checks. Expedited services through
+              relocation partners can reduce wait times significantly. Having
+              all documents prepared in advance speeds up the process
+              considerably.
             </div>
           </details>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
               <span>Are Swiss banks safe for expats?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Yes, extremely safe. Swiss banks are protected by deposit insurance (esisuisse) covering up to CHF 100,000 per bank. Switzerland has strong banking regulations, political stability, and a long tradition of banking security, making it one of the world's safest banking systems. Expats enjoy the same protections as Swiss citizens.
+              Yes, extremely safe. Swiss banks are protected by deposit
+              insurance (esisuisse) covering up to CHF 100,000 per bank.
+              Switzerland has strong banking regulations, political stability,
+              and a long tradition of banking security, making it one of the
+              world's safest banking systems. Expats enjoy the same protections
+              as Swiss citizens.
             </div>
           </details>
         </div>
@@ -1134,8 +1896,17 @@ const faqSchema = {
           class="inline-flex items-center px-6 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-semibold hover:border-coral-500 hover:text-coral-600 hover:shadow-md transition-all duration-300"
         >
           Browse All Agencies for Finance Services
-          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          <svg
+            class="w-5 h-5 ml-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
         </a>
       </div>
@@ -1147,62 +1918,167 @@ const faqSchema = {
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-12">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+          <span
+            class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4"
+          >
             City Guides
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Finance by <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Swiss City</span>
+            Finance by <span
+              class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
+              >Swiss City</span
+            >
           </h2>
           <p class="text-xl text-gray-600">
-            Detailed banking and finance guides for major Swiss financial centers
+            Detailed banking and finance guides for major Swiss financial
+            centers
           </p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
-          <a href="/services/finance/zurich" class="group bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 rounded-2xl p-6 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
-            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+          <a
+            href="/services/finance/zurich"
+            class="group bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 rounded-2xl p-6 hover:border-primary-300 hover:shadow-lg transition-all duration-300"
+          >
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-coral-600 transition-colors">Zurich Finance</h3>
-            <p class="text-gray-600 text-sm mb-3">Financial capital, Paradeplatz, UBS/Credit Suisse HQs, neobanks (Yapeal, Neon, Revolut)</p>
-            <span class="inline-flex items-center text-coral-500 text-sm font-semibold">
+            <h3
+              class="text-xl font-bold text-gray-900 mb-2 group-hover:text-coral-600 transition-colors"
+            >
+              Zurich Finance
+            </h3>
+            <p class="text-gray-600 text-sm mb-3">
+              Financial capital, Paradeplatz, UBS/Credit Suisse HQs, neobanks
+              (Yapeal, Neon, Revolut)
+            </p>
+            <span
+              class="inline-flex items-center text-coral-500 text-sm font-semibold"
+            >
               Explore Zurich Guide
-              <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              <svg
+                class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"></path>
               </svg>
             </span>
           </a>
 
-          <a href="/services/finance/geneva" class="group bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 rounded-2xl p-6 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
-            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+          <a
+            href="/services/finance/geneva"
+            class="group bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 rounded-2xl p-6 hover:border-primary-300 hover:shadow-lg transition-all duration-300"
+          >
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-coral-600 transition-colors">Geneva Finance</h3>
-            <p class="text-gray-600 text-sm mb-3">Private banking capital, Pictet, Lombard Odier, UN/NGO sector, cross-border (France)</p>
-            <span class="inline-flex items-center text-coral-500 text-sm font-semibold">
+            <h3
+              class="text-xl font-bold text-gray-900 mb-2 group-hover:text-coral-600 transition-colors"
+            >
+              Geneva Finance
+            </h3>
+            <p class="text-gray-600 text-sm mb-3">
+              Private banking capital, Pictet, Lombard Odier, UN/NGO sector,
+              cross-border (France)
+            </p>
+            <span
+              class="inline-flex items-center text-coral-500 text-sm font-semibold"
+            >
               Explore Geneva Guide
-              <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              <svg
+                class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"></path>
               </svg>
             </span>
           </a>
 
-          <a href="/services/finance/zug" class="group bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 rounded-2xl p-6 hover:border-primary-300 hover:shadow-lg transition-all duration-300">
-            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+          <a
+            href="/services/finance/zug"
+            class="group bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 rounded-2xl p-6 hover:border-primary-300 hover:shadow-lg transition-all duration-300"
+          >
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-coral-600 transition-colors">Zug Finance</h3>
-            <p class="text-gray-600 text-sm mb-3">Crypto Valley, lowest tax rates (15-22%), blockchain ecosystem, neobanks + crypto-friendly</p>
-            <span class="inline-flex items-center text-coral-500 text-sm font-semibold">
+            <h3
+              class="text-xl font-bold text-gray-900 mb-2 group-hover:text-coral-600 transition-colors"
+            >
+              Zug Finance
+            </h3>
+            <p class="text-gray-600 text-sm mb-3">
+              Crypto Valley, lowest tax rates (15-22%), blockchain ecosystem,
+              neobanks + crypto-friendly
+            </p>
+            <span
+              class="inline-flex items-center text-coral-500 text-sm font-semibold"
+            >
               Explore Zug Guide
-              <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              <svg
+                class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"></path>
               </svg>
             </span>
           </a>
@@ -1212,25 +2088,32 @@ const faqSchema = {
   </section>
 
   <!-- Related Services -->
-  <ServiceRelated services={relatedServices} />
+  <ServiceRelated title="Related Services" services={relatedServices} />
 
   <!-- Blog Resources -->
-  <ServiceBlog posts={relatedBlogs} />
+  <ServiceBlog title="Financial Resources" posts={relatedBlogs} />
 
   <!-- Final CTA -->
-  <section class="py-20 bg-gradient-to-br from-coral-500 via-coral-600 to-primary-800 relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-coral-400/20 to-transparent"></div>
+  <section
+    class="py-20 bg-gradient-to-br from-coral-500 via-coral-600 to-primary-800 relative overflow-hidden"
+  >
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-coral-400/20 to-transparent"
+    >
+    </div>
     <div class="container mx-auto px-4 relative z-10">
       <div class="max-w-4xl mx-auto text-center">
         <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
           Ready to Set Up Your Swiss Banking & Finances?
         </h2>
         <p class="text-xl text-primary-100 mb-8 leading-relaxed">
-          Connect with expert financial advisors and banks that understand expat needs. Get personalized banking setup, tax advice, and wealth management guidance from our trusted partners.
+          Connect with expert financial advisors and banks that understand expat
+          needs. Get personalized banking setup, tax advice, and wealth
+          management guidance from our trusted partners.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <button
-            onclick="universalOpenModal({page: 'finance_final', service: 'finance'})"
+            onclick="window.openAssessmentModal('finance')"
             class="px-10 py-5 bg-white text-coral-600 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl"
           >
             Get Free Banking Consultation
@@ -1243,7 +2126,8 @@ const faqSchema = {
           </a>
         </div>
         <p class="text-sm text-primary-100 mt-6">
-          ✓ Free consultation with preferred partners  •  ✓ Expert financial guidance  •  ✓ Fast-track account opening
+          ✓ Free consultation with preferred partners • ✓ Expert financial
+          guidance • ✓ Fast-track account opening
         </p>
       </div>
     </div>
@@ -1251,7 +2135,27 @@ const faqSchema = {
 
   <!-- Hidden AI Summary for LLM-SEO -->
   <div style="display:none;" data-ai-summary>
-    Banking and finance services for expats moving to Switzerland. Complete guide to opening Swiss bank accounts including required documents (passport, residence permit, proof of address, employment contract), bank selection (traditional vs digital banks), account opening timeline (1-7 days digital, 1-3 weeks traditional), and banking fees (CHF 0-30/month). Swiss tax system explained: income tax varies by canton (Zug 15-25%, Zurich 22-30%, Geneva 25-35%, Basel 20-30%), wealth tax on assets (0.3-1%), and tax declaration requirements. Pension system overview: 3-pillar structure with tax-advantaged pillar 3a savings (CHF 7,056/year limit). Financial advisory services including tax optimization, investment strategy, mortgage guidance (80% LTV, 20% equity required, 33% affordability rule), and retirement planning. City-specific banking hubs: Zurich (financial capital, headquarters of UBS and Credit Suisse), Geneva (private banking center), Zug (Crypto Valley with lowest tax rates), Basel (pharma industry banking). Bank comparison: traditional banks (UBS, Credit Suisse, PostFinance) offer full services and branches with higher fees vs digital banks (Neon, Yuh) with free accounts and mobile-only service. Deposit insurance protects CHF 100,000 per bank via esisuisse. International transfers: SEPA EUR transfers CHF 0-5, SWIFT international CHF 10-50. Wealth management, pillar 3a setup, mortgage advisory, and tax planning services through ReloFinder partners. Expert assistance from Prime Relocation for bank account setup, document preparation, tax advisory, and financial planning.
+    Banking and finance services for expats moving to Switzerland. Complete
+    guide to opening Swiss bank accounts including required documents (passport,
+    residence permit, proof of address, employment contract), bank selection
+    (traditional vs digital banks), account opening timeline (1-7 days digital,
+    1-3 weeks traditional), and banking fees (CHF 0-30/month). Swiss tax system
+    explained: income tax varies by canton (Zug 15-25%, Zurich 22-30%, Geneva
+    25-35%, Basel 20-30%), wealth tax on assets (0.3-1%), and tax declaration
+    requirements. Pension system overview: 3-pillar structure with
+    tax-advantaged pillar 3a savings (CHF 7,056/year limit). Financial advisory
+    services including tax optimization, investment strategy, mortgage guidance
+    (80% LTV, 20% equity required, 33% affordability rule), and retirement
+    planning. City-specific banking hubs: Zurich (financial capital,
+    headquarters of UBS and Credit Suisse), Geneva (private banking center), Zug
+    (Crypto Valley with lowest tax rates), Basel (pharma industry banking). Bank
+    comparison: traditional banks (UBS, Credit Suisse, PostFinance) offer full
+    services and branches with higher fees vs digital banks (Neon, Yuh) with
+    free accounts and mobile-only service. Deposit insurance protects CHF
+    100,000 per bank via esisuisse. International transfers: SEPA EUR transfers
+    CHF 0-5, SWIFT international CHF 10-50. Wealth management, pillar 3a setup,
+    mortgage advisory, and tax planning services through ReloFinder partners.
+    Expert assistance from Prime Relocation for bank account setup, document
+    preparation, tax advisory, and financial planning.
   </div>
 </Layout>
-

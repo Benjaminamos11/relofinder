@@ -1,414 +1,629 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Navbar from '../../components/layout/Navbar.astro';
-import Footer from '../../components/layout/Footer.astro';
-import HeroSearch from '../../components/home/HeroSearch.tsx';
-import UniversalContactModal from '../../components/common/UniversalContactModal.tsx';
-import { 
-  ShieldCheck, 
-  Briefcase, 
-  ArrowRight, 
-  ChevronDown, 
-  CheckCircle2, 
-  Globe, 
-  Scale, 
-  Building2, 
-  Coins, 
-  UserCheck, 
-  Search,
-  FileText,
-  Lock
-} from 'lucide-react';
+import ServiceHero from "../../components/services/ServiceHero.astro";
+import SchemaMarkup from "../../components/common/SchemaMarkup.astro";
+import Layout from "../../layouts/Layout.astro";
+import HeroSearch from "../../components/home/HeroSearch";
+import {
+    ShieldCheck,
+    Briefcase,
+    ArrowRight,
+    ChevronDown,
+    CheckCircle2,
+    Globe,
+    Scale,
+    Building2,
+    Coins,
+    UserCheck,
+    Search,
+    FileText,
+    Lock,
+} from "lucide-react";
 
-const title = "Strategic Advisory Switzerland | HNWI & B2B Relocation Services | ReloFinder";
-const description = "Elite strategic advisory for entrepreneurs, HNWIs, and retirees moving to Switzerland. Expert coordination of tax rulings, company formation, and legal compliance.";
+const title =
+    "Strategic Advisory Switzerland | HNWI & B2B Relocation Services | ReloFinder";
+const description =
+    "Elite strategic advisory for entrepreneurs, HNWIs, and retirees moving to Switzerland. Expert coordination of tax rulings, company formation, and legal compliance.";
 
 const faqs = [
-  {
-    q: "What is Lump-Sum Taxation?",
-    a: "Lump-sum taxation (Forfait Fiscal) is an expenditure-based tax regime available to non-working foreigners in Switzerland. Instead of taxing global income and wealth, tax is calculated based on the taxpayer's lifestyle expenses in Switzerland, typically a multiple of their rental value."
-  },
-  {
-    q: "Can I move to Switzerland if I am retired?",
-    a: "Yes. Non-working foreigners (retirees) can apply for residency if they are over 55, can prove sufficient financial means to live in Switzerland without gainful activity, and have comprehensive Swiss health insurance."
-  },
-  {
-    q: "How much does it cost to set up a Swiss company?",
-    a: "Founding fees typically range from CHF 3,000 to CHF 5,000. Capital requirements are CHF 20,000 for a GmbH (LLC) or CHF 100,000 for an AG (Stock Corporation), with at least 50% paid-in for the AG."
-  }
+    {
+        q: "What is Lump-Sum Taxation?",
+        a: "Lump-sum taxation (Forfait Fiscal) is an expenditure-based tax regime available to non-working foreigners in Switzerland. Instead of taxing global income and wealth, tax is calculated based on the taxpayer's lifestyle expenses in Switzerland, typically a multiple of their rental value.",
+    },
+    {
+        q: "Can I move to Switzerland if I am retired?",
+        a: "Yes. Non-working foreigners (retirees) can apply for residency if they are over 55, can prove sufficient financial means to live in Switzerland without gainful activity, and have comprehensive Swiss health insurance.",
+    },
+    {
+        q: "How much does it cost to set up a Swiss company?",
+        a: "Founding fees typically range from CHF 3,000 to CHF 5,000. Capital requirements are CHF 20,000 for a GmbH (LLC) or CHF 100,000 for an AG (Stock Corporation), with at least 50% paid-in for the AG.",
+    },
 ];
 
 // Technical SEO Schema
 const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://relofinder.ch" },
-    { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://relofinder.ch/services" },
-    { "@type": "ListItem", "position": 3, "name": "Strategic Advisory", "item": "https://relofinder.ch/services/advisory" }
-  ]
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://relofinder.ch",
+        },
+        {
+            "@type": "ListItem",
+            position: 2,
+            name: "Services",
+            item: "https://relofinder.ch/services",
+        },
+        {
+            "@type": "ListItem",
+            position: 3,
+            name: "Strategic Advisory",
+            item: "https://relofinder.ch/services/advisory",
+        },
+    ],
 };
 
 const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Strategic Advisory & B2B Relocation Switzerland",
-  "serviceType": "Strategic Consultancy",
-  "description": "Coordination of tax rulings, company formation, and legal compliance for high-net-worth individuals and corporate entities.",
-  "provider": { "@type": "Organization", "name": "ReloFinder" },
-  "areaServed": { "@type": "Country", "name": "Switzerland" }
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Strategic Advisory & B2B Relocation Switzerland",
+    serviceType: "Strategic Consultancy",
+    description:
+        "Coordination of tax rulings, company formation, and legal compliance for high-net-worth individuals and corporate entities.",
+    provider: { "@type": "Organization", name: "ReloFinder" },
+    areaServed: { "@type": "Country", name: "Switzerland" },
 };
 
 const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqs.map(faq => ({
-    "@type": "Question",
-    "name": faq.q,
-    "acceptedAnswer": { "@type": "Answer", "text": faq.a }
-  }))
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: { "@type": "Answer", text: faq.a },
+    })),
 };
 ---
 
 <Layout title={title} description={description}>
     <!-- SEO Schemas -->
-    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <SchemaMarkup type="breadcrumb" data={breadcrumbSchema} />
+    <SchemaMarkup type="service" data={serviceSchema} />
+    <SchemaMarkup type="faq" data={faqSchema} />
 
+    <ServiceHero
+        title="Strategic Advisory"
+        subtitle="Beyond the Move"
+        description="Tax Rulings, Company Formation, and Legal Compliance. We connect you with elite Swiss partners who manage the relocation of wealth and business."
+        badge="Private Client Strategic Advisory"
+        icon={Lock}
+    />
 
-
-    <main class="bg-slate-900">
-        <!-- 1. The "Strategic" Hero -->
-        <section class="relative min-h-[90vh] flex items-center pt-20 pb-32 overflow-hidden bg-slate-950 group">
-            <!-- Background Image with Overlay -->
-            <div class="absolute inset-0 z-0">
-                <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-transparent to-slate-950/80 z-20 pointer-events-none"></div>
-                <!-- Early Spring Boardroom View -->
-                <div class="absolute inset-0 bg-[url('https://res.cloudinary.com/dphbnwjtx/image/upload/f_auto,q_auto/v1766976872/services/advisory_hero_boardroom.jpg')] bg-cover bg-center grayscale opacity-80 group-hover:grayscale-0 transition-all duration-[2000ms] ease-in-out z-10"></div>
+    <!-- 2. Section: Tailored Solutions for 4 Profiles (Grid Layout) -->
+    <section class="py-32 bg-white relative overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-24">
+                <span
+                    class="text-[#FF6F61] font-black uppercase tracking-[0.3em] text-xs mb-4 block"
+                    >Strategic Profiles</span
+                >
+                <h2
+                    class="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight"
+                >
+                    Tailored Solutions for Your Profile
+                </h2>
             </div>
 
-            <div class="container mx-auto px-4 relative z-30">
-                <div class="max-w-5xl mx-auto text-center">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF6F61]/10 border border-[#FF6F61]/20 text-[#FF6F61] text-[10px] font-black uppercase tracking-[0.3em] mb-8 animate-fade-in shadow-[0_0_20px_rgba(255,111,97,0.1)]">
-                        <Lock className="w-4 h-4" />
-                        Private Client Strategic Advisory
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- The Entrepreneur -->
+                <div
+                    class="group bg-slate-50 p-12 rounded-[3.5rem] border border-slate-100 hover:border-[#FF6F61]/20 hover:bg-white hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] transition-all duration-700"
+                >
+                    <div
+                        class="w-20 h-20 bg-white rounded-3xl flex items-center justify-center text-slate-900 mb-10 border border-slate-100 group-hover:bg-[#FF6F61] group-hover:text-white group-hover:scale-110 transition-all shadow-sm"
+                    >
+                        <Building2 className="w-10 h-10" />
                     </div>
-                    <h1 class="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter leading-[1] select-none">
-                        Strategic Advisory: <br/>
-                        <span class="relative">
-                            <span class="bg-gradient-to-r from-amber-400 via-[#FF6F61] to-amber-400 bg-clip-text text-transparent">Beyond the Move.</span>
-                            <div class="absolute -bottom-4 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#FF6F61]/30 to-transparent"></div>
-                        </span>
-                    </h1>
-                    <p class="text-xl md:text-2xl text-slate-300 font-light mb-16 leading-relaxed max-w-3xl mx-auto">
-                        Tax Rulings, Company Formation, and Legal Compliance. We connect you with elite Swiss partners who manage the relocation of wealth and business.
+                    <h3 class="text-3xl font-bold text-slate-900 mb-6">
+                        The Entrepreneur
+                    </h3>
+                    <p
+                        class="text-slate-600 leading-relaxed mb-10 text-lg font-light"
+                    >
+                        Founding a Swiss legacy (AG/GmbH) requires strategic
+                        structural planning. We manage the transition from
+                        ideation to incorporation.
                     </p>
-
-                    <!-- Hero Search Integration - Widened and Floated -->
-                    <div class="max-w-4xl mx-auto px-4">
-                        <div class="bg-white/5 backdrop-blur-3xl p-2 rounded-[2.5rem] border border-white/10 shadow-[0_48px_96px_-12px_rgba(0,0,0,0.8)] ring-1 ring-white/10">
-                            <HeroSearch client:load initialService="advisory" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Scroll Indicator -->
-            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce hidden md:block">
-                <ChevronDown className="w-6 h-6 text-[#FF6F61]/30" />
-            </div>
-        </section>
-
-        <!-- 2. Section: Tailored Solutions for 4 Profiles (Grid Layout) -->
-        <section class="py-32 bg-white relative overflow-hidden">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-24">
-                    <span class="text-[#FF6F61] font-black uppercase tracking-[0.3em] text-xs mb-4 block">Strategic Profiles</span>
-                    <h2 class="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight">Tailored Solutions for Your Profile</h2>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                    <!-- The Entrepreneur -->
-                    <div class="group bg-slate-50 p-12 rounded-[3.5rem] border border-slate-100 hover:border-[#FF6F61]/20 hover:bg-white hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] transition-all duration-700">
-                        <div class="w-20 h-20 bg-white rounded-3xl flex items-center justify-center text-slate-900 mb-10 border border-slate-100 group-hover:bg-[#FF6F61] group-hover:text-white group-hover:scale-110 transition-all shadow-sm">
-                            <Building2 className="w-10 h-10" />
-                        </div>
-                        <h3 class="text-3xl font-bold text-slate-900 mb-6">The Entrepreneur</h3>
-                        <p class="text-slate-600 leading-relaxed mb-10 text-lg font-light">
-                            Founding a Swiss legacy (AG/GmbH) requires strategic structural planning. We manage the transition from ideation to incorporation.
-                        </p>
-                        <ul class="space-y-4 mb-10">
-                            {[
+                    <ul class="space-y-4 mb-10">
+                        {
+                            [
                                 "Company formation & registration (AG/GmbH)",
                                 "Work permits for founders & executive staff",
                                 "Strategic office sourcing in Zug & Zurich",
-                                "Direct introductions to Swiss Fiduciaries"
-                            ].map(item => (
+                                "Direct introductions to Swiss Fiduciaries",
+                            ].map((item) => (
                                 <li class="flex items-center gap-4 text-slate-700 font-medium text-sm">
                                     <CheckCircle2 className="w-5 h-5 text-[#FF6F61] shrink-0" />
                                     {item}
                                 </li>
-                            ))}
-                        </ul>
+                            ))
+                        }
+                    </ul>
+                </div>
+
+                <!-- The HNWI -->
+                <div
+                    class="group bg-slate-900 p-12 rounded-[3.5rem] border border-slate-800 hover:border-[#FF6F61]/30 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6)] transition-all duration-700 relative overflow-hidden"
+                >
+                    <!-- Gold Gradient Corner -->
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-[#FF6F61]/5 blur-[50px] pointer-events-none"
+                    >
                     </div>
 
-                    <!-- The HNWI -->
-                    <div class="group bg-slate-900 p-12 rounded-[3.5rem] border border-slate-800 hover:border-[#FF6F61]/30 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6)] transition-all duration-700 relative overflow-hidden">
-                        <!-- Gold Gradient Corner -->
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-[#FF6F61]/5 blur-[50px] pointer-events-none"></div>
-                        
-                        <div class="w-20 h-20 bg-slate-800 rounded-3xl flex items-center justify-center text-amber-500 mb-10 border border-slate-700 group-hover:bg-[#FF6F61] group-hover:text-white group-hover:scale-110 transition-all shadow-sm">
-                            <Coins className="w-10 h-10" />
-                        </div>
-                        <h3 class="text-3xl font-bold text-white mb-6">The HNWI (Private Client)</h3>
-                        <p class="text-slate-400 leading-relaxed mb-10 text-lg font-light">
-                            Optimizing wealth relocation through specialized tax arrangements and Lex Koller navigation for property acquisition.
-                        </p>
-                        <ul class="space-y-4 mb-10">
-                            {[
+                    <div
+                        class="w-20 h-20 bg-slate-800 rounded-3xl flex items-center justify-center text-amber-500 mb-10 border border-slate-700 group-hover:bg-[#FF6F61] group-hover:text-white group-hover:scale-110 transition-all shadow-sm"
+                    >
+                        <Coins className="w-10 h-10" />
+                    </div>
+                    <h3 class="text-3xl font-bold text-white mb-6">
+                        The HNWI (Private Client)
+                    </h3>
+                    <p
+                        class="text-slate-400 leading-relaxed mb-10 text-lg font-light"
+                    >
+                        Optimizing wealth relocation through specialized tax
+                        arrangements and Lex Koller navigation for property
+                        acquisition.
+                    </p>
+                    <ul class="space-y-4 mb-10">
+                        {
+                            [
                                 "Negotiating Lump-Sum Taxation rulings",
                                 "Lex Koller property acquisition permits",
                                 "Succession & inheritance law compliance",
-                                "Discreet concierge-level settling-in"
-                            ].map(item => (
+                                "Discreet concierge-level settling-in",
+                            ].map((item) => (
                                 <li class="flex items-center gap-4 text-slate-300 font-medium text-sm">
                                     <CheckCircle2 className="w-5 h-5 text-[#FF6F61] shrink-0" />
                                     {item}
                                 </li>
-                            ))}
-                        </ul>
-                    </div>
+                            ))
+                        }
+                    </ul>
+                </div>
 
-                    <!-- The Retiree -->
-                    <div class="group bg-slate-50 p-12 rounded-[3.5rem] border border-slate-100 hover:border-[#FF6F61]/20 hover:bg-white hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] transition-all duration-700">
-                        <div class="w-20 h-20 bg-white rounded-3xl flex items-center justify-center text-slate-900 mb-10 border border-slate-100 group-hover:bg-[#FF6F61] group-hover:text-white group-hover:scale-110 transition-all shadow-sm">
-                            <UserCheck className="w-10 h-10" />
-                        </div>
-                        <h3 class="text-3xl font-bold text-slate-900 mb-6">The Retiree</h3>
-                        <p class="text-slate-600 leading-relaxed mb-10 text-lg font-light">
-                            Residency without gainful activity is a specialized legal path. We ensure your financial sufficiency meets cantonal bars.
-                        </p>
-                        <ul class="space-y-4 mb-10">
-                            {[
+                <!-- The Retiree -->
+                <div
+                    class="group bg-slate-50 p-12 rounded-[3.5rem] border border-slate-100 hover:border-[#FF6F61]/20 hover:bg-white hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] transition-all duration-700"
+                >
+                    <div
+                        class="w-20 h-20 bg-white rounded-3xl flex items-center justify-center text-slate-900 mb-10 border border-slate-100 group-hover:bg-[#FF6F61] group-hover:text-white group-hover:scale-110 transition-all shadow-sm"
+                    >
+                        <UserCheck className="w-10 h-10" />
+                    </div>
+                    <h3 class="text-3xl font-bold text-slate-900 mb-6">
+                        The Retiree
+                    </h3>
+                    <p
+                        class="text-slate-600 leading-relaxed mb-10 text-lg font-light"
+                    >
+                        Residency without gainful activity is a specialized
+                        legal path. We ensure your financial sufficiency meets
+                        cantonal bars.
+                    </p>
+                    <ul class="space-y-4 mb-10">
+                        {
+                            [
                                 "Residency permits for non-working status",
                                 "Financial sufficiency & asset documentation",
                                 "Cross-border pension transfer strategies",
-                                "Specialized Swiss health insurance audits"
-                            ].map(item => (
+                                "Specialized Swiss health insurance audits",
+                            ].map((item) => (
                                 <li class="flex items-center gap-4 text-slate-700 font-medium text-sm">
                                     <CheckCircle2 className="w-5 h-5 text-[#FF6F61] shrink-0" />
                                     {item}
                                 </li>
-                            ))}
-                        </ul>
-                    </div>
+                            ))
+                        }
+                    </ul>
+                </div>
 
-                    <!-- The Returning Swiss -->
-                    <div class="group bg-slate-50 p-12 rounded-[3.5rem] border border-slate-100 hover:border-[#FF6F61]/20 hover:bg-white hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] transition-all duration-700">
-                        <div class="w-20 h-20 bg-white rounded-3xl flex items-center justify-center text-slate-900 mb-10 border border-slate-100 group-hover:bg-[#FF6F61] group-hover:text-white group-hover:scale-110 transition-all shadow-sm">
-                            <Globe className="w-10 h-10" />
-                        </div>
-                        <h3 class="text-3xl font-bold text-slate-900 mb-6">The Returning Swiss</h3>
-                        <p class="text-slate-600 leading-relaxed mb-10 text-lg font-light">
-                            Repatriating after decades abroad involves complex re-entry into the social security and fiscal systems.
-                        </p>
-                        <ul class="space-y-4 mb-10">
-                            {[
+                <!-- The Returning Swiss -->
+                <div
+                    class="group bg-slate-50 p-12 rounded-[3.5rem] border border-slate-100 hover:border-[#FF6F61]/20 hover:bg-white hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] transition-all duration-700"
+                >
+                    <div
+                        class="w-20 h-20 bg-white rounded-3xl flex items-center justify-center text-slate-900 mb-10 border border-slate-100 group-hover:bg-[#FF6F61] group-hover:text-white group-hover:scale-110 transition-all shadow-sm"
+                    >
+                        <Globe className="w-10 h-10" />
+                    </div>
+                    <h3 class="text-3xl font-bold text-slate-900 mb-6">
+                        The Returning Swiss
+                    </h3>
+                    <p
+                        class="text-slate-600 leading-relaxed mb-10 text-lg font-light"
+                    >
+                        Repatriating after decades abroad involves complex
+                        re-entry into the social security and fiscal systems.
+                    </p>
+                    <ul class="space-y-4 mb-10">
+                        {
+                            [
                                 "Social security system re-integration (AHV/IV)",
                                 "Clarification of military service obligations",
                                 "Personal asset & vehicle customs clearance",
-                                "Transitioning from 'Expat' to 'Local' status"
-                            ].map(item => (
+                                "Transitioning from 'Expat' to 'Local' status",
+                            ].map((item) => (
                                 <li class="flex items-center gap-4 text-slate-700 font-medium text-sm">
                                     <CheckCircle2 className="w-5 h-5 text-[#FF6F61] shrink-0" />
                                     {item}
                                 </li>
-                            ))}
-                        </ul>
-                    </div>
+                            ))
+                        }
+                    </ul>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- 3. Section: The Housing-Tax Link (Offlist Integration) -->
-        <section class="py-32 bg-slate-950 relative overflow-hidden">
-            <div class="absolute inset-0 z-0">
-                <div class="absolute top-1/2 left-0 w-full h-[500px] bg-[#FF6F61]/5 -skew-y-6 blur-[120px]"></div>
+    <!-- 3. Section: The Housing-Tax Link (Offlist Integration) -->
+    <section class="py-32 bg-slate-950 relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div
+                class="absolute top-1/2 left-0 w-full h-[500px] bg-[#FF6F61]/5 -skew-y-6 blur-[120px]"
+            >
             </div>
-            
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="max-w-6xl mx-auto">
-                    <div class="grid md:grid-cols-2 gap-20 items-center">
-                        <div class="relative">
-                            <div class="absolute -inset-10 bg-[#FF6F61]/10 blur-[100px] rounded-full"></div>
-                            <img 
-                                src="https://res.cloudinary.com/dphbnwjtx/image/upload/f_auto,q_auto/v1766976874/services/advisory_luxury_housing.jpg" 
-                                alt="Elite Swiss Residence" 
-                                class="relative rounded-[5rem] shadow-[0_64px_96px_-12px_rgba(0,0,0,0.8)] grayscale brightness-90 border border-white/5 hover:grayscale-0 hover:brightness-110 transition-all duration-[2000ms] ease-in-out transform hover:scale-[1.02]"
-                            />
-                            <div class="absolute -bottom-8 -right-8 bg-gradient-to-br from-[#FF6F61] to-amber-600 p-10 rounded-[3rem] shadow-2xl max-w-xs transform hover:scale-105 transition-transform duration-500">
-                                <p class="text-white font-black text-xl mb-3 leading-tight uppercase font-inter">Policy Note:</p>
-                                <p class="text-white/80 font-medium text-sm italic">"Tax rulings often depend on the quality and location of your primary residence."</p>
-                            </div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-20 items-center">
+                    <div class="relative">
+                        <div
+                            class="absolute -inset-10 bg-[#FF6F61]/10 blur-[100px] rounded-full"
+                        >
                         </div>
-                        <div>
-                            <span class="text-[#FF6F61] font-black uppercase tracking-[0.4em] text-xs mb-8 block">Fiscal Infrastructure</span>
-                            <h2 class="text-5xl md:text-7xl font-bold text-white mb-10 tracking-tight leading-[1.1]">The Housing-Tax Connection.</h2>
-                            <p class="text-slate-400 text-xl leading-relaxed mb-10 font-light">
-                                For tax rulings—especially **Lump-Sum Taxation**—authorities scrutinize your choice of home. It must serve as a credible reflection of your wealth profile.
+                        <img
+                            src="https://res.cloudinary.com/dphbnwjtx/image/upload/f_auto,q_auto/v1766976874/services/advisory_luxury_housing.jpg"
+                            alt="Elite Swiss Residence"
+                            class="relative rounded-[5rem] shadow-[0_64px_96px_-12px_rgba(0,0,0,0.8)] grayscale brightness-90 border border-white/5 hover:grayscale-0 hover:brightness-110 transition-all duration-[2000ms] ease-in-out transform hover:scale-[1.02]"
+                        />
+                        <div
+                            class="absolute -bottom-8 -right-8 bg-gradient-to-br from-[#FF6F61] to-amber-600 p-10 rounded-[3rem] shadow-2xl max-w-xs transform hover:scale-105 transition-transform duration-500"
+                        >
+                            <p
+                                class="text-white font-black text-xl mb-3 leading-tight uppercase font-inter"
+                            >
+                                Policy Note:
                             </p>
-                            <div class="bg-slate-900/50 backdrop-blur-xl border border-white/5 p-10 rounded-[3rem] mb-12 shadow-inner">
-                                <p class="text-slate-200 text-lg leading-relaxed font-light">
-                                    "Our partners leverage <a href='https://offlist.ch' target='_blank' class='text-[#FF6F61] font-bold hover:text-[#ff8a7d] underline decoration-[#FF6F61]/30 underline-offset-8 decoration-2 transition-all'>Offlist.ch</a> to source off-market luxury rentals that satisfy the 'Lifestyle Assessment' of cantonal tax authorities discreetly."
-                                </p>
-                            </div>
-                            <a href="https://offlist.ch" target="_blank" class="inline-flex items-center gap-4 bg-white/5 text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest text-[10px] hover:bg-white/10 border border-white/10 transition-all no-underline group shadow-lg">
-                                Access Off-Market Luxury Portfolio <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform text-[#FF6F61]" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. Section: Wealth & Health Protection (Expat-Savvy Integration) -->
-        <section class="py-32 bg-white relative">
-            <div class="container mx-auto px-4">
-                <div class="max-w-6xl mx-auto">
-                    <div class="grid md:grid-cols-2 gap-20 items-center">
-                        <div class="order-2 md:order-1">
-                            <span class="text-[#FF6F61] font-black uppercase tracking-[0.4em] text-xs mb-8 block">Asset Protection</span>
-                            <h2 class="text-4xl md:text-6xl font-bold text-slate-900 mb-10 tracking-tight">Security in the Details.</h2>
-                            <p class="text-slate-500 text-xl leading-relaxed mb-12 font-light">
-                                Standard insurance frameworks are insufficient for HNWI needs or complex cross-border corporate deployments. 100% compliance is our minimum standard.
+                            <p class="text-white/80 font-medium text-sm italic">
+                                "Tax rulings often depend on the quality and
+                                location of your primary residence."
                             </p>
-                            <div class="bg-slate-50 border border-slate-100 p-10 rounded-[3rem] mb-12 relative group hover:border-[#FF6F61]/20 transition-all duration-500">
-                                <div class="absolute -top-6 -left-6 w-12 h-12 bg-[#FF6F61] rounded-2xl flex items-center justify-center text-white shadow-xl rotate-12 group-hover:rotate-0 transition-transform">
-                                    <ShieldCheck className="w-7 h-7" />
-                                </div>
-                                <p class="text-slate-800 text-lg leading-relaxed italic font-medium">
-                                    "For private medical coverage and asset protection, we recommend a specialized audit with <a href='https://expat-savvy.ch' target='_blank' class='text-[#FF6F61] font-black underline underline-offset-8 decoration-2'>Expat-Savvy.ch</a>."
-                                </p>
-                            </div>
-                            <a href="https://expat-savvy.ch" target="_blank" class="inline-flex items-center gap-4 text-slate-900 font-black hover:text-[#FF6F61] transition-colors uppercase tracking-[0.2em] text-[10px] no-underline group">
-                                Initiate Insurance Audit <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform text-[#FF6F61]" />
-                            </a>
                         </div>
-                         <div class="order-1 md:order-2 group">
-                             <img 
-                                src="https://res.cloudinary.com/dphbnwjtx/image/upload/f_auto,q_auto/v1766976870/services/advisory_assets.jpg" 
-                                alt="Swiss High Value Documentation" 
-                                class="rounded-[5rem] shadow-2xl grayscale opacity-80 group-hover:grayscale-0 transition-all duration-[2000ms] ease-in-out transform group-hover:scale-[1.02] border border-slate-100"
+                    </div>
+                    <div>
+                        <span
+                            class="text-[#FF6F61] font-black uppercase tracking-[0.4em] text-xs mb-8 block"
+                            >Fiscal Infrastructure</span
+                        >
+                        <h2
+                            class="text-5xl md:text-7xl font-bold text-white mb-10 tracking-tight leading-[1.1]"
+                        >
+                            The Housing-Tax Connection.
+                        </h2>
+                        <p
+                            class="text-slate-400 text-xl leading-relaxed mb-10 font-light"
+                        >
+                            For tax rulings—especially **Lump-Sum
+                            Taxation**—authorities scrutinize your choice of
+                            home. It must serve as a credible reflection of your
+                            wealth profile.
+                        </p>
+                        <div
+                            class="bg-slate-900/50 backdrop-blur-xl border border-white/5 p-10 rounded-[3rem] mb-12 shadow-inner"
+                        >
+                            <p
+                                class="text-slate-200 text-lg leading-relaxed font-light"
+                            >
+                                "Our partners leverage <a
+                                    href="https://offlist.ch"
+                                    target="_blank"
+                                    class="text-[#FF6F61] font-bold hover:text-[#ff8a7d] underline decoration-[#FF6F61]/30 underline-offset-8 decoration-2 transition-all"
+                                    >Offlist.ch</a
+                                > to source off-market luxury rentals that satisfy
+                                the 'Lifestyle Assessment' of cantonal tax authorities
+                                discreetly."
+                            </p>
+                        </div>
+                        <a
+                            href="https://offlist.ch"
+                            target="_blank"
+                            class="inline-flex items-center gap-4 bg-white/5 text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest text-[10px] hover:bg-white/10 border border-white/10 transition-all no-underline group shadow-lg"
+                        >
+                            Access Off-Market Luxury Portfolio <ArrowRight
+                                className="w-5 h-5 group-hover:translate-x-2 transition-transform text-[#FF6F61]"
                             />
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- 5. Section: The Advisory Process -->
-        <section class="py-32 bg-slate-900 overflow-hidden relative border-y border-white/5">
-             <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,111,97,0.05),transparent_70%)]"></div>
-            
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="max-w-5xl mx-auto">
-                    <div class="text-center mb-24">
-                        <span class="text-[#FF6F61] font-black uppercase tracking-[0.4em] text-xs mb-6 block">The Protocol</span>
-                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">The Advisory Roadmap</h2>
-                        <div class="h-1 w-24 bg-[#FF6F61] mx-auto rounded-full mb-8"></div>
+    <!-- 4. Section: Wealth & Health Protection (Expat-Savvy Integration) -->
+    <section class="py-32 bg-white relative">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-20 items-center">
+                    <div class="order-2 md:order-1">
+                        <span
+                            class="text-[#FF6F61] font-black uppercase tracking-[0.4em] text-xs mb-8 block"
+                            >Asset Protection</span
+                        >
+                        <h2
+                            class="text-4xl md:text-6xl font-bold text-slate-900 mb-10 tracking-tight"
+                        >
+                            Security in the Details.
+                        </h2>
+                        <p
+                            class="text-slate-500 text-xl leading-relaxed mb-12 font-light"
+                        >
+                            Standard insurance frameworks are insufficient for
+                            HNWI needs or complex cross-border corporate
+                            deployments. 100% compliance is our minimum
+                            standard.
+                        </p>
+                        <div
+                            class="bg-slate-50 border border-slate-100 p-10 rounded-[3rem] mb-12 relative group hover:border-[#FF6F61]/20 transition-all duration-500"
+                        >
+                            <div
+                                class="absolute -top-6 -left-6 w-12 h-12 bg-[#FF6F61] rounded-2xl flex items-center justify-center text-white shadow-xl rotate-12 group-hover:rotate-0 transition-transform"
+                            >
+                                <ShieldCheck className="w-7 h-7" />
+                            </div>
+                            <p
+                                class="text-slate-800 text-lg leading-relaxed italic font-medium"
+                            >
+                                "For private medical coverage and asset
+                                protection, we recommend a specialized audit
+                                with <a
+                                    href="https://expat-savvy.ch"
+                                    target="_blank"
+                                    class="text-[#FF6F61] font-black underline underline-offset-8 decoration-2"
+                                    >Expat-Savvy.ch</a
+                                >."
+                            </p>
+                        </div>
+                        <a
+                            href="https://expat-savvy.ch"
+                            target="_blank"
+                            class="inline-flex items-center gap-4 text-slate-900 font-black hover:text-[#FF6F61] transition-colors uppercase tracking-[0.2em] text-[10px] no-underline group"
+                        >
+                            Initiate Insurance Audit <ArrowRight
+                                className="w-5 h-5 group-hover:translate-x-2 transition-transform text-[#FF6F61]"
+                            />
+                        </a>
+                    </div>
+                    <div class="order-1 md:order-2 group">
+                        <img
+                            src="https://res.cloudinary.com/dphbnwjtx/image/upload/f_auto,q_auto/v1766976870/services/advisory_assets.jpg"
+                            alt="Swiss High Value Documentation"
+                            class="rounded-[5rem] shadow-2xl grayscale opacity-80 group-hover:grayscale-0 transition-all duration-[2000ms] ease-in-out transform group-hover:scale-[1.02] border border-slate-100"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Section: The Advisory Process -->
+    <section
+        class="py-32 bg-slate-900 overflow-hidden relative border-y border-white/5"
+    >
+        <div
+            class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,111,97,0.05),transparent_70%)]"
+        >
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-24">
+                    <span
+                        class="text-[#FF6F61] font-black uppercase tracking-[0.4em] text-xs mb-6 block"
+                        >The Protocol</span
+                    >
+                    <h2
+                        class="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight"
+                    >
+                        The Advisory Roadmap
+                    </h2>
+                    <div
+                        class="h-1 w-24 bg-[#FF6F61] mx-auto rounded-full mb-8"
+                    >
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-4 gap-12 text-center relative">
+                    <!-- Connecting Line -->
+                    <div
+                        class="absolute top-[28%] left-0 w-full h-[1px] bg-white/10 hidden md:block"
+                    >
                     </div>
 
-                    <div class="grid md:grid-cols-4 gap-12 text-center relative">
-                        <!-- Connecting Line -->
-                        <div class="absolute top-[28%] left-0 w-full h-[1px] bg-white/10 hidden md:block"></div>
-                        
-                        {[
-                            { step: "Phase 1", title: "Feasibility Study", desc: "Exhaustive analysis of residence paths & fiscal impact.", icon: Search },
-                            { step: "Phase 2", title: "Team Assembly", desc: "Mobilizing Tax Lawyers, Fiduciaries, & Specialists.", icon: Globe },
-                            { step: "Phase 3", title: "Implementation", desc: "Entity formation, permits, & property acquisition.", icon: FileText },
-                            { step: "Phase 4", title: "Operational", desc: "Full arrival concierge & local registration completion.", icon: ShieldCheck }
+                    {
+                        [
+                            {
+                                step: "Phase 1",
+                                title: "Feasibility Study",
+                                desc: "Exhaustive analysis of residence paths & fiscal impact.",
+                                icon: Search,
+                            },
+                            {
+                                step: "Phase 2",
+                                title: "Team Assembly",
+                                desc: "Mobilizing Tax Lawyers, Fiduciaries, & Specialists.",
+                                icon: Globe,
+                            },
+                            {
+                                step: "Phase 3",
+                                title: "Implementation",
+                                desc: "Entity formation, permits, & property acquisition.",
+                                icon: FileText,
+                            },
+                            {
+                                step: "Phase 4",
+                                title: "Operational",
+                                desc: "Full arrival concierge & local registration completion.",
+                                icon: ShieldCheck,
+                            },
                         ].map((item, idx) => (
                             <div class="relative group">
                                 <div class="w-20 h-20 rounded-3xl bg-slate-800 border border-white/10 flex items-center justify-center text-[#FF6F61] mx-auto mb-10 shadow-2xl group-hover:bg-[#FF6F61] group-hover:text-white transition-all duration-500 group-hover:scale-110">
                                     <item.icon className="w-10 h-10" />
                                 </div>
-                                <span class="text-[10px] font-black text-[#FF6F61] uppercase tracking-[0.3em] mb-4 block">{item.step}</span>
-                                <h4 class="text-xl font-bold text-white mb-4">{item.title}</h4>
-                                <p class="text-slate-400 text-sm leading-relaxed px-4 font-light">{item.desc}</p>
+                                <span class="text-[10px] font-black text-[#FF6F61] uppercase tracking-[0.3em] mb-4 block">
+                                    {item.step}
+                                </span>
+                                <h4 class="text-xl font-bold text-white mb-4">
+                                    {item.title}
+                                </h4>
+                                <p class="text-slate-400 text-sm leading-relaxed px-4 font-light">
+                                    {item.desc}
+                                </p>
                             </div>
-                        ))}
-                    </div>
+                        ))
+                    }
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Journal Context (Internal Links) -->
-        <section class="py-24 bg-white border-t border-slate-100">
-            <div class="container mx-auto px-4">
-                <div class="max-w-5xl mx-auto">
-                    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-                        <div class="max-w-2xl">
-                            <span class="text-[#FF6F61] font-black uppercase tracking-widest text-[10px] mb-4 block">Archive & Intelligence</span>
-                            <h3 class="text-4xl font-bold text-slate-900 tracking-tight">Strategic Intelligence Reports</h3>
-                        </div>
-                        <a href="/" class="text-slate-900 font-black text-xs uppercase tracking-widest hover:text-[#FF6F61] transition-colors border-b-2 border-slate-900 pb-2 mb-2 no-underline">View Full Archive</a>
+    <!-- Journal Context (Internal Links) -->
+    <section class="py-24 bg-white border-t border-slate-100">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto">
+                <div
+                    class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8"
+                >
+                    <div class="max-w-2xl">
+                        <span
+                            class="text-[#FF6F61] font-black uppercase tracking-widest text-[10px] mb-4 block"
+                            >Archive & Intelligence</span
+                        >
+                        <h3
+                            class="text-4xl font-bold text-slate-900 tracking-tight"
+                        >
+                            Strategic Intelligence Reports
+                        </h3>
                     </div>
-                    
-                    <div class="grid md:grid-cols-3 gap-8">
-                         {[
-                            { title: "Lump-Sum Taxation & Housing Requirements", link: "/", category: "Fiscal Policy" },
-                            { title: "Guide für Vermögende: Umzug in die Schweiz", link: "/", category: "Strategy (DE)" },
-                            { title: "Zug Luxury Rentals: A Tax Haven Guide", link: "/", category: "Regional Report" }
-                        ].map(post => (
-                            <a href={post.link} class="group p-10 bg-slate-50 rounded-[3rem] border border-slate-100 hover:border-[#FF6F61]/20 hover:bg-white hover:shadow-2xl transition-all duration-700 no-underline flex flex-col h-full">
-                                <span class="text-[10px] font-black text-[#FF6F61] uppercase tracking-widest mb-6 block">{post.category}</span>
-                                <h4 class="text-slate-900 font-bold text-xl mb-auto leading-tight group-hover:text-[#FF6F61] transition-colors">{post.title}</h4>
+                    <a
+                        href="/"
+                        class="text-slate-900 font-black text-xs uppercase tracking-widest hover:text-[#FF6F61] transition-colors border-b-2 border-slate-900 pb-2 mb-2 no-underline"
+                        >View Full Archive</a
+                    >
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    {
+                        [
+                            {
+                                title: "Lump-Sum Taxation & Housing Requirements",
+                                link: "/",
+                                category: "Fiscal Policy",
+                            },
+                            {
+                                title: "Guide für Vermögende: Umzug in die Schweiz",
+                                link: "/",
+                                category: "Strategy (DE)",
+                            },
+                            {
+                                title: "Zug Luxury Rentals: A Tax Haven Guide",
+                                link: "/",
+                                category: "Regional Report",
+                            },
+                        ].map((post) => (
+                            <a
+                                href={post.link}
+                                class="group p-10 bg-slate-50 rounded-[3rem] border border-slate-100 hover:border-[#FF6F61]/20 hover:bg-white hover:shadow-2xl transition-all duration-700 no-underline flex flex-col h-full"
+                            >
+                                <span class="text-[10px] font-black text-[#FF6F61] uppercase tracking-widest mb-6 block">
+                                    {post.category}
+                                </span>
+                                <h4 class="text-slate-900 font-bold text-xl mb-auto leading-tight group-hover:text-[#FF6F61] transition-colors">
+                                    {post.title}
+                                </h4>
                                 <div class="mt-8 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-[#FF6F61]">
-                                    Access Report <ArrowRight className="w-4 h-4" />
+                                    Access Report{" "}
+                                    <ArrowRight className="w-4 h-4" />
                                 </div>
                             </a>
-                        ))}
-                    </div>
+                        ))
+                    }
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Final CTA: Confidential Consultation -->
-        <section class="py-40 bg-slate-950 relative overflow-hidden">
-             <!-- Elite Glow -->
-            <div class="absolute -top-60 -right-60 w-[800px] h-[800px] bg-[#FF6F61]/10 blur-[200px] rounded-full"></div>
-            <div class="absolute -bottom-60 -left-60 w-[800px] h-[800px] bg-blue-500/5 blur-[200px] rounded-full"></div>
+    <!-- Final CTA: Confidential Consultation -->
+    <section class="py-40 bg-slate-950 relative overflow-hidden">
+        <!-- Elite Glow -->
+        <div
+            class="absolute -top-60 -right-60 w-[800px] h-[800px] bg-[#FF6F61]/10 blur-[200px] rounded-full"
+        >
+        </div>
+        <div
+            class="absolute -bottom-60 -left-60 w-[800px] h-[800px] bg-blue-500/5 blur-[200px] rounded-full"
+        >
+        </div>
 
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="max-w-5xl mx-auto bg-slate-900/50 backdrop-blur-3xl p-16 md:p-32 rounded-[5rem] text-center border border-white/5 shadow-[0_64px_128px_-12px_rgba(0,0,0,0.9)] ring-1 ring-white/10">
-                    <div class="w-24 h-24 bg-[#FF6F61]/10 rounded-[2rem] flex items-center justify-center text-[#FF6F61] mx-auto mb-16 border border-[#FF6F61]/20 shadow-[0_0_50px_rgba(255,111,97,0.2)]">
-                        <Lock className="w-12 h-12" />
-                    </div>
-                    <h2 class="text-5xl md:text-8xl font-black text-white mb-10 tracking-tighter leading-tight font-inter">Secure Your Private Strategy.</h2>
-                    <p class="text-slate-400 text-xl font-light mb-20 max-w-2xl mx-auto leading-relaxed">
-                        Speak with our principal advisors to assemble your relocation team. Your inquiry is handled with absolute professional discretion.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                        <a 
-                            href="/search/results?service=advisory"
-                            class="bg-[#FF6F61] text-white px-16 py-6 rounded-full font-black text-xs uppercase tracking-[0.3em] hover:scale-105 hover:bg-[#ff8a7d] transition-all duration-500 shadow-2xl active:scale-95 no-underline flex items-center justify-center"
-                        >
-                            View Strategic Partners
-                        </a>
-                    </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div
+                class="max-w-5xl mx-auto bg-slate-900/50 backdrop-blur-3xl p-16 md:p-32 rounded-[5rem] text-center border border-white/5 shadow-[0_64px_128px_-12px_rgba(0,0,0,0.9)] ring-1 ring-white/10"
+            >
+                <div
+                    class="w-24 h-24 bg-[#FF6F61]/10 rounded-[2rem] flex items-center justify-center text-[#FF6F61] mx-auto mb-16 border border-[#FF6F61]/20 shadow-[0_0_50px_rgba(255,111,97,0.2)]"
+                >
+                    <Lock className="w-12 h-12" />
+                </div>
+                <h2
+                    class="text-5xl md:text-8xl font-black text-white mb-10 tracking-tighter leading-tight font-inter"
+                >
+                    Secure Your Private Strategy.
+                </h2>
+                <p
+                    class="text-slate-400 text-xl font-light mb-20 max-w-2xl mx-auto leading-relaxed"
+                >
+                    Speak with our principal advisors to assemble your
+                    relocation team. Your inquiry is handled with absolute
+                    professional discretion.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <button
+                        onclick="window.openAssessmentModal('advisory')"
+                        class="bg-[#FF6F61] text-white px-16 py-6 rounded-full font-black text-xs uppercase tracking-[0.3em] hover:scale-105 hover:bg-[#ff8a7d] transition-all duration-500 shadow-2xl active:scale-95 no-underline flex items-center justify-center"
+                    >
+                        View Strategic Partners
+                    </button>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- FAQ Section -->
-        <section class="py-32 bg-white">
-            <div class="container mx-auto px-4 max-w-4xl">
-                <div class="text-center mb-24">
-                    <h2 class="text-5xl font-bold text-slate-900 tracking-tight">Private Client FAQ</h2>
-                </div>
-                <div class="space-y-6">
-                    {faqs.map((faq) => (
+    <!-- FAQ Section -->
+    <section class="py-32 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="text-center mb-24">
+                <h2 class="text-5xl font-bold text-slate-900 tracking-tight">
+                    Private Client FAQ
+                </h2>
+            </div>
+            <div class="space-y-6">
+                {
+                    faqs.map((faq) => (
                         <details class="group bg-slate-50 border border-slate-200 overflow-hidden rounded-[2.5rem] transition-all duration-500">
                             <summary class="flex justify-between items-center p-10 cursor-pointer font-bold text-slate-900 hover:bg-white transition-colors select-none text-xl">
                                 {faq.q}
@@ -417,45 +632,23 @@ const faqSchema = {
                                 </div>
                             </summary>
                             <div class="px-10 pb-12 pt-0 text-slate-600 text-lg leading-relaxed border-t border-slate-100 font-light">
-                                <div class="pt-8">
-                                    {faq.a}
-                                </div>
+                                <div class="pt-8">{faq.a}</div>
                             </div>
                         </details>
-                    ))}
-                </div>
+                    ))
+                }
             </div>
-        </section>
-    </main>
-
-
-    <UniversalContactModal client:load />
-
-    <script is:inline>
-      if (typeof window !== 'undefined') {
-        window.universalOpenModal = function(context) {
-          const resolvedContext = context && typeof context === 'object' ? context : { page: 'advisory', topic: context };
-          if (window.relofinderModalStores) {
-            window.relofinderModalStores.setContext(resolvedContext);
-            window.relofinderModalStores.setOpen(true);
-          }
-        };
-      }
-    </script>
+        </div>
+    </section>
+    <div style="display:none;" data-ai-summary>
+        Strategic advisory for HNWI, entrepreneurs, and retirees moving to
+        Switzerland. Covers tax rulings (Lump-Sum Taxation/Forfait Fiscal),
+        company formation (AG/GmbH), and Lex Koller property acquisition.
+        Outlines profiles for entrepreneurs, HNWIs, retirees (Age 55+), and
+        returning Swiss citizens. Explains the Housing-Tax Link where primary
+        residence impacts fiscal arrangements. Integrated with Offlist.ch for
+        luxury listings and Expat-Savvy.ch for HNW insurance audits. Private
+        client process includes feasibility studies, team assembly of
+        lawyers/fiduciaries, and operational concierge services.
+    </div>
 </Layout>
-
-<style>
-    /* Smooth Scroll and Fade-in animations */
-    .animate-fade-in {
-        animation: fadeIn 1.2s ease-out forwards;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Custom tracking for elite feel */
-    .tracking-tighter {
-        letter-spacing: -0.05em;
-    }
-</style>

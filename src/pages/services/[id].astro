@@ -338,12 +338,16 @@ const faq = service.data.faq || [
 </Layout>
 
 <script>
-  import { openModal } from '../../stores/modal';
+  import { openAssessmentModal } from '../../stores/modal';
+  import type { AssessmentContext } from '../../stores/modal';
 
   document.querySelectorAll('.cta-button').forEach(button => {
     button.addEventListener('click', () => {
-      const serviceId = button.getAttribute('data-service-id') ?? undefined;
-      openModal({ page: 'service', service: serviceId });
+      const serviceId = button.getAttribute('data-service-id') || 'full-package';
+      openAssessmentModal({ 
+        mode: 'service', 
+        initialService: serviceId 
+      });
     });
   });
 

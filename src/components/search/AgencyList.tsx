@@ -42,89 +42,16 @@ const getMockComparisonData = (id: string): ComparisonData => {
 };
 
 export default function AgencyList({ agencies, initialCanton, initialService, initialWhen, isCorporate }: AgencyListProps) {
-    const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
     const [sortBy, setSortBy] = useState<'recommended' | 'rating' | 'price_asc'>('recommended');
-    const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
-    const [isComparisonMode, setIsComparisonMode] = useState(false);
+    const isComparisonMode = false; // Disabled selection-based comparison
 
-    // Check for comparison mode (from URL)
-    useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        setIsComparisonMode(urlParams.has('compare_ids'));
-    }, []);
-
-    // Sync with localStorage
-    useEffect(() => {
-        const loadSelection = () => {
-            const stored = localStorage.getItem('relo_compare');
-            if (stored) {
-                const parsed = JSON.parse(stored);
-                setSelectedIds(new Set(parsed.map((a: any) => a.id)));
-            } else {
-                setSelectedIds(new Set());
-            }
-        };
-        loadSelection();
-        window.addEventListener('relo_compare_update', loadSelection);
-        return () => window.removeEventListener('relo_compare_update', loadSelection);
-    }, []);
-
-    const toggleSelection = (e: React.MouseEvent, agency: Agency) => {
-        e.stopPropagation();
-
-        const stored = localStorage.getItem('relo_compare');
-        let current: any[] = stored ? JSON.parse(stored) : [];
-
-        if (current.find((a: any) => a.id === agency.id)) {
-            current = current.filter((a: any) => a.id !== agency.id);
-        } else {
-            if (current.length >= 3) {
-                alert("You can compare up to 3 agencies at a time.");
-                return;
-            }
-            current.push({ id: agency.id, name: agency.name, logo: agency.logo });
-        }
-
-        localStorage.setItem('relo_compare', JSON.stringify(current));
-        window.dispatchEvent(new Event('relo_compare_update'));
-    };
-
-    const handleClearSelection = () => {
-        setSelectedIds(new Set());
-        localStorage.removeItem('relo_compare');
-        window.dispatchEvent(new Event('relo_compare_update'));
-
-        // Clear URL param if present to reset view
-        const url = new URL(window.location.href);
-        if (url.searchParams.has('compare_ids')) {
-            url.searchParams.delete('compare_ids');
-            window.location.href = url.toString();
-        }
-    };
-
-    const handleRequestQuotes = () => {
-        const urlParams = new URLSearchParams(window.location.search);
+    const handleRequestAssessment = () => {
         // @ts-ignore
-        if (window.universalOpenModal) {
+        if (window.openAssessmentModal) {
             // @ts-ignore
-            window.universalOpenModal({
-                page: isCorporate ? 'corporate' : 'results',
-                topic: isCorporate ? 'managed_tender' : 'quote_request',
-                selectedAgencies: Array.from(selectedIds),
-                company: urlParams.get('company'),
-                volume: urlParams.get('volume'),
-                where: initialCanton,
-                context: {
-                    canton: initialCanton,
-                    service: initialService,
-                    when: initialWhen,
-                    isCorporate
-                }
-            });
+            window.openAssessmentModal(isCorporate ? 'corporate' : 'full-package', initialCanton);
         }
     };
-
-    const selectedAgencies = agencies.filter(a => selectedIds.has(a.id));
 
     // Sorting Logic
     const sortedAgencies = useMemo(() => {
@@ -206,11 +133,8 @@ export default function AgencyList({ agencies, initialCanton, initialService, in
                 {sortedAgencies.map((agency) => (
                     <div
                         key={agency.id}
-                        className={`bg-white rounded-2xl border transition-all duration-300 md:flex overflow-hidden relative group hover:shadow-xl ${selectedIds.has(agency.id)
-                            ? 'border-[#FF6F61] shadow-lg ring-1 ring-[#FF6F61]/10 transform scale-[1.01] z-10'
-                            : 'border-slate-200 shadow-sm hover:border-slate-300'
-                            }`}
-                        onClick={(e) => toggleSelection(e, agency)}
+                        className="bg-white rounded-2xl border border-slate-200 shadow-sm transition-all duration-300 md:flex overflow-hidden relative group hover:shadow-xl hover:border-slate-300"
+                        onClick={handleRequestAssessment}
                     >
                         {/* Left: Branding */}
                         <div className="md:w-56 p-6 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-slate-50 bg-slate-50/30">
@@ -275,18 +199,10 @@ export default function AgencyList({ agencies, initialCanton, initialService, in
                             </div>
 
                             <div
-                                className={`w-full py-3.5 px-4 rounded-xl border-2 flex items-center justify-center gap-3 transition-all font-bold text-sm select-none ${selectedIds.has(agency.id)
-                                    ? 'bg-[#FF6F61] border-[#FF6F61] text-white shadow-lg shadow-[#FF6F61]/30'
-                                    : 'bg-white border-slate-200 text-slate-500 group-hover:border-[#FF6F61] group-hover:text-[#FF6F61] shadow-sm'
-                                    }`}
+                                className="w-full py-3.5 px-4 rounded-xl border-2 border-slate-200 text-slate-500 bg-white group-hover:border-[#FF6F61] group-hover:text-[#FF6F61] transition-all font-bold text-sm shadow-sm flex items-center justify-center gap-2"
                             >
-                                <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${selectedIds.has(agency.id) ? 'bg-white border-white' : 'border-slate-300'
-                                    }`}>
-                                    {selectedIds.has(agency.id) && <Check className="w-3.5 h-3.5 text-[#FF6F61]" strokeWidth={3} />}
-                                </div>
-                                {selectedIds.has(agency.id)
-                                    ? (isCorporate ? 'Selected for Tender' : 'Selected for Compare')
-                                    : (isCorporate ? 'Add to Tender' : 'Add to Compare')}
+                                <MessageSquare className="w-4 h-4" />
+                                {isCorporate ? 'Start Anonymous Tender' : 'Get Professional Quote'}
                             </div>
                         </div>
                     </div>
@@ -294,46 +210,7 @@ export default function AgencyList({ agencies, initialCanton, initialService, in
                 }
             </div>
 
-            {/* Conditional Bottom Bar */}
-            {
-                (isComparisonMode || (isCorporate && selectedIds.size > 0)) ? (
-                    <div className="fixed bottom-0 left-0 right-0 z-50 p-4 animate-in slide-in-from-bottom-5">
-                        <div className="container mx-auto max-w-5xl">
-                            <div className="bg-slate-900 border border-slate-800 text-white rounded-3xl p-6 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
-                                <div className="flex items-center gap-4">
-                                    <div className="bg-[#FF6F61] w-12 h-12 rounded-2xl flex items-center justify-center">
-                                        <MessageSquare className="text-white w-6 h-6" />
-                                    </div>
-                                    <div>
-                                        <p className="font-bold text-lg">{isCorporate ? 'Managed Tender' : 'Request Offers'}</p>
-                                        <p className="text-slate-400 text-xs font-medium">
-                                            {isCorporate
-                                                ? `Initiate a structured RFP for these ${agencies.length} selected partners.`
-                                                : `Get personalized quotes from these ${agencies.length} agencies.`}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-3 w-full md:w-auto">
-                                    <button
-                                        onClick={handleClearSelection}
-                                        className="px-6 py-3 rounded-xl border border-slate-700 text-slate-300 font-bold text-sm hover:bg-slate-800 transition-colors"
-                                    >
-                                        Cancel
-                                    </button>
-                                    <button
-                                        onClick={handleRequestQuotes}
-                                        className="flex-1 md:flex-none px-8 py-3 bg-[#FF6F61] hover:bg-[#ff5d4d] text-white font-black rounded-xl text-sm uppercase tracking-wider transition-all shadow-lg shadow-red-900/20"
-                                    >
-                                        {isCorporate ? 'Initiate Managed Tender' : 'Get Group Quotes'}
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ) : (
-                    !isCorporate && <ComparisonBar />
-                )
-            }
+            {/* Removed comparison bar and managed tender overlay to enforce concatenated concierge flow */}
 
         </div >
     );

@@ -1,4 +1,8 @@
 ---
+import ServiceHero from "../../components/services/ServiceHero.astro";
+import SchemaMarkup from "../../components/common/SchemaMarkup.astro";
+import Layout from "../../layouts/Layout.astro";
+import HeroSearch from "../../components/home/HeroSearch";
 import {
     Building2,
     Users,
@@ -13,14 +17,6 @@ import {
     XCircle,
     FileText,
 } from "lucide-react";
-import "../../styles/global.css";
-import "../../styles/alpine-clarity.css";
-import SEOHead from "../../components/common/SEOHead.astro";
-import UniversalContactModal from "../../components/common/UniversalContactModal.tsx";
-import "../../lib/expose-modal-stores.client.ts";
-import Navbar from "../../components/layout/Navbar.astro";
-import Footer from "../../components/layout/Footer.astro";
-import HeroSearch from "../../components/home/HeroSearch.tsx";
 
 import RegionalMarketMap from "../../components/services/RegionalMarketMap.tsx";
 
@@ -158,770 +154,603 @@ const structuredData = [
 ];
 ---
 
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <SEOHead
-            title="Housing Search Switzerland: 0.06% Vacancy Guide | ReloFinder"
-            description="Navigate the competitive Swiss housing market. Access off-market 'Nachmieter' listings, bypass mass viewings, and secure a home without a credit history."
-            keywords={[
-                "housing search switzerland",
-                "relocation agency zurich",
-                "apartment hunting geneva",
-                "nachmieter switzerland",
-                "expat housing service",
-            ]}
-            schema={structuredData}
-            openGraph={{
-                image: heroImage,
-                type: "service",
-                url: "https://relofinder.ch/services/housing-search",
-            }}
-            twitter={{
-                card: "summary_large_image",
-                site: "@relofinder",
-                title: "Swiss Housing Search: The 0.06% Guide",
-                description:
-                    "Navigate the competitive Swiss housing market. Access off-market listings and bypass mass viewings.",
-                image: heroImage,
-            }}
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
-            rel="stylesheet"
-        />
-        <style>
-            .hero-gradient {
-                background: linear-gradient(
-                    180deg,
-                    rgba(15, 23, 42, 0.45) 0%,
-                    rgba(15, 23, 42, 0.75) 100%
-                );
-            }
-        </style>
-    </head>
-    <body class="font-sans text-slate-600 bg-[#F9FAFB] antialiased">
-        <!-- Navbar -->
-        <Navbar />
+<Layout
+    title="Housing Search Switzerland: 0.06% Vacancy Guide | ReloFinder"
+    description="Navigate the competitive Swiss housing market. Access off-market 'Nachmieter' listings, bypass mass viewings, and secure a home without a credit history."
+>
+    <!-- SEO Schemas -->
+    <SchemaMarkup type="service" data={serviceSchema} />
+    <SchemaMarkup type="breadcrumb" data={breadcrumbSchema} />
+    <SchemaMarkup type="manual" data={definedTermSchema} />
+    <SchemaMarkup type="faq" data={faqSchema} />
 
-        <!-- 1. The "Reality Check" Hero -->
-        <section
-            class="relative py-20 lg:py-32 overflow-hidden bg-slate-950 group"
-        >
-            <!-- Background Image -->
-            <div class="absolute inset-0 z-0">
-                <div
-                    class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-transparent to-slate-950/80 z-20 pointer-events-none"
-                >
+    <ServiceHero
+        title="Housing Search"
+        subtitle="How to Find a Home"
+        description="The Swiss rental market is unique. Learn how to navigate mass viewings, 'Nachmieter' clauses, and strict application rules—or hire an expert to do it for you."
+        badge="Swiss Housing Guide 2026"
+        icon={Key}
+    />
+
+    <!-- 2. "Why is it so hard?" (The Education) -->
+    <section class="py-24 bg-white border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                    Why is it so hard?
+                </h2>
+                <div class="w-24 h-1.5 bg-[#FF6F61] mx-auto rounded-full mb-6">
                 </div>
-                <img
-                    src={heroImage}
-                    alt="Swiss Apartment Building with For Rent Sign"
-                    class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 transition-all duration-[2000ms] ease-in-out z-10"
-                />
+                <p class="text-slate-500 text-lg max-w-2xl mx-auto">
+                    Newcomers often underestimate the "Swiss Application
+                    Standard."
+                </p>
             </div>
 
-            <div
-                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"
-            >
-                <div class="max-w-4xl mx-auto mb-16">
-                    <span
-                        class="inline-block py-1.5 px-4 rounded-full bg-[#FF6F61] text-white text-sm font-bold mb-8 tracking-wide uppercase shadow-lg shadow-orange-900/20"
-                    >
-                        Swiss Housing Guide 2026
-                    </span>
-                    <h1
-                        class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-8 leading-[1.1] drop-shadow-xl"
-                    >
-                        Housing in Switzerland: <br class="hidden md:block" />
-                        <span class="text-slate-100"
-                            >How to Find a Home in a</span
-                        >
-                        <span class="text-[#FF6F61]">
-                            0.06% Vacancy Market.</span
-                        >
-                    </h1>
-                    <p
-                        class="text-lg md:text-xl text-slate-100 font-medium max-w-2xl mx-auto leading-relaxed drop-shadow-md"
-                    >
-                        The Swiss rental market is unique. Learn how to navigate
-                        mass viewings, 'Nachmieter' clauses, and strict
-                        application rules—or hire an expert to do it for you.
-                    </p>
-                </div>
-
-                <!-- Lead Wizard (Hero) -->
+            <div class="grid md:grid-cols-3 gap-10">
+                <!-- Problem 1: Mass Viewing -->
                 <div
-                    class="max-w-3xl mx-auto relative z-10 text-left transform hover:-translate-y-1 transition-transform duration-500"
+                    class="group bg-white rounded-2xl p-2 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-slate-100"
                 >
                     <div
-                        class="bg-white/10 backdrop-blur-md rounded-2xl p-2 ring-1 ring-white/20 shadow-2xl"
+                        class="mb-6 relative aspect-[4/3] overflow-hidden rounded-xl shadow-inner group-hover:shadow-2xl transition-all duration-700"
                     >
-                        <div class="bg-white rounded-xl overflow-hidden">
-                            <HeroSearch
-                                client:load
-                                initialService="housing-search"
-                            />
-                        </div>
-                    </div>
-                    <p
-                        class="text-center text-sm text-white/90 mt-6 font-medium drop-shadow"
-                    >
-                        <span class="text-[#FF6F61] font-bold">*</span> 100% Free
-                        & No Obligation Comparison
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2. "Why is it so hard?" (The Education) -->
-        <section class="py-24 bg-white border-b border-slate-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-20">
-                    <h2
-                        class="text-3xl md:text-4xl font-bold text-slate-900 mb-4"
-                    >
-                        Why is it so hard?
-                    </h2>
-                    <div
-                        class="w-24 h-1.5 bg-[#FF6F61] mx-auto rounded-full mb-6"
-                    >
-                    </div>
-                    <p class="text-slate-500 text-lg max-w-2xl mx-auto">
-                        Newcomers often underestimate the "Swiss Application
-                        Standard."
-                    </p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-10">
-                    <!-- Problem 1: Mass Viewing -->
-                    <div
-                        class="group bg-white rounded-2xl p-2 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-slate-100"
-                    >
-                        <div
-                            class="mb-6 relative aspect-[4/3] overflow-hidden rounded-xl shadow-inner group-hover:shadow-2xl transition-all duration-700"
-                        >
-                            <img
-                                src={crowdImage}
-                                alt="Crowd of people waiting"
-                                class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[2000ms] ease-in-out"
-                            />
-                            <div
-                                class="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-md text-slate-800 z-20"
-                            >
-                                The Reality
-                            </div>
-                        </div>
-                        <div class="px-4 pb-4">
-                            <h3
-                                class="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#FF6F61] transition-colors"
-                            >
-                                The Mass Viewing
-                            </h3>
-                            <p class="text-slate-600 leading-relaxed text-sm">
-                                Imagine standing in line with 50 other
-                                applicants for a single apartment. In cities
-                                like Zurich, you have 15 minutes to impress.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Problem 2: Expat Disadvantage -->
-                    <div
-                        class="group bg-white rounded-2xl p-2 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-slate-100"
-                    >
-                        <div
-                            class="mb-6 relative aspect-[4/3] overflow-hidden rounded-xl shadow-inner group-hover:shadow-2xl transition-all duration-700"
-                        >
-                            <img
-                                src={paperImage}
-                                alt="Rejected document stamp"
-                                class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[2000ms] ease-in-out"
-                            />
-                            <div
-                                class="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-md text-slate-800 z-20"
-                            >
-                                The Barrier
-                            </div>
-                        </div>
-                        <div class="px-4 pb-4">
-                            <h3
-                                class="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#FF6F61] transition-colors"
-                            >
-                                The 'Expat Disadvantage'
-                            </h3>
-                            <p class="text-slate-600 leading-relaxed text-sm">
-                                Without a Swiss Debt Extract (<em
-                                    >Betreibungsauskunft</em
-                                >), automated algorithms often reject foreigners
-                                before a human sees your dossier.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Solution: Trust Proxy -->
-                    <div
-                        class="group bg-white rounded-2xl p-2 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-slate-100"
-                    >
-                        <div
-                            class="mb-6 relative aspect-[4/3] overflow-hidden rounded-xl shadow-inner group-hover:shadow-2xl transition-all duration-700"
-                        >
-                            <img
-                                src={keysImage}
-                                alt="Hand holding keys"
-                                class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[2000ms] ease-in-out"
-                            />
-                            <div
-                                class="absolute bottom-4 left-4 bg-[#FF6F61]/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-md text-white z-20"
-                            >
-                                The Solution
-                            </div>
-                        </div>
-                        <div class="px-4 pb-4">
-                            <h3
-                                class="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#FF6F61] transition-colors"
-                            >
-                                Trust Proxy
-                            </h3>
-                            <p class="text-slate-600 leading-relaxed text-sm">
-                                Relocation Agencies use relationships with
-                                property managements (<em>Régies</em>) to vouch
-                                for your solvency, effectively bypassing the
-                                algorithm.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2.5 Market Dynamics by Region (New Analysis) -->
-        <section class="py-24 bg-slate-50 border-b border-slate-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2
-                        class="text-3xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight"
-                    >
-                        Market Dynamics by Region
-                    </h2>
-                    <p
-                        class="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed"
-                    >
-                        Every Swiss canton operates differently. Know your
-                        market before you search.
-                    </p>
-                </div>
-
-                <div class="mt-12">
-                    <RegionalMarketMap client:load />
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. Swiss Market Secrets (Polished) -->
-        <section class="py-24 bg-[#F9FAFB] relative overflow-hidden">
-            <!-- Background decorative elements -->
-            <div
-                class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-5 pointer-events-none"
-            >
-                <div
-                    class="absolute top-20 left-10 w-64 h-64 bg-[#FF6F61] rounded-full blur-[100px]"
-                >
-                </div>
-                <div
-                    class="absolute bottom-20 right-10 w-96 h-96 bg-slate-900 rounded-full blur-[120px]"
-                >
-                </div>
-            </div>
-
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center mb-16">
-                    <h2
-                        class="text-4xl font-bold text-slate-900 mb-4 tracking-tight"
-                    >
-                        Swiss Market Secrets
-                    </h2>
-                    <p class="text-slate-500">
-                        Insider concepts every newcomer needs to master.
-                    </p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-6">
-                    <!-- Secret 1 -->
-                    <div
-                        class="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group relative overflow-hidden"
-                    >
-                        <div
-                            class="absolute top-0 left-0 w-1 h-full bg-[#FF6F61] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"
-                        >
-                        </div>
-                        <div
-                            class="w-14 h-14 bg-slate-50 text-slate-900 rounded-xl flex items-center justify-center mb-6 border border-slate-100 group-hover:bg-[#FF6F61] group-hover:text-white transition-colors duration-300 shadow-sm"
-                        >
-                            <Users className="w-6 h-6" />
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-4">
-                            The 'Nachmieter'
-                        </h3>
-                        <p class="text-slate-600 leading-relaxed text-sm">
-                            Many leases have 3-month notice periods. Leaving
-                            tenants find a replacement. These flats <strong
-                                class="text-slate-900"
-                                >never hit Homegate</strong
-                            > explicitly. Agencies access this pre-market data.
-                        </p>
-                    </div>
-
-                    <!-- Secret 2 -->
-                    <div
-                        class="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group relative overflow-hidden"
-                    >
-                        <div
-                            class="absolute top-0 left-0 w-1 h-full bg-[#FF6F61] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"
-                        >
-                        </div>
-                        <div
-                            class="w-14 h-14 bg-slate-50 text-slate-900 rounded-xl flex items-center justify-center mb-6 border border-slate-100 group-hover:bg-[#FF6F61] group-hover:text-white transition-colors duration-300 shadow-sm"
-                        >
-                            <Clock className="w-6 h-6" />
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-4">
-                            Commute Strategy
-                        </h3>
-                        <p class="text-slate-600 leading-relaxed text-sm">
-                            Living in <strong class="text-slate-900"
-                                >Kilchberg</strong
-                            > (Zurich) or <strong class="text-slate-900"
-                                >Morges</strong
-                            > (Lausanne) often halves competition while adding just
-                            12 mins to your commute. Strategy beats location.
-                        </p>
-                    </div>
-
-                    <!-- Secret 3 -->
-                    <div
-                        class="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group relative overflow-hidden"
-                    >
-                        <div
-                            class="absolute top-0 left-0 w-1 h-full bg-[#FF6F61] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"
-                        >
-                        </div>
-                        <div
-                            class="w-14 h-14 bg-slate-50 text-slate-900 rounded-xl flex items-center justify-center mb-6 border border-slate-100 group-hover:bg-[#FF6F61] group-hover:text-white transition-colors duration-300 shadow-sm"
-                        >
-                            <TrendingUp className="w-6 h-6" />
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-4">
-                            The Real ROI
-                        </h3>
-                        <p class="text-slate-600 leading-relaxed text-sm">
-                            A Relocater costs ~1 month's rent. By saving you
-                            months of temporary housing (generating ~CHF 6,000
-                            in immediate savings), it becomes an investment, not
-                            a cost.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. The Ecosystem Advantage -->
-        <section class="py-24 bg-white border-y border-slate-100">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid md:grid-cols-2 gap-16 items-center">
-                    <!-- Text -->
-                    <div class="order-2 md:order-1">
-                        <span
-                            class="text-[#FF6F61] font-bold tracking-wider uppercase text-sm mb-2 block"
-                            >The ReloFinder Ecosystem</span
-                        >
-                        <h2
-                            class="text-3xl md:text-5xl font-bold text-slate-900 mb-8 leading-tight"
-                        >
-                            Powered by Exclusive Networks.
-                        </h2>
-                        <p class="text-slate-600 text-lg mb-10 leading-relaxed">
-                            We don't just rely on open portals. Our verified
-                            partners utilize specialized tools to give you the
-                            competitive edge.
-                        </p>
-
-                        <div class="space-y-6">
-                            <!-- Offlist Feature -->
-                            <div
-                                class="flex gap-6 p-6 rounded-2xl border border-slate-100 bg-slate-50 hover:border-[#FF6F61]/30 hover:shadow-lg transition-all group cursor-default"
-                            >
-                                <div class="shrink-0">
-                                    <div
-                                        class="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center text-white font-bold shadow-lg group-hover:scale-110 transition-transform"
-                                    >
-                                        OL
-                                    </div>
-                                </div>
-                                <div>
-                                    <h4
-                                        class="font-bold text-slate-900 text-lg flex items-center gap-2 mb-2"
-                                    >
-                                        Access to <a
-                                            href="https://offlist.ch"
-                                            target="_blank"
-                                            rel="noopener"
-                                            class="hover:text-[#FF6F61] transition-colors"
-                                            >Offlist.ch</a
-                                        >
-                                    </h4>
-                                    <p class="text-slate-600 leading-relaxed">
-                                        A private marketplace where landlords
-                                        and departing expats list properties <strong
-                                            class="text-slate-900"
-                                            >exclusively</strong
-                                        > for vetted professionals.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- Expat-Savvy Feature -->
-                            <div
-                                class="flex gap-6 p-6 rounded-2xl border border-slate-100 bg-slate-50 hover:border-[#FF6F61]/30 hover:shadow-lg transition-all group cursor-default"
-                            >
-                                <div class="shrink-0">
-                                    <div
-                                        class="w-14 h-14 bg-[#FF6F61] rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-transform"
-                                    >
-                                        ES
-                                    </div>
-                                </div>
-                                <div>
-                                    <h4
-                                        class="font-bold text-slate-900 text-lg flex items-center gap-2 mb-2"
-                                    >
-                                        Deposit Hack via <a
-                                            href="https://expat-savvy.ch"
-                                            target="_blank"
-                                            rel="noopener"
-                                            class="hover:text-[#FF6F61] transition-colors"
-                                            >Expat-Savvy</a
-                                        >
-                                    </h4>
-                                    <p class="text-slate-600 leading-relaxed">
-                                        Don't lock up 3 months of rent (up to
-                                        CHF 12k). Our partners help you use <strong
-                                            class="text-slate-900"
-                                            >Deposit Insurance</strong
-                                        > to keep your cash.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Visual (Uploaded Offlist UI) -->
-                    <div class="relative order-1 md:order-2 group">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-tr from-[#FF6F61]/20 to-transparent rounded-3xl blur-3xl transform group-hover:scale-105 transition-transform duration-700"
-                        >
-                        </div>
                         <img
-                            src={offlistUiImage}
-                            alt="Offlist.ch Dashboard Interface"
-                            class="relative rounded-2xl shadow-2xl border border-slate-200 transform group-hover:-rotate-1 transition-transform duration-500 w-full"
+                            src={crowdImage}
+                            alt="Crowd of people waiting"
+                            class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[2000ms] ease-in-out"
                         />
+                        <div
+                            class="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-md text-slate-800 z-20"
+                        >
+                            The Reality
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                        <h3
+                            class="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#FF6F61] transition-colors"
+                        >
+                            The Mass Viewing
+                        </h3>
+                        <p class="text-slate-600 leading-relaxed text-sm">
+                            Imagine standing in line with 50 other applicants
+                            for a single apartment. In cities like Zurich, you
+                            have 15 minutes to impress.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Problem 2: Expat Disadvantage -->
+                <div
+                    class="group bg-white rounded-2xl p-2 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-slate-100"
+                >
+                    <div
+                        class="mb-6 relative aspect-[4/3] overflow-hidden rounded-xl shadow-inner group-hover:shadow-2xl transition-all duration-700"
+                    >
+                        <img
+                            src={paperImage}
+                            alt="Rejected document stamp"
+                            class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[2000ms] ease-in-out"
+                        />
+                        <div
+                            class="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-md text-slate-800 z-20"
+                        >
+                            The Barrier
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                        <h3
+                            class="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#FF6F61] transition-colors"
+                        >
+                            The 'Expat Disadvantage'
+                        </h3>
+                        <p class="text-slate-600 leading-relaxed text-sm">
+                            Without a Swiss Debt Extract (<em
+                                >Betreibungsauskunft</em
+                            >), automated algorithms often reject foreigners
+                            before a human sees your dossier.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Solution: Trust Proxy -->
+                <div
+                    class="group bg-white rounded-2xl p-2 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 border border-slate-100"
+                >
+                    <div
+                        class="mb-6 relative aspect-[4/3] overflow-hidden rounded-xl shadow-inner group-hover:shadow-2xl transition-all duration-700"
+                    >
+                        <img
+                            src={keysImage}
+                            alt="Hand holding keys"
+                            class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[2000ms] ease-in-out"
+                        />
+                        <div
+                            class="absolute bottom-4 left-4 bg-[#FF6F61]/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold shadow-md text-white z-20"
+                        >
+                            The Solution
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4">
+                        <h3
+                            class="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#FF6F61] transition-colors"
+                        >
+                            Trust Proxy
+                        </h3>
+                        <p class="text-slate-600 leading-relaxed text-sm">
+                            Relocation Agencies use relationships with property
+                            managements (<em>Régies</em>) to vouch for your
+                            solvency, effectively bypassing the algorithm.
+                        </p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- 5. Comparison: DIY vs Managed (Polished) -->
-        <section class="py-24 bg-[#0F172A] text-white relative overflow-hidden">
-            <!-- Shine effect -->
-            <div
-                class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#FF6F61]/5 to-transparent pointer-events-none"
-            >
+    <!-- 2.5 Market Dynamics by Region (New Analysis) -->
+    <section class="py-24 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2
+                    class="text-3xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight"
+                >
+                    Market Dynamics by Region
+                </h2>
+                <p
+                    class="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed"
+                >
+                    Every Swiss canton operates differently. Know your market
+                    before you search.
+                </p>
             </div>
 
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-5xl font-bold mb-4">
-                        Value Proposition
-                    </h2>
-                    <p class="text-slate-400 text-lg">
-                        Is it worth the investment? Compare the workflows.
+            <div class="mt-12">
+                <RegionalMarketMap client:load />
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Swiss Market Secrets (Polished) -->
+    <section class="py-24 bg-[#F9FAFB] relative overflow-hidden">
+        <!-- Background decorative elements -->
+        <div
+            class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-5 pointer-events-none"
+        >
+            <div
+                class="absolute top-20 left-10 w-64 h-64 bg-[#FF6F61] rounded-full blur-[100px]"
+            >
+            </div>
+            <div
+                class="absolute bottom-20 right-10 w-96 h-96 bg-slate-900 rounded-full blur-[120px]"
+            >
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2
+                    class="text-4xl font-bold text-slate-900 mb-4 tracking-tight"
+                >
+                    Swiss Market Secrets
+                </h2>
+                <p class="text-slate-500">
+                    Insider concepts every newcomer needs to master.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Secret 1 -->
+                <div
+                    class="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group relative overflow-hidden"
+                >
+                    <div
+                        class="absolute top-0 left-0 w-1 h-full bg-[#FF6F61] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"
+                    >
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-slate-50 text-slate-900 rounded-xl flex items-center justify-center mb-6 border border-slate-100 group-hover:bg-[#FF6F61] group-hover:text-white transition-colors duration-300 shadow-sm"
+                    >
+                        <Users className="w-6 h-6" />
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-4">
+                        The 'Nachmieter'
+                    </h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        Many leases have 3-month notice periods. Leaving tenants
+                        find a replacement. These flats <strong
+                            class="text-slate-900">never hit Homegate</strong
+                        > explicitly. Agencies access this pre-market data.
                     </p>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-8 lg:gap-16">
-                    <!-- DIY Card -->
-                    <div
-                        class="bg-slate-800/50 rounded-3xl p-8 border border-white/5 hover:border-white/10 transition-all duration-300 hover:bg-slate-800 backdrop-blur-sm group"
-                    >
-                        <div class="flex items-center gap-4 mb-8">
-                            <div
-                                class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform"
-                            >
-                                <Search className="w-5 h-5 text-slate-300" />
-                            </div>
-                            <h3 class="text-2xl font-bold text-slate-200">
-                                DIY Search
-                            </h3>
-                        </div>
-
-                        <ul class="space-y-6">
-                            <li
-                                class="flex items-start gap-4 opacity-50 group-hover:opacity-80 transition-opacity"
-                            >
-                                <XCircle
-                                    className="w-6 h-6 text-slate-500 shrink-0"
-                                />
-                                <span class="text-slate-300"
-                                    >High stress, "fight for yourself" mentality
-                                    against 50+ applicants.</span
-                                >
-                            </li>
-                            <li
-                                class="flex items-start gap-4 opacity-50 group-hover:opacity-80 transition-opacity"
-                            >
-                                <XCircle
-                                    className="w-6 h-6 text-slate-500 shrink-0"
-                                />
-                                <span class="text-slate-300"
-                                    >Navigating German/French contracts without
-                                    legal knowledge.</span
-                                >
-                            </li>
-                            <li
-                                class="flex items-start gap-4 opacity-50 group-hover:opacity-80 transition-opacity"
-                            >
-                                <XCircle
-                                    className="w-6 h-6 text-slate-500 shrink-0"
-                                />
-                                <span class="text-slate-300"
-                                    >Risk of falling for scam listings on public
-                                    portals.</span
-                                >
-                            </li>
-                            <li class="flex items-start gap-4 opacity-100">
-                                <CheckCircle2
-                                    className="w-6 h-6 text-slate-400 shrink-0"
-                                />
-                                <span class="text-slate-100 font-bold"
-                                    >$0 financial cost (pays in time/stress).</span
-                                >
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Managed Card -->
-                    <div
-                        class="bg-white text-slate-900 rounded-3xl p-8 border-4 border-[#FF6F61] shadow-[0_0_50px_rgba(255,111,97,0.3)] transform hover:-translate-y-2 transition-transform duration-500 relative overflow-hidden group"
-                    >
-                        <div
-                            class="absolute top-0 right-0 bg-[#FF6F61] text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl shadow-sm uppercase tracking-wider"
-                        >
-                            Recommended
-                        </div>
-
-                        <div class="flex items-center gap-4 mb-8">
-                            <div
-                                class="w-12 h-12 bg-[#FF6F61]/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform"
-                            >
-                                <ShieldCheck
-                                    className="w-6 h-6 text-[#FF6F61]"
-                                />
-                            </div>
-                            <h3 class="text-2xl font-bold text-slate-900">
-                                Managed Search
-                            </h3>
-                        </div>
-
-                        <ul class="space-y-6">
-                            <li class="flex items-start gap-4">
-                                <CheckCircle2
-                                    className="w-6 h-6 text-[#FF6F61] shrink-0"
-                                />
-                                <span class="font-medium text-slate-700"
-                                    >Access to <strong class="text-slate-900"
-                                        >pre-market listings</strong
-                                    > via Offlist.</span
-                                >
-                            </li>
-                            <li class="flex items-start gap-4">
-                                <CheckCircle2
-                                    className="w-6 h-6 text-[#FF6F61] shrink-0"
-                                />
-                                <span class="font-medium text-slate-700"
-                                    >Virtual viewings & professional lease
-                                    review included.</span
-                                >
-                            </li>
-                            <li class="flex items-start gap-4">
-                                <CheckCircle2
-                                    className="w-6 h-6 text-[#FF6F61] shrink-0"
-                                />
-                                <span class="font-medium text-slate-700"
-                                    >Utility setup & handover protocol handling.</span
-                                >
-                            </li>
-                            <li class="flex items-start gap-4">
-                                <div
-                                    class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center shrink-0 border border-slate-200 text-xs font-bold text-slate-500"
-                                >
-                                    $
-                                </div>
-                                <span class="font-medium text-slate-500"
-                                    >Fee-based (approx. 1 month rent).</span
-                                >
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <p
-                    class="text-center text-slate-500 mt-12 text-lg italic opacity-60 hover:opacity-100 transition-opacity duration-300"
-                >
-                    "If you value your time or are moving from abroad, an agent
-                    is an investment, not a cost."
-                </p>
-            </div>
-        </section>
-
-        <!-- 6. Conversion Block (Banner) -->
-        <section class="py-24 bg-white">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2
-                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight"
-                >
-                    Find the right door opener.
-                </h2>
-                <p class="text-xl text-slate-500 mb-12 max-w-2xl mx-auto">
-                    Compare verified relocation agencies that specialize in
-                    housing search for expats. Start your inquiry below.
-                </p>
-
-                <!-- Comparison Flow Banner -->
+                <!-- Secret 2 -->
                 <div
-                    class="bg-slate-900 rounded-2xl p-3 md:p-4 shadow-2xl ring-1 ring-slate-900/5 rotate-1 hover:rotate-0 transition-transform duration-500"
+                    class="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group relative overflow-hidden"
                 >
-                    <div class="bg-white rounded-xl overflow-hidden">
-                        <HeroSearch client:load />
+                    <div
+                        class="absolute top-0 left-0 w-1 h-full bg-[#FF6F61] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"
+                    >
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-slate-50 text-slate-900 rounded-xl flex items-center justify-center mb-6 border border-slate-100 group-hover:bg-[#FF6F61] group-hover:text-white transition-colors duration-300 shadow-sm"
+                    >
+                        <Clock className="w-6 h-6" />
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-4">
+                        Commute Strategy
+                    </h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        Living in <strong class="text-slate-900"
+                            >Kilchberg</strong
+                        > (Zurich) or <strong class="text-slate-900"
+                            >Morges</strong
+                        > (Lausanne) often halves competition while adding just 12
+                        mins to your commute. Strategy beats location.
+                    </p>
+                </div>
+
+                <!-- Secret 3 -->
+                <div
+                    class="bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group relative overflow-hidden"
+                >
+                    <div
+                        class="absolute top-0 left-0 w-1 h-full bg-[#FF6F61] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"
+                    >
+                    </div>
+                    <div
+                        class="w-14 h-14 bg-slate-50 text-slate-900 rounded-xl flex items-center justify-center mb-6 border border-slate-100 group-hover:bg-[#FF6F61] group-hover:text-white transition-colors duration-300 shadow-sm"
+                    >
+                        <TrendingUp className="w-6 h-6" />
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-4">
+                        The Real ROI
+                    </h3>
+                    <p class="text-slate-600 leading-relaxed text-sm">
+                        A Relocater costs ~1 month's rent. By saving you months
+                        of temporary housing (generating ~CHF 6,000 in immediate
+                        savings), it becomes an investment, not a cost.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. The Ecosystem Advantage -->
+    <section class="py-24 bg-white border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <!-- Text -->
+                <div class="order-2 md:order-1">
+                    <span
+                        class="text-[#FF6F61] font-bold tracking-wider uppercase text-sm mb-2 block"
+                        >The ReloFinder Ecosystem</span
+                    >
+                    <h2
+                        class="text-3xl md:text-5xl font-bold text-slate-900 mb-8 leading-tight"
+                    >
+                        Powered by Exclusive Networks.
+                    </h2>
+                    <p class="text-slate-600 text-lg mb-10 leading-relaxed">
+                        We don't just rely on open portals. Our verified
+                        partners utilize specialized tools to give you the
+                        competitive edge.
+                    </p>
+
+                    <div class="space-y-6">
+                        <!-- Offlist Feature -->
+                        <div
+                            class="flex gap-6 p-6 rounded-2xl border border-slate-100 bg-slate-50 hover:border-[#FF6F61]/30 hover:shadow-lg transition-all group cursor-default"
+                        >
+                            <div class="shrink-0">
+                                <div
+                                    class="w-14 h-14 bg-slate-900 rounded-xl flex items-center justify-center text-white font-bold shadow-lg group-hover:scale-110 transition-transform"
+                                >
+                                    OL
+                                </div>
+                            </div>
+                            <div>
+                                <h4
+                                    class="font-bold text-slate-900 text-lg flex items-center gap-2 mb-2"
+                                >
+                                    Access to <a
+                                        href="https://offlist.ch"
+                                        target="_blank"
+                                        rel="noopener"
+                                        class="hover:text-[#FF6F61] transition-colors"
+                                        >Offlist.ch</a
+                                    >
+                                </h4>
+                                <p class="text-slate-600 leading-relaxed">
+                                    A private marketplace where landlords and
+                                    departing expats list properties <strong
+                                        class="text-slate-900"
+                                        >exclusively</strong
+                                    > for vetted professionals.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Expat-Savvy Feature -->
+                        <div
+                            class="flex gap-6 p-6 rounded-2xl border border-slate-100 bg-slate-50 hover:border-[#FF6F61]/30 hover:shadow-lg transition-all group cursor-default"
+                        >
+                            <div class="shrink-0">
+                                <div
+                                    class="w-14 h-14 bg-[#FF6F61] rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-orange-500/30 group-hover:scale-110 transition-transform"
+                                >
+                                    ES
+                                </div>
+                            </div>
+                            <div>
+                                <h4
+                                    class="font-bold text-slate-900 text-lg flex items-center gap-2 mb-2"
+                                >
+                                    Deposit Hack via <a
+                                        href="https://expat-savvy.ch"
+                                        target="_blank"
+                                        rel="noopener"
+                                        class="hover:text-[#FF6F61] transition-colors"
+                                        >Expat-Savvy</a
+                                    >
+                                </h4>
+                                <p class="text-slate-600 leading-relaxed">
+                                    Don't lock up 3 months of rent (up to CHF
+                                    12k). Our partners help you use <strong
+                                        class="text-slate-900"
+                                        >Deposit Insurance</strong
+                                    > to keep your cash.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="mt-12 flex justify-center gap-6">
-                    <a
-                        href="/blog/swiss-rental-application-document-checklist"
-                        class="text-slate-500 hover:text-[#FF6F61] font-medium flex items-center gap-2 transition-colors"
+                <!-- Visual (Uploaded Offlist UI) -->
+                <div class="relative order-1 md:order-2 group">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-tr from-[#FF6F61]/20 to-transparent rounded-3xl blur-3xl transform group-hover:scale-105 transition-transform duration-700"
                     >
-                        <FileText className="w-4 h-4" />
-                        Document Checklist
-                    </a>
-                    <a
-                        href="/blog/cost-of-living-switzerland-breakdown-2026"
-                        class="text-slate-500 hover:text-[#FF6F61] font-medium flex items-center gap-2 transition-colors"
-                    >
-                        <TrendingUp className="w-4 h-4" />
-                        Cost of Living
-                    </a>
+                    </div>
+                    <img
+                        src={offlistUiImage}
+                        alt="Offlist.ch Dashboard Interface"
+                        class="relative rounded-2xl shadow-2xl border border-slate-200 transform group-hover:-rotate-1 transition-transform duration-500 w-full"
+                    />
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- FAQ -->
-        <section class="py-24 bg-[#F9FAFB] border-t border-slate-200">
-            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2
-                    class="text-2xl md:text-3xl font-bold text-slate-800 mb-10 text-center"
-                >
-                    Frequently Asked Questions
-                </h2>
-                <div class="space-y-4">
-                    {
-                        faqs.map((faq) => (
-                            <details class="group bg-white border border-slate-200 rounded-lg overflow-hidden">
-                                <summary class="flex justify-between items-center p-5 cursor-pointer font-semibold text-slate-800 hover:bg-slate-50 transition-colors select-none text-lg">
-                                    {faq.q}
-                                    <ChevronDown className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" />
-                                </summary>
-                                <div class="px-5 pb-6 pt-2 text-slate-600 leading-relaxed border-t border-slate-100">
-                                    {faq.a}
-                                </div>
-                            </details>
-                        ))
-                    }
-                </div>
-            </div>
-        </section>
-
-        <Footer theme="light" />
-
-        <!-- Modal Globals -->
+    <!-- 5. Comparison: DIY vs Managed (Polished) -->
+    <section class="py-24 bg-[#0F172A] text-white relative overflow-hidden">
+        <!-- Shine effect -->
         <div
-            id="relofinder-modal-marker"
-            data-relofinder-modal="pending"
-            style="display: none;"
-            aria-hidden="true"
+            class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#FF6F61]/5 to-transparent pointer-events-none"
         >
         </div>
-        <UniversalContactModal client:load />
 
-        <!-- Scripts -->
-        <script is:inline>
-            if (typeof window !== "undefined") {
-                window.modalEventQueue = window.modalEventQueue || [];
-                window.modalReady = false;
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">
+                    Value Proposition
+                </h2>
+                <p class="text-slate-400 text-lg">
+                    Is it worth the investment? Compare the workflows.
+                </p>
+            </div>
 
-                window.universalOpenModal = function (context) {
-                    const resolvedContext =
-                        context && typeof context === "object"
-                            ? context
-                            : { page: "housing_search", topic: context };
-                    console.log(
-                        "📞 universalOpenModal called",
-                        resolvedContext,
-                    );
-                    if (window.modalReady && window.relofinderModalStores) {
-                        window.relofinderModalStores.setContext(
-                            resolvedContext,
-                        );
-                        window.relofinderModalStores.setOpen(true);
-                        return;
-                    }
-                    window.modalEventQueue.push({
-                        kind: "open",
-                        payload: resolvedContext,
-                    });
-                };
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-16">
+                <!-- DIY Card -->
+                <div
+                    class="bg-slate-800/50 rounded-3xl p-8 border border-white/5 hover:border-white/10 transition-all duration-300 hover:bg-slate-800 backdrop-blur-sm group"
+                >
+                    <div class="flex items-center gap-4 mb-8">
+                        <div
+                            class="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform"
+                        >
+                            <Search className="w-5 h-5 text-slate-300" />
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-200">
+                            DIY Search
+                        </h3>
+                    </div>
 
-                window.closeModal = function () {
-                    if (window.modalReady && window.relofinderModalStores) {
-                        window.relofinderModalStores.setOpen(false);
-                    } else {
-                        window.modalEventQueue.push({ kind: "close" });
-                    }
-                };
-            }
+                    <ul class="space-y-6">
+                        <li
+                            class="flex items-start gap-4 opacity-50 group-hover:opacity-80 transition-opacity"
+                        >
+                            <XCircle
+                                className="w-6 h-6 text-slate-500 shrink-0"
+                            />
+                            <span class="text-slate-300"
+                                >High stress, "fight for yourself" mentality
+                                against 50+ applicants.</span
+                            >
+                        </li>
+                        <li
+                            class="flex items-start gap-4 opacity-50 group-hover:opacity-80 transition-opacity"
+                        >
+                            <XCircle
+                                className="w-6 h-6 text-slate-500 shrink-0"
+                            />
+                            <span class="text-slate-300"
+                                >Navigating German/French contracts without
+                                legal knowledge.</span
+                            >
+                        </li>
+                        <li
+                            class="flex items-start gap-4 opacity-50 group-hover:opacity-80 transition-opacity"
+                        >
+                            <XCircle
+                                className="w-6 h-6 text-slate-500 shrink-0"
+                            />
+                            <span class="text-slate-300"
+                                >Risk of falling for scam listings on public
+                                portals.</span
+                            >
+                        </li>
+                        <li class="flex items-start gap-4 opacity-100">
+                            <CheckCircle2
+                                className="w-6 h-6 text-slate-400 shrink-0"
+                            />
+                            <span class="text-slate-100 font-bold"
+                                >$0 financial cost (pays in time/stress).</span
+                            >
+                        </li>
+                    </ul>
+                </div>
 
-            if (typeof window !== "undefined") {
-                const checkInterval = setInterval(() => {
-                    if (window.relofinderModalStores) {
-                        window.modalReady = true;
-                        window.modalEventQueue.forEach((item) => {
-                            if (item.kind === "open")
-                                (window.relofinderModalStores.setContext(
-                                    item.payload,
-                                ),
-                                    window.relofinderModalStores.setOpen(true));
-                            if (item.kind === "close")
-                                window.relofinderModalStores.setOpen(false);
-                        });
-                        window.modalEventQueue = [];
-                        clearInterval(checkInterval);
-                    }
-                }, 100);
-            }
-        </script>
-    </body>
-</html>
+                <!-- Managed Card -->
+                <div
+                    class="bg-white text-slate-900 rounded-3xl p-8 border-4 border-[#FF6F61] shadow-[0_0_50px_rgba(255,111,97,0.3)] transform hover:-translate-y-2 transition-transform duration-500 relative overflow-hidden group"
+                >
+                    <div
+                        class="absolute top-0 right-0 bg-[#FF6F61] text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl shadow-sm uppercase tracking-wider"
+                    >
+                        Recommended
+                    </div>
+
+                    <div class="flex items-center gap-4 mb-8">
+                        <div
+                            class="w-12 h-12 bg-[#FF6F61]/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform"
+                        >
+                            <ShieldCheck className="w-6 h-6 text-[#FF6F61]" />
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900">
+                            Managed Search
+                        </h3>
+                    </div>
+
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <CheckCircle2
+                                className="w-6 h-6 text-[#FF6F61] shrink-0"
+                            />
+                            <span class="font-medium text-slate-700"
+                                >Access to <strong class="text-slate-900"
+                                    >pre-market listings</strong
+                                > via Offlist.</span
+                            >
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <CheckCircle2
+                                className="w-6 h-6 text-[#FF6F61] shrink-0"
+                            />
+                            <span class="font-medium text-slate-700"
+                                >Virtual viewings & professional lease review
+                                included.</span
+                            >
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <CheckCircle2
+                                className="w-6 h-6 text-[#FF6F61] shrink-0"
+                            />
+                            <span class="font-medium text-slate-700"
+                                >Utility setup & handover protocol handling.</span
+                            >
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div
+                                class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center shrink-0 border border-slate-200 text-xs font-bold text-slate-500"
+                            >
+                                $
+                            </div>
+                            <span class="font-medium text-slate-500"
+                                >Fee-based (approx. 1 month rent).</span
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <p
+                class="text-center text-slate-500 mt-12 text-lg italic opacity-60 hover:opacity-100 transition-opacity duration-300"
+            >
+                "If you value your time or are moving from abroad, an agent is
+                an investment, not a cost."
+            </p>
+        </div>
+    </section>
+
+    <!-- 6. Conversion Block (Banner) -->
+    <section class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2
+                class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight"
+            >
+                Find the right door opener.
+            </h2>
+            <p class="text-xl text-slate-500 mb-12 max-w-2xl mx-auto">
+                Compare verified relocation agencies that specialize in housing
+                search for expats. Start your inquiry below.
+            </p>
+
+            <!-- Comparison Flow Banner -->
+            <div
+                class="bg-slate-900 rounded-2xl p-3 md:p-4 shadow-2xl ring-1 ring-slate-900/5 rotate-1 hover:rotate-0 transition-transform duration-500"
+            >
+                <div class="bg-white rounded-xl overflow-hidden">
+                    <HeroSearch client:load />
+                </div>
+            </div>
+
+            <div class="mt-12 flex justify-center gap-6">
+                <a
+                    href="/blog/swiss-rental-application-document-checklist"
+                    class="text-slate-500 hover:text-[#FF6F61] font-medium flex items-center gap-2 transition-colors"
+                >
+                    <FileText className="w-4 h-4" />
+                    Document Checklist
+                </a>
+                <a
+                    href="/blog/cost-of-living-switzerland-breakdown-2026"
+                    class="text-slate-500 hover:text-[#FF6F61] font-medium flex items-center gap-2 transition-colors"
+                >
+                    <TrendingUp className="w-4 h-4" />
+                    Cost of Living
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-24 bg-[#F9FAFB] border-t border-slate-200">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2
+                class="text-2xl md:text-3xl font-bold text-slate-800 mb-10 text-center"
+            >
+                Frequently Asked Questions
+            </h2>
+            <div class="space-y-4">
+                {
+                    faqs.map((faq) => (
+                        <details class="group bg-white border border-slate-200 rounded-lg overflow-hidden">
+                            <summary class="flex justify-between items-center p-5 cursor-pointer font-semibold text-slate-800 hover:bg-slate-50 transition-colors select-none text-lg">
+                                {faq.q}
+                                <ChevronDown className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" />
+                            </summary>
+                            <div class="px-5 pb-6 pt-2 text-slate-600 leading-relaxed border-t border-slate-100">
+                                {faq.a}
+                            </div>
+                        </details>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <div style="display:none;" data-ai-summary>
+        Expert Swiss housing search guide for expats navigating the 0.06%
+        vacancy market. Covers the "Swiss Application Standard," mass viewings,
+        and the "Expat Disadvantage" where foreigners lack a debt extract
+        (Betreibungsauskunft). Explains the "Nachmieter" system—replacement
+        tenants who find off-market listings before they hit portals like
+        Homegate. Relocation agencies act as a "Trust Proxy," using their
+        relationships with property managements (Régies) to secure leases.
+        Detailed market dynamics for Zurich, Geneva, Basel, Zug, and Vaud.
+        Integrated with Offlist.ch for exclusive professional listings and
+        Expat-Savvy for deposit insurance hacks to avoid locking up 3 months of
+        rent.
+    </div>
+</Layout>

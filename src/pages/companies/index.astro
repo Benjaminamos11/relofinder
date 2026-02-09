@@ -1,473 +1,561 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
-import { supabase } from '../../lib/supabase';
-import { BadgeCheck, MapPin, Briefcase, Filter, X } from 'lucide-react';
-import ComparisonBar from '../../components/ComparisonBar';
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { supabase } from "../../lib/supabase";
+import { BadgeCheck, MapPin, Briefcase, Filter, X } from "lucide-react";
+import ComparisonBar from "../../components/ComparisonBar";
 
 // Fetch companies from content collection
 // Fetch companies from content collection
-const companies = await getCollection('companies', ({ data }) => {
-  return !data.hidden;
+const companies = await getCollection("companies", ({ data }) => {
+    return !data.hidden;
 });
 
 // Fetch real stats from Supabase
 const { data: relocators } = await supabase
-  .from('relocators')
-  .select('id, name, tier, rating, seo_summary, logo');
+    .from("relocators")
+    .select("id, name, tier, rating, seo_summary, logo");
 
 // Fetch total review count (keep for stats but removing from display if cluttering)
 const { data: googleReviews } = await supabase
-  .from('google_reviews')
-  .select('id');
+    .from("google_reviews")
+    .select("id");
 
 const totalReviews = googleReviews?.length || 0;
 
 // Calculate average rating from Supabase data
-const avgRating = relocators && relocators.length > 0
-  ? (relocators.reduce((sum, r) => sum + (r.rating || 0), 0) / relocators.length).toFixed(1)
-  : '4.7';
+const avgRating =
+    relocators && relocators.length > 0
+        ? (
+              relocators.reduce((sum, r) => sum + (r.rating || 0), 0) /
+              relocators.length
+          ).toFixed(1)
+        : "4.7";
 
 // Helper to find relocator data robustly
 const findRelocator = (companyName: string) => {
-  if (!relocators) return undefined;
-  const normalize = (str: string) => str.toLowerCase().replace(/[^a-z0-9]/g, '');
-  const nInput = normalize(companyName);
-  
-  return relocators.find(r => {
-    const nDb = normalize(r.name);
-    return nDb.includes(nInput) || nInput.includes(nDb);
-  });
+    if (!relocators) return undefined;
+    const normalize = (str: string) =>
+        str.toLowerCase().replace(/[^a-z0-9]/g, "");
+    const nInput = normalize(companyName);
+
+    return relocators.find((r) => {
+        const nDb = normalize(r.name);
+        return nDb.includes(nInput) || nInput.includes(nDb);
+    });
 };
 
 // Get all relocation companies (only exclude non-relocation for testing)
-const relocationCompanies = companies.filter(c => 
-  !c.data.name.toLowerCase().includes('expat services switzerland') &&
-  !c.data.name.toLowerCase().includes('swiss prime international')
+const relocationCompanies = companies.filter(
+    (c) =>
+        !c.data.name.toLowerCase().includes("expat services switzerland") &&
+        !c.data.name.toLowerCase().includes("swiss prime international"),
 );
 
 // Sort remaining companies by rating
-const sortedCompanies = relocationCompanies
-  .sort((a, b) => {
+const sortedCompanies = relocationCompanies.sort((a, b) => {
     const aData = findRelocator(a.data.name);
     const bData = findRelocator(b.data.name);
-    
+
     // Sort logic: Tier first, then Rating
-    const aTier = aData?.tier === 'preferred' ? 2 : (aData?.tier === 'partner' ? 1 : 0);
-    const bTier = bData?.tier === 'preferred' ? 2 : (bData?.tier === 'partner' ? 1 : 0);
-    
+    const aTier =
+        aData?.tier === "preferred" ? 2 : aData?.tier === "partner" ? 1 : 0;
+    const bTier =
+        bData?.tier === "preferred" ? 2 : bData?.tier === "partner" ? 1 : 0;
+
     if (aTier !== bTier) return bTier - aTier;
     return (bData?.rating || 0) - (aData?.rating || 0);
-  });
+});
 
 // Extract unique values
-const allServices = [...new Set(relocationCompanies.flatMap(c => c.data.services))].sort();
-const allRegions = [...new Set(relocationCompanies.flatMap(c => c.data.regions))].sort();
+const allServices = [
+    ...new Set(relocationCompanies.flatMap((c) => c.data.services)),
+].sort();
+const allRegions = [
+    ...new Set(relocationCompanies.flatMap((c) => c.data.regions)),
+].sort();
 
 // Page metadata
-const title = 'Verified Relocation Companies Switzerland | ReloFinder Directory';
-const description = 'A curated directory of Switzerland’s top relocation agencies. Compare verified partners, services, and client reviews.';
-const canonical = 'https://relofinder.ch/companies';
+const title =
+    "Verified Relocation Companies Switzerland | ReloFinder Directory";
+const description =
+    "A curated directory of Switzerland’s top relocation agencies. Compare verified partners, services, and client reviews.";
+const canonical = "https://relofinder.ch/companies";
 ---
 
 <Layout title={title} description={description} canonical={canonical}>
-  
-  <!-- Hero Section -->
-  <section class="relative pt-24 pb-20 md:pt-32 md:pb-24 bg-slate-50 border-b border-slate-100 overflow-hidden">
-    <!-- Subtle Background Grid -->
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40"></div>
-    
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="max-w-4xl mx-auto text-center">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-200/50 border border-slate-200 text-slate-600 text-[11px] font-bold uppercase tracking-widest mb-6 animate-fade-in">
-          <span class="w-2 h-2 rounded-full bg-[#FF6F61] animate-pulse"></span>
-          Directory 2026
+    <!-- Hero Section -->
+    <section
+        class="relative pt-24 pb-20 md:pt-32 md:pb-24 bg-slate-50 border-b border-slate-100 overflow-hidden"
+    >
+        <!-- Subtle Background Grid -->
+        <div
+            class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40"
+        >
         </div>
-        <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-slate-900 mb-6 leading-tight">
-          Find your trusted <br/>
-          <span class="text-[#FF6F61]">relocation partner.</span>
-        </h1>
-        <p class="text-xl text-slate-500 font-normal leading-relaxed max-w-2xl mx-auto">
-          Access our curated network of verified agencies. From visa specialists to full-service logistics providers.
-        </p>
-      </div>
-    </div>
-  </section>
 
-  <!-- Filter & Grid Section -->
-  <section class="py-12 md:py-20 bg-white min-h-screen">
-    <div class="container mx-auto px-4">
-      
-      <!-- Filters Layout (Sticky Desktop, Stacked Mobile) -->
-      <div class="lg:grid lg:grid-cols-[280px_1fr] lg:gap-12 lg:items-start relative">
-        
-        <!-- Sidebar Filters -->
-        <aside class="hidden lg:block sticky top-24 space-y-8 animate-fade-in-up">
-            <div>
-                <h3 class="text-xs font-bold text-slate-900 uppercase tracking-widest mb-4 flex items-center gap-2">
-                    <Filter className="w-4 h-4" /> Filters
-                </h3>
-                
-                <!-- Search -->
-                <div class="relative mb-6">
-                    <input 
-                        type="text" 
-                        id="searchInput"
-                        placeholder="Search companies..." 
-                        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-slate-400 focus:bg-white transition-all placeholder:text-slate-400"
-                    />
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-200/50 border border-slate-200 text-slate-600 text-[11px] font-bold uppercase tracking-widest mb-6 animate-fade-in"
+                >
+                    <span
+                        class="w-2 h-2 rounded-full bg-[#FF6F61] animate-pulse"
+                    ></span>
+                    Directory 2026
                 </div>
-
-                <!-- Region Filter -->
-                <div class="space-y-3 mb-6">
-                    <label class="text-sm font-semibold text-slate-900 block">Region</label>
-                    <div class="relative">
-                        <select id="regionFilter" class="w-full appearance-none bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-slate-400 cursor-pointer">
-                            <option value="">All Switzerland</option>
-                            {allRegions.map(r => (
-                                <option value={r}>{r.charAt(0).toUpperCase() + r.slice(1)}</option>
-                            ))}
-                        </select>
-                        <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service Filter -->
-                <div class="space-y-3 mb-6">
-                    <label class="text-sm font-semibold text-slate-900 block">Service Focus</label>
-                    <div class="relative">
-                        <select id="serviceFilter" class="w-full appearance-none bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-slate-400 cursor-pointer">
-                            <option value="">All Services</option>
-                            {allServices.map(s => (
-                                <option value={s}>{s.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</option>
-                            ))}
-                        </select>
-                         <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </div>
-                    </div>
-                </div>
-                
-                 <!-- Tier Filter -->
-                 <div class="space-y-3">
-                    <label class="text-sm font-semibold text-slate-900 block">Verification</label>
-                    <div class="flex gap-2">
-                         <button id="verifiedBtn" class="flex-1 px-4 py-2 border border-slate-200 text-xs font-bold uppercase tracking-wider text-slate-500 rounded-xl hover:border-slate-900 hover:text-slate-900 transition-colors" data-value="verified">
-                            Verified
-                         </button>
-                         <button id="resetBtn" class="px-4 py-2 border border-slate-200 text-slate-400 hover:text-[#FF6F61] hover:border-[#FF6F61] rounded-xl transition-colors" aria-label="Reset">
-                            <X className="w-4 h-4" />
-                         </button>
-                    </div>
-                </div>
-                
-                <div class="pt-6 border-t border-slate-100 mt-6">
-                    <p class="text-xs text-slate-400">
-                        Showing <span id="countDisplay" class="font-bold text-slate-900">{sortedCompanies.length}</span> agencies
-                    </p>
-                </div>
+                <h1
+                    class="text-4xl md:text-6xl font-bold tracking-tight text-slate-900 mb-6 leading-tight"
+                >
+                    Find your trusted <br />
+                    <span class="text-[#FF6F61]">relocation partner.</span>
+                </h1>
+                <p
+                    class="text-xl text-slate-500 font-normal leading-relaxed max-w-2xl mx-auto"
+                >
+                    Access our curated network of verified agencies. From visa
+                    specialists to full-service logistics providers.
+                </p>
             </div>
-        </aside>
+        </div>
+    </section>
 
-        <!-- Main Grid -->
-        <main>
-             <!-- Mobile Mobile Filter Toggle (Visible only on lg and below) -->
-             <div class="lg:hidden mb-8">
-                <details class="group bg-slate-50 border border-slate-200">
-                    <summary class="flex items-center justify-between p-4 cursor-pointer font-bold text-slate-900 uppercase tracking-widest text-xs list-none">
-                        <span>Filter Directory</span>
-                        <Filter className="w-4 h-4" />
-                    </summary>
-                    <div class="p-4 border-t border-slate-200 space-y-4">
-                        <!-- Mobile Filters Content (Simplified copy of sidebar) -->
-                        <input type="text" id="mobileSearch" placeholder="Search..." class="w-full bg-white border border-slate-200 p-3 text-sm"/>
-                        <select id="mobileRegion" class="w-full bg-white border border-slate-200 p-3 text-sm">
-                            <option value="">All Regions</option>
-                            {allRegions.map(r => <option value={r}>{r}</option>)}
-                        </select>
-                    </div>
-                </details>
-             </div>
-
-             <div id="companyGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {sortedCompanies.map(company => {
-                    const supabaseData = findRelocator(company.data.name);
-                    const tier = supabaseData?.tier || 'standard';
-                    // Logo Priority: DB -> Markdown -> None
-                    const dbLogo = supabaseData?.logo;
-                    const mdLogo = company.data.logo;
-                    const displayLogo = (dbLogo && dbLogo.length > 5) ? dbLogo : (mdLogo && !mdLogo.includes('placehold.co') ? mdLogo : null);
-                    
-                    return (
-                        <a href={`/companies/${company.slug}`} 
-                           class="group relative bg-white border border-slate-200 rounded-2xl hover:border-[#FF6F61] transition-colors duration-300 flex flex-col h-full min-h-[280px] company-card"
-                           data-name={company.data.name.toLowerCase()}
-                           data-region={company.data.regions.join(' ').toLowerCase()}
-                           data-service={company.data.services.join(' ').toLowerCase()}
-                           data-verified={tier === 'preferred' || tier === 'partner' ? 'true' : 'false'}
+    <!-- Filter & Grid Section -->
+    <section class="py-12 md:py-20 bg-white min-h-screen">
+        <div class="container mx-auto px-4">
+            <!-- Filters Layout (Sticky Desktop, Stacked Mobile) -->
+            <div
+                class="lg:grid lg:grid-cols-[280px_1fr] lg:gap-12 lg:items-start relative"
+            >
+                <!-- Sidebar Filters -->
+                <aside
+                    class="hidden lg:block sticky top-24 space-y-8 animate-fade-in-up"
+                >
+                    <div>
+                        <h3
+                            class="text-xs font-bold text-slate-900 uppercase tracking-widest mb-4 flex items-center gap-2"
                         >
-                            {/* Card Content Container */}
-                            <div class="p-8 flex flex-col h-full relative z-10">
-                                
-                                {/* Top Badge: Centered & Overlapping */}
-                                {tier === 'preferred' && (
-                                    <div class="absolute left-1/2 -top-3 -translate-x-1/2 bg-black text-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest flex items-center gap-1 rounded-full shadow-md z-20">
-                                        <BadgeCheck className="w-3 h-3 text-[#FF6F61]" />
-                                        Preferred
-                                    </div>
-                                )}
-
-                                {/* Header: Logo or Name */}
-                                <div class="flex justify-center items-center mb-6 h-12">
-                                    {displayLogo ? (
-                                        <img 
-                                            src={displayLogo} 
-                                            alt={company.data.name} 
-                                            class={`h-10 w-auto object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 ${company.data.name.includes('AM Relocation') ? 'invert' : ''}`}
-                                        />
-                                    ) : (
-                                        <div class="h-10 flex items-center">
-                                            <span class="text-xl font-bold text-slate-900 group-hover:text-[#FF6F61] transition-colors">{company.data.name}</span>
-                                        </div>
-                                    )}
-                                </div>
-
-                                {/* Body: Name & Desc - Only show name if no logo was shown above, or always show for clarity? Let's hide name if logo exists to be super clean, or keep it small. Strategy: Always show name for SEO/Clarity but smaller. */}
-                                
-                                <div class="mb-8 flex-grow">
-                                     <h3 class="font-serif text-xl font-bold text-slate-900 group-hover:text-[#FF6F61] transition-colors line-clamp-1">
-                            {company.data.name}
+                            <Filter className="w-4 h-4" /> Filters
                         </h3>
-                        {company.data.label && (
-                            <span class="inline-block px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 text-[10px] font-bold uppercase tracking-wide border border-slate-200 mt-1">
-                                {company.data.label}
-                            </span>
-                        )}
-                                     <p class="text-sm text-slate-500 leading-relaxed line-clamp-3">
-                                        {company.data.description}
-                                     </p>
-                                </div>
 
-                                {/* Footer: Meta Data */}
-                                <div class="pt-6 border-t border-slate-100 mt-auto space-y-3">
-                                    <div class="flex items-start gap-3">
-                                        <Briefcase className="w-4 h-4 text-slate-300 mt-0.5 shrink-0" />
-                                        <span class="text-xs text-slate-500 font-medium leading-relaxed">
-                                            {company.data.services.slice(0, 3).join(', ')}
-                                            {company.data.services.length > 3 && '...'}
-                                        </span>
-                                    </div>
-                                    <div class="flex items-center gap-3">
-                                        <MapPin className="w-4 h-4 text-slate-300 shrink-0" />
-                                        <span class="text-xs text-slate-500 font-medium truncate">
-                                            {company.data.regions.slice(0, 3).join(', ')}
-                                        </span>
-                                    </div>
-                                </div>
+                        <!-- Search -->
+                        <div class="relative mb-6">
+                            <input
+                                type="text"
+                                id="searchInput"
+                                placeholder="Search companies..."
+                                class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-slate-400 focus:bg-white transition-all placeholder:text-slate-400"
+                            />
+                        </div>
 
-                                {/* Hover Arrow (Architectural) */}
-                                <div class="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
-                                    <svg class="w-5 h-5 text-[#FF6F61]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                                </div>
-
-                                {/* Compare Checkbox */}
-                                <div class="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <button 
-                                        class="compare-toggle flex items-center gap-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg border border-slate-200 hover:border-[#FF6F61] cursor-pointer transition-all"
-                                        data-id={company.slug} 
-                                        data-name={company.data.name}
-                                        data-logo={company.data.logo}
-                                        onclick="event.preventDefault();"
+                        <!-- Region Filter -->
+                        <div class="space-y-3 mb-6">
+                            <label
+                                class="text-sm font-semibold text-slate-900 block"
+                                >Region</label
+                            >
+                            <div class="relative">
+                                <select
+                                    id="regionFilter"
+                                    class="w-full appearance-none bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-slate-400 cursor-pointer"
+                                >
+                                    <option value="">All Switzerland</option>
+                                    {
+                                        allRegions.map((r) => (
+                                            <option value={r}>
+                                                {r.charAt(0).toUpperCase() +
+                                                    r.slice(1)}
+                                            </option>
+                                        ))
+                                    }
+                                </select>
+                                <div
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"
+                                >
+                                    <svg
+                                        class="w-4 h-4 text-slate-400"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        ><path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M19 9l-7 7-7-7"></path></svg
                                     >
-                                        <div class="checkbox-box w-4 h-4 rounded border border-slate-300 flex items-center justify-center bg-white">
-                                            <span class="check-icon hidden text-[#FF6F61] text-xs font-bold">✓</span>
-                                        </div>
-                                        <span class="text-[10px] font-bold uppercase text-slate-500">Compare</span>
-                                    </button>
                                 </div>
-
                             </div>
-                            
-                            {/* Subtle background wash on hover */}
-                            <div class="absolute inset-0 bg-slate-50 opacity-0 group-hover:opacity-50 transition-opacity duration-300 pointer-events-none -z-0"></div>
-                        </a>
-                    );
-                })}
+                        </div>
 
+                        <!-- Service Filter -->
+                        <div class="space-y-3 mb-6">
+                            <label
+                                class="text-sm font-semibold text-slate-900 block"
+                                >Service Focus</label
+                            >
+                            <div class="relative">
+                                <select
+                                    id="serviceFilter"
+                                    class="w-full appearance-none bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-slate-400 cursor-pointer"
+                                >
+                                    <option value="">All Services</option>
+                                    {
+                                        allServices.map((s) => (
+                                            <option value={s}>
+                                                {s
+                                                    .replace(/-/g, " ")
+                                                    .replace(/\b\w/g, (l) =>
+                                                        l.toUpperCase(),
+                                                    )}
+                                            </option>
+                                        ))
+                                    }
+                                </select>
+                                <div
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"
+                                >
+                                    <svg
+                                        class="w-4 h-4 text-slate-400"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        ><path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M19 9l-7 7-7-7"></path></svg
+                                    >
+                                </div>
+                            </div>
+                        </div>
 
-             </div>
-             
-             <!-- No Results State -->
-             <div id="noResults" class="hidden py-24 text-center">
-                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 mb-6">
-                     <Filter className="w-6 h-6 text-slate-400" />
-                 </div>
-                 <h3 class="text-lg font-bold text-slate-900 mb-2">No partners found.</h3>
-                 <p class="text-slate-500">Try adjusting your filters to see more results.</p>
-             </div>
+                        <!-- Tier Filter -->
+                        <div class="space-y-3">
+                            <label
+                                class="text-sm font-semibold text-slate-900 block"
+                                >Verification</label
+                            >
+                            <div class="flex gap-2">
+                                <button
+                                    id="verifiedBtn"
+                                    class="flex-1 px-4 py-2 border border-slate-200 text-xs font-bold uppercase tracking-wider text-slate-500 rounded-xl hover:border-slate-900 hover:text-slate-900 transition-colors"
+                                    data-value="verified"
+                                >
+                                    Verified
+                                </button>
+                                <button
+                                    id="resetBtn"
+                                    class="px-4 py-2 border border-slate-200 text-slate-400 hover:text-[#FF6F61] hover:border-[#FF6F61] rounded-xl transition-colors"
+                                    aria-label="Reset"
+                                >
+                                    <X className="w-4 h-4" />
+                                </button>
+                            </div>
+                        </div>
 
-        </main>
-      </div>
-    </div>
-    
-    <ComparisonBar client:load />
-  </section>
+                        <div class="pt-6 border-t border-slate-100 mt-6">
+                            <p class="text-xs text-slate-400">
+                                Showing <span
+                                    id="countDisplay"
+                                    class="font-bold text-slate-900"
+                                    >{sortedCompanies.length}</span
+                                > agencies
+                            </p>
+                        </div>
+                    </div>
+                </aside>
 
-  <!-- Client-Side Filtering -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const searchInput = document.getElementById('searchInput');
-        const regionFilter = document.getElementById('regionFilter');
-        const serviceFilter = document.getElementById('serviceFilter');
-        const verifiedBtn = document.getElementById('verifiedBtn');
-        const resetBtn = document.getElementById('resetBtn');
-        const cards = document.querySelectorAll('.company-card');
-        const countDisplay = document.getElementById('countDisplay');
-        const noResults = document.getElementById('noResults');
-        const grid = document.getElementById('companyGrid');
+                <!-- Main Grid -->
+                <main>
+                    <!-- Mobile Mobile Filter Toggle (Visible only on lg and below) -->
+                    <div class="lg:hidden mb-8">
+                        <details
+                            class="group bg-slate-50 border border-slate-200"
+                        >
+                            <summary
+                                class="flex items-center justify-between p-4 cursor-pointer font-bold text-slate-900 uppercase tracking-widest text-xs list-none"
+                            >
+                                <span>Filter Directory</span>
+                                <Filter className="w-4 h-4" />
+                            </summary>
+                            <div
+                                class="p-4 border-t border-slate-200 space-y-4"
+                            >
+                                <!-- Mobile Filters Content (Simplified copy of sidebar) -->
+                                <input
+                                    type="text"
+                                    id="mobileSearch"
+                                    placeholder="Search..."
+                                    class="w-full bg-white border border-slate-200 p-3 text-sm"
+                                />
+                                <select
+                                    id="mobileRegion"
+                                    class="w-full bg-white border border-slate-200 p-3 text-sm"
+                                >
+                                    <option value="">All Regions</option>
+                                    {
+                                        allRegions.map((r) => (
+                                            <option value={r}>{r}</option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
+                        </details>
+                    </div>
 
-        // Mobile inputs sync (basic implementation)
-        const mobileSearch = document.getElementById('mobileSearch');
-        const mobileRegion = document.getElementById('mobileRegion');
-        
-        if(mobileSearch) mobileSearch.addEventListener('input', (e) => {
-            if(searchInput) searchInput.value = e.target.value;
-            filter();
-        });
+                    <div
+                        id="companyGrid"
+                        class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+                    >
+                        {
+                            sortedCompanies.map((company) => {
+                                const supabaseData = findRelocator(
+                                    company.data.name,
+                                );
+                                const tier = supabaseData?.tier || "standard";
+                                // Logo Priority: DB -> Markdown -> None
+                                const dbLogo = supabaseData?.logo;
+                                const mdLogo = company.data.logo;
+                                const displayLogo =
+                                    dbLogo && dbLogo.length > 5
+                                        ? dbLogo
+                                        : mdLogo &&
+                                            !mdLogo.includes("placehold.co")
+                                          ? mdLogo
+                                          : null;
 
-        let verifiedOnly = false;
+                                return (
+                                    <a
+                                        href={`/companies/${company.slug}`}
+                                        class="group relative bg-white border border-slate-200 rounded-2xl hover:border-[#FF6F61] transition-colors duration-300 flex flex-col h-full min-h-[280px] company-card"
+                                        data-name={company.data.name.toLowerCase()}
+                                        data-region={company.data.regions
+                                            .join(" ")
+                                            .toLowerCase()}
+                                        data-service={company.data.services
+                                            .join(" ")
+                                            .toLowerCase()}
+                                        data-verified={
+                                            tier === "preferred" ||
+                                            tier === "partner"
+                                                ? "true"
+                                                : "false"
+                                        }
+                                    >
+                                        {/* Card Content Container */}
+                                        <div class="p-8 flex flex-col h-full relative z-10">
+                                            {/* Top Badge: Centered & Overlapping */}
+                                            {tier === "preferred" && (
+                                                <div class="absolute left-1/2 -top-3 -translate-x-1/2 bg-black text-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest flex items-center gap-1 rounded-full shadow-md z-20">
+                                                    <BadgeCheck className="w-3 h-3 text-[#FF6F61]" />
+                                                    Preferred
+                                                </div>
+                                            )}
 
-        function filter() {
-            const term = searchInput ? searchInput.value.toLowerCase() : '';
-            const region = regionFilter ? regionFilter.value.toLowerCase() : '';
-            const service = serviceFilter ? serviceFilter.value.toLowerCase() : '';
-            
-            let visible = 0;
+                                            {/* Header: Logo or Name */}
+                                            <div class="flex justify-center items-center mb-6 h-12">
+                                                {displayLogo ? (
+                                                    <img
+                                                        src={displayLogo}
+                                                        alt={company.data.name}
+                                                        class={`h-10 w-auto object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 ${company.data.name.includes("AM Relocation") ? "invert" : ""}`}
+                                                    />
+                                                ) : (
+                                                    <div class="h-10 flex items-center">
+                                                        <span class="text-xl font-bold text-slate-900 group-hover:text-[#FF6F61] transition-colors">
+                                                            {company.data.name}
+                                                        </span>
+                                                    </div>
+                                                )}
+                                            </div>
 
-            cards.forEach(card => {
-                const name = card.getAttribute('data-name');
-                const regions = card.getAttribute('data-region');
-                const services = card.getAttribute('data-service');
-                const isVerified = card.getAttribute('data-verified') === 'true';
+                                            {/* Body: Name & Desc - Only show name if no logo was shown above, or always show for clarity? Let's hide name if logo exists to be super clean, or keep it small. Strategy: Always show name for SEO/Clarity but smaller. */}
 
-                const matchesSearch = name.includes(term);
-                const matchesRegion = region === '' || regions.includes(region);
-                const matchesService = service === '' || services.includes(service);
-                const matchesVerified = !verifiedOnly || isVerified;
+                                            <div class="mb-8 flex-grow">
+                                                <h3 class="font-serif text-xl font-bold text-slate-900 group-hover:text-[#FF6F61] transition-colors line-clamp-1">
+                                                    {company.data.name}
+                                                </h3>
+                                                {company.data.label && (
+                                                    <span class="inline-block px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 text-[10px] font-bold uppercase tracking-wide border border-slate-200 mt-1">
+                                                        {company.data.label}
+                                                    </span>
+                                                )}
+                                                <p class="text-sm text-slate-500 leading-relaxed line-clamp-3">
+                                                    {company.data.description}
+                                                </p>
+                                            </div>
 
-                if (matchesSearch && matchesRegion && matchesService && matchesVerified) {
-                    card.style.display = 'flex'; // Restore flex for card layout
-                    visible++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+                                            {/* Footer: Meta Data */}
+                                            <div class="pt-6 border-t border-slate-100 mt-auto space-y-3">
+                                                <div class="flex items-start gap-3">
+                                                    <Briefcase className="w-4 h-4 text-slate-300 mt-0.5 shrink-0" />
+                                                    <span class="text-xs text-slate-500 font-medium leading-relaxed">
+                                                        {company.data.services
+                                                            .slice(0, 3)
+                                                            .join(", ")}
+                                                        {company.data.services
+                                                            .length > 3 &&
+                                                            "..."}
+                                                    </span>
+                                                </div>
+                                                <div class="flex items-center gap-3">
+                                                    <MapPin className="w-4 h-4 text-slate-300 shrink-0" />
+                                                    <span class="text-xs text-slate-500 font-medium truncate">
+                                                        {company.data.regions
+                                                            .slice(0, 3)
+                                                            .join(", ")}
+                                                    </span>
+                                                </div>
+                                            </div>
 
-            if(countDisplay) countDisplay.textContent = visible;
-            
-            if (visible === 0) {
-                noResults.classList.remove('hidden');
-                grid.classList.add('hidden');
-            } else {
-                noResults.classList.add('hidden');
-                grid.classList.remove('hidden');
-            }
-        }
+                                            {/* Hover Arrow (Architectural) */}
+                                            <div class="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
+                                                <svg
+                                                    class="w-5 h-5 text-[#FF6F61]"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                                    />
+                                                </svg>
+                                            </div>
 
-        // Event Listeners
-        if(searchInput) searchInput.addEventListener('input', filter);
-        if(regionFilter) regionFilter.addEventListener('change', filter);
-        if(serviceFilter) serviceFilter.addEventListener('change', filter);
-        
-        if(verifiedBtn) verifiedBtn.addEventListener('click', () => {
-            verifiedOnly = !verifiedOnly;
-            verifiedBtn.classList.toggle('bg-slate-900');
-            verifiedBtn.classList.toggle('text-white');
-            verifiedBtn.classList.toggle('border-slate-900');
-            filter();
-        });
+                                            {/* Removed Compare Checkbox to enforce Concierge Flow */}
+                                        </div>
 
-        if(resetBtn) resetBtn.addEventListener('click', () => {
-            if(searchInput) searchInput.value = '';
-            if(regionFilter) regionFilter.value = '';
-            if(serviceFilter) serviceFilter.value = '';
-            verifiedOnly = false;
-            verifiedBtn.classList.remove('bg-slate-900', 'text-white', 'border-slate-900');
-            filter();
-        });
-    });
+                                        {/* Subtle background wash on hover */}
+                                        <div class="absolute inset-0 bg-slate-50 opacity-0 group-hover:opacity-50 transition-opacity duration-300 pointer-events-none -z-0" />
+                                    </a>
+                                );
+                            })
+                        }
+                    </div>
 
-    // Comparison Logic
-    document.addEventListener('DOMContentLoaded', () => {
-        const toggles = document.querySelectorAll('.compare-toggle');
+                    <!-- No Results State -->
+                    <div id="noResults" class="hidden py-24 text-center">
+                        <div
+                            class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 mb-6"
+                        >
+                            <Filter className="w-6 h-6 text-slate-400" />
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">
+                            No partners found.
+                        </h3>
+                        <p class="text-slate-500">
+                            Try adjusting your filters to see more results.
+                        </p>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
 
-        const updateVisuals = () => {
-             const stored = localStorage.getItem('relo_compare');
-             const selected = stored ? JSON.parse(stored) : [];
-             const selectedIds = selected.map(a => a.id);
+    <!-- Client-Side Filtering -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const searchInput = document.getElementById("searchInput");
+            const regionFilter = document.getElementById("regionFilter");
+            const serviceFilter = document.getElementById("serviceFilter");
+            const verifiedBtn = document.getElementById("verifiedBtn");
+            const resetBtn = document.getElementById("resetBtn");
+            const cards = document.querySelectorAll(".company-card");
+            const countDisplay = document.getElementById("countDisplay");
+            const noResults = document.getElementById("noResults");
+            const grid = document.getElementById("companyGrid");
 
-             toggles.forEach(btn => {
-                 const id = btn.getAttribute('data-id');
-                 const box = btn.querySelector('.checkbox-box');
-                 const icon = btn.querySelector('.check-icon');
-                 
-                 if (selectedIds.includes(id)) {
-                     btn.classList.add('border-[#FF6F61]', 'bg-[#FF6F61]/5');
-                     box.classList.add('border-[#FF6F61]');
-                     icon.classList.remove('hidden');
-                     // Keep visible if selected
-                     btn.parentElement.classList.remove('opacity-0', 'group-hover:opacity-100');
-                     btn.parentElement.classList.add('opacity-100');
-                 } else {
-                     btn.classList.remove('border-[#FF6F61]', 'bg-[#FF6F61]/5');
-                     box.classList.remove('border-[#FF6F61]');
-                     icon.classList.add('hidden');
-                     // Reset hover behavior
-                     btn.parentElement.classList.add('opacity-0', 'group-hover:opacity-100');
-                     btn.parentElement.classList.remove('opacity-100');
-                 }
-             });
-        };
+            // Mobile inputs sync (basic implementation)
+            const mobileSearch = document.getElementById("mobileSearch");
+            const mobileRegion = document.getElementById("mobileRegion");
 
-        // Initial check
-        updateVisuals();
+            if (mobileSearch)
+                mobileSearch.addEventListener("input", (e) => {
+                    if (searchInput) searchInput.value = e.target.value;
+                    filter();
+                });
 
-        // Listen for updates from other components
-        window.addEventListener('relo_compare_update', updateVisuals);
+            let verifiedOnly = false;
 
-        // Click handler
-        toggles.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation(); // Stop link click
+            function filter() {
+                const term = searchInput ? searchInput.value.toLowerCase() : "";
+                const region = regionFilter
+                    ? regionFilter.value.toLowerCase()
+                    : "";
+                const service = serviceFilter
+                    ? serviceFilter.value.toLowerCase()
+                    : "";
 
-                const agency = {
-                    id: btn.getAttribute('data-id'),
-                    name: btn.getAttribute('data-name'),
-                    logo: btn.getAttribute('data-logo')
-                };
+                let visible = 0;
 
-                const stored = localStorage.getItem('relo_compare');
-                let selected = stored ? JSON.parse(stored) : [];
-                
-                if (selected.find(a => a.id === agency.id)) {
-                    selected = selected.filter(a => a.id !== agency.id);
-                } else {
-                    if (selected.length >= 3) {
-                        alert('You can compare up to 3 agencies.');
-                        return;
+                cards.forEach((card) => {
+                    const name = card.getAttribute("data-name");
+                    const regions = card.getAttribute("data-region");
+                    const services = card.getAttribute("data-service");
+                    const isVerified =
+                        card.getAttribute("data-verified") === "true";
+
+                    const matchesSearch = name.includes(term);
+                    const matchesRegion =
+                        region === "" || regions.includes(region);
+                    const matchesService =
+                        service === "" || services.includes(service);
+                    const matchesVerified = !verifiedOnly || isVerified;
+
+                    if (
+                        matchesSearch &&
+                        matchesRegion &&
+                        matchesService &&
+                        matchesVerified
+                    ) {
+                        card.style.display = "flex"; // Restore flex for card layout
+                        visible++;
+                    } else {
+                        card.style.display = "none";
                     }
-                    selected.push(agency);
+                });
+
+                if (countDisplay) countDisplay.textContent = visible;
+
+                if (visible === 0) {
+                    noResults.classList.remove("hidden");
+                    grid.classList.add("hidden");
+                } else {
+                    noResults.classList.add("hidden");
+                    grid.classList.remove("hidden");
                 }
+            }
 
-                localStorage.setItem('relo_compare', JSON.stringify(selected));
-                window.dispatchEvent(new Event('relo_compare_update'));
-                updateVisuals();
-            });
+            // Event Listeners
+            if (searchInput) searchInput.addEventListener("input", filter);
+            if (regionFilter) regionFilter.addEventListener("change", filter);
+            if (serviceFilter) serviceFilter.addEventListener("change", filter);
+
+            if (verifiedBtn)
+                verifiedBtn.addEventListener("click", () => {
+                    verifiedOnly = !verifiedOnly;
+                    verifiedBtn.classList.toggle("bg-slate-900");
+                    verifiedBtn.classList.toggle("text-white");
+                    verifiedBtn.classList.toggle("border-slate-900");
+                    filter();
+                });
+
+            if (resetBtn)
+                resetBtn.addEventListener("click", () => {
+                    if (searchInput) searchInput.value = "";
+                    if (regionFilter) regionFilter.value = "";
+                    if (serviceFilter) serviceFilter.value = "";
+                    verifiedOnly = false;
+                    verifiedBtn.classList.remove(
+                        "bg-slate-900",
+                        "text-white",
+                        "border-slate-900",
+                    );
+                    filter();
+                });
         });
-    });
-  </script>
-
+    </script>
 </Layout>

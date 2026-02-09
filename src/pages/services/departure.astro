@@ -1,10 +1,11 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import SchemaMarkup from '../../components/common/SchemaMarkup.astro';
-import ServiceHero from '../../components/services/ServiceHero.astro';
-import PlatformDisclaimer from '../../components/common/PlatformDisclaimer.astro';
-import ServiceRelated from '../../components/services/ServiceRelated.astro';
-import ServiceBlog from '../../components/services/ServiceBlog.astro';
+import Layout from "../../layouts/Layout.astro";
+import SchemaMarkup from "../../components/common/SchemaMarkup.astro";
+import ServiceHero from "../../components/services/ServiceHero.astro";
+import PlatformDisclaimer from "../../components/common/PlatformDisclaimer.astro";
+import ServiceRelated from "../../components/services/ServiceRelated.astro";
+import ServiceBlog from "../../components/services/ServiceBlog.astro";
+import { LogOut } from "lucide-react";
 
 interface BlogPost {
   title: string;
@@ -32,190 +33,204 @@ const relatedBlogs: BlogPost[] = [
   {
     title: "Swiss Lease Termination Guide",
     slug: "swiss-lease-termination",
-    excerpt: "Complete guide to terminating your Swiss rental contract including notice periods, official termination dates, and proper procedures for a smooth departure.",
+    excerpt:
+      "Complete guide to terminating your Swiss rental contract including notice periods, official termination dates, and proper procedures for a smooth departure.",
     category: "Housing",
-    readTime: "12 min read"
+    readTime: "12 min read",
   },
   {
     title: "End-of-Tenancy Handover in Switzerland",
     slug: "end-tenancy-handover-switzerland",
-    excerpt: "What to expect during your final apartment handover including cleaning requirements, repair responsibilities, and deposit return timelines.",
+    excerpt:
+      "What to expect during your final apartment handover including cleaning requirements, repair responsibilities, and deposit return timelines.",
     category: "Moving Out",
-    readTime: "10 min read"
+    readTime: "10 min read",
   },
   {
     title: "Deregistration Process in Switzerland",
     slug: "deregistration-switzerland",
-    excerpt: "Step-by-step guide to deregistering with your local municipality before leaving Switzerland including required documents and deadlines.",
+    excerpt:
+      "Step-by-step guide to deregistering with your local municipality before leaving Switzerland including required documents and deadlines.",
     category: "Administration",
-    readTime: "8 min read"
+    readTime: "8 min read",
   },
   {
     title: "Recovering Your Swiss Rental Deposit",
     slug: "rental-deposit-recovery-switzerland",
-    excerpt: "How to maximize your rental deposit return including common deductions, dispute resolution, and timeline expectations for deposit recovery.",
+    excerpt:
+      "How to maximize your rental deposit return including common deductions, dispute resolution, and timeline expectations for deposit recovery.",
     category: "Finance",
-    readTime: "10 min read"
-  }
+    readTime: "10 min read",
+  },
 ];
 
 const companies: ServiceCompany[] = [
   {
     name: "Prime Relocation",
-    description: "Official ReloFinder partner providing comprehensive departure services including lease termination, cleaning coordination, deregistration, and deposit recovery support",
+    description:
+      "Official ReloFinder partner providing comprehensive departure services including lease termination, cleaning coordination, deregistration, and deposit recovery support",
     rating: 4.8,
     reviews: 53,
-    featured: true
+    featured: true,
   },
   {
     name: "Auris Relocation",
-    description: "Expert departure support helping expats with lease handovers and administrative closure",
+    description:
+      "Expert departure support helping expats with lease handovers and administrative closure",
     rating: 4.8,
-    reviews: 98
+    reviews: 98,
   },
   {
     name: "Lodge Relocation",
-    description: "Comprehensive departure services with 25+ years experience in Swiss relocations",
+    description:
+      "Comprehensive departure services with 25+ years experience in Swiss relocations",
     rating: 4.8,
-    reviews: 134
-  }
+    reviews: 134,
+  },
 ];
 
 const relatedServices: RelatedService[] = [
   {
     title: "Housing Services",
-    description: "Understand lease agreements and handover procedures from the start",
-    link: "/services/housing"
+    description:
+      "Understand lease agreements and handover procedures from the start",
+    link: "/services/housing",
   },
   {
     title: "Settling-In Services",
-    description: "Compare arrival registration with departure deregistration processes",
-    link: "/services/settling-in"
+    description:
+      "Compare arrival registration with departure deregistration processes",
+    link: "/services/settling-in",
   },
   {
     title: "Moving & Logistics",
-    description: "Coordinate international shipping for your departure from Switzerland",
-    link: "/services/moving-logistics"
+    description:
+      "Coordinate international shipping for your departure from Switzerland",
+    link: "/services/moving-logistics",
   },
   {
     title: "Advisory Services",
     description: "Strategic planning for your Swiss exit and next destination",
-    link: "/services/advisory"
-  }
+    link: "/services/advisory",
+  },
 ];
 
-const title = "Departure & Repatriation Services Switzerland | Lease & Deregistration | ReloFinder";
-const description = "Lease termination, professional cleaning, deregistration & final bills made easy. Book your free departure consultation with Prime Relocation.";
+const title =
+  "Departure & Repatriation Services Switzerland | Lease & Deregistration | ReloFinder";
+const description =
+  "Lease termination, professional cleaning, deregistration & final bills made easy. Book your free departure consultation with Prime Relocation.";
 const canonicalURL = "https://relofinder.ch/services/departure";
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
+  itemListElement: [
     {
       "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://relofinder.ch"
+      position: 1,
+      name: "Home",
+      item: "https://relofinder.ch",
     },
     {
       "@type": "ListItem",
-      "position": 2,
-      "name": "Services",
-      "item": "https://relofinder.ch/services"
+      position: 2,
+      name: "Services",
+      item: "https://relofinder.ch/services",
     },
     {
       "@type": "ListItem",
-      "position": 3,
-      "name": "Departure Services",
-      "item": "https://relofinder.ch/services/departure"
-    }
-  ]
+      position: 3,
+      name: "Departure Services",
+      item: "https://relofinder.ch/services/departure",
+    },
+  ],
 };
 
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Swiss Departure & Repatriation Services",
-  "description": "Professional departure support including lease termination, end-of-tenancy handover, deregistration, and deposit recovery for expats leaving Switzerland",
-  "provider": {
+  name: "Swiss Departure & Repatriation Services",
+  description:
+    "Professional departure support including lease termination, end-of-tenancy handover, deregistration, and deposit recovery for expats leaving Switzerland",
+  provider: {
     "@type": "Organization",
-    "name": "ReloFinder",
-    "url": "https://relofinder.ch"
+    name: "ReloFinder",
+    url: "https://relofinder.ch",
   },
-  "areaServed": {
+  areaServed: {
     "@type": "Country",
-    "name": "Switzerland"
+    name: "Switzerland",
   },
-  "serviceType": "Departure & Repatriation Services"
+  serviceType: "Departure & Repatriation Services",
 };
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
+  mainEntity: [
     {
       "@type": "Question",
-      "name": "How much notice must I give to terminate my lease in Switzerland?",
-      "acceptedAnswer": {
+      name: "How much notice must I give to terminate my lease in Switzerland?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Standard notice period is 3 months to official termination dates (quarterly: March 31, June 30, September 30, December 31). Notice must be given by registered mail (Einschreiben) using official termination forms. Some leases allow shorter notice (1-2 months) but this is rare. Early termination requires landlord approval or finding replacement tenant."
-      }
+        text: "Standard notice period is 3 months to official termination dates (quarterly: March 31, June 30, September 30, December 31). Notice must be given by registered mail (Einschreiben) using official termination forms. Some leases allow shorter notice (1-2 months) but this is rare. Early termination requires landlord approval or finding replacement tenant.",
+      },
     },
     {
       "@type": "Question",
-      "name": "Is professional cleaning required when moving out?",
-      "acceptedAnswer": {
+      name: "Is professional cleaning required when moving out?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Most Swiss leases require the apartment returned in original condition meaning professional deep cleaning. This includes: kitchen appliances (oven, fridge), bathrooms, windows, floors, walls if damaged. Many landlords require certified cleaning company receipts. Cost typically CHF 300-800 depending on apartment size. DIY cleaning often rejected by landlords."
-      }
+        text: "Most Swiss leases require the apartment returned in original condition meaning professional deep cleaning. This includes: kitchen appliances (oven, fridge), bathrooms, windows, floors, walls if damaged. Many landlords require certified cleaning company receipts. Cost typically CHF 300-800 depending on apartment size. DIY cleaning often rejected by landlords.",
+      },
     },
     {
       "@type": "Question",
-      "name": "How long does it take to get my rental deposit back?",
-      "acceptedAnswer": {
+      name: "How long does it take to get my rental deposit back?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Landlords can legally withhold deposits up to 12 months while final bills are settled (utilities, Serafe, repairs). Typical timeline: 3-6 months if no issues. Deposits held in blocked account with interest accrued. Deductions allowed for damages, unpaid bills, or incomplete cleaning. Disputes can be filed with cantonal rental commission."
-      }
+        text: "Landlords can legally withhold deposits up to 12 months while final bills are settled (utilities, Serafe, repairs). Typical timeline: 3-6 months if no issues. Deposits held in blocked account with interest accrued. Deductions allowed for damages, unpaid bills, or incomplete cleaning. Disputes can be filed with cantonal rental commission.",
+      },
     },
     {
       "@type": "Question",
-      "name": "What steps are needed to deregister before leaving Switzerland?",
-      "acceptedAnswer": {
+      name: "What steps are needed to deregister before leaving Switzerland?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Visit local municipality (Gemeinde) to officially deregister (Abmeldung). Bring: passport/ID, proof of departure (flight ticket, new address abroad), rental termination confirmation. Deregister within 14 days of departure to avoid fines. Municipality issues deregistration confirmation needed for final tax settlement and forwarding address for mail."
-      }
+        text: "Visit local municipality (Gemeinde) to officially deregister (Abmeldung). Bring: passport/ID, proof of departure (flight ticket, new address abroad), rental termination confirmation. Deregister within 14 days of departure to avoid fines. Municipality issues deregistration confirmation needed for final tax settlement and forwarding address for mail.",
+      },
     },
     {
       "@type": "Question",
-      "name": "Can I end my lease early if I find a new tenant?",
-      "acceptedAnswer": {
+      name: "Can I end my lease early if I find a new tenant?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Yes, if landlord approves replacement tenant (Nachmieter). You remain responsible until replacement approved and moves in. New tenant must have similar profile (employment, references, financial capacity). Landlord cannot unreasonably refuse suitable replacement. Finding replacement tenant yourself often faster than waiting for landlord to fill vacancy."
-      }
+        text: "Yes, if landlord approves replacement tenant (Nachmieter). You remain responsible until replacement approved and moves in. New tenant must have similar profile (employment, references, financial capacity). Landlord cannot unreasonably refuse suitable replacement. Finding replacement tenant yourself often faster than waiting for landlord to fill vacancy.",
+      },
     },
     {
       "@type": "Question",
-      "name": "What happens if I don't deregister before departure?",
-      "acceptedAnswer": {
+      name: "What happens if I don't deregister before departure?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Failure to deregister causes problems: continued health insurance premiums, tax complications, mail forwarding issues, fines from municipality (CHF 100-200). You remain officially registered in Switzerland creating administrative complications. Deregister even if leaving temporarily. Can be done in person or sometimes via mail/email depending on municipality."
-      }
-    }
-  ]
+        text: "Failure to deregister causes problems: continued health insurance premiums, tax complications, mail forwarding issues, fines from municipality (CHF 100-200). You remain officially registered in Switzerland creating administrative complications. Deregister even if leaving temporarily. Can be done in person or sometimes via mail/email depending on municipality.",
+      },
+    },
+  ],
 };
 ---
 
 <Layout title={title} description={description}>
-  <SchemaMarkup schema={breadcrumbSchema} />
-  <SchemaMarkup schema={serviceSchema} />
-  <SchemaMarkup schema={faqSchema} />
+  <SchemaMarkup type="breadcrumb" data={breadcrumbSchema} />
+  <SchemaMarkup type="service" data={serviceSchema} />
+  <SchemaMarkup type="faq" data={faqSchema} />
 
   <ServiceHero
     title="Departure & Repatriation Services"
     subtitle="Lease, Deregistration & Handover"
     description="Leaving Switzerland can be just as complex as arriving. From lease termination and final handover to deregistration and utility closures, our specialists ensure a smooth departure."
     badge="Departure Services"
+    icon={LogOut}
   />
 
   <section class="py-12 bg-gradient-to-br from-gray-50 via-white to-primary-50">
@@ -225,10 +240,11 @@ const faqSchema = {
           Ready for a Smooth Swiss Exit?
         </h2>
         <p class="text-lg text-gray-600 mb-8">
-          Get expert support with lease termination, cleaning, deregistration, and deposit recovery
+          Get expert support with lease termination, cleaning, deregistration,
+          and deposit recovery
         </p>
         <button
-          onclick="universalOpenModal({page: 'departure_service', service: 'departure'})"
+          onclick="window.openAssessmentModal('departure')"
           class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-coral-500 to-coral-600 rounded-xl hover:from-coral-600 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
         >
           Get a Free Consultation with our Preferred Partner
@@ -244,90 +260,214 @@ const faqSchema = {
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-12">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+          <span
+            class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4"
+          >
             The Challenge
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Why Departure Is a <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Challenge</span>
+            Why Departure Is a <span
+              class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
+              >Challenge</span
+            >
           </h2>
           <p class="text-xl text-gray-600">
-            Leaving Switzerland involves strict regulations and procedures that catch many expats off-guard
+            Leaving Switzerland involves strict regulations and procedures that
+            catch many expats off-guard
           </p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
-          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
-            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          <div
+            class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Strict Lease Termination Rules</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Strict Lease Termination Rules
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Swiss leases require 3-month notice periods tied to quarterly end dates (March 31, June 30, September 30, December 31). Termination must be by registered mail (Einschreiben) using official forms. Miss the deadline by one day and you're stuck for another 3 months paying rent.
+              Swiss leases require 3-month notice periods tied to quarterly end
+              dates (March 31, June 30, September 30, December 31). Termination
+              must be by registered mail (Einschreiben) using official forms.
+              Miss the deadline by one day and you're stuck for another 3 months
+              paying rent.
             </p>
           </div>
 
-          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
-            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <div
+            class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">End-of-Tenancy Handover Requirements</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              End-of-Tenancy Handover Requirements
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Apartments must be returned in original condition with professional deep cleaning (CHF 300-800). Landlords inspect thoroughly checking walls, floors, appliances, windows. Minor damages require professional repairs. DIY cleaning rarely accepted. Failed inspections mean deposit deductions or additional bills.
+              Apartments must be returned in original condition with
+              professional deep cleaning (CHF 300-800). Landlords inspect
+              thoroughly checking walls, floors, appliances, windows. Minor
+              damages require professional repairs. DIY cleaning rarely
+              accepted. Failed inspections mean deposit deductions or additional
+              bills.
             </p>
           </div>
 
-          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
-            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          <div
+            class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Deregistration Deadlines</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Deregistration Deadlines
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              You must deregister (Abmeldung) at your local Gemeinde within 14 days of departure. Requires proof of departure, new address abroad, and rental termination. Failure to deregister causes continued health insurance obligations, tax complications, mail forwarding issues, and municipal fines (CHF 100-200).
+              You must deregister (Abmeldung) at your local Gemeinde within 14
+              days of departure. Requires proof of departure, new address
+              abroad, and rental termination. Failure to deregister causes
+              continued health insurance obligations, tax complications, mail
+              forwarding issues, and municipal fines (CHF 100-200).
             </p>
           </div>
 
-          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
-            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          <div
+            class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Cancelling Utilities & Services</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Cancelling Utilities & Services
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Each service requires separate cancellation: health insurance (3-month notice), internet/phone (1-2 months), Serafe TV fee, electricity if separate, mobile contracts. Timing cancellations wrong means paying for services you don't use or penalties for early termination. Coordinating multiple cancellation dates is complex.
+              Each service requires separate cancellation: health insurance
+              (3-month notice), internet/phone (1-2 months), Serafe TV fee,
+              electricity if separate, mobile contracts. Timing cancellations
+              wrong means paying for services you don't use or penalties for
+              early termination. Coordinating multiple cancellation dates is
+              complex.
             </p>
           </div>
 
-          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
-            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <div
+            class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Recovering Rental Deposits</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Recovering Rental Deposits
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Landlords can legally withhold deposits up to 12 months waiting for final utility bills. Typical return takes 3-6 months if no issues. Deductions for damages, cleaning, repairs, or unpaid bills are common. Without proper documentation and professional handover, recovering full deposit is difficult. Interest accrues but is minimal.
+              Landlords can legally withhold deposits up to 12 months waiting
+              for final utility bills. Typical return takes 3-6 months if no
+              issues. Deductions for damages, cleaning, repairs, or unpaid bills
+              are common. Without proper documentation and professional
+              handover, recovering full deposit is difficult. Interest accrues
+              but is minimal.
             </p>
           </div>
         </div>
 
-        <div class="mt-12 p-8 bg-gradient-to-br from-primary-50 via-white to-red-50 rounded-2xl border-2 border-primary-100">
+        <div
+          class="mt-12 p-8 bg-gradient-to-br from-primary-50 via-white to-red-50 rounded-2xl border-2 border-primary-100"
+        >
           <div class="flex items-start">
             <div class="flex-shrink-0">
-              <svg class="w-8 h-8 text-coral-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+              <svg
+                class="w-8 h-8 text-coral-500"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                  clip-rule="evenodd"></path>
               </svg>
             </div>
             <div class="ml-4">
-              <h4 class="text-xl font-bold text-gray-900 mb-2">Expert Insight</h4>
+              <h4 class="text-xl font-bold text-gray-900 mb-2">
+                Expert Insight
+              </h4>
               <p class="text-gray-700 leading-relaxed">
-                <strong>Without professional support, expats often:</strong> Miss lease termination deadlines paying unnecessary months of rent, skip professional cleaning losing deposit deductions, forget to deregister causing tax/insurance complications, leave services running incurring ongoing bills, or accept unfair deposit deductions without dispute. Expert departure coordination saves thousands in avoidable costs and prevents administrative headaches after leaving Switzerland.
+                <strong>Without professional support, expats often:</strong> Miss
+                lease termination deadlines paying unnecessary months of rent, skip
+                professional cleaning losing deposit deductions, forget to deregister
+                causing tax/insurance complications, leave services running incurring
+                ongoing bills, or accept unfair deposit deductions without dispute.
+                Expert departure coordination saves thousands in avoidable costs and
+                prevents administrative headaches after leaving Switzerland.
               </p>
             </div>
           </div>
@@ -340,97 +480,183 @@ const faqSchema = {
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+          <span
+            class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4"
+          >
             Our Solution
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            How <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">ReloFinder</span> Helps With Departure
+            How <span
+              class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
+              >ReloFinder</span
+            > Helps With Departure
           </h2>
           <p class="text-xl text-gray-600">
-            We connect you with departure specialists who handle every detail of your Swiss exit
+            We connect you with departure specialists who handle every detail of
+            your Swiss exit
           </p>
         </div>
 
         <div class="space-y-6">
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="flex items-start">
               <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg"
+                >
                   1
                 </div>
               </div>
               <div class="ml-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">Lease Termination & End-of-Tenancy Handover</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                  Lease Termination & End-of-Tenancy Handover
+                </h3>
                 <p class="text-gray-600 leading-relaxed mb-4">
-                  Complete support for lease termination including registered mail coordination, official form completion, landlord communication, handover inspection scheduling, inventory documentation, and damage assessment negotiation. We ensure proper procedures to maximize deposit recovery and avoid disputes.
+                  Complete support for lease termination including registered
+                  mail coordination, official form completion, landlord
+                  communication, handover inspection scheduling, inventory
+                  documentation, and damage assessment negotiation. We ensure
+                  proper procedures to maximize deposit recovery and avoid
+                  disputes.
                 </p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Termination Forms</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Handover Inspection</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Deposit Protection</span>
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Termination Forms</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Handover Inspection</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Deposit Protection</span
+                  >
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="flex items-start">
               <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg"
+                >
                   2
                 </div>
               </div>
               <div class="ml-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">Professional Cleaning & Repairs Coordination</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                  Professional Cleaning & Repairs Coordination
+                </h3>
                 <p class="text-gray-600 leading-relaxed mb-4">
-                  Connection to certified cleaning companies (CHF 300-800) for deep cleaning required by landlords including kitchen appliances, bathrooms, windows, floors. Coordination of minor repairs (wall holes, scratches, broken fixtures) to meet handover standards and prevent deposit deductions. Receipt documentation for landlord.
+                  Connection to certified cleaning companies (CHF 300-800) for
+                  deep cleaning required by landlords including kitchen
+                  appliances, bathrooms, windows, floors. Coordination of minor
+                  repairs (wall holes, scratches, broken fixtures) to meet
+                  handover standards and prevent deposit deductions. Receipt
+                  documentation for landlord.
                 </p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Certified Cleaning</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Repair Coordination</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Documentation</span>
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Certified Cleaning</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Repair Coordination</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Documentation</span
+                  >
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="flex items-start">
               <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg"
+                >
                   3
                 </div>
               </div>
               <div class="ml-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">Deregistration & Service Cancellations</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                  Deregistration & Service Cancellations
+                </h3>
                 <p class="text-gray-600 leading-relaxed mb-4">
-                  Complete administrative closure including Gemeinde deregistration (Abmeldung) within 14-day deadline, health insurance cancellation (3-month notice), internet/phone cancellation, Serafe TV fee closure, electricity/utility final readings, mail forwarding setup, and tax declaration coordination for final year.
+                  Complete administrative closure including Gemeinde
+                  deregistration (Abmeldung) within 14-day deadline, health
+                  insurance cancellation (3-month notice), internet/phone
+                  cancellation, Serafe TV fee closure, electricity/utility final
+                  readings, mail forwarding setup, and tax declaration
+                  coordination for final year.
                 </p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Deregistration</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Service Closures</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Final Bills</span>
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Deregistration</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Service Closures</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Final Bills</span
+                  >
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="flex items-start">
               <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg"
+                >
                   4
                 </div>
               </div>
               <div class="ml-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">Deposit Recovery & Final Bills</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                  Deposit Recovery & Final Bills
+                </h3>
                 <p class="text-gray-600 leading-relaxed mb-4">
-                  Advocacy for full deposit return including dispute resolution with landlords, documentation of apartment condition, negotiation of deduction amounts, follow-up on delayed deposits (can take 3-12 months), coordination of final utility bills, Serafe final payments, and forwarding address management for outstanding refunds.
+                  Advocacy for full deposit return including dispute resolution
+                  with landlords, documentation of apartment condition,
+                  negotiation of deduction amounts, follow-up on delayed
+                  deposits (can take 3-12 months), coordination of final utility
+                  bills, Serafe final payments, and forwarding address
+                  management for outstanding refunds.
                 </p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Deposit Recovery</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Dispute Support</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Bill Management</span>
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Deposit Recovery</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Dispute Support</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Bill Management</span
+                  >
                 </div>
               </div>
             </div>
@@ -447,7 +673,8 @@ const faqSchema = {
           Talk to a Departure Expert
         </h2>
         <p class="text-lg text-gray-600 mb-8">
-          Get personalized support for lease termination, cleaning, deregistration, and deposit recovery
+          Get personalized support for lease termination, cleaning,
+          deregistration, and deposit recovery
         </p>
         <button
           onclick="universalOpenModal({page: 'departure_service', service: 'departure'})"
@@ -466,11 +693,16 @@ const faqSchema = {
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+          <span
+            class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4"
+          >
             Step-by-Step Guide
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Your Departure <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Process</span>
+            Your Departure <span
+              class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
+              >Process</span
+            >
           </h2>
           <p class="text-xl text-gray-600">
             Follow this proven process for a smooth exit from Switzerland
@@ -479,74 +711,129 @@ const faqSchema = {
 
         <div class="space-y-8">
           <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+            <div
+              class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white"
+            >
               1
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">Lease Review & Termination Planning</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Lease Review & Termination Planning
+            </h3>
             <p class="text-gray-600 leading-relaxed mb-4">
-              Review your rental contract for notice periods (typically 3 months), official termination dates (quarterly), and early termination options. Calculate exact deadline for registered mail (Einschreiben) termination letter. Understand landlord requirements for handover condition and cleaning standards. Plan timeline backwards from desired departure date.
+              Review your rental contract for notice periods (typically 3
+              months), official termination dates (quarterly), and early
+              termination options. Calculate exact deadline for registered mail
+              (Einschreiben) termination letter. Understand landlord
+              requirements for handover condition and cleaning standards. Plan
+              timeline backwards from desired departure date.
             </p>
             <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Start 4-6 months before desired departure</p>
+              <p class="text-sm text-gray-700">
+                <strong>Timeline:</strong> Start 4-6 months before desired departure
+              </p>
             </div>
           </div>
 
           <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+            <div
+              class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white"
+            >
               2
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">Scheduling Professional Cleaning/Repairs</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Scheduling Professional Cleaning/Repairs
+            </h3>
             <p class="text-gray-600 leading-relaxed mb-4">
-              Book certified cleaning company (CHF 300-800) for deep cleaning 1-2 weeks before handover. Arrange minor repairs (wall holes, scratches, fixtures) to meet original condition standards. Document apartment condition with photos. Ensure all receipts saved for landlord inspection. Some landlords require specific cleaning company certifications.
+              Book certified cleaning company (CHF 300-800) for deep cleaning
+              1-2 weeks before handover. Arrange minor repairs (wall holes,
+              scratches, fixtures) to meet original condition standards.
+              Document apartment condition with photos. Ensure all receipts
+              saved for landlord inspection. Some landlords require specific
+              cleaning company certifications.
             </p>
             <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 2-4 weeks before handover date</p>
+              <p class="text-sm text-gray-700">
+                <strong>Timeline:</strong> 2-4 weeks before handover date
+              </p>
             </div>
           </div>
 
           <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+            <div
+              class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white"
+            >
               3
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">End-of-Tenancy Handover with Landlord</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              End-of-Tenancy Handover with Landlord
+            </h3>
             <p class="text-gray-600 leading-relaxed mb-4">
-              Coordinate handover appointment (typically 30-60 minutes) where landlord inspects apartment condition. Present cleaning receipts and document repairs. Review handover protocol (Übergabeprotokoll) carefully before signing. Note any disputed items. Understand timeline for deposit return (3-12 months) and provide forwarding address. Return all keys, mailbox keys, building access cards.
+              Coordinate handover appointment (typically 30-60 minutes) where
+              landlord inspects apartment condition. Present cleaning receipts
+              and document repairs. Review handover protocol (Übergabeprotokoll)
+              carefully before signing. Note any disputed items. Understand
+              timeline for deposit return (3-12 months) and provide forwarding
+              address. Return all keys, mailbox keys, building access cards.
             </p>
             <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> On official lease end date</p>
+              <p class="text-sm text-gray-700">
+                <strong>Timeline:</strong> On official lease end date
+              </p>
             </div>
           </div>
 
           <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+            <div
+              class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white"
+            >
               4
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">Deregistration & Service Cancellations</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Deregistration & Service Cancellations
+            </h3>
             <p class="text-gray-600 leading-relaxed mb-4">
-              Visit Gemeinde to deregister (Abmeldung) within 14 days of departure with proof of departure (flight ticket, new address) and passport. Cancel health insurance (3-month notice required), internet (1-2 months), mobile, Serafe TV fee. Coordinate final utility readings. Set up mail forwarding with Swiss Post for 12 months. File tax declaration or arrange tax agent for final year.
+              Visit Gemeinde to deregister (Abmeldung) within 14 days of
+              departure with proof of departure (flight ticket, new address) and
+              passport. Cancel health insurance (3-month notice required),
+              internet (1-2 months), mobile, Serafe TV fee. Coordinate final
+              utility readings. Set up mail forwarding with Swiss Post for 12
+              months. File tax declaration or arrange tax agent for final year.
             </p>
             <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Week before/after departure (14-day deadline)</p>
+              <p class="text-sm text-gray-700">
+                <strong>Timeline:</strong> Week before/after departure (14-day deadline)
+              </p>
             </div>
           </div>
 
           <div class="relative pl-8">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+            <div
+              class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white"
+            >
               5
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">Deposit Recovery & Tax/Serafe Finalization</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Deposit Recovery & Tax/Serafe Finalization
+            </h3>
             <p class="text-gray-600 leading-relaxed mb-4">
-              Follow up on deposit return (typically 3-6 months but can take 12). Dispute any unfair deductions with documentation and photos. Ensure all final bills paid (utilities, Serafe, mobile). Complete final tax declaration or appoint tax representative. Monitor forwarding address for outstanding refunds or bills. Close Swiss bank account only after all finances settled.
+              Follow up on deposit return (typically 3-6 months but can take
+              12). Dispute any unfair deductions with documentation and photos.
+              Ensure all final bills paid (utilities, Serafe, mobile). Complete
+              final tax declaration or appoint tax representative. Monitor
+              forwarding address for outstanding refunds or bills. Close Swiss
+              bank account only after all finances settled.
             </p>
             <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 3-12 months post-departure for deposit</p>
+              <p class="text-sm text-gray-700">
+                <strong>Timeline:</strong> 3-12 months post-departure for deposit
+              </p>
             </div>
           </div>
         </div>
 
         <div class="mt-12 text-center">
           <button
-            onclick="universalOpenModal({page: 'departure_steps', service: 'departure'})"
+            onclick="window.openAssessmentModal('departure')"
             class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-coral-500 to-coral-600 rounded-xl hover:from-coral-600 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             Book Your Free Departure Consultation
@@ -560,123 +847,292 @@ const faqSchema = {
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+          <span
+            class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4"
+          >
             Essential Information
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Key Facts for <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Expats</span>
+            Key Facts for <span
+              class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
+              >Expats</span
+            >
           </h2>
           <p class="text-xl text-gray-600">
-            Critical information every departing expat should know about leaving Switzerland
+            Critical information every departing expat should know about leaving
+            Switzerland
           </p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Lease Notice Periods</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Lease Notice Periods
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              <strong>3 months notice</strong> to quarterly end dates (March 31, June 30, Sept 30, Dec 31). Must be by registered mail (Einschreiben) with official forms. Miss deadline = 3 more months rent.
+              <strong>3 months notice</strong> to quarterly end dates (March 31, June
+              30, Sept 30, Dec 31). Must be by registered mail (Einschreiben) with
+              official forms. Miss deadline = 3 more months rent.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Professional Cleaning</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Professional Cleaning
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              <strong>Mandatory for most leases</strong>. Certified cleaning company required (CHF 300-800). Covers kitchen, bathrooms, windows, floors. DIY cleaning often rejected. Receipt required for handover.
+              <strong>Mandatory for most leases</strong>. Certified cleaning
+              company required (CHF 300-800). Covers kitchen, bathrooms,
+              windows, floors. DIY cleaning often rejected. Receipt required for
+              handover.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Deposit Return Timeline</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Deposit Return Timeline
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Landlords can withhold deposits <strong>up to 12 months</strong> for final bills. Typical: 3-6 months if no issues. Deductions allowed for damages, cleaning, repairs. Interest accrues in blocked account.
+              Landlords can withhold deposits <strong>up to 12 months</strong> for
+              final bills. Typical: 3-6 months if no issues. Deductions allowed for
+              damages, cleaning, repairs. Interest accrues in blocked account.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Deregistration Required</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Deregistration Required
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Must deregister at Gemeinde <strong>within 14 days</strong> of departure. Bring passport, proof of departure, new address. Failure causes fines (CHF 100-200), tax issues, insurance complications.
+              Must deregister at Gemeinde <strong>within 14 days</strong> of departure.
+              Bring passport, proof of departure, new address. Failure causes fines
+              (CHF 100-200), tax issues, insurance complications.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Service Cancellations</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Service Cancellations
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Each service needs <strong>separate cancellation</strong>: health insurance (3-month notice), internet (1-2 months), Serafe TV fee, mobile contracts. Coordinate timing to avoid gaps or overpayment.
+              Each service needs <strong>separate cancellation</strong>: health
+              insurance (3-month notice), internet (1-2 months), Serafe TV fee,
+              mobile contracts. Coordinate timing to avoid gaps or overpayment.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Early Termination Option</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Early Termination Option
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Can end lease early if you find <strong>replacement tenant (Nachmieter)</strong>. Landlord must approve. New tenant must have similar profile. You remain responsible until replacement moves in.
+              Can end lease early if you find <strong
+                >replacement tenant (Nachmieter)</strong
+              >. Landlord must approve. New tenant must have similar profile.
+              You remain responsible until replacement moves in.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Handover Protocol</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Handover Protocol
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Detailed inspection document (<strong>Übergabeprotokoll</strong>) signed by both parties. Lists apartment condition, damages, cleaning status. Review carefully before signing. Disputes must be noted immediately.
+              Detailed inspection document (<strong>Übergabeprotokoll</strong>)
+              signed by both parties. Lists apartment condition, damages,
+              cleaning status. Review carefully before signing. Disputes must be
+              noted immediately.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Mail Forwarding</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Mail Forwarding
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Swiss Post offers <strong>12-month forwarding</strong> (CHF 180-250). Essential for receiving deposit refunds, final bills, tax correspondence. Set up before departure with new address.
+              Swiss Post offers <strong>12-month forwarding</strong> (CHF 180-250).
+              Essential for receiving deposit refunds, final bills, tax correspondence.
+              Set up before departure with new address.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Final Tax Declaration</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Final Tax Declaration
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Must file <strong>final Swiss tax return</strong> for departure year. Consider appointing tax representative if leaving before deadline. Refunds/bills can take 12+ months to process.
+              Must file <strong>final Swiss tax return</strong> for departure year.
+              Consider appointing tax representative if leaving before deadline. Refunds/bills
+              can take 12+ months to process.
             </p>
           </div>
         </div>
@@ -687,90 +1143,140 @@ const faqSchema = {
   <section class="py-16 bg-gradient-to-br from-gray-50 via-white to-primary-50">
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl font-bold text-gray-900 mb-2 text-center">Trusted Departure Partners</h2>
-        <p class="text-gray-600 text-center mb-8">Expert lease termination, cleaning coordination, and administrative closure across Switzerland</p>
+        <h2 class="text-3xl font-bold text-gray-900 mb-2 text-center">
+          Trusted Departure Partners
+        </h2>
+        <p class="text-gray-600 text-center mb-8">
+          Expert lease termination, cleaning coordination, and administrative
+          closure across Switzerland
+        </p>
 
         <div class="space-y-8">
           <!-- Prime Relocation - Preferred Partner -->
-          <div class="bg-gradient-to-br from-primary-50 via-white to-red-50 border-2 border-primary-200 rounded-2xl p-8">
+          <div
+            class="bg-gradient-to-br from-primary-50 via-white to-red-50 border-2 border-primary-200 rounded-2xl p-8"
+          >
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-2xl font-bold text-gray-900">Prime Relocation</h3>
-              <span class="px-3 py-1 bg-gradient-to-r from-coral-500 to-coral-600 text-white rounded-full text-xs font-bold uppercase tracking-wide">
+              <span
+                class="px-3 py-1 bg-gradient-to-r from-coral-500 to-coral-600 text-white rounded-full text-xs font-bold uppercase tracking-wide"
+              >
                 🏆 Preferred Partner
               </span>
             </div>
-            
+
             <div class="flex items-center gap-2 mb-4">
-              <div class="flex text-yellow-500">
-                ★★★★★
-              </div>
+              <div class="flex text-yellow-500">★★★★★</div>
               <span class="text-gray-600 text-sm">4.8 / 5 • 53 reviews</span>
             </div>
-            
+
             <p class="text-gray-700 text-lg mb-6">
-              <strong>Expert departure and repatriation services</strong> for expats leaving Switzerland. Prime Relocation helps expats navigate lease terminations, final handovers, deregistration, and deposit recovery. Get comprehensive support for a smooth Swiss exit with professional coordination of all departure requirements.
+              <strong>Expert departure and repatriation services</strong> for expats
+              leaving Switzerland. Prime Relocation helps expats navigate lease terminations,
+              final handovers, deregistration, and deposit recovery. Get comprehensive
+              support for a smooth Swiss exit with professional coordination of all
+              departure requirements.
             </p>
-            
+
             <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">📝 Lease Termination</span>
-              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🧹 Cleaning Coordination</span>
-              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">📋 Deregistration</span>
-              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">💰 Deposit Recovery</span>
+              <span
+                class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700"
+                >📝 Lease Termination</span
+              >
+              <span
+                class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700"
+                >🧹 Cleaning Coordination</span
+              >
+              <span
+                class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700"
+                >📋 Deregistration</span
+              >
+              <span
+                class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700"
+                >💰 Deposit Recovery</span
+              >
             </div>
-            
-            <button 
-              onclick="universalOpenModal({page: 'departure_service', service: 'departure'})"
+
+            <button
+              onclick="window.openAssessmentModal('departure')"
               class="inline-flex items-center justify-center bg-gradient-to-r from-coral-500 to-coral-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
               Get a Free Consultation with our Preferred Partner
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              <svg
+                class="w-5 h-5 ml-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
               </svg>
             </button>
-            <p class="text-xs text-gray-500 mt-3">Our relocation partners work with us and provide free consultations</p>
+            <p class="text-xs text-gray-500 mt-3">
+              Our relocation partners work with us and provide free
+              consultations
+            </p>
           </div>
 
           <!-- Other Departure Specialists -->
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Other Trusted Departure Specialists</h3>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">
+            Other Trusted Departure Specialists
+          </h3>
           <div class="grid md:grid-cols-2 gap-6">
             <div class="bg-white border border-gray-200 rounded-lg p-6">
-              <h4 class="text-lg font-semibold text-gray-900 mb-2">Lodge Relocation</h4>
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">
+                Lodge Relocation
+              </h4>
               <div class="flex items-center gap-2 mb-3">
-                <div class="flex text-yellow-500 text-sm">
-                  ★★★★★
-                </div>
+                <div class="flex text-yellow-500 text-sm">★★★★★</div>
                 <span class="text-gray-600 text-sm">4.8 / 5 • 134 reviews</span>
               </div>
-              <p class="text-gray-700 text-sm">Comprehensive departure services with 25+ years experience in Swiss relocations</p>
+              <p class="text-gray-700 text-sm">
+                Comprehensive departure services with 25+ years experience in
+                Swiss relocations
+              </p>
             </div>
-            
+
             <div class="bg-white border border-gray-200 rounded-lg p-6">
-              <h4 class="text-lg font-semibold text-gray-900 mb-2">Auris Relocation</h4>
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">
+                Auris Relocation
+              </h4>
               <div class="flex items-center gap-2 mb-3">
-                <div class="flex text-yellow-500 text-sm">
-                  ★★★★★
-                </div>
+                <div class="flex text-yellow-500 text-sm">★★★★★</div>
                 <span class="text-gray-600 text-sm">4.8 / 5 • 98 reviews</span>
               </div>
-              <p class="text-gray-700 text-sm">Expert departure support helping expats with lease handovers and administrative closure</p>
+              <p class="text-gray-700 text-sm">
+                Expert departure support helping expats with lease handovers and
+                administrative closure
+              </p>
             </div>
           </div>
         </div>
 
-          <!-- Browse All Agencies Button -->
-          <div class="mt-8 text-center">
-            <a
-              href="/companies?service=departure"
-              class="inline-flex items-center px-6 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-semibold hover:border-coral-500 hover:text-coral-600 hover:shadow-md transition-all duration-300"
+        <!-- Browse All Agencies Button -->
+        <div class="mt-8 text-center">
+          <a
+            href="/companies?service=departure"
+            class="inline-flex items-center px-6 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-semibold hover:border-coral-500 hover:text-coral-600 hover:shadow-md transition-all duration-300"
+          >
+            Browse All Agencies for Departure Services
+            <svg
+              class="w-5 h-5 ml-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              Browse All Agencies for Departure Services
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </a>
-          </div>
-        
-
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -779,11 +1285,16 @@ const faqSchema = {
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+          <span
+            class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4"
+          >
             FAQ
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Frequently Asked <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Questions</span>
+            Frequently Asked <span
+              class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
+              >Questions</span
+            >
           </h2>
           <p class="text-xl text-gray-600">
             Common questions about departure and repatriation
@@ -791,75 +1302,203 @@ const faqSchema = {
         </div>
 
         <div class="space-y-6">
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
-              <span>How much notice must I give to terminate my lease in Switzerland?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
+              <span
+                >How much notice must I give to terminate my lease in
+                Switzerland?</span
+              >
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Standard notice period is <strong>3 months</strong> to official termination dates (quarterly: March 31, June 30, September 30, December 31). Notice must be given by registered mail (Einschreiben) using official termination forms. Some leases allow shorter notice (1-2 months) but this is rare. Early termination requires landlord approval or finding replacement tenant. Miss the deadline by even one day and you're committed to another 3-month period.
+              Standard notice period is <strong>3 months</strong> to official termination
+              dates (quarterly: March 31, June 30, September 30, December 31). Notice
+              must be given by registered mail (Einschreiben) using official termination
+              forms. Some leases allow shorter notice (1-2 months) but this is rare.
+              Early termination requires landlord approval or finding replacement
+              tenant. Miss the deadline by even one day and you're committed to another
+              3-month period.
             </div>
           </details>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
               <span>Is professional cleaning required when moving out?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Most Swiss leases require the apartment returned in <strong>original condition</strong> meaning professional deep cleaning. This includes: kitchen appliances (oven, fridge), bathrooms, windows, floors, walls if damaged. Many landlords require certified cleaning company receipts. Cost typically <strong>CHF 300-800</strong> depending on apartment size. DIY cleaning is often rejected by landlords during handover inspection, leading to deposit deductions or additional cleaning bills.
+              Most Swiss leases require the apartment returned in <strong
+                >original condition</strong
+              > meaning professional deep cleaning. This includes: kitchen appliances
+              (oven, fridge), bathrooms, windows, floors, walls if damaged. Many landlords
+              require certified cleaning company receipts. Cost typically <strong
+                >CHF 300-800</strong
+              > depending on apartment size. DIY cleaning is often rejected by landlords
+              during handover inspection, leading to deposit deductions or additional
+              cleaning bills.
             </div>
           </details>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
               <span>How long does it take to get my rental deposit back?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Landlords can legally withhold deposits <strong>up to 12 months</strong> while final bills are settled (utilities, Serafe, repairs). Typical timeline: <strong>3-6 months</strong> if no issues. Deposits held in blocked account with interest accrued (minimal). Deductions allowed for damages, unpaid bills, or incomplete cleaning. Disputes can be filed with cantonal rental commission (Mietschlichtungsbehörde) if you believe deductions are unfair.
+              Landlords can legally withhold deposits <strong
+                >up to 12 months</strong
+              > while final bills are settled (utilities, Serafe, repairs). Typical
+              timeline: <strong>3-6 months</strong> if no issues. Deposits held in
+              blocked account with interest accrued (minimal). Deductions allowed
+              for damages, unpaid bills, or incomplete cleaning. Disputes can be filed
+              with cantonal rental commission (Mietschlichtungsbehörde) if you believe
+              deductions are unfair.
             </div>
           </details>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
-              <span>What steps are needed to deregister before leaving Switzerland?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
+              <span
+                >What steps are needed to deregister before leaving Switzerland?</span
+              >
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Visit local municipality (Gemeinde) to officially deregister (<strong>Abmeldung</strong>). Bring: passport/ID, proof of departure (flight ticket, new address abroad), rental termination confirmation. Deregister <strong>within 14 days</strong> of departure to avoid fines. Municipality issues deregistration confirmation needed for final tax settlement and forwarding address for mail. Some municipalities allow deregistration by mail or email but in-person is most reliable.
+              Visit local municipality (Gemeinde) to officially deregister (<strong
+                >Abmeldung</strong
+              >). Bring: passport/ID, proof of departure (flight ticket, new
+              address abroad), rental termination confirmation. Deregister <strong
+                >within 14 days</strong
+              > of departure to avoid fines. Municipality issues deregistration confirmation
+              needed for final tax settlement and forwarding address for mail. Some
+              municipalities allow deregistration by mail or email but in-person is
+              most reliable.
             </div>
           </details>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
               <span>Can I end my lease early if I find a new tenant?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Yes, if landlord approves <strong>replacement tenant (Nachmieter)</strong>. You remain responsible until replacement approved and moves in. New tenant must have similar profile (employment, references, financial capacity). Landlord cannot unreasonably refuse suitable replacement. Finding replacement tenant yourself is often faster than waiting for landlord to fill vacancy. Present multiple candidates to increase approval chances. You're still liable for rent until replacement's lease starts.
+              Yes, if landlord approves <strong
+                >replacement tenant (Nachmieter)</strong
+              >. You remain responsible until replacement approved and moves in.
+              New tenant must have similar profile (employment, references,
+              financial capacity). Landlord cannot unreasonably refuse suitable
+              replacement. Finding replacement tenant yourself is often faster
+              than waiting for landlord to fill vacancy. Present multiple
+              candidates to increase approval chances. You're still liable for
+              rent until replacement's lease starts.
             </div>
           </details>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
               <span>What happens if I don't deregister before departure?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Failure to deregister causes multiple problems: <strong>continued health insurance premiums</strong> (legally required while registered), tax complications and delays in final settlement, mail forwarding issues, <strong>fines from municipality</strong> (CHF 100-200). You remain officially registered in Switzerland creating administrative complications. Deregister even if leaving temporarily. Can be done in person or sometimes via mail/email depending on municipality. Deregistration is essential for clean Swiss exit.
+              Failure to deregister causes multiple problems: <strong
+                >continued health insurance premiums</strong
+              > (legally required while registered), tax complications and delays
+              in final settlement, mail forwarding issues, <strong
+                >fines from municipality</strong
+              > (CHF 100-200). You remain officially registered in Switzerland creating
+              administrative complications. Deregister even if leaving temporarily.
+              Can be done in person or sometimes via mail/email depending on municipality.
+              Deregistration is essential for clean Swiss exit.
             </div>
           </details>
         </div>
@@ -867,23 +1506,31 @@ const faqSchema = {
     </div>
   </section>
 
-  <ServiceRelated services={relatedServices} />
+  <ServiceRelated title="Related Services" services={relatedServices} />
 
-  <ServiceBlog posts={relatedBlogs} />
+  <ServiceBlog title="Departure Resources" posts={relatedBlogs} />
 
-  <section class="py-20 bg-gradient-to-br from-coral-500 via-coral-600 to-primary-800 relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-coral-400/20 to-transparent"></div>
+  <section
+    class="py-20 bg-gradient-to-br from-coral-500 via-coral-600 to-primary-800 relative overflow-hidden"
+  >
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-coral-400/20 to-transparent"
+    >
+    </div>
     <div class="container mx-auto px-4 relative z-10">
       <div class="max-w-4xl mx-auto text-center">
         <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
           Ready for a Smooth Swiss Exit?
         </h2>
         <p class="text-xl text-primary-100 mb-8 leading-relaxed">
-          Our departure specialists handle every detail from lease termination and professional cleaning to deregistration and deposit recovery. Get expert support for a stress-free exit from Switzerland with complete administrative closure.
+          Our departure specialists handle every detail from lease termination
+          and professional cleaning to deregistration and deposit recovery. Get
+          expert support for a stress-free exit from Switzerland with complete
+          administrative closure.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <button
-            onclick="universalOpenModal({page: 'departure_final', service: 'departure'})"
+            onclick="window.openAssessmentModal('departure')"
             class="px-10 py-5 bg-white text-coral-600 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl"
           >
             Book Free Departure Consultation
@@ -896,13 +1543,40 @@ const faqSchema = {
           </a>
         </div>
         <p class="text-sm text-primary-100 mt-6">
-          ✓ Free consultation with preferred partners  •  ✓ Expert lease termination  •  ✓ Complete deposit recovery support
+          ✓ Free consultation with preferred partners • ✓ Expert lease
+          termination • ✓ Complete deposit recovery support
         </p>
       </div>
     </div>
   </section>
 
   <div style="display:none;" data-ai-summary>
-    Departure and repatriation services for expats leaving Switzerland. Complete guide to lease termination (3-month notice to quarterly dates: March 31, June 30, Sept 30, Dec 31), end-of-tenancy handover, deregistration, and deposit recovery. Lease notice must be by registered mail (Einschreiben) with official forms. Professional cleaning mandatory (CHF 300-800) including kitchen appliances, bathrooms, windows, floors. Apartment must be returned in original condition. Deposit return timeline 3-6 months typical but can take up to 12 months legally. Deregistration (Abmeldung) required within 14 days at local Gemeinde with passport, proof of departure, new address. Failure to deregister causes fines (CHF 100-200), continued health insurance obligations, tax complications. Service cancellations needed separately: health insurance (3-month notice), internet (1-2 months), Serafe TV fee, mobile contracts, utilities. Early termination possible if replacement tenant (Nachmieter) found and approved by landlord. Handover protocol (Übergabeprotokoll) documents apartment condition at handover. Disputes must be noted immediately. Mail forwarding with Swiss Post (CHF 180-250 for 12 months) essential for receiving deposit refunds and final bills. Final tax declaration required for departure year. Five-step departure process: lease review and termination planning, scheduling professional cleaning and repairs, end-of-tenancy handover with landlord, deregistration and service cancellations, deposit recovery and final bills settlement. Common deductions from deposit: inadequate cleaning, damages, unpaid bills, missing repairs. Certified cleaning company receipts required by most landlords. DIY cleaning often rejected. Expert assistance from Prime Relocation for lease termination coordination, cleaning scheduling, deregistration support, deposit recovery advocacy, and complete administrative closure when leaving Switzerland.
+    Departure and repatriation services for expats leaving Switzerland. Complete
+    guide to lease termination (3-month notice to quarterly dates: March 31,
+    June 30, Sept 30, Dec 31), end-of-tenancy handover, deregistration, and
+    deposit recovery. Lease notice must be by registered mail (Einschreiben)
+    with official forms. Professional cleaning mandatory (CHF 300-800) including
+    kitchen appliances, bathrooms, windows, floors. Apartment must be returned
+    in original condition. Deposit return timeline 3-6 months typical but can
+    take up to 12 months legally. Deregistration (Abmeldung) required within 14
+    days at local Gemeinde with passport, proof of departure, new address.
+    Failure to deregister causes fines (CHF 100-200), continued health insurance
+    obligations, tax complications. Service cancellations needed separately:
+    health insurance (3-month notice), internet (1-2 months), Serafe TV fee,
+    mobile contracts, utilities. Early termination possible if replacement
+    tenant (Nachmieter) found and approved by landlord. Handover protocol
+    (Übergabeprotokoll) documents apartment condition at handover. Disputes must
+    be noted immediately. Mail forwarding with Swiss Post (CHF 180-250 for 12
+    months) essential for receiving deposit refunds and final bills. Final tax
+    declaration required for departure year. Five-step departure process: lease
+    review and termination planning, scheduling professional cleaning and
+    repairs, end-of-tenancy handover with landlord, deregistration and service
+    cancellations, deposit recovery and final bills settlement. Common
+    deductions from deposit: inadequate cleaning, damages, unpaid bills, missing
+    repairs. Certified cleaning company receipts required by most landlords. DIY
+    cleaning often rejected. Expert assistance from Prime Relocation for lease
+    termination coordination, cleaning scheduling, deregistration support,
+    deposit recovery advocacy, and complete administrative closure when leaving
+    Switzerland.
   </div>
 </Layout>

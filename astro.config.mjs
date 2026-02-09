@@ -8,8 +8,8 @@ import netlify from '@astrojs/netlify';
 
 export default defineConfig({
   prefetch: {
-    prefetchAll: false,
-    defaultStrategy: 'hover'
+    prefetchAll: true,
+    defaultStrategy: 'viewport'
   },
   integrations: [
     tailwind({

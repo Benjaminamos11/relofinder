@@ -1,10 +1,10 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import SchemaMarkup from '../../components/common/SchemaMarkup.astro';
-import ServiceHero from '../../components/services/ServiceHero.astro';
-import PlatformDisclaimer from '../../components/common/PlatformDisclaimer.astro';
-import ServiceRelated from '../../components/services/ServiceRelated.astro';
-import ServiceBlog from '../../components/services/ServiceBlog.astro';
+import Layout from "../../layouts/Layout.astro";
+import SchemaMarkup from "../../components/common/SchemaMarkup.astro";
+import ServiceHero from "../../components/services/ServiceHero.astro";
+import PlatformDisclaimer from "../../components/common/PlatformDisclaimer.astro";
+import ServiceRelated from "../../components/services/ServiceRelated.astro";
+import ServiceBlog from "../../components/services/ServiceBlog.astro";
 
 interface BlogPost {
   title: string;
@@ -32,190 +32,201 @@ const relatedBlogs: BlogPost[] = [
   {
     title: "Corporate Relocation Best Practices",
     slug: "corporate-relocation-best-practices",
-    excerpt: "Essential strategies for HR teams managing employee mobility programs including vendor selection, policy design, and compliance frameworks.",
+    excerpt:
+      "Essential strategies for HR teams managing employee mobility programs including vendor selection, policy design, and compliance frameworks.",
     category: "Corporate",
-    readTime: "15 min read"
+    readTime: "15 min read",
   },
   {
     title: "Employee Relocation Packages in Switzerland",
     slug: "employee-relocation-packages-switzerland",
-    excerpt: "Complete guide to structuring competitive relocation packages including housing allowances, schooling support, and family benefits for Swiss transfers.",
+    excerpt:
+      "Complete guide to structuring competitive relocation packages including housing allowances, schooling support, and family benefits for Swiss transfers.",
     category: "HR",
-    readTime: "12 min read"
+    readTime: "12 min read",
   },
   {
     title: "Managing Multi-Vendor Relocation Programs",
     slug: "managing-multi-vendor-relocation",
-    excerpt: "How to coordinate multiple relocation service providers with consistent SLAs, reporting standards, and quality control for corporate mobility.",
+    excerpt:
+      "How to coordinate multiple relocation service providers with consistent SLAs, reporting standards, and quality control for corporate mobility.",
     category: "Management",
-    readTime: "10 min read"
+    readTime: "10 min read",
   },
   {
     title: "Swiss Work Permits for Corporate Transfers",
     slug: "swiss-work-permits-corporate",
-    excerpt: "Navigating Swiss immigration for corporate employee transfers including intra-company transfers, quota management, and compliance requirements.",
+    excerpt:
+      "Navigating Swiss immigration for corporate employee transfers including intra-company transfers, quota management, and compliance requirements.",
     category: "Immigration",
-    readTime: "14 min read"
-  }
+    readTime: "14 min read",
+  },
 ];
 
 const companies: ServiceCompany[] = [
   {
     name: "Prime Relocation",
-    description: "Official ReloFinder partner providing comprehensive corporate relocation services for multinational companies, HR teams, and employee mobility programs",
+    description:
+      "Official ReloFinder partner providing comprehensive corporate relocation services for multinational companies, HR teams, and employee mobility programs",
     rating: 4.8,
     reviews: 53,
-    featured: true
+    featured: true,
   },
   {
     name: "Auris Relocation",
-    description: "Expert corporate mobility services for employee relocations across Switzerland",
+    description:
+      "Expert corporate mobility services for employee relocations across Switzerland",
     rating: 4.8,
-    reviews: 98
+    reviews: 98,
   },
   {
     name: "Lodge Relocation",
-    description: "Comprehensive corporate relocation with 25+ years serving multinational clients",
+    description:
+      "Comprehensive corporate relocation with 25+ years serving multinational clients",
     rating: 4.8,
-    reviews: 134
-  }
+    reviews: 134,
+  },
 ];
 
 const relatedServices: RelatedService[] = [
   {
     title: "Advisory Services",
     description: "Strategic relocation planning for HNWI and executives",
-    link: "/services/advisory"
+    link: "/services/advisory",
   },
   {
     title: "Housing Services",
     description: "Employee housing search and lease negotiation support",
-    link: "/services/housing"
+    link: "/services/housing",
   },
   {
     title: "Immigration Services",
     description: "Work permits and visa coordination for corporate transfers",
-    link: "/services/immigration"
+    link: "/services/immigration",
   },
   {
     title: "Education Services",
     description: "International school placement for relocating families",
-    link: "/services/education"
-  }
+    link: "/services/education",
+  },
 ];
 
-const title = "Corporate Relocation Services Switzerland | Employee Mobility Platform | ReloFinder";
-const description = "ReloFinder connects companies with trusted agencies like Prime Relocation for corporate relocation, employee mobility & HR programs. Book a free consultation today.";
+const title =
+  "Corporate Relocation Services Switzerland | Employee Mobility Platform | ReloFinder";
+const description =
+  "ReloFinder connects companies with trusted agencies like Prime Relocation for corporate relocation, employee mobility & HR programs. Book a free consultation today.";
 const canonicalURL = "https://relofinder.ch/services/corporate-relocation";
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": [
+  itemListElement: [
     {
       "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://relofinder.ch"
+      position: 1,
+      name: "Home",
+      item: "https://relofinder.ch",
     },
     {
       "@type": "ListItem",
-      "position": 2,
-      "name": "Services",
-      "item": "https://relofinder.ch/services"
+      position: 2,
+      name: "Services",
+      item: "https://relofinder.ch/services",
     },
     {
       "@type": "ListItem",
-      "position": 3,
-      "name": "Corporate Relocation",
-      "item": "https://relofinder.ch/services/corporate-relocation"
-    }
-  ]
+      position: 3,
+      name: "Corporate Relocation",
+      item: "https://relofinder.ch/services/corporate-relocation",
+    },
+  ],
 };
 
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Corporate Relocation Platform for Switzerland",
-  "description": "ReloFinder connects companies with trusted relocation agencies for corporate employee mobility, HR programs, and family support in Switzerland",
-  "provider": {
+  name: "Corporate Relocation Platform for Switzerland",
+  description:
+    "ReloFinder connects companies with trusted relocation agencies for corporate employee mobility, HR programs, and family support in Switzerland",
+  provider: {
     "@type": "Organization",
-    "name": "ReloFinder",
-    "url": "https://relofinder.ch"
+    name: "ReloFinder",
+    url: "https://relofinder.ch",
   },
-  "areaServed": {
+  areaServed: {
     "@type": "Country",
-    "name": "Switzerland"
+    name: "Switzerland",
   },
-  "serviceType": "Corporate Relocation Platform"
+  serviceType: "Corporate Relocation Platform",
 };
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
+  mainEntity: [
     {
       "@type": "Question",
-      "name": "What is corporate relocation and who provides it in Switzerland?",
-      "acceptedAnswer": {
+      name: "What is corporate relocation and who provides it in Switzerland?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Corporate relocation is professional support for companies relocating employees internationally. Services include immigration/work permits, housing search, school placement, family integration, cultural training, and administrative support. In Switzerland, specialized relocation agencies like Prime Relocation, Auris, and Lodge provide these services. ReloFinder is a platform connecting HR teams with the right agency partners based on their specific needs, budget, and employee profiles."
-      }
+        text: "Corporate relocation is professional support for companies relocating employees internationally. Services include immigration/work permits, housing search, school placement, family integration, cultural training, and administrative support. In Switzerland, specialized relocation agencies like Prime Relocation, Auris, and Lodge provide these services. ReloFinder is a platform connecting HR teams with the right agency partners based on their specific needs, budget, and employee profiles.",
+      },
     },
     {
       "@type": "Question",
-      "name": "How can ReloFinder help my company with employee mobility?",
-      "acceptedAnswer": {
+      name: "How can ReloFinder help my company with employee mobility?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "ReloFinder acts as a matching platform connecting your company with trusted relocation agencies. We assess your needs (employee volume, service scope, budget, locations), recommend suitable agency partners, facilitate introductions and quotations, and help you establish service level agreements. We're not a relocation provider ourselves but a platform that ensures you find the best agency fit for your corporate mobility program with transparent pricing and proven expertise."
-      }
+        text: "ReloFinder acts as a matching platform connecting your company with trusted relocation agencies. We assess your needs (employee volume, service scope, budget, locations), recommend suitable agency partners, facilitate introductions and quotations, and help you establish service level agreements. We're not a relocation provider ourselves but a platform that ensures you find the best agency fit for your corporate mobility program with transparent pricing and proven expertise.",
+      },
     },
     {
       "@type": "Question",
-      "name": "What services do relocation agencies provide for corporate clients?",
-      "acceptedAnswer": {
+      name: "What services do relocation agencies provide for corporate clients?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Corporate relocation agencies provide: pre-decision services (destination tours, cost-of-living), immigration support (work permits, visa applications), housing search and lease negotiation, school search for children, settling-in services (registration, bank accounts, utilities), cultural training, departure services, family support, emergency assistance. Plus vendor management, reporting dashboards, policy design, cost control, and SLA compliance for HR teams."
-      }
+        text: "Corporate relocation agencies provide: pre-decision services (destination tours, cost-of-living), immigration support (work permits, visa applications), housing search and lease negotiation, school search for children, settling-in services (registration, bank accounts, utilities), cultural training, departure services, family support, emergency assistance. Plus vendor management, reporting dashboards, policy design, cost control, and SLA compliance for HR teams.",
+      },
     },
     {
       "@type": "Question",
-      "name": "Can agencies support both executives and junior staff relocations?",
-      "acceptedAnswer": {
+      name: "Can agencies support both executives and junior staff relocations?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Yes, most agencies offer tiered service packages: Executive (white-glove, comprehensive family support, luxury housing, private schools), Mid-level (balanced package, housing assistance, school search, settling-in), Entry-level (essential services, group orientations, digital support tools). Packages are customized based on employee level, family size, and company relocation policy. Consistent service delivery across all tiers with scalable pricing."
-      }
+        text: "Yes, most agencies offer tiered service packages: Executive (white-glove, comprehensive family support, luxury housing, private schools), Mid-level (balanced package, housing assistance, school search, settling-in), Entry-level (essential services, group orientations, digital support tools). Packages are customized based on employee level, family size, and company relocation policy. Consistent service delivery across all tiers with scalable pricing.",
+      },
     },
     {
       "@type": "Question",
-      "name": "How do agencies handle family support and schooling?",
-      "acceptedAnswer": {
+      name: "How do agencies handle family support and schooling?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Agencies provide spouse/partner career support, international school search and application, daycare/preschool placement, cultural orientation for families, language lessons coordination, social integration activities, emergency support 24/7. School services include: campus tours, application assistance, fee negotiation, wait-list management, public vs private school guidance. Family support ensures smooth transition for the entire household not just the employee."
-      }
+        text: "Agencies provide spouse/partner career support, international school search and application, daycare/preschool placement, cultural orientation for families, language lessons coordination, social integration activities, emergency support 24/7. School services include: campus tours, application assistance, fee negotiation, wait-list management, public vs private school guidance. Family support ensures smooth transition for the entire household not just the employee.",
+      },
     },
     {
       "@type": "Question",
-      "name": "Why use ReloFinder instead of contacting agencies directly?",
-      "acceptedAnswer": {
+      name: "Why use ReloFinder instead of contacting agencies directly?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "ReloFinder provides: unbiased agency recommendations based on your specific needs, access to multiple agencies with transparent comparison, pre-vetted partners with proven track records, consolidated quotations for easy evaluation, negotiation support for better rates, no markup or commission on agency services, ongoing support and escalation if issues arise. We save HR teams 10-20 hours of research, vetting, and comparison work with curated introductions to the right agency partners."
-      }
-    }
-  ]
+        text: "ReloFinder provides: unbiased agency recommendations based on your specific needs, access to multiple agencies with transparent comparison, pre-vetted partners with proven track records, consolidated quotations for easy evaluation, negotiation support for better rates, no markup or commission on agency services, ongoing support and escalation if issues arise. We save HR teams 10-20 hours of research, vetting, and comparison work with curated introductions to the right agency partners.",
+      },
+    },
+  ],
 };
 ---
 
 <Layout title={title} description={description}>
-  <SchemaMarkup schema={breadcrumbSchema} />
-  <SchemaMarkup schema={serviceSchema} />
-  <SchemaMarkup schema={faqSchema} />
+  <SchemaMarkup type="service" data={breadcrumbSchema} />
+  <SchemaMarkup type="service" data={serviceSchema} />
+  <SchemaMarkup type="service" data={faqSchema} />
 
   <ServiceHero
     title="Corporate Relocation Services"
     subtitle="Employee Mobility in Switzerland"
     description="ReloFinder helps HR teams and companies find the ideal relocation agency to support employee moves. We connect you with trusted partners like Prime Relocation to ensure consistent, compliant, and family-friendly relocations."
     badge="Corporate Relocation"
+    icon="🏢"
   />
 
   <section class="py-12 bg-gradient-to-br from-gray-50 via-white to-primary-50">
@@ -225,10 +236,11 @@ const faqSchema = {
           Find the Perfect Relocation Agency Partner
         </h2>
         <p class="text-lg text-gray-600 mb-8">
-          We connect your HR team with experienced relocation agencies for seamless employee mobility
+          We connect your HR team with experienced relocation agencies for
+          seamless employee mobility
         </p>
         <button
-          onclick="universalOpenModal({page: 'corporate_service', service: 'corporate'})"
+          onclick="window.openAssessmentModal('corporate')"
           class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-coral-500 to-coral-600 rounded-xl hover:from-coral-600 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
         >
           Get a Free Consultation with our Preferred Partner
@@ -244,78 +256,192 @@ const faqSchema = {
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-12">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+          <span
+            class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4"
+          >
             The Challenge
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Why Corporate Relocation Is a <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Challenge</span>
+            Why Corporate Relocation Is a <span
+              class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
+              >Challenge</span
+            >
           </h2>
           <p class="text-xl text-gray-600">
-            Employee mobility requires expert coordination across immigration, housing, family needs, and compliance
+            Employee mobility requires expert coordination across immigration,
+            housing, family needs, and compliance
           </p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-6">
-          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
-            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          <div
+            class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Complex Compliance Requirements</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Complex Compliance Requirements
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Relocating employees to Switzerland involves complex immigration (work permits, visas, quota management), tax implications (cross-border taxation, social security), housing regulations (lease guarantees, landlord requirements), and family considerations (school applications, spouse work permits). Missing any compliance step risks delays, penalties, or failed relocations.
+              Relocating employees to Switzerland involves complex immigration
+              (work permits, visas, quota management), tax implications
+              (cross-border taxation, social security), housing regulations
+              (lease guarantees, landlord requirements), and family
+              considerations (school applications, spouse work permits). Missing
+              any compliance step risks delays, penalties, or failed
+              relocations.
             </p>
           </div>
 
-          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
-            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          <div
+            class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">HR Policy Consistency & Budget Control</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              HR Policy Consistency & Budget Control
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              HR departments struggle maintaining consistent relocation policies across employee levels (executives vs mid-level vs entry), controlling costs (housing budgets, school fees, travel expenses), ensuring equitable treatment, and tracking spending. Without standardized processes and vendor agreements, costs spiral and employee satisfaction varies widely creating HR headaches.
+              HR departments struggle maintaining consistent relocation policies
+              across employee levels (executives vs mid-level vs entry),
+              controlling costs (housing budgets, school fees, travel expenses),
+              ensuring equitable treatment, and tracking spending. Without
+              standardized processes and vendor agreements, costs spiral and
+              employee satisfaction varies widely creating HR headaches.
             </p>
           </div>
 
-          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
-            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          <div
+            class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Family Integration & Employee Retention</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Family Integration & Employee Retention
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Corporate relocations fail when families don't integrate successfully. Spouse career challenges, children's school placement difficulties, cultural isolation, and lack of social networks cause early departures. Companies lose ROI on relocation investment (CHF 20,000-100,000+ per employee) plus recruitment costs and knowledge loss when families struggle to settle. Family support is critical for retention.
+              Corporate relocations fail when families don't integrate
+              successfully. Spouse career challenges, children's school
+              placement difficulties, cultural isolation, and lack of social
+              networks cause early departures. Companies lose ROI on relocation
+              investment (CHF 20,000-100,000+ per employee) plus recruitment
+              costs and knowledge loss when families struggle to settle. Family
+              support is critical for retention.
             </p>
           </div>
 
-          <div class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100">
-            <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          <div
+            class="bg-gradient-to-br from-gray-50 to-white p-8 rounded-2xl border border-gray-100"
+          >
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-3">Multi-Vendor Management Complexity</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">
+              Multi-Vendor Management Complexity
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Companies often coordinate separate vendors for immigration (lawyers), housing (real estate agents), schools (education consultants), moving (logistics), and settling-in (various local providers). Multiple vendors mean inconsistent service quality, communication gaps, no single point of contact, duplicated efforts, and confusion for employees. Having the right relocation agency partner streamlines the entire process with coordinated service delivery.
+              Companies often coordinate separate vendors for immigration
+              (lawyers), housing (real estate agents), schools (education
+              consultants), moving (logistics), and settling-in (various local
+              providers). Multiple vendors mean inconsistent service quality,
+              communication gaps, no single point of contact, duplicated
+              efforts, and confusion for employees. Having the right relocation
+              agency partner streamlines the entire process with coordinated
+              service delivery.
             </p>
           </div>
         </div>
 
-        <div class="mt-12 p-8 bg-gradient-to-br from-primary-50 via-white to-red-50 rounded-2xl border-2 border-primary-100">
+        <div
+          class="mt-12 p-8 bg-gradient-to-br from-primary-50 via-white to-red-50 rounded-2xl border-2 border-primary-100"
+        >
           <div class="flex items-start">
             <div class="flex-shrink-0">
-              <svg class="w-8 h-8 text-coral-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+              <svg
+                class="w-8 h-8 text-coral-500"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                  clip-rule="evenodd"></path>
               </svg>
             </div>
             <div class="ml-4">
-              <h4 class="text-xl font-bold text-gray-900 mb-2">Expert Insight</h4>
+              <h4 class="text-xl font-bold text-gray-900 mb-2">
+                Expert Insight
+              </h4>
               <p class="text-gray-700 leading-relaxed">
-                <strong>Without professional relocation agency support, companies often:</strong> Experience failed relocations costing CHF 50,000-150,000+ in wasted investment, suffer employee early departures due to poor family integration, face compliance violations and immigration penalties, lose control over relocation budgets, and damage employer brand with inconsistent experiences. The right agency partner ensures smooth transitions, happy employees, controlled costs, and successful long-term retention. ReloFinder helps you find that perfect agency match.
+                <strong
+                  >Without professional relocation agency support, companies
+                  often:</strong
+                > Experience failed relocations costing CHF 50,000-150,000+ in wasted
+                investment, suffer employee early departures due to poor family integration,
+                face compliance violations and immigration penalties, lose control
+                over relocation budgets, and damage employer brand with inconsistent
+                experiences. The right agency partner ensures smooth transitions,
+                happy employees, controlled costs, and successful long-term retention.
+                ReloFinder helps you find that perfect agency match.
               </p>
             </div>
           </div>
@@ -328,97 +454,186 @@ const faqSchema = {
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+          <span
+            class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4"
+          >
             Our Solution
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            How Agencies Help <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Corporate Clients</span>
+            How Agencies Help <span
+              class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
+              >Corporate Clients</span
+            >
           </h2>
           <p class="text-xl text-gray-600">
-            ReloFinder connects you with relocation agencies providing comprehensive employee mobility services
+            ReloFinder connects you with relocation agencies providing
+            comprehensive employee mobility services
           </p>
         </div>
 
         <div class="space-y-6">
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="flex items-start">
               <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg"
+                >
                   1
                 </div>
               </div>
               <div class="ml-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">Relocation Policy & Package Design</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                  Relocation Policy & Package Design
+                </h3>
                 <p class="text-gray-600 leading-relaxed mb-4">
-                  Agencies help HR teams design comprehensive relocation policies including tiered service packages (executive, mid-level, entry), budget frameworks by employee level, service scope definition (core vs optional services), vendor SLA standards, cost control mechanisms, and compliance requirements. Policy design ensures consistency, fairness, and predictable costs across all employee relocations.
+                  Agencies help HR teams design comprehensive relocation
+                  policies including tiered service packages (executive,
+                  mid-level, entry), budget frameworks by employee level,
+                  service scope definition (core vs optional services), vendor
+                  SLA standards, cost control mechanisms, and compliance
+                  requirements. Policy design ensures consistency, fairness, and
+                  predictable costs across all employee relocations.
                 </p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Policy Design</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Package Tiers</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Budget Control</span>
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Policy Design</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Package Tiers</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Budget Control</span
+                  >
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="flex items-start">
               <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg"
+                >
                   2
                 </div>
               </div>
               <div class="ml-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">Housing, Immigration & Education Coordination</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                  Housing, Immigration & Education Coordination
+                </h3>
                 <p class="text-gray-600 leading-relaxed mb-4">
-                  Complete relocation services including work permit and visa applications, housing search with budget negotiation, international school search and applications, family settling-in support (registration, bank accounts, utilities), cultural orientation and language lessons, spouse career support, and ongoing assistance. Single point of contact coordinates all services seamlessly.
+                  Complete relocation services including work permit and visa
+                  applications, housing search with budget negotiation,
+                  international school search and applications, family
+                  settling-in support (registration, bank accounts, utilities),
+                  cultural orientation and language lessons, spouse career
+                  support, and ongoing assistance. Single point of contact
+                  coordinates all services seamlessly.
                 </p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Work Permits</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Housing Search</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">School Placement</span>
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Work Permits</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Housing Search</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >School Placement</span
+                  >
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="flex items-start">
               <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg"
+                >
                   3
                 </div>
               </div>
               <div class="ml-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">Vendor Management & Service Level Agreements</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                  Vendor Management & Service Level Agreements
+                </h3>
                 <p class="text-gray-600 leading-relaxed mb-4">
-                  Agencies manage all sub-vendors (immigration lawyers, real estate agents, movers, schools) under unified SLAs ensuring consistent quality, response times, and service standards. HR teams get single invoice consolidation, transparent pricing, quality assurance, escalation procedures, and performance metrics. No more juggling multiple vendors and invoices.
+                  Agencies manage all sub-vendors (immigration lawyers, real
+                  estate agents, movers, schools) under unified SLAs ensuring
+                  consistent quality, response times, and service standards. HR
+                  teams get single invoice consolidation, transparent pricing,
+                  quality assurance, escalation procedures, and performance
+                  metrics. No more juggling multiple vendors and invoices.
                 </p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">SLA Management</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Quality Control</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Single Invoice</span>
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >SLA Management</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Quality Control</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Single Invoice</span
+                  >
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="flex items-start">
               <div class="flex-shrink-0">
-                <div class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                <div
+                  class="w-12 h-12 bg-gradient-to-br from-coral-400 to-coral-500 rounded-xl flex items-center justify-center text-white font-bold text-lg"
+                >
                   4
                 </div>
               </div>
               <div class="ml-6">
-                <h3 class="text-2xl font-bold text-gray-900 mb-3">Reporting, Compliance & Cost Control</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-3">
+                  Reporting, Compliance & Cost Control
+                </h3>
                 <p class="text-gray-600 leading-relaxed mb-4">
-                  Comprehensive reporting dashboards showing relocation pipeline status, budget vs actual spend tracking, service delivery metrics, employee satisfaction scores, and compliance audit trails. Agencies provide quarterly business reviews, cost optimization recommendations, policy refinement suggestions, and benchmarking against industry standards. Complete transparency for HR and finance teams.
+                  Comprehensive reporting dashboards showing relocation pipeline
+                  status, budget vs actual spend tracking, service delivery
+                  metrics, employee satisfaction scores, and compliance audit
+                  trails. Agencies provide quarterly business reviews, cost
+                  optimization recommendations, policy refinement suggestions,
+                  and benchmarking against industry standards. Complete
+                  transparency for HR and finance teams.
                 </p>
                 <div class="flex flex-wrap gap-2">
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Dashboards</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Budget Tracking</span>
-                  <span class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium">Compliance</span>
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Dashboards</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Budget Tracking</span
+                  >
+                  <span
+                    class="px-3 py-1 bg-primary-50 text-coral-600 rounded-full text-sm font-medium"
+                    >Compliance</span
+                  >
                 </div>
               </div>
             </div>
@@ -435,10 +650,11 @@ const faqSchema = {
           Find the Right Relocation Agency for Your Company
         </h2>
         <p class="text-lg text-gray-600 mb-8">
-          We connect your HR team with experienced agencies for seamless employee mobility programs
+          We connect your HR team with experienced agencies for seamless
+          employee mobility programs
         </p>
         <button
-          onclick="universalOpenModal({page: 'corporate_service', service: 'corporate'})"
+          onclick="window.openAssessmentModal('corporate')"
           class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-coral-500 to-coral-600 rounded-xl hover:from-coral-600 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
         >
           Get a Free Consultation with our Preferred Partner
@@ -454,74 +670,131 @@ const faqSchema = {
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+          <span
+            class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4"
+          >
             Regional Focus
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Corporate Relocation Across <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Switzerland</span>
+            Corporate Relocation Across <span
+              class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
+              >Switzerland</span
+            >
           </h2>
           <p class="text-xl text-gray-600">
-            Different Swiss cities attract different types of corporate relocations and multinational operations
+            Different Swiss cities attract different types of corporate
+            relocations and multinational operations
           </p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-8">
-          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="bg-gradient-to-r from-coral-500 to-coral-600 p-6">
               <h3 class="text-2xl font-bold text-white mb-2">Zürich</h3>
-              <p class="text-primary-100">Financial Hub, High Executive Mobility</p>
+              <p class="text-primary-100">
+                Financial Hub, High Executive Mobility
+              </p>
             </div>
             <div class="p-8">
               <p class="text-gray-600 leading-relaxed">
-                Zurich attracts the highest volume of executive and senior management relocations in Switzerland. Major banks (UBS, Credit Suisse), insurance companies (Zurich Insurance, Swiss Re), and tech firms (Google, Meta) maintain significant operations. High demand for international schools, luxury housing, and white-glove relocation services. Agencies must handle complex tax planning and premium housing searches.
+                Zurich attracts the highest volume of executive and senior
+                management relocations in Switzerland. Major banks (UBS, Credit
+                Suisse), insurance companies (Zurich Insurance, Swiss Re), and
+                tech firms (Google, Meta) maintain significant operations. High
+                demand for international schools, luxury housing, and
+                white-glove relocation services. Agencies must handle complex
+                tax planning and premium housing searches.
               </p>
             </div>
           </div>
 
-          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="bg-gradient-to-r from-coral-500 to-coral-600 p-6">
               <h3 class="text-2xl font-bold text-white mb-2">Geneva</h3>
-              <p class="text-primary-100">Diplomatic, NGO & International Organizations</p>
+              <p class="text-primary-100">
+                Diplomatic, NGO & International Organizations
+              </p>
             </div>
             <div class="p-8">
               <p class="text-gray-600 leading-relaxed">
-                Geneva specializes in diplomatic and NGO relocations with unique requirements including UN staff, WHO employees, and international organization transfers. Requires expertise in G permit applications, international school admissions (competitive waiting lists), and French language integration. Corporate relocations often focus on luxury goods, private banking, and commodity trading sectors with multilingual support essential.
+                Geneva specializes in diplomatic and NGO relocations with unique
+                requirements including UN staff, WHO employees, and
+                international organization transfers. Requires expertise in G
+                permit applications, international school admissions
+                (competitive waiting lists), and French language integration.
+                Corporate relocations often focus on luxury goods, private
+                banking, and commodity trading sectors with multilingual support
+                essential.
               </p>
             </div>
           </div>
 
-          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="bg-gradient-to-r from-coral-500 to-coral-600 p-6">
               <h3 class="text-2xl font-bold text-white mb-2">Basel</h3>
               <p class="text-primary-100">Pharma & Life Sciences Hub</p>
             </div>
             <div class="p-8">
               <p class="text-gray-600 leading-relaxed">
-                Basel is Switzerland's pharma capital with Novartis, Roche, and numerous biotech companies driving high-volume employee transfers. Corporate relocations focus on scientists, researchers, and pharmaceutical executives often with family support needs. Cross-border considerations with Germany and France add complexity. Agencies require specialized knowledge of pharma industry mobility patterns and Basel's unique tri-national environment.
+                Basel is Switzerland's pharma capital with Novartis, Roche, and
+                numerous biotech companies driving high-volume employee
+                transfers. Corporate relocations focus on scientists,
+                researchers, and pharmaceutical executives often with family
+                support needs. Cross-border considerations with Germany and
+                France add complexity. Agencies require specialized knowledge of
+                pharma industry mobility patterns and Basel's unique
+                tri-national environment.
               </p>
             </div>
           </div>
 
-          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="bg-gradient-to-r from-coral-500 to-coral-600 p-6">
               <h3 class="text-2xl font-bold text-white mb-2">Zug</h3>
-              <p class="text-primary-100">Business HQs, Crypto & Tax Optimization</p>
+              <p class="text-primary-100">
+                Business HQs, Crypto & Tax Optimization
+              </p>
             </div>
             <div class="p-8">
               <p class="text-gray-600 leading-relaxed">
-                Zug's low corporate taxes attract multinational headquarters, crypto companies, and commodity traders. Corporate relocations often involve C-suite executives, HNWI, and entrepreneurs establishing Swiss operations. High demand for premium services including wealth management integration, tax planning, and executive housing. Fast turnaround expectations with white-glove service delivery standard for Zug's corporate mobility market.
+                Zug's low corporate taxes attract multinational headquarters,
+                crypto companies, and commodity traders. Corporate relocations
+                often involve C-suite executives, HNWI, and entrepreneurs
+                establishing Swiss operations. High demand for premium services
+                including wealth management integration, tax planning, and
+                executive housing. Fast turnaround expectations with white-glove
+                service delivery standard for Zug's corporate mobility market.
               </p>
             </div>
           </div>
 
-          <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow duration-300"
+          >
             <div class="bg-gradient-to-r from-coral-500 to-coral-600 p-6">
               <h3 class="text-2xl font-bold text-white mb-2">Lausanne</h3>
-              <p class="text-primary-100">Academic, Research & Olympic Organizations</p>
+              <p class="text-primary-100">
+                Academic, Research & Olympic Organizations
+              </p>
             </div>
             <div class="p-8">
               <p class="text-gray-600 leading-relaxed">
-                Lausanne hosts EPFL (Swiss Federal Institute of Technology), IOC (International Olympic Committee), and numerous research institutions driving academic and specialized corporate transfers. Relocations often involve professors, researchers, sports administrators, and families requiring French-speaking schools. Lake Geneva region appeals to quality-of-life focused employees balancing professional opportunities with lifestyle preferences.
+                Lausanne hosts EPFL (Swiss Federal Institute of Technology), IOC
+                (International Olympic Committee), and numerous research
+                institutions driving academic and specialized corporate
+                transfers. Relocations often involve professors, researchers,
+                sports administrators, and families requiring French-speaking
+                schools. Lake Geneva region appeals to quality-of-life focused
+                employees balancing professional opportunities with lifestyle
+                preferences.
               </p>
             </div>
           </div>
@@ -534,87 +807,154 @@ const faqSchema = {
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+          <span
+            class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4"
+          >
             Step-by-Step Guide
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Your Corporate Relocation <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Journey</span>
+            Your Corporate Relocation <span
+              class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
+              >Journey</span
+            >
           </h2>
           <p class="text-xl text-gray-600">
-            How ReloFinder connects your HR team with the perfect relocation agency partner
+            How ReloFinder connects your HR team with the perfect relocation
+            agency partner
           </p>
         </div>
 
         <div class="space-y-8">
           <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+            <div
+              class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white"
+            >
               1
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">HR Consultation & Needs Assessment</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              HR Consultation & Needs Assessment
+            </h3>
             <p class="text-gray-600 leading-relaxed mb-4">
-              ReloFinder consultants assess your corporate mobility needs including annual relocation volume (10, 50, 200+ employees?), employee profiles (executives, mid-level, entry), service scope required (full-service, housing only, immigration only), budget parameters, preferred locations in Switzerland, policy maturity, and current pain points with existing vendors. We understand your unique requirements before recommending agencies.
+              ReloFinder consultants assess your corporate mobility needs
+              including annual relocation volume (10, 50, 200+ employees?),
+              employee profiles (executives, mid-level, entry), service scope
+              required (full-service, housing only, immigration only), budget
+              parameters, preferred locations in Switzerland, policy maturity,
+              and current pain points with existing vendors. We understand your
+              unique requirements before recommending agencies.
             </p>
             <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1-2 consultation calls to understand your needs</p>
+              <p class="text-sm text-gray-700">
+                <strong>Timeline:</strong> 1-2 consultation calls to understand your
+                needs
+              </p>
             </div>
           </div>
 
           <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+            <div
+              class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white"
+            >
               2
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">Matching with the Right Relocation Agency Partner</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Matching with the Right Relocation Agency Partner
+            </h3>
             <p class="text-gray-600 leading-relaxed mb-4">
-              Based on your needs, we recommend 2-3 suitable agency partners from our vetted network. Each recommendation includes agency capabilities, relevant client case studies, service delivery model, pricing structure, and cultural fit assessment. We facilitate introductions with selected agencies, coordinate capability presentations, and support your evaluation process with transparent comparisons.
+              Based on your needs, we recommend 2-3 suitable agency partners
+              from our vetted network. Each recommendation includes agency
+              capabilities, relevant client case studies, service delivery
+              model, pricing structure, and cultural fit assessment. We
+              facilitate introductions with selected agencies, coordinate
+              capability presentations, and support your evaluation process with
+              transparent comparisons.
             </p>
             <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 1-2 weeks for agency introductions and presentations</p>
+              <p class="text-sm text-gray-700">
+                <strong>Timeline:</strong> 1-2 weeks for agency introductions and
+                presentations
+              </p>
             </div>
           </div>
 
           <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+            <div
+              class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white"
+            >
               3
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">Program Design & Relocation Policy Setup</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Program Design & Relocation Policy Setup
+            </h3>
             <p class="text-gray-600 leading-relaxed mb-4">
-              Selected agency works with your HR team to design comprehensive relocation program including policy documentation, service tier definitions (executive, mid-level, entry packages), budget frameworks, SLA standards, reporting requirements, escalation procedures, and compliance frameworks. Policy design ensures consistency, cost control, and employee satisfaction across all relocations.
+              Selected agency works with your HR team to design comprehensive
+              relocation program including policy documentation, service tier
+              definitions (executive, mid-level, entry packages), budget
+              frameworks, SLA standards, reporting requirements, escalation
+              procedures, and compliance frameworks. Policy design ensures
+              consistency, cost control, and employee satisfaction across all
+              relocations.
             </p>
             <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> 2-4 weeks for policy design and approval</p>
+              <p class="text-sm text-gray-700">
+                <strong>Timeline:</strong> 2-4 weeks for policy design and approval
+              </p>
             </div>
           </div>
 
           <div class="relative pl-8 pb-8 border-l-4 border-primary-200">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+            <div
+              class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white"
+            >
               4
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">Implementation & Reporting by Agency</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Implementation & Reporting by Agency
+            </h3>
             <p class="text-gray-600 leading-relaxed mb-4">
-              Agency begins serving your employees with immigration support, housing search, school placement, settling-in coordination, and family services. HR receives regular status updates, budget tracking, satisfaction surveys, and compliance reports. Single point of contact manages all relocations with consistent service delivery and quality standards across all employee transfers.
+              Agency begins serving your employees with immigration support,
+              housing search, school placement, settling-in coordination, and
+              family services. HR receives regular status updates, budget
+              tracking, satisfaction surveys, and compliance reports. Single
+              point of contact manages all relocations with consistent service
+              delivery and quality standards across all employee transfers.
             </p>
             <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Ongoing service delivery with monthly/quarterly reporting</p>
+              <p class="text-sm text-gray-700">
+                <strong>Timeline:</strong> Ongoing service delivery with monthly/quarterly
+                reporting
+              </p>
             </div>
           </div>
 
           <div class="relative pl-8">
-            <div class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white">
+            <div
+              class="absolute -left-4 top-0 w-8 h-8 bg-gradient-to-br from-coral-400 to-coral-500 rounded-full flex items-center justify-center text-white font-bold border-4 border-white"
+            >
               5
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">Optimization & Long-Term Support</h3>
+            <h3 class="text-2xl font-bold text-gray-900 mb-3">
+              Optimization & Long-Term Support
+            </h3>
             <p class="text-gray-600 leading-relaxed mb-4">
-              Quarterly business reviews analyze program performance including cost trends, service quality metrics, employee satisfaction scores, and policy effectiveness. Agency provides optimization recommendations, policy refinements, and industry benchmarking. ReloFinder provides ongoing oversight ensuring agency continues meeting your standards with escalation support if issues arise.
+              Quarterly business reviews analyze program performance including
+              cost trends, service quality metrics, employee satisfaction
+              scores, and policy effectiveness. Agency provides optimization
+              recommendations, policy refinements, and industry benchmarking.
+              ReloFinder provides ongoing oversight ensuring agency continues
+              meeting your standards with escalation support if issues arise.
             </p>
             <div class="bg-gray-50 p-4 rounded-xl">
-              <p class="text-sm text-gray-700"><strong>Timeline:</strong> Quarterly reviews and continuous improvement</p>
+              <p class="text-sm text-gray-700">
+                <strong>Timeline:</strong> Quarterly reviews and continuous improvement
+              </p>
             </div>
           </div>
         </div>
 
         <div class="mt-12 text-center">
           <button
-            onclick="universalOpenModal({page: 'corporate_steps', service: 'corporate'})"
+            onclick="window.openAssessmentModal('corporate')"
             class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-coral-500 to-coral-600 rounded-xl hover:from-coral-600 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             Book a Free Corporate Consultation Today
@@ -628,123 +968,296 @@ const faqSchema = {
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+          <span
+            class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4"
+          >
             Essential Information
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Key Facts for <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Corporate Clients</span>
+            Key Facts for <span
+              class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
+              >Corporate Clients</span
+            >
           </h2>
           <p class="text-xl text-gray-600">
-            Critical information every HR team should know about corporate relocation in Switzerland
+            Critical information every HR team should know about corporate
+            relocation in Switzerland
           </p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">1,000+ Multinational HQs</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              1,000+ Multinational HQs
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Switzerland hosts over <strong>1,000 multinational headquarters</strong> primarily in Zurich, Zug, and Geneva. High concentration of corporate relocations creates strong agency expertise and competitive service market.
+              Switzerland hosts over <strong
+                >1,000 multinational headquarters</strong
+              > primarily in Zurich, Zug, and Geneva. High concentration of corporate
+              relocations creates strong agency expertise and competitive service
+              market.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Comprehensive Packages</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Comprehensive Packages
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Corporate relocation programs typically include <strong>housing, schooling, work permits, and family support</strong>. Full-service packages range CHF 20,000-100,000+ per employee depending on level and family size.
+              Corporate relocation programs typically include <strong
+                >housing, schooling, work permits, and family support</strong
+              >. Full-service packages range CHF 20,000-100,000+ per employee
+              depending on level and family size.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                ></path>
               </svg>
             </div>
             <h3 class="text-xl font-bold text-gray-900 mb-2">Vendor SLAs</h3>
             <p class="text-gray-600 leading-relaxed">
-              <strong>Service Level Agreements</strong> ensure compliance with HR policies including response times, service quality standards, reporting requirements, and escalation procedures. Critical for consistency and accountability.
+              <strong>Service Level Agreements</strong> ensure compliance with HR
+              policies including response times, service quality standards, reporting
+              requirements, and escalation procedures. Critical for consistency and
+              accountability.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Cost Control & Reporting</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Cost Control & Reporting
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              <strong>Budget tracking and cost optimization</strong> are top HR priorities. Agencies provide dashboards showing spend by category, employee, and location with variance analysis and optimization recommendations.
+              <strong>Budget tracking and cost optimization</strong> are top HR priorities.
+              Agencies provide dashboards showing spend by category, employee, and
+              location with variance analysis and optimization recommendations.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Outsourced Expertise</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Outsourced Expertise
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              <strong>Most HR departments outsource</strong> relocation services to specialized agencies. In-house management is costly, complex, and inefficient. Agencies provide expertise, vendor networks, and scalability.
+              <strong>Most HR departments outsource</strong> relocation services to
+              specialized agencies. In-house management is costly, complex, and inefficient.
+              Agencies provide expertise, vendor networks, and scalability.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Family Support Critical</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Family Support Critical
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              <strong>Family integration determines retention</strong>. Spouse career support, school placement, social networks, and cultural adaptation are as important as the employee's work permit and housing.
+              <strong>Family integration determines retention</strong>. Spouse
+              career support, school placement, social networks, and cultural
+              adaptation are as important as the employee's work permit and
+              housing.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Compliance Requirements</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Compliance Requirements
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              <strong>Immigration, tax, social security</strong> compliance is mandatory. Agencies ensure work permits, residence permits, tax registration, and legal requirements are met correctly avoiding penalties and delays.
+              <strong>Immigration, tax, social security</strong> compliance is mandatory.
+              Agencies ensure work permits, residence permits, tax registration, and
+              legal requirements are met correctly avoiding penalties and delays.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Tiered Service Packages</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              Tiered Service Packages
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              Agencies offer <strong>executive, mid-level, and entry packages</strong> with varying service levels. Tiered approach balances budget control with appropriate support for each employee level and role importance.
+              Agencies offer <strong
+                >executive, mid-level, and entry packages</strong
+              > with varying service levels. Tiered approach balances budget control
+              with appropriate support for each employee level and role importance.
             </p>
           </div>
 
-          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-            <div class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"
+          >
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-coral-400 to-coral-500 rounded-2xl flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"></path>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">ReloFinder Advantage</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">
+              ReloFinder Advantage
+            </h3>
             <p class="text-gray-600 leading-relaxed">
-              ReloFinder provides <strong>unbiased agency matching, transparent comparison, pre-vetted partners</strong>, and ongoing oversight. We save HR teams 10-20 hours of research with curated introductions to the best agency fit.
+              ReloFinder provides <strong
+                >unbiased agency matching, transparent comparison, pre-vetted
+                partners</strong
+              >, and ongoing oversight. We save HR teams 10-20 hours of research
+              with curated introductions to the best agency fit.
             </p>
           </div>
         </div>
@@ -755,90 +1268,143 @@ const faqSchema = {
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl font-bold text-gray-900 mb-2 text-center">Trusted Corporate Relocation Partners</h2>
-        <p class="text-gray-600 text-center mb-8">Expert agencies providing comprehensive employee mobility services across Switzerland</p>
+        <h2 class="text-3xl font-bold text-gray-900 mb-2 text-center">
+          Trusted Corporate Relocation Partners
+        </h2>
+        <p class="text-gray-600 text-center mb-8">
+          Expert agencies providing comprehensive employee mobility services
+          across Switzerland
+        </p>
 
         <div class="space-y-8">
           <!-- Prime Relocation - Preferred Partner -->
-          <div class="bg-gradient-to-br from-primary-50 via-white to-red-50 border-2 border-primary-200 rounded-2xl p-8">
+          <div
+            class="bg-gradient-to-br from-primary-50 via-white to-red-50 border-2 border-primary-200 rounded-2xl p-8"
+          >
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-2xl font-bold text-gray-900">Prime Relocation</h3>
-              <span class="px-3 py-1 bg-gradient-to-r from-coral-500 to-coral-600 text-white rounded-full text-xs font-bold uppercase tracking-wide">
+              <span
+                class="px-3 py-1 bg-gradient-to-r from-coral-500 to-coral-600 text-white rounded-full text-xs font-bold uppercase tracking-wide"
+              >
                 🏆 Preferred Partner
               </span>
             </div>
-            
+
             <div class="flex items-center gap-2 mb-4">
-              <div class="flex text-yellow-500">
-                ★★★★★
-              </div>
+              <div class="flex text-yellow-500">★★★★★</div>
               <span class="text-gray-600 text-sm">4.8 / 5 • 53 reviews</span>
             </div>
-            
+
             <p class="text-gray-700 text-lg mb-6">
-              <strong>Switzerland's most trusted corporate relocation agency</strong>, experienced in supporting multinational companies, HR teams, and employee mobility programs. Prime Relocation provides comprehensive services including policy design, immigration coordination, housing search, school placement, and family support with proven expertise across all Swiss regions and employee levels.
+              <strong
+                >Switzerland's most trusted corporate relocation agency</strong
+              >, experienced in supporting multinational companies, HR teams,
+              and employee mobility programs. Prime Relocation provides
+              comprehensive services including policy design, immigration
+              coordination, housing search, school placement, and family support
+              with proven expertise across all Swiss regions and employee
+              levels.
             </p>
-            
+
             <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">🏢 Corporate Programs</span>
-              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">📋 Policy Design</span>
-              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">👨‍👩‍👧‍👦 Family Support</span>
-              <span class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700">📊 HR Reporting</span>
+              <span
+                class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700"
+                >🏢 Corporate Programs</span
+              >
+              <span
+                class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700"
+                >📋 Policy Design</span
+              >
+              <span
+                class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700"
+                >👨‍👩‍👧‍👦 Family Support</span
+              >
+              <span
+                class="px-3 py-1 bg-white border border-gray-300 rounded-full text-sm text-gray-700"
+                >📊 HR Reporting</span
+              >
             </div>
-            
-            <button 
-              onclick="universalOpenModal({page: 'corporate_service', service: 'corporate'})"
+
+            <button
+              onclick="window.openAssessmentModal('corporate')"
               class="inline-flex items-center justify-center bg-gradient-to-r from-coral-500 to-coral-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
               Get a Free Consultation with our Preferred Partner
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+              <svg
+                class="w-5 h-5 ml-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
               </svg>
             </button>
-            <p class="text-xs text-gray-500 mt-3">Our relocation partners work with us and provide free consultations</p>
+            <p class="text-xs text-gray-500 mt-3">
+              Our relocation partners work with us and provide free
+              consultations
+            </p>
           </div>
 
           <!-- Other Corporate Specialists -->
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Other Trusted Corporate Specialists</h3>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">
+            Other Trusted Corporate Specialists
+          </h3>
           <div class="grid md:grid-cols-2 gap-6">
             <div class="bg-white border border-gray-200 rounded-lg p-6">
-              <h4 class="text-lg font-semibold text-gray-900 mb-2">Lodge Relocation</h4>
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">
+                Lodge Relocation
+              </h4>
               <div class="flex items-center gap-2 mb-3">
-                <div class="flex text-yellow-500 text-sm">
-                  ★★★★★
-                </div>
+                <div class="flex text-yellow-500 text-sm">★★★★★</div>
                 <span class="text-gray-600 text-sm">4.8 / 5 • 134 reviews</span>
               </div>
-              <p class="text-gray-700 text-sm">Comprehensive corporate relocation with 25+ years serving multinational clients</p>
+              <p class="text-gray-700 text-sm">
+                Comprehensive corporate relocation with 25+ years serving
+                multinational clients
+              </p>
             </div>
-            
+
             <div class="bg-white border border-gray-200 rounded-lg p-6">
-              <h4 class="text-lg font-semibold text-gray-900 mb-2">Auris Relocation</h4>
+              <h4 class="text-lg font-semibold text-gray-900 mb-2">
+                Auris Relocation
+              </h4>
               <div class="flex items-center gap-2 mb-3">
-                <div class="flex text-yellow-500 text-sm">
-                  ★★★★★
-                </div>
+                <div class="flex text-yellow-500 text-sm">★★★★★</div>
                 <span class="text-gray-600 text-sm">4.8 / 5 • 98 reviews</span>
               </div>
-              <p class="text-gray-700 text-sm">Expert corporate mobility services for employee relocations across Switzerland</p>
+              <p class="text-gray-700 text-sm">
+                Expert corporate mobility services for employee relocations
+                across Switzerland
+              </p>
             </div>
           </div>
         </div>
 
-          <!-- Browse All Agencies Button -->
-          <div class="mt-8 text-center">
-            <a
-              href="/companies?service=corporate-relocation"
-              class="inline-flex items-center px-6 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-semibold hover:border-coral-500 hover:text-coral-600 hover:shadow-md transition-all duration-300"
+        <!-- Browse All Agencies Button -->
+        <div class="mt-8 text-center">
+          <a
+            href="/companies?service=corporate-relocation"
+            class="inline-flex items-center px-6 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-semibold hover:border-coral-500 hover:text-coral-600 hover:shadow-md transition-all duration-300"
+          >
+            Browse All Agencies for Corporate Relocation Services
+            <svg
+              class="w-5 h-5 ml-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              Browse All Agencies for Corporate Relocation Services
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </a>
-          </div>
-        
-
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -847,11 +1413,16 @@ const faqSchema = {
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-16">
-          <span class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4">
+          <span
+            class="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-semibold mb-4"
+          >
             FAQ
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Frequently Asked <span class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent">Questions</span>
+            Frequently Asked <span
+              class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
+              >Questions</span
+            >
           </h2>
           <p class="text-xl text-gray-600">
             Common questions about corporate relocation in Switzerland
@@ -859,75 +1430,223 @@ const faqSchema = {
         </div>
 
         <div class="space-y-6">
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
-              <span>What is corporate relocation and who provides it in Switzerland?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
+              <span
+                >What is corporate relocation and who provides it in
+                Switzerland?</span
+              >
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Corporate relocation is professional support for companies relocating employees internationally. Services include immigration/work permits, housing search, school placement, family integration, cultural training, and administrative support. In Switzerland, specialized relocation agencies like <strong>Prime Relocation, Auris, and Lodge</strong> provide these services. <strong>ReloFinder is a platform</strong> connecting HR teams with the right agency partners based on their specific needs, budget, and employee profiles - we don't provide relocation services ourselves.
+              Corporate relocation is professional support for companies
+              relocating employees internationally. Services include
+              immigration/work permits, housing search, school placement, family
+              integration, cultural training, and administrative support. In
+              Switzerland, specialized relocation agencies like <strong
+                >Prime Relocation, Auris, and Lodge</strong
+              > provide these services. <strong>ReloFinder is a platform</strong
+              > connecting HR teams with the right agency partners based on their
+              specific needs, budget, and employee profiles - we don't provide relocation
+              services ourselves.
             </div>
           </details>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
-              <span>How can ReloFinder help my company with employee mobility?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
+              <span
+                >How can ReloFinder help my company with employee mobility?</span
+              >
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              ReloFinder acts as a <strong>matching platform</strong> connecting your company with trusted relocation agencies. We assess your needs (employee volume, service scope, budget, locations), recommend suitable agency partners, facilitate introductions and quotations, and help you establish service level agreements. We're not a relocation provider ourselves but a platform that ensures you find the best agency fit for your corporate mobility program with <strong>transparent pricing</strong> and proven expertise. We save HR teams 10-20 hours of research and vetting.
+              ReloFinder acts as a <strong>matching platform</strong> connecting your
+              company with trusted relocation agencies. We assess your needs (employee
+              volume, service scope, budget, locations), recommend suitable agency
+              partners, facilitate introductions and quotations, and help you establish
+              service level agreements. We're not a relocation provider ourselves
+              but a platform that ensures you find the best agency fit for your corporate
+              mobility program with <strong>transparent pricing</strong> and proven
+              expertise. We save HR teams 10-20 hours of research and vetting.
             </div>
           </details>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
-              <span>What services do relocation agencies provide for corporate clients?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
+              <span
+                >What services do relocation agencies provide for corporate
+                clients?</span
+              >
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Corporate relocation agencies provide: <strong>pre-decision services</strong> (destination tours, cost-of-living), <strong>immigration support</strong> (work permits, visa applications), <strong>housing search</strong> and lease negotiation, <strong>school search</strong> for children, <strong>settling-in services</strong> (registration, bank accounts, utilities), cultural training, departure services, family support, emergency assistance 24/7. Plus <strong>vendor management, reporting dashboards, policy design, cost control</strong>, and SLA compliance for HR teams. Comprehensive end-to-end employee mobility management.
+              Corporate relocation agencies provide: <strong
+                >pre-decision services</strong
+              > (destination tours, cost-of-living), <strong
+                >immigration support</strong
+              > (work permits, visa applications), <strong
+                >housing search</strong
+              > and lease negotiation, <strong>school search</strong> for children,
+              <strong>settling-in services</strong> (registration, bank accounts,
+              utilities), cultural training, departure services, family support, emergency
+              assistance 24/7. Plus <strong
+                >vendor management, reporting dashboards, policy design, cost
+                control</strong
+              >, and SLA compliance for HR teams. Comprehensive end-to-end
+              employee mobility management.
             </div>
           </details>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
-              <span>Can agencies support both executives and junior staff relocations?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
+              <span
+                >Can agencies support both executives and junior staff
+                relocations?</span
+              >
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Yes, most agencies offer <strong>tiered service packages</strong>: <strong>Executive</strong> (white-glove, comprehensive family support, luxury housing, private schools, CHF 50,000-100,000+), <strong>Mid-level</strong> (balanced package, housing assistance, school search, settling-in, CHF 20,000-50,000), <strong>Entry-level</strong> (essential services, group orientations, digital support tools, CHF 10,000-20,000). Packages are customized based on employee level, family size, and company relocation policy. Consistent service delivery across all tiers with scalable pricing that fits HR budgets.
+              Yes, most agencies offer <strong>tiered service packages</strong>: <strong
+                >Executive</strong
+              > (white-glove, comprehensive family support, luxury housing, private
+              schools, CHF 50,000-100,000+), <strong>Mid-level</strong> (balanced
+              package, housing assistance, school search, settling-in, CHF 20,000-50,000),
+              <strong>Entry-level</strong> (essential services, group orientations,
+              digital support tools, CHF 10,000-20,000). Packages are customized based
+              on employee level, family size, and company relocation policy. Consistent
+              service delivery across all tiers with scalable pricing that fits HR
+              budgets.
             </div>
           </details>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
               <span>How do agencies handle family support and schooling?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              Agencies provide <strong>spouse/partner career support</strong>, international school search and application, daycare/preschool placement, cultural orientation for families, language lessons coordination, social integration activities, emergency support 24/7. School services include: campus tours, application assistance, fee negotiation, wait-list management, public vs private school guidance. <strong>Family support ensures smooth transition</strong> for the entire household not just the employee. Statistics show family integration is the #1 factor determining whether relocated employees stay long-term or return home early.
+              Agencies provide <strong>spouse/partner career support</strong>,
+              international school search and application, daycare/preschool
+              placement, cultural orientation for families, language lessons
+              coordination, social integration activities, emergency support
+              24/7. School services include: campus tours, application
+              assistance, fee negotiation, wait-list management, public vs
+              private school guidance. <strong
+                >Family support ensures smooth transition</strong
+              > for the entire household not just the employee. Statistics show family
+              integration is the #1 factor determining whether relocated employees
+              stay long-term or return home early.
             </div>
           </details>
 
-          <details class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group">
-            <summary class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors">
-              <span>Why use ReloFinder instead of contacting agencies directly?</span>
-              <svg class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          <details
+            class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group"
+          >
+            <summary
+              class="px-8 py-6 cursor-pointer flex items-center justify-between font-bold text-lg text-gray-900 hover:text-coral-500 transition-colors"
+            >
+              <span
+                >Why use ReloFinder instead of contacting agencies directly?</span
+              >
+              <svg
+                class="w-6 h-6 text-coral-500 transform group-open:rotate-180 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </summary>
             <div class="px-8 pb-6 text-gray-600 leading-relaxed">
-              ReloFinder provides: <strong>unbiased agency recommendations</strong> based on your specific needs, access to multiple agencies with transparent comparison, <strong>pre-vetted partners</strong> with proven track records, consolidated quotations for easy evaluation, negotiation support for better rates, <strong>no markup or commission</strong> on agency services (agencies pay us, not you), ongoing support and escalation if issues arise. We save HR teams 10-20 hours of research, vetting, and comparison work with curated introductions to the right agency partners. Plus we provide oversight ensuring agencies continue meeting your standards.
+              ReloFinder provides: <strong
+                >unbiased agency recommendations</strong
+              > based on your specific needs, access to multiple agencies with transparent
+              comparison, <strong>pre-vetted partners</strong> with proven track records,
+              consolidated quotations for easy evaluation, negotiation support for
+              better rates, <strong>no markup or commission</strong> on agency services
+              (agencies pay us, not you), ongoing support and escalation if issues
+              arise. We save HR teams 10-20 hours of research, vetting, and comparison
+              work with curated introductions to the right agency partners. Plus we
+              provide oversight ensuring agencies continue meeting your standards.
             </div>
           </details>
         </div>
@@ -935,23 +1654,35 @@ const faqSchema = {
     </div>
   </section>
 
-  <ServiceRelated services={relatedServices} />
+  <ServiceRelated
+    title="Related Services for HR Teams"
+    services={relatedServices}
+  />
 
-  <ServiceBlog posts={relatedBlogs} />
+  <ServiceBlog title="Corporate Mobility Insights" posts={relatedBlogs} />
 
-  <section class="py-20 bg-gradient-to-br from-coral-500 via-coral-600 to-primary-800 relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-coral-400/20 to-transparent"></div>
+  <section
+    class="py-20 bg-gradient-to-br from-coral-500 via-coral-600 to-primary-800 relative overflow-hidden"
+  >
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-coral-400/20 to-transparent"
+    >
+    </div>
     <div class="container mx-auto px-4 relative z-10">
       <div class="max-w-4xl mx-auto text-center">
         <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
           Find the Perfect Relocation Agency for Your Company
         </h2>
         <p class="text-xl text-primary-100 mb-8 leading-relaxed">
-          ReloFinder connects your HR team with experienced agencies like Prime Relocation for comprehensive employee mobility programs. Get expert policy design, immigration support, housing coordination, family services, and complete HR reporting with transparent pricing and proven results.
+          ReloFinder connects your HR team with experienced agencies like Prime
+          Relocation for comprehensive employee mobility programs. Get expert
+          policy design, immigration support, housing coordination, family
+          services, and complete HR reporting with transparent pricing and
+          proven results.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <button
-            onclick="universalOpenModal({page: 'corporate_final', service: 'corporate'})"
+            onclick="window.openAssessmentModal('corporate')"
             class="px-10 py-5 bg-white text-coral-600 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl"
           >
             Book Free Corporate Consultation
@@ -964,13 +1695,44 @@ const faqSchema = {
           </a>
         </div>
         <p class="text-sm text-primary-100 mt-6">
-          ✓ Free consultation with preferred partners  •  ✓ Unbiased agency matching  •  ✓ No markup on services
+          ✓ Free consultation with preferred partners • ✓ Unbiased agency
+          matching • ✓ No markup on services
         </p>
       </div>
     </div>
   </section>
 
   <div style="display:none;" data-ai-summary>
-    Corporate relocation services platform connecting HR teams and companies with specialized relocation agencies in Switzerland. ReloFinder is a matching platform (not a relocation provider) helping companies find ideal agency partners for employee mobility programs. Switzerland hosts 1,000+ multinational headquarters primarily in Zurich, Zug, and Geneva creating high demand for corporate relocation services. Agencies provide comprehensive services: immigration/work permits, housing search, school placement, family integration, cultural training, settling-in support, departure services. Corporate packages include policy design, tiered service levels (executive CHF 50,000-100,000+, mid-level CHF 20,000-50,000, entry CHF 10,000-20,000), vendor management, SLA standards, reporting dashboards, cost control. Regional focus: Zurich (financial/executive), Geneva (diplomatic/NGO), Basel (pharma/life sciences), Zug (HQ/crypto/tax), Lausanne (academic/research). Five-step process: HR consultation and needs assessment, matching with right agency partner, program design and policy setup, implementation and reporting by agency, optimization and long-term support with quarterly reviews. Key facts: 1,000+ multinational HQs in Switzerland, comprehensive packages include housing/schooling/permits/family, SLAs ensure compliance, cost control critical for HR, most companies outsource to agencies, family support determines retention, compliance mandatory, tiered packages by employee level, ReloFinder provides unbiased matching saving 10-20 hours research. Prime Relocation featured as preferred partner providing corporate programs, policy design, immigration, housing, schooling, family support with proven expertise serving multinational clients. Family integration critical for employee retention preventing early departure and failed relocations. Agencies offer executive white-glove services, mid-level balanced packages, entry-level essential services with consistent delivery across tiers. ReloFinder advantage: unbiased recommendations, transparent comparison, pre-vetted partners, no markup (agencies pay platform), ongoing oversight ensuring agencies meet standards.
+    Corporate relocation services platform connecting HR teams and companies
+    with specialized relocation agencies in Switzerland. ReloFinder is a
+    matching platform (not a relocation provider) helping companies find ideal
+    agency partners for employee mobility programs. Switzerland hosts 1,000+
+    multinational headquarters primarily in Zurich, Zug, and Geneva creating
+    high demand for corporate relocation services. Agencies provide
+    comprehensive services: immigration/work permits, housing search, school
+    placement, family integration, cultural training, settling-in support,
+    departure services. Corporate packages include policy design, tiered service
+    levels (executive CHF 50,000-100,000+, mid-level CHF 20,000-50,000, entry
+    CHF 10,000-20,000), vendor management, SLA standards, reporting dashboards,
+    cost control. Regional focus: Zurich (financial/executive), Geneva
+    (diplomatic/NGO), Basel (pharma/life sciences), Zug (HQ/crypto/tax),
+    Lausanne (academic/research). Five-step process: HR consultation and needs
+    assessment, matching with right agency partner, program design and policy
+    setup, implementation and reporting by agency, optimization and long-term
+    support with quarterly reviews. Key facts: 1,000+ multinational HQs in
+    Switzerland, comprehensive packages include
+    housing/schooling/permits/family, SLAs ensure compliance, cost control
+    critical for HR, most companies outsource to agencies, family support
+    determines retention, compliance mandatory, tiered packages by employee
+    level, ReloFinder provides unbiased matching saving 10-20 hours research.
+    Prime Relocation featured as preferred partner providing corporate programs,
+    policy design, immigration, housing, schooling, family support with proven
+    expertise serving multinational clients. Family integration critical for
+    employee retention preventing early departure and failed relocations.
+    Agencies offer executive white-glove services, mid-level balanced packages,
+    entry-level essential services with consistent delivery across tiers.
+    ReloFinder advantage: unbiased recommendations, transparent comparison,
+    pre-vetted partners, no markup (agencies pay platform), ongoing oversight
+    ensuring agencies meet standards.
   </div>
 </Layout>
