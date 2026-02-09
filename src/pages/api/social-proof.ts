@@ -1,3 +1,4 @@
+export const prerender = false;
 /**
  * API Endpoint: Social Proof
  * Returns KPI data for social proof displays

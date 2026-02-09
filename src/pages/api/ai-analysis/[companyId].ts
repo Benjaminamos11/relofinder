@@ -1,14 +1,11 @@
+export const prerender = false;
 import type { APIRoute } from 'astro';
 import { createClient } from '@supabase/supabase-js';
 import { getCollection } from 'astro:content';
 
-// Generate static paths for all companies
-export async function getStaticPaths() {
-  const companies = await getCollection('companies');
-  return companies.map((company: any) => ({
-    params: { companyId: company.data.id }
-  }));
-}
+// Dynamic API route, no getStaticPaths needed
+// export const prerender = false; // Already set at top of file
+
 
 // Initialize Supabase client with fallback values
 const supabaseUrl = import.meta.env.SUPABASE_URL || 'https://placeholder.supabase.co';
@@ -25,7 +22,7 @@ try {
 
 export const GET: APIRoute = async ({ params, request }) => {
   const { companyId } = params;
-  
+
   if (!companyId) {
     return new Response(JSON.stringify({ error: 'Company ID required' }), {
       status: 400,
@@ -94,7 +91,7 @@ export const GET: APIRoute = async ({ params, request }) => {
 
   } catch (error) {
     console.error('AI Analysis error:', error);
-    
+
     // Return fallback analysis
     return new Response(JSON.stringify({
       error: 'Analysis temporarily unavailable',
@@ -112,14 +109,14 @@ export const GET: APIRoute = async ({ params, request }) => {
 async function generateAIAnalysis(reviews: any[], companyId: string) {
   // For now, return a structured mock analysis
   // In production, this would call OpenAI API
-  
+
   const positiveKeywords = ['excellent', 'great', 'amazing', 'helpful', 'professional', 'smooth', 'efficient'];
   const negativeKeywords = ['slow', 'expensive', 'poor', 'bad', 'terrible', 'disappointing'];
-  
+
   let positiveCount = 0;
   let negativeCount = 0;
   let totalRating = 0;
-  
+
   reviews.forEach(review => {
     const text = review.text?.toLowerCase() || '';
     positiveKeywords.forEach(word => {
@@ -204,7 +201,7 @@ async function generateMockAnalysis(companyId: string) {
   // Generate realistic mock analysis for demo purposes
   const mockStrengths = [
     'Professional service delivery',
-    'Swiss market expertise', 
+    'Swiss market expertise',
     'Comprehensive relocation support',
     'Established client relationships'
   ];

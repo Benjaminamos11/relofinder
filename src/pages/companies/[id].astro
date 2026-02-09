@@ -4,40 +4,48 @@
  * Design System: "Swiss Magazine" layout. Large type, bento cards, #FF6F61 accents.
  */
 
-import Layout from '../../layouts/Layout.astro';
-import { getEntry, getCollection } from 'astro:content';
-import { supabase } from '../../lib/supabase';
-import UniversalContactModal from '../../components/common/UniversalContactModal';
-import ReviewSubmissionWrapper from '../../components/reviews/ReviewSubmissionWrapper';
-import swissMapImg from '../../assets/swiss-map-filled.png';
-import CloudinaryImage from '../../components/common/CloudinaryImage.astro';
-import { 
-  Star, 
-  MapPin, 
-  Calendar, 
-  CheckCircle2, 
-  ShieldCheck, 
-  ArrowRight, 
-  Globe, 
-  Building2, 
-  Phone, 
-  Mail, 
+import Layout from "../../layouts/Layout.astro";
+import { getEntry, getCollection } from "astro:content";
+import { supabase } from "../../lib/supabase";
+import UniversalContactModal from "../../components/common/UniversalContactModal";
+import ReviewSubmissionWrapper from "../../components/reviews/ReviewSubmissionWrapper";
+import swissMapImg from "../../assets/swiss-map-filled.png";
+import CloudinaryImage from "../../components/common/CloudinaryImage.astro";
+
+export async function getStaticPaths() {
+  const companies = await getCollection("companies");
+  return companies.map((company) => ({
+    params: { id: company.slug },
+    props: { company }, // Pass the full company object if needed, though getEntry uses 'id'
+  }));
+}
+import {
+  Star,
+  MapPin,
+  Calendar,
+  CheckCircle2,
+  ShieldCheck,
+  ArrowRight,
+  Globe,
+  Building2,
+  Phone,
+  Mail,
   ExternalLink,
   Quote,
   Scale,
   Activity,
-  Award
-} from 'lucide-react';
+  Award,
+} from "lucide-react";
 
 const { id } = Astro.params;
 
 if (!id) {
-  return Astro.redirect('/404');
+  return Astro.redirect("/404");
 }
 
-const company = await getEntry('companies', id);
+const company = await getEntry("companies", id);
 if (!company) {
-  return Astro.redirect('/404');
+  return Astro.redirect("/404");
 }
 
 const companyData = company.data;
@@ -46,122 +54,150 @@ let internalReviews = [];
 let externalReviews = [];
 let externalAggregate = { avg: 0, count: 0 };
 let reviewSummary = null;
-let tier = 'standard';
+let tier = "standard";
 let weightedRating = Math.round((companyData.rating?.score || 0) * 10) / 10;
 let relocatorId = null;
 
 try {
   // Find relocator UUID
   const { data: relocatorData } = await supabase
-    .from('relocators')
-    .select('id, tier')
-    .ilike('name', `%${companyData.name}%`)
+    .from("relocators")
+    .select("id, tier")
+    .ilike("name", `%${companyData.name}%`)
     .limit(1)
     .single();
-  
+
   if (relocatorData) {
     relocatorId = relocatorData.id;
-    tier = relocatorData.tier || 'standard';
+    tier = relocatorData.tier || "standard";
 
     // FETCH FULL DB DATA TO OVERRIDE MARKDOWN (Single Source of Truth)
     const { data: fullProfile } = await supabase
-        .from('relocators')
-        .select(`
+      .from("relocators")
+      .select(
+        `
             *,
             offices:relocator_offices(*)
-        `)
-        .eq('id', relocatorId)
-        .single();
-    
+        `,
+      )
+      .eq("id", relocatorId)
+      .single();
+
     if (fullProfile) {
         // Prefer DB when present, otherwise keep Astro MD values
         const has = (v: any) => v != null && v !== '';
-        const hasArr = (a: any) => Array.isArray(a) && a.length > 0;
 
-        if (has(fullProfile.contact_email)) companyData.email = fullProfile.contact_email;
-        if (has(fullProfile.phone_number)) companyData.phone = fullProfile.phone_number;
-        if (has(fullProfile.website)) companyData.website = fullProfile.website;
-        if (fullProfile.founded_year != null) companyData.founded = fullProfile.founded_year;
-        if (has(fullProfile.employee_count)) companyData.employees = String(fullProfile.employee_count);
         if (has(fullProfile.bio)) companyData.description = fullProfile.bio;
         if (has(fullProfile.logo)) companyData.logo = fullProfile.logo;
+        
+      // OVERRIDE MARKDOWN VALUES WITH DB VALUES
+      if (fullProfile.contact_email)
+        companyData.email = fullProfile.contact_email;
+      if (fullProfile.phone_number)
+        companyData.phone = fullProfile.phone_number;
+      if (fullProfile.website) companyData.website = fullProfile.website;
+      if (fullProfile.founded_year)
+        companyData.founded = fullProfile.founded_year;
+      // employee_count might be text or number in DB, ensure string for display
+      if (fullProfile.employee_count)
+        companyData.employees = String(fullProfile.employee_count);
 
-        // Address: DB offices or flat columns, else keep MD
-        const mainOffice = fullProfile.offices?.find((o: any) => o.is_main) || fullProfile.offices?.[0];
-        if (mainOffice && (mainOffice.street || mainOffice.city)) {
-            companyData.address = {
-                street: mainOffice.street ?? companyData.address?.street ?? '',
-                city: mainOffice.city ?? companyData.address?.city ?? '',
-                postalCode: mainOffice.zip ?? companyData.address?.postalCode ?? '',
-                canton: companyData.address?.canton ?? ''
-            };
-        } else if (fullProfile.address_street || fullProfile.address_city) {
-            companyData.address = {
-                street: fullProfile.address_street ?? companyData.address?.street ?? '',
-                city: fullProfile.address_city ?? companyData.address?.city ?? '',
-                postalCode: fullProfile.address_zip ?? companyData.address?.postalCode ?? '',
-                canton: companyData.address?.canton ?? ''
-            };
-        }
+      // Handle Address (Prioritize Main Office)
+      const mainOffice =
+        fullProfile.offices?.find((o: any) => o.is_main) ||
+        fullProfile.offices?.[0];
+      if (mainOffice) {
+        companyData.address = {
+          street: mainOffice.street,
+          city: mainOffice.city,
+          postalCode: mainOffice.zip,
+          canton: companyData.address?.canton || "", // Keep canton from MD if missing in DB
+        };
+      } else if (fullProfile.address_street || fullProfile.address_city) {
+        // Fallback to legacy flat columns if no office rows
+        companyData.address = {
+          street: fullProfile.address_street || companyData.address?.street,
+          city: fullProfile.address_city || companyData.address?.city,
+          postalCode:
+            fullProfile.address_zip || companyData.address?.postalCode,
+          canton: companyData.address?.canton || "",
+        };
+      }
 
-        if (hasArr(fullProfile.services)) companyData.services = fullProfile.services;
-        if (hasArr(fullProfile.regions_served)) companyData.regions = fullProfile.regions_served;
+      // Sync Arrays (Services & Regions)
+      if (
+        fullProfile.services &&
+        Array.isArray(fullProfile.services) &&
+        fullProfile.services.length > 0
+      ) {
+        companyData.services = fullProfile.services;
+      }
+      if (
+        fullProfile.regions_served &&
+        Array.isArray(fullProfile.regions_served) &&
+        fullProfile.regions_served.length > 0
+      ) {
+        companyData.regions = fullProfile.regions_served;
+      }
     }
   }
 
   if (relocatorId) {
     // Internal Reviews
     const { data: reviewsData } = await supabase
-      .from('reviews')
-      .select('*, review_replies(*)')
-      .eq('relocator_id', relocatorId)
-      .eq('status', 'approved')
-      .order('created_at', { ascending: false });
-    
+      .from("reviews")
+      .select("*, review_replies(*)")
+      .eq("relocator_id", relocatorId)
+      .eq("status", "approved")
+      .order("created_at", { ascending: false });
+
     internalReviews = reviewsData || [];
 
     // External Reviews
     const { data: googleReviewsData } = await supabase
-      .from('google_reviews')
-      .select('author_name, rating, review_text, review_date, review_link')
-      .eq('relocator_id', relocatorId)
-      .order('rating', { ascending: false });
-    
+      .from("google_reviews")
+      .select("author_name, rating, review_text, review_date, review_link")
+      .eq("relocator_id", relocatorId)
+      .order("rating", { ascending: false });
+
     if (googleReviewsData && googleReviewsData.length > 0) {
-      const totalRating = googleReviewsData.reduce((sum, review) => sum + review.rating, 0);
+      const totalRating = googleReviewsData.reduce(
+        (sum, review) => sum + review.rating,
+        0,
+      );
       const avgRating = totalRating / googleReviewsData.length;
-      
-      externalAggregate = { 
-        avg: Math.round(avgRating * 100) / 100, 
-        count: googleReviewsData.length 
+
+      externalAggregate = {
+        avg: Math.round(avgRating * 100) / 100,
+        count: googleReviewsData.length,
       };
-      
+
       externalReviews = googleReviewsData.map((review: any) => ({
-        author_name: review.author_name || 'Google User',
+        author_name: review.author_name || "Google User",
         rating: review.rating || 5,
-        body: review.review_text || '',
+        body: review.review_text || "",
         created_at: review.review_date || new Date().toISOString(),
-        link: review.review_link || '',
-        source: 'google'
+        link: review.review_link || "",
+        source: "google",
       }));
     }
 
     // AI Summary
     const { data: summaryData } = await supabase
-      .from('review_summaries')
-      .select('*')
-      .eq('relocator_id', relocatorId)
+      .from("review_summaries")
+      .select("*")
+      .eq("relocator_id", relocatorId)
       .single();
 
     reviewSummary = summaryData;
-    
+
     // SEO Summary
     const { data: seoData } = await supabase
-      .from('relocators')
-      .select('seo_summary')
-      .eq('id', relocatorId)
+      .from("relocators")
+      .select("seo_summary")
+      .eq("id", relocatorId)
       .single();
-    
+
     if (seoData?.seo_summary) {
       if (!reviewSummary) reviewSummary = {};
       reviewSummary.seo_summary = seoData.seo_summary;
@@ -171,77 +207,94 @@ try {
   // Weight Calculation
   const internalCount = internalReviews.length;
   const externalCount = externalAggregate.count;
-  const internalAvg = internalCount > 0 ? internalReviews.reduce((sum: number, r: any) => sum + r.rating, 0) / internalCount : 0;
-  
+  const internalAvg =
+    internalCount > 0
+      ? internalReviews.reduce((sum: number, r: any) => sum + r.rating, 0) /
+        internalCount
+      : 0;
+
   if (internalCount + externalCount > 0) {
-    const totalWeight = (internalCount * 0.6 + externalCount * 0.4);
-    weightedRating = totalWeight > 0 
-      ? Math.round(((internalAvg * internalCount * 0.6 + externalAggregate.avg * externalCount * 0.4) / totalWeight) * 10) / 10
-      : companyData.rating?.score || 0;
+    const totalWeight = internalCount * 0.6 + externalCount * 0.4;
+    weightedRating =
+      totalWeight > 0
+        ? Math.round(
+            ((internalAvg * internalCount * 0.6 +
+              externalAggregate.avg * externalCount * 0.4) /
+              totalWeight) *
+              10,
+          ) / 10
+        : companyData.rating?.score || 0;
   }
 } catch (error) {
-  console.error('Error fetching Supabase data:', error);
+  console.error("Error fetching Supabase data:", error);
 }
 
 // Logic: Preferred Partners (Prime Relocation & Welcome Service)
-const preferredPartnerNames = ['Prime Relocation', 'Welcome Service'];
-const isPreferred = preferredPartnerNames.some(name => companyData.name.includes(name));
+const preferredPartnerNames = ["Prime Relocation", "Welcome Service"];
+const isPreferred = preferredPartnerNames.some((name) =>
+  companyData.name.includes(name),
+);
 
 // Alternatives Logic
-const allCompanies = await getCollection('companies');
+const allCompanies = await getCollection("companies");
 let alternatives = [];
 
 if (!isPreferred) {
-    // If NOT preferred, show Preferred Partners as alternatives
-    alternatives = allCompanies.filter((c: any) => 
-        preferredPartnerNames.some(p => c.data.name.includes(p)) && c.data.id !== companyData.id
-    ).slice(0, 3);
+  // If NOT preferred, show Preferred Partners as alternatives
+  alternatives = allCompanies
+    .filter(
+      (c: any) =>
+        preferredPartnerNames.some((p) => c.data.name.includes(p)) &&
+        c.data.id !== companyData.id,
+    )
+    .slice(0, 3);
 } else {
-    // If IS preferred, we don't show comparison, but populate just in case logic changes
-    alternatives = [];
+  // If IS preferred, we don't show comparison, but populate just in case logic changes
+  alternatives = [];
 }
 
 // Dynamic Content
-const yearsExperience = companyData.founded ? new Date().getFullYear() - companyData.founded : null;
+const yearsExperience = companyData.founded
+  ? new Date().getFullYear() - companyData.founded
+  : null;
 const totalReviewCount = internalReviews.length + externalAggregate.count;
-
-
 
 // Smart FAQ Generation (SEO & LLM Optimized)
 const defaultFaqs = [
   {
     question: `Is ${companyData.name} a verified relocation agency in Switzerland?`,
-    answer: `${companyData.name} is a professional relocation provider listed on ReloFinder. ${companyData.verified ? 'They have passed our verification checks for business registration and professional standing.' : 'They are currently listed as a standard partner.'} You can view their verified client reviews and service portfolio above.`
+    answer: `${companyData.name} is a professional relocation provider listed on ReloFinder. ${companyData.verified ? "They have passed our verification checks for business registration and professional standing." : "They are currently listed as a standard partner."} You can view their verified client reviews and service portfolio above.`,
   },
   {
     question: `What services does ${companyData.name} specialize in?`,
-    answer: `${companyData.name} offers comprehensive relocation support including ${companyData.services?.slice(0, 4).join(', ').replace(/-/g, ' ')} and more. They primarily serve clients moving to or within ${companyData.regions?.slice(0, 3).join(', ')}.`
+    answer: `${companyData.name} offers comprehensive relocation support including ${companyData.services?.slice(0, 4).join(", ").replace(/-/g, " ")} and more. They primarily serve clients moving to or within ${companyData.regions?.slice(0, 3).join(", ")}.`,
   },
   {
     question: `How much does relocation with ${companyData.name} cost?`,
-    answer: `Pricing for ${companyData.name} varies based on the scope of your move (e.g., single professional vs. family, home search requirements). We recommend requesting a free, non-binding proposal through ReloFinder to get an accurate quote tailored to your needs.`
+    answer: `Pricing for ${companyData.name} varies based on the scope of your move (e.g., single professional vs. family, home search requirements). We recommend requesting a free, non-binding proposal through ReloFinder to get an accurate quote tailored to your needs.`,
   },
   {
     question: `How do I contact ${companyData.name}?`,
-    answer: `You can contact ${companyData.name} directly via phone at ${companyData.phone} or email at ${companyData.email}. For the fastest response, use the "Start Inquiry" button on this profile to send a priority request.`
-  }
+    answer: `You can contact ${companyData.name} directly via phone at ${companyData.phone} or email at ${companyData.email}. For the fastest response, use the "Start Inquiry" button on this profile to send a priority request.`,
+  },
 ];
 
 // Merge custom FAQs with default ones (prioritizing custom)
 const displayFaqs = [...(companyData.faqs || []), ...defaultFaqs].slice(0, 6);
 
-
 // SEO Metadata
 const title = `${companyData.name} — Reviews, Pricing & Services (Switzerland)`;
-const description = reviewSummary?.seo_summary 
-  ? reviewSummary.seo_summary 
-  : `Independent profile of ${companyData.name}: services, regions (${companyData.regions?.slice(0, 4).join(', ')}...), verified reviews, and alternatives.`;
+const description = reviewSummary?.seo_summary
+  ? reviewSummary.seo_summary
+  : `Independent profile of ${companyData.name}: services, regions (${companyData.regions?.slice(0, 4).join(", ")}...), verified reviews, and alternatives.`;
 const canonical = `https://relofinder.ch/companies/${companyData.id}`;
 const keywords = [
   `${companyData.name} relocation`,
   `${companyData.name} reviews`,
-  ...(companyData.regions || []).slice(0, 3).map((r: string) => `relocation ${r}`),
-  "swiss relocation services"
+  ...(companyData.regions || [])
+    .slice(0, 3)
+    .map((r: string) => `relocation ${r}`),
+  "swiss relocation services",
 ];
 
 // Schema
@@ -250,614 +303,894 @@ const schema = {
   "@graph": [
     {
       "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://relofinder.ch" },
-        { "@type": "ListItem", "position": 2, "name": "Companies", "item": "https://relofinder.ch/companies" },
-        { "@type": "ListItem", "position": 3, "name": companyData.name, "item": canonical }
-      ]
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://relofinder.ch",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Companies",
+          item: "https://relofinder.ch/companies",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: companyData.name,
+          item: canonical,
+        },
+      ],
     },
     {
       "@type": "ProfessionalService",
-      "name": companyData.name,
-      "description": companyData.description,
-      "url": companyData.website,
-      "telephone": companyData.phone,
-      "email": companyData.email,
-      "priceRange": "$$$",
+      name: companyData.name,
+      description: companyData.description,
+      url: companyData.website,
+      telephone: companyData.phone,
+      email: companyData.email,
+      priceRange: "$$$",
       ...(companyData.address && {
-        "address": {
+        address: {
           "@type": "PostalAddress",
-          "streetAddress": companyData.address.street,
-          "addressLocality": companyData.address.city,
-          "addressRegion": companyData.address.canton,
-          "postalCode": companyData.address.postalCode,
-          "addressCountry": "CH"
-        }
+          streetAddress: companyData.address.street,
+          addressLocality: companyData.address.city,
+          addressRegion: companyData.address.canton,
+          postalCode: companyData.address.postalCode,
+          addressCountry: "CH",
+        },
       }),
-      "areaServed": companyData.regions?.map((region:string) => ({
+      areaServed: companyData.regions?.map((region: string) => ({
         "@type": "Place",
-        "name": region
+        name: region,
       })),
-      ...(weightedRating > 0 && totalReviewCount > 0 && {
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": weightedRating.toFixed(1),
-          "reviewCount": totalReviewCount,
-          "bestRating": "5",
-          "worstRating": "1"
-        }
-      })
+      ...(weightedRating > 0 &&
+        totalReviewCount > 0 && {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: weightedRating.toFixed(1),
+            reviewCount: totalReviewCount,
+            bestRating: "5",
+            worstRating: "1",
+          },
+        }),
     },
     {
       "@type": "FAQPage",
-      "mainEntity": displayFaqs.map(faq => ({
+      mainEntity: displayFaqs.map((faq) => ({
         "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": {
+        name: faq.question,
+        acceptedAnswer: {
           "@type": "Answer",
-          "text": faq.answer
-        }
-      }))
-    }
-  ]
+          text: faq.answer,
+        },
+      })),
+    },
+  ],
 };
 ---
 
-<Layout title={title} description={description} canonical={canonical} keywords={keywords} schema={schema}>
-  
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords={keywords}
+  schema={schema}
+>
   <main class="bg-white overflow-x-hidden">
-    
     <!-- 1. HERO -->
     <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-32">
       <div class="container mx-auto px-6 md:px-10 lg:px-16 max-w-7xl">
-        <div class="flex flex-wrap items-center gap-4 mb-8 text-sm font-medium animate-fade-in">
-          {tier === 'preferred' && (
-             <span class="px-3 py-1 rounded-full bg-[#FF6F61]/10 text-[#FF6F61] border border-[#FF6F61]/20 flex items-center gap-2">
-               <Award className="w-4 h-4" /> Preferred Partner
-             </span>
-          )}
-          {companyData.verified && (
-             <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 flex items-center gap-2">
-               <CheckCircle2 className="w-4 h-4 text-green-500" /> Vetted Provider
-             </span>
-          )}
-          {companyData.founded && (
-             <span class="px-3 py-1 rounded-full bg-slate-50 text-slate-500 border border-slate-100">
-               Est. {companyData.founded}
-             </span>
-          )}
+        <div
+          class="flex flex-wrap items-center gap-4 mb-8 text-sm font-medium animate-fade-in"
+        >
+          {
+            tier === "preferred" && (
+              <span class="px-3 py-1 rounded-full bg-[#FF6F61]/10 text-[#FF6F61] border border-[#FF6F61]/20 flex items-center gap-2">
+                <Award className="w-4 h-4" /> Preferred Partner
+              </span>
+            )
+          }
+          {
+            companyData.verified && (
+              <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-green-500" /> Vetted
+                Provider
+              </span>
+            )
+          }
+          {
+            companyData.founded && (
+              <span class="px-3 py-1 rounded-full bg-slate-50 text-slate-500 border border-slate-100">
+                Est. {companyData.founded}
+              </span>
+            )
+          }
         </div>
 
         <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <!-- Text Content -->
           <div class="lg:col-span-8">
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-gray-900 leading-[0.95] tracking-tight mb-8">
-              {companyData.name}
-              {companyData.label && (
-                  <span class="block text-2xl md:text-3xl text-gray-400 font-sans font-medium mt-2 tracking-normal">
+            <h1
+              class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-gray-900 leading-[0.95] tracking-tight mb-8"
+            >
+              <h1
+                class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-gray-900 leading-[0.95] tracking-tight mb-8"
+              >
+                {companyData.name}
+                {
+                  companyData.label && (
+                    <span class="block text-2xl md:text-3xl text-gray-400 font-sans font-medium mt-2 tracking-normal">
                       {companyData.label}
-                  </span>
-              )}
+                    </span>
+                  )
+                }
+              </h1>
+              <p
+                class="text-lg md:text-xl text-gray-500 font-light leading-relaxed max-w-2xl mb-12"
+              >
+                {companyData.description}
+              </p>
+
+              <!-- Metrics -->
+              <div
+                class="flex flex-wrap gap-12 md:gap-16 border-t border-b border-gray-100 py-8"
+              >
+                <div>
+                  <div
+                    class="text-3xl md:text-4xl font-bold text-[#FF6F61] mb-1"
+                  >
+                    {weightedRating > 0 ? weightedRating.toFixed(1) : "-"}
+                  </div>
+                  <div
+                    class="text-xs uppercase tracking-widest text-gray-600 font-bold"
+                  >
+                    Rating
+                  </div>
+                </div>
+                <div>
+                  <div
+                    class="text-4xl md:text-5xl font-bold text-gray-900 mb-1"
+                  >
+                    {totalReviewCount}
+                  </div>
+                  <div
+                    class="text-xs uppercase tracking-widest text-gray-600 font-bold"
+                  >
+                    Reviews
+                  </div>
+                </div>
+                {
+                  yearsExperience && (
+                    <div>
+                      <div class="text-4xl md:text-5xl font-bold text-gray-900 mb-1">
+                        {yearsExperience}
+                      </div>
+                      <div class="text-xs uppercase tracking-widest text-gray-600 font-bold">
+                        Years Exp.
+                      </div>
+                    </div>
+                  )
+                }
+              </div>
+
+              <!-- Quick Actions -->
+              <div class="flex flex-wrap gap-4 mt-10">
+                <a
+                  href="#contact"
+                  class="bg-[#FF6F61] text-white px-8 py-4 rounded-full font-bold hover:bg-[#ff5a4d] transition-colors shadow-xl shadow-[#FF6F61]/20 flex items-center gap-2"
+                >
+                  Contact Provider <ArrowRight className="w-5 h-5" />
+                </a>
+                <a
+                  href={companyData.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="bg-white border border-gray-200 text-gray-900 px-8 py-4 rounded-full font-bold hover:bg-gray-50 transition-colors flex items-center gap-2"
+                >
+                  Visit Website <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
             </h1>
-            <p class="text-lg md:text-xl text-gray-500 font-light leading-relaxed max-w-2xl mb-12">
-              {companyData.description}
-            </p>
 
-            <!-- Metrics -->
-            <div class="flex flex-wrap gap-12 md:gap-16 border-t border-b border-gray-100 py-8">
-               <div>
-                  <div class="text-3xl md:text-4xl font-bold text-[#FF6F61] mb-1">
-                     {weightedRating > 0 ? weightedRating.toFixed(1) : '-'}
-                  </div>
-                  <div class="text-xs uppercase tracking-widest text-gray-600 font-bold">Rating</div>
-               </div>
-               <div>
-                  <div class="text-4xl md:text-5xl font-bold text-gray-900 mb-1">
-                     {totalReviewCount}
-                  </div>
-                  <div class="text-xs uppercase tracking-widest text-gray-600 font-bold">Reviews</div>
-               </div>
-               {yearsExperience && (
-               <div>
-                  <div class="text-4xl md:text-5xl font-bold text-gray-900 mb-1">
-                     {yearsExperience}
-                  </div>
-                  <div class="text-xs uppercase tracking-widest text-gray-600 font-bold">Years Exp.</div>
-               </div>
-               )}
-            </div>
-            
-            <!-- Quick Actions -->
-            <div class="flex flex-wrap gap-4 mt-10">
-               <a href="#contact" class="bg-[#FF6F61] text-white px-8 py-4 rounded-full font-bold hover:bg-[#ff5a4d] transition-colors shadow-xl shadow-[#FF6F61]/20 flex items-center gap-2">
-                 Contact Provider <ArrowRight className="w-5 h-5" />
-               </a>
-               <a href={companyData.website} target="_blank" rel="noopener noreferrer" class="bg-white border border-gray-200 text-gray-900 px-8 py-4 rounded-full font-bold hover:bg-gray-50 transition-colors flex items-center gap-2">
-                 Visit Website <ExternalLink className="w-4 h-4" />
-               </a>
-            </div>
-          </div>
-
-          <!-- Quick Info -->
-          <div class="lg:col-span-4 self-center">
-             <div class="bg-gray-50 p-8 rounded-[2.5rem] border border-gray-100 relative group overflow-hidden">
-                <div class="absolute inset-0 bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <h3 class="text-sm font-bold text-gray-600 uppercase tracking-widest mb-6">Headquarters</h3>
+            <!-- Quick Info -->
+            <div class="lg:col-span-4 self-center">
+              <div
+                class="bg-gray-50 p-8 rounded-[2.5rem] border border-gray-100 relative group overflow-hidden"
+              >
+                <div
+                  class="absolute inset-0 bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                </div>
+                <h3
+                  class="text-sm font-bold text-gray-600 uppercase tracking-widest mb-6"
+                >
+                  Headquarters
+                </h3>
                 <div class="space-y-6">
-                   {companyData.address && (
-                     <div class="flex gap-4">
+                  {
+                    companyData.address && (
+                      <div class="flex gap-4">
                         <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm text-[#FF6F61]">
-                           <MapPin className="w-5 h-5" />
+                          <MapPin className="w-5 h-5" />
                         </div>
                         <div>
-                           <p class="font-bold text-gray-900">{companyData.address.city}</p>
-                           <p class="text-sm text-gray-500">{companyData.address.street}</p>
+                          <p class="font-bold text-gray-900">
+                            {companyData.address.city}
+                          </p>
+                          <p class="text-sm text-gray-500">
+                            {companyData.address.street}
+                          </p>
                         </div>
-                     </div>
-                   )}
-                   <div class="flex gap-4">
-                      <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm text-[#FF6F61]">
-                         <Globe className="w-5 h-5" />
                       </div>
-                      <div>
-                         <p class="font-bold text-gray-900">Switzerland</p>
-                         <p class="text-sm text-gray-500">{companyData.regions?.length || 0} Cantons Served</p>
-                      </div>
-                   </div>
+                    )
+                  }
+                  <div class="flex gap-4">
+                    <div
+                      class="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm text-[#FF6F61]"
+                    >
+                      <Globe className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p class="font-bold text-gray-900">Switzerland</p>
+                      <p class="text-sm text-gray-500">
+                        {companyData.regions?.length || 0} Cantons Served
+                      </p>
+                    </div>
+                  </div>
                 </div>
                 <div class="mt-8 pt-8 border-t border-gray-200">
-                    <p class="text-xs text-gray-600 leading-relaxed">
-                       Information verified by Lang + Partner. Last updated {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}.
-                    </p>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    Information verified by Lang + Partner. Last updated {
+                      new Date().toLocaleDateString("en-US", {
+                        month: "long",
+                        year: "numeric",
+                      })
+                    }.
+                  </p>
                 </div>
-             </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- 2. AI SUMMARY -->
-    <section class="py-20 bg-slate-50 border-t border-b border-gray-200">
-      <div class="container mx-auto px-6 md:px-10 lg:px-16 max-w-5xl">
-         <div class="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
-             <div class="shrink-0 pt-2">
-                <div class="w-16 h-16 bg-[#FF6F61] text-white rounded-2xl flex items-center justify-center shadow-lg transform -rotate-3">
-                   <Quote className="w-8 h-8" />
-                </div>
-             </div>
-             <div>
-                <span class="text-[#FF6F61] font-bold uppercase tracking-widest text-xs mb-4 block">Independent Analysis</span>
-                {reviewSummary?.seo_summary ? (
+      <!-- 2. AI SUMMARY -->
+      <section class="py-20 bg-slate-50 border-t border-b border-gray-200">
+        <div class="container mx-auto px-6 md:px-10 lg:px-16 max-w-5xl">
+          <div class="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
+            <div class="shrink-0 pt-2">
+              <div
+                class="w-16 h-16 bg-[#FF6F61] text-white rounded-2xl flex items-center justify-center shadow-lg transform -rotate-3"
+              >
+                <Quote className="w-8 h-8" />
+              </div>
+            </div>
+            <div>
+              <span
+                class="text-[#FF6F61] font-bold uppercase tracking-widest text-xs mb-4 block"
+                >Independent Analysis</span
+              >
+              {
+                reviewSummary?.seo_summary ? (
                   <blockquote class="text-2xl md:text-3xl font-serif text-gray-900 leading-relaxed">
-                     "{reviewSummary.seo_summary}"
+                    "{reviewSummary.seo_summary}"
                   </blockquote>
                 ) : (
                   <blockquote class="text-2xl md:text-3xl font-serif text-gray-900 leading-relaxed">
-                     "{companyData.name} is recognized for their local expertise in {companyData.address?.city} and comprehensive support network. Clients frequently highlight their responsiveness and ability to handle complex family relocations."
+                    "{companyData.name} is recognized for their local expertise
+                    in {companyData.address?.city} and comprehensive support
+                    network. Clients frequently highlight their responsiveness
+                    and ability to handle complex family relocations."
                   </blockquote>
-                )}
-                <div class="mt-6 flex items-center gap-2">
-                   <div class="h-px flex-1 bg-gray-300 w-12 max-w-[3rem]"></div>
-                   <p class="text-sm text-gray-500 font-medium">Generated from {totalReviewCount > 0 ? totalReviewCount : 'market'} data points</p>
-                </div>
-             </div>
-         </div>
-      </div>
-    </section>
+                )
+              }
+              <div class="mt-6 flex items-center gap-2">
+                <div class="h-px flex-1 bg-gray-300 w-12 max-w-[3rem]"></div>
+                <p class="text-sm text-gray-500 font-medium">
+                  Generated from {
+                    totalReviewCount > 0 ? totalReviewCount : "market"
+                  } data points
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <!-- 3. SERVICES -->
-    <section class="py-24 bg-white">
-       <div class="container mx-auto px-6 md:px-10 lg:px-16 max-w-7xl">
+      <!-- 3. SERVICES -->
+      <section class="py-24 bg-white">
+        <div class="container mx-auto px-6 md:px-10 lg:px-16 max-w-7xl">
           <div class="max-w-3xl mb-12">
-             <div class="flex items-center gap-3 mb-6">
-                <div class="w-12 h-12 rounded-xl bg-[#FF6F61]/10 flex items-center justify-center text-[#FF6F61]">
-                   <Activity className="w-6 h-6" />
-                </div>
-                <h2 class="text-4xl font-serif font-bold text-gray-900">Services Provided</h2>
-             </div>
-             <p class="text-xl text-gray-500 font-light max-w-2xl">
-                Verified relocation capabilities and specialized support offered by {companyData.name}.
-             </p>
+            <div class="flex items-center gap-3 mb-6">
+              <div
+                class="w-12 h-12 rounded-xl bg-[#FF6F61]/10 flex items-center justify-center text-[#FF6F61]"
+              >
+                <Activity className="w-6 h-6" />
+              </div>
+              <h2 class="text-4xl font-serif font-bold text-gray-900">
+                Services Provided
+              </h2>
+            </div>
+            <p class="text-xl text-gray-500 font-light max-w-2xl">
+              Verified relocation capabilities and specialized support offered
+              by {companyData.name}.
+            </p>
           </div>
 
           <div class="bg-gray-50 rounded-[2.5rem] p-10 border border-gray-100">
-              <div class="flex flex-wrap gap-3">
-                 {companyData.services?.map((service: string) => (
-                    <a 
-                      href={`/services/${service}`} 
-                      class="inline-flex items-center px-5 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-700 text-sm font-medium hover:bg-[#FF6F61] hover:text-white hover:border-[#FF6F61] transition-all duration-300 shadow-sm hover:shadow-md"
-                    >
-                      {service.replace(/-/g, ' ')}
-                    </a>
-                 ))}
-              </div>
-              
-              <div class="mt-8 pt-8 border-t border-gray-200 grid md:grid-cols-3 gap-8">
-                  <div class="flex gap-4">
-                      <CheckCircle2 className="w-6 h-6 text-[#FF6F61] shrink-0" />
-                      <div>
-                          <h4 class="font-bold text-gray-900">Verified Quality</h4>
-                          <p class="text-sm text-gray-500">Service standards checked annually.</p>
-                      </div>
-                  </div>
-                  <div class="flex gap-4">
-                      <Calendar className="w-6 h-6 text-[#FF6F61] shrink-0" />
-                      <div>
-                          <h4 class="font-bold text-gray-900">Flexible Scheduling</h4>
-                          <p class="text-sm text-gray-500">Available for urgent requests.</p>
-                      </div>
-                  </div>
-                  <div class="flex gap-4">
-                      <ShieldCheck className="w-6 h-6 text-[#FF6F61] shrink-0" />
-                      <div>
-                          <h4 class="font-bold text-gray-900">Fully Insured</h4>
-                          <p class="text-sm text-gray-500">Comprehensive liability coverage.</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-       </div>
-    </section>
+            <div class="flex flex-wrap gap-3">
+              {
+                companyData.services?.map((service: string) => (
+                  <a
+                    href={`/services/${service}`}
+                    class="inline-flex items-center px-5 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-700 text-sm font-medium hover:bg-[#FF6F61] hover:text-white hover:border-[#FF6F61] transition-all duration-300 shadow-sm hover:shadow-md"
+                  >
+                    {service.replace(/-/g, " ")}
+                  </a>
+                ))
+              }
+            </div>
 
-    <!-- 4. REGIONAL COVERAGE (Integrated Dark Map) -->
-    <section class="py-24 bg-slate-900 text-white overflow-hidden relative">
-       {/* Clean Background */}
-       <div class="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-slate-800 via-slate-900 to-slate-950"></div>
-       
-       <div class="container mx-auto px-6 md:px-10 lg:px-16 max-w-7xl relative z-10 h-full flex items-center">
-          
-           {/* Map Background Visual (Absolute Right) */}
-           <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[90%] max-w-[800px] pointer-events-none md:pointer-events-auto overflow-visible group">
-               <div class="w-full relative" style="mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,1) 30%); -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,1) 30%);">
-                   {/* 
+            <div
+              class="mt-8 pt-8 border-t border-gray-200 grid md:grid-cols-3 gap-8"
+            >
+              <div class="flex gap-4">
+                <CheckCircle2 className="w-6 h-6 text-[#FF6F61] shrink-0" />
+                <div>
+                  <h4 class="font-bold text-gray-900">Verified Quality</h4>
+                  <p class="text-sm text-gray-500">
+                    Service standards checked annually.
+                  </p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <Calendar className="w-6 h-6 text-[#FF6F61] shrink-0" />
+                <div>
+                  <h4 class="font-bold text-gray-900">Flexible Scheduling</h4>
+                  <p class="text-sm text-gray-500">
+                    Available for urgent requests.
+                  </p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <ShieldCheck className="w-6 h-6 text-[#FF6F61] shrink-0" />
+                <div>
+                  <h4 class="font-bold text-gray-900">Fully Insured</h4>
+                  <p class="text-sm text-gray-500">
+                    Comprehensive liability coverage.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. REGIONAL COVERAGE (Integrated Dark Map) -->
+      <section class="py-24 bg-slate-900 text-white overflow-hidden relative">
+        {/* Clean Background */}
+        <div
+          class="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-slate-800 via-slate-900 to-slate-950"
+        >
+        </div>
+
+        <div
+          class="container mx-auto px-6 md:px-10 lg:px-16 max-w-7xl relative z-10 h-full flex items-center"
+        >
+          {/* Map Background Visual (Absolute Right) */}
+          <div
+            class="absolute right-0 top-1/2 -translate-y-1/2 w-[90%] max-w-[800px] pointer-events-none md:pointer-events-auto overflow-visible group"
+          >
+            <div
+              class="w-full relative"
+              style="mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,1) 30%); -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,1) 30%);"
+            >
+              {
+                /* 
                       Filled Map Image with Interactive Glow:
                       - Inverted (Black Fill -> White Fill)
                       - Base Opacity 0.25 (visible but subtle)
                       - Base Drop Shadow (subtle outline)
                       - Hover: Stronger Orange Drop Shadow + Higher Opacity
-                   */}
-                   <CloudinaryImage 
-                     src={swissMapImg.src} 
-                     alt="Swiss Active Regions" 
-                     width={800}
-                     height={510}
-                     class="block w-full h-full object-contain filter invert opacity-25 drop-shadow-[0_0_1px_rgba(255,75,75,0.5)] transition-all duration-700 ease-out select-none group-hover:drop-shadow-[0_0_8px_rgba(255,75,75,0.8)] group-hover:opacity-40 group-hover:scale-[1.02]"
-                   />
-               </div>
-           </div>
-
-           {/* Content Side (Left) */}
-           <div class="relative z-10 max-w-lg pt-12 md:pt-0">
-             <div class="flex items-center gap-3 mb-8">
-                <div class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-[#FF6F61] border border-white/10 backdrop-blur-sm">
-                   <MapPin className="w-7 h-7" />
-                </div>
-                <h2 class="text-5xl font-serif font-bold text-white">Regional Coverage</h2>
-             </div>
-             
-             <p class="text-xl text-white/70 font-light mb-12 leading-relaxed">
-                {companyData.name} operates across key Swiss economic hubs, providing verified local expertise and established housing networks in these regions.
-             </p>
-             
-             <div class="flex flex-wrap gap-3">
-                {companyData.regions?.map((region: string) => (
-                   <a 
-                     href={`/regions/${region}`}
-                     class="group flex items-center gap-3 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#FF6F61]/50 transition-all duration-300"
-                   >
-                      <div class="w-2 h-2 rounded-full bg-[#FF6F61] group-hover:scale-125 transition-transform"></div>
-                      <span class="text-gray-300 group-hover:text-white font-medium capitalize">{region.replace(/-/g, ' ')}</span>
-                   </a>
-                ))}
-             </div>
-           </div>
-
-       </div>
-    </section>
-
-    <!-- 5. REVIEWS + 6. COMPARISON + 7. CONTACT + 8. FAQ (Preserved) -->
-    <!-- ... Rest of unchanged sections ... -->
-    <!-- REVIEWS SECTION -->
-    <section class="py-24 bg-gray-50 border-t border-b border-gray-200" id="reviews">
-        <div class="container mx-auto px-6 md:px-10 lg:px-16 max-w-7xl">
-            <div class="text-center mb-16 max-w-3xl mx-auto">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-gray-200 text-gray-500 text-xs font-bold uppercase tracking-widest mb-6">
-                    <Star className="w-3 h-3 text-[#FF6F61]" />
-                    Verified Feedback
-                </div>
-                <h2 class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">Client Voices</h2>
-                <p class="text-xl text-gray-500 font-light">
-                    Honest feedback from verified clients and transparent platform data.
-                </p>
+                   */
+              }
+              <CloudinaryImage
+                src={swissMapImg.src}
+                alt="Swiss Active Regions"
+                width={800}
+                height={510}
+                class="block w-full h-full object-contain filter invert opacity-25 drop-shadow-[0_0_1px_rgba(255,75,75,0.5)] transition-all duration-700 ease-out select-none group-hover:drop-shadow-[0_0_8px_rgba(255,75,75,0.8)] group-hover:opacity-40 group-hover:scale-[1.02]"
+              />
             </div>
-
-            <!-- Review Summary Cards -->
-             <div class="grid md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
-                <!-- ReloFinder Internal -->
-                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm flex items-center justify-between">
-                    <div>
-                        <div class="text-sm font-bold text-gray-600 uppercase tracking-widest mb-2">ReloFinder Score</div>
-                        <div class="flex items-baseline gap-2">
-                            <span class="text-5xl font-bold text-[#FF6F61]">{weightedRating.toFixed(1)}</span>
-                            <span class="text-gray-400">/ 5.0</span>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                         <div class="flex text-[#FF6F61] gap-1 mb-2">
-                            {[1,2,3,4,5].map(i => (
-                                <Star className={`w-5 h-5 ${i <= Math.round(weightedRating) ? 'fill-current' : 'text-gray-200'}`} />
-                            ))}
-                         </div>
-                         <div class="text-sm text-gray-500 font-medium">{internalReviews.length} Verified Reviews</div>
-                    </div>
-                </div>
-
-                <!-- Google External -->
-                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm flex items-center justify-between">
-                    <div>
-                        <div class="text-sm font-bold text-gray-600 uppercase tracking-widest mb-2 flex items-center gap-2">
-                             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .533 5.333.533 12S5.867 24 12.48 24c3.44 0 6.04-1.133 8.147-3.253 2.187-2.187 2.867-5.413 2.867-8.12 0-.8-.067-1.587-.173-2.36h-10.84z"/></svg> 
-                             Google Rating
-                        </div>
-                        <div class="flex items-baseline gap-2">
-                            <span class="text-5xl font-bold text-gray-900">{externalAggregate.avg}</span>
-                            <span class="text-gray-400">/ 5.0</span>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                         <div class="flex text-yellow-400 gap-1 mb-2">
-                            {[1,2,3,4,5].map(i => (
-                                <Star className={`w-5 h-5 ${i <= Math.round(externalAggregate.avg) ? 'fill-current' : 'text-gray-200'}`} />
-                            ))}
-                         </div>
-                         <div class="text-sm text-gray-500 font-medium">{externalAggregate.count} Public Reviews</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Reviews Grid -->
-            <div class="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8 mb-16 relative">
-                 {/* Combine and sort reviews for display */
-                   (() => {
-                     const allReviews = [
-                       ...internalReviews.map(r => ({ ...r, type: 'internal', created_at: r.created_at })),
-                       ...externalReviews.map(r => ({ ...r, type: 'external', created_at: r.created_at }))
-                     ].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-
-                     const visibleReviews = allReviews.slice(0, 9);
-                     const hiddenReviews = allReviews.slice(9);
-
-                     return (
-                       <>
-                         {visibleReviews.map((review: any) => (
-                              <div class="break-inside-avoid bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow mb-8">
-                                  <div class="flex items-center justify-between mb-4">
-                                      <div class="flex items-center gap-3">
-                                          <div class={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${review.type === 'internal' ? 'bg-[#FF6F61]/10 text-[#FF6F61]' : 'bg-slate-100 text-slate-500'}`}>
-                                              {review.author_name?.charAt(0) || 'U'}
-                                          </div>
-                                          <div>
-                                              <div class="font-bold text-gray-900 text-sm">{review.author_name}</div>
-                                              <div class="text-xs text-gray-400 flex items-center gap-1">
-                                                  {review.type === 'internal' ? (
-                                                    <span>{new Date(review.created_at).toLocaleDateString()}</span>
-                                                  ) : (
-                                                    <span class="flex items-center gap-1">
-                                                      <svg class="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .533 5.333.533 12S5.867 24 12.48 24c3.44 0 6.04-1.133 8.147-3.253 2.187-2.187 2.867-5.413 2.867-8.12 0-.8-.067-1.587-.173-2.36h-10.84z"/></svg> 
-                                                      Google
-                                                    </span>
-                                                  )}
-                                              </div>
-                                          </div>
-                                      </div>
-                                      {review.type === 'internal' && (
-                                        <div class="px-2 py-1 rounded bg-green-50 text-green-700 text-[10px] font-bold uppercase tracking-wide border border-green-100">
-                                            Verified
-                                        </div>
-                                      )}
-                                  </div>
-                                  <div class="flex gap-1 mb-4">
-                                      {[1,2,3,4,5].map(i => (
-                                          <Star className={`w-4 h-4 ${i <= review.rating ? (review.type === 'internal' ? 'fill-[#FF6F61] text-[#FF6F61]' : 'fill-yellow-400 text-yellow-400') : 'text-gray-200'}`} />
-                                      ))}
-                                  </div>
-                                  <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                                      "{review.text || review.comment || review.body}"
-                                  </p>
-                                  {review.link && (
-                                      <a href={review.link} target="_blank" rel="noopener" class="text-xs font-bold text-gray-400 hover:text-[#FF6F61] flex items-center gap-1">
-                                          Read on Google <ExternalLink className="w-3 h-3" />
-                                      </a>
-                                  )}
-                              </div>
-                         ))}
-                         
-                         {/* Hidden Reviews Container */}
-                         <div id="extended-reviews" class="hidden contents">
-                            {hiddenReviews.map((review: any) => (
-                              <div class="break-inside-avoid bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow mb-8">
-                                  <div class="flex items-center justify-between mb-4">
-                                      <div class="flex items-center gap-3">
-                                          <div class={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${review.type === 'internal' ? 'bg-[#FF6F61]/10 text-[#FF6F61]' : 'bg-slate-100 text-slate-500'}`}>
-                                              {review.author_name?.charAt(0) || 'U'}
-                                          </div>
-                                          <div>
-                                              <div class="font-bold text-gray-900 text-sm">{review.author_name}</div>
-                                              <div class="text-xs text-gray-400 flex items-center gap-1">
-                                                  {review.type === 'internal' ? (
-                                                    <span>{new Date(review.created_at).toLocaleDateString()}</span>
-                                                  ) : (
-                                                    <span class="flex items-center gap-1">
-                                                      <svg class="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .533 5.333.533 12S5.867 24 12.48 24c3.44 0 6.04-1.133 8.147-3.253 2.187-2.187 2.867-5.413 2.867-8.12 0-.8-.067-1.587-.173-2.36h-10.84z"/></svg> 
-                                                      Google
-                                                    </span>
-                                                  )}
-                                              </div>
-                                          </div>
-                                      </div>
-                                      {review.type === 'internal' && (
-                                        <div class="px-2 py-1 rounded bg-green-50 text-green-700 text-[10px] font-bold uppercase tracking-wide border border-green-100">
-                                            Verified
-                                        </div>
-                                      )}
-                                  </div>
-                                  <div class="flex gap-1 mb-4">
-                                      {[1,2,3,4,5].map(i => (
-                                          <Star className={`w-4 h-4 ${i <= review.rating ? (review.type === 'internal' ? 'fill-[#FF6F61] text-[#FF6F61]' : 'fill-yellow-400 text-yellow-400') : 'text-gray-200'}`} />
-                                      ))}
-                                  </div>
-                                  <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                                      "{review.text || review.comment || review.body}"
-                                  </p>
-                              </div>
-                            ))}
-                         </div>
-                         
-                         {hiddenReviews.length > 0 && (
-                            <div class="col-span-1 md:col-span-2 lg:col-span-3 text-center py-8 break-inside-avoid">
-                                <button 
-                                  onclick="document.getElementById('extended-reviews').classList.remove('hidden'); this.style.display='none';"
-                                  class="bg-white border border-gray-200 text-gray-900 px-8 py-3 rounded-full font-bold hover:bg-gray-50 transition-colors shadow-sm inline-flex items-center gap-2"
-                                >
-                                  See All {allReviews.length} Reviews <ArrowRight className="w-4 h-4" />
-                                </button>
-                            </div>
-                         )}
-                       </>
-                     );
-                   })()
-                 }
-                 
-                 <ReviewSubmissionWrapper client:load companyName={companyData.name} companyId={relocatorId} />
-
-            </div>
-            
-            <div class="text-center">
-                 <p class="text-gray-600 text-sm">
-                    Only verified reviews from genuine clients are published on ReloFinder.
-                 </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- COMPARISON CTA (Show ONLY for NON-Preferred Partners) -->
-    {!isPreferred && (
-    <section class="py-24 bg-[#FF6F61] text-white relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
-        <div class="container mx-auto px-6 md:px-10 lg:px-16 max-w-5xl relative z-10 text-center">
-             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-bold uppercase tracking-widest mb-8">
-                <Scale className="w-4 h-4" /> Market Benchmark
-             </div>
-             
-             <h2 class="text-4xl md:text-6xl font-serif font-bold mb-8">Not sure if {companyData.name} is the right fit?</h2>
-             <p class="text-xl md:text-2xl text-white/90 font-light mb-12 max-w-2xl mx-auto">
-                Compare their services and quality with our verified partners provided by ReloFinder.
-             </p>
-
-             <div class="grid md:grid-cols-2 gap-6 text-left max-w-3xl mx-auto mb-12">
-                {alternatives.map((alt: any) => (
-                   <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all cursor-pointer">
-                      <h4 class="font-bold text-lg mb-2">{alt.data.name}</h4>
-                      <div class="flex items-center gap-2 text-sm text-white/70 mb-4">
-                         <Star className="w-4 h-4 text-white" fill="currentColor" />
-                         <span>{alt.data.rating?.score || '4.9'} Rating</span>
-                      </div>
-                      <a href={`/companies/${alt.data.id}`} class="text-sm font-bold underline decoration-white/50 hover:decoration-white underline-offset-4">View Profile</a>
-                   </div>
-                ))}
-             </div>
-
-             <a href="/companies" class="inline-flex items-center gap-3 bg-white text-[#FF6F61] px-10 py-5 rounded-full font-bold hover:bg-gray-100 transition-colors shadow-2xl">
-                Compare All Providers <ArrowRight className="w-5 h-5" />
-             </a>
-        </div>
-    </section>
-    )}
-
-    <!-- CONTACT SECTION (Show ONLY for Preferred Partners) -->
-    {isPreferred && (
-    <section id="contact" class="py-24 bg-gray-900 text-white">
-        <div class="container mx-auto px-6 md:px-10 lg:px-16 max-w-5xl">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-               <div>
-                  <h2 class="text-4xl font-serif font-bold mb-6">Ready to work with {companyData.name}?</h2>
-                  <p class="text-gray-400 text-lg leading-relaxed mb-10">
-                     Connect directly with their team. ReloFinder ensures you get priority handling as a platform referral.
-                  </p>
-                  
-                  <div class="space-y-6">
-                     <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
-                        <Phone className="w-6 h-6 text-[#FF6F61]" />
-                        <div>
-                           <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Phone</p>
-                           <a href={`tel:${companyData.phone}`} class="text-lg font-bold hover:text-[#FF6F61] transition-colors">{companyData.phone}</a>
-                        </div>
-                     </div>
-                     
-                     <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
-                        <Mail className="w-6 h-6 text-[#FF6F61]" />
-                        <div>
-                           <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">Email</p>
-                           <a href={`mailto:${companyData.email}`} class="text-lg font-bold hover:text-[#FF6F61] transition-colors">{companyData.email}</a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="bg-white text-gray-900 rounded-[2.5rem] p-10 md:p-12 text-center">
-                   <h3 class="text-2xl font-bold mb-4">Request a Proposal</h3>
-                   <p class="text-gray-500 mb-8">Send a standardized inquiry to {companyData.name}. It's free and non-binding.</p>
-                   
-                   <button 
-                      id="open-contact-modal" 
-                      class="w-full bg-[#FF6F61] text-white py-5 rounded-xl font-bold hover:bg-[#ff5a4d] transition-colors shadow-lg"
-                   >
-                      Start Inquiry
-                   </button>
-                   <p class="text-xs text-gray-400 mt-4">
-                      By clicking, you agree to our Terms of Service.
-                   </p>
-               </div>
-            </div>
-        </div>
-    </section>
-    )}
-
-    <!-- FAQ (Moved to Bottom) -->
-    {displayFaqs.length > 0 && (
-    <section class="py-24 bg-white border-t border-gray-100">
-        <div class="container mx-auto px-6 md:px-10 lg:px-16 max-w-4xl">
-          <h2 class="text-3xl font-serif font-bold text-gray-900 mb-12 text-center">Frequently Asked Questions</h2>
-          <div class="space-y-6">
-             {displayFaqs.map((faq: any, idx: number) => (
-                <div class="border border-gray-200 rounded-3xl p-8 hover:border-[#FF6F61]/30 transition-colors">
-                   <h3 class="text-xl font-bold text-gray-900 mb-4 flex gap-4">
-                      <span class="text-[#FF6F61] opacity-50 font-serif italic">0{idx + 1}</span>
-                      {faq.question}
-                   </h3>
-                   <p class="text-gray-600 leading-relaxed pl-10">
-                      {faq.answer}
-                   </p>
-                </div>
-             ))}
           </div>
-       </div>
+
+          {/* Content Side (Left) */}
+          <div class="relative z-10 max-w-lg pt-12 md:pt-0">
+            <div class="flex items-center gap-3 mb-8">
+              <div
+                class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center text-[#FF6F61] border border-white/10 backdrop-blur-sm"
+              >
+                <MapPin className="w-7 h-7" />
+              </div>
+              <h2 class="text-5xl font-serif font-bold text-white">
+                Regional Coverage
+              </h2>
+            </div>
+
+            <p class="text-xl text-white/70 font-light mb-12 leading-relaxed">
+              {companyData.name} operates across key Swiss economic hubs, providing
+              verified local expertise and established housing networks in these regions.
+            </p>
+
+            <div class="flex flex-wrap gap-3">
+              {
+                companyData.regions?.map((region: string) => (
+                  <a
+                    href={`/regions/${region}`}
+                    class="group flex items-center gap-3 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#FF6F61]/50 transition-all duration-300"
+                  >
+                    <div class="w-2 h-2 rounded-full bg-[#FF6F61] group-hover:scale-125 transition-transform" />
+                    <span class="text-gray-300 group-hover:text-white font-medium capitalize">
+                      {region.replace(/-/g, " ")}
+                    </span>
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. REVIEWS + 6. COMPARISON + 7. CONTACT + 8. FAQ (Preserved) -->
+      <!-- ... Rest of unchanged sections ... -->
+      <!-- REVIEWS SECTION -->
+      <section
+        class="py-24 bg-gray-50 border-t border-b border-gray-200"
+        id="reviews"
+      >
+        <div class="container mx-auto px-6 md:px-10 lg:px-16 max-w-7xl">
+          <div class="text-center mb-16 max-w-3xl mx-auto">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-gray-200 text-gray-500 text-xs font-bold uppercase tracking-widest mb-6"
+            >
+              <Star className="w-3 h-3 text-[#FF6F61]" />
+              Verified Feedback
+            </div>
+            <h2
+              class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6"
+            >
+              Client Voices
+            </h2>
+            <p class="text-xl text-gray-500 font-light">
+              Honest feedback from verified clients and transparent platform
+              data.
+            </p>
+          </div>
+
+          <!-- Review Summary Cards -->
+          <div class="grid md:grid-cols-2 gap-8 mb-16 max-w-4xl mx-auto">
+            <!-- ReloFinder Internal -->
+            <div
+              class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm flex items-center justify-between"
+            >
+              <div>
+                <div
+                  class="text-sm font-bold text-gray-600 uppercase tracking-widest mb-2"
+                >
+                  ReloFinder Score
+                </div>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-5xl font-bold text-[#FF6F61]"
+                    >{weightedRating.toFixed(1)}</span
+                  >
+                  <span class="text-gray-400">/ 5.0</span>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="flex text-[#FF6F61] gap-1 mb-2">
+                  {
+                    [1, 2, 3, 4, 5].map((i) => (
+                      <Star
+                        className={`w-5 h-5 ${i <= Math.round(weightedRating) ? "fill-current" : "text-gray-200"}`}
+                      />
+                    ))
+                  }
+                </div>
+                <div class="text-sm text-gray-500 font-medium">
+                  {internalReviews.length} Verified Reviews
+                </div>
+              </div>
+            </div>
+
+            <!-- Google External -->
+            <div
+              class="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm flex items-center justify-between"
+            >
+              <div>
+                <div
+                  class="text-sm font-bold text-gray-600 uppercase tracking-widest mb-2 flex items-center gap-2"
+                >
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"
+                    ><path
+                      d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .533 5.333.533 12S5.867 24 12.48 24c3.44 0 6.04-1.133 8.147-3.253 2.187-2.187 2.867-5.413 2.867-8.12 0-.8-.067-1.587-.173-2.36h-10.84z"
+                    ></path></svg
+                  >
+                  Google Rating
+                </div>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-5xl font-bold text-gray-900"
+                    >{externalAggregate.avg}</span
+                  >
+                  <span class="text-gray-400">/ 5.0</span>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="flex text-yellow-400 gap-1 mb-2">
+                  {
+                    [1, 2, 3, 4, 5].map((i) => (
+                      <Star
+                        className={`w-5 h-5 ${i <= Math.round(externalAggregate.avg) ? "fill-current" : "text-gray-200"}`}
+                      />
+                    ))
+                  }
+                </div>
+                <div class="text-sm text-gray-500 font-medium">
+                  {externalAggregate.count} Public Reviews
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reviews Grid -->
+          <div
+            class="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8 mb-16 relative"
+          >
+            {
+              /* Combine and sort reviews for display */
+              (() => {
+                const allReviews = [
+                  ...internalReviews.map((r) => ({
+                    ...r,
+                    type: "internal",
+                    created_at: r.created_at,
+                  })),
+                  ...externalReviews.map((r) => ({
+                    ...r,
+                    type: "external",
+                    created_at: r.created_at,
+                  })),
+                ].sort(
+                  (a, b) => new Date(b.created_at) - new Date(a.created_at),
+                );
+
+                const visibleReviews = allReviews.slice(0, 9);
+                const hiddenReviews = allReviews.slice(9);
+
+                return (
+                  <>
+                    {visibleReviews.map((review: any) => (
+                      <div class="break-inside-avoid bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow mb-8">
+                        <div class="flex items-center justify-between mb-4">
+                          <div class="flex items-center gap-3">
+                            <div
+                              class={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${review.type === "internal" ? "bg-[#FF6F61]/10 text-[#FF6F61]" : "bg-slate-100 text-slate-500"}`}
+                            >
+                              {review.author_name?.charAt(0) || "U"}
+                            </div>
+                            <div>
+                              <div class="font-bold text-gray-900 text-sm">
+                                {review.author_name}
+                              </div>
+                              <div class="text-xs text-gray-400 flex items-center gap-1">
+                                {review.type === "internal" ? (
+                                  <span>
+                                    {new Date(
+                                      review.created_at,
+                                    ).toLocaleDateString()}
+                                  </span>
+                                ) : (
+                                  <span class="flex items-center gap-1">
+                                    <svg
+                                      class="w-3 h-3"
+                                      viewBox="0 0 24 24"
+                                      fill="currentColor"
+                                    >
+                                      <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .533 5.333.533 12S5.867 24 12.48 24c3.44 0 6.04-1.133 8.147-3.253 2.187-2.187 2.867-5.413 2.867-8.12 0-.8-.067-1.587-.173-2.36h-10.84z" />
+                                    </svg>
+                                    Google
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                          {review.type === "internal" && (
+                            <div class="px-2 py-1 rounded bg-green-50 text-green-700 text-[10px] font-bold uppercase tracking-wide border border-green-100">
+                              Verified
+                            </div>
+                          )}
+                        </div>
+                        <div class="flex gap-1 mb-4">
+                          {[1, 2, 3, 4, 5].map((i) => (
+                            <Star
+                              className={`w-4 h-4 ${i <= review.rating ? (review.type === "internal" ? "fill-[#FF6F61] text-[#FF6F61]" : "fill-yellow-400 text-yellow-400") : "text-gray-200"}`}
+                            />
+                          ))}
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                          "{review.text || review.comment || review.body}"
+                        </p>
+                        {review.link && (
+                          <a
+                            href={review.link}
+                            target="_blank"
+                            rel="noopener"
+                            class="text-xs font-bold text-gray-400 hover:text-[#FF6F61] flex items-center gap-1"
+                          >
+                            Read on Google <ExternalLink className="w-3 h-3" />
+                          </a>
+                        )}
+                      </div>
+                    ))}
+
+                    {/* Hidden Reviews Container */}
+                    <div id="extended-reviews" class="hidden contents">
+                      {hiddenReviews.map((review: any) => (
+                        <div class="break-inside-avoid bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow mb-8">
+                          <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                              <div
+                                class={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${review.type === "internal" ? "bg-[#FF6F61]/10 text-[#FF6F61]" : "bg-slate-100 text-slate-500"}`}
+                              >
+                                {review.author_name?.charAt(0) || "U"}
+                              </div>
+                              <div>
+                                <div class="font-bold text-gray-900 text-sm">
+                                  {review.author_name}
+                                </div>
+                                <div class="text-xs text-gray-400 flex items-center gap-1">
+                                  {review.type === "internal" ? (
+                                    <span>
+                                      {new Date(
+                                        review.created_at,
+                                      ).toLocaleDateString()}
+                                    </span>
+                                  ) : (
+                                    <span class="flex items-center gap-1">
+                                      <svg
+                                        class="w-3 h-3"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor"
+                                      >
+                                        <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .533 5.333.533 12S5.867 24 12.48 24c3.44 0 6.04-1.133 8.147-3.253 2.187-2.187 2.867-5.413 2.867-8.12 0-.8-.067-1.587-.173-2.36h-10.84z" />
+                                      </svg>
+                                      Google
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                            {review.type === "internal" && (
+                              <div class="px-2 py-1 rounded bg-green-50 text-green-700 text-[10px] font-bold uppercase tracking-wide border border-green-100">
+                                Verified
+                              </div>
+                            )}
+                          </div>
+                          <div class="flex gap-1 mb-4">
+                            {[1, 2, 3, 4, 5].map((i) => (
+                              <Star
+                                className={`w-4 h-4 ${i <= review.rating ? (review.type === "internal" ? "fill-[#FF6F61] text-[#FF6F61]" : "fill-yellow-400 text-yellow-400") : "text-gray-200"}`}
+                              />
+                            ))}
+                          </div>
+                          <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            "{review.text || review.comment || review.body}"
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {hiddenReviews.length > 0 && (
+                      <div class="col-span-1 md:col-span-2 lg:col-span-3 text-center py-8 break-inside-avoid">
+                        <button
+                          onclick="document.getElementById('extended-reviews').classList.remove('hidden'); this.style.display='none';"
+                          class="bg-white border border-gray-200 text-gray-900 px-8 py-3 rounded-full font-bold hover:bg-gray-50 transition-colors shadow-sm inline-flex items-center gap-2"
+                        >
+                          See All {allReviews.length} Reviews{" "}
+                          <ArrowRight className="w-4 h-4" />
+                        </button>
+                      </div>
+                    )}
+                  </>
+                );
+              })()
+            }
+
+            <ReviewSubmissionWrapper
+              client:load
+              companyName={companyData.name}
+              companyId={relocatorId}
+            />
+          </div>
+
+          <div class="text-center">
+            <p class="text-gray-600 text-sm">
+              Only verified reviews from genuine clients are published on
+              ReloFinder.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMPARISON CTA (Show ONLY for NON-Preferred Partners) -->
+      {
+        !isPreferred && (
+          <section class="py-24 bg-[#FF6F61] text-white relative overflow-hidden">
+            <div class="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10" />
+            <div class="container mx-auto px-6 md:px-10 lg:px-16 max-w-5xl relative z-10 text-center">
+              <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-bold uppercase tracking-widest mb-8">
+                <Scale className="w-4 h-4" /> Market Benchmark
+              </div>
+
+              <h2 class="text-4xl md:text-6xl font-serif font-bold mb-8">
+                Not sure if {companyData.name} is the right fit?
+              </h2>
+              <p class="text-xl md:text-2xl text-white/90 font-light mb-12 max-w-2xl mx-auto">
+                Compare their services and quality with our verified partners
+                provided by ReloFinder.
+              </p>
+
+              <div class="grid md:grid-cols-2 gap-6 text-left max-w-3xl mx-auto mb-12">
+                {alternatives.map((alt: any) => (
+                  <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all cursor-pointer">
+                    <h4 class="font-bold text-lg mb-2">{alt.data.name}</h4>
+                    <div class="flex items-center gap-2 text-sm text-white/70 mb-4">
+                      <Star
+                        className="w-4 h-4 text-white"
+                        fill="currentColor"
+                      />
+                      <span>{alt.data.rating?.score || "4.9"} Rating</span>
+                    </div>
+                    <a
+                      href={`/companies/${alt.data.id}`}
+                      class="text-sm font-bold underline decoration-white/50 hover:decoration-white underline-offset-4"
+                    >
+                      View Profile
+                    </a>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="/companies"
+                class="inline-flex items-center gap-3 bg-white text-[#FF6F61] px-10 py-5 rounded-full font-bold hover:bg-gray-100 transition-colors shadow-2xl"
+              >
+                Compare All Providers <ArrowRight className="w-5 h-5" />
+              </a>
+            </div>
+          </section>
+        )
+      }
+
+      <!-- CONTACT SECTION (Show ONLY for Preferred Partners) -->
+      {
+        isPreferred && (
+          <section id="contact" class="py-24 bg-gray-900 text-white">
+            <div class="container mx-auto px-6 md:px-10 lg:px-16 max-w-5xl">
+              <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                  <h2 class="text-4xl font-serif font-bold mb-6">
+                    Ready to work with {companyData.name}?
+                  </h2>
+                  <p class="text-gray-400 text-lg leading-relaxed mb-10">
+                    Connect directly with their team. ReloFinder ensures you get
+                    priority handling as a platform referral.
+                  </p>
+
+                  <div class="space-y-6">
+                    <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+                      <Phone className="w-6 h-6 text-[#FF6F61]" />
+                      <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">
+                          Phone
+                        </p>
+                        <a
+                          href={`tel:${companyData.phone}`}
+                          class="text-lg font-bold hover:text-[#FF6F61] transition-colors"
+                        >
+                          {companyData.phone}
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+                      <Mail className="w-6 h-6 text-[#FF6F61]" />
+                      <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">
+                          Email
+                        </p>
+                        <a
+                          href={`mailto:${companyData.email}`}
+                          class="text-lg font-bold hover:text-[#FF6F61] transition-colors"
+                        >
+                          {companyData.email}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-white text-gray-900 rounded-[2.5rem] p-10 md:p-12 text-center">
+                  <h3 class="text-2xl font-bold mb-4">Request a Proposal</h3>
+                  <p class="text-gray-500 mb-8">
+                    Send a standardized inquiry to {companyData.name}. It's free
+                    and non-binding.
+                  </p>
+
+                  <button
+                    id="open-contact-modal"
+                    class="w-full bg-[#FF6F61] text-white py-5 rounded-xl font-bold hover:bg-[#ff5a4d] transition-colors shadow-lg"
+                  >
+                    Start Inquiry
+                  </button>
+                  <p class="text-xs text-gray-400 mt-4">
+                    By clicking, you agree to our Terms of Service.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        )
+      }
+
+      <!-- FAQ (Moved to Bottom) -->
+      {
+        displayFaqs.length > 0 && (
+          <section class="py-24 bg-white border-t border-gray-100">
+            <div class="container mx-auto px-6 md:px-10 lg:px-16 max-w-4xl">
+              <h2 class="text-3xl font-serif font-bold text-gray-900 mb-12 text-center">
+                Frequently Asked Questions
+              </h2>
+              <div class="space-y-6">
+                {displayFaqs.map((faq: any, idx: number) => (
+                  <div class="border border-gray-200 rounded-3xl p-8 hover:border-[#FF6F61]/30 transition-colors">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 flex gap-4">
+                      <span class="text-[#FF6F61] opacity-50 font-serif italic">
+                        0{idx + 1}
+                      </span>
+                      {faq.question}
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed pl-10">
+                      {faq.answer}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )
+      }
     </section>
-    )}
 
+    <UniversalContactModal client:load />
   </main>
-  
-  <UniversalContactModal client:load />
 
+  <style>
+    .animate-fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </Layout>
-
-<style>
-  .animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style>

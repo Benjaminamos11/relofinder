@@ -1,3 +1,4 @@
+export const prerender = false;
 /**
  * API Route: POST /api/replies
  * Create agency reply to review (partner/preferred tier only)

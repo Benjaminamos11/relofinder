@@ -46,7 +46,7 @@ export default defineConfig({
       ]
     })
   ],
-  output: 'server',
+  output: 'static',
   adapter: netlify(),
   site: 'https://relofinder.ch',
   trailingSlash: 'never',

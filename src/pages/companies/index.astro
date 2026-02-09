@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 import { supabase } from "../../lib/supabase";
 import { BadgeCheck, MapPin, Briefcase, Filter, X } from "lucide-react";
 import ComparisonBar from "../../components/ComparisonBar";
+import CloudinaryImage from "../../components/common/CloudinaryImage.astro";
 
 // Fetch companies from content collection
 // Fetch companies from content collection
@@ -355,9 +356,12 @@ const canonical = "https://relofinder.ch/companies";
                                             {/* Header: Logo or Name */}
                                             <div class="flex justify-center items-center mb-6 h-12">
                                                 {displayLogo ? (
-                                                    <img
+                                                    <CloudinaryImage
                                                         src={displayLogo}
                                                         alt={company.data.name}
+                                                        width={200}
+                                                        height={80}
+                                                        crop="fit"
                                                         class={`h-10 w-auto object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 ${company.data.name.includes("AM Relocation") ? "invert" : ""}`}
                                                     />
                                                 ) : (

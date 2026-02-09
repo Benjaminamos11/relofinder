@@ -1,3 +1,4 @@
+export const prerender = false;
 /**
  * API Endpoint: Submit Lead
  * Handles quote and consultation request submissions

@@ -1,3 +1,4 @@
+export const prerender = false;
 /**
  * API Route: POST /api/leads
  * Create a new lead submission
