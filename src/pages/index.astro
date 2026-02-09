@@ -95,19 +95,26 @@ const homeSchema = {
         <div class="absolute inset-0 z-0 bg-slate-900">
             <!-- Interactive Hero Slider: B&W by default, color reveal on hover -->
             <div id="hero-slides" class="absolute inset-0 transition-grayscale duration-[1500ms] ease-in-out grayscale group-hover:grayscale-0">
-                <img 
+                <CloudinaryImage 
                     src={heroLake.src} 
                     alt="Lake Zurich Coastline" 
+                    width={1920}
+                    height={1080}
+                    priority={true}
                     class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] opacity-100"
                 />
-                <img 
+                <CloudinaryImage 
                     src={heroBoutique.src} 
                     alt="Swiss Relocation Boutique" 
+                    width={1920}
+                    height={1080}
                     class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] opacity-0"
                 />
-                <img 
+                <CloudinaryImage 
                     src={heroDarkInterior.src} 
                     alt="Modern Swiss Interior" 
+                    width={1920}
+                    height={1080}
                     class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] opacity-0"
                 />
             </div>
