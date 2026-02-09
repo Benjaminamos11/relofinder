@@ -36,13 +36,11 @@ if (!id) {
 }
 
 const company = await getEntry('companies', id);
-
 if (!company) {
   return Astro.redirect('/404');
 }
 
 const companyData = company.data;
-
 // --- Data Fetching Logic (Preserved) ---
 let internalReviews = [];
 let externalReviews = [];
@@ -76,40 +74,38 @@ try {
         .single();
     
     if (fullProfile) {
-        // OVERRIDE MARKDOWN VALUES WITH DB VALUES
-        if (fullProfile.contact_email) companyData.email = fullProfile.contact_email;
-        if (fullProfile.phone_number) companyData.phone = fullProfile.phone_number;
-        if (fullProfile.website) companyData.website = fullProfile.website;
-        if (fullProfile.founded_year) companyData.founded = fullProfile.founded_year;
-        // employee_count might be text or number in DB, ensure string for display
-        if (fullProfile.employee_count) companyData.employees = String(fullProfile.employee_count);
+        // Prefer DB when present, otherwise keep Astro MD values
+        const has = (v: any) => v != null && v !== '';
+        const hasArr = (a: any) => Array.isArray(a) && a.length > 0;
 
-        // Handle Address (Prioritize Main Office)
+        if (has(fullProfile.contact_email)) companyData.email = fullProfile.contact_email;
+        if (has(fullProfile.phone_number)) companyData.phone = fullProfile.phone_number;
+        if (has(fullProfile.website)) companyData.website = fullProfile.website;
+        if (fullProfile.founded_year != null) companyData.founded = fullProfile.founded_year;
+        if (has(fullProfile.employee_count)) companyData.employees = String(fullProfile.employee_count);
+        if (has(fullProfile.bio)) companyData.description = fullProfile.bio;
+        if (has(fullProfile.logo)) companyData.logo = fullProfile.logo;
+
+        // Address: DB offices or flat columns, else keep MD
         const mainOffice = fullProfile.offices?.find((o: any) => o.is_main) || fullProfile.offices?.[0];
-        if (mainOffice) {
+        if (mainOffice && (mainOffice.street || mainOffice.city)) {
             companyData.address = {
-                street: mainOffice.street,
-                city: mainOffice.city,
-                postalCode: mainOffice.zip,
-                canton: companyData.address?.canton || '' // Keep canton from MD if missing in DB
+                street: mainOffice.street ?? companyData.address?.street ?? '',
+                city: mainOffice.city ?? companyData.address?.city ?? '',
+                postalCode: mainOffice.zip ?? companyData.address?.postalCode ?? '',
+                canton: companyData.address?.canton ?? ''
             };
         } else if (fullProfile.address_street || fullProfile.address_city) {
-             // Fallback to legacy flat columns if no office rows
-             companyData.address = {
-                street: fullProfile.address_street || companyData.address?.street,
-                city: fullProfile.address_city || companyData.address?.city,
-                postalCode: fullProfile.address_zip || companyData.address?.postalCode,
-                canton: companyData.address?.canton || ''
-             };
+            companyData.address = {
+                street: fullProfile.address_street ?? companyData.address?.street ?? '',
+                city: fullProfile.address_city ?? companyData.address?.city ?? '',
+                postalCode: fullProfile.address_zip ?? companyData.address?.postalCode ?? '',
+                canton: companyData.address?.canton ?? ''
+            };
         }
 
-        // Sync Arrays (Services & Regions)
-        if (fullProfile.services && Array.isArray(fullProfile.services) && fullProfile.services.length > 0) {
-            companyData.services = fullProfile.services;
-        }
-        if (fullProfile.regions_served && Array.isArray(fullProfile.regions_served) && fullProfile.regions_served.length > 0) {
-            companyData.regions = fullProfile.regions_served;
-        }
+        if (hasArr(fullProfile.services)) companyData.services = fullProfile.services;
+        if (hasArr(fullProfile.regions_served)) companyData.regions = fullProfile.regions_served;
     }
   }
 
@@ -335,7 +331,6 @@ const schema = {
         <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <!-- Text Content -->
           <div class="lg:col-span-8">
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-gray-900 leading-[0.95] tracking-tight mb-8">
             <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-gray-900 leading-[0.95] tracking-tight mb-8">
               {companyData.name}
               {companyData.label && (
