@@ -1,8 +1,9 @@
+export const prerender = false;
 import { Resend } from 'resend';
 import { createClient } from '@supabase/supabase-js';
 import AgencyOpportunity from '../../../../emails/AgencyOpportunity';
 
-export const prerender = false;
+// export const prerender = false; removed duplicate
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const supabase = createClient(

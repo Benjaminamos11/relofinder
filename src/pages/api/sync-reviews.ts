@@ -1,3 +1,4 @@
+export const prerender = false;
 /**
  * API Route: POST /api/sync-reviews
  * Sync external reviews from Google for an agency

@@ -1,3 +1,4 @@
+export const prerender = false;
 /**
  * API Route: POST /api/reviews
  * Create a new review (requires auth or email verification)
