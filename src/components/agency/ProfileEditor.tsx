@@ -15,14 +15,91 @@ import {
     Building2
 } from 'lucide-react';
 
+// Sub-components defined at module level so they keep stable identity across re-renders (fixes input focus loss on type)
+const CollapsibleSection = ({ icon: Icon, title, children, defaultOpen = true }: any) => {
+    const [isOpen, setIsOpen] = useState(defaultOpen);
+    return (
+        <div className="bg-white p-6 rounded-2xl shadow-xl shadow-slate-200/40 transition-all">
+            <button
+                type="button"
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-full flex items-center justify-between pb-4 border-b border-slate-100 group"
+            >
+                <div className="flex items-center gap-3">
+                    <div className="p-2 bg-slate-50 text-[#FF6F61] rounded-lg group-hover:bg-[#FF6F61]/10 transition-colors">
+                        <Icon size={18} />
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900 font-serif tracking-tight">{title}</h3>
+                </div>
+                <div className={`text-slate-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+                </div>
+            </button>
+            <div className={`grid transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0 mt-0'}`}>
+                <div className="overflow-hidden min-h-0">
+                    {children}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const SectionHeader = ({ icon: Icon, title }: any) => (
+    <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
+        <div className="p-2 bg-slate-50 text-[#FF6F61] rounded-lg">
+            <Icon size={18} />
+        </div>
+        <h3 className="text-xl font-bold text-slate-900 font-serif tracking-tight">{title}</h3>
+    </div>
+);
+
+const InputField = ({ label, name, type = "text", placeholder, width = "w-full", value, onChange }: any) => (
+    <div className={width}>
+        <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">{label}</label>
+        <input
+            type={type}
+            name={name}
+            value={value ?? ''}
+            onChange={onChange}
+            placeholder={placeholder}
+            className="w-full px-4 py-3 bg-slate-50 border border-transparent rounded-lg text-slate-700 text-sm focus:bg-white focus:border-slate-200 focus:ring-2 focus:ring-[#FF6F61]/20 outline-none transition-all placeholder:text-slate-300"
+        />
+    </div>
+);
+
+const SmartChip = ({ label, active, onClick }: any) => (
+    <button
+        type="button"
+        onClick={onClick}
+        className={`px-4 py-2 rounded-full text-xs font-bold tracking-wide transition-all border ${active
+            ? 'bg-[#0F172A] text-white border-[#0F172A] shadow-md transform scale-105'
+            : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300 hover:text-slate-700'
+            }`}
+    >
+        {label}
+    </button>
+);
+
+// Map backend (relocators) keys to form field names so defaults display correctly
+function partnerToFormData(partner: any): Record<string, any> {
+    if (!partner) return {};
+    return {
+        ...partner,
+        founded: partner.founded_year ?? partner.founded,
+        employees: partner.employee_count ?? partner.employees,
+        manager_role: partner.manager_title ?? partner.manager_role,
+        contact_phone: partner.phone_number ?? partner.contact_phone,
+        manager_phone: partner.manager_phone ?? partner.manager_phone,
+    };
+}
 
 export default function ProfileEditor({ partner, onUpdate }: any) {
-    const [formData, setFormData] = useState(partner || {});
+    const [formData, setFormData] = useState(() => partnerToFormData(partner));
     const [saving, setSaving] = useState(false);
     const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
     useEffect(() => {
-        if (partner) setFormData(partner);
+        if (partner) setFormData(partnerToFormData(partner));
     }, [partner]);
 
     const handleChange = (e: any) => {
@@ -53,10 +130,10 @@ export default function ProfileEditor({ partner, onUpdate }: any) {
                     bio: formData.bio,
                     website: formData.website,
                     contact_email: formData.contact_email,
-                    phone_number: formData.phone_number,
+                    phone_number: formData.contact_phone,
                     logo: formData.logo,
-                    founded: formData.founded,
-                    employees: formData.employees,
+                    founded_year: formData.founded != null && formData.founded !== '' ? Number(formData.founded) : null,
+                    employee_count: formData.employees ?? null,
                     address_street: formData.address_street,
                     address_city: formData.address_city,
                     address_zip: formData.address_zip,
@@ -66,8 +143,9 @@ export default function ProfileEditor({ partner, onUpdate }: any) {
                     languages: formData.languages,
                     certifications: formData.certifications,
                     manager_name: formData.manager_name,
-                    manager_role: formData.manager_role,
-                    manager_email: formData.manager_email
+                    manager_title: formData.manager_role,
+                    manager_email: formData.manager_email,
+                    manager_phone: formData.manager_phone ?? null
                 })
                 .eq('id', partner.id);
 
@@ -81,72 +159,6 @@ export default function ProfileEditor({ partner, onUpdate }: any) {
             setSaving(false);
         }
     };
-
-    // --- SUB-COMPONENTS FOR REUSE ---
-
-    const CollapsibleSection = ({ icon: Icon, title, children, defaultOpen = true }: any) => {
-        const [isOpen, setIsOpen] = useState(defaultOpen);
-        return (
-            <div className="bg-white p-6 rounded-2xl shadow-xl shadow-slate-200/40 transition-all">
-                <button
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="w-full flex items-center justify-between pb-4 border-b border-slate-100 group"
-                >
-                    <div className="flex items-center gap-3">
-                        <div className="p-2 bg-slate-50 text-[#FF6F61] rounded-lg group-hover:bg-[#FF6F61]/10 transition-colors">
-                            <Icon size={18} />
-                        </div>
-                        <h3 className="text-xl font-bold text-slate-900 font-serif tracking-tight">{title}</h3>
-                    </div>
-                    {/* Chevron Animation */}
-                    <div className={`text-slate-400 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
-                    </div>
-                </button>
-
-                <div className={`grid transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0 mt-0'}`}>
-                    <div className="overflow-hidden min-h-0">
-                        {children}
-                    </div>
-                </div>
-            </div>
-        );
-    };
-
-    const SectionHeader = ({ icon: Icon, title }: any) => (
-        <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
-            <div className="p-2 bg-slate-50 text-[#FF6F61] rounded-lg">
-                <Icon size={18} />
-            </div>
-            <h3 className="text-xl font-bold text-slate-900 font-serif tracking-tight">{title}</h3>
-        </div>
-    );
-
-    const InputField = ({ label, name, type = "text", placeholder, width = "w-full" }: any) => (
-        <div className={width}>
-            <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">{label}</label>
-            <input
-                type={type}
-                name={name}
-                value={formData[name] || ''}
-                onChange={handleChange}
-                placeholder={placeholder}
-                className="w-full px-4 py-3 bg-slate-50 border border-transparent rounded-lg text-slate-700 text-sm focus:bg-white focus:border-slate-200 focus:ring-2 focus:ring-[#FF6F61]/20 outline-none transition-all placeholder:text-slate-300"
-            />
-        </div>
-    );
-
-    const SmartChip = ({ label, active, onClick }: any) => (
-        <button
-            onClick={onClick}
-            className={`px-4 py-2 rounded-full text-xs font-bold tracking-wide transition-all border ${active
-                ? 'bg-[#0F172A] text-white border-[#0F172A] shadow-md transform scale-105'
-                : 'bg-white text-slate-500 border-slate-200 hover:border-slate-300 hover:text-slate-700'
-                }`}
-        >
-            {label}
-        </button>
-    );
 
     // --- DATA LISTS ---
     const allServices = ['Home Search', 'Visa & Immigration', 'School Search', 'Settling In', 'Departure Support', 'Short-term Accommodation', 'Spouse Support', 'Moving Managment', 'Legal Advice', 'Tax Advice'];
@@ -207,10 +219,10 @@ export default function ProfileEditor({ partner, onUpdate }: any) {
 
                             {/* Core Fields */}
                             <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <InputField label="Company Name" name="name" placeholder="e.g. Swiss Relo" />
-                                <InputField label="Website" name="website" placeholder="https://" />
-                                <InputField label="Founded Year" name="founded" type="number" placeholder="2010" />
-                                <InputField label="Team Size" name="employees" placeholder="1-10" />
+                                <InputField label="Company Name" name="name" placeholder="e.g. Swiss Relo" value={formData.name} onChange={handleChange} />
+                                <InputField label="Website" name="website" placeholder="https://" value={formData.website} onChange={handleChange} />
+                                <InputField label="Founded Year" name="founded" type="number" placeholder="2010" value={formData.founded} onChange={handleChange} />
+                                <InputField label="Team Size" name="employees" placeholder="1-10" value={formData.employees} onChange={handleChange} />
                             </div>
                         </div>
 
@@ -230,17 +242,17 @@ export default function ProfileEditor({ partner, onUpdate }: any) {
                     <CollapsibleSection icon={MapPin} title="Contact & Location" defaultOpen={true}>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                             <div className="md:col-span-3">
-                                <InputField label="Street Address" name="address_street" placeholder="Bahnhofstrasse 1" />
+                                <InputField label="Street Address" name="address_street" placeholder="Bahnhofstrasse 1" value={formData.address_street} onChange={handleChange} />
                             </div>
                             <div className="md:col-span-2">
-                                <InputField label="City" name="address_city" placeholder="Zurich" />
+                                <InputField label="City" name="address_city" placeholder="Zurich" value={formData.address_city} onChange={handleChange} />
                             </div>
-                            <InputField label="Postal Code" name="address_zip" placeholder="8001" />
+                            <InputField label="Postal Code" name="address_zip" placeholder="8001" value={formData.address_zip} onChange={handleChange} />
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                            <InputField label="General Phone" name="contact_phone" placeholder="+41 ..." />
-                            <InputField label="General Email" name="contact_email" placeholder="hello@company.ch" />
+                            <InputField label="General Phone" name="contact_phone" placeholder="+41 ..." value={formData.contact_phone} onChange={handleChange} />
+                            <InputField label="General Email" name="contact_email" placeholder="hello@company.ch" value={formData.contact_email} onChange={handleChange} />
                         </div>
 
                         {/* Calendar Link - Special Styling */}
@@ -270,9 +282,10 @@ export default function ProfileEditor({ partner, onUpdate }: any) {
                     {/* Team Manager */}
                     <CollapsibleSection icon={Briefcase} title="Team Manager" defaultOpen={false}>
                         <div className="space-y-5">
-                            <InputField label="Full Name" name="manager_name" placeholder="John Doe" />
-                            <InputField label="Job Title" name="manager_role" placeholder="Head of Global Mobility" />
-                            <InputField label="Direct Email" name="manager_email" placeholder="john@company.ch" />
+                            <InputField label="Full Name" name="manager_name" placeholder="John Doe" value={formData.manager_name} onChange={handleChange} />
+                            <InputField label="Job Title" name="manager_role" placeholder="Head of Global Mobility" value={formData.manager_role} onChange={handleChange} />
+                            <InputField label="Direct Email" name="manager_email" placeholder="john@company.ch" value={formData.manager_email} onChange={handleChange} />
+                            <InputField label="Direct Phone" name="manager_phone" placeholder="+41 ..." value={formData.manager_phone} onChange={handleChange} />
                         </div>
                     </CollapsibleSection>
 
