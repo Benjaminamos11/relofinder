@@ -1,10 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
-
-// Get all companies
-const companies = await getCollection('companies');
-
-// Use static reviews to avoid API rate limiting issues that affect mobile performance
+// Reviews are currently static to avoid build-time API issues
 const recentReviews = [
   {
     author: "Sarah M.",

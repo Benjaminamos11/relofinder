@@ -1,63 +1,84 @@
 import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
+import { supabase } from '../../lib/supabase';
 
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const companies = await getCollection('companies');
+  const { data: companies, error } = await supabase
+    .from('relocators')
+    .select('id, slug')
+    .not('slug', 'is', null);
+
+  if (error) {
+    console.error('Error fetching company slugs for capsules:', error);
+    return [];
+  }
+
   return companies.map((company: any) => ({
-    params: { id: company.data.id },
-    props: { company },
+    params: { id: company.slug },
+    props: { relocatorId: company.id },
   }));
 }
 
 export const GET: APIRoute = async ({ params, props }) => {
-  const { company } = props as any;
-  const companyData = company.data;
+  const { relocatorId } = props as any;
+
+  const { data: relocatorData, error } = await supabase
+    .from('relocators')
+    .select('*')
+    .eq('id', relocatorId)
+    .single();
+
+  if (error || !relocatorData) {
+    return new Response(JSON.stringify({ error: 'Company not found' }), {
+      status: 404,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 
   // Create lightweight capsule for LLM consumption
   const capsule = {
-    name: companyData.name,
-    id: companyData.id,
-    preferred: companyData.featured || companyData.preferred || false,
-    verificationSource: companyData.website || "official company information",
+    name: relocatorData.name,
+    id: relocatorData.slug, // Using slug as id for consistency with profile URLs
+    preferred: relocatorData.tier === 'preferred' || relocatorData.tier === 'partner',
+    verificationSource: relocatorData.website || "official company information",
     lastVerified: new Date().toISOString().split('T')[0],
-    
-    // Services offered (verified only)
-    services: companyData.services || [],
-    
-    // Regions covered (verified only)
-    regions: companyData.regions || [],
-    
-    // Contact information (preferred partners only)
-    contact: (companyData.featured || companyData.preferred) ? {
-      address: companyData.address ? {
-        street: companyData.address.street,
-        city: companyData.address.city,
-        postalCode: companyData.address.postalCode,
-        country: companyData.address.country || "Switzerland"
-      } : null,
-      phone: companyData.phone || null,
-      email: companyData.email || null,
-      website: companyData.website || null
-    } : null,
-    
+
+    // Services offered
+    services: relocatorData.services || [],
+
+    // Regions covered
+    regions: relocatorData.regions_served || [],
+
+    // Contact information
+    contact: {
+      address: {
+        street: relocatorData.address_street,
+        city: relocatorData.address_city,
+        postalCode: relocatorData.address_zip,
+        country: "Switzerland"
+      },
+      phone: relocatorData.phone_number || null,
+      email: relocatorData.contact_email || null,
+      website: relocatorData.website || null
+    },
+
     // Review metadata
     reviewsMetadata: {
-      averageRating: companyData.rating?.score || 4.5,
-      reviewCount: companyData.rating?.reviews || 50,
+      averageRating: relocatorData.rating || 4.5,
+      reviewCount: 0, // Would need a separate count query or summary field
       lastUpdated: new Date().toISOString().split('T')[0]
     },
-    
-    // Specializations (verified from source)
-    specializations: companyData.specializations || [],
-    
+
+    // Specializations
+    specializations: [], // DB doesn't have this field explicitly yet
+
     // Company description
-    description: companyData.description || null,
-    
+    description: relocatorData.bio || relocatorData.seo_summary || null,
+
     // URLs
-    profileUrl: `https://relofinder.ch/companies/${companyData.id}`,
-    
+    profileUrl: `https://relofinder.ch/companies/${relocatorData.slug}`,
+
     // Last updated
     lastUpdated: new Date().toISOString()
   };
@@ -70,3 +91,4 @@ export const GET: APIRoute = async ({ params, props }) => {
     },
   });
 };
+

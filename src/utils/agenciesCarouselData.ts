@@ -1,9 +1,8 @@
 /**
  * Agencies Carousel Data Fetcher
- * Combines Content Collections + Supabase for the unified carousel
+ * Fetches data solely from Supabase for the unified carousel
  */
 
-import { getCollection } from 'astro:content';
 import { supabase } from '../lib/supabase';
 
 export type AgencyTier = 'preferred' | 'partner' | 'standard';
@@ -47,79 +46,44 @@ export async function getAgenciesCarouselData(limit = 8): Promise<AgencyCarousel
   try {
     console.log('[AgenciesCarousel] Starting data fetch...');
 
-    // Fetch all companies from Content Collections
-    const companies = await getCollection('companies');
-    console.log('[AgenciesCarousel] Found companies from content:', companies.length);
-
-    // Fetch Supabase data (tier, rating, reviews)
+    // Fetch ALL relocators from Supabase
     const { data: relocators, error: relocatorsError } = await supabase
       .from('relocators')
-      .select('id, name, tier, rating, seo_summary')
+      .select('id, name, tier, rating, seo_summary, slug, services, regions_served, logo, bio, founded_year')
       .order('tier', { ascending: true })
       .order('rating', { ascending: false });
 
     if (relocatorsError) {
       console.error('[AgenciesCarousel] Error fetching relocators:', relocatorsError);
-      // Still continue with content collection data
+      return [];
     }
 
     console.log('[AgenciesCarousel] Found relocators from Supabase:', relocators?.length || 0);
 
-    // Build name-to-relocator map
-    const relocatorMap = new Map();
-    if (relocators) {
-      relocators.forEach((rel: any) => {
-        const normalizedName = rel.name.toLowerCase().trim();
-        relocatorMap.set(normalizedName, rel);
-      });
-    }
-
-    // 1. Initial Merge & robust matching (Metadata only, no heavy fetches)
-    let allAgencies: AgencyCarouselData[] = [];
-
-    for (const company of companies) {
-      const companyName = company.data.name.toLowerCase().trim();
-
-      // Robust matching: Check if names contain each other
-      const relocatorData = relocators?.find((r: any) => {
-        const dbName = r.name.toLowerCase().trim();
-        return dbName === companyName || dbName.includes(companyName) || companyName.includes(dbName);
-      });
-
-      // Fallback if not in Supabase
-      const effectiveRelocator = relocatorData || {
-        id: company.data.id,
-        tier: 'standard',
-        rating: 0,
-        name: company.data.name,
-        seo_summary: undefined // Field required by interface
-      };
-
-      const slug = company.data.id;
-
-      const agencyData: AgencyCarouselData = {
-        id: company.data.id,
-        slug,
-        name: company.data.name,
-        logo_url: company.data.logo,
-        tier: (effectiveRelocator.tier || 'standard') as AgencyTier,
-        services: company.data.services?.slice(0, 3) || [],
-        regions: company.data.regions?.slice(0, 1) || [],
-        avg_rating: effectiveRelocator.rating || 0,
+    // Filter and Map
+    const allAgencies: AgencyCarouselData[] = (relocators || []).map((rel: any) => {
+      return {
+        id: rel.slug || String(rel.id),
+        slug: rel.slug || String(rel.id),
+        name: rel.name,
+        logo_url: rel.logo,
+        tier: (rel.tier || 'standard') as AgencyTier,
+        services: rel.services?.slice(0, 3) || [],
+        regions: rel.regions_served?.slice(0, 1) || [],
+        avg_rating: rel.rating || 0,
         reviews_count: 0, // Placeholder, fetch later
         latest_reviews: [], // Placeholder, fetch later
-        verified: company.data.verified || false,
-        relocator_id: effectiveRelocator.id,
-        description: company.data.description || company.body || '',
-        seo_summary: effectiveRelocator.seo_summary, // Map it here
+        verified: rel.tier === 'preferred' || rel.tier === 'partner',
+        relocator_id: rel.id,
+        description: rel.seo_summary || rel.bio || '',
+        seo_summary: rel.seo_summary,
         stats: {
-          yearsInBusiness: company.data.founded ? new Date().getFullYear() - company.data.founded : undefined,
+          yearsInBusiness: rel.founded_year ? new Date().getFullYear() - rel.founded_year : undefined,
           responseTime: '< 24h'
         }
       };
+    });
 
-      allAgencies.push(agencyData);
-    }
 
     // 2. Sort Logic
     // Normalize name helper for comparison

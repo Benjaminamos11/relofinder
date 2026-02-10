@@ -1,23 +1,22 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { getCollection } from "astro:content";
 import { supabase } from "../../lib/supabase";
 import { BadgeCheck, MapPin, Briefcase, Filter, X } from "lucide-react";
 import ComparisonBar from "../../components/ComparisonBar";
 import CloudinaryImage from "../../components/common/CloudinaryImage.astro";
 
-// Fetch companies from content collection
-// Fetch companies from content collection
-const companies = await getCollection("companies", ({ data }) => {
-    return !data.hidden;
-});
-
-// Fetch real stats from Supabase
-const { data: relocators } = await supabase
+// Fetch ALL relocators from Supabase
+const { data: relocators, error: relocatorsError } = await supabase
     .from("relocators")
-    .select("id, name, tier, rating, seo_summary, logo");
+    .select("*")
+    .order("tier", { ascending: true })
+    .order("rating", { ascending: false });
 
-// Fetch total review count (keep for stats but removing from display if cluttering)
+if (relocatorsError) {
+    console.error("[CompaniesIndex] Supabase error:", relocatorsError.message);
+}
+
+// Fetch total review count for global stats
 const { data: googleReviews } = await supabase
     .from("google_reviews")
     .select("id");
@@ -33,47 +32,37 @@ const avgRating =
           ).toFixed(1)
         : "4.7";
 
-// Helper to find relocator data robustly
-const findRelocator = (companyName: string) => {
-    if (!relocators) return undefined;
-    const normalize = (str: string) =>
-        str.toLowerCase().replace(/[^a-z0-9]/g, "");
-    const nInput = normalize(companyName);
+// Map relocators to the structure expected by the template
+const sortedCompanies = (relocators || [])
+    .filter((r) => r.slug) // Ensure they have a slug
+    .map((r) => ({
+        slug: r.slug,
+        id: r.slug,
+        data: {
+            name: r.name,
+            description:
+                r.seo_summary ||
+                r.bio ||
+                "Leading relocation specialist in Switzerland.",
+            services: r.services || [],
+            regions: r.regions_served || [],
+            logo: r.logo,
+            tier: r.tier,
+            label:
+                r.tier === "preferred"
+                    ? "Preferred"
+                    : r.tier === "partner"
+                      ? "Partner"
+                      : null,
+        },
+    }));
 
-    return relocators.find((r) => {
-        const nDb = normalize(r.name);
-        return nDb.includes(nInput) || nInput.includes(nDb);
-    });
-};
-
-// Get all relocation companies (only exclude non-relocation for testing)
-const relocationCompanies = companies.filter(
-    (c) =>
-        !c.data.name.toLowerCase().includes("expat services switzerland") &&
-        !c.data.name.toLowerCase().includes("swiss prime international"),
-);
-
-// Sort remaining companies by rating
-const sortedCompanies = relocationCompanies.sort((a, b) => {
-    const aData = findRelocator(a.data.name);
-    const bData = findRelocator(b.data.name);
-
-    // Sort logic: Tier first, then Rating
-    const aTier =
-        aData?.tier === "preferred" ? 2 : aData?.tier === "partner" ? 1 : 0;
-    const bTier =
-        bData?.tier === "preferred" ? 2 : bData?.tier === "partner" ? 1 : 0;
-
-    if (aTier !== bTier) return bTier - aTier;
-    return (bData?.rating || 0) - (aData?.rating || 0);
-});
-
-// Extract unique values
+// Extract unique values for filters
 const allServices = [
-    ...new Set(relocationCompanies.flatMap((c) => c.data.services)),
+    ...new Set((relocators || []).flatMap((r) => r.services || [])),
 ].sort();
 const allRegions = [
-    ...new Set(relocationCompanies.flatMap((c) => c.data.regions)),
+    ...new Set((relocators || []).flatMap((r) => r.regions_served || [])),
 ].sort();
 
 // Page metadata
@@ -310,20 +299,8 @@ const canonical = "https://relofinder.ch/companies";
                     >
                         {
                             sortedCompanies.map((company) => {
-                                const supabaseData = findRelocator(
-                                    company.data.name,
-                                );
-                                const tier = supabaseData?.tier || "standard";
-                                // Logo Priority: DB -> Markdown -> None
-                                const dbLogo = supabaseData?.logo;
-                                const mdLogo = company.data.logo;
-                                const displayLogo =
-                                    dbLogo && dbLogo.length > 5
-                                        ? dbLogo
-                                        : mdLogo &&
-                                            !mdLogo.includes("placehold.co")
-                                          ? mdLogo
-                                          : null;
+                                const tier = company.data.tier || "standard";
+                                const displayLogo = company.data.logo;
 
                                 return (
                                     <a

@@ -4,7 +4,6 @@
  * Ensures consistent data source and sorting
  */
 
-import { getCollection } from 'astro:content';
 import { supabase } from '../lib/supabase';
 
 export type CompanyTier = 'preferred' | 'partner' | 'standard';
@@ -35,48 +34,19 @@ interface SupabaseRelocator {
 export async function getFeaturedCompanies(
   limit = 10
 ): Promise<FeaturedCompanyData[]> {
-  // Fetch from content collection
-  const companies = await getCollection('companies');
-
-  // Fetch tier and rating data from Supabase
+  // Fetch ALL relocators from Supabase
   const { data: relocators, error: relocatorsError } = await supabase
     .from('relocators')
-    .select('id, name, tier, rating');
-  
+    .select('id, name, tier, rating, slug, logo, services, regions_served');
+
   if (relocatorsError) {
     console.error('[FeaturedCompanies] Supabase error:', relocatorsError.message, relocatorsError.hint);
   }
-  
-  if (!relocators || relocators.length === 0) {
-    console.warn('[FeaturedCompanies] ⚠️ No relocators from Supabase. Check if env vars are set during build.');
-    console.warn('[FeaturedCompanies] PUBLIC_SUPABASE_URL:', import.meta.env.PUBLIC_SUPABASE_URL ? 'SET' : 'NOT SET');
-    console.warn('[FeaturedCompanies] PUBLIC_SUPABASE_ANON_KEY:', import.meta.env.PUBLIC_SUPABASE_ANON_KEY ? 'SET' : 'NOT SET');
-  }
 
-  // Create lookup map with multiple key variations for better matching
-  const relocatorMap = new Map<string, SupabaseRelocator>();
-  console.log(`[FeaturedCompanies] Total relocators from DB: ${relocators?.length || 0}`);
-  
-  if (relocators) {
-    relocators.forEach((r) => {
-      const normalized = r.name.toLowerCase().trim();
-      relocatorMap.set(normalized, r);
-      // Also add without GmbH, AG, LLC etc for better matching
-      const withoutSuffix = normalized
-        .replace(/\s+(gmbh|ag|llc|ltd|inc|sa)$/i, '')
-        .trim();
-      if (withoutSuffix !== normalized) {
-        relocatorMap.set(withoutSuffix, r);
-      }
-      
-      // Log preferred/partner tiers for debugging
-      if (r.tier === 'preferred' || r.tier === 'partner') {
-        console.log(`[FeaturedCompanies] Found ${r.tier} in DB: "${r.name}" (normalized: "${normalized}")`);
-      }
-    });
+  if (!relocators || relocators.length === 0) {
+    console.warn('[FeaturedCompanies] ⚠️ No relocators from Supabase.');
+    return [];
   }
-  
-  console.log(`[FeaturedCompanies] Total companies from content: ${companies.length}`);
 
   // Fetch review counts from google_reviews
   const { data: reviewCounts } = await supabase
@@ -92,59 +62,30 @@ export async function getFeaturedCompanies(
   }
 
   // Map and enrich company data
-  const enrichedCompanies: FeaturedCompanyData[] = companies
-    .map((company) => {
-      const data = company.data;
-      const normalized = data.name.toLowerCase().trim();
-      const withoutSuffix = normalized.replace(/\s+(gmbh|ag|llc|ltd|inc|sa)$/i, '').trim();
-      
-      // Try multiple lookup strategies
-      let supabaseData = relocatorMap.get(normalized);
-      if (!supabaseData) {
-        supabaseData = relocatorMap.get(withoutSuffix);
-      }
-
-      // Determine tier: try Supabase first, then fallback to content collection
-      let tier: CompanyTier = 'standard';
-      if (supabaseData?.tier) {
-        tier = supabaseData.tier as CompanyTier;
-      } else if (data.featured === true) {
-        // Fallback: use 'featured' field from content as 'preferred'
-        tier = 'preferred';
-        console.log(`[FeaturedCompanies] Using fallback: ${data.name} marked as preferred (featured=true)`);
-      }
-      
-      // Log matching attempts for all companies
-      if (data.name.toLowerCase().includes('prime') || data.name.toLowerCase().includes('expat')) {
-        console.log(`[FeaturedCompanies] Matching "${data.name}": normalized="${normalized}", withoutSuffix="${withoutSuffix}", found=${!!supabaseData}, tier=${tier}`);
-      }
-      
-      // Log if we found tier data
-      if (supabaseData && (tier === 'preferred' || tier === 'partner')) {
-        console.log(`[FeaturedCompanies] ✓ Mapped "${data.name}" → tier: ${tier}`);
-      }
+  const enrichedCompanies: FeaturedCompanyData[] = relocators
+    .map((rel: any) => {
+      const tier = (rel.tier || 'standard') as CompanyTier;
 
       return {
-        id: data.id,
-        slug: data.id, // Using id as slug
-        name: data.name,
-        logo_url: data.logo || undefined,
+        id: rel.slug || String(rel.id),
+        slug: rel.slug || String(rel.id),
+        name: rel.name,
+        logo_url: rel.logo || undefined,
         tier: tier,
-        rating_avg: supabaseData?.rating || data.rating?.score || undefined,
-        rating_count: supabaseData
-          ? reviewCountMap.get(supabaseData.id) || 0
-          : data.rating?.reviews || 0,
-        services: data.services || [],
-        regions: data.regions || [],
+        rating_avg: rel.rating || undefined,
+        rating_count: reviewCountMap.get(rel.id) || 0,
+        services: rel.services || [],
+        regions: rel.regions_served || [],
       };
     })
+
     .filter((company) => {
       // Keep preferred/partner tier companies even if they're insurance
       // Only filter out insurance agencies if they're standard tier
       if (company.tier === 'preferred' || company.tier === 'partner') {
         return true;
       }
-      
+
       // Exclude insurance agencies from standard tier only
       const name = company.name.toLowerCase();
       return (
@@ -188,7 +129,7 @@ export async function getFeaturedCompanies(
     .slice(0, 8);
 
   console.log(`[FeaturedCompanies] Counts - Preferred: ${preferred.length}, Partner: ${partner.length}, Standard: ${standard.length}`);
-  
+
   if (preferred.length > 0) {
     console.log('[FeaturedCompanies] Preferred companies:', preferred.map(c => c.name).join(', '));
   }

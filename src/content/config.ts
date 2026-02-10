@@ -1,90 +1,6 @@
 // Content collections configuration for ReloFinder
 import { defineCollection, z } from 'astro:content';
 
-// Companies Collection
-const companies = defineCollection({
-  type: 'content',
-  schema: z.object({
-    id: z.string(),
-    name: z.string(),
-    description: z.string(),
-    logo: z.string(),
-    heroImage: z.string().url().optional(),
-    website: z.string().url(),
-    phone: z.string().optional(),
-    email: z.string(),
-    googleMyBusinessUrl: z.string().optional(), // For SerpAPI Google Reviews integration - can be URL or search query
-    address: z.object({
-      street: z.string(),
-      city: z.string(),
-      postalCode: z.string(),
-      canton: z.string()
-    }),
-    services: z.array(z.string()), // Service IDs
-    regions: z.array(z.string()), // Region IDs
-    specializations: z.array(z.string()),
-    languages: z.array(z.string()),
-    founded: z.number().optional(),
-    employees: z.string().optional(),
-    verified: z.boolean().default(false),
-    featured: z.boolean().default(false),
-    hidden: z.boolean().default(false),
-    label: z.string().optional(),
-    rating: z.object({
-      score: z.number().min(1).max(5),
-      reviews: z.number(),
-      breakdown: z.object({
-        communication: z.number(),
-        professionalism: z.number(),
-        value: z.number(),
-        timeliness: z.number()
-      })
-    }),
-    pricing: z.object({
-      consultationFee: z.number().optional(),
-      packagePricing: z.boolean().default(false),
-      freeInitialConsult: z.boolean().default(true)
-    }),
-    certifications: z.array(z.string()).optional(),
-    seoTitle: z.string().optional(),
-    seoDescription: z.string().optional(),
-    // Enhanced content blocks
-    highlights: z.array(z.object({
-      title: z.string(),
-      icon: z.string().optional(),
-      points: z.array(z.string())
-    })).optional(),
-    milestones: z.array(z.object({
-      year: z.number(),
-      event: z.string()
-    })).optional(),
-    process: z.array(z.object({
-      step: z.number(),
-      title: z.string(),
-      duration: z.string(),
-      description: z.string(),
-      icon: z.string().optional()
-    })).optional(),
-    testimonials: z.array(z.object({
-      author: z.string(),
-      role: z.string(),
-      rating: z.number(),
-      quote: z.string()
-    })).optional(),
-    stats: z.array(z.object({
-      label: z.string(),
-      value: z.string(),
-      icon: z.string().optional()
-    })).optional(),
-    pros: z.array(z.string()).optional(),
-    cons: z.array(z.string()).optional(),
-    bestFor: z.array(z.string()).optional(),
-    faqs: z.array(z.object({
-      question: z.string(),
-      answer: z.string()
-    })).optional()
-  })
-});
 
 // Services Collection - Made more flexible
 const services = defineCollection({
@@ -248,7 +164,6 @@ const reviews = defineCollection({
 
 // Export all collections
 export const collections = {
-  'companies': companies,
   'services': services,
   'regions': regions,
   'blog': blog,
