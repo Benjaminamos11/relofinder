@@ -133,7 +133,7 @@ const {
   <body class="min-h-screen flex flex-col bg-gray-50">
     <Navbar variant={navbarVariant} />
 
-    <main class="flex-grow">
+    <main class={`flex-grow ${navbarVariant === "solid" ? "pt-20" : ""}`}>
       <slot />
     </main>
 
@@ -150,8 +150,8 @@ const {
     <!-- Use client:load to ensure React is ready before hydration -->
     <UniversalContactModal client:load />
     <GlobalAssessmentModal client:load />
-    <GoogleTag client:load />
-    <FacebookPixel client:load />
+    {/* <GoogleTag client:load /> */}
+    {/* <FacebookPixel client:load /> */}
     <CookieBanner client:load />
 
     <!-- Performance & Infrastructure: Ensure legacy SW are removed -->
