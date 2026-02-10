@@ -16,6 +16,9 @@ import HeroSearch from '../components/home/HeroSearch.tsx';
 import Layout from '../layouts/Layout.astro';
 import CloudinaryImage from '../components/common/CloudinaryImage.astro';
 
+// Cache at the edge for 5 minutes, in the browser for 1 minute
+Astro.response.headers.set('Cache-Control', 'public, max-age=60, s-maxage=300');
+
 // Cloudinary Assets
 const cloudinaryBase = 'https://res.cloudinary.com/dphbnwjtx/image/upload/f_auto,q_auto';
 const heroLake = { src: `${cloudinaryBase}/home/swiss-lake-drone-hero` };
