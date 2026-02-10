@@ -138,14 +138,7 @@ const {
     </main>
 
     <Footer theme={footerTheme} />
-    <!-- Hidden marker div - always present in DOM for MutationObserver -->
-    <div
-      id="relofinder-modal-marker"
-      data-relofinder-modal="pending"
-      style="display: none;"
-      aria-hidden="true"
-    >
-    </div>
+    aria-hidden="true" >
 
     <!-- Use client:load to ensure React is ready before hydration -->
     <UniversalContactModal client:load />
@@ -199,29 +192,9 @@ const {
         window.reactLoadPromise = null;
 
         // Preload React to ensure it's ready before hydration
-        if (!window.reactLoadPromise) {
-          window.reactLoadPromise = new Promise((resolve) => {
-            if (
-              window.React ||
-              document.querySelector('script[src*="react"]')
-            ) {
-              resolve();
-              return;
-            }
-            let checks = 0;
-            const checkReact = setInterval(() => {
-              checks++;
-              if (
-                window.React ||
-                document.querySelector('script[src*="react"]') ||
-                checks > 100
-              ) {
-                clearInterval(checkReact);
-                resolve();
-              }
-            }, 50);
-          });
-        }
+        // Preload React check REMOVED to prevent 5s blocking delay.
+        // We rely on standard hydration and the data-relofinder-modal="ready" marker.
+        window.reactLoadPromise = Promise.resolve();
 
         // Listen for React hydration errors
         window.addEventListener(
@@ -406,72 +379,28 @@ const {
           });
         };
 
-        const observeReactMount = () => {
-          let checkCount = 0;
-          const maxChecks = 40;
-          const checkAndProcess = () => {
-            const markerDiv = document.getElementById(
-              "relofinder-modal-marker",
-            );
-            const reactMarker = document.querySelector(
-              '[data-relofinder-modal="ready"]',
-            );
-            const marker = reactMarker || markerDiv;
-            if (
-              marker &&
-              marker.getAttribute("data-relofinder-modal") === "ready" &&
-              !window.modalReady
-            ) {
-              window.modalReady = true;
-              if (typeof window.processModalQueue === "function")
-                window.processModalQueue();
-              return true;
-            }
-            return false;
-          };
+        // SIMPLIFIED INITIALIZATION
+        // No observers, no intervals. Just set ready.
+        window.modalReady = true;
 
-          const observer = new MutationObserver(() => {
-            if (checkAndProcess()) {
-              observer.disconnect();
-              if (checkInterval) clearInterval(checkInterval);
-            }
-          });
+        // Process any events that might have been queued before this script ran
+        if (typeof window.processModalQueue === "function") {
+          window.processModalQueue();
+        }
 
-          observer.observe(document.body, {
-            childList: true,
-            subtree: true,
-            attributes: true,
-            attributeFilter: ["data-relofinder-modal"],
-          });
-          if (checkAndProcess()) observer.disconnect();
+        initModalSystem();
+        // observeReactMount(); // REMOVED
 
-          const checkInterval = setInterval(() => {
-            checkCount++;
-            if (checkAndProcess()) {
-              observer.disconnect();
-              clearInterval(checkInterval);
-            } else if (checkCount >= maxChecks) {
-              console.warn(
-                "⚠️ React component not detected after 20 seconds, forcing ready state",
-              );
-              const markerDiv = document.getElementById(
-                "relofinder-modal-marker",
-              );
-              if (markerDiv && !window.modalReady) {
-                markerDiv.setAttribute("data-relofinder-modal", "ready");
-                window.modalReady = true;
-                if (typeof window.processModalQueue === "function")
-                  window.processModalQueue();
-              }
-              observer.disconnect();
-              clearInterval(checkInterval);
-            }
-          }, 500);
-        };
+        document.addEventListener("astro:after-swap", () => {
+          initModalSystem();
+          // observeReactMount(); // REMOVED
 
-        if (document.readyState === "loading")
-          document.addEventListener("DOMContentLoaded", observeReactMount);
-        else observeReactMount();
+          // Re-ensure ready state on swap
+          window.modalReady = true;
+          if (typeof window.processModalQueue === "function") {
+            window.processModalQueue();
+          }
+        });
       }
     </script>
   </body>

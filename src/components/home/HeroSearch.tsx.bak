@@ -41,6 +41,14 @@ export default function HeroSearch({ initialDestination = '', initialService = '
     const [yearlyVolume, setYearlyVolume] = useState('');
     const [primaryDestination, setPrimaryDestination] = useState(initialDestination); // Pre-fill
 
+    // Signal hydration to Layout.astro observer
+    React.useEffect(() => {
+        const marker = document.getElementById('relofinder-modal-marker');
+        if (marker) {
+            marker.setAttribute('data-relofinder-modal', 'ready');
+        }
+    }, []);
+
     const handlePrivateSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // Instead of redirecting, we now open the assessment modal
@@ -243,15 +251,13 @@ export default function HeroSearch({ initialDestination = '', initialService = '
                     </form>
                 )}
 
-                {/* Assessment Modal - Conditionally rendered to prevent hydration/hook errors on mount */}
-                {isAssessmentModalOpen && (
-                    <AssessmentModal
-                        isOpen={isAssessmentModalOpen}
-                        onClose={() => setIsAssessmentModalOpen(false)}
-                        selectedDestination={where || 'Switzerland'}
-                        selectedService={service || 'full-package'}
-                    />
-                )}
+                {/* Assessment Modal */}
+                <AssessmentModal
+                    isOpen={isAssessmentModalOpen}
+                    onClose={() => setIsAssessmentModalOpen(false)}
+                    selectedDestination={where || 'Switzerland'}
+                    selectedService={service || 'full-package'}
+                />
             </div>
         </div>
     );

@@ -42,10 +42,20 @@ export interface AgencyCarouselData {
  * Sorted: preferred → partner → by rating desc
  * Returns: 8 agencies with their latest review
  */
-export async function getAgenciesCarouselData(limit = 8): Promise<AgencyCarouselData[]> {
-  try {
-    console.log('[AgenciesCarousel] Starting data fetch...');
+const CACHE_TTL = 1000 * 60 * 5; // 5 minutes
+let cache: { data: AgencyCarouselData[], timestamp: number } | null = null;
 
+/**
+ * Fetch top agencies for the carousel
+ * Sorted: preferred → partner → by rating desc
+ * Returns: 8 agencies with their latest review
+ */
+export const getAgenciesCarouselData = async (limit: number = 3): Promise<AgencyCarouselData[]> => {
+  if (cache && Date.now() - cache.timestamp < CACHE_TTL) {
+    return cache.data.slice(0, limit);
+  }
+
+  try {
     // Fetch ALL relocators from Supabase
     const { data: relocators, error: relocatorsError } = await supabase
       .from('relocators')
@@ -75,7 +85,7 @@ export async function getAgenciesCarouselData(limit = 8): Promise<AgencyCarousel
         latest_reviews: [], // Placeholder, fetch later
         verified: rel.tier === 'preferred' || rel.tier === 'partner',
         relocator_id: rel.id,
-        description: rel.seo_summary || rel.bio || '',
+        description: rel.seo_summary || '',
         seo_summary: rel.seo_summary,
         stats: {
           yearsInBusiness: rel.founded_year ? new Date().getFullYear() - rel.founded_year : undefined,
@@ -187,7 +197,7 @@ export async function getAgenciesCarouselData(limit = 8): Promise<AgencyCarousel
       }
     }));
 
-    console.log(`[AgenciesCarousel] Fetched and populated ${finalAgencies.length} agencies.`);
+    cache = { data: finalAgencies, timestamp: Date.now() };
     return finalAgencies;
 
   } catch (error) {

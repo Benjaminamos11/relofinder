@@ -13,11 +13,13 @@ export const processCompany = async (companySlug: string) => {
     let isPreferred = false;
 
     try {
+        console.time(`fetch-relocator-${companySlug}`);
         const { data: relocatorData } = await supabase
             .from("relocators")
             .select(`*, offices:relocator_offices(*)`)
             .eq("slug", companySlug)
             .single();
+        console.timeEnd(`fetch-relocator-${companySlug}`);
 
         if (relocatorData) {
             relocatorId = relocatorData.id;
@@ -61,6 +63,7 @@ export const processCompany = async (companySlug: string) => {
                 };
             }
 
+            console.time(`fetch-reviews-${companySlug}`);
             const [reviewsResult, googleReviewsResult, summaryResult, seoResult] =
                 await Promise.all([
                     supabase
@@ -85,6 +88,7 @@ export const processCompany = async (companySlug: string) => {
                         .eq("id", relocatorId)
                         .single(),
                 ]);
+            console.timeEnd(`fetch-reviews-${companySlug}`);
 
             if (reviewsResult.data) internalReviews = reviewsResult.data;
 
@@ -142,13 +146,28 @@ export const processCompany = async (companySlug: string) => {
                 "Prime Relocation",
                 "Welcome Service",
                 "Lifestylemanagers",
+                "Relonest",
             ];
             isPreferred = preferredPartnerNames.some(
                 (name) => companyData.name && companyData.name.includes(name),
             );
 
             if (!isPreferred) {
-                alternatives = [];
+                const { data: preferred } = await supabase
+                    .from("relocators")
+                    .select("*")
+                    .in("name", preferredPartnerNames)
+                    .limit(3);
+
+                if (preferred) {
+                    alternatives = preferred.map(p => ({
+                        data: {
+                            id: p.slug, // The frontend expects alt.data.id for the link
+                            name: p.name,
+                            rating: { score: p.rating_breakdown?.value || "4.9" }
+                        }
+                    }));
+                }
             }
         }
     } catch (error) {

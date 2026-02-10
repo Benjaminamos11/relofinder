@@ -29,7 +29,7 @@ const topAgencies = carouselAgencies.map(agency => ({
   name: agency.name,
   rating: agency.avg_rating > 0 ? agency.avg_rating : 5.0, // Visual fallback
   count: agency.reviews_count > 0 ? agency.reviews_count : 12,
-  analystNote: agency.description || agency.seo_summary || "Verified relocation partner.",
+  analystNote: agency.seo_summary || agency.description || "Verified relocation partner.",
   tags: agency.services.slice(0, 2),
   logo: agency.logo_url || "/images/placeholder-logo.svg",
   slug: agency.slug, // used for linking
@@ -130,7 +130,7 @@ const homeSchema = {
 
             <!-- Conversion Box -->
             <div class="max-w-5xl mx-auto relative z-30 text-left transform hover:scale-[1.01] transition-transform duration-500 mt-12">
-                <HeroSearch client:only="react" />
+                <HeroSearch client:load />
             </div>
         </div>
     </section>

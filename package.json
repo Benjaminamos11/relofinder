@@ -46,6 +46,10 @@
   },
   "type": "module",
   "version": "0.0.1",
+  "overrides": {
+    "react": "$react",
+    "react-dom": "$react-dom"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

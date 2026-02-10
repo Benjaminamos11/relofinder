@@ -29,7 +29,7 @@ const topAgencies = carouselAgencies.map(agency => ({
   name: agency.name,
   rating: agency.avg_rating > 0 ? agency.avg_rating : 5.0, // Visual fallback
   count: agency.reviews_count > 0 ? agency.reviews_count : 12,
-  analystNote: agency.description || agency.seo_summary || "Verified relocation partner.",
+  analystNote: agency.seo_summary || agency.description || "Verified relocation partner.",
   tags: agency.services.slice(0, 2),
   logo: agency.logo_url || "/images/placeholder-logo.svg",
   slug: agency.slug, // used for linking
@@ -95,26 +95,19 @@ const homeSchema = {
         <div class="absolute inset-0 z-0 bg-slate-900">
             <!-- Interactive Hero Slider: B&W by default, color reveal on hover -->
             <div id="hero-slides" class="absolute inset-0 transition-grayscale duration-[1500ms] ease-in-out grayscale group-hover:grayscale-0">
-                <CloudinaryImage 
+                <img 
                     src={heroLake.src} 
                     alt="Lake Zurich Coastline" 
-                    width={1920}
-                    height={1080}
-                    priority={true}
                     class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] opacity-100"
                 />
-                <CloudinaryImage 
+                <img 
                     src={heroBoutique.src} 
                     alt="Swiss Relocation Boutique" 
-                    width={1920}
-                    height={1080}
                     class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] opacity-0"
                 />
-                <CloudinaryImage 
+                <img 
                     src={heroDarkInterior.src} 
                     alt="Modern Swiss Interior" 
-                    width={1920}
-                    height={1080}
                     class="hero-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] opacity-0"
                 />
             </div>
@@ -129,8 +122,8 @@ const homeSchema = {
             </h1>
 
             <!-- Conversion Box -->
-            <div class="max-w-5xl mx-auto relative z-30 text-left transform hover:scale-[1.01] transition-transform duration-500 mt-12">
-                <HeroSearch client:only="react" />
+            <div class="max-w-4xl mx-auto relative z-30 text-left transform hover:scale-[1.01] transition-transform duration-500 mt-12">
+                <HeroSearch client:load />
             </div>
         </div>
     </section>
@@ -210,7 +203,7 @@ const homeSchema = {
                                 <a href={`/companies/${agency.slug}`} class="flex items-center justify-center w-full py-3 rounded-lg border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-slate-50 hover:border-slate-300 transition-all duration-300">
                                     View Profile
                                 </a>
-                                <button onclick={`window.openAssessmentModal('full-package');`} class="flex items-center justify-center w-full py-3 rounded-lg bg-slate-800 text-white font-semibold text-sm hover:bg-slate-700 transition-all duration-300">
+                                <button onclick={`window.universalOpenModal({ page: 'home', topic: '${agency.name}' })`} class="flex items-center justify-center w-full py-3 rounded-lg bg-slate-800 text-white font-semibold text-sm hover:bg-slate-700 transition-all duration-300">
                                     Get Quote
                                 </button>
                             </div>
@@ -333,7 +326,6 @@ const homeSchema = {
             if (!slides.length) return;
             
             let currentSlide = 0;
-            let intervalId;
 
             function nextSlide() {
                 slides[currentSlide].classList.remove('opacity-100');
@@ -343,25 +335,11 @@ const homeSchema = {
                 slides[currentSlide].classList.add('opacity-100');
             }
 
-            intervalId = setInterval(nextSlide, 10000);
-
-            // Cleanup function to stop interval when navigating away
-            document.addEventListener('astro:before-swap', () => {
-                if (intervalId) clearInterval(intervalId);
-            }, { once: true });
+            setInterval(nextSlide, 10000);
         }
 
-        // Run on initial load
         initHeroSlider();
-        
-        // Run on subsequent navigations
-        document.addEventListener('astro:page-load', () => {
-             // Avoid double initialization if the script re-runs
-             // (Note: inline scripts re-run on body/head replacement, but page-load fires too. 
-             // Ideally we check if it's already running or rely on cleanups. 
-             // Since initHeroSlider defines local vars, calling it again is safe-ish ONLY if we cleaned up the old one.)
-             initHeroSlider();
-        });
+        document.addEventListener('astro:page-load', initHeroSlider);
     </script>
 </Layout>
 

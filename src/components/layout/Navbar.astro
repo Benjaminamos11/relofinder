@@ -154,91 +154,78 @@ const initialNavOpacity = variant === 'solid' ? '' : 'opacity-0 translate-y-[-10
 </div>
 
 <script is:inline>
-  // Elements
-  const navbar = document.getElementById('main-navbar');
-  const logoText = navbar.querySelector('.logo-text');
-  const navLinks = navbar.querySelector('.nav-links');
-  const navActions = navbar.querySelector('.nav-actions');
-  const mobileToggle = navbar.querySelector('.mobile-toggle');
+  (function() {
+    function initNavbar() {
+      const navbar = document.getElementById('main-navbar');
+      if (!navbar) return;
+      
+      const logoText = navbar.querySelector('.logo-text');
+      const navLinks = navbar.querySelector('.nav-links');
+      const navActions = navbar.querySelector('.nav-actions');
+      const mobileToggle = navbar.querySelector('.mobile-toggle');
 
-  // Mobile Menu Logic
-  const menuBtn = document.getElementById('mobile-menu-btn');
-  const drawerCloseBtn = document.getElementById('mobile-drawer-close');
-  const drawer = document.getElementById('mobile-drawer');
-  const overlay = document.getElementById('mobile-overlay');
+      // Mobile Menu Logic
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const drawerCloseBtn = document.getElementById('mobile-drawer-close');
+      const drawer = document.getElementById('mobile-drawer');
+      const overlay = document.getElementById('mobile-overlay');
 
-  function toggleMenu() {
-    const isClosed = drawer.classList.contains('translate-x-full');
-    if (isClosed) {
-      drawer.classList.remove('translate-x-full');
-      overlay.classList.remove('opacity-0', 'pointer-events-none');
-      document.body.style.overflow = 'hidden';
-    } else {
-      drawer.classList.add('translate-x-full');
-      overlay.classList.add('opacity-0', 'pointer-events-none');
-      document.body.style.overflow = '';
+      function toggleMenu() {
+        if (!drawer || !overlay) return;
+        const isClosed = drawer.classList.contains('translate-x-full');
+        if (isClosed) {
+          drawer.classList.remove('translate-x-full');
+          overlay.classList.remove('opacity-0', 'pointer-events-none');
+          document.body.style.overflow = 'hidden';
+        } else {
+          drawer.classList.add('translate-x-full');
+          overlay.classList.add('opacity-0', 'pointer-events-none');
+          document.body.style.overflow = '';
+        }
+      }
+
+      menuBtn?.addEventListener('click', toggleMenu);
+      drawerCloseBtn?.addEventListener('click', toggleMenu);
+      overlay?.addEventListener('click', toggleMenu);
+
+      // Scroll Logic
+      function handleScroll() {
+        if (!navbar) return;
+        if (navbar.getAttribute('data-variant') === 'solid') return;
+
+        if (window.scrollY > 50) {
+          if (navbar.getAttribute('data-scroll-state') === 'scrolled') return;
+          navbar.setAttribute('data-scroll-state', 'scrolled');
+          navbar.classList.remove('bg-transparent', 'border-transparent');
+          navbar.classList.add('bg-white/95', 'backdrop-blur-sm', 'border-gray-200', 'shadow-sm');
+          if (mobileToggle) {
+            mobileToggle.classList.remove('text-white');
+            mobileToggle.classList.add('text-slate-600');
+          }
+          if (navLinks) navLinks.classList.remove('opacity-0', 'translate-y-[-10px]', 'pointer-events-none');
+          if (navActions) navActions.classList.remove('opacity-0', 'translate-y-[-10px]', 'pointer-events-none');
+        } else {
+          if (navbar.getAttribute('data-scroll-state') === 'top') return;
+          navbar.setAttribute('data-scroll-state', 'top');
+          navbar.classList.add('bg-transparent', 'border-transparent');
+          navbar.classList.remove('bg-white/95', 'backdrop-blur-sm', 'border-gray-200', 'shadow-sm');
+          if (mobileToggle) {
+            mobileToggle.classList.add('text-white');
+            mobileToggle.classList.remove('text-slate-600');
+          }
+          if (navLinks) navLinks.classList.add('opacity-0', 'translate-y-[-10px]', 'pointer-events-none');
+          if (navActions) navActions.classList.add('opacity-0', 'translate-y-[-10px]', 'pointer-events-none');
+        }
+      }
+
+      window.removeEventListener('scroll', handleScroll);
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll();
     }
-  }
 
-  menuBtn?.addEventListener('click', toggleMenu);
-  drawerCloseBtn?.addEventListener('click', toggleMenu);
-  overlay?.addEventListener('click', toggleMenu);
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !drawer.classList.contains('translate-x-full')) toggleMenu();
-  });
-
-  // Scroll Logic
-  function handleScroll() {
-    // If fixed solid variant, don't change styles on scroll
-    if (navbar.getAttribute('data-variant') === 'solid') return;
-
-    if (window.scrollY > 50) {
-      // Scrolled State
-      if (navbar.getAttribute('data-scroll-state') === 'scrolled') return;
-      
-      navbar.setAttribute('data-scroll-state', 'scrolled');
-      
-      // Navbar Container
-      navbar.classList.remove('bg-transparent', 'border-transparent');
-      navbar.classList.add('bg-white/95', 'backdrop-blur-sm', 'border-gray-200', 'shadow-sm');
-      
-      // Logo Color
-      // logoText.classList.remove('text-white');
-      // logoText.classList.add('text-[#FF6F61]');
-
-      // Mobile Toggle Color
-      mobileToggle.classList.remove('text-white');
-      mobileToggle.classList.add('text-slate-600');
-
-      // Show Links & Actions ("All Comes")
-      navLinks.classList.remove('opacity-0', 'translate-y-[-10px]', 'pointer-events-none');
-      navActions.classList.remove('opacity-0', 'translate-y-[-10px]', 'pointer-events-none');
-
-    } else {
-      // Top State
-      if (navbar.getAttribute('data-scroll-state') === 'top') return;
-      
-      navbar.setAttribute('data-scroll-state', 'top');
-      
-      // Navbar Container
-      navbar.classList.add('bg-transparent', 'border-transparent');
-      navbar.classList.remove('bg-white/95', 'backdrop-blur-sm', 'border-gray-200', 'shadow-sm');
-      
-      // Logo Color - Always Orange as per user request
-      // logoText.classList.add('text-white');
-      // logoText.classList.remove('text-[#FF6F61]');
-
-      // Mobile Toggle Color
-      mobileToggle.classList.add('text-white');
-      mobileToggle.classList.remove('text-slate-600');
-
-      // Hide Links & Actions ("Only show the logo in the beginning")
-      navLinks.classList.add('opacity-0', 'translate-y-[-10px]', 'pointer-events-none');
-      navActions.classList.add('opacity-0', 'translate-y-[-10px]', 'pointer-events-none');
-    }
-  }
-
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  // Init
-  handleScroll();
+    // Run on initial load
+    initNavbar();
+    // Run on every view transition swap
+    document.addEventListener('astro:after-swap', initNavbar);
+  })();
 </script>

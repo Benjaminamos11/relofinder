@@ -29,7 +29,7 @@ const topAgencies = carouselAgencies.map(agency => ({
   name: agency.name,
   rating: agency.avg_rating > 0 ? agency.avg_rating : 5.0, // Visual fallback
   count: agency.reviews_count > 0 ? agency.reviews_count : 12,
-  analystNote: agency.description || agency.seo_summary || "Verified relocation partner.",
+  analystNote: agency.seo_summary || agency.description || "Verified relocation partner.",
   tags: agency.services.slice(0, 2),
   logo: agency.logo_url || "/images/placeholder-logo.svg",
   slug: agency.slug, // used for linking
@@ -129,8 +129,8 @@ const homeSchema = {
             </h1>
 
             <!-- Conversion Box -->
-            <div class="max-w-5xl mx-auto relative z-30 text-left transform hover:scale-[1.01] transition-transform duration-500 mt-12">
-                <HeroSearch client:only="react" />
+            <div class="max-w-4xl mx-auto relative z-30 text-left transform hover:scale-[1.01] transition-transform duration-500 mt-12">
+                <HeroSearch client:load />
             </div>
         </div>
     </section>
@@ -333,7 +333,6 @@ const homeSchema = {
             if (!slides.length) return;
             
             let currentSlide = 0;
-            let intervalId;
 
             function nextSlide() {
                 slides[currentSlide].classList.remove('opacity-100');
@@ -343,25 +342,11 @@ const homeSchema = {
                 slides[currentSlide].classList.add('opacity-100');
             }
 
-            intervalId = setInterval(nextSlide, 10000);
-
-            // Cleanup function to stop interval when navigating away
-            document.addEventListener('astro:before-swap', () => {
-                if (intervalId) clearInterval(intervalId);
-            }, { once: true });
+            setInterval(nextSlide, 10000);
         }
 
-        // Run on initial load
         initHeroSlider();
-        
-        // Run on subsequent navigations
-        document.addEventListener('astro:page-load', () => {
-             // Avoid double initialization if the script re-runs
-             // (Note: inline scripts re-run on body/head replacement, but page-load fires too. 
-             // Ideally we check if it's already running or rely on cleanups. 
-             // Since initHeroSlider defines local vars, calling it again is safe-ish ONLY if we cleaned up the old one.)
-             initHeroSlider();
-        });
+        document.addEventListener('astro:page-load', initHeroSlider);
     </script>
 </Layout>
 
