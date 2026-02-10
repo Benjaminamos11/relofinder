@@ -11,6 +11,7 @@ import UniversalContactModal from "../../components/common/UniversalContactModal
 import ReviewSubmissionWrapper from "../../components/reviews/ReviewSubmissionWrapper";
 import swissMapImg from "../../assets/swiss-map-filled.png";
 import CloudinaryImage from "../../components/common/CloudinaryImage.astro";
+import { getServiceSlug, getRegionSlug } from "../../lib/service-region-slugs";
 
 export async function getStaticPaths() {
   const companies = await getCollection("companies");
@@ -230,7 +231,7 @@ try {
 }
 
 // Logic: Preferred Partners (Prime Relocation & Welcome Service)
-const preferredPartnerNames = ["Prime Relocation", "Welcome Service"];
+const preferredPartnerNames = ["Prime Relocation", "Welcome Service", "Lifestylemanagers"];
 const isPreferred = preferredPartnerNames.some((name) =>
   companyData.name.includes(name),
 );
@@ -479,7 +480,7 @@ const schema = {
               <!-- Quick Actions -->
               <div class="flex flex-wrap gap-4 mt-10">
                 <a
-                  href="#contact"
+                  href={isPreferred ? "#contact" : "#faq-contact"}
                   class="bg-[#FF6F61] text-white px-8 py-4 rounded-full font-bold hover:bg-[#ff5a4d] transition-colors shadow-xl shadow-[#FF6F61]/20 flex items-center gap-2"
                 >
                   Contact Provider <ArrowRight className="w-5 h-5" />
@@ -625,7 +626,7 @@ const schema = {
               {
                 companyData.services?.map((service: string) => (
                   <a
-                    href={`/services/${service}`}
+                    href={`/services/${getServiceSlug(service)}`}
                     class="inline-flex items-center px-5 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-700 text-sm font-medium hover:bg-[#FF6F61] hover:text-white hover:border-[#FF6F61] transition-all duration-300 shadow-sm hover:shadow-md"
                   >
                     {service.replace(/-/g, " ")}
@@ -729,7 +730,7 @@ const schema = {
               {
                 companyData.regions?.map((region: string) => (
                   <a
-                    href={`/regions/${region}`}
+                    href={`/regions/${getRegionSlug(region)}`}
                     class="group flex items-center gap-3 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#FF6F61]/50 transition-all duration-300"
                   >
                     <div class="w-2 h-2 rounded-full bg-[#FF6F61] group-hover:scale-125 transition-transform" />
@@ -1155,7 +1156,17 @@ const schema = {
               </h2>
               <div class="space-y-6">
                 {displayFaqs.map((faq: any, idx: number) => (
-                  <div class="border border-gray-200 rounded-3xl p-8 hover:border-[#FF6F61]/30 transition-colors">
+                  <div
+                    class="border border-gray-200 rounded-3xl p-8 hover:border-[#FF6F61]/30 transition-colors"
+                    id={
+                      faq.question &&
+                      faq.question.startsWith(
+                        `How do I contact ${companyData.name}?`,
+                      )
+                        ? "faq-contact"
+                        : undefined
+                    }
+                  >
                     <h3 class="text-xl font-bold text-gray-900 mb-4 flex gap-4">
                       <span class="text-[#FF6F61] opacity-50 font-serif italic">
                         0{idx + 1}
