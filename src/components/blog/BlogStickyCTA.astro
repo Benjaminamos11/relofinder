@@ -1,0 +1,155 @@
+---
+/**
+ * BlogStickyCTA.astro
+ * A premium, responsive sticky CTA banner for blog posts.
+ * Improves conversion by offering expert matching.
+ */
+---
+
+<div
+    id="blog-sticky-cta"
+    class="fixed bottom-0 left-0 w-full z-40 transform translate-y-full transition-transform duration-500 ease-out opacity-0 pointer-events-none sm:bottom-8 sm:right-8 sm:left-auto sm:w-[400px] sm:rounded-2xl sm:translate-x-full"
+>
+    <div
+        class="bg-white/80 backdrop-blur-xl border-t border-gray-200/50 p-6 shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)] sm:border sm:rounded-2xl sm:shadow-2xl"
+    >
+        <div class="flex flex-col gap-4 sm:gap-5">
+            <div class="flex items-start gap-4">
+                <div
+                    class="w-12 h-12 bg-[#FF6F61]/10 rounded-xl flex items-center justify-center flex-shrink-0"
+                >
+                    <svg
+                        class="w-6 h-6 text-[#FF6F61]"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                        ></path>
+                    </svg>
+                </div>
+                <div class="space-y-1">
+                    <p
+                        class="text-sm font-semibold text-gray-900 leading-tight"
+                    >
+                        Worried about Swiss living costs?
+                    </p>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                        Get matched with a local relocation expert to calculate
+                        your exact budget.
+                    </p>
+                </div>
+                <button
+                    id="close-sticky-cta"
+                    class="absolute top-2 right-2 p-2 text-gray-400 hover:text-gray-600 transition-colors sm:static sm:p-0 sm:ml-auto"
+                    aria-label="Close"
+                >
+                    <svg
+                        class="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <button
+                onclick="window.openAssessmentModal && window.openAssessmentModal('private', 'zurich', 'full-package')"
+                class="w-full bg-[#FF6F61] hover:bg-[#ff5a4d] text-white font-bold py-3.5 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 group"
+            >
+                <span>Find My Expert</span>
+                <svg
+                    class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function initStickyCTA() {
+        const cta = document.getElementById("blog-sticky-cta");
+        const closeBtn = document.getElementById("close-sticky-cta");
+        let hasBeenShown = false;
+        let isClosed = false;
+
+        if (!cta) return;
+
+        // Show after scrolling 30% of the page
+        const onScroll = () => {
+            if (isClosed) return;
+
+            const scrollPercent =
+                (window.scrollY /
+                    (document.documentElement.scrollHeight -
+                        window.innerHeight)) *
+                100;
+
+            if (scrollPercent > 30 && !hasBeenShown) {
+                cta.classList.remove(
+                    "translate-y-full",
+                    "sm:translate-x-full",
+                    "opacity-0",
+                    "pointer-events-none",
+                );
+                cta.classList.add(
+                    "translate-y-0",
+                    "sm:translate-x-0",
+                    "opacity-100",
+                );
+                hasBeenShown = true;
+            }
+        };
+
+        closeBtn?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            cta.classList.add(
+                "translate-y-full",
+                "sm:translate-x-full",
+                "opacity-0",
+                "pointer-events-none",
+            );
+            cta.classList.remove(
+                "translate-y-0",
+                "sm:translate-x-0",
+                "opacity-100",
+            );
+            isClosed = true;
+
+            // Store in session storage so it doesn't reappear in same session
+            sessionStorage.setItem("blog_cta_closed", "true");
+        });
+
+        // Check if already closed in this session
+        if (sessionStorage.getItem("blog_cta_closed") === "true") {
+            isClosed = true;
+            return;
+        }
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+    }
+
+    // Handle Astro page transitions
+    document.addEventListener("astro:page-load", initStickyCTA);
+    // Initial load
+    initStickyCTA();
+</script>

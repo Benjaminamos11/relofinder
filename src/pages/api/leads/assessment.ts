@@ -112,8 +112,8 @@ export const POST: APIRoute = async ({ request }) => {
                 </div>
             `;
 
-            await sendEmailViaEdgeFunction(adminEmail, subject, `New Corporate Lead from ${data.companyName}`, adminHtml);
-            await sendEmailViaEdgeFunction(data.email, 'Your Relocation Benchmark Request - Received', 'Request Received', userHtml);
+            sendEmailViaEdgeFunction(adminEmail, subject, `New Corporate Lead from ${data.companyName}`, adminHtml).catch(console.error);
+            sendEmailViaEdgeFunction(data.email, 'Your Relocation Benchmark Request - Received', 'Request Received', userHtml).catch(console.error);
 
             return new Response(JSON.stringify({ success: true, leadId: lead.id }), { status: 200 });
 
@@ -173,7 +173,7 @@ export const POST: APIRoute = async ({ request }) => {
                 </div>
             `;
 
-            await sendEmailViaEdgeFunction(adminEmail, subject, `New Lead from ${data.firstName}`, adminHtml);
+            sendEmailViaEdgeFunction(adminEmail, subject, `New Lead from ${data.firstName}`, adminHtml).catch(console.error);
 
             return new Response(JSON.stringify({ success: true, leadId: lead.id }), { status: 200 });
         }

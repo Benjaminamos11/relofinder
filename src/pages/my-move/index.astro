@@ -1,14 +1,10 @@
 ---
-import UserDashboard from '../../components/user/UserDashboard';
+import Layout from "../../layouts/Layout.astro";
+import UserDashboard from "../../components/user/UserDashboard";
 ---
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Move Dashboard | ReloFinder</title>
-</head>
-<body>
-    <UserDashboard client:only="react" />
-</body>
-</html>
+<Layout title="My Move Dashboard | ReloFinder">
+    <div class="pt-32 pb-24 min-h-screen bg-slate-50">
+        <UserDashboard client:only="react" />
+    </div>
+</Layout>

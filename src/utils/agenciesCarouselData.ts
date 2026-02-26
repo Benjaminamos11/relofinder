@@ -57,11 +57,13 @@ export const getAgenciesCarouselData = async (limit: number = 3): Promise<Agency
 
   try {
     // Fetch ALL relocators from Supabase
+    console.time('[AgenciesCarousel] fetch relocators');
     const { data: relocators, error: relocatorsError } = await supabase
       .from('relocators')
       .select('id, name, tier, rating, seo_summary, slug, services, regions_served, logo, bio, founded_year')
       .order('tier', { ascending: true })
       .order('rating', { ascending: false });
+    console.timeEnd('[AgenciesCarousel] fetch relocators');
 
     if (relocatorsError) {
       console.error('[AgenciesCarousel] Error fetching relocators:', relocatorsError);
@@ -140,6 +142,7 @@ export const getAgenciesCarouselData = async (limit: number = 3): Promise<Agency
     const finalAgencies = allAgencies.slice(0, limit);
 
     // 4. Fetch reviews ONLY for the final sliced agencies (Parallelized)
+    console.time('[AgenciesCarousel] fetch reviews');
     await Promise.all(finalAgencies.map(async (agency) => {
       if (agency.relocator_id) {
         // Fetch Count
@@ -196,6 +199,7 @@ export const getAgenciesCarouselData = async (limit: number = 3): Promise<Agency
         ];
       }
     }));
+    console.timeEnd('[AgenciesCarousel] fetch reviews');
 
     cache = { data: finalAgencies, timestamp: Date.now() };
     return finalAgencies;

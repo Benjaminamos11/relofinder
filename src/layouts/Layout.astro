@@ -4,13 +4,8 @@ import Footer from "../components/layout/Footer.astro";
 import SEOHead from "../components/common/SEOHead.astro";
 import "../styles/global.css";
 import { ViewTransitions } from "astro:transitions";
-import UniversalContactModal from "../components/common/UniversalContactModal.tsx";
-import GlobalAssessmentModal from "../components/common/GlobalAssessmentModal.tsx";
-import GoogleTag from "../components/tracking/GoogleTag";
-import FacebookPixel from "../components/tracking/FacebookPixel";
+import AssessmentModalAlpine from "../components/individual/AssessmentModalAlpine.astro";
 import CookieBanner from "../components/tracking/CookieBanner";
-// Expose stores immediately (side-effect import)
-import "../lib/expose-modal-stores.client.ts";
 
 export interface Props {
   title?: string;
@@ -127,6 +122,12 @@ const {
       data-domain="relofinder.ch"
       src="https://plausible.io/js/script.js"></script>
 
+    <!-- Alpine.js - Lightweight, fast state management -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
     <!-- View Transitions for smooth SPA-like navigation -->
     <ViewTransitions />
   </head>
@@ -138,14 +139,10 @@ const {
     </main>
 
     <Footer theme={footerTheme} />
-    aria-hidden="true" >
 
-    <!-- Use client:load to ensure React is ready before hydration -->
-    <UniversalContactModal client:load />
-    <GlobalAssessmentModal client:load />
-    {/* <GoogleTag client:load /> */}
-    {/* <FacebookPixel client:load /> */}
-    <CookieBanner client:load />
+    <!-- Alpine.js Assessment Modal (replaces React) -->
+    <AssessmentModalAlpine />
+    <CookieBanner client:idle />
 
     <!-- Performance & Infrastructure: Ensure legacy SW are removed -->
     <script is:inline>
@@ -159,249 +156,7 @@ const {
       }
     </script>
 
-    <!-- Global Modal Functions - Placeholder definitions for immediate availability -->
-    <script is:inline>
-      if (typeof window !== "undefined") {
-        window.modalEventQueue = window.modalEventQueue || [];
-        window.modalReady = false;
-
-        window.universalOpenModal = function (context) {
-          window.modalEventQueue.push({ kind: "open", payload: context });
-        };
-
-        window.openAssessmentModal = function (
-          mode,
-          initialCanton,
-          initialService,
-        ) {
-          window.modalEventQueue.push({
-            kind: "openAssessment",
-            payload: { mode, initialCanton, initialService },
-          });
-        };
-
-        window.openModal = function (ctx) {
-          window.universalOpenModal(ctx);
-        };
-        window.closeModal = function () {
-          window.modalEventQueue.push({ kind: "close" });
-        };
-
-        // Browser-only setup (SSR-safe)
-        // Initialize modal system synchronously before React loads
-        window.reactLoadPromise = null;
-
-        // Preload React to ensure it's ready before hydration
-        // Preload React check REMOVED to prevent 5s blocking delay.
-        // We rely on standard hydration and the data-relofinder-modal="ready" marker.
-        window.reactLoadPromise = Promise.resolve();
-
-        // Listen for React hydration errors
-        window.addEventListener(
-          "error",
-          function (e) {
-            if (
-              e.message &&
-              (e.message.includes("hydrating") ||
-                e.message.includes("unstable_now"))
-            ) {
-              console.error("🚨 React hydration error detected:", e.message);
-              window.reactHydrationFailed = true;
-
-              const setupFallbackListeners = () => {
-                const checkStores = setInterval(() => {
-                  if (window.relofinderModalStores) {
-                    console.log(
-                      "✅ Found nanostores, setting up fallback listeners",
-                    );
-                    clearInterval(checkStores);
-                    window.addEventListener("openModal", function (ev) {
-                      if (window.relofinderModalStores && ev.detail) {
-                        window.relofinderModalStores.setContext(ev.detail);
-                        window.relofinderModalStores.setOpen(true);
-                      }
-                    });
-                    window.addEventListener("closeModal", function () {
-                      if (window.relofinderModalStores)
-                        window.relofinderModalStores.setOpen(false);
-                    });
-                  }
-                }, 100);
-                setTimeout(() => clearInterval(checkStores), 5000);
-              };
-              setupFallbackListeners();
-
-              setTimeout(() => {
-                if (!window.modalReady) {
-                  console.warn(
-                    "⚠️ React hydration failed, forcing modal ready state",
-                  );
-                  const marker = document.getElementById(
-                    "relofinder-modal-marker",
-                  );
-                  if (marker)
-                    marker.setAttribute("data-relofinder-modal", "ready");
-                  window.modalReady = true;
-                  if (typeof window.processModalQueue === "function")
-                    window.processModalQueue();
-                }
-              }, 2000);
-            }
-          },
-          true,
-        );
-
-        const dispatchModalContext = (context) => {
-          try {
-            if (window.relofinderModalStores) {
-              window.relofinderModalStores.setContext(context);
-              window.relofinderModalStores.setOpen(true);
-              return true;
-            }
-            const event = new CustomEvent("openModal", { detail: context });
-            window.dispatchEvent(event);
-            return true;
-          } catch (error) {
-            console.error("❌ Failed to dispatch modal context", error);
-            return false;
-          }
-        };
-
-        const dispatchCloseModal = () => {
-          try {
-            if (window.relofinderModalStores) {
-              window.relofinderModalStores.setOpen(false);
-              return true;
-            }
-            const event = new CustomEvent("closeModal");
-            window.dispatchEvent(event);
-            return true;
-          } catch (error) {
-            console.error("❌ Failed to dispatch close modal", error);
-            return false;
-          }
-        };
-
-        // Unified Modal Functions (Browser version)
-        window.universalOpenModal = function (context) {
-          const resolvedContext =
-            context && typeof context === "object"
-              ? context
-              : typeof context === "string"
-                ? context === "corporate"
-                  ? { page: "corporate" }
-                  : { page: "legacy", topic: context }
-                : { page: "home" };
-
-          console.log("📞 universalOpenModal called", resolvedContext);
-          if (window.modalReady) {
-            dispatchModalContext(resolvedContext);
-            return;
-          }
-          window.modalEventQueue.push({
-            kind: "open",
-            payload: resolvedContext,
-          });
-        };
-
-        window.openAssessmentModal = function (
-          mode,
-          initialCanton,
-          initialService,
-        ) {
-          console.log("📞 openAssessmentModal called", {
-            mode,
-            initialCanton,
-            initialService,
-          });
-          if (
-            window.modalReady &&
-            window.relofinderModalStores?.setAssessmentContext
-          ) {
-            window.relofinderModalStores.setAssessmentContext({
-              mode,
-              initialCanton,
-              initialService,
-            });
-            window.relofinderModalStores.setAssessmentOpen(true);
-            return;
-          }
-          window.modalEventQueue.push({
-            kind: "openAssessment",
-            payload: { mode, initialCanton, initialService },
-          });
-        };
-
-        const legacyModalContextMap = {
-          "individual-lead-modal": { page: "service", service: "relocation" },
-        };
-
-        window.openModal = function (legacyContext) {
-          console.log("📞 legacy openModal shim invoked with", legacyContext);
-          if (typeof legacyContext === "string") {
-            const mappedContext = legacyModalContextMap[legacyContext] || {
-              page: "home",
-              topic: legacyContext,
-            };
-            window.universalOpenModal(mappedContext);
-          } else if (legacyContext && typeof legacyContext === "object") {
-            window.universalOpenModal(legacyContext);
-          } else {
-            window.universalOpenModal({ page: "home" });
-          }
-        };
-
-        window.closeModal = function () {
-          console.log("🚪 closeModal called");
-          if (window.modalReady) dispatchCloseModal();
-          else window.modalEventQueue.push({ kind: "close" });
-        };
-
-        window.processModalQueue = function () {
-          if (window.modalReady && window.modalEventQueue.length === 0) return;
-          console.log(
-            "🚀 Processing modal queue:",
-            window.modalEventQueue.length,
-            "events",
-          );
-          window.modalReady = true;
-          const queuedItems = [...window.modalEventQueue];
-          window.modalEventQueue = [];
-          queuedItems.forEach((item) => {
-            if (item?.kind === "open") dispatchModalContext(item.payload);
-            else if (item?.kind === "close") dispatchCloseModal();
-            else if (item?.kind === "openAssessment") {
-              if (window.relofinderModalStores?.setAssessmentContext) {
-                window.relofinderModalStores.setAssessmentContext(item.payload);
-                window.relofinderModalStores.setAssessmentOpen(true);
-              }
-            }
-          });
-        };
-
-        // SIMPLIFIED INITIALIZATION
-        // No observers, no intervals. Just set ready.
-        window.modalReady = true;
-
-        // Process any events that might have been queued before this script ran
-        if (typeof window.processModalQueue === "function") {
-          window.processModalQueue();
-        }
-
-        initModalSystem();
-        // observeReactMount(); // REMOVED
-
-        document.addEventListener("astro:after-swap", () => {
-          initModalSystem();
-          // observeReactMount(); // REMOVED
-
-          // Re-ensure ready state on swap
-          window.modalReady = true;
-          if (typeof window.processModalQueue === "function") {
-            window.processModalQueue();
-          }
-        });
-      }
-    </script>
+    <!-- Alpine.js Global Stores - Clean, simple state management -->
+    <script is:inline src="/alpine-stores.js?v=2"></script>
   </body>
 </html>

@@ -28,11 +28,11 @@ faqs:
     answer: "Groceries cost 50-100% more than Germany or France. A supermarket trip costs CHF 150-250/week for a couple. Restaurants are expensive (CHF 25-40 for lunch, CHF 50-100 for dinner). Many expats shop across the border to save."
 ---
 
-Switzerland tops two lists: "Highest Salaries" and "Highest Cost of Living."
+Switzerland tops two lists: "Highest Salaries" and "Highest Cost of Living." Securing a [Swiss work visa](/services/immigration) is usually the first step to accessing these potential earnings.
 
 For expats, the sticker shock of a CHF 8 cappuccino can be terrifying. But to understand your true disposable income, you need to look at the whole picture — especially the tax savings.
 
-Here is a realistic monthly budget for a professional couple or family in Zürich, Geneva, or Basel.
+Here is a realistic monthly budget for a professional couple or family [relocating to Zurich](/regions/zurich), Geneva, or Basel.
 
 ---
 
@@ -54,7 +54,7 @@ Here is a realistic monthly budget for a professional couple or family in Züric
 
 ## 1. Housing (30-40% of Budget)
 
-Rent will be your largest monthly outflow. And in Switzerland's competitive market, finding the right place is as important as budgeting for it.
+Rent will be your largest monthly outflow. And in the competitive [Swiss housing market](/services/housing), finding the right place is as important as budgeting for it.
 
 ### Rental Costs by City
 
@@ -141,7 +141,7 @@ This is where Switzerland wins — and where the "high cost of living" narrative
 | **CHF 200,000** | ~22% | ~45% | ~45% | ~48% | ~40% |
 | **CHF 300,000** | ~26% | ~47% | ~47% | ~51% | ~43% |
 
-*Includes income tax and mandatory social contributions. Swiss rates vary by canton and municipality.*
+*Includes income tax and mandatory social contributions. Swiss rates vary by canton and municipality; for example, [moving to Zug](/regions/zug) can significantly lower your effective tax burden.*
 
 ### VAT Comparison
 

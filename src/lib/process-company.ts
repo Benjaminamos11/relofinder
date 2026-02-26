@@ -1,5 +1,30 @@
 import { supabase } from './supabase';
 
+// Cache preferred partners to avoid refetching for every company
+let preferredPartnersCache: any[] | null = null;
+
+const getPreferredPartners = async () => {
+    if (preferredPartnersCache) {
+        return preferredPartnersCache;
+    }
+
+    const preferredPartnerNames = [
+        "Prime Relocation",
+        "Welcome Service",
+        "Lifestylemanagers",
+        "Relonest",
+    ];
+
+    const { data: preferred } = await supabase
+        .from("relocators")
+        .select("*")
+        .in("name", preferredPartnerNames)
+        .limit(3);
+
+    preferredPartnersCache = preferred || [];
+    return preferredPartnersCache;
+};
+
 export const processCompany = async (companySlug: string) => {
     let companyData: any = { slug: companySlug };
     let internalReviews: any[] = [];
@@ -64,7 +89,8 @@ export const processCompany = async (companySlug: string) => {
             }
 
             console.time(`fetch-reviews-${companySlug}`);
-            const [reviewsResult, googleReviewsResult, summaryResult, seoResult] =
+            // Consolidated: 3 queries in parallel (removed redundant SEO query - already in relocatorData)
+            const [reviewsResult, googleReviewsResult, summaryResult] =
                 await Promise.all([
                     supabase
                         .from("reviews")
@@ -81,11 +107,6 @@ export const processCompany = async (companySlug: string) => {
                         .from("review_summaries")
                         .select("*")
                         .eq("relocator_id", relocatorId)
-                        .single(),
-                    supabase
-                        .from("relocators")
-                        .select("seo_summary")
-                        .eq("id", relocatorId)
                         .single(),
                 ]);
             console.timeEnd(`fetch-reviews-${companySlug}`);
@@ -115,9 +136,10 @@ export const processCompany = async (companySlug: string) => {
             }
 
             reviewSummary = summaryResult.data;
-            if (seoResult.data?.seo_summary) {
+            // Use seo_summary from relocatorData (already fetched above)
+            if (relocatorData.seo_summary) {
                 if (!reviewSummary) reviewSummary = {};
-                reviewSummary.seo_summary = seoResult.data.seo_summary;
+                reviewSummary.seo_summary = relocatorData.seo_summary;
             }
 
             const internalCount = internalReviews.length;
@@ -153,11 +175,8 @@ export const processCompany = async (companySlug: string) => {
             );
 
             if (!isPreferred) {
-                const { data: preferred } = await supabase
-                    .from("relocators")
-                    .select("*")
-                    .in("name", preferredPartnerNames)
-                    .limit(3);
+                // Use cached preferred partners instead of querying every time
+                const preferred = await getPreferredPartners();
 
                 if (preferred) {
                     alternatives = preferred.map(p => ({

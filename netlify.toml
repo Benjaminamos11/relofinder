@@ -7,6 +7,48 @@
   CI = "true"
   NODE_OPTIONS = "--max_old_space_size=4096"
 
+# ============================================
+# CACHE OPTIMIZATION FOR STATIC PAGES
+# ============================================
+
+# Cache HTML pages for 1 hour (allows quick updates when redeployed)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400"
+
+# Cache static assets for 1 year (immutable - never changes)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache images for 1 week
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# ============================================
+# SCHEDULED BUILDS SETUP
+# ============================================
+# Automatic daily rebuilds are configured via GitHub Actions.
+# See: .github/workflows/scheduled-rebuild.yml
+#
+# To enable:
+# 1. Go to Netlify Dashboard > Site Settings > Build & Deploy > Build Hooks
+# 2. Create a new build hook named "Daily Rebuild"
+# 3. Copy the webhook URL
+# 4. Go to GitHub repo > Settings > Secrets and variables > Actions
+# 5. Create a new secret named: NETLIFY_BUILD_HOOK
+# 6. Paste the webhook URL as the value
+# 7. Done! Site will rebuild daily at 3 AM UTC automatically
+
 # Normalize legacy service URLs to consolidated slugs
 [[redirects]]
   from = "/services/visa-immigration"

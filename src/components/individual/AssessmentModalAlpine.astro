@@ -1,0 +1,998 @@
+---
+// AssessmentModal - Clean Fullscreen Flow
+// Matches design: relofinder.ch logo, white background, brand color #FF6F61
+---
+
+<div
+    x-data
+    x-show="$store.assessmentModal.isOpen"
+    x-cloak
+    @keydown.escape="$store.assessmentModal.close()"
+    class="fixed inset-0 z-50 bg-white overflow-y-auto"
+    style="display: none;"
+>
+    <!-- Progress Bar - Fixed Top (Brand Color Only) -->
+    <div class="fixed top-0 left-0 right-0 h-1 bg-slate-100 z-50">
+        <div
+            class="h-full bg-[#FF6F61] transition-all duration-500 ease-out"
+            :style="`width: ${$store.assessmentModal.progress}%`"
+        >
+        </div>
+    </div>
+
+    <!-- Logo - Top Left -->
+    <div class="fixed top-4 md:top-6 left-4 md:left-6 z-40">
+        <a
+            href="/"
+            class="text-xl md:text-2xl font-bold tracking-tight text-[#FF6F61] transition-opacity hover:opacity-90"
+            style="font-family: 'Playfair Display', serif;"
+        >
+            Relofinder
+        </a>
+    </div>
+
+    <!-- Close Button - Top Right -->
+    <button
+        @click.prevent="$store.assessmentModal.close()"
+        type="button"
+        class="fixed top-4 md:top-6 right-4 md:right-6 z-40 p-2 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer"
+        aria-label="Close"
+        title="Close"
+    >
+        <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+    </button>
+
+    <!-- Content Container -->
+    <div
+        class="min-h-screen flex items-center justify-center px-4 md:px-6 py-16 md:py-20"
+    >
+        <div class="w-full max-w-4xl">
+            <!-- Step: Household Type -->
+            <div
+                x-show="$store.assessmentModal.step === 'household'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                class="text-center"
+            >
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-16"
+                    x-text="`Who is relocating${$store.assessmentModal.initialCanton ? ' with you to ' + $store.assessmentModal.initialCanton : ''}?`"
+                >
+                </h2>
+
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-3xl mx-auto"
+                >
+                    <button
+                        @click="$store.assessmentModal.answer({householdType: 'single'})"
+                        class="group p-6 md:p-10 bg-slate-50 border-2 border-slate-200 rounded-xl md:rounded-2xl hover:border-[#FF6F61] hover:bg-white hover:shadow-xl transition-all duration-300"
+                    >
+                        <svg
+                            class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 text-slate-400 group-hover:text-[#FF6F61] transition-colors"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                            ></path>
+                        </svg>
+                        <span
+                            class="text-xl md:text-2xl font-semibold text-slate-900"
+                            >Just me</span
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({householdType: 'couple'})"
+                        class="group p-6 md:p-10 bg-slate-50 border-2 border-slate-200 rounded-xl md:rounded-2xl hover:border-[#FF6F61] hover:bg-white hover:shadow-xl transition-all duration-300"
+                    >
+                        <svg
+                            class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 text-slate-400 group-hover:text-[#FF6F61] transition-colors"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                            ></path>
+                        </svg>
+                        <span
+                            class="text-xl md:text-2xl font-semibold text-slate-900"
+                            >Couple</span
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({householdType: 'family'})"
+                        class="group p-6 md:p-10 bg-slate-50 border-2 border-slate-200 rounded-xl md:rounded-2xl hover:border-[#FF6F61] hover:bg-white hover:shadow-xl transition-all duration-300"
+                    >
+                        <svg
+                            class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 text-slate-400 group-hover:text-[#FF6F61] transition-colors"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                            ></path>
+                        </svg>
+                        <span
+                            class="text-xl md:text-2xl font-semibold text-slate-900"
+                            >Family with Children</span
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({householdType: 'family-pets'})"
+                        class="group p-6 md:p-10 bg-slate-50 border-2 border-slate-200 rounded-xl md:rounded-2xl hover:border-[#FF6F61] hover:bg-white hover:shadow-xl transition-all duration-300"
+                    >
+                        <svg
+                            class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 md:mb-4 text-slate-400 group-hover:text-[#FF6F61] transition-colors"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                            ></path>
+                        </svg>
+                        <span
+                            class="text-xl md:text-2xl font-semibold text-slate-900"
+                            >Moving with Pets</span
+                        >
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step: Area Preference -->
+            <div
+                x-show="$store.assessmentModal.step === 'area'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+            >
+                <button
+                    @click="$store.assessmentModal.back()"
+                    class="mb-12 text-slate-500 hover:text-[#FF6F61] flex items-center gap-2 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back
+                </button>
+
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-16 text-center"
+                >
+                    What area do you prefer?
+                </h2>
+
+                <div class="space-y-3 md:space-y-4 max-w-2xl mx-auto">
+                    <button
+                        @click="$store.assessmentModal.answer({area: 'city-center'})"
+                        class="w-full p-5 md:p-8 bg-slate-50 border-2 border-slate-200 rounded-xl md:rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong
+                            class="block text-lg md:text-2xl text-slate-900 mb-1 md:mb-2"
+                            >City Center</strong
+                        >
+                        <span class="text-slate-600 text-sm md:text-lg"
+                            >Walking distance to everything</span
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({area: 'suburbs'})"
+                        class="w-full p-5 md:p-8 bg-slate-50 border-2 border-slate-200 rounded-xl md:rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong
+                            class="block text-lg md:text-2xl text-slate-900 mb-1 md:mb-2"
+                            >Suburbs</strong
+                        >
+                        <span class="text-slate-600 text-sm md:text-lg"
+                            >Quieter, family-friendly neighborhoods</span
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({area: 'countryside'})"
+                        class="w-full p-5 md:p-8 bg-slate-50 border-2 border-slate-200 rounded-xl md:rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong
+                            class="block text-lg md:text-2xl text-slate-900 mb-1 md:mb-2"
+                            >Countryside</strong
+                        >
+                        <span class="text-slate-600 text-sm md:text-lg"
+                            >Nature, space, tranquility</span
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({area: 'flexible'})"
+                        class="w-full p-5 md:p-8 bg-slate-50 border-2 border-slate-200 rounded-xl md:rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong
+                            class="block text-lg md:text-2xl text-slate-900 mb-1 md:mb-2"
+                            >Flexible</strong
+                        >
+                        <span class="text-slate-600 text-sm md:text-lg"
+                            >Open to suggestions</span
+                        >
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step: Budget -->
+            <div
+                x-show="$store.assessmentModal.step === 'budget'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+            >
+                <button
+                    @click="$store.assessmentModal.back()"
+                    class="mb-12 text-slate-500 hover:text-[#FF6F61] flex items-center gap-2 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back
+                </button>
+
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 text-center"
+                >
+                    Monthly housing budget?
+                </h2>
+                <p class="text-xl text-slate-600 mb-16 text-center">
+                    For rent (utilities typically separate)
+                </p>
+
+                <div class="space-y-4 max-w-2xl mx-auto">
+                    <button
+                        @click="$store.assessmentModal.answer({budget: 'under-2000'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-center hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="text-2xl text-slate-900"
+                            >Under CHF 2,000</strong
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({budget: '2000-3500'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-center hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="text-2xl text-slate-900"
+                            >CHF 2,000 - 3,500</strong
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({budget: '3500-5000'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-center hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="text-2xl text-slate-900"
+                            >CHF 3,500 - 5,000</strong
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({budget: '5000+'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-center hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="text-2xl text-slate-900"
+                            >CHF 5,000+</strong
+                        >
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step: Engagement -->
+            <div
+                x-show="$store.assessmentModal.step === 'engagement'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+            >
+                <button
+                    @click="$store.assessmentModal.back()"
+                    class="mb-12 text-slate-500 hover:text-[#FF6F61] flex items-center gap-2 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back
+                </button>
+
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-16 text-center"
+                >
+                    How much support do you need?
+                </h2>
+
+                <div class="space-y-4 max-w-2xl mx-auto">
+                    <button
+                        @click="$store.assessmentModal.answer({engagement: 'full-service'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="block text-2xl text-slate-900 mb-2"
+                            >Full Service</strong
+                        >
+                        <span class="text-slate-600 text-lg"
+                            >Manage everything for me</span
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({engagement: 'guided'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="block text-2xl text-slate-900 mb-2"
+                            >Guided Support</strong
+                        >
+                        <span class="text-slate-600 text-lg"
+                            >Help with key steps</span
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({engagement: 'light-touch'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="block text-2xl text-slate-900 mb-2"
+                            >Light Touch</strong
+                        >
+                        <span class="text-slate-600 text-lg"
+                            >Just need some advice</span
+                        >
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step: Citizenship (Immigration Flow) -->
+            <div
+                x-show="$store.assessmentModal.step === 'citizenship'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+            >
+                <button
+                    @click="$store.assessmentModal.back()"
+                    class="mb-12 text-slate-500 hover:text-[#FF6F61] flex items-center gap-2 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back
+                </button>
+
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-16 text-center"
+                >
+                    What's your citizenship?
+                </h2>
+
+                <div class="space-y-4 max-w-2xl mx-auto">
+                    <button
+                        @click="$store.assessmentModal.answer({citizenship: 'eu-efta'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="block text-2xl text-slate-900 mb-2"
+                            >EU/EFTA</strong
+                        >
+                        <span class="text-slate-600 text-lg"
+                            >Simplified process</span
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({citizenship: 'non-eu'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="block text-2xl text-slate-900 mb-2"
+                            >Non-EU/EFTA</strong
+                        >
+                        <span class="text-slate-600 text-lg"
+                            >Need work permit</span
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({citizenship: 'swiss'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="block text-2xl text-slate-900 mb-2"
+                            >Swiss Citizen</strong
+                        >
+                        <span class="text-slate-600 text-lg"
+                            >Returning home</span
+                        >
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step: Purpose (Immigration Flow) -->
+            <div
+                x-show="$store.assessmentModal.step === 'purpose'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+            >
+                <button
+                    @click="$store.assessmentModal.back()"
+                    class="mb-12 text-slate-500 hover:text-[#FF6F61] flex items-center gap-2 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back
+                </button>
+
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-16 text-center"
+                >
+                    Purpose of your move?
+                </h2>
+
+                <div class="space-y-4 max-w-2xl mx-auto">
+                    <button
+                        @click="$store.assessmentModal.answer({purpose: 'work'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-center hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="text-2xl text-slate-900"
+                            >Work / Employment</strong
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({purpose: 'study'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-center hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="text-2xl text-slate-900"
+                            >Study / Education</strong
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({purpose: 'family'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-center hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="text-2xl text-slate-900"
+                            >Family Reunification</strong
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({purpose: 'retirement'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-center hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="text-2xl text-slate-900"
+                            >Retirement</strong
+                        >
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step: Employment (Immigration Flow) -->
+            <div
+                x-show="$store.assessmentModal.step === 'employment'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+            >
+                <button
+                    @click="$store.assessmentModal.back()"
+                    class="mb-12 text-slate-500 hover:text-[#FF6F61] flex items-center gap-2 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back
+                </button>
+
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-16 text-center"
+                >
+                    Employment situation?
+                </h2>
+
+                <div class="space-y-4 max-w-2xl mx-auto">
+                    <button
+                        @click="$store.assessmentModal.answer({employment: 'have-offer'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-center hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="text-2xl text-slate-900"
+                            >Already have job offer</strong
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({employment: 'searching'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-center hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="text-2xl text-slate-900"
+                            >Still searching</strong
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({employment: 'internal-transfer'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-center hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="text-2xl text-slate-900"
+                            >Internal company transfer</strong
+                        >
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step: Ages (Education Flow) -->
+            <div
+                x-show="$store.assessmentModal.step === 'ages'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+            >
+                <button
+                    @click="$store.assessmentModal.back()"
+                    class="mb-12 text-slate-500 hover:text-[#FF6F61] flex items-center gap-2 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back
+                </button>
+
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-16 text-center"
+                >
+                    Age of your children?
+                </h2>
+
+                <div class="space-y-4 max-w-2xl mx-auto">
+                    <button
+                        @click="$store.assessmentModal.answer({ages: '0-5'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-center hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="text-2xl text-slate-900"
+                            >0-5 years (Daycare/Kindergarten)</strong
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({ages: '6-12'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-center hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="text-2xl text-slate-900"
+                            >6-12 years (Primary School)</strong
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({ages: '13-18'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-center hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="text-2xl text-slate-900"
+                            >13-18 years (Secondary School)</strong
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({ages: 'mixed'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-center hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="text-2xl text-slate-900"
+                            >Multiple ages</strong
+                        >
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step: System (Education Flow) -->
+            <div
+                x-show="$store.assessmentModal.step === 'system'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+            >
+                <button
+                    @click="$store.assessmentModal.back()"
+                    class="mb-12 text-slate-500 hover:text-[#FF6F61] flex items-center gap-2 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back
+                </button>
+
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-16 text-center"
+                >
+                    Preferred school system?
+                </h2>
+
+                <div class="space-y-4 max-w-2xl mx-auto">
+                    <button
+                        @click="$store.assessmentModal.answer({system: 'international'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="block text-2xl text-slate-900 mb-2"
+                            >International School</strong
+                        >
+                        <span class="text-slate-600 text-lg"
+                            >English curriculum, IB programs</span
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({system: 'public'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="block text-2xl text-slate-900 mb-2"
+                            >Public Swiss School</strong
+                        >
+                        <span class="text-slate-600 text-lg"
+                            >Local language immersion</span
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({system: 'bilingual'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="block text-2xl text-slate-900 mb-2"
+                            >Bilingual School</strong
+                        >
+                        <span class="text-slate-600 text-lg"
+                            >Mix of languages</span
+                        >
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step: Funding -->
+            <div
+                x-show="$store.assessmentModal.step === 'funding'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+            >
+                <button
+                    @click="$store.assessmentModal.back()"
+                    class="mb-12 text-slate-500 hover:text-[#FF6F61] flex items-center gap-2 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back
+                </button>
+
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-16 text-center"
+                >
+                    Who's covering the costs?
+                </h2>
+
+                <div class="space-y-4 max-w-2xl mx-auto">
+                    <button
+                        @click="$store.assessmentModal.answer({funding: 'company'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="block text-2xl text-slate-900 mb-2"
+                            >Company-Sponsored</strong
+                        >
+                        <span class="text-slate-600 text-lg"
+                            >Employer covers relocation</span
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({funding: 'self'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="block text-2xl text-slate-900 mb-2"
+                            >Self-Funded</strong
+                        >
+                        <span class="text-slate-600 text-lg">Paying myself</span
+                        >
+                    </button>
+
+                    <button
+                        @click="$store.assessmentModal.answer({funding: 'mixed'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong class="block text-2xl text-slate-900 mb-2"
+                            >Mixed</strong
+                        >
+                        <span class="text-slate-600 text-lg"
+                            >Combination of both</span
+                        >
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step: Lead Form (Final) -->
+            <div
+                x-show="$store.assessmentModal.step === 'lead'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+            >
+                <button
+                    @click="$store.assessmentModal.back()"
+                    class="mb-12 text-slate-500 hover:text-[#FF6F61] flex items-center gap-2 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back
+                </button>
+
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 text-center"
+                >
+                    Get your perfect matches
+                </h2>
+                <p class="text-xl text-slate-600 mb-16 text-center">
+                    We'll connect you with the best agencies for your needs
+                </p>
+
+                <form
+                    @submit.prevent="$store.assessmentModal.submit()"
+                    class="space-y-6 max-w-2xl mx-auto"
+                >
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label
+                                class="block text-sm font-bold text-slate-900 mb-3"
+                                >First Name *</label
+                            >
+                            <input
+                                type="text"
+                                x-model="$store.assessmentModal.data.firstName"
+                                required
+                                class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:outline-none focus:border-[#FF6F61] focus:bg-white transition-all text-lg"
+                            />
+                        </div>
+                        <div>
+                            <label
+                                class="block text-sm font-bold text-slate-900 mb-3"
+                                >Last Name *</label
+                            >
+                            <input
+                                type="text"
+                                x-model="$store.assessmentModal.data.lastName"
+                                required
+                                class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:outline-none focus:border-[#FF6F61] focus:bg-white transition-all text-lg"
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label
+                            class="block text-sm font-bold text-slate-900 mb-3"
+                            >Email *</label
+                        >
+                        <input
+                            type="email"
+                            x-model="$store.assessmentModal.data.email"
+                            required
+                            class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:outline-none focus:border-[#FF6F61] focus:bg-white transition-all text-lg"
+                        />
+                    </div>
+
+                    <div>
+                        <label
+                            class="block text-sm font-bold text-slate-900 mb-3"
+                            >Phone (Optional)</label
+                        >
+                        <input
+                            type="tel"
+                            x-model="$store.assessmentModal.data.phone"
+                            class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-200 rounded-xl focus:outline-none focus:border-[#FF6F61] focus:bg-white transition-all text-lg"
+                        />
+                    </div>
+
+                    <button
+                        type="submit"
+                        :disabled="$store.assessmentModal.submitting"
+                        class="w-full bg-[#FF6F61] hover:bg-[#FF5A4D] text-white py-6 px-8 rounded-xl font-bold text-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-2xl transform hover:scale-[1.02] active:scale-[0.98] mt-8"
+                    >
+                        <span x-show="!$store.assessmentModal.submitting"
+                            >Get My Recommendations</span
+                        >
+                        <span
+                            x-show="$store.assessmentModal.submitting"
+                            class="flex items-center justify-center gap-3"
+                        >
+                            <svg
+                                class="animate-spin h-6 w-6"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                            >
+                                <circle
+                                    class="opacity-25"
+                                    cx="12"
+                                    cy="12"
+                                    r="10"
+                                    stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path
+                                    class="opacity-75"
+                                    fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                ></path>
+                            </svg>
+                            Submitting...
+                        </span>
+                    </button>
+
+                    <p class="text-sm text-slate-500 text-center pt-4">
+                        By submitting, you agree to be contacted by matched
+                        agencies
+                    </p>
+                </form>
+            </div>
+
+            <!-- Success State -->
+            <div
+                x-show="$store.assessmentModal.success"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-95"
+                x-transition:enter-end="opacity-100 scale-100"
+                class="text-center py-16"
+            >
+                <div
+                    class="w-24 h-24 bg-[#FF6F61]/10 rounded-full flex items-center justify-center mx-auto mb-8"
+                >
+                    <svg
+                        class="w-12 h-12 text-[#FF6F61]"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="3"
+                            d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h2 class="text-5xl font-bold text-slate-900 mb-6">
+                    Request Received!
+                </h2>
+                <p class="text-xl text-slate-600 mb-12">
+                    Our team is reviewing your details and and will contact you
+                    shortly by email.
+                </p>
+                <button
+                    @click="$store.assessmentModal.close()"
+                    class="inline-block bg-[#FF6F61] hover:bg-[#FF5A4D] text-white px-10 py-5 rounded-xl font-bold text-xl transition-all shadow-lg hover:shadow-2xl transform hover:scale-[1.02]"
+                >
+                    Close Window
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    [x-cloak] {
+        display: none !important;
+    }
+</style>
