@@ -32,13 +32,16 @@ const {
   keywords = [],
   schema,
   openGraph,
-  twitter
+  twitter,
 } = Astro.props;
 
-const siteUrl = 'https://relofinder.ch';
-const isAbsolute = canonical?.startsWith('http://') || canonical?.startsWith('https://');
+const siteUrl = "https://relofinder.ch";
+const isAbsolute =
+  canonical?.startsWith("http://") || canonical?.startsWith("https://");
 const fullCanonical = canonical
-  ? (isAbsolute ? canonical : `${siteUrl}${canonical}`)
+  ? isAbsolute
+    ? canonical
+    : `${siteUrl}${canonical}`
   : Astro.url.href;
 
 // Default Open Graph values
@@ -46,24 +49,26 @@ const og = {
   title: openGraph?.title || title,
   description: openGraph?.description || description,
   image: openGraph?.image || `${siteUrl}/og-image.jpg`,
-  type: openGraph?.type || 'website'
+  type: openGraph?.type || "website",
 };
 
 // Default Twitter values
 const twitterCard = {
-  card: twitter?.card || 'summary_large_image',
-  site: twitter?.site || '@relofinder',
+  card: twitter?.card || "summary_large_image",
+  site: twitter?.site || "@relofinder",
   title: twitter?.title || title,
   description: twitter?.description || description,
-  image: twitter?.image || og.image
+  image: twitter?.image || og.image,
 };
 
 // Generate keywords string
-const keywordsString = keywords.length > 0 ? keywords.join(', ') : 
-  'relocation switzerland, swiss relocation services, moving to switzerland, expat services switzerland, relocation companies switzerland';
+const keywordsString =
+  keywords.length > 0
+    ? keywords.join(", ")
+    : "relocation switzerland, swiss relocation services, moving to switzerland, expat services switzerland, relocation companies switzerland";
 
 // Handle schema - can be single object or array
-const schemas = Array.isArray(schema) ? schema : (schema ? [schema] : []);
+const schemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
 ---
 
 <!-- Primary Meta Tags -->
@@ -80,30 +85,34 @@ const schemas = Array.isArray(schema) ? schema : (schema ? [schema] : []);
 <link rel="canonical" href={fullCanonical} />
 
 <!-- Open Graph / Facebook -->
-{openGraph && (
-  <>
-    <meta property="og:type" content={og.type} />
-    <meta property="og:url" content={openGraph.url || fullCanonical} />
-    <meta property="og:title" content={og.title} />
-    <meta property="og:description" content={og.description} />
-    <meta property="og:image" content={og.image} />
-    <meta property="og:site_name" content="ReloFinder" />
-    <meta property="og:locale" content="en_CH" />
-  </>
-)}
+{
+  openGraph && (
+    <>
+      <meta property="og:type" content={og.type} />
+      <meta property="og:url" content={openGraph.url || fullCanonical} />
+      <meta property="og:title" content={og.title} />
+      <meta property="og:description" content={og.description} />
+      <meta property="og:image" content={og.image} />
+      <meta property="og:site_name" content="ReloFinder" />
+      <meta property="og:locale" content="en_CH" />
+    </>
+  )
+}
 
 <!-- Twitter -->
-{twitter && (
-  <>
-    <meta property="twitter:card" content={twitterCard.card} />
-    <meta property="twitter:url" content={fullCanonical} />
-    <meta property="twitter:title" content={twitterCard.title} />
-    <meta property="twitter:description" content={twitterCard.description} />
-    <meta property="twitter:image" content={twitterCard.image} />
-    <meta property="twitter:site" content={twitterCard.site} />
-    <meta property="twitter:creator" content="@relofinder" />
-  </>
-)}
+{
+  twitter && (
+    <>
+      <meta property="twitter:card" content={twitterCard.card} />
+      <meta property="twitter:url" content={fullCanonical} />
+      <meta property="twitter:title" content={twitterCard.title} />
+      <meta property="twitter:description" content={twitterCard.description} />
+      <meta property="twitter:image" content={twitterCard.image} />
+      <meta property="twitter:site" content={twitterCard.site} />
+      <meta property="twitter:creator" content="@relofinder" />
+    </>
+  )
+}
 
 <!-- Additional SEO Meta Tags -->
 <meta name="theme-color" content="#2563eb" />
@@ -128,13 +137,10 @@ const schemas = Array.isArray(schema) ? schema : (schema ? [schema] : []);
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <link rel="manifest" href="/site.webmanifest" />
 
-<!-- Preconnect to External Domains -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preconnect" href="https://www.google-analytics.com" />
-<link rel="dns-prefetch" href="https://serpapi.com" />
-
 <!-- Schema.org JSON-LD -->
-{schemas.map(schemaObj => (
-  <script type="application/ld+json" set:html={JSON.stringify(schemaObj)} />
-))} 
+{
+  schemas.map((schemaObj) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schemaObj)} />
+  ))
+}
+
