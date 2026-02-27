@@ -192,7 +192,7 @@ Switzerland does not have free state healthcare; it has mandatory private insura
 
 ### Expert Insurance Advice
 
-For a personalized audit of which insurance package fits your family:
+For a personalized audit of which insurance package fits your family and tips on **[avoiding the Swiss Pillar 3a life insurance trap](https://expat-savvy.ch/3rd-pillar/bank-vs-insurance)**:
 
 **[Expat-Savvy.ch](https://expat-savvy.ch)** specializes in:
 - Optimizing packages for international families
@@ -240,7 +240,7 @@ This is where Switzerland shines.
 | **VAT** | 8.1% | 19% | 20% | 20% |
 | **Wealth Tax** | 0.1-0.5% | 0% | 0% | 0% |
 
-**Net Result:** Despite higher gross costs, your *after-tax* purchasing power in Switzerland often exceeds London, Paris, or Munich.
+**Net Result:** Despite higher gross costs, your *after-tax* purchasing power in Switzerland often exceeds London, Paris, or Munich. Use this **[Swiss Pillar 3a tax calculator](https://expat-savvy.ch/3rd-pillar/tax-optimization)** to estimate your specific savings.
 
 ---
 
@@ -410,6 +410,6 @@ Welcome to Switzerland. The journey is complex, but the destination is worth it.
 
 ---
 
-*Ready to start your Swiss relocation? Begin with [Offlist.ch](https://offlist.ch) for housing, consult [Expat-Savvy.ch](https://expat-savvy.ch) for insurance, and compare agencies on [ReloFinder](/companies). Your Swiss life awaits.*
+*Ready to start your Swiss relocation? Begin with [Offlist.ch](https://offlist.ch) for housing, consult [Expat-Savvy.ch](https://expat-savvy.ch) for **[Pillar 3a](https://expat-savvy.ch/3rd-pillar/)** and insurance, and compare agencies on [ReloFinder](/companies). Your Swiss life awaits.*
 
 

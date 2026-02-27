@@ -157,7 +157,7 @@ This is where Switzerland wins — and where the "high cost of living" narrative
 
 ### The Net Income Reality
 
-Let's compare a CHF 150,000 salary across countries:
+Let's compare a CHF 150,000 salary across countries. For a personalized view, use this **[Swiss Pillar 3a tax calculator](https://expat-savvy.ch/3rd-pillar/tax-optimization)** to see how pension deductions impact your specific take-home pay:
 
 | Location | Gross Salary | Tax + Social | Net Income | Rent (2BR) | Net After Rent |
 |----------|-------------|--------------|------------|------------|----------------|
@@ -387,7 +387,7 @@ Yes, Switzerland is expensive. But looking at "Cost of Living" without looking a
 By optimizing your two biggest fixed costs:
 
 - **Rent** → Use [Offlist.ch](https://offlist.ch) for fair-priced, long-term housing
-- **Insurance** → Consult [Expat-Savvy.ch](https://expat-savvy.ch) for optimized packages
+- **Insurance** → Consult [Expat-Savvy.ch](https://expat-savvy.ch) for optimized packages and guidance on **[avoiding the Swiss Pillar 3a life insurance trap](https://expat-savvy.ch/3rd-pillar/bank-vs-insurance)**.
 
 You can enjoy purchasing power significantly higher than London, Paris, or New York — in one of the world's safest, most beautiful countries.
 
@@ -405,6 +405,6 @@ You can enjoy purchasing power significantly higher than London, Paris, or New Y
 
 ---
 
-*Planning your Swiss budget? Optimize your biggest expenses: find housing through [Offlist.ch](https://offlist.ch) and get insurance advice from [Expat-Savvy.ch](https://expat-savvy.ch). The savings add up to thousands per year.*
+*Planning your Swiss budget? Optimize your biggest expenses: find housing through [Offlist.ch](https://offlist.ch) and get expert **[Pillar 3a](https://expat-savvy.ch/3rd-pillar/)** and insurance advice from [Expat-Savvy.ch](https://expat-savvy.ch). The savings add up to thousands per year.*
 
 
