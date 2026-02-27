@@ -15,6 +15,7 @@ import {
 import "../../styles/global.css";
 import "../../styles/alpine-clarity.css";
 import SEOHead from "../../components/common/SEOHead.astro";
+import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
 import UniversalContactModal from "../../components/common/UniversalContactModal.tsx";
 import "../../lib/expose-modal-stores.client.ts";
 import Navbar from "../../components/layout/Navbar.astro";
@@ -694,7 +695,51 @@ const faqs = [
             </div>
         </section>
 
-        <!-- 8. FAQ Section -->
+        <!-- 8. SEO Insights Box -->
+        <SEOInsightBox
+            title="Relocating to Lausanne: Insights & Guidance for 2026"
+        >
+            <p class="mb-6">
+                Lausanne, the vibrant capital of Canton Vaud, offers a unique
+                blend of Olympic prestige, world-class education with EPFL and
+                IMD, and stunning views of Lake Geneva. For expats and
+                professionals moving to Lausanne, navigating the competitive
+                housing market is often the first major challenge. Areas like
+                Ouchy offer premium lakeside living, while families often prefer
+                the quieter, vineyard-proximate communities of Pully and Lutry.
+                Understanding the local ‘Régie’ (property management) system is
+                crucial for securing a desirable apartment.
+            </p>
+            <p class="mb-6">
+                Beyond housing, integrating into Lausanne involves setting up
+                mandatory health insurance, understanding local tax structures,
+                and potentially finding the right international school. The M2
+                metro line connects the diverse altitudes of the city, making
+                commutes efficient. To ensure a smooth transition, many
+                newcomers rely on specialized relocation agencies that have
+                access to off-market properties and deep knowledge of the local
+                administrative requirements.
+            </p>
+            <ul class="list-disc pl-6 space-y-3">
+                <li>
+                    <strong>Housing Market Nuances:</strong> The rental market is
+                    highly competitive; early preparation of a comprehensive 'Régie'
+                    dossier is vital.
+                </li>
+                <li>
+                    <strong>Education Hub:</strong> Home to renowned institutions,
+                    making it an ideal location for academics and families seeking
+                    top-tier international schools.
+                </li>
+                <li>
+                    <strong>Quality of Life:</strong> Enjoying the balance of a dynamic
+                    cultural scene, excellent public transport, and immediate access
+                    to Lake Geneva and the Alps.
+                </li>
+            </ul>
+        </SEOInsightBox>
+
+        <!-- 9. FAQ Section -->
         <section class="py-24 bg-white border-t border-slate-100">
             <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2

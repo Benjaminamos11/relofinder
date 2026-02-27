@@ -16,6 +16,7 @@ import {
 import "../../styles/global.css";
 import "../../styles/alpine-clarity.css";
 import SEOHead from "../../components/common/SEOHead.astro";
+import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
 import UniversalContactModal from "../../components/common/UniversalContactModal.tsx";
 import "../../lib/expose-modal-stores.client.ts";
 import Navbar from "../../components/layout/Navbar.astro";
@@ -180,9 +181,7 @@ const faqs = [
                     <div
                         class="bg-white rounded-2xl shadow-xl shadow-slate-900/5 border border-slate-200 p-1"
                     >
-                        <HeroSearch
-                            initialDestination="swiss-alps"
-                        />
+                        <HeroSearch initialDestination="swiss-alps" />
                     </div>
                     <p
                         class="text-center text-sm text-white/80 mt-6 font-medium drop-shadow"
@@ -657,7 +656,52 @@ const faqs = [
             </div>
         </section>
 
-        <!-- 8. FAQ Section -->
+        <!-- 8. SEO Insights Box -->
+        <SEOInsightBox
+            title="Relocating to the Swiss Alps: Luxury Living in 2026"
+        >
+            <p class="mb-6">
+                Moving to the Swiss Alps, whether to iconic destinations like
+                St. Moritz, Gstaad, Zermatt, or Andermatt, represents a pinnacle
+                of luxury living. Relocating to these high-altitude havens
+                involves specific considerations, particularly regarding
+                property ownership. The Lex Koller legislation strictly
+                regulates foreign property purchases, making expert legal and
+                real estate guidance essential. However, exceptions exist, such
+                as in Andermatt, where non-residents enjoy more freedom to
+                invest in alpine real estate.
+            </p>
+            <p class="mb-6">
+                Beyond the stunning scenery and world-class ski infrastructure,
+                expats and High Net Worth Individuals (HNWIs) are drawn to the
+                Alps for favorable tax arrangements, including Lump-Sum Taxation
+                options in certain cantons. The logistics of moving to
+                mountainous regions are complex, requiring specialized transport
+                and deep local connections to access the highly sought-after,
+                often off-market, luxury chalet rentals. Partnering with a
+                dedicated Alpine relocation specialist ensures a seamless
+                transition into this exclusive lifestyle.
+            </p>
+            <ul class="list-disc pl-6 space-y-3">
+                <li>
+                    <strong>Lex Koller Regulations:</strong> Navigating complex property
+                    laws is crucial for foreign nationals looking to buy in most Alpine
+                    resorts.
+                </li>
+                <li>
+                    <strong>Tax Optimization:</strong> Many Alpine cantons offer highly
+                    attractive tax structures, including forfait fiscal arrangements
+                    for eligible individuals.
+                </li>
+                <li>
+                    <strong>Exclusive Market Access:</strong> Securing premium chalets
+                    often requires tapping into the off-market network through established
+                    local agents.
+                </li>
+            </ul>
+        </SEOInsightBox>
+
+        <!-- 9. FAQ Section -->
         <section class="py-24 bg-white border-t border-slate-100">
             <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2

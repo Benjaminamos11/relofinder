@@ -15,6 +15,7 @@ import {
 import "../../styles/global.css";
 import "../../styles/alpine-clarity.css";
 import SEOHead from "../../components/common/SEOHead.astro";
+import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
 import UniversalContactModal from "../../components/common/UniversalContactModal.tsx";
 import "../../lib/expose-modal-stores.client.ts";
 import Navbar from "../../components/layout/Navbar.astro";
@@ -666,7 +667,53 @@ const faqs = [
             </div>
         </section>
 
-        <!-- 8. FAQ Section -->
+        <!-- 8. SEO Insights Box -->
+        <SEOInsightBox
+            title="Relocating to Swiss City Hubs: Bern, Lucerne, & Beyond"
+        >
+            <p class="mb-6">
+                While Zurich and Geneva often dominate the conversation,
+                relocating to other major Swiss hubs like Bern, Lucerne, Lugano,
+                and Montreux offers exceptional alternatives with distinct
+                advantages. These regional centers provide a high standard of
+                living, often with more accessible housing markets and
+                significantly lower living costs—sometimes saving expats 15-20%
+                on rent. Each hub has its unique flavor: Bern is the political
+                heart, Lucerne offers central connectivity and tax-efficient
+                suburbs, while Lugano and Montreux provide Mediterranean and
+                Riviera lifestyles, respectively.
+            </p>
+            <p class="mb-6">
+                Moving to these decentralized cities means choosing a lifestyle
+                that fits your personal and professional needs without
+                compromising on Swiss quality. Whether you're drawn to the
+                diplomatic circles of Bern, the academic environment of St.
+                Gallen, or commuting from scenic Lucerne, settling into these
+                areas requires understanding local tax variations, health
+                insurance premiums, and specific canton regulations. Engaging
+                with a relocation expert who understands these regional nuances
+                is key to a successful move.
+            </p>
+            <ul class="list-disc pl-6 space-y-3">
+                <li>
+                    <strong>Cost Efficiency:</strong> Enjoy a premium Swiss lifestyle
+                    with housing costs typically lower than in the primary financial
+                    capitals.
+                </li>
+                <li>
+                    <strong>Diverse Lifestyles:</strong> Choose from the diplomatic
+                    center of Bern, the sunny climate of Lugano, or the central accessibility
+                    of Lucerne.
+                </li>
+                <li>
+                    <strong>Local Nuances:</strong> Each canton has distinct tax rates
+                    and administrative procedures, making localized expert advice
+                    highly valuable.
+                </li>
+            </ul>
+        </SEOInsightBox>
+
+        <!-- 9. FAQ Section -->
         <section class="py-24 bg-white border-t border-slate-100">
             <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2
