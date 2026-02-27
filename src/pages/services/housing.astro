@@ -21,6 +21,7 @@ import "../../lib/expose-modal-stores.client.ts";
 import Navbar from "../../components/layout/Navbar.astro";
 import Footer from "../../components/layout/Footer.astro";
 import HeroSearch from "../../components/home/HeroSearch.astro";
+import AssessmentModalAlpine from "../../components/individual/AssessmentModalAlpine.astro";
 
 import RegionalMarketMap from "../../components/services/RegionalMarketMap.tsx";
 import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
@@ -199,6 +200,9 @@ const structuredData = [
             rel="stylesheet"
         />
         <style>
+            [x-cloak] {
+                display: none !important;
+            }
             .hero-gradient {
                 background: linear-gradient(
                     180deg,
@@ -207,6 +211,12 @@ const structuredData = [
                 );
             }
         </style>
+        <!-- Alpine.js - Loaded via CDN, isolated from Vite -->
+        <script
+            is:inline
+            defer
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
     </head>
     <body class="font-sans text-slate-600 bg-[#F9FAFB] antialiased">
         <!-- Navbar -->
@@ -899,5 +909,11 @@ const structuredData = [
         </section>
 
         <Footer theme="light" />
+
+        <!-- Alpine.js Assessment Modal -->
+        <AssessmentModalAlpine />
+
+        <!-- Alpine.js Global Stores -->
+        <script is:inline src="/alpine-stores.js?v=3"></script>
     </body>
 </html>
