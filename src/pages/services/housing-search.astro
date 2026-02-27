@@ -2,7 +2,7 @@
 import ServiceHero from "../../components/services/ServiceHero.astro";
 import SchemaMarkup from "../../components/common/SchemaMarkup.astro";
 import Layout from "../../layouts/Layout.astro";
-import HeroSearch from "../../components/home/HeroSearch";
+import HeroSearch from "../../components/home/HeroSearch.astro";
 import {
     Building2,
     Users,
@@ -691,7 +691,7 @@ const structuredData = [
                 class="bg-slate-900 rounded-2xl p-3 md:p-4 shadow-2xl ring-1 ring-slate-900/5 rotate-1 hover:rotate-0 transition-transform duration-500"
             >
                 <div class="bg-white rounded-xl overflow-hidden">
-                    <HeroSearch client:load />
+                    <HeroSearch />
                 </div>
             </div>
 

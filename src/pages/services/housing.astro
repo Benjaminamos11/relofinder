@@ -20,7 +20,7 @@ import SEOHead from "../../components/common/SEOHead.astro";
 import "../../lib/expose-modal-stores.client.ts";
 import Navbar from "../../components/layout/Navbar.astro";
 import Footer from "../../components/layout/Footer.astro";
-import HeroSearch from "../../components/home/HeroSearch.tsx";
+import HeroSearch from "../../components/home/HeroSearch.astro";
 
 import RegionalMarketMap from "../../components/services/RegionalMarketMap.tsx";
 
@@ -266,7 +266,6 @@ const structuredData = [
                     >
                         <div class="bg-white rounded-xl overflow-hidden">
                             <HeroSearch
-                                client:load
                                 initialService="housing-search"
                             />
                         </div>
@@ -809,7 +808,7 @@ const structuredData = [
                     class="bg-slate-900 rounded-2xl p-3 md:p-4 shadow-2xl ring-1 ring-slate-900/5 rotate-1 hover:rotate-0 transition-transform duration-500"
                 >
                     <div class="bg-white rounded-xl overflow-hidden">
-                        <HeroSearch client:load />
+                        <HeroSearch />
                     </div>
                 </div>
 

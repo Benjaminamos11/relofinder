@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import HeroSearch from "../../components/home/HeroSearch";
+import HeroSearch from "../../components/home/HeroSearch.astro";
 import SchemaMarkup from "../../components/common/SchemaMarkup.astro";
 import {
     ShieldCheck,
@@ -134,7 +134,7 @@ const faqSchema = {
                     <div
                         class="max-w-4xl mx-auto px-4 transform hover:scale-[1.01] transition-all duration-700"
                     >
-                        <HeroSearch client:load initialService="finance" />
+                        <HeroSearch initialService="finance" />
                     </div>
                 </div>
             </div>

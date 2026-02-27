@@ -19,7 +19,7 @@ import SEOHead from "../../components/common/SEOHead.astro";
 import "../../lib/expose-modal-stores.client.ts";
 import Navbar from "../../components/layout/Navbar.astro";
 import Footer from "../../components/layout/Footer.astro";
-import HeroSearch from "../../components/home/HeroSearch.tsx";
+import HeroSearch from "../../components/home/HeroSearch.astro";
 
 // --- Data & Content ---
 
@@ -179,7 +179,7 @@ const faqs = [
                     <div
                         class="bg-white rounded-2xl shadow-xl shadow-slate-900/5 border border-slate-200 p-1"
                     >
-                        <HeroSearch client:load initialDestination="geneva" />
+                        <HeroSearch initialDestination="geneva" />
                     </div>
                     <p
                         class="text-center text-sm text-white/80 mt-6 font-medium drop-shadow"
