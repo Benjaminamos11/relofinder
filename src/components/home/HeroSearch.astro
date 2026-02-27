@@ -34,18 +34,18 @@ const services = [
 ---
 
 <div
-    x-data={`{
+    x-data="{
         activeTab: 'private',
         when: '',
-        where: '${initialDestination}',
-        service: '${initialService}',
+        where: '',
+        service: '',
         companyName: '',
         yearlyVolume: '',
-        primaryDestination: '${initialDestination}',
+        primaryDestination: '',
 
         handlePrivateSubmit() {
-            if (window.Alpine && window.Alpine.store('assessmentModal')) {
-                window.Alpine.store('assessmentModal').open({
+            if (this.$store.assessmentModal) {
+                this.$store.assessmentModal.open({
                     mode: 'private',
                     initialCanton: this.where,
                     initialService: this.service,
@@ -55,8 +55,8 @@ const services = [
         },
 
         handleCorporateSubmit() {
-            if (window.Alpine && window.Alpine.store('assessmentModal')) {
-                window.Alpine.store('assessmentModal').open({
+            if (this.$store.assessmentModal) {
+                this.$store.assessmentModal.open({
                     mode: 'corporate',
                     initialCanton: this.primaryDestination,
                     company: this.companyName,
@@ -64,7 +64,12 @@ const services = [
                 });
             }
         }
-    }`}
+    }"
+    x-init={`
+        where = '${initialDestination}';
+        service = '${initialService}';
+        primaryDestination = '${initialDestination}';
+    `}
     class={`bg-white rounded-3xl shadow-[0_40px_80px_-20px_rgba(0,0,0,0.2)] ring-1 ring-slate-900/5 overflow-hidden w-full transition-all duration-300 ${className}`}
 >
     <!-- Tabs -->

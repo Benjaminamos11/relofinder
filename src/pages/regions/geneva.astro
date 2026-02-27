@@ -15,6 +15,7 @@ import {
 import "../../styles/global.css";
 import "../../styles/alpine-clarity.css";
 import SEOHead from "../../components/common/SEOHead.astro";
+import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
 
 import "../../lib/expose-modal-stores.client.ts";
 import Navbar from "../../components/layout/Navbar.astro";
@@ -687,6 +688,52 @@ const faqs = [
                 </div>
             </div>
         </section>
+
+        <!-- Deep Narrative Section for SEO Authority -->
+        <SEOInsightBox title="Navigating Geneva's Relocation Market">
+            <p>
+                Geneva is a unique microcosm within Switzerland. As the
+                headquarters for the UN, the WHO, and countless NGOs, it
+                possesses a deeply international character. However, this global
+                presence exerts immense pressure on a geographically constrained
+                housing market, leading to notoriously high rents and fierce
+                competition.
+            </p>
+            <p>
+                The cornerstone of the Geneva real estate market is the <strong
+                    >Régie</strong
+                > system. Unlike in other cantons where you might deal directly with
+                a landlord, Régies are powerful property management firms that control
+                roughly 85% of the rental stock. They are exacting in their requirements;
+                a standard application dossier must often prove that your gross monthly
+                income is at least three times the rent, alongside flawless credit
+                history.
+            </p>
+            <p class="font-bold text-slate-900 mt-8 mb-4">
+                Strategic Considerations for Geneva:
+            </p>
+            <ul class="list-disc pl-6 space-y-4">
+                <li>
+                    <strong>The Diplomatic Clause:</strong> Given the transient nature
+                    of the international workforce, negotiating a "Diplomatic Clause"
+                    (allowing early lease termination in case of professional transfer)
+                    is crucial, though highly resisted by Régies.
+                </li>
+                <li>
+                    <strong>Rive Droite vs. Rive Gauche:</strong> The city is divided
+                    by the lake and the Rhône. The Right Bank (Rive Droite) is closer
+                    to the UN and airport, favored by diplomats. The Left Bank (Rive
+                    Gauche) hosts the banking sector and affluent neighborhoods like
+                    Cologny.
+                </li>
+                <li>
+                    <strong>The Frontalier Option:</strong> Many expats consider living
+                    in neighboring France (Annemasse, Ferney-Voltaire) for cheaper
+                    rent. While financially attractive, cross-border commutes and
+                    complex tax implications require careful consideration.
+                </li>
+            </ul>
+        </SEOInsightBox>
 
         <!-- 8. FAQ Section -->
         <section class="py-24 bg-white border-t border-slate-100">

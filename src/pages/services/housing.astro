@@ -23,6 +23,7 @@ import Footer from "../../components/layout/Footer.astro";
 import HeroSearch from "../../components/home/HeroSearch.astro";
 
 import RegionalMarketMap from "../../components/services/RegionalMarketMap.tsx";
+import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
 
 // --- Assets ---
 const heroImage =
@@ -259,15 +260,13 @@ const structuredData = [
 
                 <!-- Lead Wizard (Hero) -->
                 <div
-                    class="max-w-3xl mx-auto relative z-10 text-left transform hover:-translate-y-1 transition-transform duration-500"
+                    class="max-w-5xl mx-auto relative z-10 text-left transform hover:-translate-y-1 transition-transform duration-500"
                 >
                     <div
                         class="bg-white/10 backdrop-blur-md rounded-2xl p-2 ring-1 ring-white/20 shadow-2xl"
                     >
                         <div class="bg-white rounded-xl overflow-hidden">
-                            <HeroSearch
-                                initialService="housing-search"
-                            />
+                            <HeroSearch initialService="housing-search" />
                         </div>
                     </div>
                     <p
@@ -832,57 +831,46 @@ const structuredData = [
         </section>
 
         <!-- Deep Narrative Section for SEO Authority -->
-        <section class="py-24 bg-white">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-8">
-                    Navigating the Swiss Expat Housing Market
-                </h2>
-                <div
-                    class="prose prose-lg prose-slate text-slate-600 max-w-none"
+        <SEOInsightBox title="Navigating the Swiss Expat Housing Market">
+            <p>
+                The Swiss housing market is notoriously competitive, especially
+                in global hubs like Zurich and Geneva. To succeed, expats must
+                master the "Application Dossier." The centerpiece of this
+                dossier is the <strong>Betreibungsauszug</strong>
+                (debt register extract). Landlords prioritize applicants with a clean
+                record, and for newcomers, providing an equivalent document from your
+                previous country is often necessary to bridge the gap.
+            </p>
+            <p>
+                Financial preparation is equally critical. The standard <strong
+                    >Mietkaution</strong
                 >
-                    <p>
-                        The Swiss housing market is notoriously competitive,
-                        especially in global hubs like Zurich and Geneva. To
-                        succeed, expats must master the "Application Dossier."
-                        The centerpiece of this dossier is the <strong
-                            >Betreibungsauszug</strong
-                        > (debt register extract). Landlords prioritize applicants
-                        with a clean record, and for newcomers, providing an equivalent
-                        document from your previous country is often necessary to
-                        bridge the gap.
-                    </p>
-                    <p>
-                        Financial preparation is equally critical. The standard <strong
-                            >Mietkaution</strong
-                        > (rental deposit) is three months of gross rent, which remains
-                        locked in a blocked bank account for the duration of your
-                        lease. In a market where the vacancy rate is often below 1%,
-                        speed and professional representation are your greatest assets.
-                    </p>
-                    <p class="font-bold text-slate-900 mt-8 mb-4">
-                        Why rely on agencies?
-                    </p>
-                    <ul class="list-disc pl-6 space-y-4">
-                        <li>
-                            <strong>Off-Market Access:</strong> Many of the best properties
-                            are leased via "Nachmieter" (replacement tenant) networks
-                            before they ever reach public portals like Homegate.
-                        </li>
-                        <li>
-                            <strong>Vetting & Trust:</strong> Relocation agents act
-                            as a trust proxy, vouching for your solvency to landlords
-                            (Régies) who might otherwise reject an expat without a
-                            local credit history.
-                        </li>
-                        <li>
-                            <strong>Strategic Bidding:</strong> Understanding the
-                            nuances of localized rental law can save you thousands
-                            in hidden "Nebenkosten" (ancillary costs).
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+                (rental deposit) is three months of gross rent, which remains locked
+                in a blocked bank account for the duration of your lease. In a market
+                where the vacancy rate is often below 1%, speed and professional representation
+                are your greatest assets.
+            </p>
+            <p class="font-bold text-slate-900 mt-8 mb-4">
+                Why rely on agencies?
+            </p>
+            <ul class="list-disc pl-6 space-y-4">
+                <li>
+                    <strong>Off-Market Access:</strong> Many of the best properties
+                    are leased via "Nachmieter" (replacement tenant) networks before
+                    they ever reach public portals like Homegate.
+                </li>
+                <li>
+                    <strong>Vetting & Trust:</strong> Relocation agents act as a trust
+                    proxy, vouching for your solvency to landlords (Régies) who might
+                    otherwise reject an expat without a local credit history.
+                </li>
+                <li>
+                    <strong>Strategic Bidding:</strong> Understanding the nuances
+                    of localized rental law can save you thousands in hidden "Nebenkosten"
+                    (ancillary costs).
+                </li>
+            </ul>
+        </SEOInsightBox>
 
         <!-- FAQ -->
         <section class="py-24 bg-[#F9FAFB] border-t border-slate-200">

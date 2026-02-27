@@ -1,0 +1,32 @@
+---
+interface Props {
+    title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<section class="py-24 bg-white border-t border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+            class="bg-slate-50 rounded-2xl shadow-sm border-4 border-[#FF6F61] p-8 md:p-12 relative overflow-hidden"
+        >
+            <!-- Decorative accent -->
+            <div
+                class="absolute top-0 right-0 w-32 h-32 bg-[#FF6F61]/5 rounded-bl-[100px] pointer-events-none"
+            >
+            </div>
+
+            <h2
+                class="text-3xl md:text-4xl font-bold text-slate-900 mb-6 relative z-10"
+            >
+                {title}
+            </h2>
+            <div
+                class="prose prose-lg text-slate-700 leading-relaxed max-w-none relative z-10"
+            >
+                <slot />
+            </div>
+        </div>
+    </div>
+</section>

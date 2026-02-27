@@ -5,6 +5,7 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify';
+import alpinejs from '@astrojs/alpinejs';
 
 export default defineConfig({
   prefetch: {
@@ -17,6 +18,7 @@ export default defineConfig({
         content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
       }
     }),
+    alpinejs({ entrypoint: '/src/alpine/entrypoint.js' }),
     react(),
     // preact({
     //   include: 'src/components/common/InteractiveCTAModal.tsx'
