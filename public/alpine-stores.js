@@ -60,9 +60,9 @@ document.addEventListener('alpine:init', () => {
                 return ['household', 'ages', 'system', 'funding', 'lead'];
             }
 
-            // Corporate flow
+            // Corporate flow — uses existing step templates
             if (service === 'corporate' || this.mode === 'corporate') {
-                return ['corpVolume', 'corpScope', 'corpRegions', 'lead'];
+                return ['household', 'budget', 'funding', 'lead'];
             }
 
             // Default flow

@@ -154,5 +154,15 @@ const {
 
     <!-- Alpine.js Global Stores (loaded via alpine:init, isolated from Vite) -->
     <script is:inline src="/alpine-stores.js?v=3"></script>
+
+    <!-- Re-initialize Alpine after ViewTransitions soft navigation -->
+    <script is:inline>
+      document.addEventListener("astro:page-load", () => {
+        if (window.Alpine) {
+          // Re-initialize Alpine's component tree on the new DOM
+          window.Alpine.initTree(document.body);
+        }
+      });
+    </script>
   </body>
 </html>
