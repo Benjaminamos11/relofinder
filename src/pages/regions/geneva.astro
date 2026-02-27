@@ -21,6 +21,7 @@ import "../../lib/expose-modal-stores.client.ts";
 import Navbar from "../../components/layout/Navbar.astro";
 import Footer from "../../components/layout/Footer.astro";
 import HeroSearch from "../../components/home/HeroSearch.astro";
+import AlpineSetup from "../../components/common/AlpineSetup.astro";
 
 // --- Data & Content ---
 
@@ -131,6 +132,9 @@ const faqs = [
                 );
             }
         </style>
+        <style>[x-cloak] { display: none !important; }</style>
+        <!-- Alpine.js CDN -->
+        <script is:inline defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
     <body class="font-sans text-slate-600 bg-[#F9FAFB] antialiased">
         <!-- 1. Navbar -->
@@ -763,5 +767,6 @@ const faqs = [
 
         <!-- 8. Footer -->
         <Footer theme="dark" />
+        <AlpineSetup />
     </body>
 </html>

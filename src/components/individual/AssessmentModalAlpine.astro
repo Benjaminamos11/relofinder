@@ -816,6 +816,498 @@
                 </div>
             </div>
 
+            <!-- Step: Priority (VIP Flow) -->
+            <div
+                x-show="$store.assessmentModal.step === 'priority'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+            >
+                <button
+                    @click="$store.assessmentModal.back()"
+                    class="mb-12 text-slate-500 hover:text-[#FF6F61] flex items-center gap-2 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back
+                </button>
+
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-16 text-center"
+                >
+                    What is your main priority?
+                </h2>
+
+                <div class="space-y-4 max-w-2xl mx-auto">
+                    <button
+                        @click="$store.assessmentModal.answer({priority: 'Speed (Urgent)'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong
+                            class="block text-2xl text-slate-900 mb-2 text-center"
+                            >Speed (Urgent)</strong
+                        >
+                    </button>
+                    <button
+                        @click="$store.assessmentModal.answer({priority: 'Zero Admin (Comfort)'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong
+                            class="block text-2xl text-slate-900 mb-2 text-center"
+                            >Zero Admin (Comfort)</strong
+                        >
+                    </button>
+                    <button
+                        @click="$store.assessmentModal.answer({priority: 'Value (Budget)'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong
+                            class="block text-2xl text-slate-900 mb-2 text-center"
+                            >Value (Budget)</strong
+                        >
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step: Temp Housing (VIP Flow) -->
+            <div
+                x-show="$store.assessmentModal.step === 'tempHousing'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+            >
+                <button
+                    @click="$store.assessmentModal.back()"
+                    class="mb-12 text-slate-500 hover:text-[#FF6F61] flex items-center gap-2 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back
+                </button>
+
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-16 text-center"
+                >
+                    Do you need temporary housing?
+                </h2>
+
+                <div class="space-y-4 max-w-2xl mx-auto">
+                    <button
+                        @click="$store.assessmentModal.answer({tempHousing: 'yes'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong
+                            class="block text-2xl text-slate-900 mb-2 text-center"
+                            >Yes (Serviced Apt)</strong
+                        >
+                    </button>
+                    <button
+                        @click="$store.assessmentModal.answer({tempHousing: 'no'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong
+                            class="block text-2xl text-slate-900 mb-2 text-center"
+                            >No (Hotel/Private)</strong
+                        >
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step: VIP Budget (VIP Flow) -->
+            <div
+                x-show="$store.assessmentModal.step === 'vipBudget'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+            >
+                <button
+                    @click="$store.assessmentModal.back()"
+                    class="mb-12 text-slate-500 hover:text-[#FF6F61] flex items-center gap-2 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back
+                </button>
+
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-16 text-center"
+                >
+                    Budget for professional support?
+                </h2>
+
+                <div class="space-y-4 max-w-2xl mx-auto">
+                    <button
+                        @click="$store.assessmentModal.answer({vipBudget: 'Essential (< 3k)'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong
+                            class="block text-2xl text-slate-900 mb-2 text-center"
+                            >Essential (&lt; CHF 3&apos;000)</strong
+                        >
+                    </button>
+                    <button
+                        @click="$store.assessmentModal.answer({vipBudget: 'Standard (3-6k)'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong
+                            class="block text-2xl text-slate-900 mb-2 text-center"
+                            >Standard (CHF 3&apos;000 – 6&apos;000)</strong
+                        >
+                    </button>
+                    <button
+                        @click="$store.assessmentModal.answer({vipBudget: 'Premium (6k+)'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong
+                            class="block text-2xl text-slate-900 mb-2 text-center"
+                            >Premium (CHF 6&apos;000+)</strong
+                        >
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step: Corporate Volume -->
+            <div
+                x-show="$store.assessmentModal.step === 'corpVolume'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+            >
+                <button
+                    @click="$store.assessmentModal.back()"
+                    class="mb-12 text-slate-500 hover:text-[#FF6F61] flex items-center gap-2 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back
+                </button>
+
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-16 text-center"
+                >
+                    Estimated annual relocation volume?
+                </h2>
+
+                <div class="space-y-4 max-w-2xl mx-auto">
+                    <button
+                        @click="$store.assessmentModal.answer({corpVolume: '1-5'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong
+                            class="block text-2xl text-slate-900 text-center"
+                            >1 – 5 Moves per Year</strong
+                        >
+                    </button>
+                    <button
+                        @click="$store.assessmentModal.answer({corpVolume: '5-20'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong
+                            class="block text-2xl text-slate-900 text-center"
+                            >5 – 20 Moves per Year</strong
+                        >
+                    </button>
+                    <button
+                        @click="$store.assessmentModal.answer({corpVolume: '20+'})"
+                        class="w-full p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl text-left hover:border-[#FF6F61] hover:bg-white hover:shadow-lg transition-all"
+                    >
+                        <strong
+                            class="block text-2xl text-slate-900 text-center"
+                            >20+ Moves per Year</strong
+                        >
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step: Corporate Scope (Multi-Select) -->
+            <div
+                x-show="$store.assessmentModal.step === 'corpScope'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+            >
+                <button
+                    @click="$store.assessmentModal.back()"
+                    class="mb-12 text-slate-500 hover:text-[#FF6F61] flex items-center gap-2 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back
+                </button>
+
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 text-center"
+                >
+                    Services to include?
+                </h2>
+                <p class="text-xl text-slate-600 mb-16 text-center">
+                    Multi-select enabled
+                </p>
+
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto"
+                >
+                    <template
+                        x-for="item in ['Housing Search', 'Immigration & Permits', 'Schooling & Family', 'VIP / Exec Concierge']"
+                    >
+                        <button
+                            @click="if ($store.assessmentModal.data.corpScope.includes(item)) { $store.assessmentModal.data.corpScope = $store.assessmentModal.data.corpScope.filter(i => i !== item) } else { $store.assessmentModal.data.corpScope.push(item) }"
+                            class="p-8 border-2 rounded-2xl text-left transition-all"
+                            :class="$store.assessmentModal.data.corpScope.includes(item) ? 'border-[#FF6F61] bg-white shadow-lg' : 'border-slate-100 bg-slate-50'"
+                        >
+                            <span
+                                class="text-xl font-bold"
+                                :class="$store.assessmentModal.data.corpScope.includes(item) ? 'text-[#FF6F61]' : 'text-slate-800'"
+                                x-text="item"></span>
+                        </button>
+                    </template>
+                </div>
+
+                <div class="mt-16 text-center">
+                    <button
+                        @click="$store.assessmentModal.answer({})"
+                        :disabled="$store.assessmentModal.data.corpScope.length === 0"
+                        class="px-12 py-5 bg-slate-900 text-white font-bold rounded-2xl shadow-xl hover:bg-black transition-all text-xl disabled:opacity-30 disabled:cursor-not-allowed"
+                    >
+                        Continue
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step: Corporate Regions (Multi-Select) -->
+            <div
+                x-show="$store.assessmentModal.step === 'corpRegions'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+            >
+                <button
+                    @click="$store.assessmentModal.back()"
+                    class="mb-12 text-slate-500 hover:text-[#FF6F61] flex items-center gap-2 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back
+                </button>
+
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-16 text-center"
+                >
+                    Highest priority regions?
+                </h2>
+
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto"
+                >
+                    <template
+                        x-for="item in ['Zurich Area', 'Geneva / Vaud', 'Basel / NW CH', 'Zug / Central', 'Lausanne', 'Other Cantons']"
+                    >
+                        <button
+                            @click="if ($store.assessmentModal.data.corpRegions.includes(item)) { $store.assessmentModal.data.corpRegions = $store.assessmentModal.data.corpRegions.filter(i => i !== item) } else { $store.assessmentModal.data.corpRegions.push(item) }"
+                            class="p-6 border-2 rounded-2xl text-center transition-all"
+                            :class="$store.assessmentModal.data.corpRegions.includes(item) ? 'border-[#FF6F61] bg-white shadow-lg' : 'border-slate-100 bg-slate-50'"
+                        >
+                            <span
+                                class="font-bold"
+                                :class="$store.assessmentModal.data.corpRegions.includes(item) ? 'text-[#FF6F61]' : 'text-slate-800'"
+                                x-text="item"></span>
+                        </button>
+                    </template>
+                </div>
+
+                <div class="mt-16 text-center">
+                    <button
+                        @click="$store.assessmentModal.answer({})"
+                        :disabled="$store.assessmentModal.data.corpRegions.length === 0"
+                        class="px-12 py-5 bg-slate-900 text-white font-bold rounded-2xl shadow-xl hover:bg-black transition-all text-xl disabled:opacity-30 disabled:cursor-not-allowed"
+                    >
+                        Continue
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step: Corporate Pain Points (Multi-Select) -->
+            <div
+                x-show="$store.assessmentModal.step === 'corpPainPoints'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+            >
+                <button
+                    @click="$store.assessmentModal.back()"
+                    class="mb-12 text-slate-500 hover:text-[#FF6F61] flex items-center gap-2 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back
+                </button>
+
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-16 text-center"
+                >
+                    Biggest bottleneck?
+                </h2>
+
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto"
+                >
+                    <template
+                        x-for="item in ['Finding housing fast enough', 'Permit delays / Compliance', 'Inconsistent service quality', 'Lack of fee transparency']"
+                    >
+                        <button
+                            @click="if ($store.assessmentModal.data.corpPainPoints.includes(item)) { $store.assessmentModal.data.corpPainPoints = $store.assessmentModal.data.corpPainPoints.filter(i => i !== item) } else { $store.assessmentModal.data.corpPainPoints.push(item) }"
+                            class="p-8 border-2 rounded-2xl text-left transition-all"
+                            :class="$store.assessmentModal.data.corpPainPoints.includes(item) ? 'border-[#FF6F61] bg-white shadow-lg' : 'border-slate-100 bg-slate-50'"
+                        >
+                            <span
+                                class="text-xl font-bold"
+                                :class="$store.assessmentModal.data.corpPainPoints.includes(item) ? 'text-[#FF6F61]' : 'text-slate-800'"
+                                x-text="item"></span>
+                        </button>
+                    </template>
+                </div>
+
+                <div class="mt-16 text-center">
+                    <button
+                        @click="$store.assessmentModal.answer({})"
+                        :disabled="$store.assessmentModal.data.corpPainPoints.length === 0"
+                        class="px-12 py-5 bg-slate-900 text-white font-bold rounded-2xl shadow-xl hover:bg-black transition-all text-xl disabled:opacity-30 disabled:cursor-not-allowed"
+                    >
+                        Continue
+                    </button>
+                </div>
+            </div>
+
+            <!-- Step: Corporate Outcome -->
+            <div
+                x-show="$store.assessmentModal.step === 'corpOutcome'"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-4"
+                x-transition:enter-end="opacity-100 translate-y-0"
+            >
+                <button
+                    @click="$store.assessmentModal.back()"
+                    class="mb-12 text-slate-500 hover:text-[#FF6F61] flex items-center gap-2 transition-colors"
+                >
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back
+                </button>
+
+                <h2
+                    class="text-4xl md:text-5xl font-bold text-slate-900 mb-16 text-center"
+                >
+                    Desired outcome?
+                </h2>
+
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"
+                >
+                    <button
+                        @click="$store.assessmentModal.answer({corpOutcome: 'tender'})"
+                        class="p-10 bg-slate-900 text-white rounded-[2.5rem] text-center hover:bg-black transition-all"
+                    >
+                        <strong class="block text-2xl mb-2"
+                            >Anonymous Tender</strong
+                        >
+                        <span class="text-slate-400"
+                            >Get rates from 5+ agencies</span
+                        >
+                    </button>
+                    <button
+                        @click="$store.assessmentModal.answer({corpOutcome: 'consultation'})"
+                        class="p-10 bg-white border-2 border-slate-100 rounded-[2.5rem] text-center hover:border-[#FF6F61] transition-all"
+                    >
+                        <strong class="block text-2xl text-slate-900 mb-2"
+                            >Expert Consultation</strong
+                        >
+                        <span class="text-slate-600"
+                            >Book 15-min scoping call</span
+                        >
+                    </button>
+                </div>
+            </div>
+
             <!-- Step: Lead Form (Final) -->
             <div
                 x-show="$store.assessmentModal.step === 'lead'"

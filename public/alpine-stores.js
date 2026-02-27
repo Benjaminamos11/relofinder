@@ -33,7 +33,12 @@ document.addEventListener('alpine:init', () => {
             email: '',
             phone: '',
             companyName: '',
-            volume: ''
+            volume: '',
+            corpScope: [],
+            corpRegions: [],
+            corpPainPoints: [],
+            corpOutcome: '',
+            jobTitle: ''
         },
 
         get progress() {
@@ -45,8 +50,18 @@ document.addEventListener('alpine:init', () => {
         getStepFlow() {
             const service = this.initialService.toLowerCase();
 
+            // Corporate flow (Always takes precedence)
+            if (service === 'corporate' || this.mode === 'corporate') {
+                return ['corpVolume', 'corpScope', 'corpRegions', 'corpPainPoints', 'corpOutcome', 'lead'];
+            }
+
+            // VIP / Full Package flow
+            if (service.includes('full') || service.includes('vip') || service.includes('settled') || service.includes('settling')) {
+                return ['household', 'priority', 'tempHousing', 'vipBudget', 'funding', 'lead'];
+            }
+
             // Housing flow
-            if (service.includes('housing') || service.includes('full-package')) {
+            if (service.includes('housing')) {
                 return ['household', 'area', 'budget', 'engagement', 'funding', 'lead'];
             }
 
@@ -58,11 +73,6 @@ document.addEventListener('alpine:init', () => {
             // Education/School flow
             if (service.includes('education') || service.includes('school')) {
                 return ['household', 'ages', 'system', 'funding', 'lead'];
-            }
-
-            // Corporate flow — uses existing step templates
-            if (service === 'corporate' || this.mode === 'corporate') {
-                return ['household', 'budget', 'funding', 'lead'];
             }
 
             // Default flow
@@ -124,7 +134,12 @@ document.addEventListener('alpine:init', () => {
                 email: '',
                 phone: '',
                 companyName: '',
-                volume: ''
+                volume: '',
+                corpScope: [],
+                corpRegions: [],
+                corpPainPoints: [],
+                corpOutcome: '',
+                jobTitle: ''
             };
         },
 

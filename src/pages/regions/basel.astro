@@ -15,11 +15,13 @@ import {
 import "../../styles/global.css";
 import "../../styles/alpine-clarity.css";
 import SEOHead from "../../components/common/SEOHead.astro";
+import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
 import UniversalContactModal from "../../components/common/UniversalContactModal.tsx";
 import "../../lib/expose-modal-stores.client.ts";
 import Navbar from "../../components/layout/Navbar.astro";
 import Footer from "../../components/layout/Footer.astro";
 import HeroSearch from "../../components/home/HeroSearch.astro";
+import AlpineSetup from "../../components/common/AlpineSetup.astro";
 
 // --- Data & Content ---
 
@@ -130,6 +132,17 @@ const faqs = [
                 );
             }
         </style>
+        <style>
+            [x-cloak] {
+                display: none !important;
+            }
+        </style>
+        <!-- Alpine.js CDN -->
+        <script
+            is:inline
+            defer
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
     </head>
     <body class="font-sans text-slate-600 bg-[#F9FAFB] antialiased">
         <!-- 1. Navbar -->
@@ -694,6 +707,50 @@ const faqs = [
             </div>
         </section>
 
+        <!-- SEO Insight Box -->
+        <SEOInsightBox
+            title="Relocating to Basel: Pharma Hub & Tri-National Lifestyle"
+        >
+            <p>
+                Basel, Switzerland's third-largest city, offers a unique blend
+                of world-class pharmaceutical career opportunities and a high
+                quality of life. As a global hub for life sciences — home to
+                Novartis, Roche, and Lonza — the city attracts a highly
+                international population. Its position at the border of
+                Switzerland, France, and Germany makes it one of Europe's most
+                dynamic tri-national regions, offering diverse living options
+                from historic Swiss city centers to affordable cross-border
+                commutes.
+            </p>
+            <p>
+                For expats, Basel is often considered more "relaxed" than Zurich
+                or Geneva, with a strong focus on art, culture, and river-side
+                living. However, the housing market in popular districts like
+                St. Johann, Kleinbasel, and Gundeli remains competitive.
+                Understanding the nuances of the Basel "Viertel" and the local
+                German-Swiss dialect can significantly impact your integration
+                experience.
+            </p>
+            <ul>
+                <li>
+                    <strong>Pharma Ecosystem:</strong> Direct proximity to major pharma
+                    campuses drives housing demand and creates a specialized job market
+                    for life science professionals.
+                </li>
+                <li>
+                    <strong>Tri-National Mobility:</strong> The TNW transport network
+                    seamlessly connects Basel with France and Germany, offering unique
+                    lifestyle and shopping advantages.
+                </li>
+                <li>
+                    <strong>Art & Culture:</strong> As the home of Art Basel and over
+                    40 museums, the city offers a cultural density that is unparalleled
+                    for its size.
+                </li>
+            </ul>
+        </SEOInsightBox>
+
+
         <!-- 8. FAQ Section -->
         <section class="py-24 bg-white border-t border-slate-100">
             <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -793,5 +850,6 @@ const faqs = [
                 }, 100);
             }
         </script>
+        <AlpineSetup />
     </body>
 </html>

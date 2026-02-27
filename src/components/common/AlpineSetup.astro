@@ -1,0 +1,25 @@
+---
+// AlpineSetup.astro - Reusable Alpine.js infrastructure for standalone pages
+// Include this in any page that uses Alpine.js (x-data, x-show, x-cloak, etc.)
+// but does NOT use Layout.astro (which already includes these).
+//
+// Usage:
+//   In <head>: <AlpineSetup.Head />  — not needed, just add the head parts inline
+//   Before </body>: <AlpineSetup />
+import AssessmentModalAlpine from "../individual/AssessmentModalAlpine.astro";
+---
+
+<!-- Alpine.js Assessment Modal -->
+<AssessmentModalAlpine />
+
+<!-- Alpine.js Global Stores -->
+<script is:inline src="/alpine-stores.js?v=3"></script>
+
+<!-- Re-initialize Alpine after ViewTransitions soft navigation -->
+<script is:inline>
+    document.addEventListener("astro:page-load", () => {
+        if (window.Alpine) {
+            window.Alpine.initTree(document.body);
+        }
+    });
+</script>
