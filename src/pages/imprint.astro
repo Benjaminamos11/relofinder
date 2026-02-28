@@ -1,0 +1,140 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Mail, ExternalLink } from "lucide-react";
+
+const title = "Imprint | ReloFinder.ch";
+const description = "Legal notice and company information for ReloFinder.ch.";
+const canonical = "https://relofinder.ch/imprint";
+const lastUpdated = "February 28, 2026";
+
+const combinedSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "BreadcrumbList",
+            itemListElement: [
+                {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: "https://relofinder.ch",
+                },
+                {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Imprint",
+                    item: "https://relofinder.ch/imprint",
+                },
+            ],
+        },
+        {
+            "@type": "WebPage",
+            name: title,
+            description: description,
+            url: canonical,
+            datePublished: "2026-02-28",
+            dateModified: "2026-02-28",
+        },
+    ],
+};
+---
+
+<Layout
+    title={title}
+    description={description}
+    canonical={canonical}
+    schema={combinedSchema}
+>
+    <main class="max-w-4xl mx-auto px-4 py-16 prose prose-slate">
+        <span
+            class="inline-block py-1 px-3 rounded-full bg-gray-100 text-gray-600 text-xs font-bold uppercase tracking-widest mb-6 not-prose"
+        >
+            Legal
+        </span>
+        <h1
+            class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4 leading-tight"
+        >
+            Imprint
+        </h1>
+        <div
+            class="flex items-center gap-4 text-gray-500 text-sm border-b border-gray-100 pb-8 mb-8 not-prose"
+        >
+            <span>Updated: {lastUpdated}</span>
+        </div>
+
+        <h2>Operator & Legal Entity</h2>
+        <p>
+            <strong>Expat Digital Group LLC</strong><br />
+            1209 MOUNTAIN ROAD PL NE STE N<br />
+            ALBUQUERQUE, BERNALILLO COUNTY, NM 87110<br />
+            USA
+        </p>
+
+        <h2>Contact</h2>
+        <ul class="list-none pl-0 space-y-2">
+            <li class="pl-0">
+                <a
+                    href="mailto:hello@relofinder.ch"
+                    class="inline-flex items-center font-medium hover:text-[#FF6F61] transition-colors"
+                >
+                    hello@relofinder.ch
+                </a>
+            </li>
+            <li class="pl-0">
+                <a
+                    href="https://relofinder.ch"
+                    class="inline-flex items-center font-medium hover:text-[#FF6F61] transition-colors"
+                >
+                    www.relofinder.ch
+                </a>
+            </li>
+        </ul>
+
+        <h2>Design & Development</h2>
+        <p>This website was designed and developed by:</p>
+        <p>
+            <a
+                href="https://vibestudio.ch"
+                target="_blank"
+                rel="noopener"
+                class="font-bold inline-flex items-center gap-1 hover:text-[#FF6F61] transition-colors"
+            >
+                vibestudio.ch <ExternalLink className="w-4 h-4" />
+            </a>
+            <br />
+            <span class="text-sm text-gray-400"
+                >Made with <span class="text-[#FF6F61]">❤</span> in Switzerland</span
+            >
+        </p>
+
+        <hr />
+
+        <h2>Disclaimer</h2>
+        <h3>Limitation of Liability</h3>
+        <p>
+            The content of our website has been compiled with meticulous care
+            and to the best of our knowledge. However, we cannot assume any
+            liability for the up-to-dateness, completeness or accuracy of any of
+            the pages.
+        </p>
+
+        <h3>External Links</h3>
+        <p>
+            Our website contains links to the websites of third parties
+            ("external links"). As the content of these websites is not under
+            our control, we cannot assume any liability for such external
+            content. In all cases, the provider of information of the linked
+            websites is liable for the content and accuracy of the information
+            provided.
+        </p>
+
+        <h3>Copyright</h3>
+        <p>
+            The content and works published on this website are governed by the
+            copyright laws of Switzerland and the USA. Any duplication,
+            processing, distribution or any form of utilization beyond the scope
+            of copyright law shall require the prior written consent of the
+            author or authors in question.
+        </p>
+    </main>
+</Layout>

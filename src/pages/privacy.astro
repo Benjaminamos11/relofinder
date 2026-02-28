@@ -1,167 +1,201 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Mail, Phone } from 'lucide-react';
+import Layout from "../layouts/Layout.astro";
+import { Mail } from "lucide-react";
 
-const title = 'Privacy Policy | ReloFinder.ch';
-const description = 'Our commitment to protecting your personal data. Learn how ReloFinder collects, uses, and safeguards your information.';
-const canonical = 'https://relofinder.ch/privacy';
-const lastUpdated = 'January 28, 2025';
+const title = "Privacy Policy | ReloFinder.ch";
+const description =
+  "Our commitment to protecting your personal data. Learn how ReloFinder collects, uses, and safeguards your information.";
+const canonical = "https://relofinder.ch/privacy";
+const lastUpdated = "February 28, 2026";
 
 const combinedSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "BreadcrumbList",
-      "itemListElement": [
+      itemListElement: [
         {
           "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://relofinder.ch"
+          position: 1,
+          name: "Home",
+          item: "https://relofinder.ch",
         },
         {
           "@type": "ListItem",
-          "position": 2,
-          "name": "Privacy Policy",
-          "item": "https://relofinder.ch/privacy"
-        }
-      ]
+          position: 2,
+          name: "Privacy Policy",
+          item: "https://relofinder.ch/privacy",
+        },
+      ],
     },
     {
       "@type": "WebPage",
-      "name": title,
-      "description": description,
-      "url": canonical,
-      "datePublished": "2025-01-28",
-      "dateModified": "2025-01-28"
-    }
-  ]
+      name: title,
+      description: description,
+      url: canonical,
+      datePublished: "2026-02-28",
+      dateModified: "2026-02-28",
+    },
+  ],
 };
 ---
 
-<Layout 
-  title={title} 
+<Layout
+  title={title}
   description={description}
   canonical={canonical}
   schema={combinedSchema}
 >
-  <main class="bg-white">
-    
-    <!-- Hero / Header -->
-    <section class="pt-24 pb-12 lg:pt-32">
-      <div class="container mx-auto px-6 lg:px-8 max-w-3xl">
-        <span class="inline-block py-1 px-3 rounded-full bg-gray-100 text-gray-600 text-xs font-bold uppercase tracking-widest mb-6">
-          Legal
-        </span>
-        <h1 class="text-5xl lg:text-6xl font-serif font-bold text-gray-900 mb-6 leading-tight">
-          Privacy Policy
-        </h1>
-        <div class="flex items-center gap-4 text-gray-500 text-sm border-b border-gray-100 pb-12">
-           <span>Last Updated: {lastUpdated}</span>
-           <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
-           <span>Effective Date: January 1, 2025</span>
-        </div>
+  <main class="max-w-4xl mx-auto px-4 py-16 prose prose-slate">
+    <span
+      class="inline-block py-1 px-3 rounded-full bg-gray-100 text-gray-600 text-xs font-bold uppercase tracking-widest mb-6 not-prose"
+    >
+      Legal
+    </span>
+    <h1
+      class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4 leading-tight"
+    >
+      Privacy Policy
+    </h1>
+    <div
+      class="flex items-center gap-4 text-gray-500 text-sm border-b border-gray-100 pb-8 mb-8 not-prose"
+    >
+      <span>Last Updated: {lastUpdated}</span>
+    </div>
+
+    <p>
+      ReloFinder.ch is committed to protecting your privacy and ensuring
+      transparent handling of your personal data. This Privacy Policy explains
+      how we collect, use, process, and protect your information when you use
+      our relocation services platform.
+    </p>
+
+    <h2>1. Data Controller</h2>
+    <p>
+      The primary controller responsible for your personal data and operator of
+      the ReloFinder platform is:
+    </p>
+    <div
+      class="not-prose bg-gray-50 p-6 rounded-xl border border-gray-100 my-8"
+    >
+      <p class="font-bold text-gray-900">Expat Digital Group LLC</p>
+      <p class="text-gray-600 text-sm mt-1 mb-4">
+        1209 MOUNTAIN ROAD PL NE STE N<br />
+        ALBUQUERQUE, BERNALILLO COUNTY, NM 87110 USA
+      </p>
+
+      <div
+        class="flex flex-col sm:flex-row gap-4 mt-6 pt-6 border-t border-gray-200"
+      >
+        <a
+          href="mailto:hello@relofinder.ch"
+          class="flex items-center text-sm font-bold text-gray-900 hover:text-[#FF6F61] transition-colors"
+        >
+          <Mail className="w-4 h-4 mr-2" />
+          hello@relofinder.ch
+        </a>
       </div>
-    </section>
+    </div>
 
-    <!-- Content -->
-    <section class="pb-24">
-      <div class="container mx-auto px-6 lg:px-8 max-w-3xl">
-        <div class="prose prose-lg prose-headings:font-serif prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-600 prose-p:leading-relaxed prose-a:text-[#FF6F61] prose-a:no-underline hover:prose-a:underline prose-li:text-gray-600">
-          
-            ReloFinder.ch, a brand of <strong>Lang + Partner | Finanzdienstleistungen GmbH</strong>, is committed to protecting your privacy and ensuring transparent handling of your personal data. This Privacy Policy explains how we collect, use, process, and protect your information when you use our relocation services platform.
+    <h2>2. Information We Collect</h2>
+    <h3>Personal Information</h3>
+    <p>
+      We may collect the following types of personal information when you use
+      our services:
+    </p>
+    <ul>
+      <li>
+        <strong>Contact Details:</strong> Name, email address, phone number.
+      </li>
+      <li>
+        <strong>Relocation Data:</strong> Requirements, preferences, move dates, family
+        composition.
+      </li>
+      <li>
+        <strong>Communication Data:</strong> Messages, correspondence, and feedback.
+      </li>
+      <li>
+        <strong>Corporate Data:</strong> Company details for our B2B clients.
+      </li>
+    </ul>
 
-          <h2>1. Data Controller</h2>
-          <p>
-            The primary controller responsible for your personal data is:
-          </p>
-          <div class="not-prose bg-gray-50 p-6 rounded-xl border border-gray-100 my-8">
-             <p class="font-bold text-gray-900">Lang + Partner | Finanzdienstleistungen GmbH</p>
-             <p class="text-gray-600 text-sm mt-1 mb-4">
-               Chilegässli 12a<br/>
-               8904 Aesch ZH, Switzerland
-             </p>
-             
-             <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Headquarters</p>
-             <p class="text-gray-900 font-medium mb-4">Chilegässli 12a, 8904 Aesch ZH</p>
+    <h3>Usage Information</h3>
+    <p>
+      We automatically collect certain information about your device and how you
+      interact with our website:
+    </p>
+    <ul>
+      <li>IP address and browser type.</li>
+      <li>Device information and operating system.</li>
+      <li>Pages visited, time spent, and referring URL.</li>
+      <li>Cookies and similar tracking technologies.</li>
+    </ul>
 
-             <div class="flex flex-col sm:flex-row gap-4 mt-6 pt-6 border-t border-gray-200">
-                <a href="mailto:hello@relofinder.ch" class="flex items-center text-sm font-bold text-gray-900 hover:text-[#FF6F61] transition-colors">
-                  <Mail className="w-4 h-4 mr-2" />
-                  hello@relofinder.ch
-                </a>
-             </div>
-          </div>
-          <p>
-            We also work with our local partner, <strong>Lang + Partner | Finanzdienstleistungen GmbH</strong> (Chilegässli 12a, 8904 Aesch ZH) for specific financial compliance matters.
-          </p>
+    <h2>3. How We Use Your Information</h2>
+    <p>We process your data for the following purposes:</p>
+    <ul>
+      <li>
+        <strong>Service Delivery:</strong> To match you with verified relocation providers
+        and facilitate quotes.
+      </li>
+      <li>
+        <strong>Communication:</strong> To respond to your inquiries and provide support.
+      </li>
+      <li>
+        <strong>Improvement:</strong> To analyze usage patterns and enhance our platform's
+        user experience.
+      </li>
+      <li>
+        <strong>Compliance:</strong> To meet legal and regulatory obligations.
+      </li>
+    </ul>
 
-          <h2>2. Information We Collect</h2>
-          <h3>Personal Information</h3>
-          <p>We may collect the following types of personal information when you use our services:</p>
-          <ul>
-            <li><strong>Contact Details:</strong> Name, email address, phone number.</li>
-            <li><strong>Relocation Data:</strong> Requirements, preferences, move dates, family composition.</li>
-            <li><strong>Communication Data:</strong> Messages, correspondence, and feedback.</li>
-            <li><strong>Corporate Data:</strong> Company details for our B2B clients.</li>
-          </ul>
+    <h2>4. Data Sharing & Third Parties</h2>
+    <p>
+      We do not sell your personal data. We may share your information with:
+    </p>
+    <ul>
+      <li>
+        <strong>Service Providers:</strong> Verified relocation agencies you explicitly
+        choose to connect with.
+      </li>
+      <li>
+        <strong>Technical Partners:</strong> Hosting, analytics, and email service
+        providers (under strict data processing agreements).
+      </li>
+      <li>
+        <strong>Legal Authorities:</strong> When required by law or to protect our
+        rights.
+      </li>
+    </ul>
 
-          <h3>Usage Information</h3>
-          <p>We automatically collect certain information about your device and how you interact with our website:</p>
-          <ul>
-            <li>IP address and browser type.</li>
-            <li>Device information and operating system.</li>
-            <li>Pages visited, time spent, and referring URL.</li>
-            <li>Cookies and similar tracking technologies.</li>
-          </ul>
+    <h2>5. Your Rights</h2>
+    <p>Under applicable data protection laws, you have the right to:</p>
+    <ul>
+      <li>Access the personal data we hold about you.</li>
+      <li>Request correction of inaccurate data.</li>
+      <li>Request deletion of your data ("Right to be Forgotten").</li>
+      <li>Object to the processing of your data.</li>
+      <li>Withdraw consent at any time.</li>
+    </ul>
+    <p>
+      To exercise any of these rights, please contact our privacy team at <a
+        href="mailto:hello@relofinder.ch">hello@relofinder.ch</a
+      >.
+    </p>
 
-          <h2>3. How We Use Your Information</h2>
-          <p>We process your data for the following purposes:</p>
-          <ul>
-            <li><strong>Service Delivery:</strong> To match you with verified relocation providers and facilitate quotes.</li>
-            <li><strong>Communication:</strong> To respond to your inquiries and provide support.</li>
-            <li><strong>Improvement:</strong> To analyze usage patterns and enhance our platform's user experience.</li>
-            <li><strong>Compliance:</strong> To meet legal and regulatory obligations.</li>
-          </ul>
+    <h2>6. Data Security</h2>
+    <p>
+      We implement robust technical and organizational measures to protect your
+      data, including SSL encryption, secure servers, and strict access
+      controls. However, no method of transmission over the internet is 100%
+      secure.
+    </p>
 
-          <h2>4. Data Sharing & Third Parties</h2>
-          <p>
-            We do not sell your personal data. We may share your information with:
-          </p>
-          <ul>
-            <li><strong>Service Providers:</strong> Verified relocation agencies you explicitly choose to connect with.</li>
-            <li><strong>Technical Partners:</strong> Hosting, analytics, and email service providers (under strict data processing agreements).</li>
-            <li><strong>Legal Authorities:</strong> When required by law or to protect our rights.</li>
-          </ul>
-
-          <h2>5. Your Rights</h2>
-          <p>
-            Under applicable data protection laws (including GDPR and Swiss FADP), you have the right to:
-          </p>
-          <ul>
-            <li>Access the personal data we hold about you.</li>
-            <li>Request correction of inaccurate data.</li>
-            <li>Request deletion of your data ("Right to be Forgotten").</li>
-            <li>Object to the processing of your data.</li>
-            <li>Withdraw consent at any time.</li>
-          </ul>
-          <p>
-            To exercise any of these rights, please contact our privacy team at <a href="mailto:hello@relofinder.ch">hello@relofinder.ch</a>.
-          </p>
-
-          <h2>6. Data Security</h2>
-          <p>
-            We implement robust technical and organizational measures to protect your data, including SSL encryption, secure servers, and strict access controls. However, no method of transmission over the internet is 100% secure.
-          </p>
-
-          <h2>7. Updates to This Policy</h2>
-          <p>
-            We may update this Privacy Policy from time to time. The latest version will always be posted on this page with the effective date.
-          </p>
-
-        </div>
-      </div>
-    </section>
-
+    <h2>7. Updates to This Policy</h2>
+    <p>
+      We may update this Privacy Policy from time to time. The latest version
+      will always be posted on this page with the effective date.
+    </p>
   </main>
 </Layout>
