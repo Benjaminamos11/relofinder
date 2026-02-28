@@ -153,23 +153,50 @@ export const POST: APIRoute = async ({ request }) => {
             const adminEmail = 'bw@relofinder.ch';
             const subject = `New Assessment Lead: ${data.firstName} ${data.lastName} (${selectedService})`;
 
+            // Helper to get human-readable labels
+            const getLabel = (key: string) => {
+                const labels: Record<string, string> = {
+                    householdType: 'Household Type',
+                    area: 'Preferred Area',
+                    budget: 'Monthly Budget',
+                    engagement: 'Engagement Type',
+                    citizenship: 'Citizenship Status',
+                    purpose: 'Relocation Purpose',
+                    employment: 'Employment Status',
+                    ages: 'Children Ages',
+                    system: 'Schooling System',
+                    priority: 'Main Priority',
+                    tempHousing: 'Needs Temp Housing',
+                    vipBudget: 'Service Budget',
+                    funding: 'Funding Source',
+                    when: 'Move Timeframe'
+                };
+                return labels[key] || key;
+            };
+
             const details = Object.entries(data)
-                .filter(([key]) => !['firstName', 'lastName', 'email', 'phone'].includes(key))
-                .map(([key, value]) => `<p><strong>${key}:</strong> ${value}</p>`)
+                .filter(([key, value]) => {
+                    // Exclude personal info (already in header) and empty/irrelevant keys
+                    const isPersonalInfo = ['firstName', 'lastName', 'email', 'phone'].includes(key);
+                    const hasValue = value !== '' && value !== null && value !== undefined && (Array.isArray(value) ? value.length > 0 : true);
+                    return !isPersonalInfo && hasValue;
+                })
+                .map(([key, value]) => `<p><strong>${getLabel(key)}:</strong> ${Array.isArray(value) ? value.join(', ') : value}</p>`)
                 .join('');
 
             const adminHtml = `
-                <h2>New Concierge assessment Submission</h2>
-                <div style="font-family: sans-serif; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+                <h2 style="color: #333;">New Concierge Assessment Submission</h2>
+                <div style="font-family: sans-serif; padding: 25px; border: 1px solid #eee; border-radius: 12px; background-color: #fcfcfc;">
                     <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
                     <p><strong>Email:</strong> ${data.email}</p>
-                    <p><strong>Phone:</strong> ${data.phone}</p>
+                    <p><strong>Phone:</strong> ${data.phone || 'N/A'}</p>
                     <p><strong>Service:</strong> ${selectedService}</p>
                     <p><strong>Destination:</strong> ${selectedDestination}</p>
                     <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
-                    ${details}
+                    <h3 style="color: #666; font-size: 16px; text-transform: uppercase; letter-spacing: 0.1em;">Assessment Details</h3>
+                    ${details || '<p>No additional details provided.</p>'}
                     <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
-                    <p><a href="https://relofinder.ch/admin/leads/${lead.id}" style="display: inline-block; padding: 10px 20px; bg: #FF5A5F; color: white; text-decoration: none; border-radius: 5px;">View in Admin Panel</a></p>
+                    <p><a href="https://relofinder.ch/admin/leads/${lead.id}" style="display: inline-block; padding: 12px 24px; background-color: #FF5A5F; color: white; text-decoration: none; border-radius: 8px; font-weight: bold;">View in Admin Panel</a></p>
                 </div>
             `;
 

@@ -28,12 +28,13 @@ document.addEventListener('alpine:init', () => {
             tempHousing: '',
             vipBudget: '',
             funding: '',
+            when: '',
             firstName: '',
             lastName: '',
             email: '',
             phone: '',
             companyName: '',
-            volume: '',
+            corpVolume: '',
             corpScope: [],
             corpRegions: [],
             corpPainPoints: [],
@@ -93,7 +94,7 @@ document.addEventListener('alpine:init', () => {
 
             // Pre-fill data from config
             if (config.company) this.data.companyName = config.company;
-            if (config.volume) this.data.volume = config.volume;
+            if (config.volume) this.data.corpVolume = config.volume;
             if (config.when) this.data.when = config.when;
 
             // Lock body scroll
@@ -129,12 +130,13 @@ document.addEventListener('alpine:init', () => {
                 tempHousing: '',
                 vipBudget: '',
                 funding: '',
+                when: '',
                 firstName: '',
                 lastName: '',
                 email: '',
                 phone: '',
                 companyName: '',
-                volume: '',
+                corpVolume: '',
                 corpScope: [],
                 corpRegions: [],
                 corpPainPoints: [],
