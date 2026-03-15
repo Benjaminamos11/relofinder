@@ -350,8 +350,44 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
 
     <BlogStickyCTA />
 
-    <!-- Scroll Progress Script -->
     <script>
+        // Modal Trigger Interceptor for Markdown Content
+        function initModalInterceptors() {
+            document.addEventListener("click", (e) => {
+                const target = e.target as HTMLElement;
+                const link = target.closest("a");
+                if (!link) return;
+
+                const href = link.getAttribute("href");
+                if (href && href.startsWith("#lead-")) {
+                    e.preventDefault();
+                    
+                    // Map #lead-service to appropriate openAssessmentModal call
+                    const serviceSlug = href.replace("#lead-", "");
+                    
+                    let mode = 'private';
+                    let initialService = 'housing';
+
+                    if (serviceSlug === 'corporate') {
+                        mode = 'corporate';
+                        initialService = 'corporate';
+                    } else if (serviceSlug === 'immigration' || serviceSlug === 'visa') {
+                        initialService = 'immigration';
+                    } else if (serviceSlug === 'education' || serviceSlug === 'school') {
+                        initialService = 'education';
+                    } else if (serviceSlug === 'full-service' || serviceSlug === 'concierge') {
+                        initialService = 'full-package';
+                    }
+
+                    // @ts-ignore - Alpine trigger for Full Screen Flow
+                    if (window.openAssessmentModal) {
+                        // @ts-ignore
+                        window.openAssessmentModal(mode, 'switzerland', initialService);
+                    }
+                }
+            });
+        }
+
         window.addEventListener("scroll", () => {
             const winScroll =
                 document.body.scrollTop || document.documentElement.scrollTop;
@@ -362,6 +398,13 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
             const bar = document.getElementById("progress-bar");
             if (bar) bar.style.width = scrolled + "%";
         });
+
+        // Initial handle for Astro transitions
+        document.addEventListener("astro:page-load", () => {
+            initModalInterceptors();
+        });
+        // Initial load
+        initModalInterceptors();
     </script>
 
     <style is:global>
@@ -413,6 +456,32 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
         }
         .prose tr:hover {
             background-color: rgba(249, 250, 251, 0.8);
+        }
+
+        /* Premium CTA Button Styling in Markdown */
+        .prose a[href^="#lead-"] {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #FF6F61;
+            color: white !important;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 10px 15px -3px rgba(255, 111, 97, 0.3);
+            border: none;
+        }
+        .prose a[href^="#lead-"]:hover {
+            background-color: #ff5a4d;
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(255, 111, 97, 0.4);
+        }
+        .prose a[href^="#lead-"]:active {
+            transform: translateY(0);
         }
     </style>
 </Layout>

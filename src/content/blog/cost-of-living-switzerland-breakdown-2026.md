@@ -10,8 +10,8 @@ tags: ["cost of living", "finance", "budget", "zurich", "geneva", "switzerland",
 featured: true
 excerpt: "Switzerland tops 'most expensive' lists, but low taxes change everything. Here's the real math on rent, insurance, groceries, and your actual purchasing power."
 seo:
-  title: "Cost of Living Switzerland 2026 | Expat Budget Breakdown"
-  description: "Complete breakdown of Swiss living costs: rent CHF 2,500-5,000, health insurance CHF 300-450, plus taxes, food, transport. Compare Zürich, Geneva, Basel with real numbers."
+  title: "Swiss Cost of Living 2026: Real Numbers for Expats (Zürich vs Geneva)"
+  description: "Updated for 2026: The math on rent, health insurance, and taxes. Learn how to save CHF 10,000+ per year with our expat budget guide."
   keywords: ["cost of living switzerland", "switzerland expenses", "zurich cost of living", "geneva living costs", "swiss budget expat", "switzerland salary calculator", "expat budget switzerland"]
 faqs:
   - question: "What is the average cost of living in Switzerland per month?"

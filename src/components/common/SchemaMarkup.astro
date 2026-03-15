@@ -122,6 +122,20 @@ const getSchemaMarkup = (type: string, data: any) => {
           }
         : undefined,
     },
+    faq: {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: Array.isArray(data.mainEntity)
+        ? data.mainEntity.map((item: any) => ({
+            "@type": "Question",
+            name: item.question || item.name,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: item.answer || item.acceptedAnswer?.text || "",
+            },
+          }))
+        : [],
+    },
   };
 
   return schemas[type as keyof typeof schemas] || data || schemas.homepage;

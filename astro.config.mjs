@@ -31,7 +31,11 @@ export default defineConfig({
         && !page.includes('/api')
         && !page.includes('/netlify-forms')
         && !page.includes('/login')
-        && !page.includes('/todos'),
+        && !page.includes('/todos')
+        && !page.includes('/index_old')
+        && !page.includes('/design-')
+        && !page.includes('/new-design')
+        && !page.includes('/housing_old'),
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),

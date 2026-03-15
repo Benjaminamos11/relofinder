@@ -14,8 +14,8 @@ const reviewCount = companyData.rating?.reviews || companyData.reviewCount || 0;
 // Get rating score
 const rating = companyData.rating?.score || companyData.rating || companyData.google_rating || 0;
 
-// Get company ID and name
-const companyId = companyData.id || company.slug;
+// Get company slug and name
+const companySlug = company.slug || companyData.slug || companyData.id;
 const companyName = companyData.name;
 const companyLogo = companyData.logo;
 const companyDescription = companyData.description;
@@ -55,7 +55,7 @@ const formattedRegions = Array.isArray(companyData.regions)
   : 'Nationwide';
 ---
 
-<a href={"/companies/" + companyId} class="card group h-full hover:shadow-card-hover transition-all duration-300">
+<a href={"/companies/" + companySlug} class="card group h-full hover:shadow-card-hover transition-all duration-300">
   <div class="p-6">
     <div class="mb-4 flex justify-between items-start">
       <div class="w-16 h-16 rounded-lg bg-accent-100 p-4 flex items-center justify-center overflow-hidden">
