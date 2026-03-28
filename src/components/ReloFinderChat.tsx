@@ -237,7 +237,7 @@ export default function ReloFinderChat() {
 
       {/* Chat panel */}
       {isOpen && (
-        <div className="fixed inset-0 sm:inset-auto sm:bottom-6 sm:right-6 z-50 sm:w-[400px] sm:h-[620px] flex flex-col bg-white sm:rounded-2xl sm:shadow-2xl sm:border border-gray-200 overflow-hidden">
+        <div className="fixed inset-0 sm:inset-auto sm:bottom-6 sm:right-6 z-50 sm:w-[400px] sm:h-[620px] flex flex-col bg-white sm:rounded-2xl sm:shadow-2xl sm:border border-gray-200 overflow-hidden" style={{ paddingTop: 'env(safe-area-inset-top)', paddingBottom: 'env(safe-area-inset-bottom)' }}>
           {/* Header */}
           <div className="bg-gradient-to-r from-[#2C3E50] to-[#1a252f] text-white px-4 py-3 flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-3">

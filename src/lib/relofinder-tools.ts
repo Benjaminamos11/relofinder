@@ -4,6 +4,7 @@
  */
 
 import { supabaseAdmin } from './supabase-admin';
+import { Resend } from 'resend';
 
 // ─── Tool Definitions (for Claude) ───
 
@@ -75,7 +76,7 @@ export const TOOL_DEFINITIONS = [
   {
     name: 'create_lead',
     description:
-      'Save user contact info as a lead. Call when user provides name and email.',
+      'Save user contact info as a lead and send a notification email with the full chat summary. Call when user provides name and email.',
     input_schema: {
       type: 'object' as const,
       properties: {
@@ -84,7 +85,7 @@ export const TOOL_DEFINITIONS = [
         phone: { type: 'string' as const },
         region_code: { type: 'string' as const, description: 'Region they\'re interested in' },
         service_code: { type: 'string' as const, description: 'Primary service they need' },
-        message: { type: 'string' as const, description: 'Summary of user situation' },
+        message: { type: 'string' as const, description: 'Full summary of the conversation — what the user is looking for, their situation, timeline, agencies discussed, and any recommendations made' },
         requested_agencies: {
           type: 'array' as const,
           items: { type: 'string' as const },
@@ -352,7 +353,92 @@ export async function handleCreateLead(input: {
   });
 
   if (error) return { success: false, message: error.message };
+
+  // Send admin notification email with chat summary
+  try {
+    const resendKey = import.meta.env.RESEND_API_KEY;
+    if (resendKey) {
+      const resend = new Resend(resendKey);
+      const agencies = input.requested_agencies?.join(', ') || 'None specified';
+      const chatSummary = input.message || 'No summary available';
+
+      await resend.emails.send({
+        from: 'ReloFinder AI <noreply@relofinder.ch>',
+        to: ['info@relofinder.ch'],
+        subject: `New AI Chat Lead — ${input.name}`,
+        html: buildLeadEmailHtml({
+          name: input.name,
+          email: input.email,
+          phone: input.phone,
+          region: input.region_code,
+          service: input.service_code,
+          agencies,
+          chatSummary,
+        }),
+      });
+    }
+  } catch {
+    // Non-critical — lead is already saved
+  }
+
   return { success: true, message: 'Lead captured.' };
+}
+
+function buildLeadEmailHtml(data: {
+  name: string;
+  email: string;
+  phone?: string;
+  region?: string;
+  service?: string;
+  agencies: string;
+  chatSummary: string;
+}): string {
+  const rows = [
+    ['Name', data.name],
+    ['Email', `<a href="mailto:${data.email}">${data.email}</a>`],
+    ...(data.phone ? [['Phone', data.phone]] : []),
+    ...(data.region ? [['Region', data.region]] : []),
+    ...(data.service ? [['Service', data.service]] : []),
+    ['Agencies Discussed', data.agencies],
+  ];
+
+  const rowsHtml = rows.map(([label, value]) =>
+    `<tr><td style="padding:8px 12px;font-weight:600;color:#2C3E50;border-bottom:1px solid #eee;width:140px;vertical-align:top">${label}</td><td style="padding:8px 12px;color:#444;border-bottom:1px solid #eee">${value}</td></tr>`
+  ).join('');
+
+  return `<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;font-family:Inter,Arial,sans-serif;background:#f5f5f5">
+  <div style="max-width:600px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;margin-top:20px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,0.08)">
+    <!-- Header -->
+    <div style="background:#2C3E50;padding:24px;text-align:center">
+      <h1 style="margin:0;color:#fff;font-size:20px;font-weight:700">New AI Chat Lead</h1>
+      <p style="margin:4px 0 0;color:#FF6F61;font-size:13px;font-weight:600">ReloFinder AI Assistant</p>
+    </div>
+
+    <!-- Lead Details -->
+    <div style="padding:24px">
+      <h2 style="margin:0 0 16px;color:#2C3E50;font-size:16px;font-weight:700">Lead Details</h2>
+      <table style="width:100%;border-collapse:collapse">
+        ${rowsHtml}
+      </table>
+    </div>
+
+    <!-- Chat Summary -->
+    <div style="padding:0 24px 24px">
+      <h2 style="margin:0 0 12px;color:#2C3E50;font-size:16px;font-weight:700">Chat Summary</h2>
+      <div style="background:#f8f9fa;border:1px solid #e9ecef;border-radius:8px;padding:16px;color:#444;font-size:14px;line-height:1.6;white-space:pre-wrap">${data.chatSummary}</div>
+    </div>
+
+    <!-- Footer -->
+    <div style="background:#f8f9fa;padding:16px 24px;text-align:center;border-top:1px solid #eee">
+      <p style="margin:0;color:#999;font-size:11px">This lead was captured by ReloFinder AI Chat at ${new Date().toISOString().replace('T', ' ').slice(0, 19)} UTC</p>
+      <p style="margin:4px 0 0;color:#999;font-size:11px"><a href="https://relofinder.ch" style="color:#FF6F61">relofinder.ch</a></p>
+    </div>
+  </div>
+</body>
+</html>`;
 }
 
 export function handleCheckPermitInfo(input: {
