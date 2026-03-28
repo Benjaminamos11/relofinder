@@ -1,0 +1,193 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "ReloFinder API",
+    "description": "Swiss relocation agency comparison platform API. Find, compare, and get reviews for relocation agencies in Switzerland.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "ReloFinder",
+      "url": "https://relofinder.ch",
+      "email": "info@relofinder.ch"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://relofinder.ch",
+      "description": "Production"
+    }
+  ],
+  "paths": {
+    "/api/agencies/recommend": {
+      "get": {
+        "operationId": "recommendAgencies",
+        "summary": "Find matching relocation agencies",
+        "description": "Returns top matching agencies based on region, services needed, and language preference. Includes ratings, review counts, and profile links.",
+        "parameters": [
+          {
+            "name": "region",
+            "in": "query",
+            "description": "Swiss region/canton (e.g. zurich, zug, geneva, basel)",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "services",
+            "in": "query",
+            "description": "Comma-separated services needed (housing, immigration, education, insurance, finance, moving)",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "language",
+            "in": "query",
+            "description": "Preferred language (en, de, fr)",
+            "schema": { "type": "string", "enum": ["en", "de", "fr"] }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Max results (default 3)",
+            "schema": { "type": "integer", "default": 3 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of matching agencies",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "agencies": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": { "type": "string" },
+                          "slug": { "type": "string" },
+                          "tagline": { "type": "string" },
+                          "tier": { "type": "string", "enum": ["standard", "partner", "preferred"] },
+                          "rating": { "type": "number" },
+                          "review_count": { "type": "integer" },
+                          "services": { "type": "array", "items": { "type": "string" } },
+                          "regions_served": { "type": "array", "items": { "type": "string" } },
+                          "profile_url": { "type": "string" }
+                        }
+                      }
+                    },
+                    "message": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/agencies/reviews": {
+      "get": {
+        "operationId": "getAgencyReviews",
+        "summary": "Get reviews for an agency",
+        "description": "Returns review summary, AI-generated positives/negatives, and top individual reviews.",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Agency name (fuzzy match)",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Agency UUID",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agency reviews and summary"
+          }
+        }
+      }
+    },
+    "/api/agencies/compare": {
+      "get": {
+        "operationId": "compareAgencies",
+        "summary": "Compare agencies side by side",
+        "description": "Returns comparison data for 2-3 agencies including ratings, services, and review highlights.",
+        "parameters": [
+          {
+            "name": "names",
+            "in": "query",
+            "required": true,
+            "description": "Comma-separated agency names (2-3)",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Comparison data"
+          }
+        }
+      }
+    },
+    "/api/costs/estimate": {
+      "get": {
+        "operationId": "estimateLivingCosts",
+        "summary": "Estimate monthly living costs",
+        "description": "Returns monthly cost breakdown (rent, insurance, groceries, transport, etc.) for a Swiss city.",
+        "parameters": [
+          {
+            "name": "city",
+            "in": "query",
+            "required": true,
+            "description": "Swiss city",
+            "schema": { "type": "string", "enum": ["zurich", "geneva", "lausanne", "zug", "lucerne", "basel", "bern"] }
+          },
+          {
+            "name": "family_size",
+            "in": "query",
+            "description": "Household size (1-5)",
+            "schema": { "type": "integer", "default": 1 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cost breakdown with total"
+          }
+        }
+      }
+    },
+    "/api/permits/info": {
+      "get": {
+        "operationId": "getPermitInfo",
+        "summary": "Get Swiss permit requirements",
+        "description": "Returns permit type, requirements, and required documents based on user situation.",
+        "parameters": [
+          {
+            "name": "purpose",
+            "in": "query",
+            "required": true,
+            "description": "Purpose of relocation",
+            "schema": { "type": "string", "enum": ["work", "study", "retirement", "family-reunification", "self-employed"] }
+          },
+          {
+            "name": "eu_citizen",
+            "in": "query",
+            "description": "Whether person is EU/EFTA citizen",
+            "schema": { "type": "boolean" }
+          },
+          {
+            "name": "nationality",
+            "in": "query",
+            "description": "Country of origin",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permit information"
+          }
+        }
+      }
+    }
+  }
+}

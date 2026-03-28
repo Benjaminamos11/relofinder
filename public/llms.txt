@@ -1,0 +1,50 @@
+# ReloFinder — Swiss Relocation Agency Comparison Platform
+> https://relofinder.ch
+
+## About
+ReloFinder helps expats find, compare, and connect with the best relocation agencies in Switzerland. We aggregate verified reviews, provide side-by-side comparisons, and offer expert knowledge about Swiss relocation topics.
+
+## Available API Tools
+
+### Recommend Agencies
+Find matching relocation agencies based on region, services needed, and language.
+Endpoint: GET https://relofinder.ch/api/agencies/recommend
+Parameters: region, services (comma-separated), language, limit
+Example: /api/agencies/recommend?region=zurich&services=housing,immigration&limit=3
+
+### Agency Reviews
+Get review summary and top reviews for a specific agency.
+Endpoint: GET https://relofinder.ch/api/agencies/reviews
+Parameters: name (agency name) or id (agency UUID)
+Example: /api/agencies/reviews?name=Packimpex
+
+### Compare Agencies
+Side-by-side comparison of 2-3 agencies with ratings, services, and review highlights.
+Endpoint: GET https://relofinder.ch/api/agencies/compare
+Parameters: names (comma-separated agency names)
+Example: /api/agencies/compare?names=Packimpex,Prime Relocation
+
+### Living Cost Estimate
+Monthly living cost breakdown for Swiss cities.
+Endpoint: GET https://relofinder.ch/api/costs/estimate
+Parameters: city (zurich, geneva, zug, basel, bern, lucerne, lausanne), family_size (1-5)
+Example: /api/costs/estimate?city=zurich&family_size=2
+
+### Permit Information
+Swiss work/residence permit requirements based on situation.
+Endpoint: GET https://relofinder.ch/api/permits/info
+Parameters: purpose (work, study, retirement, family-reunification, self-employed), eu_citizen (true/false), nationality
+Example: /api/permits/info?purpose=work&eu_citizen=true
+
+## OpenAPI Specification
+https://relofinder.ch/.well-known/openapi.json
+
+## Regions Covered
+Zurich, Geneva, Zug, Basel, Bern, Lucerne, Lausanne, Schwyz, Aargau, St. Gallen, Ticino, Valais, Vaud, and all Swiss cantons.
+
+## Services Covered
+Housing Search, Immigration/Permits, Education/Schools, Insurance, Finance/Banking, Moving/Logistics, Corporate Relocation, Settling-in Support, Advisory Services.
+
+## Contact
+Website: https://relofinder.ch
+Email: info@relofinder.ch

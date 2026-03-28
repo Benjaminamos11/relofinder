@@ -1,6 +1,7 @@
 {
   "name": "project",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.80.0",
     "@astrojs/alpinejs": "^0.4.9",
     "@astrojs/mdx": "^4.3.0",
     "@astrojs/preact": "^4.1.0",

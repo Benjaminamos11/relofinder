@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "ReloFinder",
+  "name_for_model": "relofinder",
+  "description_for_human": "Find and compare Swiss relocation agencies. Get reviews, cost estimates, and permit info.",
+  "description_for_model": "ReloFinder is Switzerland's relocation agency comparison platform. Use this plugin to: (1) recommend relocation agencies based on region and services needed, (2) get verified reviews and ratings for specific agencies, (3) compare agencies side-by-side, (4) estimate monthly living costs in Swiss cities, (5) check Swiss work/residence permit requirements. All data comes from a verified database of Swiss relocation companies with real expat reviews.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://relofinder.ch/.well-known/openapi.json"
+  },
+  "logo_url": "https://relofinder.ch/favicon.svg",
+  "contact_email": "info@relofinder.ch",
+  "legal_info_url": "https://relofinder.ch/terms"
+}

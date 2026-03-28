@@ -6,6 +6,7 @@ import "../styles/global.css";
 import { ViewTransitions } from "astro:transitions";
 import AssessmentModalAlpine from "../components/individual/AssessmentModalAlpine.astro";
 import CookieBanner from "../components/tracking/CookieBanner";
+import ReloFinderChat from "../components/ReloFinderChat";
 
 export interface Props {
   title?: string;
@@ -139,6 +140,9 @@ const {
     <!-- Alpine.js Assessment Modal (replaces React) -->
     <AssessmentModalAlpine />
     <CookieBanner client:idle />
+
+    <!-- ReloFinder AI Chat Widget -->
+    <ReloFinderChat client:idle />
 
     <!-- Performance & Infrastructure: Ensure legacy SW are removed -->
     <script is:inline>
