@@ -4,7 +4,7 @@ description: "Discover the top relocation agencies in Zurich and Switzerland for
 publishDate: 2026-02-27
 readingTime: 6
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/zurich_relocation_hero.png"
+heroImage: "/images/blog/zurich_relocation_hero.webp"
 category: "Guides"
 tags: ["relocation", "agencies", "zurich", "expats", "housing", "immigration", "switzerland"]
 featured: true

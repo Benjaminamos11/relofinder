@@ -4,7 +4,7 @@ description: "Why 25% of Swiss luxury apartments never hit the listings. Learn t
 publishDate: 2026-03-15
 readingTime: 8
 author: "ReloFinder Analyst Team"
-heroImage: "/images/blog/home_search_blueprint_branded.png"
+heroImage: "/images/blog/home_search_blueprint_branded.webp"
 category: "Housing Search"
 tags: ["Home Hunting", "Real Estate", "Zurich", "Zug"]
 keywords: ["home search zurich", "off-market apartments switzerland", "home hunting guide", "swiss rental market"]

@@ -4,7 +4,7 @@ description: "Your master overview for moving to Switzerland in 2026. Insights o
 publishDate: 2026-03-15
 readingTime: 12
 author: "ReloFinder Analyst Team"
-heroImage: "/images/blog/swiss_relocation_2026_branded.png"
+heroImage: "/images/blog/swiss_relocation_2026_branded.webp"
 category: "Guides"
 tags: ["Switzerland", "Relocation", "Taxes", "Immigration"]
 keywords: ["relocation switzerland", "moving to switzerland 2026", "swiss work permits", "cost of living switzerland"]

@@ -4,7 +4,7 @@ description: "Discover the true costs of hiring a relocation agency in Switzerla
 publishDate: 2026-02-27
 readingTime: 6
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/zurich_relocation_hero.png"
+heroImage: "/images/blog/zurich_relocation_hero.webp"
 category: "Guides"
 tags: ["relocation", "costs", "agencies", "switzerland", "housing", "immigration", "budget"]
 featured: false

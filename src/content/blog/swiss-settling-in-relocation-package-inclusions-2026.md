@@ -4,7 +4,7 @@ description: "Discover what is exactly included in a premium Swiss settling-in r
 publishDate: 2026-03-15
 readingTime: 6
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/settling_in_hero.png"
+heroImage: "/images/blog/settling_in_hero.webp"
 category: "Guides"
 tags: ["settling-in", "services", "switzerland", "relocation-package", "expats"]
 featured: false

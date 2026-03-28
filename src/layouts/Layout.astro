@@ -146,27 +146,14 @@ const {
     <!-- ReloFinder AI Chat Widget -->
     <ReloFinderChat client:idle />
 
-    <!-- Performance & Infrastructure: Ensure legacy SW are removed -->
-    <script is:inline>
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.getRegistrations().then((registrations) => {
-          for (const registration of registrations) {
-            registration.unregister();
-            console.log("♻️ Legacy Service Worker removed");
-          }
-        });
-      }
-    </script>
-
     <!-- Alpine.js Global Stores (loaded via alpine:init, isolated from Vite) -->
     <script is:inline src="/alpine-stores.js?v=3"></script>
 
-    <!-- Re-initialize Alpine after ViewTransitions soft navigation -->
+    <!-- Re-initialize Alpine after ViewTransitions soft navigation (deferred to avoid forced reflow) -->
     <script is:inline>
       document.addEventListener("astro:page-load", () => {
         if (window.Alpine) {
-          // Re-initialize Alpine's component tree on the new DOM
-          window.Alpine.initTree(document.body);
+          requestAnimationFrame(() => { window.Alpine.initTree(document.body); });
         }
       });
     </script>

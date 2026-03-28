@@ -4,7 +4,7 @@ description: "Master your move to Zug in 2026. Discover the 4% tax reduction pla
 publishDate: 2026-03-15
 readingTime: 10
 author: "ReloFinder Analyst Team"
-heroImage: "/images/blog/zug_zytturm_branded.png"
+heroImage: "/images/blog/zug_zytturm_branded.webp"
 category: "City Guides"
 tags: ["Zug", "Relocation", "Taxes", "Housing"]
 keywords: ["relocation zug", "moving to zug 2026", "zug tax rates 2026", "apartments zug", "prime relocation zug"]

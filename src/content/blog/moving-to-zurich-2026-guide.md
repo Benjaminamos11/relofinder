@@ -4,7 +4,7 @@ description: "Everything you need to relocate to Zurich in 2026. Detailed insigh
 publishDate: 2026-03-15
 readingTime: 12
 author: "ReloFinder Analyst Team"
-heroImage: "/images/blog/zurich_skyline_branded.png"
+heroImage: "/images/blog/zurich_skyline_branded.webp"
 category: "City Guides"
 tags: ["Zurich", "Relocation", "Taxes", "Housing"]
 keywords: ["relocation zurich", "moving to zurich 2026", "zurich expat guide", "apartments zurich", "schools zurich"]

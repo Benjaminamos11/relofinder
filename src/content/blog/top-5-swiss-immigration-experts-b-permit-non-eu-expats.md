@@ -4,7 +4,7 @@ description: "Discover the top 5 immigration consultants and relocation agencies
 publishDate: 2026-03-12
 readingTime: 6
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/b_permit_hero.png"
+heroImage: "/images/blog/b_permit_hero.webp"
 category: "Immigration"
 tags: ["immigration", "b-permit", "non-eu", "expats", "work-permit", "switzerland"]
 featured: false

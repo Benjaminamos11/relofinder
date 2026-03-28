@@ -4,7 +4,7 @@ description: "Choosing between Packimpex, Crown Relocations, and boutique agenci
 publishDate: 2026-03-05
 readingTime: 7
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/global_vs_boutique_hero.png"
+heroImage: "/images/blog/global_vs_boutique_hero.webp"
 category: "Comparisons"
 tags: ["packimpex", "crown relocations", "zurich", "expats", "boutique", "switzerland", "reviews"]
 featured: false

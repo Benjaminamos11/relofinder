@@ -4,7 +4,7 @@ description: "Discover the top relocation agencies and education consultants for
 publishDate: 2026-03-10
 readingTime: 6
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/school_search_hero.png"
+heroImage: "/images/blog/school_search_hero.webp"
 category: "Education"
 tags: ["education", "international schools", "zurich", "zug", "agencies", "expats"]
 featured: false
