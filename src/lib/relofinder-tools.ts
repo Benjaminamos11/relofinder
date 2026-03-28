@@ -144,8 +144,8 @@ export async function handleRecommendAgencies(input: {
   const maxResults = input.limit || 3;
 
   let query = supabaseAdmin
-    .from('agencies')
-    .select('id, slug, name, tagline, logo, tier, languages, regions_served, services, rating_breakdown, is_verified, website_url, meeting_url')
+    .from('relocators')
+    .select('id, slug, name, bio, logo, tier, languages, regions_served, services, rating_breakdown, is_verified, website, meeting_url, google_rating, reviews')
     .eq('accepting_new_customers', true)
     .limit(maxResults * 2); // fetch extra to filter
 
@@ -187,17 +187,16 @@ export async function handleRecommendAgencies(input: {
   // Fetch review stats for top agencies
   const agencyIds = topAgencies.map(a => a.id);
   const { data: reviews } = await supabaseAdmin
-    .from('reviews')
-    .select('agency_id, rating')
-    .in('agency_id', agencyIds)
-    .eq('is_published', true);
+    .from('google_reviews')
+    .select('relocator_id, rating')
+    .in('relocator_id', agencyIds);
 
   const reviewStats: Record<string, { avg: number; count: number }> = {};
   if (reviews) {
     for (const r of reviews) {
-      if (!reviewStats[r.agency_id]) reviewStats[r.agency_id] = { avg: 0, count: 0 };
-      reviewStats[r.agency_id].count++;
-      reviewStats[r.agency_id].avg += r.rating;
+      if (!reviewStats[r.relocator_id]) reviewStats[r.relocator_id] = { avg: 0, count: 0 };
+      reviewStats[r.relocator_id].count++;
+      reviewStats[r.relocator_id].avg += r.rating;
     }
     for (const id of Object.keys(reviewStats)) {
       reviewStats[id].avg = Math.round((reviewStats[id].avg / reviewStats[id].count) * 10) / 10;
@@ -208,17 +207,17 @@ export async function handleRecommendAgencies(input: {
     id: a.id,
     slug: a.slug,
     name: a.name,
-    tagline: a.tagline,
+    tagline: a.bio,
     logo: a.logo,
     tier: a.tier,
     is_verified: a.is_verified,
     services: a.services,
     regions_served: a.regions_served,
     languages: a.languages,
-    website_url: a.website_url,
+    website_url: a.website,
     meeting_url: a.meeting_url,
-    rating: reviewStats[a.id]?.avg || null,
-    review_count: reviewStats[a.id]?.count || 0,
+    rating: reviewStats[a.id]?.avg || a.google_rating || null,
+    review_count: reviewStats[a.id]?.count || a.reviews || 0,
     match_score: a._score,
     profile_url: `https://relofinder.ch/companies/${a.slug}`,
   }));
@@ -234,8 +233,8 @@ export async function handleGetAgencyReviews(input: {
 
   if (!agencyId && input.agency_name) {
     const { data } = await supabaseAdmin
-      .from('agencies')
-      .select('id, slug, name, tagline, logo, tier')
+      .from('relocators')
+      .select('id, slug, name, bio, logo, tier')
       .ilike('name', `%${input.agency_name}%`)
       .limit(1)
       .maybeSingle();
@@ -245,24 +244,22 @@ export async function handleGetAgencyReviews(input: {
 
   if (!agencyId) return { agency: null, reviews: [], summary: null, message: 'Please provide an agency name.' };
 
-  const [agencyRes, reviewsRes, summaryRes] = await Promise.all([
-    supabaseAdmin.from('agencies').select('id, slug, name, tagline, logo, tier, services, regions_served, languages').eq('id', agencyId).single(),
-    supabaseAdmin.from('reviews').select('rating, title, body, author_name, created_at').eq('agency_id', agencyId).eq('is_published', true).order('created_at', { ascending: false }).limit(5),
-    supabaseAdmin.from('review_summaries').select('summary, positives, negatives').eq('agency_id', agencyId).maybeSingle(),
+  const [agencyRes, reviewsRes] = await Promise.all([
+    supabaseAdmin.from('relocators').select('id, slug, name, bio, logo, tier, services, regions_served, languages, google_rating, seo_summary').eq('id', agencyId).single(),
+    supabaseAdmin.from('google_reviews').select('rating, review_text, author_name, review_date').eq('relocator_id', agencyId).order('review_date', { ascending: false }).limit(5),
   ]);
 
   const agency = agencyRes.data;
   const reviews = reviewsRes.data || [];
-  const summary = summaryRes.data;
 
   const avgRating = reviews.length > 0
     ? Math.round((reviews.reduce((s, r) => s + r.rating, 0) / reviews.length) * 10) / 10
-    : null;
+    : agency?.google_rating || null;
 
   return {
-    agency: agency ? { ...agency, rating: avgRating, review_count: reviews.length, profile_url: `https://relofinder.ch/companies/${agency.slug}` } : null,
-    reviews: reviews.map(r => ({ rating: r.rating, title: r.title, excerpt: r.body?.slice(0, 200), author: r.author_name, date: r.created_at })),
-    summary,
+    agency: agency ? { ...agency, tagline: agency.bio, rating: avgRating, review_count: reviews.length, profile_url: `https://relofinder.ch/companies/${agency.slug}` } : null,
+    reviews: reviews.map(r => ({ rating: r.rating, title: null, excerpt: r.review_text?.slice(0, 200), author: r.author_name, date: r.review_date })),
+    summary: agency?.seo_summary ? { summary: agency.seo_summary, positives: [], negatives: [] } : null,
     message: `Found ${reviews.length} reviews for ${agency?.name || 'agency'}.`,
   };
 }
@@ -274,43 +271,36 @@ export async function handleCompareAgencies(input: {
 
   for (const name of input.agency_names.slice(0, 3)) {
     const { data: agency } = await supabaseAdmin
-      .from('agencies')
-      .select('id, slug, name, tagline, logo, tier, services, regions_served, languages, is_verified')
+      .from('relocators')
+      .select('id, slug, name, bio, logo, tier, services, regions_served, languages, is_verified, google_rating, reviews, seo_summary')
       .ilike('name', `%${name}%`)
       .limit(1)
       .maybeSingle();
 
     if (!agency) continue;
 
-    const { data: reviews } = await supabaseAdmin
-      .from('reviews')
+    const { data: reviewData } = await supabaseAdmin
+      .from('google_reviews')
       .select('rating')
-      .eq('agency_id', agency.id)
-      .eq('is_published', true);
+      .eq('relocator_id', agency.id);
 
-    const avgRating = reviews && reviews.length > 0
-      ? Math.round((reviews.reduce((s, r) => s + r.rating, 0) / reviews.length) * 10) / 10
-      : null;
-
-    const { data: summary } = await supabaseAdmin
-      .from('review_summaries')
-      .select('positives, negatives')
-      .eq('agency_id', agency.id)
-      .maybeSingle();
+    const avgRating = reviewData && reviewData.length > 0
+      ? Math.round((reviewData.reduce((s, r) => s + r.rating, 0) / reviewData.length) * 10) / 10
+      : agency.google_rating || null;
 
     results.push({
       name: agency.name,
       slug: agency.slug,
-      tagline: agency.tagline,
+      tagline: agency.bio,
       tier: agency.tier,
       is_verified: agency.is_verified,
       services: agency.services,
       regions_served: agency.regions_served,
       languages: agency.languages,
       rating: avgRating,
-      review_count: reviews?.length || 0,
-      positives: summary?.positives?.slice(0, 3) || [],
-      negatives: summary?.negatives?.slice(0, 2) || [],
+      review_count: reviewData?.length || agency.reviews || 0,
+      positives: [],
+      negatives: [],
       profile_url: `https://relofinder.ch/companies/${agency.slug}`,
     });
   }
@@ -344,10 +334,10 @@ export async function handleCreateLead(input: {
     name: input.name,
     email: input.email,
     phone: input.phone || null,
-    region_code: input.region_code || null,
-    service_code: input.service_code || null,
+    destination_canton: input.region_code || null,
+    service_interest: input.service_code || null,
     message: input.message || null,
-    requested_agencies: input.requested_agencies || null,
+    requested_agencies: input.requested_agencies || [],
     source_page: 'ai-chat',
     status: 'new',
   });
