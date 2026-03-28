@@ -156,6 +156,96 @@ function CostTable({ costs, total, city }: { costs: Record<string, number>; tota
   );
 }
 
+// ─── Simple Markdown Renderer ───
+
+function renderMarkdown(text: string) {
+  // Split into lines for block-level parsing
+  const lines = text.split('\n');
+  const elements: React.ReactNode[] = [];
+  let listItems: string[] = [];
+
+  const flushList = () => {
+    if (listItems.length > 0) {
+      elements.push(
+        <ul key={`ul-${elements.length}`} className="list-disc list-inside space-y-0.5 my-1">
+          {listItems.map((item, j) => <li key={j}>{renderInline(item)}</li>)}
+        </ul>
+      );
+      listItems = [];
+    }
+  };
+
+  lines.forEach((line, i) => {
+    // List items (- or * or numbered)
+    const listMatch = line.match(/^[\s]*[-*•]\s+(.+)/) || line.match(/^[\s]*\d+\.\s+(.+)/);
+    if (listMatch) {
+      listItems.push(listMatch[1]);
+      return;
+    }
+    flushList();
+
+    // Headers
+    if (line.match(/^###\s+/)) {
+      elements.push(<p key={i} className="font-bold text-xs mt-2 mb-0.5">{renderInline(line.replace(/^###\s+/, ''))}</p>);
+    } else if (line.match(/^##\s+/)) {
+      elements.push(<p key={i} className="font-bold text-sm mt-2 mb-0.5">{renderInline(line.replace(/^##\s+/, ''))}</p>);
+    } else if (line.trim() === '') {
+      elements.push(<div key={i} className="h-1.5" />);
+    } else {
+      elements.push(<p key={i}>{renderInline(line)}</p>);
+    }
+  });
+  flushList();
+
+  return <>{elements}</>;
+}
+
+function renderInline(text: string): React.ReactNode {
+  // Process bold, italic, and links with regex
+  const parts: React.ReactNode[] = [];
+  let remaining = text;
+  let key = 0;
+
+  while (remaining.length > 0) {
+    // Bold **text**
+    const boldMatch = remaining.match(/^(.*?)\*\*(.+?)\*\*(.*)/s);
+    // Link [text](url)
+    const linkMatch = remaining.match(/^(.*?)\[([^\]]+)\]\(([^)]+)\)(.*)/s);
+
+    // Find earliest match
+    let earliestType: string | null = null;
+    let earliestIndex = remaining.length;
+
+    if (boldMatch && boldMatch[1].length < earliestIndex) {
+      earliestIndex = boldMatch[1].length;
+      earliestType = 'bold';
+    }
+    if (linkMatch && linkMatch[1].length < earliestIndex) {
+      earliestIndex = linkMatch[1].length;
+      earliestType = 'link';
+    }
+
+    if (earliestType === 'bold' && boldMatch) {
+      if (boldMatch[1]) parts.push(<span key={key++}>{boldMatch[1]}</span>);
+      parts.push(<strong key={key++} className="font-semibold">{boldMatch[2]}</strong>);
+      remaining = boldMatch[3];
+    } else if (earliestType === 'link' && linkMatch) {
+      if (linkMatch[1]) parts.push(<span key={key++}>{linkMatch[1]}</span>);
+      parts.push(
+        <a key={key++} href={linkMatch[3]} target="_blank" rel="noopener" className="text-[#FF6F61] underline hover:text-[#e5635a]">
+          {linkMatch[2]}
+        </a>
+      );
+      remaining = linkMatch[4];
+    } else {
+      parts.push(<span key={key++}>{remaining}</span>);
+      break;
+    }
+  }
+
+  return parts.length === 1 ? parts[0] : <>{parts}</>;
+}
+
 // ─── Main Chat Component ───
 
 export default function ReloFinderChat() {
@@ -290,9 +380,7 @@ export default function ReloFinderChat() {
                       ? 'bg-[#2C3E50] text-white rounded-br-sm'
                       : 'bg-white text-gray-800 border border-gray-200 rounded-bl-sm shadow-sm'
                   }`}>
-                    {m.content.split('\n').map((line, j) => (
-                      <p key={j} className={j > 0 ? 'mt-1.5' : ''}>{line}</p>
-                    ))}
+                    {m.role === 'assistant' ? renderMarkdown(m.content) : m.content}
                   </div>
                   {/* Rich cards */}
                   {m.toolData?.agencies && <AgencyCards agencies={m.toolData.agencies} />}
