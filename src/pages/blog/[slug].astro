@@ -102,6 +102,20 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
     description={description}
     canonical={canonical}
     image={shareImage}
+    openGraph={{
+        title: title,
+        description: description,
+        image: shareImage || "/og-image.jpg",
+        type: "article",
+        url: canonical,
+    }}
+    twitter={{
+        card: "summary_large_image",
+        site: "@relofinder",
+        title: title,
+        description: description,
+        image: shareImage || "/og-image.jpg",
+    }}
 >
     <!-- Inject Schemas -->
     <script

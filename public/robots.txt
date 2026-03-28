@@ -16,6 +16,7 @@ Disallow: /node_modules/
 Disallow: /src/
 
 # Allow important SEO pages
+Allow: /blog/
 Allow: /companies/
 Allow: /services/
 Allow: /regions/

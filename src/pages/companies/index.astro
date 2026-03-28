@@ -70,9 +70,43 @@ const title =
 const description =
     "Free directory of verified Swiss relocation agencies. Compare reviews, services, and locations to find the best partner for your move.";
 const canonical = "https://relofinder.ch/companies";
+
+const companyFaqs = [
+  {
+    question: "How does ReloFinder verify relocation agencies?",
+    answer: "We verify agencies through Google Reviews analysis, website audits, service portfolio checks, and direct agency partnerships. Preferred and Partner tier agencies undergo additional vetting for quality assurance."
+  },
+  {
+    question: "Is the ReloFinder directory free to use?",
+    answer: "Yes, searching and comparing agencies is completely free for individuals and companies. Agencies can upgrade to Partner or Preferred tiers for enhanced visibility."
+  },
+  {
+    question: "What services do Swiss relocation agencies typically offer?",
+    answer: "Most agencies offer housing search, immigration and permit support, school search for families, settling-in services, insurance guidance, and moving logistics. Some specialize in corporate relocation or specific regions like Zurich or Geneva."
+  },
+  {
+    question: "How do I choose the right relocation agency for my move?",
+    answer: "Consider your specific needs (visa support, housing, schools), preferred region, budget, and language requirements. Use ReloFinder's filters to narrow down agencies, then compare reviews and service offerings side by side."
+  },
+  {
+    question: "Can I compare multiple relocation agencies side by side?",
+    answer: "Yes, ReloFinder lets you compare agencies by services offered, regions covered, Google reviews, verification status, and pricing models. Use our AI chat for personalized recommendations."
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: companyFaqs.map(faq => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer }
+  }))
+};
 ---
 
-<Layout title={title} description={description} canonical={canonical}>
+<Layout title={title} description={description} canonical={canonical} schema={faqSchema}>
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
     <!-- Hero Section -->
     <section
         class="relative pt-24 pb-20 md:pt-32 md:pb-24 bg-slate-50 border-b border-slate-100 overflow-hidden"
@@ -538,4 +572,22 @@ const canonical = "https://relofinder.ch/companies";
                 });
         });
     </script>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold text-slate-800 mb-8">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                {companyFaqs.map((faq) => (
+                    <details class="bg-white rounded-xl border border-slate-200 overflow-hidden group">
+                        <summary class="px-6 py-4 cursor-pointer font-semibold text-slate-800 hover:bg-slate-50 transition-colors flex justify-between items-center">
+                            {faq.question}
+                            <svg class="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </summary>
+                        <p class="px-6 pb-4 text-slate-600 leading-relaxed">{faq.answer}</p>
+                    </details>
+                ))}
+            </div>
+        </div>
+    </section>
 </Layout>

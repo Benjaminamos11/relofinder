@@ -35,22 +35,23 @@ export default defineConfig({
         && !page.includes('/index_old')
         && !page.includes('/design-')
         && !page.includes('/new-design')
-        && !page.includes('/housing_old'),
+        && !page.includes('/housing_old')
+        && !page.includes('/design-comparison')
+        && !page.includes('/design-concept')
+        && !page.includes('/design-system'),
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
-      // Custom URL entries with priorities
-      customPages: [
-        'https://relofinder.ch',
-        'https://relofinder.ch/about',
-        'https://relofinder.ch/contact',
-        'https://relofinder.ch/corporate',
-        'https://relofinder.ch/partners',
-        'https://relofinder.ch/swiss-relocation-guide',
-        'https://relofinder.ch/companies',
-        'https://relofinder.ch/regions',
-        'https://relofinder.ch/blog',
-      ]
+      serialize(item) {
+        // Boost priority for key pages
+        if (item.url === 'https://relofinder.ch/') { item.priority = 1.0; item.changefreq = 'daily'; }
+        else if (item.url.includes('/companies/') && !item.url.endsWith('/companies')) { item.priority = 0.8; }
+        else if (item.url.includes('/blog/')) { item.priority = 0.8; }
+        else if (item.url.includes('/services/')) { item.priority = 0.8; }
+        else if (item.url.includes('/regions/')) { item.priority = 0.7; }
+        else if (item.url.endsWith('/companies') || item.url.endsWith('/blog') || item.url.endsWith('/services')) { item.priority = 0.9; }
+        return item;
+      }
     })
   ],
   output: 'static',

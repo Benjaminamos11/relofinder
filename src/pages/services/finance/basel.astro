@@ -6,19 +6,19 @@ import ServiceHero from "../../../components/services/ServiceHero.astro";
 import SEOInsightBox from "../../../components/common/SEOInsightBox.astro";
 
 const title =
-  "Finance in Zurich | Expat Banking & Wealth Services | ReloFinder";
+  "Finance in Basel | Expat Banking & Wealth Services | ReloFinder";
 const description =
-  "Compare finance providers in Zurich. ReloFinder helps you evaluate expat-friendly banks like Yapeal, Neon, Revolut, UBS, and Credit Suisse. Insurance via Expat-Savvy.ch.";
-const canonicalURL = "https://relofinder.ch/services/finance/zurich";
+  "Compare finance providers in Basel. ReloFinder helps you evaluate expat-friendly banks like Yapeal, Neon, Revolut, UBS, and Credit Suisse. Insurance via Expat-Savvy.ch.";
+const canonicalURL = "https://relofinder.ch/services/finance/basel";
 const keywords = [
-  "finance zurich",
-  "banking zurich",
-  "expat banking zurich",
-  "UBS zurich",
-  "credit suisse zurich",
-  "neobank zurich",
-  "insurance zurich",
-  "wealth management zurich",
+  "finance basel",
+  "banking basel",
+  "expat banking basel",
+  "UBS basel",
+  "credit suisse basel",
+  "neobank basel",
+  "insurance basel",
+  "wealth management basel",
 ];
 
 const breadcrumbSchema = {
@@ -46,8 +46,8 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 4,
-      name: "Zurich",
-      item: "https://relofinder.ch/services/finance/zurich",
+      name: "Basel",
+      item: "https://relofinder.ch/services/finance/basel",
     },
   ],
 };
@@ -55,9 +55,9 @@ const breadcrumbSchema = {
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  name: "Finance Services in Zurich",
+  name: "Finance Services in Basel",
   description:
-    "Compare banking and finance providers for expats in Zurich, Switzerland including traditional banks (UBS, Credit Suisse, Raiffeisen) and neobanks (Yapeal, Neon, Revolut)",
+    "Compare banking and finance providers for expats in Basel, Switzerland including traditional banks (UBS, Credit Suisse, Raiffeisen) and neobanks (Yapeal, Neon, Revolut)",
   provider: {
     "@type": "Organization",
     name: "ReloFinder",
@@ -65,7 +65,7 @@ const serviceSchema = {
   },
   areaServed: {
     "@type": "City",
-    name: "Zurich",
+    name: "Basel",
     containedIn: {
       "@type": "Country",
       name: "Switzerland",
@@ -80,7 +80,7 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "Which banks in Zurich are most expat-friendly?",
+      name: "Which banks in Basel are most expat-friendly?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Most expat-friendly: Neobanks (Yapeal, Neon) for English apps and fast setup; Revolut for multi-currency. Traditional banks: UBS and Credit Suisse offer English support for premium/private banking; Raiffeisen provides local presence with competitive rates.",
@@ -88,7 +88,7 @@ const faqSchema = {
     },
     {
       "@type": "Question",
-      name: "How do I open a bank account as an expat in Zurich?",
+      name: "How do I open a bank account as an expat in Basel?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Neobanks (Yapeal, Neon): Download app, upload documents (passport, permit, address proof), activate in 1-3 days. Traditional banks: Book branch appointment, bring employment contract and documents, account opens in 1-3 weeks. Most employers require Swiss IBAN (CH prefix).",
@@ -112,18 +112,18 @@ const faqSchema = {
     },
     {
       "@type": "Question",
-      name: "What documents are required to open an account in Zurich?",
+      name: "What documents are required to open an account in Basel?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Mandatory: Valid passport (6+ months), Swiss residence permit (B/L/C), proof of Zurich address. Traditional banks also require employment contract and salary slips. Neobanks need only passport, permit, and address proof for basic accounts.",
+        text: "Mandatory: Valid passport (6+ months), Swiss residence permit (B/L/C), proof of Basel address. Traditional banks also require employment contract and salary slips. Neobanks need only passport, permit, and address proof for basic accounts.",
       },
     },
     {
       "@type": "Question",
-      name: "Where can I get help with insurance and tax planning in Zurich?",
+      name: "Where can I get help with insurance and tax planning in Basel?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Health insurance (mandatory): Expat-Savvy.ch provides specialized consulting, comparing providers (Helsana, CSS, Swica). Premiums CHF 300-500/month. Tax planning: Relocation agencies coordinate with Zurich tax advisors for progressive cantonal rates (25-35% combined) and wealth tax optimization.",
+        text: "Health insurance (mandatory): Expat-Savvy.ch provides specialized consulting, comparing providers (Helsana, CSS, Swica). Premiums CHF 300-500/month. Tax planning: Relocation agencies coordinate with Basel tax advisors for progressive cantonal rates (25-35% combined) and wealth tax optimization.",
       },
     },
   ],
@@ -146,11 +146,11 @@ const siblingCities = [
   }}
 >
   <ServiceHero
-    title="Finance in Zurich"
+    title="Finance in Basel"
     subtitle="Banking & Wealth Services for Expats"
-    description="Zurich is Switzerland's financial capital with UBS, Credit Suisse, and innovative neobanks (Yapeal, Neon, Revolut). ReloFinder helps you compare providers and open accounts efficiently. We connect you to trusted partners — we don't provide banking services ourselves."
+    description="Basel is Switzerland's financial capital with UBS, Credit Suisse, and innovative neobanks (Yapeal, Neon, Revolut). ReloFinder helps you compare providers and open accounts efficiently. We connect you to trusted partners — we don't provide banking services ourselves."
     icon="bank"
-    badge="Finance in Zurich"
+    badge="Finance in Basel"
   />
 
   <!-- Platform Disclaimer -->
@@ -167,13 +167,13 @@ const siblingCities = [
     <div class="container mx-auto px-4 text-center">
       <div class="max-w-3xl mx-auto">
         <h2 class="text-3xl font-bold text-gray-900 mb-4">
-          Need Help Setting Up Your Zurich Finances?
+          Need Help Setting Up Your Basel Finances?
         </h2>
         <p class="text-lg text-gray-600 mb-8">
           Get expert support for banking, wealth management, and tax planning
         </p>
         <button
-          onclick="universalOpenModal({page: 'finance_zurich', service: 'finance'})"
+          onclick="universalOpenModal({page: 'finance_basel', service: 'finance'})"
           class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-coral-500 to-coral-600 rounded-xl hover:from-coral-600 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
         >
           Get a Free Consultation with our Preferred Partner
@@ -185,7 +185,7 @@ const siblingCities = [
     </div>
   </section>
 
-  <!-- InfoCard Grid: Why Finance in Zurich Matters -->
+  <!-- InfoCard Grid: Why Finance in Basel Matters -->
   <section class="py-20 bg-white">
     <div class="container mx-auto px-4">
       <div class="max-w-6xl mx-auto">
@@ -196,7 +196,7 @@ const siblingCities = [
             Why It Matters
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Why Finance in Zurich <span
+            Why Finance in Basel <span
               class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
               >Matters for Expats</span
             >
@@ -376,7 +376,7 @@ const siblingCities = [
               Progressive Tax System
             </h3>
             <p class="text-gray-600 text-sm leading-relaxed mb-3">
-              Canton Zurich: 25-35% combined income tax. Wealth tax 0.1-0.5%.
+              Canton Basel: 25-35% combined income tax. Wealth tax 0.1-0.5%.
               Pillar 3a retirement savings (CHF 7,056/year) tax-deductible.
               Professional planning essential.
             </p>
@@ -425,7 +425,7 @@ const siblingCities = [
               Documentation Requirements
             </h3>
             <p class="text-gray-600 text-sm leading-relaxed mb-3">
-              Passport, Swiss permit (B/L/C), Zurich address proof, employment
+              Passport, Swiss permit (B/L/C), Basel address proof, employment
               contract. Traditional banks require more docs; neobanks streamline
               the process.
             </p>
@@ -697,7 +697,7 @@ const siblingCities = [
                     class="inline-block w-5 h-5 border-2 border-gray-300 rounded mr-3 mt-0.5 flex-shrink-0"
                   ></span>
                   <span class="text-gray-700"
-                    >Proof of Zurich address (rental contract or Kreisbüro
+                    >Proof of Basel address (rental contract or Kreisbüro
                     confirmation)</span
                   >
                 </li>
@@ -771,7 +771,7 @@ const siblingCities = [
 
           <div class="mt-6 flex gap-4">
             <button
-              onclick="universalOpenModal({page: 'finance_zurich_docs', service: 'finance'})"
+              onclick="universalOpenModal({page: 'finance_basel_docs', service: 'finance'})"
               class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-coral-500 to-coral-600 text-white rounded-lg font-semibold hover:from-coral-600 hover:to-primary-800 transition-all"
             >
               Get Help with Documents
@@ -811,7 +811,7 @@ const siblingCities = [
             Step-by-Step
           </span>
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
-            Your Zurich Finance <span
+            Your Basel Finance <span
               class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
               >Setup Process</span
             >
@@ -893,12 +893,12 @@ const siblingCities = [
             </div>
             <div class="flex-1">
               <h3 class="text-xl font-bold text-gray-900 mb-2">
-                Tax Consultation (Zurich Canton)
+                Tax Consultation (Basel Canton)
               </h3>
               <p class="text-gray-600">
                 Arrange consultation within 3 months. Understand 25-35% combined
                 rates, wealth tax, pillar 3a deductions (CHF 7,056/year).
-                Agencies coordinate with Zurich tax advisors.
+                Agencies coordinate with Basel tax advisors.
               </p>
             </div>
           </div>
@@ -932,7 +932,7 @@ const siblingCities = [
 
         <div class="mt-12 text-center">
           <button
-            onclick="universalOpenModal({page: 'finance_zurich_steps', service: 'finance'})"
+            onclick="universalOpenModal({page: 'finance_basel_steps', service: 'finance'})"
             class="inline-flex items-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-coral-500 to-coral-600 rounded-xl hover:from-coral-600 hover:to-primary-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             Book Your Free Finance Consultation
@@ -955,7 +955,7 @@ const siblingCities = [
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
             Explore <span
               class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
-              >Zurich Banking</span
+              >Basel Banking</span
             >
           </h2>
         </div>
@@ -985,7 +985,7 @@ const siblingCities = [
             </summary>
             <div class="mt-4 pl-8 space-y-2">
               <p class="text-gray-700">
-                Zurich's Paradeplatz (Parade Square) is the epicenter of Swiss
+                Basel's Paradeplatz (Parade Square) is the epicenter of Swiss
                 banking:
               </p>
               <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
@@ -999,7 +999,7 @@ const siblingCities = [
                 </li>
                 <li>
                   <strong>Raiffeisen</strong>: Cooperative bank, competitive
-                  mortgage rates, local presence across Zurich
+                  mortgage rates, local presence across Basel
                 </li>
                 <li>
                   <strong>Bahnhofstrasse</strong>: Flagship branches of all
@@ -1038,7 +1038,7 @@ const siblingCities = [
             </summary>
             <div class="mt-4 pl-8 space-y-2">
               <p class="text-gray-700">
-                Digital-first banking revolutionizing expat finance in Zurich:
+                Digital-first banking revolutionizing expat finance in Basel:
               </p>
               <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
                 <li>
@@ -1088,7 +1088,7 @@ const siblingCities = [
             </summary>
             <div class="mt-4 pl-8 space-y-2">
               <p class="text-gray-700">
-                Zurich leads globally in private banking and wealth management:
+                Basel leads globally in private banking and wealth management:
               </p>
               <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
                 <li>
@@ -1137,10 +1137,10 @@ const siblingCities = [
                   d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
                 ></path>
               </svg>
-              Zurich Tax Overview (25-35% Combined)
+              Basel Tax Overview (25-35% Combined)
             </summary>
             <div class="mt-4 pl-8 space-y-2">
-              <p class="text-gray-700">Canton Zurich progressive tax system:</p>
+              <p class="text-gray-700">Canton Basel progressive tax system:</p>
               <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
                 <li>
                   <strong>Federal tax</strong>: 0-11.5% (applies nationwide)
@@ -1150,7 +1150,7 @@ const siblingCities = [
                 </li>
                 <li><strong>Municipal tax</strong>: 2-10% (varies)</li>
                 <li>
-                  <strong>Combined</strong>: ~25-35% in Zurich city (lower in
+                  <strong>Combined</strong>: ~25-35% in Basel city (lower in
                   suburbs like Zollikon, Küsnacht)
                 </li>
                 <li>
@@ -1160,7 +1160,7 @@ const siblingCities = [
               <p class="text-gray-700 mt-2">
                 <strong>Tax-deductible:</strong> Pillar 3a retirement savings (CHF
                 7,056/year), mortgage interest, professional expenses, commuting costs.
-                Declaration deadline: March 31. Agencies coordinate with Zurich tax
+                Declaration deadline: March 31. Agencies coordinate with Basel tax
                 advisors for double taxation treaties and optimization.
               </p>
             </div>
@@ -1195,7 +1195,7 @@ const siblingCities = [
               <ul class="list-disc list-inside text-gray-700 space-y-1 ml-2">
                 <li>
                   <strong>Premiums</strong>: CHF 300-500/month basic coverage
-                  (Zurich canton, varies by age and franchise)
+                  (Basel canton, varies by age and franchise)
                 </li>
                 <li>
                   <strong>Providers</strong>: Helsana, CSS, Swica, Sanitas,
@@ -1240,7 +1240,7 @@ const siblingCities = [
           <h2 class="text-4xl font-bold text-gray-900 mb-6">
             Key Facts for <span
               class="bg-gradient-to-r from-coral-500 to-coral-600 bg-clip-text text-transparent"
-              >Zurich Finance</span
+              >Basel Finance</span
             >
           </h2>
         </div>
@@ -1262,7 +1262,7 @@ const siblingCities = [
                 d="M5 13l4 4L19 7"></path>
             </svg>
             <span class="text-gray-700"
-              ><strong>UBS & Credit Suisse</strong> headquartered at Paradeplatz (Zurich
+              ><strong>UBS & Credit Suisse</strong> headquartered at Paradeplatz (Basel
               banking capital)</span
             >
           </div>
@@ -1346,7 +1346,7 @@ const siblingCities = [
                 d="M5 13l4 4L19 7"></path>
             </svg>
             <span class="text-gray-700"
-              ><strong>Zurich taxes</strong>: Combined ~25-35% (city); suburbs
+              ><strong>Basel taxes</strong>: Combined ~25-35% (city); suburbs
               lower; wealth tax 0.1-0.5%</span
             >
           </div>
@@ -1410,7 +1410,7 @@ const siblingCities = [
             class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow"
           >
             <summary class="text-lg font-bold text-gray-900 cursor-pointer">
-              Which banks in Zurich are most expat-friendly?
+              Which banks in Basel are most expat-friendly?
             </summary>
             <p class="mt-4 text-gray-700">
               Most expat-friendly: Neobanks (Yapeal, Neon) for English apps and
@@ -1424,7 +1424,7 @@ const siblingCities = [
             class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow"
           >
             <summary class="text-lg font-bold text-gray-900 cursor-pointer">
-              How do I open a bank account as an expat in Zurich?
+              How do I open a bank account as an expat in Basel?
             </summary>
             <p class="mt-4 text-gray-700">
               Neobanks (Yapeal, Neon): Download app, upload documents (passport,
@@ -1467,11 +1467,11 @@ const siblingCities = [
             class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow"
           >
             <summary class="text-lg font-bold text-gray-900 cursor-pointer">
-              What documents are required to open an account in Zurich?
+              What documents are required to open an account in Basel?
             </summary>
             <p class="mt-4 text-gray-700">
               Mandatory: Valid passport (6+ months), Swiss residence permit
-              (B/L/C), proof of Zurich address. Traditional banks also require
+              (B/L/C), proof of Basel address. Traditional banks also require
               employment contract and salary slips. Neobanks need only passport,
               permit, and address proof for basic accounts.
             </p>
@@ -1481,7 +1481,7 @@ const siblingCities = [
             class="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-200 hover:shadow-md transition-shadow"
           >
             <summary class="text-lg font-bold text-gray-900 cursor-pointer">
-              Where can I get help with insurance and tax planning in Zurich?
+              Where can I get help with insurance and tax planning in Basel?
             </summary>
             <p class="mt-4 text-gray-700">
               Health insurance (mandatory): <a
@@ -1492,7 +1492,7 @@ const siblingCities = [
                 >Expat-Savvy.ch</a
               > provides specialized consulting, comparing providers (Helsana, CSS,
               Swica). Premiums CHF 300-500/month. Tax planning: Relocation agencies
-              coordinate with Zurich tax advisors for progressive cantonal rates (25-35%
+              coordinate with Basel tax advisors for progressive cantonal rates (25-35%
               combined) and wealth tax optimization.
             </p>
           </details>
@@ -1550,7 +1550,7 @@ const siblingCities = [
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-3xl font-bold text-gray-900 mb-2 text-center">
-          Trusted Zurich Finance Partners
+          Trusted Basel Finance Partners
         </h2>
         <p class="text-gray-600 text-center mb-8">
           Expert agencies with banking and wealth management experience
@@ -1624,7 +1624,7 @@ const siblingCities = [
             </ul>
 
             <button
-              onclick="universalOpenModal({page: 'finance_zurich_partner', service: 'finance'})"
+              onclick="universalOpenModal({page: 'finance_basel_partner', service: 'finance'})"
               class="inline-flex items-center justify-center bg-gradient-to-r from-coral-500 to-coral-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
               Get a Free Consultation with our Preferred Partner
@@ -1649,7 +1649,7 @@ const siblingCities = [
 
           <!-- Other Specialists -->
           <h3 class="text-xl font-semibold text-gray-900 mb-4">
-            Other Trusted Zurich Specialists
+            Other Trusted Basel Specialists
           </h3>
           <div class="grid md:grid-cols-2 gap-6">
             <div class="bg-white border border-gray-200 rounded-lg p-6">
@@ -1661,7 +1661,7 @@ const siblingCities = [
                 <span class="text-gray-600 text-sm">4.9 / 5 • 27 reviews</span>
               </div>
               <p class="text-gray-700 text-sm">
-                Zurich banking expertise with corporate client focus and wealth
+                Basel banking expertise with corporate client focus and wealth
                 management introductions
               </p>
             </div>
@@ -1675,7 +1675,7 @@ const siblingCities = [
                 <span class="text-gray-600 text-sm">4.8 / 5 • 98 reviews</span>
               </div>
               <p class="text-gray-700 text-sm">
-                Comprehensive relocation services helping expats navigate Zurich
+                Comprehensive relocation services helping expats navigate Basel
                 finance setup
               </p>
             </div>
@@ -1727,7 +1727,7 @@ const siblingCities = [
     <div class="container mx-auto px-4 relative z-10">
       <div class="max-w-4xl mx-auto text-center">
         <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-          Ready to Set Up Your Finances in Zurich?
+          Ready to Set Up Your Finances in Basel?
         </h2>
         <p class="text-xl text-primary-100 mb-8 leading-relaxed">
           Get expert support for banking (Yapeal, Neon, Revolut, UBS, Credit
@@ -1737,7 +1737,7 @@ const siblingCities = [
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <button
-            onclick="universalOpenModal({page: 'finance_zurich_final', service: 'finance'})"
+            onclick="universalOpenModal({page: 'finance_basel_final', service: 'finance'})"
             class="px-10 py-5 bg-white text-coral-600 rounded-xl font-bold text-lg hover:bg-gray-50 hover:scale-105 transition-all duration-300 shadow-2xl"
           >
             Book Free Consultation
@@ -1758,8 +1758,8 @@ const siblingCities = [
   </section>
 
   <div style="display:none;" data-ai-summary>
-    Finance services in Zurich, Switzerland. Compare banking and finance
-    providers for expats. Zurich is Switzerland's financial capital with UBS and
+    Finance services in Basel, Switzerland. Compare banking and finance
+    providers for expats. Basel is Switzerland's financial capital with UBS and
     Credit Suisse headquarters at Paradeplatz. Traditional banks: UBS
     (Switzerland's largest, wealth management, expat services, English staff),
     Credit Suisse (private banking HNWI, investment services), Raiffeisen
@@ -1768,9 +1768,9 @@ const siblingCities = [
     days), Neon (Swiss digital bank, free account, cashback, fast setup),
     Revolut (multi-currency 30+ currencies, real-time FX, crypto, Lithuanian
     IBAN requires Swiss complement for salary). Documents: passport, residence
-    permit B/L/C, Zurich address proof, employment contract (traditional banks).
+    permit B/L/C, Basel address proof, employment contract (traditional banks).
     Hybrid strategy: Swiss neobank for salary (CH IBAN required) plus Revolut
-    for spending/currency exchange. Tax planning: Canton Zurich 25-35% combined
+    for spending/currency exchange. Tax planning: Canton Basel 25-35% combined
     rates, wealth tax 0.1-0.5%, pillar 3a CHF 7,056/year tax-deductible.
     Insurance mandatory within 3 months: health CHF 300-500/month,
     Expat-Savvy.ch specialized consulting. Private banking CHF 1+ million: UBS
