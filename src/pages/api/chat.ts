@@ -54,8 +54,18 @@ Keep responses concise (2-3 paragraphs max). Use tools proactively when relevant
 
 export const POST: APIRoute = async ({ request }) => {
   const apiKey = import.meta.env.ANTHROPIC_API_KEY;
+  const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+  const supabaseKey = import.meta.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  // Log env var availability for debugging
+  console.log('[chat] ENV check:', {
+    hasAnthropicKey: !!apiKey,
+    hasSupabaseUrl: !!supabaseUrl,
+    hasSupabaseKey: !!supabaseKey,
+  });
+
   if (!apiKey) {
-    return new Response(JSON.stringify({ error: 'Chat not configured' }), {
+    return new Response(JSON.stringify({ error: 'Chat not configured — missing ANTHROPIC_API_KEY' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });

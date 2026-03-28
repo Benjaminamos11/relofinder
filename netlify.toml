@@ -49,21 +49,65 @@
 # 6. Paste the webhook URL as the value
 # 7. Done! Site will rebuild daily at 3 AM UTC automatically
 
-# Normalize legacy service URLs to consolidated slugs
+# Normalize legacy service URLs to canonical pages
 [[redirects]]
   from = "/services/visa-immigration"
-  to = "/services/visa"
+  to = "/services/immigration"
   status = 301
   force = true
 
 [[redirects]]
   from = "/services/banking"
-  to = "/services/banking-finance"
+  to = "/services/finance"
   status = 301
   force = true
 
 [[redirects]]
   from = "/services/immigration-services"
-  to = "/services/visa"
+  to = "/services/immigration"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/housing_old"
+  to = "/services/housing"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/insurance-services"
+  to = "/services/insurance"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/departure-repatriation"
+  to = "/services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/legal-services"
+  to = "/services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/cross-cultural"
+  to = "/services"
+  status = 301
+  force = true
+
+# Old region page
+[[redirects]]
+  from = "/regions/bern"
+  to = "/regions"
+  status = 301
+  force = true
+
+# www to non-www
+[[redirects]]
+  from = "https://www.relofinder.ch/*"
+  to = "https://relofinder.ch/:splat"
   status = 301
   force = true
