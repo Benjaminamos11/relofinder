@@ -70,7 +70,7 @@ const services = [
         service = '${initialService}';
         primaryDestination = '${initialDestination}';
     `}
-    class={`bg-white rounded-3xl shadow-[0_40px_80px_-20px_rgba(0,0,0,0.2)] ring-1 ring-slate-900/5 overflow-hidden w-full transition-all duration-300 ${className}`}
+    class={`bg-white rounded-3xl shadow-[0_40px_80px_-20px_rgba(0,0,0,0.2)] ring-1 ring-slate-900/5 overflow-hidden w-full transition-all duration-300 min-h-[320px] md:min-h-[280px] ${className}`}
 >
     <!-- Tabs -->
     <div class="flex border-b border-slate-100">
@@ -90,10 +90,9 @@ const services = [
         </button>
     </div>
 
-    <!-- Private Move Form -->
+    <!-- Private Move Form — no x-cloak so it's visible before Alpine loads (prevents CLS) -->
     <form
         x-show="activeTab === 'private'"
-        x-cloak
         @submit.prevent="handlePrivateSubmit()"
         class="p-8 space-y-6"
         x-transition:enter="transition ease-out duration-200"
