@@ -37,7 +37,7 @@ For HR managers and global mobility professionals, getting it right means unders
 
 Corporate relocations to Switzerland are driven by several strategic factors:
 
-- **Talent acquisition and retention.** Switzerland's tight labor market (unemployment rate of 2.1% in early 2026) means companies must attract international talent for specialized roles, particularly in pharma, fintech, commodities trading, and technology.
+- **Talent acquisition and retention.** Switzerland's tight labor market (unemployment rate of 2.1% in early 2026) means companies must attract international talent for specialized roles, particularly in pharma, fintech, commodities trading, and technology. Understanding the [Swiss work permit system](/blog/swiss-work-permit-guide-b-permit-2026) is essential for planning timelines.
 - **Headquarters and regional hub establishment.** Switzerland's political neutrality, bilateral EU agreements, and favorable corporate tax rates (as low as 11.9% in certain cantons) make it a preferred location for EMEA or global headquarters.
 - **Regulatory and compliance positioning.** Industries like banking, insurance, and pharmaceuticals benefit from Switzerland's robust regulatory frameworks and proximity to EU markets without full EU membership.
 - **Quality of life as a retention tool.** Switzerland consistently ranks in the top 3 globally for quality of life, safety, and education quality -- powerful factors in convincing senior talent to accept assignments.
@@ -145,7 +145,7 @@ Swiss employment and immigration law imposes specific obligations on employers s
 
 ### Tax: Quellensteuer
 
-Non-C-permit holders are subject to **Quellensteuer** (withholding tax at source). The employer is responsible for deducting and remitting this tax. Rates vary by canton, marital status, and income bracket. For high earners (gross income above approximately **CHF 120,000** in most cantons), the employee must file an **ordinary tax assessment** (Ordentliche Veranlagung), which can result in either additional tax owed or a refund.
+Non-C-permit holders are subject to **Quellensteuer** (withholding tax at source). The employer is responsible for deducting and remitting this tax. Rates vary by canton, marital status, and income bracket. For a detailed canton-by-canton rate comparison, see our [Swiss Tax Guide for Expats](/blog/swiss-tax-guide-expats-canton-comparison-2026). For high earners (gross income above approximately **CHF 120,000** in most cantons), the employee must file an **ordinary tax assessment** (Ordentliche Veranlagung), which can result in either additional tax owed or a refund.
 
 ### Health Insurance
 
@@ -217,7 +217,7 @@ Based on market surveys of multinational employers with significant Swiss operat
 - **Household goods shipment:** Full container or volume-based allowance covering door-to-door transport and insurance
 - **Settling-in support:** 1 to 2 days of guided orientation covering registrations, banking, utilities, and area familiarization
 - **Language training:** Budget of CHF 2,000 -- 4,000 for the first year (German or French depending on location)
-- **School search:** Dedicated support for identifying and applying to international or bilingual schools
+- **School search:** Dedicated support for identifying and applying to [international or bilingual schools](/blog/international-schools-switzerland-guide-2026)
 - **Spousal support:** Career coaching, networking events, and community introductions (increasingly standard for senior hires)
 - **Tax equalization or tax protection:** Ensures the employee is no worse off tax-wise than in their home country
 - **Look-see trip:** 3 to 5 days for the employee and spouse to visit Switzerland before committing to the move
@@ -248,7 +248,7 @@ Track these metrics quarterly and benchmark against industry averages. The **Wor
 
 ## Building Your Swiss Relocation Program
 
-Whether you are managing your first employee transfer to Switzerland or optimizing an existing program, the fundamentals remain the same: plan early, budget realistically, ensure compliance, and invest in quality service delivery. The cost of getting it wrong -- measured in failed assignments, legal exposure, and lost talent -- far exceeds the cost of doing it right.
+Whether you are managing your first employee transfer to Switzerland or optimizing an existing program, the fundamentals remain the same: plan early, budget realistically, ensure compliance, and invest in quality service delivery. For a breakdown of typical agency fees, see our [Relocation Agency Costs guide](/blog/relocation-agency-costs-switzerland-2026). The cost of getting it wrong -- measured in failed assignments, legal exposure, and lost talent -- far exceeds the cost of doing it right.
 
 Start by understanding your specific needs, then compare providers who can deliver against them.
 

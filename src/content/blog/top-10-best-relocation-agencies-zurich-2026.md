@@ -42,7 +42,7 @@ Relocating to Switzerland is a massive logistical and administrative undertaking
 
 Whether you are an HR director facilitating a massive corporate transition or an individual executive negotiating a new role, your success hinges on local expertise. You need professionals who can navigate Byzantine [Swiss immigration services](/services/immigration), secure premium housing, and orchestrate a seamless landing. 
 
-To help you make an informed decision, we have analyzed the market and compiled the definitive list of the **Top Relocation Agencies in Zurich for 2026**.
+To help you make an informed decision, we have analyzed the market and compiled the definitive list of the **Top Relocation Agencies in Zurich for 2026**. If you are relocating to French-speaking Switzerland instead, see our dedicated [Best Relocation Agencies in Geneva comparison](/blog/best-relocation-agencies-geneva-2026).
 
 ---
 

@@ -272,7 +272,7 @@ This hybrid approach works especially well for professionals who:
 - French-language bureaucracy
 - Cross-border (France) options available
 
-**Recommendation:** Tier 2 or DIY both viable
+**Recommendation:** Tier 2 or DIY both viable. For a detailed comparison of Romandie-specialist providers, see our [Best Relocation Agencies in Geneva guide](/blog/best-relocation-agencies-geneva-2026).
 
 [Geneva Guide →](/regions/geneva) | [Lausanne Guide →](/regions/lausanne)
 

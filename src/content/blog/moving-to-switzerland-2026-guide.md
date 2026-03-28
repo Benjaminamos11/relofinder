@@ -64,6 +64,8 @@ In 2026, the mindset of high-earning expats has shifted from "DIY" to "Professio
 3. **Insurance Setup**: Secure your mandatory health insurance (KVG/LAMal) within 90 days of registration.
 4. **Partner Selection**: Match with the boutique agency that fits your target city best.
 
+Not sure which city is right for you? Explore our detailed city guides for [Geneva](/blog/moving-to-geneva-2026-guide), [Basel](/blog/moving-to-basel-2026-guide), and [Bern](/blog/moving-to-bern-2026-guide) to compare lifestyle, costs, and housing availability.
+
 **Ready to join the 2026 wave of Swiss professionals?**
 
 [Start Your 2026 Relocation →](#lead-full-service)

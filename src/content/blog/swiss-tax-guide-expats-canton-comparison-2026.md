@@ -49,7 +49,7 @@ Every municipality (Gemeinde / commune) applies a **multiplier** to the cantonal
 
 ## Quellensteuer: Withholding Tax for B-Permit Holders
 
-If you hold a **B residence permit** (the standard permit for employed expats), your employer deducts tax directly from your salary each month. This is called **Quellensteuer** (impôt à la source). The key facts:
+If you hold a **B residence permit** (the standard permit for employed expats — see our [Swiss Work Permit Guide](/blog/swiss-work-permit-guide-b-permit-2026) for full details), your employer deducts tax directly from your salary each month. This is called **Quellensteuer** (impôt à la source). The key facts:
 
 - **Automatic deduction**: Your employer calculates and withholds the tax; you see the net amount on your payslip
 - **Tariff codes**: Your rate depends on your canton, marital status, number of children, and whether your spouse works (codes A, B, C, etc.)
@@ -96,7 +96,7 @@ The following table shows **effective tax rates** for a single person with a gro
 
 ### The Trade-Off
 
-Zug's low taxes come with **higher housing costs** relative to its size and limited cultural offerings compared to Zurich or Geneva. Many expats in Zug commute to Zurich (25 minutes by train), effectively combining Zug's tax rates with Zurich's lifestyle — a strategy so common it's practically standard.
+Zug's low taxes come with **higher housing costs** relative to its size and limited cultural offerings compared to Zurich or Geneva. Many expats in Zug commute to Zurich (25 minutes by train), effectively combining Zug's tax rates with Zurich's lifestyle — a strategy so common it's practically standard. For a complete overview of living in the canton, see our [Moving to Zug guide](/blog/moving-to-zug-2026-guide).
 
 ---
 
@@ -132,7 +132,7 @@ Many expats on Quellensteuer accept their withholding as final without realizing
 
 **Total potential recovery: CHF 2,000–8,000 per year** for a typical expat household.
 
-The **Pillar 3a** contribution is the single most impactful deduction. If you are not maximizing your annual Pillar 3a contribution, you are leaving guaranteed tax savings on the table.
+The **Pillar 3a** contribution is the single most impactful deduction. If you are not maximizing your annual Pillar 3a contribution, you are leaving guaranteed tax savings on the table. For guidance on choosing between bank and insurance Pillar 3a products, see our [Bank vs Insurance Pillar 3a guide](/blog/bank-vs-insurance-pillar-3a-swiss-expat-guide-2026).
 
 ---
 
@@ -212,7 +212,7 @@ A qualified advisor typically costs **CHF 500-2,000** for a standard expat retur
 2. **Open a Pillar 3a account** immediately upon starting employment and maximize annual contributions
 3. **Keep all receipts** for commuting, professional development, childcare, and medical expenses from day one
 4. **File a correction request by March 31** of the following year if your actual deductions exceed the flat-rate amounts
-5. **Evaluate your canton of residence** — if you have flexibility in where you live, the tax savings between cantons can exceed CHF 10,000 annually
+5. **Evaluate your canton of residence** — if you have flexibility in where you live, the tax savings between cantons can exceed CHF 10,000 annually. Our city guides for [Zurich](/blog/moving-to-zurich-2026-guide), [Geneva](/blog/moving-to-geneva-2026-guide), [Basel](/blog/moving-to-basel-2026-guide), [Bern](/blog/moving-to-bern-2026-guide), and [Zug](/blog/moving-to-zug-2026-guide) can help you weigh the full picture
 6. **Consult a specialist** if you have cross-border income, equity compensation, or US citizenship
 
 The Swiss tax system rewards those who understand it. The difference between passive acceptance and active optimization can amount to tens of thousands of francs over a typical expat assignment.

@@ -35,7 +35,7 @@ If you have secured a job in Geneva or Lausanne and assume finding an apartment 
 
 ### Why It's So Difficult
 
-The rental squeeze in Romandie is driven by several structural factors. Geneva hosts over **40 international organizations** (UN, WHO, WTO, CERN, ICRC) plus hundreds of multinational headquarters, creating relentless demand from high-income professionals. Construction permits remain slow due to strict zoning laws and political resistance to densification. Lausanne, as the Olympic capital and a growing tech hub (EPFL ecosystem), faces similar pressure with limited new supply.
+The rental squeeze in Romandie is driven by several structural factors. Geneva hosts over **40 international organizations** (UN, WHO, WTO, CERN, ICRC) plus hundreds of multinational headquarters, creating relentless demand from high-income professionals. For a full overview of what relocating to the city involves, see our [Moving to Geneva guide](/blog/moving-to-geneva-2026-guide). Construction permits remain slow due to strict zoning laws and political resistance to densification. Lausanne, as the Olympic capital and a growing tech hub (EPFL ecosystem), faces similar pressure with limited new supply.
 
 Unlike German-speaking Switzerland, where the market operates through a mix of private landlords and agencies, **Romandie's rental market is dominated by régies** — real estate management companies that act as gatekeepers between tenants and property owners.
 
@@ -174,7 +174,7 @@ Many Geneva workers choose to live across the border in France, where rents are 
 
 ### Cons
 
-- **Cross-border tax complexity**: As a frontalier, your tax situation becomes more complicated
+- **Cross-border tax complexity**: As a frontalier, your [tax situation](/blog/swiss-tax-guide-expats-canton-comparison-2026) becomes more complicated
 - **Health insurance differences**: You must choose between French (CMU) and Swiss (LAMal) systems
 - **Commute times**: Border crossings can add 30-60 minutes during peak hours
 - **Administrative burden**: Dealing with two countries' bureaucracies simultaneously
@@ -195,6 +195,6 @@ Being physically present for viewings increases your success rate substantially.
 
 ## Final Advice
 
-The Romandie rental market rewards preparation, persistence, and professionalism. Your dossier quality, French-language effort, and viewing conduct matter as much as your budget. Do not get discouraged by rejections — even locals struggle in this market. Consider engaging a housing search specialist who knows the local régie network and can accelerate your search significantly.
+The Romandie rental market rewards preparation, persistence, and professionalism. Your dossier quality, French-language effort, and viewing conduct matter as much as your budget. Do not get discouraged by rejections — even locals struggle in this market. Consider engaging a housing search specialist who knows the local régie network and can accelerate your search significantly. For a comparison of Geneva-specialist agencies, see our [Best Relocation Agencies in Geneva guide](/blog/best-relocation-agencies-geneva-2026). For tips on accessing unlisted properties, see our guide to [off-market apartments in Zurich and Zug](/blog/how-to-find-off-market-apartments-zurich-zug-2026).
 
 [Find Housing Specialists →](/companies)

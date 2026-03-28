@@ -72,7 +72,7 @@ The **IB** is the most common curriculum at Swiss international schools and offe
 | **Zurich Academy** | Zurich | British | CHF 25,000–35,000 | No |
 | **Hull's School** | Zurich | Swiss + bilingual | CHF 18,000–25,000 | No |
 
-**ZIS** is the flagship international school of the Zurich region with two campuses, a strong IB programme, and extensive university counseling. It consistently places graduates at top universities in the US, UK, and Europe. **Inter-Community School** in Zumikon offers a slightly smaller community feel and is popular with families on the Gold Coast. **SIS** stands out with its genuinely bilingual German-English model, which suits families planning to stay long-term and wanting Swiss integration alongside international education.
+**ZIS** is the flagship international school of the Zurich region with two campuses, a strong IB programme, and extensive university counseling. It consistently places graduates at top universities in the US, UK, and Europe. **Inter-Community School** in Zumikon offers a slightly smaller community feel and is popular with families on the Gold Coast. **SIS** stands out with its genuinely bilingual German-English model, which suits families planning to stay long-term and wanting Swiss integration alongside international education. For more on relocating to the Zurich area, see our [Moving to Zurich guide](/blog/moving-to-zurich-2026-guide).
 
 ### Geneva Region
 
@@ -83,7 +83,7 @@ The **IB** is the most common curriculum at Swiss international schools and offe
 | **Collège du Léman** | Versoix | IB, French, American | CHF 28,000–36,000 | CHF 75,000–95,000 |
 | **Geneva English School** | Genthod | British | CHF 22,000–30,000 | No |
 
-**Ecolint** (founded 1924) is the world's oldest international school and operates three distinct campuses: La Grande Boissière, La Châtaigneraie, and the Campus des Nations. Each campus has its own character and community. Demand consistently exceeds supply, and waitlists for entry at age 4-5 can stretch over a year. **Collège du Léman** is one of the few Geneva schools offering boarding alongside day programs, making it attractive for families who want that option.
+**Ecolint** (founded 1924) is the world's oldest international school and operates three distinct campuses: La Grande Boissière, La Châtaigneraie, and the Campus des Nations. Each campus has its own character and community. Demand consistently exceeds supply, and waitlists for entry at age 4-5 can stretch over a year. **Collège du Léman** is one of the few Geneva schools offering boarding alongside day programs, making it attractive for families who want that option. For more on family life in Geneva, see our [Moving to Geneva guide](/blog/moving-to-geneva-2026-guide).
 
 ### Basel Region
 
@@ -112,7 +112,7 @@ The **IB** is the most common curriculum at Swiss international schools and offe
 | **International School of Zug and Lucerne (ISZL)** | Baar / Hünenberg | IB | CHF 28,000–38,000 | No |
 | **SIS Swiss International School** | Rotkreuz | Bilingual (DE/EN) | CHF 22,000–28,000 | No |
 
-**ISZL** serves the rapidly growing international community in Zug, driven by the concentration of commodity trading firms, tech companies, and crypto/blockchain businesses. The school operates two campuses and has invested heavily in STEM facilities and performing arts. Waitlists are common for popular year groups.
+**ISZL** serves the rapidly growing international community in Zug, driven by the concentration of commodity trading firms, tech companies, and crypto/blockchain businesses. The school operates two campuses and has invested heavily in STEM facilities and performing arts. Waitlists are common for popular year groups. For more on relocating to this low-tax canton, see our [Moving to Zug guide](/blog/moving-to-zug-2026-guide).
 
 ---
 
@@ -196,7 +196,7 @@ When choosing between schools, consider these factors in order of importance:
 
 - **Visit in person** before committing. Every school has a distinct culture that you can only feel by walking the hallways and talking to current parents.
 - **Join the parent community** on social media (Facebook groups, WhatsApp) for your shortlisted schools. Current parents are the best source of unfiltered information.
-- **Negotiate education allowances** as part of your relocation package before signing your employment contract. Adding school fees later is much harder.
+- **Negotiate education allowances** as part of your relocation package before signing your employment contract. Adding school fees later is much harder. For details on what corporate packages typically include, see our [Corporate Relocation to Switzerland guide](/blog/corporate-relocation-switzerland-guide-2026).
 - **Consider the commute**. Some international schools are located outside city centers. A 45-minute school bus ride each way affects your child's daily life significantly.
 - **Plan for transitions**. If you know you will leave Switzerland in 3-4 years, choose a curriculum that aligns with your likely next destination.
 

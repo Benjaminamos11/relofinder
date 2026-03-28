@@ -20,4 +20,8 @@ Allow: /blog/
 Allow: /companies/
 Allow: /services/
 Allow: /regions/
-Allow: /swiss-relocation-guide 
+Allow: /swiss-relocation-guide
+
+# AI crawler instructions
+Allow: /llms.txt
+Allow: /.well-known/ai-instructions.txt

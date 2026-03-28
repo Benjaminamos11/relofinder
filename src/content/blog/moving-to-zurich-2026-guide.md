@@ -73,6 +73,8 @@ On March 8, 2026, Swiss voters approved the move toward **Individual Taxation**.
 - **Withholding Tax (Quellensteuer)**: Most expats on B or L permits will have their tax deducted at source. For a single professional earning CHF 100,000, the Zurich rate sits at approximately **9.68%**.
 - **The Zurich "Multipliers"**: Your tax is calculated by taking the base cantonal tax and multiplying it by the municipal factor (e.g., 1.19 in the city).
 
+For a detailed breakdown of tax rates across all cantons, including deductions most expats miss, see our [Swiss Tax Guide for Expats](/blog/swiss-tax-guide-expats-canton-comparison-2026).
+
 *Note: For an exact calculation based on your family status, use the ReloFinder assessment tool.*
 
 ---
@@ -86,7 +88,7 @@ Zurich is a hub for global education, but secondary school spots (High School) a
 2. **Inter-Community School (ICS)**: Strong primary focus and community feel.
 3. **ISZN**: Excellent for those living in the Northern districts (Oerlikon/Wallisellen).
 
-**Childcare (Kita)**: Expect to pay **CHF 120 - 180 per day** for private daycare. Many companies offer subsidies, so ensure this is part of your contract negotiation.
+**Childcare (Kita)**: Expect to pay **CHF 120 - 180 per day** for private daycare. Many companies offer subsidies, so ensure this is part of your contract negotiation. For a comprehensive overview of curricula, fees, and application timelines across all Swiss regions, see our [International Schools in Switzerland guide](/blog/international-schools-switzerland-guide-2026).
 
 ---
 

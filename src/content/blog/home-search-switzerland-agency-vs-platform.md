@@ -25,7 +25,7 @@ faqs:
 
 # Off-Market Home Hunting: Winning the Swiss Rental Race
 
-In the 2026 Swiss rental market, finding a home is no longer about scrolling; it’s about networking. With vacancy rates in Zurich and Zug lingering at historic lows (**0.1% to 0.4%**), the traditional method of applying to online listings is increasingly a losing game.
+In the 2026 Swiss rental market, finding a home is no longer about scrolling; it’s about networking. With vacancy rates in Zurich and Zug lingering at historic lows (**0.1% to 0.4%**), the traditional method of applying to online listings is increasingly a losing game. The situation is equally challenging in French-speaking Switzerland — see our [Finding Housing in Geneva & Lausanne guide](/blog/finding-housing-geneva-lausanne-romandie-2026) for Romandie-specific strategies.
 
 To succeed, you need to understand the **Off-Market Advantage**.
 

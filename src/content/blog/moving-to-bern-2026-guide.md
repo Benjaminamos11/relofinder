@@ -68,7 +68,7 @@ Bern is the most financially accessible of Switzerland's four major cities (Zuri
 | **Monthly transport** | CHF 86 | CHF 89 | CHF 70 | CHF 88 |
 | **Meal out (mid-range)** | CHF 28 | CHF 35 | CHF 38 | CHF 30 |
 
-The difference is most pronounced in housing: a family that would pay CHF 4,500 for a 3-bedroom in Zurich can find equivalent quality in Bern for **CHF 2,800 - 3,200**.
+The difference is most pronounced in housing: a family that would pay CHF 4,500 for a 3-bedroom in Zurich can find equivalent quality in Bern for **CHF 2,800 - 3,200**. For a full breakdown across all major cities, see our [Cost of Living in Switzerland guide](/blog/cost-of-living-switzerland-breakdown-2026).
 
 ---
 
@@ -106,7 +106,7 @@ Bern sits near the **Rostigraben** -- the informal cultural and linguistic borde
 
 This positioning offers practical advantages:
 
-- **Career flexibility**: Professionals who develop both German and French skills have access to job markets on both sides of the language divide
+- **Career flexibility**: Professionals who develop both German and French skills have access to job markets on both sides of the language divide, including opportunities in [Geneva](/blog/moving-to-geneva-2026-guide) and [Basel](/blog/moving-to-basel-2026-guide)
 - **Cultural exposure**: Weekend trips to Fribourg, Neuchatel, or the Jura region offer a French-speaking experience without leaving the country
 - **Education options**: Bilingual schooling programs are available in the wider region
 
@@ -133,7 +133,7 @@ Bern's international school landscape is smaller than Zurich's or Geneva's but a
 - **Feusi Education Centre**: Offers bilingual programs and a range of Swiss and international qualifications. More flexible entry points throughout the year
 - **Public school integration**: Bern's public schools are excellent, and the canton offers dedicated **German as a Second Language (DaZ)** programs for expat children. Many families, especially those planning long-term stays, choose the public system for its quality and social integration benefits
 
-**Advantage of smaller scale**: Unlike Zurich or Geneva, where international school waitlists can stretch 6-12 months, ISBerne typically has availability for mid-year entries, making Bern more flexible for families with non-standard relocation timelines.
+**Advantage of smaller scale**: Unlike Zurich or Geneva, where international school waitlists can stretch 6-12 months, ISBerne typically has availability for mid-year entries, making Bern more flexible for families with non-standard relocation timelines. For a complete comparison of international schools across all Swiss regions, see our [International Schools in Switzerland guide](/blog/international-schools-switzerland-guide-2026).
 
 ---
 
@@ -187,7 +187,7 @@ Bern is the ideal Swiss relocation destination if you value:
 - Access to the **Alps** within an hour
 - A **relaxed, community-oriented** lifestyle
 
-It may not be the right fit if you need a large international school ecosystem, a high-frequency nightlife scene, or a job market focused on finance or pharma. For those sectors, Zurich, Geneva, or Basel are better suited.
+It may not be the right fit if you need a large international school ecosystem, a high-frequency nightlife scene, or a job market focused on finance or pharma. For those sectors, [Zurich](/blog/moving-to-zurich-2026-guide), [Geneva](/blog/moving-to-geneva-2026-guide), or [Basel](/blog/moving-to-basel-2026-guide) are better suited. To understand how Bern's tax rates compare to other cantons, see our [Swiss Tax Guide for Expats](/blog/swiss-tax-guide-expats-canton-comparison-2026).
 
 [Start Your Bern Relocation →](/companies)
 

@@ -49,7 +49,7 @@ For expats in pharma, the density of employers means that **career mobility with
 
 ## Cost of Living: Basel vs. Zurich and Geneva
 
-Basel offers a noticeably lower cost of living than Switzerland's two most expensive cities, with one significant additional advantage: **cross-border shopping**. The German and French borders are within city limits, and residents routinely cross to buy groceries, fuel, and household goods at substantial savings.
+Basel offers a noticeably lower cost of living than Switzerland's two most expensive cities, with one significant additional advantage: **cross-border shopping**. For a detailed comparison across all major Swiss cities, see our [Cost of Living in Switzerland breakdown](/blog/cost-of-living-switzerland-breakdown-2026). The German and French borders are within city limits, and residents routinely cross to buy groceries, fuel, and household goods at substantial savings.
 
 ### Monthly Budget Estimate (Single Professional)
 
@@ -103,7 +103,7 @@ Basel-Stadt offers **moderate tax rates** by Swiss standards -- lower than Zuric
 - **Cross-border commuter taxation**: German residents working in Basel are taxed in Germany (with a Swiss withholding of 4.5%). French residents are taxed at source in Switzerland
 - **Individual taxation reform**: The March 2026 vote on individual taxation will affect dual-income couples over the coming years
 
-**Net advantage**: When combining housing savings of CHF 500-1,000/month over Zurich with cross-border shopping savings, many Basel expats find their effective purchasing power **matches or exceeds** that of higher-salary positions in Zurich.
+**Net advantage**: When combining housing savings of CHF 500-1,000/month over Zurich with cross-border shopping savings, many Basel expats find their effective purchasing power **matches or exceeds** that of higher-salary positions in Zurich. For a full canton-by-canton tax comparison, see our [Swiss Tax Guide for Expats](/blog/swiss-tax-guide-expats-canton-comparison-2026).
 
 ---
 
@@ -122,7 +122,7 @@ Basel punches well above its weight culturally. For a city of 180,000, the conce
 
 ## Healthcare and Insurance in Basel-Stadt
 
-Health insurance is mandatory, and Basel-Stadt premiums fall in the **moderate range** for Switzerland.
+Health insurance is mandatory, and Basel-Stadt premiums fall in the **moderate range** for Switzerland. For a full overview of Swiss health insurance requirements, see our [Mandatory Insurance Guide](/blog/mandatory-insurance-guide-switzerland).
 
 ### 2026 Premium Estimates (Adult, CHF 2,500 Franchise)
 
@@ -141,7 +141,7 @@ Basel's international school options reflect the city's pharma-driven expat comm
 - **Academia International School**: Bilingual programs, smaller class sizes, centrally located
 - **Swiss public schools**: Basel's public system is well-regarded, and many expat children integrate successfully, particularly at younger ages. German-language integration classes are available
 
-**Capacity note**: ISB is the default for most corporate relocation packages. Apply early -- Roche and Novartis relocation waves in August/September create seasonal demand spikes.
+**Capacity note**: ISB is the default for most corporate relocation packages. Apply early -- Roche and Novartis relocation waves in August/September create seasonal demand spikes. For a comprehensive overview of schools across all Swiss regions including curricula and fees, see our [International Schools in Switzerland guide](/blog/international-schools-switzerland-guide-2026).
 
 ---
 
@@ -159,7 +159,7 @@ Basel's transport connections are exceptional for a city of its size:
 
 ## Making Your Move: Practical Next Steps
 
-Basel's combination of a strong job market, accessible housing, cultural depth, and cross-border advantages makes it one of the most practical relocation destinations in Switzerland. If you are arriving for a pharma or life sciences role, much of the infrastructure -- from international schools to corporate relocation support -- is already tailored to your needs.
+Basel's combination of a strong job market, accessible housing, cultural depth, and cross-border advantages makes it one of the most practical relocation destinations in Switzerland. If you are arriving for a pharma or life sciences role, much of the infrastructure -- from international schools to corporate relocation support -- is already tailored to your needs. For details on what a corporate package typically includes, see our [Corporate Relocation to Switzerland guide](/blog/corporate-relocation-switzerland-guide-2026).
 
 ### Recommended Timeline
 

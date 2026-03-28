@@ -77,10 +77,32 @@ const description = "Find and compare verified Swiss relocation agencies. Get fr
 
 const homeSchema = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "ReloFinder",
-  "url": "https://relofinder.ch/",
-  "description": description
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "ReloFinder",
+      "url": "https://relofinder.ch",
+      "description": "Compare Swiss relocation agencies, read verified reviews, and get free quotes.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://relofinder.ch/companies?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Organization",
+      "name": "ReloFinder",
+      "url": "https://relofinder.ch",
+      "logo": "https://relofinder.ch/favicon.svg",
+      "description": "Switzerland's independent relocation agency comparison platform for expats.",
+      "sameAs": [],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "url": "https://relofinder.ch/contact"
+      }
+    }
+  ]
 };
 ---
 

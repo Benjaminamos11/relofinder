@@ -42,7 +42,7 @@ If you are an HR director handling executive transfers, or an expat parent plann
 
 Switzerland is home to some of the finest international schools in Europe, offering globally recognized IB programs, AP tracks, and bilingual curricula. Schools like the International School of Zug and Luzern (ISZL) and the Zurich International School (ZIS) are highly coveted. 
 
-What many arriving expats do not realize is that these schools are operating at full capacity. Simply submitting an application form and paying the registration fee does not guarantee a spot. A standard waitlist at a tier-one international school can easily span 12 to 18 months, leaving arriving families in a panic. 
+What many arriving expats do not realize is that these schools are operating at full capacity. Simply submitting an application form and paying the registration fee does not guarantee a spot. For a full comparison of top schools by region, curricula, fees, and application timelines, see our [International Schools in Switzerland guide](/blog/international-schools-switzerland-guide-2026). A standard waitlist at a tier-one international school can easily span 12 to 18 months, leaving arriving families in a panic. 
 
 Dedicated education consultants provide an indispensable advantage. They hold established relationships with admissions directors, understand the nuanced profiling these schools seek, and know how to proactively position a family to jump ahead in the queue. They manage every detail: arranging targeted campus tours, preparing children for assessment interviews, and navigating the intricate Swiss school calendar.
 

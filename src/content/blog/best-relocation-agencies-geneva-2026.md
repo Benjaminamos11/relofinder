@@ -29,7 +29,7 @@ seo:
 
 Geneva is not Zurich. That distinction matters enormously when choosing a relocation agency. As Switzerland's most international city -- home to the United Nations, the World Health Organization, the Red Cross, and over 200 multinational organizations -- Geneva operates under a unique set of rules. The housing market is among the tightest in Europe, the administrative language is French, and cross-border dynamics with neighboring France add a layer of complexity that agencies without deep Romandie expertise simply cannot handle.
 
-If you are relocating to Geneva in 2026, selecting the right agency is not a luxury. It is a strategic necessity that will directly impact your housing outcome, permit timeline, and overall integration experience.
+If you are relocating to Geneva in 2026, selecting the right agency is not a luxury. It is a strategic necessity that will directly impact your housing outcome, permit timeline, and overall integration experience. For a complete overview of what your move will involve, see our [Moving to Geneva guide](/blog/moving-to-geneva-2026-guide).
 
 ---
 
@@ -161,7 +161,7 @@ Geneva régies demand exceptionally thorough **dossiers de candidature**. A comp
 - **Valid identification** and permit documentation
 - A **cover letter** explaining your situation (a personal touch that many agencies overlook)
 
-A skilled relocation agent will prepare your dossier to Swiss standards, ensuring it stands out among the 20+ competing applications that each desirable apartment attracts.
+A skilled relocation agent will prepare your dossier to Swiss standards, ensuring it stands out among the 20+ competing applications that each desirable apartment attracts. For detailed dossier tips and neighborhood comparisons, see our [Finding Housing in Geneva & Lausanne guide](/blog/finding-housing-geneva-lausanne-romandie-2026).
 
 ---
 
@@ -183,6 +183,6 @@ Follow this structured approach to find the right Geneva agency:
 
 The right Geneva relocation agency will combine deep Romandie market knowledge with proven régie relationships, fluent French communication, and transparent pricing. In a market as competitive as Geneva's, the difference between a well-connected local expert and a generalist provider can mean the difference between securing a quality apartment in Champel and settling for whatever is left.
 
-Take the time to compare properly. Your Geneva relocation is too important -- and too expensive -- to leave to chance.
+Take the time to compare properly. Your Geneva relocation is too important -- and too expensive -- to leave to chance. For a broader comparison of agencies across all of Switzerland, see our [Best Relocation Agencies in Switzerland guide](/blog/best-relocation-agencies-switzerland-comparison). For a breakdown of what to expect in terms of fees, see our [Relocation Agency Costs guide](/blog/relocation-agency-costs-switzerland-2026).
 
 [Compare Geneva Agencies on ReloFinder →](/companies)

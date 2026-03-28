@@ -130,7 +130,7 @@ Don't guess on insurance. Consult **[Expat-Savvy.ch](https://expat-savvy.ch)** t
 
 ## 3. Taxes (The Silver Lining)
 
-This is where Switzerland wins — and where the "high cost of living" narrative breaks down.
+This is where Switzerland wins — and where the "high cost of living" narrative breaks down. For a detailed canton-by-canton comparison of tax rates, deductions, and Quellensteuer tips, see our [Swiss Tax Guide for Expats](/blog/swiss-tax-guide-expats-canton-comparison-2026).
 
 ### Income Tax Comparison
 
