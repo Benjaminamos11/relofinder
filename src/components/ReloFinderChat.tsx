@@ -255,6 +255,9 @@ export default function ReloFinderChat() {
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const inactivityTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const summarySentRef = useRef(false);
+  const allToolsUsedRef = useRef<string[]>([]);
 
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -267,6 +270,31 @@ export default function ReloFinderChat() {
     window.addEventListener('relofinder:open-chat', handler);
     return () => window.removeEventListener('relofinder:open-chat', handler);
   }, []);
+
+  // Inactivity timer — send transcript email after 3 min of no new messages
+  const resetInactivityTimer = useCallback(() => {
+    if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
+    inactivityTimer.current = setTimeout(() => {
+      if (summarySentRef.current) return;
+      // Need at least 2 messages (1 user + 1 assistant) to be worth sending
+      const currentMessages = messagesRef.current;
+      if (currentMessages.length < 2) return;
+      summarySentRef.current = true;
+      fetch('/api/chat-summary', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: currentMessages.map(m => ({ role: m.role, content: m.content })),
+          toolsUsed: allToolsUsedRef.current,
+          pageUrl: window.location.href,
+        }),
+      }).catch(() => {}); // fire-and-forget
+    }, 3 * 60 * 1000); // 3 minutes
+  }, []);
+
+  // Keep a ref to messages so the timer callback sees the latest
+  const messagesRef = useRef<Message[]>([]);
+  useEffect(() => { messagesRef.current = messages; }, [messages]);
 
   const sendMessage = async (text?: string) => {
     const msg = (text || input).trim();
@@ -288,11 +316,17 @@ export default function ReloFinderChat() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed');
 
+      // Track tools used for summary email
+      if (data.toolsUsed?.length) {
+        allToolsUsedRef.current = [...new Set([...allToolsUsedRef.current, ...data.toolsUsed])];
+      }
+
       setMessages(prev => [...prev, {
         role: 'assistant',
         content: data.response,
         toolData: data.toolData,
       }]);
+      resetInactivityTimer();
     } catch (err) {
       setMessages(prev => [...prev, {
         role: 'assistant',
