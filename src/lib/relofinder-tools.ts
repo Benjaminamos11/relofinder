@@ -133,6 +133,26 @@ export const TOOL_DEFINITIONS = [
   },
 ];
 
+// ─── Helpers ───
+
+/** Extract a clean short tagline from available agency text fields */
+function getTagline(agency: { meta_description?: string; seo_summary?: string; bio?: string }): string {
+  // Prefer meta_description (already short and clean)
+  if (agency.meta_description) return agency.meta_description.slice(0, 120);
+  // Fallback: first sentence of seo_summary
+  if (agency.seo_summary) {
+    const first = agency.seo_summary.split(/\.\s/)[0];
+    return first.length > 120 ? first.slice(0, 117) + '...' : first + '.';
+  }
+  // Last resort: strip markdown from bio, take first sentence
+  if (agency.bio) {
+    const clean = agency.bio.replace(/[#*\[\]()]/g, '').replace(/https?:\/\/\S+/g, '').trim();
+    const first = clean.split(/\.\s/)[0];
+    return first.length > 120 ? first.slice(0, 117) + '...' : first + '.';
+  }
+  return '';
+}
+
 // ─── Tool Handlers ───
 
 export async function handleRecommendAgencies(input: {
@@ -145,7 +165,7 @@ export async function handleRecommendAgencies(input: {
 
   let query = supabaseAdmin
     .from('relocators')
-    .select('id, slug, name, bio, logo, tier, languages, regions_served, services, rating_breakdown, is_verified, website, meeting_url, google_rating, reviews')
+    .select('id, slug, name, bio, meta_description, seo_summary, logo, tier, languages, regions_served, services, rating_breakdown, is_verified, website, meeting_url, google_rating, reviews')
     .eq('accepting_new_customers', true)
     .limit(maxResults * 2); // fetch extra to filter
 
@@ -207,7 +227,7 @@ export async function handleRecommendAgencies(input: {
     id: a.id,
     slug: a.slug,
     name: a.name,
-    tagline: a.bio,
+    tagline: getTagline(a),
     logo: a.logo,
     tier: a.tier,
     is_verified: a.is_verified,
@@ -234,7 +254,7 @@ export async function handleGetAgencyReviews(input: {
   if (!agencyId && input.agency_name) {
     const { data } = await supabaseAdmin
       .from('relocators')
-      .select('id, slug, name, bio, logo, tier')
+      .select('id, slug, name, bio, meta_description, seo_summary, logo, tier')
       .ilike('name', `%${input.agency_name}%`)
       .limit(1)
       .maybeSingle();
@@ -245,7 +265,7 @@ export async function handleGetAgencyReviews(input: {
   if (!agencyId) return { agency: null, reviews: [], summary: null, message: 'Please provide an agency name.' };
 
   const [agencyRes, reviewsRes] = await Promise.all([
-    supabaseAdmin.from('relocators').select('id, slug, name, bio, logo, tier, services, regions_served, languages, google_rating, seo_summary').eq('id', agencyId).single(),
+    supabaseAdmin.from('relocators').select('id, slug, name, bio, meta_description, seo_summary, logo, tier, services, regions_served, languages, google_rating').eq('id', agencyId).single(),
     supabaseAdmin.from('google_reviews').select('rating, review_text, author_name, review_date').eq('relocator_id', agencyId).order('review_date', { ascending: false }).limit(5),
   ]);
 
@@ -257,7 +277,7 @@ export async function handleGetAgencyReviews(input: {
     : agency?.google_rating || null;
 
   return {
-    agency: agency ? { ...agency, tagline: agency.bio, rating: avgRating, review_count: reviews.length, profile_url: `https://relofinder.ch/companies/${agency.slug}` } : null,
+    agency: agency ? { ...agency, tagline: getTagline(agency), rating: avgRating, review_count: reviews.length, profile_url: `https://relofinder.ch/companies/${agency.slug}` } : null,
     reviews: reviews.map(r => ({ rating: r.rating, title: null, excerpt: r.review_text?.slice(0, 200), author: r.author_name, date: r.review_date })),
     summary: agency?.seo_summary ? { summary: agency.seo_summary, positives: [], negatives: [] } : null,
     message: `Found ${reviews.length} reviews for ${agency?.name || 'agency'}.`,
@@ -272,7 +292,7 @@ export async function handleCompareAgencies(input: {
   for (const name of input.agency_names.slice(0, 3)) {
     const { data: agency } = await supabaseAdmin
       .from('relocators')
-      .select('id, slug, name, bio, logo, tier, services, regions_served, languages, is_verified, google_rating, reviews, seo_summary')
+      .select('id, slug, name, bio, meta_description, seo_summary, logo, tier, services, regions_served, languages, is_verified, google_rating, reviews')
       .ilike('name', `%${name}%`)
       .limit(1)
       .maybeSingle();
