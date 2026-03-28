@@ -274,6 +274,7 @@ export default function ReloFinderChat() {
   // Inactivity timer — send transcript email after 3 min of no new messages
   const resetInactivityTimer = useCallback(() => {
     if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
+    summarySentRef.current = false; // allow re-send if user continues chatting
     inactivityTimer.current = setTimeout(() => {
       if (summarySentRef.current) return;
       // Need at least 2 messages (1 user + 1 assistant) to be worth sending
