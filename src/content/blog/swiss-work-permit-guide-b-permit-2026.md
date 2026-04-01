@@ -4,7 +4,7 @@ description: "Complete guide to Swiss work permits in 2026. Covers B-permits, L-
 publishDate: 2026-03-28
 readingTime: 10
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/placeholder-city.webp"
+heroImage: "/images/blog/b_permit_hero.webp"
 category: "Guides"
 tags: ["work permit", "b-permit", "immigration", "switzerland", "2026", "visa"]
 featured: false

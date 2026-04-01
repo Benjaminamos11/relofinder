@@ -4,7 +4,7 @@ description: "Compare the best relocation agencies in Geneva for 2026. Expert an
 publishDate: 2026-03-28
 readingTime: 8
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/placeholder-city.webp"
+heroImage: "/images/blog/boutique_comparison_branded.webp"
 category: "Comparisons"
 tags: ["geneva", "relocation agencies", "comparison", "2026"]
 featured: false

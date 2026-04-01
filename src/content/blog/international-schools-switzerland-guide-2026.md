@@ -4,7 +4,7 @@ description: "Everything expat families need to know about international schools
 publishDate: 2026-03-28
 readingTime: 10
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/placeholder-city.webp"
+heroImage: "/images/blog/school_search_hero.webp"
 category: "Guides"
 tags: ["international schools", "education", "expat families", "switzerland", "2026"]
 featured: false

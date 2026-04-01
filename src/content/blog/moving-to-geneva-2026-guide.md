@@ -4,7 +4,7 @@ description: "Everything you need to relocate to Geneva in 2026. Covers housing 
 publishDate: 2026-03-28
 readingTime: 11
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/placeholder-city.webp"
+heroImage: "/images/blog/swiss_relocation_2026_branded.webp"
 category: "City Guides"
 tags: ["geneva", "relocation", "expat guide", "switzerland", "city guide", "2026"]
 featured: false

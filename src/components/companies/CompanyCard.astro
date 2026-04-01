@@ -59,10 +59,11 @@ const formattedRegions = Array.isArray(companyData.regions)
   <div class="p-6">
     <div class="mb-4 flex justify-between items-start">
       <div class="w-16 h-16 rounded-lg bg-accent-100 p-4 flex items-center justify-center overflow-hidden">
-        <img 
-          src={companyLogo} 
-          alt={companyName + " logo"} 
+        <img
+          src={companyLogo}
+          alt={companyName + " logo"}
           class="w-full h-full object-contain rounded"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-xs font-bold text-slate-400\'>LOGO</span>'"
         />
       </div>
       <div class="flex items-center">

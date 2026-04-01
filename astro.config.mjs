@@ -45,11 +45,11 @@ export default defineConfig({
       serialize(item) {
         // Boost priority for key pages
         if (item.url === 'https://relofinder.ch/') { item.priority = 1.0; item.changefreq = 'daily'; }
-        else if (item.url.includes('/companies/') && !item.url.endsWith('/companies')) { item.priority = 0.8; }
+        else if (item.url.includes('/companies/') && !item.url.endsWith('/companies/')) { item.priority = 0.8; }
         else if (item.url.includes('/blog/')) { item.priority = 0.8; }
         else if (item.url.includes('/services/')) { item.priority = 0.8; }
         else if (item.url.includes('/regions/')) { item.priority = 0.7; }
-        else if (item.url.endsWith('/companies') || item.url.endsWith('/blog') || item.url.endsWith('/services')) { item.priority = 0.9; }
+        else if (item.url.endsWith('/companies/') || item.url.endsWith('/blog/') || item.url.endsWith('/services/')) { item.priority = 0.9; }
         return item;
       }
     })
@@ -57,7 +57,7 @@ export default defineConfig({
   output: 'static',
   adapter: netlify(),
   site: 'https://relofinder.ch',
-  trailingSlash: 'never',
+  trailingSlash: 'always',
   build: {
     inlineStylesheets: 'always', // Inline critical CSS for faster FCP
     assets: 'assets'

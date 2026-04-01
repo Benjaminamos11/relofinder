@@ -58,56 +58,275 @@
 # Normalize legacy service URLs to canonical pages
 [[redirects]]
   from = "/services/visa-immigration"
-  to = "/services/immigration"
+  to = "/services/immigration/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/services/banking"
-  to = "/services/finance"
+  to = "/services/finance/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/services/immigration-services"
-  to = "/services/immigration"
+  to = "/services/immigration/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/services/housing_old"
-  to = "/services/housing"
+  to = "/services/housing/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/services/insurance-services"
-  to = "/services/insurance"
+  to = "/services/insurance/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/services/departure-repatriation"
-  to = "/services"
+  to = "/services/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/services/legal-services"
-  to = "/services"
+  to = "/services/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/services/cross-cultural"
-  to = "/services"
+  to = "/services/"
   status = 301
   force = true
 
 # Old region page
 [[redirects]]
   from = "/regions/bern"
-  to = "/regions"
+  to = "/regions/"
+  status = 301
+  force = true
+
+# ============================================
+# OLD SITE REDIRECTS (dead URLs from previous version)
+# ============================================
+
+# Old service pages → closest new service page
+[[redirects]]
+  from = "/services/schooling"
+  to = "/services/education/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/pet-relocation"
+  to = "/services/settling-in/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/tax-and-legal"
+  to = "/services/finance/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/sustainable-relocation"
+  to = "/services/settling-in/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/relocation-coaching"
+  to = "/services/settling-in/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/insurance-guidance"
+  to = "/services/insurance/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/apartment-search"
+  to = "/services/housing/"
+  status = 301
+  force = true
+
+# Old region pages → regions index
+[[redirects]]
+  from = "/regions/all-switzerland"
+  to = "/regions/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/regions/switzerland"
+  to = "/regions/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/regions/lugano"
+  to = "/regions/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/regions/international"
+  to = "/regions/"
+  status = 301
+  force = true
+
+# Old company pages → companies index
+[[redirects]]
+  from = "/companies/connective-relocation"
+  to = "/companies/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/companies/peryer-relocation"
+  to = "/companies/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/companies/settle-in-relocation"
+  to = "/companies/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/companies/lifestyle-manager"
+  to = "/companies/"
+  status = 301
+  force = true
+
+# Old blog posts → closest matching new post or /blog/
+[[redirects]]
+  from = "/blog/swiss-tax-guide-expats"
+  to = "/blog/swiss-tax-guide-expats-canton-comparison-2026/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/opening-swiss-bank-account-guide"
+  to = "/blog/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/end-tenancy-handover-switzerland"
+  to = "/blog/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/swiss-visa-guide"
+  to = "/blog/swiss-work-permit-guide-b-permit-2026/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/employee-relocation-packages-switzerland"
+  to = "/blog/corporate-relocation-switzerland-guide-2026/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/deregistration-switzerland"
+  to = "/blog/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/swiss-lease-termination"
+  to = "/blog/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/trasferirsi-svizzera-dogana-auto-guida"
+  to = "/blog/moving-to-switzerland-2026-guide/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/best-relocation-companies-switzerland-2026"
+  to = "/blog/best-relocation-agencies-switzerland-comparison/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/corporate-relocation-best-practices"
+  to = "/blog/corporate-relocation-switzerland-guide-2026/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/swiss-work-permits-corporate"
+  to = "/blog/swiss-work-permit-guide-b-permit-2026/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/swiss-banking-fees"
+  to = "/blog/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/swiss-health-insurance-mandatory-coverage-expats"
+  to = "/blog/mandatory-insurance-guide-switzerland/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/wealth-management-switzerland"
+  to = "/blog/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/rental-deposit-recovery-switzerland"
+  to = "/blog/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/swiss-rental-application-document-checklist"
+  to = "/blog/reverse-application-strategy-finding-housing-switzerland-2026/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/find-apartment-switzerland-renters-guide"
+  to = "/blog/reverse-application-strategy-finding-housing-switzerland-2026/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/swiss-bank-account-expat-guide"
+  to = "/blog/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/managing-multi-vendor-relocation"
+  to = "/blog/corporate-relocation-switzerland-guide-2026/"
+  status = 301
+  force = true
+
+# Malformed URL fix
+[[redirects]]
+  from = "/companies/crane-relocation-gmbh/www.crane-relocation.ch"
+  to = "/companies/crane-relocation-gmbh/"
   status = 301
   force = true
 

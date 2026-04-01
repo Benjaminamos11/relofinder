@@ -4,7 +4,7 @@ description: "The definitive HR guide to corporate relocation in Switzerland for
 publishDate: 2026-03-28
 readingTime: 10
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/placeholder-city.webp"
+heroImage: "/images/blog/global_vs_boutique_hero.webp"
 category: "Guides"
 tags: ["corporate relocation", "HR", "employee mobility", "switzerland", "2026"]
 featured: false

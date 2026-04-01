@@ -4,7 +4,7 @@ description: "Understand Swiss taxes as an expat in 2026: federal, cantonal, and
 publishDate: 2026-03-28
 readingTime: 11
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/placeholder-city.webp"
+heroImage: "/images/blog/broker_comparison_hero.webp"
 category: "Guides"
 tags: ["taxes", "quellensteuer", "canton comparison", "expat finance", "switzerland", "2026"]
 featured: false

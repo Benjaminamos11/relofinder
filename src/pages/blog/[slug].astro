@@ -37,7 +37,7 @@ function formatDate(date: Date) {
 // SEO & Schema
 const title = post.data.seo?.title || post.data.title;
 const description = post.data.seo?.description || post.data.description;
-const canonical = `https://relofinder.ch/blog/${post.slug}`;
+const canonical = `https://relofinder.ch/blog/${post.slug}/`;
 const shareImage = post.data.heroImage;
 
 // Author Data (Mock or from Collection if extended)

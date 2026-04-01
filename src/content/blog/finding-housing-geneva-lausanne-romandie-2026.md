@@ -4,7 +4,7 @@ description: "Navigate the ultra-competitive Romandie rental market with this da
 publishDate: 2026-03-28
 readingTime: 9
 author: "ReloFinder Editorial Team"
-heroImage: "/images/blog/placeholder-city.webp"
+heroImage: "/images/blog/home_search_blueprint_branded.webp"
 category: "Guides"
 tags: ["housing", "geneva", "lausanne", "romandie", "rental", "2026"]
 featured: false

@@ -214,7 +214,7 @@ Offlist.ch works best as part of a multi-channel strategy:
 3. **Monitor public listings** on traditional portals (but expect low success rates)
 4. **Leverage your network** — personal referrals still work
 
-**Related resources**: [Best Relocation Companies in Switzerland](/blog/best-relocation-companies-switzerland-2026) • [Housing Search Services](/services/housing)
+**Related resources**: [Best Relocation Companies in Switzerland](/blog/best-relocation-agencies-switzerland-comparison/) • [Housing Search Services](/services/housing)
 
 ---
 
@@ -339,7 +339,7 @@ Not sure where to start? Work with a verified relocation company who can guide y
 
 ### Option 3: Explore More Resources
 
-- **[Best Relocation Companies in Switzerland (2026)](/blog/best-relocation-companies-switzerland-2026)** — Compare top agencies
+- **[Best Relocation Companies in Switzerland (2026)](/blog/best-relocation-agencies-switzerland-comparison/)** — Compare top agencies
 - **[Housing Search Services](/services/housing)** — Understand your options
 - **[Zurich Relocation Guide](/regions/zurich)** — City-specific insights
 - **[Zug Relocation Guide](/regions/zug)** — Business hub essentials
