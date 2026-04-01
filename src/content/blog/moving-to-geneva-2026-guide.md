@@ -128,6 +128,12 @@ Geneva has a unique relationship with neighboring France. Approximately **100,00
 
 ---
 
+<div class="not-prose my-8 rounded-xl border border-gray-200 bg-gray-50 p-6">
+  <p class="mb-2 text-lg font-semibold text-gray-900">Ready to compare agencies?</p>
+  <p class="mb-4 text-gray-600">Compare verified relocation agencies serving Geneva and the Lake Geneva region.</p>
+  <a href="/companies/?region=geneva/" class="inline-flex items-center rounded-lg bg-[#FF6F61] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#e5574a] transition-colors">Compare Verified Agencies →</a>
+</div>
+
 ## International Schools
 
 Geneva's international school landscape is among the richest in the world, a direct result of the city's diplomatic and organizational presence.
@@ -183,6 +189,12 @@ Here is a recommended timeline for your Geneva relocation:
 | **Airport** | International hub | International hub | EuroAirport (shared) |
 
 ---
+
+<div class="not-prose my-10 rounded-2xl border-2 border-[#FF6F61]/20 bg-gradient-to-r from-[#FF6F61]/5 to-orange-50 p-8 text-center">
+  <p class="mb-2 text-xl font-bold text-gray-900">Find Your Relocation Expert</p>
+  <p class="mx-auto mb-5 max-w-lg text-gray-600">Compare verified Swiss relocation agencies. See real reviews, transparent pricing, and get matched in 24 hours.</p>
+  <a href="/companies/" class="inline-flex items-center rounded-lg bg-[#FF6F61] px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-[#e5574a] hover:shadow-lg transition-all">Browse All Agencies →</a>
+</div>
 
 ## Final Thoughts
 

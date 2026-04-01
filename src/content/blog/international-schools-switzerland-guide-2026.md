@@ -133,6 +133,12 @@ For a family with two children at a mid-range international school, the **total 
 
 ---
 
+<div class="not-prose my-8 rounded-xl border border-gray-200 bg-gray-50 p-6">
+  <p class="mb-2 text-lg font-semibold text-gray-900">Ready to compare agencies?</p>
+  <p class="mb-4 text-gray-600">Need help finding the right school? Compare agencies offering education and school search services.</p>
+  <a href="/companies/?service=education/" class="inline-flex items-center rounded-lg bg-[#FF6F61] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#e5574a] transition-colors">Compare Verified Agencies →</a>
+</div>
+
 ## Application Timeline
 
 International schools in Switzerland operate on a **rolling admissions** basis, but places fill quickly for popular year groups. The following timeline applies to September entry:
@@ -201,5 +207,11 @@ When choosing between schools, consider these factors in order of importance:
 - **Plan for transitions**. If you know you will leave Switzerland in 3-4 years, choose a curriculum that aligns with your likely next destination.
 
 The right school decision gives your children stability, confidence, and opportunity during what can otherwise be a disorienting transition. Take the time to research thoroughly, visit your options, and involve your children in the process.
+
+<div class="not-prose my-10 rounded-2xl border-2 border-[#FF6F61]/20 bg-gradient-to-r from-[#FF6F61]/5 to-orange-50 p-8 text-center">
+  <p class="mb-2 text-xl font-bold text-gray-900">Find Your Relocation Expert</p>
+  <p class="mx-auto mb-5 max-w-lg text-gray-600">Compare verified Swiss relocation agencies. See real reviews, transparent pricing, and get matched in 24 hours.</p>
+  <a href="/companies/" class="inline-flex items-center rounded-lg bg-[#FF6F61] px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-[#e5574a] hover:shadow-lg transition-all">Browse All Agencies →</a>
+</div>
 
 [Find School Search Specialists →](/companies)

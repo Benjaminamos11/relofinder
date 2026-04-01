@@ -160,6 +160,12 @@ If you choose this route, we recommend **[Expat-Services.ch](https://expat-servi
 
 ---
 
+<div class="not-prose my-8 rounded-xl border border-gray-200 bg-gray-50 p-6">
+  <p class="mb-2 text-lg font-semibold text-gray-900">Ready to compare agencies?</p>
+  <p class="mb-4 text-gray-600">Want to see the full directory? Compare 500+ verified agencies with ratings, reviews, and pricing on ReloFinder.</p>
+  <a href="/companies/" class="inline-flex items-center rounded-lg bg-[#FF6F61] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#e5574a] transition-colors">Compare Verified Agencies →</a>
+</div>
+
 ## How to Compare Quotes
 
 When you receive a quote via ReloFinder, look for these three hidden costs:
@@ -288,6 +294,12 @@ This hybrid approach works especially well for professionals who:
 [Basel Guide →](/regions/basel)
 
 ---
+
+<div class="not-prose my-10 rounded-2xl border-2 border-[#FF6F61]/20 bg-gradient-to-r from-[#FF6F61]/5 to-orange-50 p-8 text-center">
+  <p class="mb-2 text-xl font-bold text-gray-900">Find Your Relocation Expert</p>
+  <p class="mx-auto mb-5 max-w-lg text-gray-600">Compare verified Swiss relocation agencies. See real reviews, transparent pricing, and get matched in 24 hours.</p>
+  <a href="/companies/" class="inline-flex items-center rounded-lg bg-[#FF6F61] px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-[#e5574a] hover:shadow-lg transition-all">Browse All Agencies →</a>
+</div>
 
 ## Frequently Asked Questions
 

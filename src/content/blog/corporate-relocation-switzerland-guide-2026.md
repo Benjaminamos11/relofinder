@@ -153,6 +153,12 @@ Every person residing in Switzerland must have **mandatory basic health insuranc
 
 ---
 
+<div class="not-prose my-8 rounded-xl border border-gray-200 bg-gray-50 p-6">
+  <p class="mb-2 text-lg font-semibold text-gray-900">Ready to compare agencies?</p>
+  <p class="mb-4 text-gray-600">Need corporate relocation support? Compare agencies that specialize in corporate packages and employee mobility.</p>
+  <a href="/companies/?service=corporate-relocation/" class="inline-flex items-center rounded-lg bg-[#FF6F61] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#e5574a] transition-colors">Compare Verified Agencies →</a>
+</div>
+
 ## Duty of Care Obligations
 
 Beyond legal compliance, Swiss courts and international mobility standards increasingly hold employers to a **duty of care** standard during relocations. This includes:
@@ -251,5 +257,11 @@ Track these metrics quarterly and benchmark against industry averages. The **Wor
 Whether you are managing your first employee transfer to Switzerland or optimizing an existing program, the fundamentals remain the same: plan early, budget realistically, ensure compliance, and invest in quality service delivery. For a breakdown of typical agency fees, see our [Relocation Agency Costs guide](/blog/relocation-agency-costs-switzerland-2026). The cost of getting it wrong -- measured in failed assignments, legal exposure, and lost talent -- far exceeds the cost of doing it right.
 
 Start by understanding your specific needs, then compare providers who can deliver against them.
+
+<div class="not-prose my-10 rounded-2xl border-2 border-[#FF6F61]/20 bg-gradient-to-r from-[#FF6F61]/5 to-orange-50 p-8 text-center">
+  <p class="mb-2 text-xl font-bold text-gray-900">Find Your Relocation Expert</p>
+  <p class="mx-auto mb-5 max-w-lg text-gray-600">Compare verified Swiss relocation agencies. See real reviews, transparent pricing, and get matched in 24 hours.</p>
+  <a href="/companies/" class="inline-flex items-center rounded-lg bg-[#FF6F61] px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-[#e5574a] hover:shadow-lg transition-all">Browse All Agencies →</a>
+</div>
 
 [Get Corporate Relocation Quotes →](/companies)

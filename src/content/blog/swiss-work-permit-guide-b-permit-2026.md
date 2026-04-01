@@ -159,6 +159,12 @@ B-permit holders can bring their **spouse** (or registered partner) and **childr
 
 ---
 
+<div class="not-prose my-8 rounded-xl border border-gray-200 bg-gray-50 p-6">
+  <p class="mb-2 text-lg font-semibold text-gray-900">Ready to compare agencies?</p>
+  <p class="mb-4 text-gray-600">Need help with your Swiss work permit? Compare agencies offering immigration and visa support.</p>
+  <a href="/companies/?service=immigration/" class="inline-flex items-center rounded-lg bg-[#FF6F61] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#e5574a] transition-colors">Compare Verified Agencies →</a>
+</div>
+
 ## Digital Immigration: ePermit System Updates in 2026
 
 Switzerland has been progressively digitizing its immigration processes. Key developments in 2026:
@@ -243,5 +249,11 @@ While straightforward EU/EFTA permit applications can often be managed by an exp
 - **Any situation involving previous permit refusals** or immigration history issues
 
 For employers managing multiple transfers, our [Corporate Relocation guide](/blog/corporate-relocation-switzerland-guide-2026) covers the full process from HR's perspective. A qualified Swiss [immigration specialist](/services/immigration-services) can reduce processing times, avoid costly mistakes, and significantly increase approval rates for non-EU applications.
+
+<div class="not-prose my-10 rounded-2xl border-2 border-[#FF6F61]/20 bg-gradient-to-r from-[#FF6F61]/5 to-orange-50 p-8 text-center">
+  <p class="mb-2 text-xl font-bold text-gray-900">Find Your Relocation Expert</p>
+  <p class="mx-auto mb-5 max-w-lg text-gray-600">Compare verified Swiss relocation agencies. See real reviews, transparent pricing, and get matched in 24 hours.</p>
+  <a href="/companies/" class="inline-flex items-center rounded-lg bg-[#FF6F61] px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-[#e5574a] hover:shadow-lg transition-all">Browse All Agencies →</a>
+</div>
 
 [Find Immigration Specialists →](/companies)
