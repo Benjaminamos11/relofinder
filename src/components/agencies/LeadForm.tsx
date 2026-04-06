@@ -56,6 +56,14 @@ export default function LeadForm({
       );
 
       if (response.ok) {
+        // Fire Google Ads conversion event
+        if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'conversion', {
+                'send_to': 'AW-11375797246/AGENCY_LEAD_LABEL',
+                'value': 15.0,
+                'currency': 'CHF'
+            });
+        }
         setSuccess(true);
         setFormData({ name: '', email: '', phone: '', message: '' });
       }

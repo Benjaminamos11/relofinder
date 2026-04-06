@@ -1,14 +1,19 @@
+declare global {
+    interface Window {
+        gtag: (...args: any[]) => void;
+        dataLayer: any[];
+    }
+}
+
 import React, { useEffect } from 'react';
 
 const GoogleTag = () => {
     useEffect(() => {
-        // Define the type for the dataLayer
-        // @ts-ignore
         window.dataLayer = window.dataLayer || [];
         function gtag(...args: any[]) {
-            // @ts-ignore
             window.dataLayer.push(arguments);
         }
+        window.gtag = gtag;
 
         // Default consent to denied
         gtag('consent', 'default', {

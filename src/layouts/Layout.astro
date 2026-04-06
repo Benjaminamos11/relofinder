@@ -5,6 +5,7 @@ import SEOHead from "../components/common/SEOHead.astro";
 import "../styles/global.css";
 import { ViewTransitions } from "astro:transitions";
 import AssessmentModalAlpine from "../components/individual/AssessmentModalAlpine.astro";
+import GoogleTag from "../components/tracking/GoogleTag";
 import CookieBanner from "../components/tracking/CookieBanner";
 import ReloFinderChat from "../components/ReloFinderChat";
 
@@ -142,6 +143,7 @@ const {
 
     <!-- Alpine.js Assessment Modal (replaces React) -->
     <AssessmentModalAlpine />
+    <GoogleTag client:idle />
     <CookieBanner client:idle />
 
     <!-- ReloFinder AI Chat Widget -->

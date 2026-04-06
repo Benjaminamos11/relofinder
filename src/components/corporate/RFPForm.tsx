@@ -133,6 +133,16 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete, lan
             });
             const data = await res.json();
             if (!res.ok) throw new Error(data.error || 'Submission failed');
+
+            // Fire Google Ads conversion event
+            if (typeof window !== 'undefined' && window.gtag) {
+                window.gtag('event', 'conversion', {
+                    'send_to': 'AW-11375797246/CORPORATE_RFP_LABEL',
+                    'value': 50.0,
+                    'currency': 'CHF'
+                });
+            }
+
             setStep(3);
         } catch (err: any) {
             setErrorMsg(err.message || "An error occurred. Please try again.");

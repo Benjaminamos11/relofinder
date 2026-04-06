@@ -38,6 +38,14 @@ export default function ContactPanel({ agency, sourcePage }: ContactPanelProps) 
       });
 
       if (response.ok) {
+        // Fire Google Ads conversion event
+        if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'conversion', {
+                'send_to': 'AW-11375797246/AGENCY_LEAD_LABEL',
+                'value': 15.0,
+                'currency': 'CHF'
+            });
+        }
         setSubmitStatus('success');
         setFormData({ name: '', email: '', phone: '', message: '' });
       } else {
