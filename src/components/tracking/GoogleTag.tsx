@@ -33,6 +33,7 @@ const GoogleTag = () => {
         // Initialize config
         gtag('js', new Date());
         gtag('config', 'AW-11375797246');
+        gtag('config', 'AW-17984489661');
         gtag('config', 'G-8M24FL4XQQ');
 
         return () => {

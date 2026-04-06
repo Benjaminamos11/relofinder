@@ -137,7 +137,7 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete, lan
             // Fire Google Ads conversion event
             if (typeof window !== 'undefined' && window.gtag) {
                 window.gtag('event', 'conversion', {
-                    'send_to': 'AW-11375797246/CORPORATE_RFP_LABEL',
+                    'send_to': 'AW-17984489661/42xCCOeumZccEL2R1v9C',
                     'value': 50.0,
                     'currency': 'CHF'
                 });

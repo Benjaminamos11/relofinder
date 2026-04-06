@@ -41,7 +41,7 @@ export default function ContactPanel({ agency, sourcePage }: ContactPanelProps) 
         // Fire Google Ads conversion event
         if (typeof window !== 'undefined' && window.gtag) {
             window.gtag('event', 'conversion', {
-                'send_to': 'AW-11375797246/AGENCY_LEAD_LABEL',
+                'send_to': 'AW-17984489661/ZKqcCOqumZccEL2R1v9C',
                 'value': 15.0,
                 'currency': 'CHF'
             });
