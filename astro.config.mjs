@@ -57,7 +57,7 @@ export default defineConfig({
   output: 'static',
   adapter: netlify(),
   site: 'https://relofinder.ch',
-  trailingSlash: 'always',
+  trailingSlash: 'never',
   build: {
     inlineStylesheets: 'always', // Inline critical CSS for faster FCP
     assets: 'assets'
