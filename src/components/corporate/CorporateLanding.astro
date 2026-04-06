@@ -31,22 +31,52 @@ const heroDashboard = 'https://res.cloudinary.com/dphbnwjtx/image/upload/f_auto,
 const handshakeImage = 'https://res.cloudinary.com/dphbnwjtx/image/upload/f_auto,q_auto/v1766976875/services/corporate-handshake.jpg';
 
 // Metadata
-const title = lang === 'en' 
-  ? "Corporate Relocation Switzerland | The Operating System for Global Mobility" 
+const title = lang === 'en'
+  ? "Corporate Relocation Switzerland | Compare Providers & Benchmarks | ReloFinder"
   : lang === 'de'
-  ? "Corporate Relocation Schweiz | Das Betriebssystem für Global Mobility"
-  : "Relocation d'Entreprise Suisse | Le système d'exploitation pour la mobilité mondiale";
+  ? "Corporate Relocation Schweiz | Anbieter vergleichen | ReloFinder"
+  : "Relocation d'Entreprise Suisse | Comparer les prestataires | ReloFinder";
 
 const description = lang === 'en'
-  ? "Stop overpaying for static retainer contracts. Benchmark, source, and manage Swiss relocation providers with a transparent procurement platform. Average 25% savings."
+  ? "The procurement platform for corporate relocation in Switzerland. Compare verified providers, benchmark costs, and streamline your global mobility program. Free for HR."
   : lang === 'de'
-  ? "Stoppen Sie statische Mandate. Vergleichen, prüfen und verwalten Sie Relocation-Partner transparent. Senken Sie Kosten durch anonyme Ausschreibungen."
-  : "Fini les contrats statiques. Comparez, auditez et gérez vos partenaires de relocation en toute transparence. Réduisez vos coûts grâce aux appels d'offres anonymes.";
+  ? "Die Beschaffungsplattform für Corporate Relocation in der Schweiz. Anbieter vergleichen, Kosten benchmarken, Global Mobility optimieren. Kostenlos für HR."
+  : "La plateforme d'approvisionnement pour la relocation d'entreprise en Suisse. Comparez, benchmarkez et optimisez votre programme de mobilité. Gratuit pour les RH.";
 
 const canonical = `https://relofinder.ch/${lang === 'en' ? '' : lang + '/'}corporate/`;
+
+const corporateFaqs = lang === 'en' ? [
+  {
+    question: "How does ReloFinder help with corporate relocation?",
+    answer: "ReloFinder is a procurement platform that lets HR teams compare verified relocation providers across Switzerland. Submit one anonymous RFP and receive competitive proposals from multiple agencies — benchmarked for cost, scope, and quality."
+  },
+  {
+    question: "Is ReloFinder free for companies?",
+    answer: "Yes, ReloFinder is completely free for HR teams and corporate buyers. We charge a success fee to the winning relocation provider, so there's no cost to your company for using the platform."
+  },
+  {
+    question: "How many relocation providers does ReloFinder compare?",
+    answer: "ReloFinder's directory includes 500+ verified relocation agencies across Switzerland, covering all major cities including Zurich, Geneva, Basel, Zug, and Lausanne. Agencies are vetted through reviews, audits, and direct partnerships."
+  },
+  {
+    question: "What corporate relocation services can I find on ReloFinder?",
+    answer: "Full-service relocation, housing search, visa and immigration support, school placement, settling-in services, moving logistics, and departure management. Filter providers by service type, region, and company size to find the best fit."
+  }
+] : [];
+
+const corporateFaqSchema = corporateFaqs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: corporateFaqs.map(faq => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer }
+  }))
+} : null;
 ---
 
 <Layout title={title} description={description} canonical={canonical}>
+  {corporateFaqSchema && <script type="application/ld+json" set:html={JSON.stringify(corporateFaqSchema)} />}
   
   <!-- 1. The Procurement Hero -->
   <section class="relative pt-16 pb-16 md:pt-24 md:pb-24 bg-slate-50 overflow-hidden">
