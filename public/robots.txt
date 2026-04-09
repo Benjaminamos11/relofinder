@@ -1,9 +1,23 @@
-# Allow all crawlers
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://relofinder.ch/sitemap-index.xml
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
 
 # Crawl delay for bots
 Crawl-delay: 1
@@ -24,4 +38,7 @@ Allow: /swiss-relocation-guide
 
 # AI crawler instructions
 Allow: /llms.txt
+Allow: /llms-full.txt
 Allow: /.well-known/ai-instructions.txt
+
+Sitemap: https://www.relofinder.ch/sitemap-index.xml
