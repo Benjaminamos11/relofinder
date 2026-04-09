@@ -20,6 +20,7 @@ import "../../styles/global.css";
 import "../../styles/alpine-clarity.css";
 import SEOHead from "../../components/common/SEOHead.astro";
 import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
+import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 import UniversalContactModal from "../../components/common/UniversalContactModal.tsx";
 import "../../lib/expose-modal-stores.client.ts";
 import Navbar from "../../components/layout/Navbar.astro";
@@ -187,6 +188,7 @@ const structuredData = [serviceSchema, definedTermSchema, faqSchema];
         ></script>
     </head>
     <body class="font-sans text-slate-800 bg-white antialiased">
+        <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "Services", url: "/services" }, { name: "Immigration" }]} />
         <!-- Navbar -->
         <Navbar />
 

@@ -16,6 +16,7 @@ import "../../styles/global.css";
 import "../../styles/alpine-clarity.css";
 import SEOHead from "../../components/common/SEOHead.astro";
 import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
+import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 import UniversalContactModal from "../../components/common/UniversalContactModal.tsx";
 import "../../lib/expose-modal-stores.client.ts";
 import Navbar from "../../components/layout/Navbar.astro";
@@ -107,6 +108,16 @@ const faqs = [
         a: "Generally, no. The ZVV public transport network is world-class. Parking is scarce and expensive (CHF 300+/month). Most expats rely on trams, trains, and Mobility car sharing.",
     },
 ];
+
+const zurichFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: { "@type": "Answer", text: faq.a },
+    })),
+};
 ---
 
 <!doctype html>
@@ -187,11 +198,13 @@ const faqs = [
                 ]
             }
         </script>
+        <script type="application/ld+json" set:html={JSON.stringify(zurichFaqSchema)} />
         <style>[x-cloak] { display: none !important; }</style>
         <!-- Alpine.js CDN -->
         <script is:inline defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
     <body class="font-sans text-slate-600 bg-[#F9FAFB] antialiased">
+        <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "Regions", url: "/regions" }, { name: "Zürich" }]} />
         <!-- 1. Navbar -->
         <Navbar />
 

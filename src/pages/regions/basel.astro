@@ -16,6 +16,7 @@ import "../../styles/global.css";
 import "../../styles/alpine-clarity.css";
 import SEOHead from "../../components/common/SEOHead.astro";
 import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
+import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 import UniversalContactModal from "../../components/common/UniversalContactModal.tsx";
 import "../../lib/expose-modal-stores.client.ts";
 import Navbar from "../../components/layout/Navbar.astro";
@@ -93,6 +94,16 @@ const faqs = [
         a: "Extremely. Due to the dominant presence of Roche, Novartis, and other pharma companies, English is essentially the unofficial second language in Basel. Most shops, restaurants, and services accommodate English speakers easily.",
     },
 ];
+
+const baselFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: { "@type": "Answer", text: faq.a },
+    })),
+};
 ---
 
 <!doctype html>
@@ -137,6 +148,7 @@ const faqs = [
                 );
             }
         </style>
+        <script type="application/ld+json" set:html={JSON.stringify(baselFaqSchema)} />
         <style>
             [x-cloak] {
                 display: none !important;
@@ -150,6 +162,7 @@ const faqs = [
         ></script>
     </head>
     <body class="font-sans text-slate-600 bg-[#F9FAFB] antialiased">
+        <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "Regions", url: "/regions" }, { name: "Basel" }]} />
         <!-- 1. Navbar -->
         <Navbar />
 

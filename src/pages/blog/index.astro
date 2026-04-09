@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import BreadcrumbSchema from '../../components/common/BreadcrumbSchema.astro';
 import CloudinaryImage from '../../components/common/CloudinaryImage.astro';
 import { getCollection } from 'astro:content';
 import { ArrowRight, Clock, User, TrendingUp } from 'lucide-react';
@@ -23,7 +24,8 @@ const canonical = 'https://relofinder.ch/blog/';
 ---
 
 <Layout title={title} description={description} canonical={canonical}>
-  
+  <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "Journal" }]} />
+
   <main class="bg-white min-h-screen pt-24 pb-20">
     <div class="container mx-auto px-6 lg:px-8 max-w-7xl">
 

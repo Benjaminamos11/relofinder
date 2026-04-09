@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import BreadcrumbSchema from '../components/common/BreadcrumbSchema.astro';
 import CloudinaryImage from '../components/common/CloudinaryImage.astro';
 import { Linkedin, Mail, ArrowUpRight, CheckCircle2, Building2, Users } from 'lucide-react';
 
@@ -36,6 +37,77 @@ const team = [
   }
 ];
 
+const teamSchemas = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "name": "Benjamin Amos Wagner",
+      "url": "https://benjaminwagner.ch",
+      "jobTitle": "Founder & CEO",
+      "email": "bw@relofinder.ch",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "ReloFinder",
+        "url": "https://relofinder.ch"
+      },
+      "knowsAbout": [
+        "Swiss Relocation",
+        "Expat Housing",
+        "Off-Market Real Estate",
+        "Corporate Mobility"
+      ],
+      "sameAs": ["https://www.linkedin.com/in/benjamin-wagner-relofinder/"]
+    },
+    {
+      "@type": "Person",
+      "name": "Ralf Degenhardt",
+      "jobTitle": "Corporate Relations",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "ReloFinder",
+        "url": "https://relofinder.ch"
+      },
+      "knowsAbout": ["Corporate Relocation", "Multinational Mobility Programs"]
+    },
+    {
+      "@type": "Person",
+      "name": "Karina Ilina",
+      "jobTitle": "Design & Operations",
+      "email": "karina@relofinder.ch",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "ReloFinder",
+        "url": "https://relofinder.ch"
+      },
+      "sameAs": ["https://www.linkedin.com/in/karina-ilina-77404936b/"]
+    }
+  ]
+};
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ReloFinder",
+  "url": "https://relofinder.ch",
+  "logo": "https://relofinder.ch/favicon.svg",
+  "description": "Switzerland's independent relocation agency comparison platform for expats.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Chilegässli 12a",
+    "addressLocality": "Aesch ZH",
+    "postalCode": "8904",
+    "addressCountry": "CH"
+  },
+  "email": "hello@relofinder.ch",
+  "founder": {
+    "@type": "Person",
+    "name": "Benjamin Amos Wagner",
+    "url": "https://benjaminwagner.ch"
+  },
+  "sameAs": ["https://www.linkedin.com/company/5613839"]
+};
+
 const ecosystem = [
   {
     name: 'Expat Savvy',
@@ -71,7 +143,10 @@ const ecosystem = [
 ---
 
 <Layout title={title} description={description} canonical={canonical}>
-  
+  <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "About" }]} />
+  <script type="application/ld+json" set:html={JSON.stringify(teamSchemas)} />
+  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+
   <main class="bg-white">
     
     <!-- Hero / Founder Section -->

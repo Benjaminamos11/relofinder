@@ -16,6 +16,7 @@ import MarketIntelligence from '../components/home/MarketIntelligence.astro';
 import HeroSearch from '../components/home/HeroSearch.astro';
 import Layout from '../layouts/Layout.astro';
 import CloudinaryImage from '../components/common/CloudinaryImage.astro';
+import BreadcrumbSchema from '../components/common/BreadcrumbSchema.astro';
 
 // Cache at the edge for 5 minutes, in the browser for 1 minute
 Astro.response.headers.set('Cache-Control', 'public, max-age=60, s-maxage=300');
@@ -82,6 +83,19 @@ const faqs = [
 const title = "Swiss Relocation Agencies Compared | Free Quotes from 500+ Providers | ReloFinder";
 const description = "Find and compare the best relocation agencies in Switzerland. Get free quotes, read verified reviews, and choose from 500+ providers in Zurich, Geneva & Basel.";
 
+const homeFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+};
+
 const homeSchema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -120,6 +134,8 @@ const homeSchema = {
   keywords={['relocation switzerland', 'swiss relocation services', 'moving to switzerland', 'compare relocation agencies']}
   schema={homeSchema}
 >
+    <script type="application/ld+json" set:html={JSON.stringify(homeFaqSchema)} />
+    <BreadcrumbSchema items={[{ name: "Home" }]} />
     <!-- Premium Hero: "Editorial Luxury" (Light Version) -->
     <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-950 group">
         

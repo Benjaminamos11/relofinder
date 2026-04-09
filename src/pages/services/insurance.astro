@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 import HeroSearch from "../../components/home/HeroSearch.astro";
 import SchemaMarkup from "../../components/common/SchemaMarkup.astro";
 import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
@@ -81,6 +82,7 @@ const faqSchema = {
     <!-- SEO Schemas -->
     <SchemaMarkup type="service" data={seoSchema} />
     <SchemaMarkup type="faq" data={faqSchema} />
+    <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "Services", url: "/services" }, { name: "Insurance" }]} />
 
     <main class="bg-slate-900 overflow-x-hidden">
         <!-- 1. The "Safety Net" Hero -->

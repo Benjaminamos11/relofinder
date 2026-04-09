@@ -20,6 +20,7 @@ import {
 import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
 import ServiceHero from "../../components/services/ServiceHero.astro";
 import SchemaMarkup from "../../components/common/SchemaMarkup.astro";
+import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 import Layout from "../../layouts/Layout.astro";
 
 // --- Assets ---
@@ -88,6 +89,7 @@ const structuredData = [serviceSchema, faqSchema];
 >
     <SchemaMarkup type="service" data={serviceSchema} />
     <SchemaMarkup type="faq" data={faqSchema} />
+    <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "Services", url: "/services" }, { name: "Settling In" }]} />
 
     <ServiceHero
         title="Settling-In Services"

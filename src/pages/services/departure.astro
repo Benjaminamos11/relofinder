@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 import SchemaMarkup from "../../components/common/SchemaMarkup.astro";
 import ServiceHero from "../../components/services/ServiceHero.astro";
 import PlatformDisclaimer from "../../components/common/PlatformDisclaimer.astro";
@@ -224,6 +225,7 @@ const faqSchema = {
   <SchemaMarkup type="breadcrumb" data={breadcrumbSchema} />
   <SchemaMarkup type="service" data={serviceSchema} />
   <SchemaMarkup type="faq" data={faqSchema} />
+  <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "Services", url: "/services" }, { name: "Departure" }]} />
 
   <ServiceHero
     title="Departure & Repatriation Services"

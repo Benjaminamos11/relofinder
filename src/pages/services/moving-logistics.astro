@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 import HeroSearch from "../../components/home/HeroSearch.astro";
 import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
 
@@ -76,6 +77,7 @@ const faqSchema = {
     <!-- SEO Schemas -->
     <script type="application/ld+json" set:html={JSON.stringify(seoSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "Services", url: "/services" }, { name: "Moving & Logistics" }]} />
 
     <main class="bg-slate-900 overflow-x-hidden">
         <!-- 1. The "Border Control" Hero -->

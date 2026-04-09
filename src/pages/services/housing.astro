@@ -25,6 +25,7 @@ import AssessmentModalAlpine from "../../components/individual/AssessmentModalAl
 
 import RegionalMarketMap from "../../components/services/RegionalMarketMap.tsx";
 import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
+import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 
 // --- Assets ---
 const heroImage =
@@ -232,6 +233,7 @@ const structuredData = [
         ></script>
     </head>
     <body class="font-sans text-slate-600 bg-[#F9FAFB] antialiased">
+        <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "Services", url: "/services" }, { name: "Housing" }]} />
         <!-- Navbar -->
         <Navbar />
 

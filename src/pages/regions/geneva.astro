@@ -16,6 +16,7 @@ import "../../styles/global.css";
 import "../../styles/alpine-clarity.css";
 import SEOHead from "../../components/common/SEOHead.astro";
 import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
+import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 
 import "../../lib/expose-modal-stores.client.ts";
 import Navbar from "../../components/layout/Navbar.astro";
@@ -93,6 +94,16 @@ const faqs = [
         a: "Yes, Geneva is extremely safe. However, areas like Eaux-Vives (Rue du Rhône end) and Paquis can be lively at night due to bars and clubs. Families generally prefer Champel, Cologny, or the Rive Droite areas near the UN.",
     },
 ];
+
+const genevaFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: { "@type": "Answer", text: faq.a },
+    })),
+};
 ---
 
 <!doctype html>
@@ -137,11 +148,13 @@ const faqs = [
                 );
             }
         </style>
+        <script type="application/ld+json" set:html={JSON.stringify(genevaFaqSchema)} />
         <style>[x-cloak] { display: none !important; }</style>
         <!-- Alpine.js CDN -->
         <script is:inline defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
     <body class="font-sans text-slate-600 bg-[#F9FAFB] antialiased">
+        <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "Regions", url: "/regions" }, { name: "Geneva" }]} />
         <!-- 1. Navbar -->
         <Navbar />
 

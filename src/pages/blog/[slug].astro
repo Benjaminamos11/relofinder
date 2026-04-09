@@ -58,13 +58,17 @@ const articleSchema = {
     dateModified:
         post.data.updatedDate?.toISOString() ||
         post.data.publishDate.toISOString(),
-    author: [
-        {
-            "@type": "Person",
-            name: authorData.name,
-            url: "https://relofinder.ch/about", // Fallback
-        },
-    ],
+    author: [{
+        "@type": "Person",
+        "name": "Benjamin Amos Wagner",
+        "url": "https://benjaminwagner.ch",
+        "jobTitle": "Founder & CEO",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "ReloFinder",
+            "url": "https://relofinder.ch"
+        }
+    }],
     publisher: {
         "@type": "Organization",
         name: "ReloFinder",
@@ -92,6 +96,7 @@ const faqSchema = post.data.faqs
     : null;
 
 import BlogStickyCTA from "../../components/blog/BlogStickyCTA.astro";
+import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 
 // Filter top-level headings for TOC
 const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
@@ -117,6 +122,7 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
         image: shareImage || "/og-image.jpg",
     }}
 >
+    <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "Journal", url: "/blog" }, { name: title }]} />
     <!-- Inject Schemas -->
     <script
         type="application/ld+json"

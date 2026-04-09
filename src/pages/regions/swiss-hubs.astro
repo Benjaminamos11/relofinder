@@ -16,6 +16,7 @@ import "../../styles/global.css";
 import "../../styles/alpine-clarity.css";
 import SEOHead from "../../components/common/SEOHead.astro";
 import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
+import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 import UniversalContactModal from "../../components/common/UniversalContactModal.tsx";
 import "../../lib/expose-modal-stores.client.ts";
 import Navbar from "../../components/layout/Navbar.astro";
@@ -100,6 +101,16 @@ const faqs = [
         a: "The most prestigious and common districts for the diplomatic corps are Kirchenfeld and Muri, known for their grand villas, embassy buildings, and proximity to the federal center.",
     },
 ];
+
+const swissHubsFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: { "@type": "Answer", text: faq.a },
+    })),
+};
 ---
 
 <!doctype html>
@@ -144,11 +155,13 @@ const faqs = [
                 );
             }
         </style>
+        <script type="application/ld+json" set:html={JSON.stringify(swissHubsFaqSchema)} />
         <style>[x-cloak] { display: none !important; }</style>
         <!-- Alpine.js CDN -->
         <script is:inline defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
     <body class="font-sans text-slate-600 bg-[#F9FAFB] antialiased">
+        <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "Regions", url: "/regions" }, { name: "Swiss Hubs" }]} />
         <!-- 1. Navbar -->
         <Navbar />
 
