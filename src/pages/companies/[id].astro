@@ -90,15 +90,15 @@ const totalReviewCount = internalReviews.length + externalAggregate.count;
 const defaultFaqs = [
   {
     question: `Is ${companyData.name} a verified relocation agency in Switzerland?`,
-    answer: `${companyData.name} is a professional relocation provider listed on ReloFinder. ${companyData.verified ? "They have passed our verification checks for business registration and professional standing." : "They are currently listed as a standard partner."} You can view their verified client reviews and service portfolio above.`,
+    answer: `${companyData.name} is a professional relocation provider listed on ReloFinder. ${companyData.verified ? "They have passed our verification checks for business registration and professional standing." : tier === "preferred" ? "They are listed as a Preferred Partner on ReloFinder." : "They are currently listed as a standard partner."} You can view their verified client reviews and service portfolio above.`,
   },
   {
     question: `What services does ${companyData.name} specialize in?`,
-    answer: `${companyData.name} offers comprehensive relocation support including ${companyData.services?.slice(0, 4).join(", ").replace(/-/g, " ")} and more. They primarily serve clients moving to or within ${companyData.regions?.slice(0, 3).join(", ")}.`,
+    answer: `${companyData.name} offers comprehensive relocation support including ${companyData.services?.slice(0, 4).join(", ").replace(/-/g, " ")} and more. They primarily serve clients moving to or within ${companyData.slug === "lodge-relocation" ? (() => { const base = companyData.regions || []; const required = ["Geneva", "Vaud"]; const sliced = base.slice(0, 3); const missing = required.filter((r: string) => !sliced.map((b: string) => b.toLowerCase()).includes(r.toLowerCase())); return [...sliced, ...missing].join(", "); })() : companyData.regions?.slice(0, 3).join(", ")}.`,
   },
   {
     question: `How much does relocation with ${companyData.name} cost?`,
-    answer: `Pricing for ${companyData.name} varies based on the scope of your move (e.g., single professional vs. family, home search requirements). We recommend requesting a free, non-binding proposal through ReloFinder to get an accurate quote tailored to your needs.`,
+    answer: companyData.slug === "lodge-relocation" ? `Pricing for Lodge Relocation varies based on the specific needs of each client. We recommend requesting a free, non-binding proposal through ReloFinder to get an accurate quote tailored to your needs.` : `Pricing for ${companyData.name} varies based on the scope of your move (e.g., single professional vs. family, home search requirements). We recommend requesting a free, non-binding proposal through ReloFinder to get an accurate quote tailored to your needs.`,
   },
   {
     question: `How do I contact ${companyData.name}?`,
@@ -364,6 +364,7 @@ const schema = {
                           </p>
                           <p class="text-sm text-gray-500">
                             {companyData.address.street}
+                            {companyData.phone ? ` · ${companyData.phone}` : ""}
                           </p>
                         </div>
                       </div>
@@ -573,17 +574,24 @@ const schema = {
 
           <div class="flex flex-wrap gap-3">
             {
-              companyData.regions?.map((region: string) => (
-                <a
-                  href={`/regions/${getRegionSlug(region)}`}
-                  class="group flex items-center gap-3 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#FF6F61]/50 transition-all duration-300"
-                >
-                  <div class="w-2 h-2 rounded-full bg-[#FF6F61] group-hover:scale-125 transition-transform" />
-                  <span class="text-gray-300 group-hover:text-white font-medium capitalize">
-                    {region.replace(/-/g, " ")}
-                  </span>
-                </a>
-              ))
+              companyData.slug === "lodge-relocation" ? (
+                <div class="flex items-center gap-3 px-4 py-2 rounded-xl bg-white/5 border border-white/10">
+                  <div class="w-2 h-2 rounded-full bg-[#FF6F61]" />
+                  <span class="text-gray-300 font-medium">All Switzerland</span>
+                </div>
+              ) : (
+                companyData.regions?.map((region: string) => (
+                  <a
+                    href={`/regions/${getRegionSlug(region)}`}
+                    class="group flex items-center gap-3 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#FF6F61]/50 transition-all duration-300"
+                  >
+                    <div class="w-2 h-2 rounded-full bg-[#FF6F61] group-hover:scale-125 transition-transform" />
+                    <span class="text-gray-300 group-hover:text-white font-medium capitalize">
+                      {region.replace(/-/g, " ")}
+                    </span>
+                  </a>
+                ))
+              )
             }
           </div>
         </div>

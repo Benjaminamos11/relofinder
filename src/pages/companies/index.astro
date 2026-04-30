@@ -45,7 +45,7 @@ const sortedCompanies = (relocators || [])
                 r.seo_summary ||
                 "Leading relocation specialist in Switzerland.",
             services: r.services || [],
-            regions: r.regions_served || [],
+            regions: r.slug === "lodge-relocation" ? ["All Switzerland"] : r.regions_served || [],
             logo: r.logo,
             tier: r.tier,
             label:

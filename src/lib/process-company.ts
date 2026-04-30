@@ -69,23 +69,25 @@ export const processCompany = async (companySlug: string) => {
             companyData.regions = relocatorData.regions_served || [];
             companyData.verified = relocatorData.is_verified;
 
-            const mainOffice =
-                relocatorData.offices?.find((o: any) => o.is_main) ||
-                relocatorData.offices?.[0];
-            if (mainOffice) {
-                companyData.address = {
-                    street: mainOffice.street,
-                    city: mainOffice.city,
-                    postalCode: mainOffice.zip,
-                    canton: "",
-                };
-            } else if (relocatorData.address_street || relocatorData.address_city) {
+            if (relocatorData.address_street || relocatorData.address_city) {
                 companyData.address = {
                     street: relocatorData.address_street,
                     city: relocatorData.address_city,
                     postalCode: relocatorData.address_zip,
                     canton: "",
                 };
+            } else {
+                const mainOffice =
+                    relocatorData.offices?.find((o: any) => o.is_main) ||
+                    relocatorData.offices?.[0];
+                if (mainOffice) {
+                    companyData.address = {
+                        street: mainOffice.street,
+                        city: mainOffice.city,
+                        postalCode: mainOffice.zip,
+                        canton: "",
+                    };
+                }
             }
 
             console.time(`fetch-reviews-${companySlug}`);
