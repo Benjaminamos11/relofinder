@@ -1,14 +1,8 @@
 # Legacy region redirect
 /regions/alps  /regions/  301
 
-# Trailing-slash canonicalization (no-slash → slash)
-/blog/:slug        /blog/:slug/        301!
-/companies/:slug   /companies/:slug/   301!
-/regions/:slug     /regions/:slug/     301!
-/services/:slug    /services/:slug/    301!
-
 # 2025 → 2026 post renames
-/blog/best-relocation-companies-switzerland-2025/         /blog/best-relocation-companies-switzerland-2026/         301!
-/blog/best-relocation-companies-switzerland-2025          /blog/best-relocation-companies-switzerland-2026/         301!
-/blog/best-health-insurance-consultants-switzerland-2025/ /blog/best-health-insurance-consultants-switzerland-2026/ 301!
-/blog/best-health-insurance-consultants-switzerland-2025  /blog/best-health-insurance-consultants-switzerland-2026/ 301!
+/blog/best-relocation-companies-switzerland-2025/         /blog/best-relocation-companies-switzerland-2026/         301
+/blog/best-relocation-companies-switzerland-2025          /blog/best-relocation-companies-switzerland-2026/         301
+/blog/best-health-insurance-consultants-switzerland-2025/ /blog/best-health-insurance-consultants-switzerland-2026/ 301
+/blog/best-health-insurance-consultants-switzerland-2025  /blog/best-health-insurance-consultants-switzerland-2026/ 301
