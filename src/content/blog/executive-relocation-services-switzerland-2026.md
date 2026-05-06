@@ -170,7 +170,7 @@ Anchor Relocation has been operating in Zurich for over two decades and the long
 
 **Best For:** Geneva and Vaud executives, particularly international-organisation and pharma-led moves.
 
-Connectiv is Geneva's strongest executive specialist. The firm's bilingual French-English team handles the procedural quirks of Geneva-canton tenancy — référence requests, garant solidaire, ID Suisse — with a fluency that out-of-canton firms struggle to match. Particularly competent for Vaud-side placements (Nyon, Morges) for executives commuting to Geneva. See the [Connectiv profile](/companies/connectiv-relocation/).
+Connectiv is Geneva's strongest executive specialist. The firm's bilingual French-English team handles the procedural quirks of Geneva-canton tenancy — référence requests, garant solidaire, ID Suisse — with a fluency that out-of-canton firms struggle to match. Particularly competent for Vaud-side placements (Nyon, Morges) for executives commuting to Geneva. See the [Connectiv profile](/companies/connectiv-relocation-ag/).
 
 **Services:** Geneva and Vaud home search, permits, school placement, settling-in.
 
@@ -178,7 +178,7 @@ Connectiv is Geneva's strongest executive specialist. The firm's bilingual Frenc
 
 **Good to know:** Particularly responsive on international-organisation moves (UN, WHO, WTO, IOM, ILO) where attestation and accreditation timelines compress the housing window.
 
-[View Connectiv profile](/companies/connectiv-relocation/) • [Geneva region guide](/regions/geneva/) • [Settling-in support](/services/settling-in/)
+[View Connectiv profile](/companies/connectiv-relocation-ag/) • [Geneva region guide](/regions/geneva/) • [Settling-in support](/services/settling-in/)
 
 ---
 
