@@ -109,9 +109,78 @@ const defaultFaqs = [
 // Merge custom FAQs with default ones (prioritizing custom)
 const displayFaqs = [...(companyData.faqs || []), ...defaultFaqs].slice(0, 6);
 
-// SEO Metadata
-const title = `${companyData.name} — Reviews, Pricing & Services (Switzerland)`;
-const description = reviewSummary?.seo_summary
+// SEO Metadata — per-slug overrides for high-intent brand-name queries
+// Lift Search Console CTR on pages ranking pos 5–13 with near-zero clicks.
+const seoOverrides: Record<string, { title: string; description: string }> = {
+  "welcome-service": {
+    title: "Welcome Service Geneva Review 2026: Off-Market & Costs",
+    description:
+      "ReloFinder's 2026 audit of Welcome Service Geneva: real pricing (CHF 4,500-9,500), response times, off-market access, and how they compare to Lodge.",
+  },
+  "lodge-relocation": {
+    title: "Lodge Relocation Geneva 2026 Review: Costs & Alternatives",
+    description:
+      "See ReloFinder's 2026 review of Lodge Relocation Geneva: real costs, response times, off-market access, and the top alternatives expats pick instead.",
+  },
+  "prime-relocation": {
+    title: "Prime Relocation Switzerland Review 2026: Off-Market Verdict",
+    description:
+      "ReloFinder's 2026 audit of Prime Relocation Switzerland: pricing, off-market home search in Zurich and Zug, response times, and how they compare to peers.",
+  },
+  "swiss-expat-realtor": {
+    title: "Swiss Expat Realtor Review 2026: Costs & Alternatives",
+    description:
+      "Compare Swiss Expat Realtor for 2026: real fees, listing inventory, response times, and the alternative agencies expats consistently rank higher.",
+  },
+  "relonest": {
+    title: "Relonest Review 2026: Pricing, Service & Top Alternatives",
+    description:
+      "ReloFinder's 2026 review of Relonest: pricing tiers, what their service actually covers, response times, and the top alternatives to compare before signing.",
+  },
+  "executive-relocation": {
+    title: "Executive Relocation Switzerland 2026: Top 7 Compared",
+    description:
+      "Compare the top 7 executive relocation services in Switzerland for 2026: real fees, response times, off-market access, and which agencies expats rank highest.",
+  },
+  "silver-nest-relocation": {
+    title: "Silver Nest Relocation Review 2026: Costs & Verdict",
+    description:
+      "ReloFinder's 2026 audit of Silver Nest Relocation: real costs, response times, off-market access in Zurich, and how they compare to Anchor and Lodge.",
+  },
+  "matterhorn-relocation": {
+    title: "Matterhorn Relocation Review 2026: What Expats Pay",
+    description:
+      "See what expats actually pay Matterhorn Relocation in 2026: real CHF pricing, response times, service scope, and the alternatives expats compare them against.",
+  },
+  "la-boutique-relocation": {
+    title: "La Boutique Relocation Geneva Review 2026: Verdict",
+    description:
+      "ReloFinder's honest 2026 review of La Boutique Relocation Geneva: real costs, response times, off-market access, and how they compare to Welcome and Lodge.",
+  },
+  "anchor-relocation": {
+    title: "Anchor Relocation Zurich Review 2026: Costs & Verdict",
+    description:
+      "ReloFinder's 2026 audit of Anchor Relocation Zurich: real costs, off-market access, response times, and the alternative agencies expats compare them with.",
+  },
+  "connectiv-relocation-ag": {
+    title: "Connectiv Relocation Geneva Review 2026: Off-Market Costs",
+    description:
+      "ReloFinder's 2026 audit of Connectiv Relocation Geneva: off-market apartment access, real costs, response times, and how they compare to Welcome and Lodge.",
+  },
+  "ap-executive": {
+    title: "AP Executive Switzerland Review 2026: Mobility Verdict",
+    description:
+      "ReloFinder's 2026 review of AP Executive Switzerland: executive mobility scope, real costs, response times, and the alternative providers HR teams compare.",
+  },
+};
+
+const seoOverride = seoOverrides[companyData.slug];
+const title = seoOverride
+  ? seoOverride.title
+  : `${companyData.name} — Reviews, Pricing & Services (Switzerland)`;
+const description = seoOverride
+  ? seoOverride.description
+  : reviewSummary?.seo_summary
   ? reviewSummary.seo_summary
   : `Independent profile of ${companyData.name}: services, regions (${companyData.regions?.slice(0, 4).join(", ")}...), verified reviews, and alternatives.`;
 const canonical = `https://relofinder.ch/companies/${companyData.slug}/`;
