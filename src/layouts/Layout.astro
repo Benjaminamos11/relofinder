@@ -32,6 +32,7 @@ export interface Props {
   };
   navbarVariant?: "transparent" | "solid";
   footerTheme?: "light" | "dark";
+  hreflangs?: Record<string, string>;
 }
 
 const {
@@ -50,6 +51,7 @@ const {
   twitter,
   navbarVariant,
   footerTheme = "light",
+  hreflangs,
 } = Astro.props;
 ---
 
@@ -80,6 +82,7 @@ const {
       canonical={canonical}
       keywords={keywords}
       schema={schema}
+      hreflangs={hreflangs}
       openGraph={{
         title: openGraph?.title ?? title,
         description: openGraph?.description ?? description,

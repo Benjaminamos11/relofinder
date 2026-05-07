@@ -45,6 +45,13 @@ const description = lang === 'en'
 
 const canonical = `https://relofinder.ch/${lang === 'en' ? '' : lang + '/'}corporate/`;
 
+// Hreflang map for the three corporate language variants
+const hreflangs = {
+  en: 'https://relofinder.ch/corporate/',
+  'de-CH': 'https://relofinder.ch/de/corporate/',
+  'fr-CH': 'https://relofinder.ch/fr/corporate/',
+};
+
 const corporateFaqs = lang === 'en' ? [
   {
     question: "How does ReloFinder help with corporate relocation?",
@@ -75,7 +82,7 @@ const corporateFaqSchema = corporateFaqs.length > 0 ? {
 } : null;
 ---
 
-<Layout title={title} description={description} canonical={canonical}>
+<Layout title={title} description={description} canonical={canonical} hreflangs={hreflangs}>
   {corporateFaqSchema && <script type="application/ld+json" set:html={JSON.stringify(corporateFaqSchema)} />}
   
   <!-- 1. The Procurement Hero -->

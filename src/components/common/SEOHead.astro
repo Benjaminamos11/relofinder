@@ -23,6 +23,13 @@ interface Props {
   schema?: any | any[];
   openGraph?: OpenGraph;
   twitter?: Twitter;
+  /**
+   * Per-page hreflang map. Only pass when the page has real translations
+   * (e.g. /[lang]/corporate/). Omit on monolingual pages — emitting
+   * de-CH/fr-CH alternates that all point to the EN URL is invalid hreflang
+   * and Ahrefs flags it as "page referenced for more than one language".
+   */
+  hreflangs?: Record<string, string>;
 }
 
 const {
@@ -33,6 +40,7 @@ const {
   schema,
   openGraph,
   twitter,
+  hreflangs,
 } = Astro.props;
 
 const siteUrl = "https://relofinder.ch";
@@ -125,11 +133,20 @@ const schemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
 <meta name="geo.placename" content="Switzerland" />
 <meta name="ICBM" content="46.8182, 8.2275" />
 
-<!-- Hreflang for International SEO -->
-<link rel="alternate" hreflang="en" href={fullCanonical} />
-<link rel="alternate" hreflang="de-CH" href={fullCanonical} />
-<link rel="alternate" hreflang="fr-CH" href={fullCanonical} />
-<link rel="alternate" hreflang="x-default" href={fullCanonical} />
+<!-- Hreflang — only emit per-language alternates on pages that actually have translations -->
+{hreflangs ? (
+  <>
+    {Object.entries(hreflangs).map(([lang, url]) => (
+      <link rel="alternate" hreflang={lang} href={url} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={hreflangs["en"] ?? fullCanonical} />
+  </>
+) : (
+  <>
+    <link rel="alternate" hreflang="en" href={fullCanonical} />
+    <link rel="alternate" hreflang="x-default" href={fullCanonical} />
+  </>
+)}
 
 <!-- Favicons and Icons -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
