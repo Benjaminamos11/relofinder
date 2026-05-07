@@ -541,7 +541,7 @@ const schema = {
             {
               companyData.services?.map((service: string) => (
                 <a
-                  href={`/services/${getServiceSlug(service)}`}
+                  href={`/services/${getServiceSlug(service)}/`}
                   class="inline-flex items-center px-5 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-700 text-sm font-medium hover:bg-[#FF6F61] hover:text-white hover:border-[#FF6F61] transition-all duration-300 shadow-sm hover:shadow-md"
                 >
                   {service.replace(/-/g, " ")}
@@ -651,7 +651,7 @@ const schema = {
               ) : (
                 companyData.regions?.map((region: string) => (
                   <a
-                    href={`/regions/${getRegionSlug(region)}`}
+                    href={`/regions/${getRegionSlug(region)}/`}
                     class="group flex items-center gap-3 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#FF6F61]/50 transition-all duration-300"
                   >
                     <div class="w-2 h-2 rounded-full bg-[#FF6F61] group-hover:scale-125 transition-transform" />
@@ -975,7 +975,7 @@ const schema = {
                     <span>{alt.data.rating?.score || "4.9"} Rating</span>
                   </div>
                   <a
-                    href={`/companies/${alt.data.id}`}
+                    href={`/companies/${alt.data.id}/`}
                     class="text-sm font-bold underline decoration-white/50 hover:decoration-white underline-offset-4"
                   >
                     View Profile
@@ -985,7 +985,7 @@ const schema = {
             </div>
 
             <a
-              href="/companies"
+              href="/companies/"
               class="inline-flex items-center gap-3 bg-white text-[#FF6F61] px-10 py-5 rounded-full font-bold hover:bg-gray-100 transition-colors shadow-2xl"
             >
               Compare All Providers <ArrowRight className="w-5 h-5" />

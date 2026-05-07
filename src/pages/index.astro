@@ -191,7 +191,7 @@ const homeSchema = {
                     <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-3">Top Rated Agencies</h2>
                     <p class="text-slate-500 text-lg">Selected based on verification status and independent analysis.</p>
                 </div>
-                <a href="/companies" class="hidden md:flex items-center gap-2 text-[#C93B30] font-semibold hover:text-[#e05548] transition-colors border-b-2 border-[#C93B30]/20 pb-1 hover:border-[#C93B30]">
+                <a href="/companies/" class="hidden md:flex items-center gap-2 text-[#C93B30] font-semibold hover:text-[#e05548] transition-colors border-b-2 border-[#C93B30]/20 pb-1 hover:border-[#C93B30]">
                     View All Agencies <ArrowRight className="w-4 h-4" />
                 </a>
             </div>
@@ -255,7 +255,7 @@ const homeSchema = {
                                 ))}
                             </div>
                             <div class="grid grid-cols-2 gap-3">
-                                <a href={`/companies/${agency.slug}`} class="flex items-center justify-center w-full py-3 rounded-lg border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-slate-50 hover:border-slate-300 transition-all duration-300">
+                                <a href={`/companies/${agency.slug}/`} class="flex items-center justify-center w-full py-3 rounded-lg border border-slate-200 text-slate-700 font-semibold text-sm hover:bg-slate-50 hover:border-slate-300 transition-all duration-300">
                                     View Profile
                                 </a>
                                 <button onclick={`window.openAssessmentModal('full-package');`} class="flex items-center justify-center w-full py-3 rounded-lg bg-slate-800 text-white font-semibold text-sm hover:bg-slate-700 transition-all duration-300">
@@ -268,7 +268,7 @@ const homeSchema = {
             </div>
             
             <div class="mt-12 text-center md:hidden">
-                <a href="/companies" class="text-[#C93B30] font-semibold">View All Agencies &rarr;</a>
+                <a href="/companies/" class="text-[#C93B30] font-semibold">View All Agencies &rarr;</a>
             </div>
         </div>
     </section>
@@ -296,11 +296,11 @@ const homeSchema = {
 
                     <div class="flex flex-wrap gap-3">
                         {cantons.slice(0, 4).map(canton => (
-                            <a href={`/regions/${canton.slug}`} class="px-5 py-3 rounded-lg border border-slate-200 text-slate-700 font-semibold hover:border-[#FF6F61] hover:text-[#FF6F61] transition-colors bg-white shadow-sm">
+                            <a href={`/regions/${canton.slug}/`} class="px-5 py-3 rounded-lg border border-slate-200 text-slate-700 font-semibold hover:border-[#FF6F61] hover:text-[#FF6F61] transition-colors bg-white shadow-sm">
                                 {canton.name}
                             </a>
                         ))}
-                        <a href="/regions" class="px-5 py-3 rounded-lg bg-slate-50 text-slate-600 font-semibold hover:bg-slate-100 transition-colors flex items-center gap-2">
+                        <a href="/regions/" class="px-5 py-3 rounded-lg bg-slate-50 text-slate-600 font-semibold hover:bg-slate-100 transition-colors flex items-center gap-2">
                             View All <ArrowRight className="w-4 h-4" />
                         </a>
                     </div>
@@ -337,7 +337,7 @@ const homeSchema = {
                         Don't rely on random Google searches. Browse verified profiles, read client reviews, and find the perfect match for your move to Switzerland.
                     </p>
                     
-                    <a href="/companies" class="inline-flex items-center gap-3 bg-[#FF6F61] text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[#ff5a4d] transition-all transform hover:scale-[1.02] shadow-xl shadow-[#FF6F61]/20">
+                    <a href="/companies/" class="inline-flex items-center gap-3 bg-[#FF6F61] text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[#ff5a4d] transition-all transform hover:scale-[1.02] shadow-xl shadow-[#FF6F61]/20">
                         Start Comparison
                         <ArrowRight className="w-4 h-4" />
                     </a>
@@ -364,14 +364,14 @@ const homeSchema = {
                     <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-3">Latest from the Blog</h2>
                     <p class="text-slate-500 text-lg">In-depth guides to help you navigate your Swiss relocation.</p>
                 </div>
-                <a href="/blog" class="hidden md:flex items-center gap-2 text-[#C93B30] font-semibold hover:text-[#e05548] transition-colors border-b-2 border-[#C93B30]/20 pb-1 hover:border-[#C93B30]">
+                <a href="/blog/" class="hidden md:flex items-center gap-2 text-[#C93B30] font-semibold hover:text-[#e05548] transition-colors border-b-2 border-[#C93B30]/20 pb-1 hover:border-[#C93B30]">
                     All Articles <ArrowRight className="w-4 h-4" />
                 </a>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {blogPosts.map((post) => (
-                    <a href={`/blog/${post.slug}`} class="group bg-white rounded-2xl overflow-hidden border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                    <a href={`/blog/${post.slug}/`} class="group bg-white rounded-2xl overflow-hidden border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
                         <div class="aspect-[16/9] overflow-hidden">
                             <img
                                 src={post.data.heroImage.startsWith('http')
@@ -400,7 +400,7 @@ const homeSchema = {
             </div>
 
             <div class="mt-12 text-center md:hidden">
-                <a href="/blog" class="text-[#C93B30] font-semibold">All Articles &rarr;</a>
+                <a href="/blog/" class="text-[#C93B30] font-semibold">All Articles &rarr;</a>
             </div>
         </div>
     </section>

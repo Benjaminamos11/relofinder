@@ -121,7 +121,7 @@ const faqs = [
             <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
                 <a href="/directory" class="hover:text-slate-900 transition-colors">Directory</a>
                 <a href="/cost-guide" class="hover:text-slate-900 transition-colors">Cost Guide</a>
-                <a href="/login" class="hover:text-slate-900 transition-colors">Login</a>
+                <a href="/login/" class="hover:text-slate-900 transition-colors">Login</a>
             </div>
 
             <!-- Right Side Actions -->
@@ -412,7 +412,7 @@ const faqs = [
                     <h4 class="text-white font-bold mb-6">Popular Services</h4>
                     <ul class="space-y-3 text-sm text-slate-400">
                         {services.map(s => (
-                            <li><a href={`/services/${s.slug}`} class="hover:text-[#FF6F61] transition-colors">{s.name}</a></li>
+                            <li><a href={`/services/${s.slug}/`} class="hover:text-[#FF6F61] transition-colors">{s.name}</a></li>
                         ))}
                     </ul>
                 </div>
@@ -422,7 +422,7 @@ const faqs = [
                     <h4 class="text-white font-bold mb-6">For Business</h4>
                     <ul class="space-y-3 text-sm text-slate-400">
                         <li><a href="/corporate-inquiry" class="hover:text-[#FF6F61] transition-colors">Corporate Solutions</a></li>
-                        <li><a href="/login" class="hover:text-slate-400 hover:underline transition-colors">Agency Login</a></li>
+                        <li><a href="/login/" class="hover:text-slate-400 hover:underline transition-colors">Agency Login</a></li>
                         <li><a href="/market-data" class="hover:text-slate-400 hover:underline transition-colors">Get 2025 Rate Cards</a></li>
                     </ul>
                 </div>
@@ -432,9 +432,9 @@ const faqs = [
             <div class="border-t border-slate-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
                 <p>&copy; 2025 ReloFinder Switzerland AG</p>
                 <div class="flex gap-6">
-                    <a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="/terms" class="hover:text-white transition-colors">Terms of Service</a>
-                    <a href="/imprint" class="hover:text-white transition-colors">Impressum</a>
+                    <a href="/privacy/" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="/terms/" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="/imprint/" class="hover:text-white transition-colors">Impressum</a>
                 </div>
             </div>
         </div>

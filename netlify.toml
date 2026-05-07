@@ -57,6 +57,18 @@
 
 # Normalize legacy service URLs to canonical pages
 [[redirects]]
+  from = "/en/corporate"
+  to = "/corporate/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/corporate/"
+  to = "/corporate/"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/services/visa-immigration"
   to = "/services/immigration/"
   status = 301

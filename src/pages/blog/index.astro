@@ -43,7 +43,7 @@ const canonical = 'https://relofinder.ch/blog/';
       {/* Featured Article - Magazine Style Hero */}
       {featuredPost && (
         <section class="mb-24 group cursor-pointer block">
-          <a href={`/blog/${featuredPost.slug}`} class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <a href={`/blog/${featuredPost.slug}/`} class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Image Side */}
             <div class="lg:col-span-8 relative overflow-hidden rounded-2xl aspect-[16/9] lg:aspect-[21/9]">
@@ -105,7 +105,7 @@ const canonical = 'https://relofinder.ch/blog/';
            <div class="grid gap-12">
               {remainingPosts.map(post => (
                 <article class="group relative grid md:grid-cols-2 gap-8 items-center cursor-pointer">
-                  <a href={`/blog/${post.slug}`} class="absolute inset-0 z-10"></a>
+                  <a href={`/blog/${post.slug}/`} class="absolute inset-0 z-10"></a>
                   
                   {/* Thumbnail */}
                   <div class="relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-100">
@@ -165,7 +165,7 @@ const canonical = 'https://relofinder.ch/blog/';
               <ul class="space-y-6">
                  {blogPosts.slice(0, 4).map((item, i) => (
                     <li class="group cursor-pointer">
-                       <a href={`/blog/${item.slug}`}>
+                       <a href={`/blog/${item.slug}/`}>
                           <span class="text-xs font-bold text-gray-300 mb-1 block">0{i + 1}</span>
                           <h5 class="text-lg font-serif text-gray-900 group-hover:text-[#FF6F61] transition-colors leading-snug mb-1">
                              {item.data.title}

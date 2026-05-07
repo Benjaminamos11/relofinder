@@ -161,7 +161,7 @@ const FeaturedAgencies = ({ companies, limit = 12 }: FeaturedAgenciesProps) => {
               ></div>
             </div>
             <a
-              href="/companies"
+              href="/companies/"
               className="hidden md:inline-flex items-center gap-1 text-sm font-semibold text-gray-700 hover:text-[var(--rf-red-start)] transition-colors"
             >
               View all
@@ -221,7 +221,7 @@ const FeaturedAgencies = ({ companies, limit = 12 }: FeaturedAgenciesProps) => {
                       <span className="ml-1.5 text-green-600 text-sm">✓</span>
                     )}
                   </h3>
-                  <link itemProp="url" href={`/companies/${company.slug}`} />
+                  <link itemProp="url" href={`/companies/${company.slug}/`} />
 
                   {/* Rating */}
                   {company.rating_avg ? (
@@ -265,7 +265,7 @@ const FeaturedAgencies = ({ companies, limit = 12 }: FeaturedAgenciesProps) => {
                 {/* Bottom Actions - Always Aligned */}
                 <div className="flex items-center gap-2 pt-4 mt-4 border-t border-gray-100">
                   <a
-                    href={`/companies/${company.slug}`}
+                    href={`/companies/${company.slug}/`}
                     onClick={() => handleClick(company.id, 'profile')}
                     className="flex-1 inline-flex h-10 items-center justify-center rounded-lg border-2 border-gray-200 bg-white px-3 text-sm font-medium text-gray-700 hover:border-gray-300 hover:bg-gray-50 transition-all duration-200"
                   >

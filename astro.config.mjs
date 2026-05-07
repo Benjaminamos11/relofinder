@@ -40,6 +40,9 @@ export default defineConfig({
         && !page.includes('/my-move')
         && !page.includes('/search')
         && !page.includes('/dashboard')
+        && !page.endsWith('/sitemap/')
+        && !page.endsWith('/sitemap')
+        && !page.endsWith('/en/corporate/')
         && !page.includes('/design-comparison')
         && !page.includes('/design-concept')
         && !page.includes('/design-system'),

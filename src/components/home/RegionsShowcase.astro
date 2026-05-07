@@ -71,7 +71,7 @@ const featuredRegions = [
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
       {featuredRegions.map((region, index) => (
         <a 
-          href={`/regions/${region.id}`}
+          href={`/regions/${region.id}/`}
           class:list={['neuro-card group fade-up', `delay-${Math.min(index * 100, 400)}`]}
         >
           <!-- Image with Overlay -->
@@ -130,7 +130,7 @@ const featuredRegions = [
     <!-- Bottom CTA -->
     <div class="text-center fade-up delay-400">
       <a
-        href="/regions"
+        href="/regions/"
         class="inline-flex items-center justify-center px-8 py-4 text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-lg bg-brand-gradient hover:scale-[1.02]"
       >
         View All Swiss Regions

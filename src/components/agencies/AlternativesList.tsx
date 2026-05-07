@@ -34,7 +34,7 @@ export default function AlternativesList({ alternatives, currentAgencyName }: Al
         {alternatives.map((agency) => (
           <a
             key={agency.id}
-            href={`/companies/${agency.slug}`}
+            href={`/companies/${agency.slug}/`}
             className="bg-white rounded-2xl p-6 border border-gray-200 hover:border-red-300 hover:shadow-lg transition-all group"
           >
             {/* Header */}

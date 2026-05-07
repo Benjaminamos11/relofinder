@@ -38,13 +38,13 @@ const initialNavOpacity = variant === 'solid' ? '' : 'opacity-0 translate-y-[-10
       <!-- 2. Center: User Navigation (Desktop) -->
       <nav class={`hidden md:flex items-center gap-8 nav-links transition-all duration-500 ${initialNavOpacity}`}>
         <a 
-          href="/companies" 
+          href="/companies/" 
           class={`text-sm font-medium transition-colors duration-200 ${isActive('/companies') ? 'text-[#FF6F61]' : 'text-slate-600 hover:text-[#FF6F61]'}`}
         >
           Directory
         </a>
         <a 
-          href="/blog" 
+          href="/blog/" 
           class={`text-sm font-medium transition-colors duration-200 ${isActive('/blog') ? 'text-[#FF6F61]' : 'text-slate-600 hover:text-[#FF6F61]'}`}
         >
           Journal
@@ -58,7 +58,7 @@ const initialNavOpacity = variant === 'solid' ? '' : 'opacity-0 translate-y-[-10
         
         <!-- Agency Login -->
         <a 
-          href="/login" 
+          href="/login/" 
           class="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-[#FF6F61] transition-colors"
         >
           <IconLock className="w-4 h-4" />
@@ -67,16 +67,16 @@ const initialNavOpacity = variant === 'solid' ? '' : 'opacity-0 translate-y-[-10
         
         {isActive('/corporate') || isActive('/de/corporate') || isActive('/fr/corporate') || isActive('/en/corporate') ? (
             <div class="flex items-center gap-2 text-xs font-bold text-slate-600 uppercase tracking-wider bg-slate-100 rounded-lg px-2 py-1.5 border border-slate-200">
-                <a href="/en/corporate" class={`hover:text-[#FF6F61] transition-colors ${currentPath.startsWith('/en') || currentPath === '/corporate' ? 'text-[#FF6F61]' : ''}`}>EN</a>
+                <a href="/en/corporate/" class={`hover:text-[#FF6F61] transition-colors ${currentPath.startsWith('/en') || currentPath === '/corporate' ? 'text-[#FF6F61]' : ''}`}>EN</a>
                 <span class="text-slate-300">|</span>
-                <a href="/de/corporate" class={`hover:text-[#FF6F61] transition-colors ${currentPath.startsWith('/de') ? 'text-[#FF6F61]' : ''}`}>DE</a>
+                <a href="/de/corporate/" class={`hover:text-[#FF6F61] transition-colors ${currentPath.startsWith('/de') ? 'text-[#FF6F61]' : ''}`}>DE</a>
                 <span class="text-slate-300">|</span>
-                <a href="/fr/corporate" class={`hover:text-[#FF6F61] transition-colors ${currentPath.startsWith('/fr') ? 'text-[#FF6F61]' : ''}`}>FR</a>
+                <a href="/fr/corporate/" class={`hover:text-[#FF6F61] transition-colors ${currentPath.startsWith('/fr') ? 'text-[#FF6F61]' : ''}`}>FR</a>
             </div>
         ) : (
             <!-- Corporate HR Button -->
             <a 
-              href="/corporate" 
+              href="/corporate/" 
               class="bg-slate-900 text-white text-sm font-medium px-5 py-2.5 rounded-lg hover:bg-slate-800 transition-all shadow-md hover:shadow-lg flex items-center gap-2"
             >
               <IconBuilding className="w-4 h-4" />
@@ -127,10 +127,10 @@ const initialNavOpacity = variant === 'solid' ? '' : 'opacity-0 translate-y-[-10
     <div class="mb-8">
       <h3 class="text-xs font-bold text-slate-600 uppercase tracking-widest mb-4">Individuals</h3>
       <nav class="flex flex-col gap-1">
-        <a href="/companies" class="py-3 text-lg font-medium text-slate-800 border-b border-slate-100 hover:text-[#FF6F61]">
+        <a href="/companies/" class="py-3 text-lg font-medium text-slate-800 border-b border-slate-100 hover:text-[#FF6F61]">
           Directory
         </a>
-        <a href="/blog" class="py-3 text-lg font-medium text-slate-800 border-b border-slate-100 hover:text-[#FF6F61]">
+        <a href="/blog/" class="py-3 text-lg font-medium text-slate-800 border-b border-slate-100 hover:text-[#FF6F61]">
           Journal
         </a>
       </nav>
@@ -140,11 +140,11 @@ const initialNavOpacity = variant === 'solid' ? '' : 'opacity-0 translate-y-[-10
     <div>
       <h3 class="text-xs font-bold text-slate-600 uppercase tracking-widest mb-4">Partners</h3>
       <nav class="flex flex-col gap-4">
-        <a href="/login" class="flex items-center gap-3 py-2 text-slate-600 hover:text-[#FF6F61] font-medium">
+        <a href="/login/" class="flex items-center gap-3 py-2 text-slate-600 hover:text-[#FF6F61] font-medium">
           <IconLock className="w-4 h-4" />
           Agency Login
         </a>
-        <a href="/corporate" class="flex items-center justify-center gap-2 w-full bg-slate-900 text-white font-medium py-3 rounded-lg shadow-sm">
+        <a href="/corporate/" class="flex items-center justify-center gap-2 w-full bg-slate-900 text-white font-medium py-3 rounded-lg shadow-sm">
           <IconBuilding className="w-4 h-4" />
           For Corporate HR
         </a>

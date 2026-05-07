@@ -57,7 +57,7 @@ function formatDate(dateString: string): string {
     
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {blogPosts.map(post => (
-        <a href={`/blog/${post.id}`} class="card group h-full flex flex-col">
+        <a href={`/blog/${post.id}/`} class="card group h-full flex flex-col">
           <div class="relative overflow-hidden h-48">
             <img 
               src={post.image} 
@@ -93,7 +93,7 @@ function formatDate(dateString: string): string {
     </div>
     
     <div class="mt-12 text-center">
-      <a href="/blog" class="btn-primary">
+      <a href="/blog/" class="btn-primary">
         View All Articles
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />

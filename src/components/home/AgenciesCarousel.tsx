@@ -369,7 +369,7 @@ export default function AgenciesCarousel({ agencies }: Props) {
                   Get Quote / Schedule
                 </button>
                 <a
-                  href={`/companies/${activeAgency.slug}`}
+                  href={`/companies/${activeAgency.slug}/`}
                   className="flex-1 py-3.5 px-6 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-medium rounded-xl transition-all duration-200 text-center"
                 >
                   View Profile

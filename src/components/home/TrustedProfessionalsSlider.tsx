@@ -148,7 +148,7 @@ export default function TrustedProfessionalsSlider({ companies }: Props) {
             </p>
           </div>
           <a
-            href="/companies"
+            href="/companies/"
             className="hidden md:inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#B61919] transition-colors"
           >
             View all
@@ -168,7 +168,7 @@ export default function TrustedProfessionalsSlider({ companies }: Props) {
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
               <a
-                href={`/companies/${currentCompany.slug}`}
+                href={`/companies/${currentCompany.slug}/`}
                 className="text-xl font-semibold text-gray-900 hover:text-[#B61919] transition-colors"
               >
                 {currentCompany.name}
@@ -186,7 +186,7 @@ export default function TrustedProfessionalsSlider({ companies }: Props) {
               )}
             </div>
             <a
-              href={`/companies/${currentCompany.slug}`}
+              href={`/companies/${currentCompany.slug}/`}
               className="text-sm font-medium text-gray-600 hover:text-[#B61919] transition-colors"
             >
               View Profile →
@@ -418,7 +418,7 @@ export default function TrustedProfessionalsSlider({ companies }: Props) {
         {/* View All CTA (Mobile) */}
         <div className="text-center mt-8 md:hidden">
           <a
-            href="/companies"
+            href="/companies/"
             className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[#B61919] to-[#DF3030] text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-200"
           >
             View All Companies & Reviews

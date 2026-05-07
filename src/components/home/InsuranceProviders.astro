@@ -48,7 +48,7 @@ const insuranceProviders = [
 
     <div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 auto-rows-[200px]">
       <!-- Featured Provider - Large Card -->
-      <a href={`/providers/${insuranceProviders[0].id}`} class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl md:col-span-6 md:row-span-2">
+      <a href={`/providers/${insuranceProviders[0].id}/`} class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl md:col-span-6 md:row-span-2">
         <div class="absolute inset-0">
           <div class="absolute inset-0 bg-gradient-to-br from-coral-500/90 to-coral-600/90 group-hover:scale-110 transition-transform duration-500"></div>
           <img 
@@ -84,7 +84,7 @@ const insuranceProviders = [
       </a>
 
       <!-- Secondary Provider - Tall Card -->
-      <a href={`/providers/${insuranceProviders[1].id}`} class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl md:col-span-3 md:row-span-2">
+      <a href={`/providers/${insuranceProviders[1].id}/`} class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl md:col-span-3 md:row-span-2">
         <div class="absolute inset-0">
           <div class="absolute inset-0 bg-gradient-to-br from-secondary-600/90 to-secondary-700/90 group-hover:scale-110 transition-transform duration-500"></div>
           <img 
@@ -114,7 +114,7 @@ const insuranceProviders = [
 
       <!-- Remaining Providers - Regular Cards -->
       {insuranceProviders.slice(2).map(provider => (
-        <a href={`/providers/${provider.id}`} class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl md:col-span-3">
+        <a href={`/providers/${provider.id}/`} class="relative overflow-hidden rounded-xl group transition-all duration-500 hover:shadow-2xl md:col-span-3">
           <div class="absolute inset-0">
             <div class="absolute inset-0 bg-gradient-to-br from-accent-700/90 to-accent-800/90 group-hover:scale-110 transition-transform duration-500"></div>
             <img 
