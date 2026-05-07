@@ -24,7 +24,7 @@ export default function UnifiedLogin() {
 
         try {
             // Use custom API endpoint to verify domain/email against partner database first
-            const res = await fetch('/api/auth/agency-login', {
+            const res = await fetch('/api/auth/agency-login/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email }),

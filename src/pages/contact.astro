@@ -224,7 +224,7 @@ const labelClasses = "block text-xs font-bold uppercase tracking-wider text-slat
             data.source_page = 'contact_page';
 
             try {
-                const res = await fetch('/api/leads/submit', {
+                const res = await fetch('/api/leads/submit/', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)

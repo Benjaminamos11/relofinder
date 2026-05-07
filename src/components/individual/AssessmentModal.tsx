@@ -205,7 +205,7 @@ export default function AssessmentModal({ isOpen, onClose, selectedDestination, 
         setIsSubmitting(true);
 
         try {
-            const response = await fetch('/api/leads/assessment', {
+            const response = await fetch('/api/leads/assessment/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

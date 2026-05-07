@@ -162,7 +162,7 @@ export default (Alpine) => {
             try {
                 // Remove trailing slash if present on current URL for base API route
                 const baseUrl = window.location.origin;
-                const response = await fetch(`${baseUrl}/api/assessments/submit`, {
+                const response = await fetch(`${baseUrl}/api/assessments/submit/`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

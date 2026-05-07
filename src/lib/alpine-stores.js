@@ -152,7 +152,7 @@ document.addEventListener('alpine:init', () => {
             this.submitting = true;
 
             try {
-                const response = await fetch('/api/leads/assessment', {
+                const response = await fetch('/api/leads/assessment/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

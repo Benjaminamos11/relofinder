@@ -95,7 +95,7 @@ export default function UserDashboard({ token: propToken }: UserDashboardProps) 
 
         try {
             // Use Server API for secure processing
-            const response = await fetch('/api/leads/accept-quote', {
+            const response = await fetch('/api/leads/accept-quote/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ quoteId: quote.id })

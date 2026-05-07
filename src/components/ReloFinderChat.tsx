@@ -281,7 +281,7 @@ export default function ReloFinderChat() {
       const currentMessages = messagesRef.current;
       if (currentMessages.length < 2) return;
       summarySentRef.current = true;
-      fetch('/api/chat-summary', {
+      fetch('/api/chat-summary/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -308,7 +308,7 @@ export default function ReloFinderChat() {
 
     try {
       const allMessages = [...messages, userMsg].map(m => ({ role: m.role, content: m.content }));
-      const res = await fetch('/api/chat', {
+      const res = await fetch('/api/chat/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: allMessages }),

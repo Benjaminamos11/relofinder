@@ -123,7 +123,7 @@ export default function RFPForm({ initialData, selectedAgencies, onComplete, lan
         setErrorMsg(null);
 
         try {
-            const res = await fetch('/api/corporate/submit', {
+            const res = await fetch('/api/corporate/submit/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

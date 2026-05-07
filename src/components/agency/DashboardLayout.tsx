@@ -440,7 +440,7 @@ const LeadsView = ({ partner }: any) => {
         setSending(true);
 
         try {
-            const res = await fetch('/api/request-upgrade', {
+            const res = await fetch('/api/request-upgrade/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

@@ -608,7 +608,7 @@ const combinedSchema = {
             const data = Object.fromEntries(formData.entries());
 
             try {
-                const res = await fetch('/api/partners/submit', {
+                const res = await fetch('/api/partners/submit/', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
