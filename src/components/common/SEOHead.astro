@@ -30,6 +30,7 @@ interface Props {
    * and Ahrefs flags it as "page referenced for more than one language".
    */
   hreflangs?: Record<string, string>;
+  noindex?: boolean;
 }
 
 const {
@@ -41,6 +42,7 @@ const {
   openGraph,
   twitter,
   hreflangs,
+  noindex = false,
 } = Astro.props;
 
 const siteUrl = "https://relofinder.ch";
@@ -85,7 +87,7 @@ const schemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
 <meta name="description" content={description} />
 {keywords.length > 0 && <meta name="keywords" content={keywordsString} />}
 <meta name="author" content="ReloFinder Team" />
-<meta name="robots" content="index, follow" />
+<meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
 <meta name="language" content="en" />
 <meta name="revisit-after" content="7 days" />
 

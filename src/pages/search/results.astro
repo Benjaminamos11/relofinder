@@ -79,9 +79,10 @@ mappedAgencies.sort((a, b) => {
 
 ---
 
-<Layout 
-  title={`${serviceFilter ? serviceFilter.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'Relocation Agencies'} in ${cantonFilter.charAt(0).toUpperCase() + cantonFilter.slice(1)} | ReloFinder`} 
+<Layout
+  title={`${serviceFilter ? serviceFilter.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'Relocation Agencies'} in ${cantonFilter.charAt(0).toUpperCase() + cantonFilter.slice(1)} | ReloFinder`}
   navbarVariant="solid"
+  noindex={true}
 >
   <div class="bg-slate-50 min-h-screen pb-20 pt-20">
     

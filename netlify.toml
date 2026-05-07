@@ -63,6 +63,30 @@
   force = true
 
 [[redirects]]
+  from = "/services/visa"
+  to = "/services/immigration/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/banking-finance"
+  to = "/services/finance/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/advisory-services"
+  to = "/services/advisory/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/housing-search"
+  to = "/services/housing/"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/services/banking"
   to = "/services/finance/"
   status = 301

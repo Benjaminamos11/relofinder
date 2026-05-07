@@ -36,6 +36,10 @@ export default defineConfig({
         && !page.includes('/design-')
         && !page.includes('/new-design')
         && !page.includes('/housing_old')
+        && !page.includes('/agency')
+        && !page.includes('/my-move')
+        && !page.includes('/search')
+        && !page.includes('/dashboard')
         && !page.includes('/design-comparison')
         && !page.includes('/design-concept')
         && !page.includes('/design-system'),
