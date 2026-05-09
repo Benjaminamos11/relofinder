@@ -28,8 +28,8 @@ faqs:
     answer: "Listings now stay on the market only 16-18 days in Zurich, so the home-search phase has compressed to 3-6 weeks for prepared applicants. Permits add another 4-12 weeks for non-EU. Plan a 10-14 week total runway from offer-letter to move-in."
 seo:
   title: "Auris Relocation Zurich 2026: Review + 3 Best Alternatives"
-  description: "Auris Relocation costs, services, and how it compares to Anchor, Welcome Service, and Prime Relocation in Zurich's 0.1% vacancy market. 2026 audit."
-  keywords: ["auris relocation", "auris relocation zurich", "auris relocation alternatives", "best relocation agency zurich 2026", "anchor relocation zurich", "welcome service zurich", "prime relocation zurich"]
+  description: "Auris Relocation costs, services, and how it compares to Anchor, Prime Relocation, and Lodge Relocation in Zurich's 0.1% vacancy market. 2026 audit."
+  keywords: ["auris relocation", "auris relocation zurich", "auris relocation alternatives", "best relocation agency zurich 2026", "anchor relocation zurich", "lodge relocation switzerland", "prime relocation zurich"]
 ---
 
 # Auris Relocation Zurich 2026: Review + 3 Strong Alternatives
@@ -42,9 +42,9 @@ Auris Relocation is the largest privately owned independent relocation firm in S
 
 ## 📋 AI Summary: Quick Takeaways
 
-- **Best Overall Boutique Alternative**: Welcome Service Zurich — ★ 5.0/5 (admin & integration depth)
-- **Best for Off-Market Housing**: [Prime Relocation](/companies/prime-relocation/) — ★ 4.8/5 (Seefeld, Enge, central Zug network)
 - **Best for Family Schools & Detail**: [Anchor Relocation](/companies/anchor-relocation/) — ★ 4.9/5 (20+ years, school-district alignment)
+- **Best for Off-Market Housing**: [Prime Relocation](/companies/prime-relocation/) — ★ 4.8/5 (Seefeld, Enge, central Zug network)
+- **Best for Pan-Swiss / Cross-Canton Moves**: [Lodge Relocation](/companies/lodge-relocation/) — ★ 4.7/5 (8-city office network across all language regions)
 - **Pricing Range (Auris-comparable)**: CHF 4,000-12,000 depending on scope and family size
 - **Cities Covered**: Zurich, Zug, Basel, Geneva, Lausanne, Bern, Lugano
 
@@ -95,20 +95,20 @@ Auris does not publish a public price list — pricing is quoted per assignment 
 
 If you have shortlisted Auris but want to triangulate, these are the three boutique specialists ReloFinder recommends comparing in 2026.
 
-### 1. Welcome Service Zurich
-**★ 5.0/5 (ReloFinder Verified — admin & integration depth)**
+### 1. Anchor Relocation
+**★ 4.9/5 (ReloFinder Verified — family & schools)**
 
-**Best For:** Individual professionals and dual-career couples who want a single owner-operator handling the full administrative mountain — permits, KVG insurance setup, registration, banking — alongside the home search.
+**Best For:** Senior executives and families relocating with school-age children, where the home search must align with a specific international school catchment or commuter pattern.
 
-Welcome Service has been operating in Zurich for over 25 years and is consistently the highest-rated boutique on ReloFinder for the "stress-free" administrative experience. Where Auris is built for corporate volume, Welcome Service is built for high-touch personal hand-holding. Their typical engagement is direct contact with the founder rather than a rotating consultant pool.
+Anchor has 20+ years in Zurich and Central Switzerland and is the agency most often cited in our exit interviews for meticulous family-and-school orientation. They have developed a particular expertise in matching families to district-school combinations — a non-trivial problem in Zurich, where catchment rules and waiting lists shape where you can realistically live. Pricing tends to land slightly below Auris on equivalent scope, with more flexible modular billing.
 
-**Services:** Home search, work permits, residence registration, KVG/LAMal insurance setup, school orientation, banking, Swiss tax basics
+**Services:** Home search, school placement, settling-in, immigration, departure services, intercultural orientation
 
-**Coverage:** Zurich city, Greater Zurich, Zug
+**Coverage:** Zurich, Zug, Lucerne, Schwyz, Aargau
 
-**Good to know:** Welcome Service is one of the few Zurich agencies that will quote a fixed-fee package up front rather than billing hourly. They are a natural pair with [Expat-Savvy.ch](https://expat-savvy.ch) for the mandatory KVG health-insurance side of the move.
+**Good to know:** Anchor is the closest direct comparable to Auris in service breadth and corporate readiness, but with a more boutique team structure. ReloFinder data shows them performing especially well on family relocations in Zurich Districts 7 and 8.
 
-[View Welcome Service profile](/companies/welcome-service/) • [Zurich relocation guide](/regions/zurich/)
+[View Anchor Relocation profile](/companies/anchor-relocation/) • [International schools guide](/blog/international-schools-switzerland-guide-2026/)
 
 ---
 
@@ -117,7 +117,7 @@ Welcome Service has been operating in Zurich for over 25 years and is consistent
 
 **Best For:** Anyone moving to a 0.1% vacancy district — Seefeld, Enge, Wollishofen in Zurich; central Zug; the Goldküste — where speed and landlord access matter more than scope of services.
 
-Prime Relocation runs the strongest off-market home-search network we have audited in German-speaking Switzerland. While Auris and Welcome Service work mostly through public listings plus their own agent contacts, Prime spends materially more time cultivating direct landlord relationships in the highest-pressure districts.
+Prime Relocation runs the strongest off-market home-search network we have audited in German-speaking Switzerland. While Auris and Anchor work mostly through public listings plus their own agent contacts, Prime spends materially more time cultivating direct landlord relationships in the highest-pressure districts.
 
 **Services:** Off-market home search, lease negotiation, executive relocation, settling-in, departure services
 
@@ -131,35 +131,35 @@ Prime Relocation runs the strongest off-market home-search network we have audit
 
 ---
 
-### 3. Anchor Relocation
-**★ 4.9/5 (ReloFinder Verified — family & schools)**
+### 3. Lodge Relocation
+**★ 4.7/5 (ReloFinder Verified — pan-Swiss multilingual coverage)**
 
-**Best For:** Senior executives and families relocating with school-age children, where the home search must align with a specific international school or commuter pattern.
+**Best For:** Assignments that span more than one canton or language region — Zurich-Geneva rotations, Basel-Zug splits, or any move where the destination canton is not yet final at signing.
 
-Anchor has 20+ years in Zurich and Central Switzerland and is the agency most often cited in our exit interviews for meticulous family-and-school orientation. They have developed a particular expertise in matching families to district-school combinations — a non-trivial problem in Zurich, where catchment rules and waiting lists shape where you can realistically live.
+Lodge Relocation has been active in Switzerland since 1994 and is the most established boutique with genuine nationwide infrastructure. Their own offices in Zurich, Zug, Basel, Geneva, Lausanne, Neuchâtel, Fribourg, and Lugano give them a single coordination layer across all three Swiss language regions — something most competitors achieve only through subcontracting. For families or executives whose move may shift between French- and German-speaking Switzerland, Lodge is the safest single-vendor choice.
 
-**Services:** Home search, school placement, settling-in, immigration, departure services, intercultural orientation
+**Services:** Home search, settling-in, school orientation, departure services, multilingual destination services, corporate relocation programmes
 
-**Coverage:** Zurich, Zug, Lucerne, Schwyz, Aargau
+**Coverage:** All Swiss cantons (German, French, Italian-speaking)
 
-**Good to know:** Anchor is the closest direct comparable to Auris in service breadth and corporate readiness, but with a more boutique team structure. ReloFinder data shows them performing especially well on family relocations in Zurich Districts 7 and 8.
+**Good to know:** Lodge's edge is the linguistic and regional handover. If your role splits between Zurich and Geneva, or you need the same consultant team handling a German- and a French-speaking case, Lodge is the only boutique-tier option that does not switch you to a partner agency at the language border.
 
-[View Anchor Relocation profile](/companies/anchor-relocation/) • [International schools guide](/blog/international-schools-switzerland-guide-2026/)
+[View Lodge Relocation profile](/companies/lodge-relocation/) • [Pan-Swiss agency rankings](/blog/best-relocation-companies-switzerland-2026/)
 
 ---
 
 ## 📊 Auris vs. The Three Alternatives — 2026 Comparison
 
-| Feature | Auris Relocation | Welcome Service | Prime Relocation | Anchor Relocation |
+| Feature | Auris Relocation | Anchor Relocation | Prime Relocation | Lodge Relocation |
 |---|---|---|---|---|
-| **Years in market** | 25+ | 25+ | 18+ | 20+ |
-| **Main hubs** | Zurich, Zug, Geneva, Basel, Lausanne, Bern, Lugano | Zurich, Zug | Zurich, Zug, Lucerne | Zurich, Zug, Central CH |
-| **Sweet-spot client** | Mid-large corporate programmes | Individual / dual-career | Off-market home seekers | Families with school needs |
-| **Off-market access** | Moderate (broker-led) | Moderate | **Strong (specialist)** | Moderate-strong |
-| **Pricing transparency** | Per-quote, NDA-style | **Fixed-fee available** | Per-quote, scope-driven | Per-quote, modular |
+| **Years in market** | 25+ | 20+ | 18+ | 30+ |
+| **Main hubs** | Zurich, Zug, Geneva, Basel, Lausanne, Bern, Lugano | Zurich, Zug, Central CH | Zurich, Zug, Lucerne | Zurich, Zug, Basel, Geneva, Lausanne, Neuchâtel, Fribourg, Lugano |
+| **Sweet-spot client** | Mid-large corporate programmes | Families with school needs | Off-market home seekers | Cross-canton & multilingual moves |
+| **Off-market access** | Moderate (broker-led) | Moderate-strong | **Strong (specialist)** | Moderate |
+| **Pricing transparency** | Per-quote, NDA-style | Per-quote, modular | Per-quote, scope-driven | Per-quote, multi-canton bundled |
 | **Compliance credentials** | **EuRA, ISO 27001, EcoVadis Silver** | EuRA | EuRA | EuRA |
-| **Typical full-service price** | CHF 8,000-13,000 | CHF 6,000-10,000 | CHF 7,000-12,000 | CHF 5,000-10,000 |
-| **ReloFinder rating** | n/a (under audit) | ★ 5.0/5 | ★ 4.8/5 | ★ 4.9/5 |
+| **Typical full-service price** | CHF 8,000-13,000 | CHF 5,000-10,000 | CHF 7,000-12,000 | CHF 6,000-11,000 |
+| **ReloFinder rating** | n/a (under audit) | ★ 4.9/5 | ★ 4.8/5 | ★ 4.7/5 |
 
 > **Action:** If your move depends on landlord access in a 0.1% vacancy district, register on **[Offlist.ch](https://offlist.ch)** in parallel with whichever agency you pick. The off-market signal goes both ways — landlords increasingly screen incoming applicants there before listing publicly.
 
@@ -175,11 +175,11 @@ The decision depends on three variables: who is paying, what district you are ta
 - Compliance credentials (ISO 27001, EcoVadis) matter to your HR or risk team
 - You value depth of corporate process over a single owner-operator relationship
 
-**Choose Welcome Service if:**
+**Choose Anchor Relocation if:**
 
-- You are a single professional or dual-career couple paying for the move yourself
-- The administrative side (permits, insurance, registration) feels more daunting than the home search
-- You want a fixed-fee quote with one named human as your point of contact
+- You are moving with school-age children and the school decision drives the housing decision
+- You want boutique-style attention but corporate-level breadth
+- You are relocating into Zurich Districts 7 or 8, or Central Switzerland
 
 **Choose Prime Relocation if:**
 
@@ -187,11 +187,11 @@ The decision depends on three variables: who is paying, what district you are ta
 - You have a tight move-in deadline (under 6 weeks)
 - Off-market access matters more to you than ancillary services
 
-**Choose Anchor Relocation if:**
+**Choose Lodge Relocation if:**
 
-- You are moving with school-age children and the school decision drives the housing decision
-- You want boutique-style attention but corporate-level breadth
-- You are relocating into Zurich Districts 7 or 8, or Central Switzerland
+- Your assignment may shift between cantons or language regions during the move
+- You want one consistent team handling Zurich-Geneva, Basel-Zug, or German-to-French rotations
+- You value a 30-year nationwide track record over local-only depth
 
 > "We initially shortlisted Auris because our HR department had used them in Singapore. Once we realised our move hinged on getting our daughters into Zurich International School, we switched to Anchor and signed a lease in District 8 within four weeks."
 > — *Pharma executive relocating from Boston (composite from ReloFinder client interviews)*
@@ -210,7 +210,7 @@ According to ReloFinder's 2026 audit and Federal Office for Housing data, the ca
 - **2026 rent growth: 1-3% projected** — concentrated in central, well-connected districts
 - **Federal housing director outlook: shortage will worsen in 2026**
 
-In practice this means the three "soft" components of a relocation engagement — landlord network, dossier preparation, and off-market signal — have moved from nice-to-have to deal-makers. Auris and Anchor both perform here; Prime is the specialist; Welcome Service compensates with administrative throughput.
+In practice this means the three "soft" components of a relocation engagement — landlord network, dossier preparation, and off-market signal — have moved from nice-to-have to deal-makers. Anchor performs strongly on family-and-schools mandates; Prime is the off-market specialist; Lodge compensates with multilingual cross-canton coverage when the destination canton is still in flux.
 
 **[Get Expert Health Insurance Setup → Expat-Savvy.ch](https://expat-savvy.ch)** — a step every Zurich move requires within 90 days of arrival.
 
@@ -238,7 +238,7 @@ Auris quotes per assignment and does not publish public rate cards. ReloFinder's
 
 ### Why do expats look for Auris alternatives?
 
-The most common reasons are wanting an owner-operator relationship rather than a corporate consultant pool, needing specialist off-market access in 0.1% vacancy districts, or preferring a fixed-fee structure. Welcome Service, Prime Relocation, and Anchor Relocation each address one of these three gaps — see the comparison table above.
+The most common reasons are wanting a more boutique owner-operator relationship rather than a corporate consultant pool, needing specialist off-market access in 0.1% vacancy districts, or covering a move that spans multiple cantons or language regions. Anchor Relocation, Prime Relocation, and Lodge Relocation each address one of these three gaps — see the comparison table above.
 
 ### Which Auris alternative is best for off-market apartments in Zurich?
 
