@@ -16,6 +16,9 @@ if (!import.meta.env.PUBLIC_SUPABASE_URL || !import.meta.env.PUBLIC_SUPABASE_ANO
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+const supabaseServiceKey = import.meta.env.SUPABASE_SERVICE_ROLE_KEY || '';
+export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
+
 // Type-safe database client
 export type Database = {
   public: {

@@ -90,6 +90,11 @@ export const processCompany = async (companySlug: string) => {
                 }
             }
 
+            // Always pass all offices through for multi-office display
+            if (relocatorData.offices?.length) {
+                companyData.offices = relocatorData.offices;
+            }
+
             console.time(`fetch-reviews-${companySlug}`);
             // Consolidated: 3 queries in parallel (removed redundant SEO query - already in relocatorData)
             const [reviewsResult, googleReviewsResult, summaryResult] =

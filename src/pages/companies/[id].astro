@@ -405,40 +405,62 @@ const schema = {
               </a>
             </div>
 
-            <!-- Headquarters Card (Matches Screenshot) -->
+            <!-- Offices Card -->
             <div
               class="mt-12 bg-gray-50 p-8 rounded-[2.5rem] border border-gray-100 max-w-2xl"
             >
               <h3
                 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6"
               >
-                Headquarters
+                {companyData.offices && companyData.offices.length > 1 ? "Offices" : "Headquarters"}
               </h3>
               <div class="space-y-6">
                 {
-                  companyData.address &&
-                    (companyData.address.street ||
-                      companyData.address.city) && (
+                  companyData.offices && companyData.offices.length > 0 ? (
+                    companyData.offices.map((office: any) => (
                       <div class="flex gap-4 items-start">
                         <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm text-[#FF6F61] border border-gray-100">
                           <MapPin className="w-5 h-5" />
                         </div>
                         <div>
+                          {office.name && (
+                            <p class="text-xs font-bold text-[#FF6F61] uppercase tracking-widest mb-0.5">
+                              {office.name}
+                            </p>
+                          )}
                           <p class="font-bold text-gray-900">
-                            {companyData.address.postalCode}{" "}
-                            {companyData.address.city}
-                            {companyData.address.canton
-                              ? `, ${companyData.address.canton}`
-                              : ""}
+                            {office.zip} {office.city}
                           </p>
                           <p class="text-sm text-gray-500">
-                            {companyData.address.street}
-                            {companyData.phone ? ` · ${companyData.phone}` : ""}
+                            {office.street}
+                            {office.phone ? ` · ${office.phone}` : ""}
                           </p>
                         </div>
                       </div>
-                    )
+                    ))
+                  ) : companyData.address &&
+                    (companyData.address.street || companyData.address.city) ? (
+                    <div class="flex gap-4 items-start">
+                      <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm text-[#FF6F61] border border-gray-100">
+                        <MapPin className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p class="font-bold text-gray-900">
+                          {companyData.address.postalCode}{" "}
+                          {companyData.address.city}
+                          {companyData.address.canton
+                            ? `, ${companyData.address.canton}`
+                            : ""}
+                        </p>
+                        <p class="text-sm text-gray-500">
+                          {companyData.address.street}
+                          {companyData.phone ? ` · ${companyData.phone}` : ""}
+                        </p>
+                      </div>
+                    </div>
+                  ) : null
                 }
+                <div class="border-t border-gray-200"></div>
                 <div class="flex gap-4 items-start">
                   <div
                     class="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm text-[#FF6F61] border border-gray-100"

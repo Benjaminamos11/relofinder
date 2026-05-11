@@ -11,18 +11,18 @@ interface GoogleReviewsParams {
 }
 
 interface GoogleReviewsResponse {
-  place_results?: {
+  place_info?: {
     rating?: number;
     reviews?: number;
-    reviews_results?: Array<{
-      rating: number;
-      date: string;
-      snippet: string;
-      user: {
-        name: string;
-      };
-    }>;
   };
+  reviews?: Array<{
+    rating: number;
+    date: string;
+    snippet: string;
+    user: {
+      name: string;
+    };
+  }>;
   error?: string;
 }
 
@@ -46,7 +46,6 @@ export async function fetchGoogleReviews(params: GoogleReviewsParams): Promise<G
 
   try {
     const response = await fetch(url.toString());
-    
     if (!response.ok) {
       console.error(`SerpAPI error: ${response.status} ${response.statusText}`);
       return { error: `API error: ${response.status}` };
@@ -97,11 +96,11 @@ export async function getPlaceInfo(place_id: string) {
 export async function syncExternalReviews(agencyId: string, placeId: string) {
   const reviews = await fetchGoogleReviews({ place_id: placeId });
   
-  if (reviews.error || !reviews.place_results) {
+  if (reviews.error || !reviews.place_info) {
     return { success: false, error: reviews.error };
   }
 
-  const { rating, reviews: review_count } = reviews.place_results;
+  const { rating, reviews: review_count } = reviews.place_info;
 
   if (!rating || !review_count) {
     return { success: false, error: 'No review data available' };
@@ -116,7 +115,8 @@ export async function syncExternalReviews(agencyId: string, placeId: string) {
       source: 'google',
       rating,
       review_count,
-      payload: reviews.place_results,
+      payload: reviews.reviews,
+      individual_reviews: reviews.reviews ?? [],
     },
   };
 }
