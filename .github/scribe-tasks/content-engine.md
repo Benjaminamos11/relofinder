@@ -122,6 +122,31 @@ curl -sS -X POST https://api.resend.com/emails \
 
 DUPLICATE-CHECK, ROTATION-DAY, SLUG, TITLE, WORD_COUNT, PARTNER LINKS USED (2-4 from matrix), INTERNAL LINK, CTA, RESEND ID, NEXT FIRE.
 
+
+## ⚠️ Step 9.5 — Submit URL to Google Search Console for fast indexing (mandatory after publish)
+
+After the publisher pushes your post (which takes ~5 min), submit the URL to GSC + ping sitemaps:
+
+```bash
+# Refresh GSC access token
+ACCESS_TOKEN=$(curl -sS -X POST https://oauth2.googleapis.com/token \
+  -d "client_id=$GSC_CLIENT_ID&client_secret=$GSC_CLIENT_SECRET&refresh_token=$GSC_REFRESH_TOKEN&grant_type=refresh_token" | jq -r .access_token)
+
+# Submit URL to GSC Indexing API
+NEW_URL="<full public URL of the just-published post>"
+curl -sS -X POST "https://indexing.googleapis.com/v3/urlNotifications:publish" \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d "{\"url\":\"$NEW_URL\",\"type\":\"URL_UPDATED\"}"
+
+# Ping sitemap (Google + Bing)
+SITEMAP="<https://www.<domain>/sitemap-index.xml>"
+curl -sS "https://www.google.com/ping?sitemap=$SITEMAP" >/dev/null || true
+curl -sS "https://www.bing.com/ping?sitemap=$SITEMAP" >/dev/null || true
+```
+
+Note: GSC Indexing API only auto-indexes some content types (Job, BroadcastEvent). For blog posts it acts as a strong hint. Sitemap ping ensures both engines see the new URL within hours.
+
 ## Hard rules
 
 - Always 1,500-2,500 words
