@@ -1,0 +1,31 @@
+name: Scribe Publisher
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: scribe-publisher
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 1, persist-credentials: true }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Configure git
+        run: |
+          git config user.email "benjaminamoswagner@gmail.com"
+          git config user.name "relofinder scribe"
+      - name: Run publisher
+        env:
+          SUPABASE_URL: ${{ secrets.DA_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE: ${{ secrets.DA_SUPABASE_SERVICE_ROLE }}
+          SCRIBE_PROJECT: relofinder
+        run: python .github/scripts/scribe_publish.py

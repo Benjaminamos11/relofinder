@@ -1,0 +1,50 @@
+name: Scribe Cron
+
+# relofinder.ch — daily content with weekday rotation
+
+on:
+  schedule:
+    - cron: "0 7 * * *"        # content-engine daily 07:00 UTC
+    - cron: "0 18 * * 0"       # weekly-summary Sunday 18:00 UTC
+    - cron: "*/15 * * * *"     # session-reaper
+  workflow_dispatch:
+    inputs:
+      task:
+        required: true
+        type: choice
+        options: [content-engine, weekly-summary, session-reaper]
+
+concurrency:
+  group: scribe-cron-${{ github.event.schedule || inputs.task }}
+  cancel-in-progress: false
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 1 }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Resolve task
+        id: resolve
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+          INPUT_TASK: ${{ inputs.task }}
+        run: python .github/scripts/scribe_resolve_task.py
+      - name: Dispatch OR Reap
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SUPABASE_URL: ${{ secrets.DA_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE: ${{ secrets.DA_SUPABASE_SERVICE_ROLE }}
+          SCRIBE_PROJECT: relofinder
+          SCRIBE_TASK: ${{ steps.resolve.outputs.task }}
+        run: |
+          if [ "$SCRIBE_TASK" = "session-reaper" ]; then
+            python .github/scripts/scribe_reaper.py
+          else
+            python .github/scripts/scribe_dispatch.py "$SCRIBE_TASK"
+          fi
