@@ -85,7 +85,8 @@ export default defineConfig({
       force: true
     },
     ssr: {
-      noExternal: ['@nanostores/react', 'nanostores', 'lucide-react']
+      noExternal: ['@nanostores/react', 'nanostores', 'lucide-react'],
+      external: ['@anthropic-ai/sdk']
     },
     resolve: {
       alias: {

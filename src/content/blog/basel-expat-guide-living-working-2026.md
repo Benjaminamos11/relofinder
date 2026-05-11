@@ -1,10 +1,11 @@
 ---
 title: "Basel Expat Guide 2026: Living, Working & Thriving in Switzerland's Pharma Capital"
 description: "Complete Basel relocation guide for expats. Real costs, neighborhoods, work permits, pharma jobs, and insider tips for moving to Switzerland's third-largest city."
-pubDate: 2026-05-11
+publishDate: 2026-05-11
 author: "relofinder"
 tags: ["basel", "city-guide", "expat-guide", "switzerland", "relocation", "pharma-jobs"]
-image: "/images/blog/basel-guide-2026.jpg"
+heroImage: "/images/blog/basel-guide-2026.jpg"
+readingTime: 12
 category: "City Guides"
 featured: true
 ---
