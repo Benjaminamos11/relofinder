@@ -11,7 +11,7 @@ import { AdminAlert } from '../../emails/AdminAlert';
 import { MagicLinkEmail } from '../../emails/MagicLinkEmail';
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY || process.env.RESEND_API_KEY);
-const TO_EMAIL = 'bw@expat-savvy.ch';
+const TO_EMAIL = 'bw@loaded.ch';
 
 export const GET: APIRoute = async () => {
     try {
@@ -38,7 +38,7 @@ export const GET: APIRoute = async () => {
             },
             {
                 subject: 'Relofinder: You Won a Client!',
-                react: AgencyWin({ agencyName: 'Prime Relocation', clientDetails: { name: 'Ben Wagner', email: 'bw@expat-savvy.ch', phone: '+4179000000', moveDate: 'ASAP' } })
+                react: AgencyWin({ agencyName: 'Prime Relocation', clientDetails: { name: 'Ben Wagner', email: 'bw@loaded.ch', phone: '+4179000000', moveDate: 'ASAP' } })
             },
             {
                 subject: 'Relofinder: Admin Alert',

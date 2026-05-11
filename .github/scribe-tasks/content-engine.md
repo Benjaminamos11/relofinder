@@ -88,7 +88,7 @@ curl -sS -X POST "$SUPABASE_URL/rest/v1/publisher_queue" \
   -H 'Content-Type: application/json' \
   -d "$(jq -n --arg path "src/content/blog/$SLUG.$EXT" --arg c "$POST" --arg msg "blog: $SLUG — <one-liner>" '{
     project: "relofinder",
-    kind: "blog-post",
+    kind: "news",
     file_path: $path,
     content: $c,
     append: false,
@@ -114,7 +114,7 @@ curl -sS -X POST https://api.resend.com/emails \
   -H "Authorization: Bearer $RESEND_API_KEY" -H 'Content-Type: application/json' \
   -d "$(jq -n --arg sub "[relofinder] New post: $SLUG" --arg txt "..." '{
     from: "relofinder scribe <notifications@expat-savvy.ch>",
-    to: "bw@expat-savvy.ch", subject: $sub, text: $txt
+    to: "bw@loaded.ch", subject: $sub, text: $txt
   }')"
 ```
 
