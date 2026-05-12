@@ -8,7 +8,45 @@ heroImage: "/images/blog/swiss-rental-crisis-2026.jpg"
 readingTime: 11
 category: "Housing & Living"
 featured: true
+faqs:
+  - question: "What is Switzerland's vacancy rate in 2026?"
+    answer: "Approximately 1.08% nationally — below the 1% threshold the Federal Office for Housing defines as a shortage. Zurich City is at 0.07% (7 vacancies per 10,000 apartments), Zug at 0.3%, Geneva at ~0.34%. Anything below 1.27% (Wüest Partner's ideal) means upward rent pressure."
+  - question: "How many applications do expats typically submit before securing an apartment?"
+    answer: "Most expats in Zurich, Geneva, or Zug send 30-60 applications before getting accepted. Plan for 3 months of search, attend 10-15 viewings, and budget for temporary housing during the gap."
+  - question: "How much should I budget for rent in Zurich vs Geneva in 2026?"
+    answer: "A 1-bedroom apartment in Zurich runs CHF 1,800-2,800/month; 2-bedroom CHF 2,500-4,200. Geneva is 10-15% higher in central districts. Add 20% for utilities and the standard 3-month deposit (Mietkaution)."
+  - question: "Can expats without Swiss residency apply for apartments?"
+    answer: "Yes, but landlords prefer applicants with a valid Swiss work permit (B/C/L) or signed employment contract. Without one, you'll need either a Swiss guarantor, a 6-month rent deposit, or an apartment from a relocation agent's exclusive inventory."
+  - question: "What documents do I need for a Swiss rental application?"
+    answer: "Salary statement (last 3 months), employer's employment confirmation, Swiss residence permit copy, debt collection register extract (Betreibungsregisterauszug — under CHF 50 from your canton), references from previous landlords, and photo ID. Submit a complete dossier within 24 hours of the listing going live."
+  - question: "Are short-term furnished apartments a good first step?"
+    answer: "Yes — most expats budget 4-8 weeks of serviced apartments (CHF 3,500-6,000/month) while hunting for a permanent lease. This gives you a Swiss address for applications, time for in-person viewings, and avoids signing a bad lease under time pressure."
 ---
+
+<div class="tldr">
+<span class="tldr-label">TL;DR · 30 sec read</span>
+
+Switzerland's rental vacancy rate is **1.08%** in 2026 — Zurich City sits at **0.07%** (7 vacancies per 10,000 apartments). Expats typically send **30-60 applications** before securing a lease and compete with 30+ candidates per viewing. **Plan 3 months**, **budget 4-8 weeks of serviced housing** as a buffer, and submit a **complete dossier within 24 hours** of any listing going live.
+
+</div>
+
+<div class="stat-grid">
+<div class="stat-card">
+<p class="stat-card-value">0.07 %</p>
+<p class="stat-card-label">Zurich City vacancy 2026</p>
+<p class="stat-card-desc">Lowest in the Western world — 7 apartments vacant per 10,000.</p>
+</div>
+<div class="stat-card">
+<p class="stat-card-value">50+</p>
+<p class="stat-card-label">Apps per Zurich listing</p>
+<p class="stat-card-desc">Landlords receive 30-60 applications for every well-priced apartment.</p>
+</div>
+<div class="stat-card">
+<p class="stat-card-value">3 months</p>
+<p class="stat-card-label">Realistic search timeline</p>
+<p class="stat-card-desc">Budget 4-8 weeks of serviced housing as a buffer.</p>
+</div>
+</div>
 
 When Maria, a software engineer from Madrid, landed her Zurich job offer in January 2026, she gave herself three months to find an apartment. By March, she'd applied to 47 listings, attended 12 viewings with 30+ other candidates each, and was sleeping on a colleague's couch. "I thought Swiss efficiency meant things would be organized," she told me over coffee in Kreis 5. "Instead, I'm competing with investment bankers who earn triple my salary for a one-bedroom in Oerlikon."
 

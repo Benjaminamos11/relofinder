@@ -52,8 +52,29 @@ Always link to /assessment/ with a contextual phrase like "Take the 2-minute rel
 - Practical, expat-focused, Swiss-specific
 - Reference specific cantons, CHF amounts, real procedures
 
-## Frontmatter (match existing schema)
-Read 1-2 recent posts via GitHub raw API to match the exact frontmatter. Don't invent.
+## Frontmatter (EXACT schema — Zod-validated, Vercel build fails on mismatch)
+
+```yaml
+---
+title: "<title — used as H1, ≤ 75 chars>"
+description: "<140-160 char meta>"
+publishDate: YYYY-MM-DD      # NOT pubDate
+author: "relofinder"
+heroImage: "/images/blog/<existing-asset>.webp"   # REQUIRED, must be a string
+category: "<one of: City Guides | Housing & Living | Immigration | Finance | Healthcare | Family & Education | Lifestyle | Guides>"
+tags: ["3", "to", "7", "tags"]
+readingTime: 11               # integer
+featured: false
+faqs:                         # template auto-renders styled FAQ at bottom — USE THIS
+  - question: "Clear question?"
+    answer: "2-4 sentence direct answer with real Swiss numbers."
+  - …5-7 FAQ items total…
+---
+```
+
+**Critical**:
+- `publishDate` (NOT `pubDate`), `heroImage` (NOT `image`), `faqs` (NOT `faqItems`/`faq`)
+- `faqs` array is REQUIRED — the blog template auto-renders a styled accordion at the bottom of every post when this field is present. Without it, the post has no FAQ section.
 
 ## Step 2 — Research
 
@@ -63,18 +84,56 @@ WebSearch + WebFetch:
 - Moneyland / Comparis for financial topics
 - City-specific tourism boards for city-deep-dive day
 
-## Step 3 — Write the post
+## Step 3 — Write the post — design-polish standard
 
-Word count: 1,500–2,500 words.
+Word count: 1,500–2,500 words. The blog template ships CSS for `.tldr`, `.stat-grid`, `.stat-card`, `.callout` — use those HTML wrappers so every post looks polished, not raw markdown.
 
-Structure:
-1. Hook (real expat situation)
-2. The problem in Swiss-specific terms
-3. 4–7 H2 sections (use kebab-case `id` attributes)
-4. At least one comparison table or data block
-5. 3+ partner links from the matrix (natural placement, never spam)
-6. 1 internal link to another relofinder.ch post
-7. CTA section linking to /assessment/
+### Required structure (in order)
+
+1. **TL;DR block** at the very top:
+   ```html
+   <div class="tldr">
+   <span class="tldr-label">TL;DR · 30 sec read</span>
+
+   3 dense sentences with the practical answer, the 3 most surprising stats, and one action verb for the reader.
+
+   </div>
+   ```
+
+2. **Headline-stat grid** right after TL;DR (3 cards with the 3 most surprising numbers):
+   ```html
+   <div class="stat-grid">
+   <div class="stat-card">
+   <p class="stat-card-value">0.07 %</p>
+   <p class="stat-card-label">Zurich vacancy 2026</p>
+   <p class="stat-card-desc">One sentence of context.</p>
+   </div>
+   …two more cards…
+   </div>
+   ```
+
+3. **Hook paragraph** (real expat situation, 1-2 sentences).
+4. **5–7 H2 sections written as proper English sentences** (NOT kebab-case slugs, NO `{#anchor}` syntax — Astro auto-generates IDs from heading text).
+5. **At least one comparison table** — standard markdown pipe-tables (template auto-styles them).
+6. **Callouts** for important rules of thumb, warnings, or insider tips. Max 3 per article:
+   ```html
+   <div class="callout callout-info">
+   <p class="callout-title"><span class="callout-icon">💡</span> Insider Tip</p>
+   <p>One sentence with the actionable insight.</p>
+   </div>
+   ```
+   Variants: `callout-info` (blue, tips), `callout-warning` (amber, watch-outs), `callout-success` (green, wins).
+7. **3+ partner links** from the matrix (natural placement, never spam).
+8. **1 internal link** to another relofinder.ch post.
+9. **CTA section** linking to /assessment/.
+10. **No `<cite>` tags** — convert any inline citations to text like `(Source: BFS, Q1 2026)` or markdown footnotes. The `<cite>` tag without proper styling renders as italics inline, which looks broken.
+
+### Hard rules
+
+- **No code fences** in the body (no triple-backticks). This is an expat guide, not a tutorial.
+- **No raw `<table>` HTML** — use markdown pipe-tables (CSS styles them automatically).
+- **No more than 3 callouts** per article.
+- `faqs:` in frontmatter (5-7 items) — the template auto-renders the FAQ accordion at the bottom.
 
 ## Step 4 — Queue blog-post
 
