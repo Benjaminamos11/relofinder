@@ -5,7 +5,7 @@ import os
 import sys
 
 SCHEDULE_TO_TASK: dict[str, str] = {
-    "0 7 * * *":     "content-engine",   # daily 07:00 UTC
+    "0 6 * * *":     "content-engine",   # daily 06:00 UTC (08:00 Swiss CEST)
     "0 18 * * 0":    "weekly-summary",   # Sunday 18:00 UTC
     "*/15 * * * *":  "session-reaper",
 }
