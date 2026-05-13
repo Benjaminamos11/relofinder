@@ -79,10 +79,87 @@ def path_allowed(p: str) -> bool:
     return any(p == prefix or p.startswith(prefix) for prefix in ALLOWED_PATH_PREFIXES)
 
 
+
+# -----------------------------------------------------------------------------
+# Frontmatter pre-validation (added 2026-05-13) — catches the universal failure
+# patterns BEFORE the row reaches Vercel. Brand-agnostic: only checks structural
+# bugs (malformed YAML, date-typed fields that aren't dates, empty enums). The
+# Astro Zod schema still catches brand-specific bugs at build time; this just
+# stops the most common ones from getting that far.
+# -----------------------------------------------------------------------------
+import re as _re
+
+DATE_FIELDS = ("pubDate", "publishedAt", "publishDate", "date", "updatedDate",
+               "updatedAt", "lastModified", "scoredAt")
+ENUM_FIELDS = ("category", "contentType", "kind", "actor", "language", "lang", "locale")
+
+
+def _parse_frontmatter(text):
+    if not text.startswith("---"):
+        return None
+    end = text.find("\n---", 4)
+    if end < 0:
+        return None
+    fm_text = text[4:end].lstrip("\n")
+    out = {}
+    current_key = None
+    for raw in fm_text.splitlines():
+        line = raw.rstrip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith((" ", "\t")):
+            if current_key and isinstance(out.get(current_key), list):
+                item = line.lstrip()
+                if item.startswith("- "):
+                    out[current_key].append(item[2:].strip().strip("\"\'"))
+            continue
+        if ":" not in line:
+            continue
+        key, _, val = line.partition(":")
+        key = key.strip(); val = val.strip()
+        current_key = key
+        if val in ("", ">-", ">", "|", "|-"):
+            out[key] = []
+            continue
+        if val.startswith("["):
+            inner = val.strip("[]").strip()
+            out[key] = [x.strip().strip("\"\'") for x in inner.split(",") if x.strip()]
+        else:
+            out[key] = val.strip("\"\'")
+    return out
+
+
+def validate_frontmatter(fp, content):
+    """Return None if valid; else an error string. Only validates .md/.mdx."""
+    if not (fp.endswith(".md") or fp.endswith(".mdx")):
+        return None
+    fm = _parse_frontmatter(content)
+    if fm is None:
+        return "no frontmatter found (expected YAML between '---' markers)"
+    errs = []
+    # Date-typed fields must be parseable date strings, not dict/list/empty
+    for k in DATE_FIELDS:
+        if k in fm:
+            v = fm[k]
+            if not isinstance(v, str) or not _re.match(r"^\d{4}-\d{2}-\d{2}", v):
+                errs.append(f"field {k!r} must be YYYY-MM-DD date string (got {type(v).__name__}: {v!r})")
+    # Enum-typed fields must be present, non-empty strings (Astro Zod enums reject empty/None)
+    for k in ENUM_FIELDS:
+        if k in fm:
+            v = fm[k]
+            if not isinstance(v, str) or v.strip() == "":
+                errs.append(f"field {k!r} must be a non-empty string (got {type(v).__name__}: {v!r})")
+    return "; ".join(errs) if errs else None
+
 def write_one(row: dict) -> tuple[bool, str | None]:
     fp = row["file_path"]
     if not path_allowed(fp):
         return False, f"path not in allow-list: {fp}"
+    # Pre-validate frontmatter before write — keeps schema bugs out of Vercel
+    if not row.get("append") and (row.get("metadata") or {}).get("encoding") != "base64":
+        verr = validate_frontmatter(fp, row.get("content", ""))
+        if verr:
+            return False, f"frontmatter validation failed: {verr}"
     try:
         target = safe_path(fp)
     except ValueError as e:
