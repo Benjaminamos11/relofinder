@@ -2,6 +2,56 @@ Task: **content-engine**
 
 Daily 07:00 UTC. Write ONE blog post on relofinder.ch following the weekday rotation. Skip if no fresh angle.
 
+
+## ⚠️ Step 0 (BEFORE EVERYTHING ELSE) — Universal article-safety guards (added 2026-05-13 after digitalawards duplicate-articles incident)
+
+Three mandatory guards before you pick any topic. ALL must pass before drafting.
+
+### Guard 1: ONE-FIRE-PER-DAY
+
+This task can be dispatched twice in a day (manual test, retry, missed-fire self-dispatch by the session reaper, etc). Without this guard you'll write a duplicate. Incident 2026-05-13: digitalawards/Lou ran twice in one day and shipped two articles on Swiss AI regulation (different slugs, same topic).
+
+```bash
+PROJECT="relofinder"
+TODAY=$(date -u +%Y-%m-%d)
+ALREADY=$(curl -sS "$SUPABASE_URL/rest/v1/editorial_log_shared?project=eq.$PROJECT&action_type=eq.blog-post-queued&action_at=gte.${TODAY}T00:00:00&select=id&limit=1" \
+  -H "apikey: $SUPABASE_SERVICE_ROLE" -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE")
+```
+
+If `$ALREADY` is anything other than `[]` → **EXIT IMMEDIATELY**. Log `action_type='content-engine-skipped-already-ran-today'` and stop. Zero file writes, zero queue entries. Manual or accidental extra invocations must produce zero side effects.
+
+### Guard 2: TOPIC dedup (not just slug)
+
+The existing slug-check below only catches exact/substring slug matches. It misses different slugs with the same topic. Pull last 14 days of titles:
+
+```bash
+LAST_14D=$(date -u -d '14 days ago' +%Y-%m-%dT00:00:00 2>/dev/null || date -u -v-14d +%Y-%m-%dT00:00:00)
+curl -sS "$SUPABASE_URL/rest/v1/editorial_log_shared?project=eq.$PROJECT&action_type=eq.blog-post-queued&action_at=gte.${LAST_14D}&select=slug,title,action_at&order=action_at.desc&limit=100" \
+  -H "apikey: $SUPABASE_SERVICE_ROLE" -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE"
+```
+
+For your candidate, extract 3-5 key nouns/entities. For each existing article in the window, count how many of those nouns appear in its title. **If ≥2 nouns overlap → SAME TOPIC → drop the candidate.** Pick a different angle or skip the day.
+
+### Guard 3: INTERNAL CANNIBALIZATION (don't compete with our own pages)
+
+A blog post that targets the same primary keyword as an existing service / landing / comparison page CANNIBALISES that page's ranking. Check non-blog content too:
+
+```bash
+ls src/pages/ src/content/ 2>/dev/null | head -30
+```
+
+For your candidate's primary keyword, check whether any service / landing / comparison page already targets it (filename or page title contains the keyword). If yes → either pick a related-but-distinct sub-angle that doesn't cannibalise, OR skip the topic entirely.
+
+### Guard 4 (OPTIONAL — only if GSC_* env vars are set): TARGET GSC GAPS
+
+If `GSC_CLIENT_ID`, `GSC_CLIENT_SECRET`, and `GSC_REFRESH_TOKEN` are in env, query Search Console for top-50 queries where impressions > 50 AND average position > 10 (last 28d). These are the "almost-ranking" gaps — highest-leverage opportunities. Prefer candidates that map to one of these queries. Log the chosen target query in `editorial_log_shared.summary` so we can track gap closure over time. If GSC creds aren't present → skip this guard (don't crash).
+
+### Decision rule
+
+A candidate ships only if Guards 1-3 all pass (+ Guard 4 when GSC is wired). When in doubt: "no article today" is always better than a duplicate, a cannibalising page, or a topic with zero search traction. Log skip with `action_type='content-engine-skipped-<reason>'`.
+
+---
+
 ## ⚠️ Step 1 — Runtime duplicate-check (mandatory)
 
 ```bash
