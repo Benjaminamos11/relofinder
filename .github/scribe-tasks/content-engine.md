@@ -219,11 +219,17 @@ curl -sS -X POST "$SUPABASE_URL/rest/v1/editorial_log_shared" \
     slug: $slug, title: $t, keyword: $kw, word_count: $wc
   }')"
 
+PUBLIC_URL="https://relofinder.ch/blog/$SLUG"   # incident 2026-05-15: relofinder serves blog posts at /blog/<slug>, NOT root. Email MUST use this exact pattern.
+
 curl -sS -X POST https://api.resend.com/emails \
   -H "Authorization: Bearer $RESEND_API_KEY" -H 'Content-Type: application/json' \
-  -d "$(jq -n --arg sub "[relofinder] New post: $SLUG" --arg txt "..." '{
+  -d "$(jq -n --arg sub "[relofinder] New post: $SLUG" \
+              --arg url "$PUBLIC_URL" \
+              --arg t "<title>" \
+              --argjson wc "$WORD_COUNT" '{
     from: "relofinder scribe <notifications@expat-savvy.ch>",
-    to: "bw@loaded.ch", subject: $sub, text: $txt
+    to: "bw@loaded.ch", subject: $sub,
+    text: "New relofinder.ch blog post live (~5 min after publisher):\n\nTitle: \($t)\nWord count: \($wc)\nURL (verify it returns 200 before you click): \($url)\n\nThe URL pattern is ALWAYS https://relofinder.ch/blog/<slug> — never the bare slug."
   }')"
 ```
 
@@ -242,14 +248,15 @@ ACCESS_TOKEN=$(curl -sS -X POST https://oauth2.googleapis.com/token \
   -d "client_id=$GSC_CLIENT_ID&client_secret=$GSC_CLIENT_SECRET&refresh_token=$GSC_REFRESH_TOKEN&grant_type=refresh_token" | jq -r .access_token)
 
 # Submit URL to GSC Indexing API
-NEW_URL="<full public URL of the just-published post>"
+# NOTE: relofinder serves posts at /blog/<slug>. NEVER omit the /blog/ prefix.
+NEW_URL="https://relofinder.ch/blog/$SLUG"
 curl -sS -X POST "https://indexing.googleapis.com/v3/urlNotifications:publish" \
   -H "Authorization: Bearer $ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d "{\"url\":\"$NEW_URL\",\"type\":\"URL_UPDATED\"}"
 
 # Ping sitemap (Google + Bing)
-SITEMAP="<https://www.<domain>/sitemap-index.xml>"
+SITEMAP="https://relofinder.ch/sitemap-index.xml"
 curl -sS "https://www.google.com/ping?sitemap=$SITEMAP" >/dev/null || true
 curl -sS "https://www.bing.com/ping?sitemap=$SITEMAP" >/dev/null || true
 ```
@@ -264,3 +271,4 @@ Note: GSC Indexing API only auto-indexes some content types (Job, BroadcastEvent
 - Never duplicate a slug (check live state + GitHub API)
 - Never edit `relofinder/astro.config.mjs`, `package.json`, `tailwind.config.ts`, `src/lib/**`, `src/components/**`, `src/layouts/**`
 - project='relofinder' in every publisher_queue insert
+- Public URL pattern is ALWAYS `https://relofinder.ch/blog/<slug>` — never the bare slug. Used in: notification email (Step 9), GSC submission (Step 9.5), sitemap ping (Step 9.5), editorial_log_shared. Incident 2026-05-15: Lou emailed `https://relofinder.ch/<slug>` to Benjamin which returned 404 even though the article was correctly published at `/blog/<slug>`.
