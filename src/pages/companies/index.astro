@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
+import SEOInternalLinks from "../../components/common/SEOInternalLinks.astro";
 import { supabase } from "../../lib/supabase";
 import { getCompanyInitials, getCompanyLogo, shouldInvertCompanyLogo } from "../../lib/companyVisuals";
 import { BadgeCheck, MapPin, Briefcase, Filter, X, Search, Sparkles, Clock, ShieldCheck, ArrowRight } from "lucide-react";
@@ -279,6 +280,11 @@ const companyFaqs = [
             </div>
         </div>
     </section>
+
+    <SEOInternalLinks
+        variant="directory"
+        title="Fast paths into the provider directory"
+    />
 
     <!-- Filter & Grid Section -->
     <section id="directory-results" class="py-12 md:py-20 bg-white min-h-screen scroll-mt-24">
@@ -695,6 +701,7 @@ const companyFaqs = [
             const countDisplay = document.getElementById("countDisplay");
             const noResults = document.getElementById("noResults");
             const grid = document.getElementById("companyGrid");
+            const params = new URLSearchParams(window.location.search);
 
             // Mobile inputs sync (basic implementation)
             const mobileSearch = document.getElementById("mobileSearch");
@@ -718,6 +725,70 @@ const companyFaqs = [
                 });
 
             let verifiedOnly = false;
+
+            function cleanParam(value) {
+                return (value || "")
+                    .toLowerCase()
+                    .replace(/\/+$/, "")
+                    .replace(/&/g, " ")
+                    .replace(/[^a-z0-9]+/g, " ")
+                    .trim();
+            }
+
+            function normalizeServiceParam(value) {
+                const cleaned = cleanParam(value);
+                const aliases = {
+                    housing: "home search",
+                    "home search": "home search",
+                    apartment: "apartment search",
+                    immigration: "visa immigration",
+                    "immigration services": "visa immigration",
+                    visa: "visa immigration",
+                    education: "school search",
+                    school: "school search",
+                    "school search": "school search",
+                    moving: "moving managment",
+                    "moving logistics": "moving managment",
+                    "move management": "moving managment",
+                    insurance: "insurance guidance",
+                    finance: "tax legal",
+                    advisory: "legal advice",
+                    "settling in": "settling in",
+                    departure: "departure support",
+                };
+                return aliases[cleaned] || cleaned;
+            }
+
+            function setSelectFromParam(select, value, type = "default") {
+                if (!select || !value) return;
+                const cleaned = type === "service" ? normalizeServiceParam(value) : cleanParam(value);
+                const option = Array.from(select.options).find((item) => {
+                    const optionValue = type === "service" ? normalizeServiceParam(item.value) : cleanParam(item.value);
+                    const optionText = type === "service" ? normalizeServiceParam(item.textContent || "") : cleanParam(item.textContent || "");
+                    return optionValue === cleaned || optionValue.includes(cleaned) || optionText.includes(cleaned);
+                });
+                if (option) select.value = option.value;
+            }
+
+            function applyInitialUrlFilters() {
+                const search = cleanParam(params.get("search") || params.get("q"));
+                const region = cleanParam(params.get("region"));
+                const service = cleanParam(params.get("service"));
+                const tier = cleanParam(params.get("tier"));
+
+                if (search && searchInput) searchInput.value = search;
+                setSelectFromParam(regionFilter, region);
+                setSelectFromParam(serviceFilter, service, "service");
+
+                if (tier === "preferred" || tier === "partner" || tier === "verified") {
+                    verifiedOnly = true;
+                    verifiedBtn?.classList.add("bg-slate-900", "text-white", "border-slate-900");
+                }
+
+                if (mobileSearch && search) mobileSearch.value = search;
+                setSelectFromParam(mobileRegion, region);
+                setSelectFromParam(mobileService, service, "service");
+            }
 
             function filter() {
                 const term = searchInput ? searchInput.value.toLowerCase() : "";
@@ -807,6 +878,9 @@ const companyFaqs = [
                     );
                     filter();
                 });
+
+            applyInitialUrlFilters();
+            filter();
         });
     </script>
 

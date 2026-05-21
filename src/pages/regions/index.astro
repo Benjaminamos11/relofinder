@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { ArrowRight, MapPin } from 'lucide-react';
 import SEOInsightBox from '../../components/common/SEOInsightBox.astro';
+import SEOInternalLinks from '../../components/common/SEOInternalLinks.astro';
 
 const regions = [
   {
@@ -159,6 +160,11 @@ const canonical = "https://relofinder.ch/regions/";
       </div>
     </div>
   </section>
+
+  <SEOInternalLinks
+    variant="region"
+    title="Popular city and provider paths"
+  />
 
   <!-- SEO Insight Box -->
   <section class="py-24 bg-white border-t border-slate-100">

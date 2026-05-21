@@ -97,6 +97,7 @@ const faqSchema = post.data.faqs
 
 import BlogStickyCTA from "../../components/blog/BlogStickyCTA.astro";
 import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
+import SEOInternalLinks from "../../components/common/SEOInternalLinks.astro";
 
 // Filter top-level headings for TOC
 const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
@@ -301,6 +302,13 @@ const isCostOfLivingGuide = post.slug === "cost-of-living-switzerland-breakdown-
                             </div>
                         )
                     }
+
+                    <div class="mt-16">
+                        <SEOInternalLinks
+                            variant="blog"
+                            title="Continue with provider and city comparisons"
+                        />
+                    </div>
 
                     {/* Tag Cloud */}
                     <div class="mt-16 pt-10 border-t border-gray-100">

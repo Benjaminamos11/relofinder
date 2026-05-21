@@ -1,0 +1,198 @@
+---
+import { ArrowRight, MapPin, Search, ShieldCheck } from "lucide-react";
+
+interface LinkItem {
+  label: string;
+  href: string;
+  note: string;
+}
+
+interface Props {
+  variant?: "region" | "service" | "blog" | "directory";
+  currentRegion?: string;
+  currentService?: string;
+  title?: string;
+}
+
+const {
+  variant = "blog",
+  currentRegion = "",
+  currentService = "",
+  title = "Useful next steps",
+} = Astro.props;
+
+const regionSlug = currentRegion.toLowerCase().replace(/\s+/g, "-");
+const serviceSlug = currentService.toLowerCase().replace(/\s+/g, "-");
+
+const cityServiceLinks: Record<string, Record<string, string>> = {
+  housing: {
+    zurich: "/services/housing/zurich/",
+    geneva: "/services/housing/geneva/",
+    basel: "/services/housing/basel/",
+    lausanne: "/services/housing/lausanne/",
+    zug: "/services/housing/zug/",
+  },
+  immigration: {
+    zurich: "/services/immigration/zurich/",
+    geneva: "/services/immigration/geneva/",
+    basel: "/services/immigration/basel/",
+    zug: "/services/immigration/zug/",
+  },
+  finance: {
+    zurich: "/services/finance/zurich/",
+    geneva: "/services/finance/geneva/",
+    basel: "/services/finance/basel/",
+    zug: "/services/finance/zug/",
+  },
+  advisory: {
+    zug: "/services/advisory/zug/",
+    alps: "/services/advisory/alps/",
+  },
+};
+
+const regionLinks: LinkItem[] = [
+  {
+    label: `Compare relocation agencies${currentRegion ? ` in ${currentRegion}` : ""}`,
+    href: regionSlug ? `/companies/?region=${regionSlug}` : "/companies/",
+    note: "Filter verified providers by local coverage and profile signals.",
+  },
+  {
+    label: `${currentRegion || "Swiss"} housing help`,
+    href: cityServiceLinks.housing[regionSlug] || "/services/housing/",
+    note: "Apartment search, viewing support, rental dossiers, and temporary housing.",
+  },
+  {
+    label: `${currentRegion || "Swiss"} permit support`,
+    href: cityServiceLinks.immigration[regionSlug] || "/services/immigration/",
+    note: "Work permits, registration, family reunification, and canton requirements.",
+  },
+  {
+    label: "Swiss relocation guide",
+    href: "/swiss-relocation-guide/",
+    note: "A broader planning guide for timing, budget, documents, and providers.",
+  },
+];
+
+const serviceLinks: LinkItem[] = [
+  {
+    label: `Compare ${currentService || "relocation"} providers`,
+    href: serviceSlug ? `/companies/?service=${serviceSlug}` : "/companies/",
+    note: "Open the directory with the closest matching service filter.",
+  },
+  {
+    label: "Zurich service providers",
+    href: cityServiceLinks[serviceSlug]?.zurich || "/regions/zurich/",
+    note: "High-demand market with strong provider coverage.",
+  },
+  {
+    label: "Geneva service providers",
+    href: cityServiceLinks[serviceSlug]?.geneva || "/regions/geneva/",
+    note: "Useful for Romandie moves, diplomats, NGOs, and family relocations.",
+  },
+  {
+    label: "Get a free shortlist",
+    href: "/companies/",
+    note: "Let ReloFinder review fit instead of contacting many agencies manually.",
+  },
+];
+
+const blogLinks: LinkItem[] = [
+  {
+    label: "Compare Swiss relocation companies",
+    href: "/companies/",
+    note: "Directory of verified agencies with profile, service, and region signals.",
+  },
+  {
+    label: "Zurich relocation guide",
+    href: "/regions/zurich/",
+    note: "Housing, costs, schools, and provider selection for Switzerland's largest market.",
+  },
+  {
+    label: "Housing search agencies",
+    href: "/services/housing/",
+    note: "Compare providers for apartment search, viewing support, and rental dossiers.",
+  },
+  {
+    label: "Immigration and permit support",
+    href: "/services/immigration/",
+    note: "Work permits, residence registration, family reunification, and canton steps.",
+  },
+];
+
+const directoryLinks: LinkItem[] = [
+  {
+    label: "Zurich agency comparison",
+    href: "/companies/?region=zurich",
+    note: "Start with the highest-volume relocation market.",
+  },
+  {
+    label: "Geneva agency comparison",
+    href: "/companies/?region=geneva",
+    note: "Compare providers for UN, NGO, finance, and family moves.",
+  },
+  {
+    label: "Housing specialists",
+    href: "/companies/?service=housing",
+    note: "Filter for apartment search and home-finding support.",
+  },
+  {
+    label: "Permit specialists",
+    href: "/companies/?service=immigration",
+    note: "Filter for work permit, registration, and immigration support.",
+  },
+];
+
+const links =
+  variant === "region"
+    ? regionLinks
+    : variant === "service"
+      ? serviceLinks
+      : variant === "directory"
+        ? directoryLinks
+        : blogLinks;
+---
+
+<section class="border-y border-slate-200 bg-slate-50 py-14">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#FF6F61]">
+          Internal guide
+        </p>
+        <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-950 md:text-3xl">
+          {title}
+        </h2>
+        <p class="mt-4 text-sm leading-relaxed text-slate-600 md:text-base">
+          Follow the closest intent path: compare providers, narrow by canton, then request a focused shortlist when the options are too similar.
+        </p>
+      </div>
+
+      <div class="grid gap-3 sm:grid-cols-2">
+        {links.map((link, index) => {
+          const Icon = index === 0 ? Search : index === 1 ? MapPin : ShieldCheck;
+          return (
+            <a
+              href={link.href}
+              class="group rounded-xl border border-slate-200 bg-white p-5 transition-all hover:border-[#FF6F61] hover:shadow-lg hover:shadow-slate-200/70 focus:outline-none focus:ring-2 focus:ring-[#FF6F61]/40"
+            >
+              <div class="flex items-start gap-4">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#FFF1EF] text-[#D84F44]">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <div class="min-w-0">
+                  <h3 class="font-bold text-slate-950 transition-colors group-hover:text-[#D84F44]">
+                    {link.label}
+                  </h3>
+                  <p class="mt-2 text-sm leading-relaxed text-slate-600">{link.note}</p>
+                  <span class="mt-4 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-[#D84F44]">
+                    Open page <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </div>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</section>

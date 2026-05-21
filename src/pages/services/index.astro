@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import SEOInsightBox from '../../components/common/SEOInsightBox.astro';
+import SEOInternalLinks from '../../components/common/SEOInternalLinks.astro';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 // Import Assets (Selective Color Series)
@@ -138,6 +139,11 @@ const canonical = "https://relofinder.ch/services/";
       </div>
     </div>
   </section>
+
+  <SEOInternalLinks
+    variant="service"
+    title="Most searched service paths"
+  />
 
   <!-- Additional specialized services -->
   <section class="py-20 bg-white border-t border-slate-100">

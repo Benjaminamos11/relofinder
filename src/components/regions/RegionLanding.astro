@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import BreadcrumbSchema from "../common/BreadcrumbSchema.astro";
 import HeroSearch from "../home/HeroSearch.astro";
 import SEOInsightBox from "../common/SEOInsightBox.astro";
+import SEOInternalLinks from "../common/SEOInternalLinks.astro";
 import { ArrowRight, CheckCircle2, MapPin } from "lucide-react";
 
 interface Highlight {
@@ -122,6 +123,12 @@ const regionSchema = {
       </div>
     </div>
   </section>
+
+  <SEOInternalLinks
+    variant="region"
+    currentRegion={initialDestination}
+    title={`High-intent next pages for ${regionName}`}
+  />
 
   <section class="bg-white py-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
