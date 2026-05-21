@@ -118,7 +118,7 @@ const defaultFaqs = [
   },
   {
     question: `How do I contact ${companyData.name}?`,
-    answer: `${directContactCopy} For the fastest response, use the "Start Inquiry" button on this profile to send a structured request through ReloFinder.`,
+    answer: `${directContactCopy} For the fastest response, use the "Get free matched shortlist" button on this profile to send a structured request through ReloFinder.`,
   },
 ];
 
@@ -446,24 +446,29 @@ const schema = {
             </div>
 
             <!-- Quick Actions -->
-            <div class="flex flex-wrap gap-4 mt-10">
+            <div class="flex flex-wrap gap-3 mt-10">
               <button
                 type="button"
                 onclick={`window.universalOpenModal({ page: 'company_profile', service: 'relocation', source: 'profile_hero', company: '${companyData.slug}' })`}
-                class="bg-[#FF6F61] text-white px-8 py-4 rounded-full font-bold hover:bg-[#ff5a4d] transition-colors shadow-xl shadow-[#FF6F61]/20 flex items-center gap-2"
+                class="bg-[#FF6F61] text-white px-7 py-4 rounded-xl font-bold hover:bg-[#ff5a4d] transition-colors shadow-xl shadow-[#FF6F61]/20 flex items-center gap-2"
               >
-                Start Inquiry <ArrowRight className="w-5 h-5" />
+                Get free matched shortlist <ArrowRight className="w-5 h-5" />
               </button>
               {companyWebsite && (
                 <a
                   href={companyWebsite}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="bg-white border border-gray-200 text-gray-900 px-8 py-4 rounded-full font-bold hover:bg-gray-50 transition-colors flex items-center gap-2"
+                  class="bg-white border border-gray-200 text-gray-900 px-7 py-4 rounded-xl font-bold hover:bg-gray-50 transition-colors flex items-center gap-2"
                 >
                   Visit Website <ExternalLink className="w-4 h-4" />
                 </a>
               )}
+            </div>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs font-bold text-slate-500">
+              <span class="rounded-full border border-slate-200 bg-slate-50 px-3 py-2">No obligation</span>
+              <span class="rounded-full border border-slate-200 bg-slate-50 px-3 py-2">Contact stays private first</span>
+              <span class="rounded-full border border-slate-200 bg-slate-50 px-3 py-2">Human-reviewed fit</span>
             </div>
 
             <div class="mt-10 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 lg:hidden">
@@ -597,7 +602,7 @@ const schema = {
           <aside class="lg:col-span-4 lg:sticky lg:top-28">
             <div class="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-2xl shadow-slate-200/70">
               <div class="mb-6 flex items-center justify-between gap-4">
-                <div class="relative flex h-16 w-32 items-center justify-center rounded-2xl border border-slate-100 bg-slate-50 px-4">
+                <div data-logo-shell class="relative flex h-16 w-32 items-center justify-center rounded-2xl border border-slate-100 bg-slate-50 px-4">
                   <div class="absolute inset-0 flex items-center justify-center">
                     <span class="text-xl font-black tracking-tight text-slate-300">{profileInitials}</span>
                   </div>
@@ -610,7 +615,7 @@ const schema = {
                         height={72}
                         loading="lazy"
                         decoding="async"
-                        onerror="this.classList.add('hidden')"
+                        onerror="this.classList.add('hidden'); this.closest('[data-logo-shell]')?.classList.add('logo-fallback')"
                         class={`relative z-10 max-h-10 w-auto object-contain opacity-85 ${shouldInvertCompanyLogo(companyData.name) ? "invert" : ""}`}
                       />
                     ) : (
@@ -679,7 +684,7 @@ const schema = {
                   onclick={`window.universalOpenModal({ page: 'company_profile', service: 'relocation', source: 'profile_decision_card', company: '${companyData.slug}', companyName: '${companyData.name.replace(/'/g, "\\'")}', companyId: '${companyData.slug}' })`}
                   class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#FF6F61] px-5 py-4 text-sm font-bold text-white shadow-lg shadow-[#FF6F61]/20 transition-colors hover:bg-[#ff5a4d]"
                 >
-                  Get matched proposal <ArrowRight className="h-4 w-4" />
+                  Get free matched shortlist <ArrowRight className="h-4 w-4" />
                 </button>
                 <a
                   href="/companies/"
@@ -690,7 +695,7 @@ const schema = {
               </div>
 
               <p class="mt-4 text-center text-xs leading-relaxed text-slate-500">
-                Free shortlist. No obligation. Your contact details stay private until you choose to connect.
+                We review your move details first, then send a focused shortlist. Your contact details stay private until you choose to connect.
               </p>
             </div>
           </aside>
@@ -1212,8 +1217,7 @@ const schema = {
               Not sure if {companyData.name} is the right fit?
             </h2>
             <p class="text-xl md:text-2xl text-white/90 font-light mb-12 max-w-2xl mx-auto">
-              Compare their services and quality with our verified partners
-              provided by ReloFinder.
+              Compare their services, regions, and response fit with other verified Swiss relocation providers.
             </p>
 
             <div class="grid md:grid-cols-2 gap-6 text-left max-w-3xl mx-auto mb-12">
@@ -1308,7 +1312,7 @@ const schema = {
               <div class="bg-white text-gray-900 rounded-[2.5rem] p-10 md:p-12 text-center">
                 <h3 class="text-2xl font-bold mb-4">Request a Proposal</h3>
                 <p class="text-gray-500 mb-8">
-                  Send a standardized inquiry to {companyData.name}. It's free
+                  Send a structured request to {companyData.name}. It is free
                   and non-binding.
                 </p>
 
@@ -1317,10 +1321,10 @@ const schema = {
                   onclick="window.universalOpenModal({ page: 'service', service: 'relocation', source: 'company_profile' })"
                   class="w-full bg-[#FF6F61] text-white py-5 rounded-xl font-bold hover:bg-[#ff5a4d] transition-colors shadow-lg cursor-pointer"
                 >
-                  Start Inquiry
+                  Get free matched shortlist
                 </button>
                 <p class="text-xs text-gray-400 mt-4">
-                  By clicking, you agree to our Terms of Service.
+                  We use your details only to prepare the introduction.
                 </p>
               </div>
             </div>
@@ -1386,7 +1390,7 @@ const schema = {
           onclick={`window.universalOpenModal({ page: 'company_profile', service: 'relocation', source: 'mobile_sticky_profile_cta', company: '${companyData.slug}' })`}
           class="shrink-0 rounded-lg bg-[#FF6F61] px-4 py-2 text-xs font-bold text-white shadow-lg shadow-[#FF6F61]/20"
         >
-          Start Inquiry
+          Shortlist
         </button>
       </div>
     </div>

@@ -6,7 +6,7 @@ const LOCAL_LOGOS: Record<string, string> = {
 
 export function getCompanyLogo(slug?: string | null, remoteLogo?: string | null) {
   if (slug && LOCAL_LOGOS[slug]) return LOCAL_LOGOS[slug];
-  return remoteLogo || "";
+  return "";
 }
 
 export function getCompanyInitials(name?: string | null) {
