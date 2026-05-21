@@ -10,6 +10,7 @@ import ReviewSubmissionWrapper from "../../components/reviews/ReviewSubmissionWr
 import swissMapImg from "../../assets/swiss-map-filled.png";
 import CloudinaryImage from "../../components/common/CloudinaryImage.astro";
 import { getServiceSlug, getRegionSlug } from "../../lib/service-region-slugs";
+import { getCompanyInitials, getCompanyLogo, shouldInvertCompanyLogo } from "../../lib/companyVisuals";
 import { marked } from "marked";
 import {
   Star,
@@ -84,6 +85,8 @@ const yearsExperience = companyData.founded
   ? new Date().getFullYear() - companyData.founded
   : null;
 const totalReviewCount = internalReviews.length + externalAggregate.count;
+const profileLogo = getCompanyLogo(companyData.slug, companyData.logo);
+const profileInitials = getCompanyInitials(companyData.name);
 const cleanString = (value: unknown) =>
   typeof value === "string" && value.trim() && value.trim().toLowerCase() !== "null"
     ? value.trim()
@@ -342,7 +345,7 @@ const schema = {
 >
   <main class="bg-white overflow-x-hidden">
     <!-- 1. HERO -->
-    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-32">
+    <section class="relative pt-10 pb-16 md:pt-14 lg:pt-20 lg:pb-28">
       <div class="container mx-auto px-6 md:px-10 lg:px-16 max-w-7xl">
         <div
           class="flex flex-wrap items-center gap-4 mb-8 text-sm font-medium animate-fade-in"
@@ -373,15 +376,6 @@ const schema = {
 
         <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div class="lg:col-span-8">
-            {
-              companyData.founded && (
-                <div class="mb-6">
-                  <span class="px-3 py-1 rounded-full bg-slate-50 text-slate-500 border border-slate-100 text-xs font-semibold">
-                    Est. {companyData.founded}
-                  </span>
-                </div>
-              )
-            }
             <h1
               class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-gray-900 leading-[0.95] tracking-tight mb-8"
             >
@@ -407,7 +401,7 @@ const schema = {
             </p>
 
             <div
-              class="flex flex-wrap gap-12 md:gap-16 border-t border-b border-gray-100 py-8"
+              class="grid grid-cols-2 gap-x-8 gap-y-6 border-t border-b border-gray-100 py-7 sm:flex sm:flex-wrap sm:gap-12 md:gap-16 md:py-8"
             >
               <div>
                 <div class="text-3xl md:text-4xl font-bold text-[#FF6F61] mb-1">
@@ -603,19 +597,24 @@ const schema = {
           <aside class="lg:col-span-4 lg:sticky lg:top-28">
             <div class="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-2xl shadow-slate-200/70">
               <div class="mb-6 flex items-center justify-between gap-4">
-                <div class="flex h-16 w-32 items-center justify-center rounded-2xl border border-slate-100 bg-slate-50 px-4">
+                <div class="relative flex h-16 w-32 items-center justify-center rounded-2xl border border-slate-100 bg-slate-50 px-4">
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="text-xl font-black tracking-tight text-slate-300">{profileInitials}</span>
+                  </div>
                   {
-                    companyData.logo ? (
-                      <CloudinaryImage
-                        src={companyData.logo}
+                    profileLogo ? (
+                      <img
+                        src={profileLogo}
                         alt={`${companyData.name} logo`}
                         width={180}
                         height={72}
-                        crop="fit"
-                        class="max-h-10 w-auto object-contain opacity-80"
+                        loading="lazy"
+                        decoding="async"
+                        onerror="this.classList.add('hidden')"
+                        class={`relative z-10 max-h-10 w-auto object-contain opacity-85 ${shouldInvertCompanyLogo(companyData.name) ? "invert" : ""}`}
                       />
                     ) : (
-                      <Building2 className="h-7 w-7 text-slate-300" />
+                      null
                     )
                   }
                 </div>
@@ -677,10 +676,10 @@ const schema = {
               <div class="mt-8 grid gap-3">
                 <button
                   type="button"
-                  onclick={`window.universalOpenModal({ page: 'company_profile', service: 'relocation', source: 'profile_decision_card', company: '${companyData.slug}' })`}
+                  onclick={`window.universalOpenModal({ page: 'company_profile', service: 'relocation', source: 'profile_decision_card', company: '${companyData.slug}', companyName: '${companyData.name.replace(/'/g, "\\'")}', companyId: '${companyData.slug}' })`}
                   class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#FF6F61] px-5 py-4 text-sm font-bold text-white shadow-lg shadow-[#FF6F61]/20 transition-colors hover:bg-[#ff5a4d]"
                 >
-                  Request proposal <ArrowRight className="h-4 w-4" />
+                  Get matched proposal <ArrowRight className="h-4 w-4" />
                 </button>
                 <a
                   href="/companies/"
@@ -691,7 +690,7 @@ const schema = {
               </div>
 
               <p class="mt-4 text-center text-xs leading-relaxed text-slate-500">
-                Independent profile. Partner status may affect visibility, not the review summary.
+                Free shortlist. No obligation. Your contact details stay private until you choose to connect.
               </p>
             </div>
           </aside>

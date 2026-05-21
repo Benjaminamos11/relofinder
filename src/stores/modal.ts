@@ -1,7 +1,7 @@
 import { atom } from 'nanostores';
 
 export type ModalContext = {
-  page?: 'blog' | 'service' | 'corporate' | 'region' | 'home' | 'results';
+  page?: 'blog' | 'service' | 'corporate' | 'region' | 'home' | 'results' | 'company_profile';
   topic?: string;
   service?: string;
   region?: string;

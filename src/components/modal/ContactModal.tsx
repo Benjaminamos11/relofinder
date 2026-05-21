@@ -106,8 +106,6 @@ export const ContactModal: FC<ContactModalProps> = ({
   // Initialize State
   useEffect(() => {
     if (defaultMode) setMode(defaultMode);
-    // If context is profile, default to consultation usually
-    if (context.type === 'profile') setMode('consultation');
   }, [defaultMode, context]);
 
   const [formData, setFormData] = useState<FormData>({
@@ -201,8 +199,10 @@ export const ContactModal: FC<ContactModalProps> = ({
   const renderWizardStep1 = () => (
     <div className="space-y-6 animate-fadeIn">
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-slate-800">Brief the Agencies</h2>
-        <p className="text-slate-500 text-sm mt-1">Help them provide accurate quotes.</p>
+        <h2 className="text-2xl font-bold text-slate-800">
+          {context.type === 'profile' ? `Request ${context.companyName}` : 'Start your shortlist'}
+        </h2>
+        <p className="text-slate-500 text-sm mt-1">Takes about 60 seconds. Free and non-binding.</p>
       </div>
 
       {/* Household Selection */}
@@ -232,7 +232,7 @@ export const ContactModal: FC<ContactModalProps> = ({
 
       {/* Budget Selection */}
       <div className="space-y-3">
-        <label className="block text-sm font-semibold text-slate-700">Budget Tier</label>
+        <label className="block text-sm font-semibold text-slate-700">Service level</label>
         <div className="grid grid-cols-1 gap-2">
           {BUDGET_OPTIONS.map((opt) => {
             const isSelected = formData.budget === opt.id;
@@ -279,8 +279,13 @@ export const ContactModal: FC<ContactModalProps> = ({
         onClick={handleNextStep}
         className="w-full py-3 bg-[#FF6F61] text-white font-bold rounded-xl hover:bg-[#ff5a4d] transition-colors flex items-center justify-center gap-2"
       >
-        Next Step <ChevronRight className="w-4 h-4" />
+        Continue to contact details <ChevronRight className="w-4 h-4" />
       </button>
+      <div className="grid grid-cols-3 gap-2 text-center text-[11px] font-semibold text-slate-500">
+        <span className="rounded-lg bg-slate-50 px-2 py-2">No spam</span>
+        <span className="rounded-lg bg-slate-50 px-2 py-2">Private first</span>
+        <span className="rounded-lg bg-slate-50 px-2 py-2">Swiss providers</span>
+      </div>
     </div>
   );
 
@@ -297,8 +302,8 @@ export const ContactModal: FC<ContactModalProps> = ({
       </button>
 
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-slate-800">Where should we send proposals?</h2>
-        <p className="text-slate-500 text-sm mt-1">Agencies respond within 24 hours.</p>
+        <h2 className="text-2xl font-bold text-slate-800">Where should we send the shortlist?</h2>
+        <p className="text-slate-500 text-sm mt-1">We route your brief to suitable agencies and keep you in control.</p>
       </div>
 
       {/* Inputs */}
@@ -376,7 +381,7 @@ export const ContactModal: FC<ContactModalProps> = ({
         disabled={isSubmitting}
         className="w-full py-3.5 bg-[#FF6F61] text-white font-bold rounded-xl hover:bg-[#ff5a4d] transition-colors shadow-lg shadow-[#FF6F61]/20 flex items-center justify-center gap-2 disabled:opacity-70"
       >
-        {isSubmitting ? 'Sending Request...' : 'Get My Quotes & Availability'}
+        {isSubmitting ? 'Sending request...' : 'Get free shortlist'}
       </button>
 
       <p className="text-center text-xs text-slate-400 mt-4">
@@ -392,10 +397,10 @@ export const ContactModal: FC<ContactModalProps> = ({
       </div>
       <h2 className="text-2xl font-bold text-slate-900 mb-2">Request Received!</h2>
       <p className="text-slate-600 max-w-sm mx-auto mb-8">
-        We have sent your anonymous brief to the selected agencies.
+        We have received your brief and will route it to suitable relocation providers.
         <br /><br />
         <strong>What happens next?</strong><br />
-        You will receive standard proposals via email within 24 hours.
+        You receive the next step by email. Your contact details stay private until you choose to connect.
       </p>
       <button
         onClick={onClose}
@@ -410,10 +415,10 @@ export const ContactModal: FC<ContactModalProps> = ({
     // ... Keeping a simplified version of standard contact form if they switch tabs ...
     // For brevity in this implementation, I will just prompt them to use the Wizard or Call
     <div className="text-center py-10">
-      <h3 className="text-lg font-bold">Standard Consultation</h3>
-      <p className="text-slate-500 mb-6">Please use the Quote Wizard or call us directly.</p>
+      <h3 className="text-lg font-bold">Free consultation</h3>
+      <p className="text-slate-500 mb-6">Start with the same short brief. We use it to prepare the call and avoid wasting your time.</p>
       <button onClick={() => setMode('quotes')} className="text-[#FF6F61] underline">
-        Switch to Quote Wizard
+        Start the 60-second brief
       </button>
     </div>
   );

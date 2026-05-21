@@ -112,6 +112,12 @@ const UniversalContactModal: React.FC<ModalContentProps> = () => {
         };
       case 'blog':
         return { type: 'home' };
+      case 'company_profile':
+        return {
+          type: 'profile',
+          companyName: (oldCtx as any).companyName || (oldCtx as any).company || 'this agency',
+          companyId: (oldCtx as any).companyId || (oldCtx as any).company || ''
+        };
       case 'results':
         return {
           type: 'results',

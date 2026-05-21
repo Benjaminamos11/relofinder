@@ -4,6 +4,7 @@ import BreadcrumbSchema from '../../components/common/BreadcrumbSchema.astro';
 import CloudinaryImage from '../../components/common/CloudinaryImage.astro';
 import { getCollection } from 'astro:content';
 import { ArrowRight, Clock, User, TrendingUp } from 'lucide-react';
+import { getBlogImage } from '../../lib/blogVisuals';
 
 // Get and sort blog posts
 const allBlogPosts = await getCollection('blog');
@@ -51,11 +52,11 @@ const canonical = 'https://relofinder.ch/blog/';
                {featuredPost.data.heroImage && (
                   <div class="w-full h-full transition-transform duration-700 group-hover:scale-105">
                      <CloudinaryImage
-                        src={featuredPost.data.heroImage}
+                        src={getBlogImage(featuredPost)}
                         alt={featuredPost.data.title}
                         width={1200}
                         height={600}
-                        class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700"
+                        class="w-full h-full object-cover saturate-[0.82] contrast-[1.04] group-hover:saturate-100 transition-all duration-700"
                      />
                   </div>
                )}
@@ -111,11 +112,11 @@ const canonical = 'https://relofinder.ch/blog/';
                   <div class="relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-100">
                      {post.data.heroImage && (
                         <CloudinaryImage
-                           src={post.data.heroImage}
+                           src={getBlogImage(post)}
                            alt={post.data.title}
                            width={600}
                            height={450}
-                           class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                           class="w-full h-full object-cover saturate-[0.78] contrast-[1.03] group-hover:saturate-100 transition-all duration-500"
                         />
                      )}
                      <div class="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-xl"></div>
@@ -140,6 +141,9 @@ const canonical = 'https://relofinder.ch/blog/';
                            <User className="w-4 h-4 text-gray-400" />
                         </div>
                         <span class="text-xs font-medium text-gray-900">{post.data.author || 'Editorial Team'}</span>
+                        <span class="ml-auto inline-flex items-center gap-1 text-xs font-bold text-[#B8463C]">
+                          Read <ArrowRight className="w-3.5 h-3.5" />
+                        </span>
                      </div>
                   </div>
                 </article>
@@ -194,6 +198,17 @@ const canonical = 'https://relofinder.ch/blog/';
                  </button>
               </form>
               <p class="text-[10px] text-gray-400 mt-4">Unsubscribe at any time.</p>
+           </div>
+
+           <div class="rounded-2xl bg-slate-950 p-8 text-white">
+              <p class="text-xs font-bold uppercase tracking-widest text-[#FF9A90] mb-3">Need an agency?</p>
+              <h4 class="font-serif text-2xl mb-3">Get a private shortlist</h4>
+              <p class="text-sm text-slate-300 mb-6 leading-relaxed">
+                 Tell us where you are moving and what support you need. We match you with suitable Swiss relocation providers.
+              </p>
+              <button onclick="window.universalOpenModal({page: 'blog', source: 'journal_sidebar'})" class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#FF6F61] px-5 py-3 text-sm font-bold text-white hover:bg-[#ff5a4d] transition-colors">
+                 Start free match <ArrowRight className="w-4 h-4" />
+              </button>
            </div>
 
         </aside>
