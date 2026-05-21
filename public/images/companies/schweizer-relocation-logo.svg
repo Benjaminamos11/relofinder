@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-87.000000, -15.000000)" id="Logo-SVG">
+            <g transform="translate(87.000000, 15.000000)">
+                <rect id="Rectangle-2" fill="#E30613" x="0" y="0" width="64" height="64"></rect>
+                <rect id="Rectangle-4" fill="#009FE3" x="52" y="52" width="12" height="12"></rect>
+                <polygon id="Shape-Copy" fill="#FFFFFF" points="52.50432 40.49568 52.50432 29 40.49496 29 40.49496 40.49568 28 40.49568 28 52.50432 40.49496 52.50432 40.49496 64 52.50432 64 52.50432 52.50432 63.99928 52.50432 63.99928 40.49568"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
