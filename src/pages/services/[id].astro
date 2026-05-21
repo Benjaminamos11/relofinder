@@ -1,14 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
-import { openModal } from '../../stores/modal';
 
 export async function getStaticPaths() {
-  const services = await getCollection('services');
-  return services.map((service) => ({
-    params: { id: service.data.id || service.slug },
-    props: { service },
-  }));
+  // Avoid generating thin, duplicate service pages from legacy content entries.
+  // Keep old URLs handled by redirects while search traffic lands on stronger,
+  // hand-built service pages.
+  return [];
 }
 
 const { service } = Astro.props;

@@ -17,7 +17,6 @@ import "../../styles/alpine-clarity.css";
 import SEOHead from "../../components/common/SEOHead.astro";
 import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
 import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
-import UniversalContactModal from "../../components/common/UniversalContactModal.tsx";
 import "../../lib/expose-modal-stores.client.ts";
 import Navbar from "../../components/layout/Navbar.astro";
 import Footer from "../../components/layout/Footer.astro";
@@ -126,8 +125,9 @@ const zurichFaqSchema = {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <SEOHead
-            title="Relocation to Zurich | Neighborhoods, Costs & Agencies | ReloFinder"
-            description="Moving to Zurich? Complete relocation guide with neighborhood comparisons, cost of living data, and access to verified relocation agencies in Zurich."
+            title="Relocation Agencies Zurich: Housing, Costs & Neighborhoods | ReloFinder"
+            description="Moving to Zurich? Compare Zurich relocation agencies and review housing costs, neighborhoods, school options, permits, and local move risks for expats."
+            canonical="https://relofinder.ch/regions/zurich/"
         />
         <style is:inline>
           @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: optional; src: url('/fonts/inter-400.woff2') format('woff2'); }
@@ -295,11 +295,11 @@ const zurichFaqSchema = {
                                 class="text-[#FF6F61] font-medium hover:underline"
                                 >Home Search</a
                             >, handling <a
-                                href="/services/visa/"
+                                href="/services/immigration/"
                                 class="text-[#FF6F61] font-medium hover:underline"
                                 >Visa & Immigration</a
                             > bureaucracy, and securing slots at top <a
-                                href="/services/schooling/"
+                                href="/services/education/"
                                 class="text-[#FF6F61] font-medium hover:underline"
                                 >International Schools</a
                             >.

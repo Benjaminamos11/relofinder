@@ -9,6 +9,11 @@ import React, { useEffect } from 'react';
 
 const GoogleTag = () => {
     useEffect(() => {
+        const hostname = window.location.hostname;
+        if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1') {
+            return;
+        }
+
         window.dataLayer = window.dataLayer || [];
         function gtag(...args: any[]) {
             window.dataLayer.push(arguments);

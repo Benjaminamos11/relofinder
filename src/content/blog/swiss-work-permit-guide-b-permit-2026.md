@@ -27,7 +27,7 @@ seo:
   keywords: ["swiss work permit", "switzerland b permit", "work permit switzerland 2026", "swiss immigration permit types", "b-permit application switzerland"]
 ---
 
-Understanding Switzerland's work permit system is the single most important step in any [relocation to Switzerland](/blog/moving-to-switzerland-2026-guide). Whether you are an EU citizen taking advantage of free movement agreements or a non-EU national navigating the quota system, the permit you hold determines where you can live, how long you can stay, and what rights you have. Getting it wrong -- or simply being slow -- can delay your entire move by months.
+Understanding Switzerland's work permit system is the single most important step in any [relocation to Switzerland](/blog/moving-to-switzerland-2026-guide/). Whether you are an EU citizen taking advantage of free movement agreements or a non-EU national navigating the quota system, the permit you hold determines where you can live, how long you can stay, and what rights you have. Getting it wrong -- or simply being slow -- can delay your entire move by months.
 
 This guide covers every permit type relevant to working in Switzerland in 2026, with a detailed focus on the **B-permit**, the most common residence permit for employed foreigners.
 
@@ -155,7 +155,7 @@ B-permit holders can bring their **spouse** (or registered partner) and **childr
 - Proof of **sufficient financial means** to support the family without social assistance
 - For non-EU nationals: family reunification should ideally be applied for simultaneously with the primary permit or within **12 months** of the primary holder's arrival
 
-**Spouses of B-permit holders** have the right to work in Switzerland without an independent work permit, regardless of their own nationality. This is an important benefit that many relocating families overlook. For families with children, securing [international school placement](/blog/international-schools-switzerland-guide-2026) should happen in parallel with the permit process.
+**Spouses of B-permit holders** have the right to work in Switzerland without an independent work permit, regardless of their own nationality. This is an important benefit that many relocating families overlook. For families with children, securing [international school placement](/blog/international-schools-switzerland-guide-2026/) should happen in parallel with the permit process.
 
 ---
 
@@ -233,7 +233,7 @@ Processing times vary significantly across cantons due to staffing levels, appli
 | **Schwyz** | 3 -- 5 weeks | 8 -- 12 weeks | Lower volume; efficient for straightforward cases |
 | **Ticino** | 4 -- 6 weeks | 10 -- 14 weeks | Italian-language process; cross-border complexity |
 
-These are estimates based on standard applications with complete documentation. Complex cases (non-EU nationals with unusual qualifications, intra-company transfers, or family reunification) may take longer. For city-specific relocation details, see our guides for [Zurich](/blog/moving-to-zurich-2026-guide), [Geneva](/blog/moving-to-geneva-2026-guide), [Basel](/blog/moving-to-basel-2026-guide), and [Bern](/blog/moving-to-bern-2026-guide).
+These are estimates based on standard applications with complete documentation. Complex cases (non-EU nationals with unusual qualifications, intra-company transfers, or family reunification) may take longer. For city-specific relocation details, see our guides for [Zurich](/blog/moving-to-zurich-2026-guide/), [Geneva](/blog/moving-to-geneva-2026-guide/), [Basel](/blog/moving-to-basel-2026-guide/), and [Bern](/blog/moving-to-bern-2026-guide/).
 
 ---
 
@@ -248,7 +248,7 @@ While straightforward EU/EFTA permit applications can often be managed by an exp
 - **Cross-border arrangements** (G-permit combined with partial Swiss residence)
 - **Any situation involving previous permit refusals** or immigration history issues
 
-For employers managing multiple transfers, our [Corporate Relocation guide](/blog/corporate-relocation-switzerland-guide-2026) covers the full process from HR's perspective. A qualified Swiss [immigration specialist](/services/immigration-services) can reduce processing times, avoid costly mistakes, and significantly increase approval rates for non-EU applications.
+For employers managing multiple transfers, our [Corporate Relocation guide](/blog/corporate-relocation-switzerland-guide-2026/) covers the full process from HR's perspective. A qualified Swiss [immigration specialist](/services/immigration/) can reduce processing times, avoid costly mistakes, and significantly increase approval rates for non-EU applications.
 
 <div class="not-prose my-10 rounded-2xl border-2 border-[#FF6F61]/20 bg-gradient-to-r from-[#FF6F61]/5 to-orange-50 p-8 text-center">
   <p class="mb-2 text-xl font-bold text-gray-900">Find Your Relocation Expert</p>
@@ -256,4 +256,4 @@ For employers managing multiple transfers, our [Corporate Relocation guide](/blo
   <a href="/companies/" class="inline-flex items-center rounded-lg bg-[#FF6F61] px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-[#e5574a] hover:shadow-lg transition-all">Browse All Agencies →</a>
 </div>
 
-[Find Immigration Specialists →](/companies)
+[Find Immigration Specialists →](/companies/)

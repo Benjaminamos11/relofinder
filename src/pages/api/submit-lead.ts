@@ -217,7 +217,7 @@ async function getMatchingPartners(region: string, services: string[]): Promise<
 
     if (!rules || rules.length === 0) {
       // Fallback to default partners
-      return ['prime-relocation', 'executive-relocation', 'connectiv-relocation', 'anchor-relocation'];
+      return ['prime-relocation', 'executive-relocation', 'connectiv-relocation-ag', 'anchor-relocation'];
     }
 
     // Collect all unique partner IDs, maintaining order preference
@@ -230,7 +230,7 @@ async function getMatchingPartners(region: string, services: string[]): Promise<
 
   } catch (error) {
     console.error('Error getting matching partners:', error);
-    return ['prime-relocation', 'executive-relocation', 'connectiv-relocation'];
+    return ['prime-relocation', 'executive-relocation', 'connectiv-relocation-ag'];
   }
 }
 
@@ -318,4 +318,3 @@ async function hashIP(ip: string): Promise<string> {
   const hashArray = Array.from(new Uint8Array(hashBuffer));
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('').substring(0, 16);
 }
-

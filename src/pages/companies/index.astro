@@ -2,8 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 import { supabase } from "../../lib/supabase";
-import { BadgeCheck, MapPin, Briefcase, Filter, X } from "lucide-react";
-import ComparisonBar from "../../components/ComparisonBar";
+import { BadgeCheck, MapPin, Briefcase, Filter, X, Search, Sparkles, Clock, ShieldCheck } from "lucide-react";
 import CloudinaryImage from "../../components/common/CloudinaryImage.astro";
 
 // Fetch ALL relocators from Supabase
@@ -32,6 +31,9 @@ const avgRating =
               relocators.length
           ).toFixed(1)
         : "4.7";
+const totalRelocators = relocators?.length || 0;
+const preferredCount = (relocators || []).filter((r) => r.tier === "preferred").length;
+const partnerCount = (relocators || []).filter((r) => r.tier === "partner").length;
 
 // Map relocators to the structure expected by the template
 const sortedCompanies = (relocators || [])
@@ -65,11 +67,56 @@ const allRegions = [
     ...new Set((relocators || []).flatMap((r) => r.regions_served || [])),
 ].sort();
 
+const marketMap = [
+    {
+        name: "AM Relocation",
+        slug: "am-relocation",
+        primary: "Zurich boutique relocations",
+        fit: "Home search, settling-in, school support, and private Zurich-area moves.",
+        compare: "Compare if you want a Zurich specialist rather than a national network.",
+    },
+    {
+        name: "Silver Nest Relocation",
+        slug: "silver-nest-relocation",
+        primary: "Lake Zurich and German-speaking cantons",
+        fit: "Family-owned relocation support with housing, education, immigration, and settling-in.",
+        compare: "Compare if you value boutique service around Zurich, Zug, and premium lake communities.",
+    },
+    {
+        name: "Anchor Relocation",
+        slug: "anchor-relocation",
+        primary: "Zurich, Zug, Schwyz, Central Switzerland",
+        fit: "Relocation plus property services for families, executives, and companies.",
+        compare: "Compare if property search, letting, or purchase advice may become part of the move.",
+    },
+    {
+        name: "Executive Relocation",
+        slug: "executive-relocation",
+        primary: "Executive and corporate moves",
+        fit: "Senior-professional relocation with orientation, housing, and settling-in support.",
+        compare: "Compare if the move is employer-led or time-sensitive.",
+    },
+    {
+        name: "Zurich Relocation",
+        slug: "zurich-relocation",
+        primary: "Furnished apartments and temporary housing",
+        fit: "Short- and long-stay furnished apartment needs in Zurich.",
+        compare: "Compare if your first bottleneck is immediate accommodation rather than full-service relocation.",
+    },
+    {
+        name: "Bridging Cultures Relocation",
+        slug: "bridging-cultures-relocation",
+        primary: "Individual and corporate transition support",
+        fit: "Tailored relocation plans for families, couples, singles, and companies.",
+        compare: "Compare if cultural integration and high-touch guidance matter as much as housing.",
+    },
+];
+
 // Page metadata
 const title =
-    "Compare Relocation Companies in Switzerland | 2026 Directory | ReloFinder";
+    `Relocation Companies Switzerland: Compare ${totalRelocators || 57} Agencies | ReloFinder`;
 const description =
-    "Compare 500+ verified relocation companies in Switzerland. Filter by city, read reviews, and request free quotes from agencies in Zurich, Geneva, Basel & more.";
+    `Compare ${totalRelocators || 57} Swiss relocation companies by city, services, reviews, and fit. Get a free shortlist for Zurich, Geneva, Basel, Zug, Lausanne, and more.`;
 const canonical = "https://relofinder.ch/companies/";
 
 const companyFaqs = [
@@ -107,7 +154,6 @@ const faqSchema = {
 ---
 
 <Layout title={title} description={description} canonical={canonical} schema={faqSchema}>
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
     <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "Directory" }]} />
     <!-- Hero Section -->
     <section
@@ -132,21 +178,119 @@ const faqSchema = {
                 <h1
                     class="text-4xl md:text-6xl font-bold tracking-tight text-slate-900 mb-6 leading-tight"
                 >
-                    Relocation Companies <br />
+                    Relocation Companies
                     <span class="text-[#FF6F61]">in Switzerland</span>
                 </h1>
                 <p
                     class="text-xl text-slate-500 font-normal leading-relaxed max-w-2xl mx-auto"
                 >
-                    Access our curated network of verified agencies. From visa
-                    specialists to full-service logistics providers.
+                    Compare verified Swiss relocation providers by region,
+                    service scope, review signal, and fit for your move.
                 </p>
+                <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mx-auto text-left">
+                    <div class="bg-white/90 border border-slate-200 rounded-xl p-4 shadow-sm">
+                        <div class="text-2xl font-bold text-slate-950">{totalRelocators}+</div>
+                        <div class="text-xs font-semibold uppercase tracking-widest text-slate-500">Listed providers</div>
+                    </div>
+                    <div class="bg-white/90 border border-slate-200 rounded-xl p-4 shadow-sm">
+                        <div class="text-2xl font-bold text-slate-950">{preferredCount + partnerCount}</div>
+                        <div class="text-xs font-semibold uppercase tracking-widest text-slate-500">Enhanced profiles</div>
+                    </div>
+                    <div class="bg-white/90 border border-slate-200 rounded-xl p-4 shadow-sm">
+                        <div class="text-2xl font-bold text-slate-950">{totalReviews || "Live"}</div>
+                        <div class="text-xs font-semibold uppercase tracking-widest text-slate-500">Review signals</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-slate-950 text-white">
+        <div class="container mx-auto px-4 py-8">
+            <div class="grid lg:grid-cols-[1.2fr_0.8fr] gap-6 items-center">
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#FFB3AA] mb-3">Not sure who fits?</p>
+                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3">Get a human-reviewed shortlist before you contact agencies.</h2>
+                    <p class="text-sm md:text-base text-slate-300 max-w-3xl">
+                        Tell us your canton, services, timeline, and budget. We filter for providers with the right coverage and send a focused shortlist instead of making you message ten firms.
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3 lg:justify-end">
+                    <button
+                        onclick="window.openAssessmentModal && window.openAssessmentModal('full')"
+                        class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#FF6F61] px-5 py-4 text-sm font-bold uppercase tracking-widest text-white hover:bg-[#ff5a4d] transition-colors"
+                    >
+                        <Sparkles className="h-4 w-4" /> Get matched
+                    </button>
+                    <a
+                        href="#directory-results"
+                        class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 px-5 py-4 text-sm font-bold uppercase tracking-widest text-white hover:bg-white/10 transition-colors"
+                    >
+                        Browse all
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white border-b border-slate-200">
+        <div class="container mx-auto px-4 py-14 md:py-18">
+            <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#FF6F61] mb-4">
+                        Swiss relocation market map
+                    </p>
+                    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-950">
+                        Searchers compare named agencies first. We make the shortlist visible.
+                    </h2>
+                    <p class="mt-5 text-slate-600 leading-relaxed">
+                        The Zurich and Switzerland search results are full of individual agency homepages. This table gives you the same starting point, but with profile context, fit signals, and a faster path to a human-reviewed shortlist.
+                    </p>
+                    <button
+                        type="button"
+                        onclick="window.openAssessmentModal && window.openAssessmentModal('full')"
+                        class="mt-8 inline-flex items-center justify-center gap-2 rounded-xl bg-slate-950 px-5 py-4 text-sm font-bold text-white transition-colors hover:bg-slate-800"
+                    >
+                        Get matched instead
+                        <Sparkles className="h-4 w-4 text-[#FF6F61]" />
+                    </button>
+                </div>
+
+                <div class="overflow-hidden rounded-2xl border border-slate-200">
+                    <div class="hidden md:grid grid-cols-[1fr_1fr_1fr_auto] gap-4 bg-slate-50 px-5 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                        <span>Agency</span>
+                        <span>Primary signal</span>
+                        <span>Best-fit use case</span>
+                        <span>Profile</span>
+                    </div>
+                    <div class="divide-y divide-slate-200">
+                        {marketMap.map((agency) => (
+                            <article class="grid gap-3 p-5 md:grid-cols-[1fr_1fr_1fr_auto] md:items-center md:gap-4">
+                                <div>
+                                    <h3 class="font-bold text-slate-950">{agency.name}</h3>
+                                    <p class="mt-1 text-xs font-semibold text-slate-500 md:hidden">{agency.primary}</p>
+                                </div>
+                                <p class="hidden text-sm text-slate-600 md:block">{agency.primary}</p>
+                                <p class="text-sm leading-relaxed text-slate-600">
+                                    {agency.fit}
+                                    <span class="mt-1 block text-xs font-semibold text-slate-500">{agency.compare}</span>
+                                </p>
+                                <a
+                                    href={`/companies/${agency.slug}/`}
+                                    class="inline-flex items-center justify-center rounded-lg border border-slate-200 px-4 py-2 text-xs font-bold uppercase tracking-widest text-slate-700 transition-colors hover:border-[#FF6F61] hover:text-[#FF6F61]"
+                                >
+                                    View
+                                </a>
+                            </article>
+                        ))}
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Filter & Grid Section -->
-    <section class="py-12 md:py-20 bg-white min-h-screen">
+    <section id="directory-results" class="py-12 md:py-20 bg-white min-h-screen scroll-mt-24">
         <div class="container mx-auto px-4">
             <!-- Filters Layout (Sticky Desktop, Stacked Mobile) -->
             <div
@@ -287,6 +431,15 @@ const faqSchema = {
                                 > agencies
                             </p>
                         </div>
+
+                        <div class="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                            <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-4">Fast routes</p>
+                            <div class="space-y-2">
+                                <button type="button" class="quick-filter w-full text-left rounded-xl bg-white border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-800 hover:border-[#FF6F61] transition-colors" data-service="housing">Housing search</button>
+                                <button type="button" class="quick-filter w-full text-left rounded-xl bg-white border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-800 hover:border-[#FF6F61] transition-colors" data-service="immigration">Permit support</button>
+                                <button type="button" class="quick-filter w-full text-left rounded-xl bg-white border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-800 hover:border-[#FF6F61] transition-colors" data-service="school">School search</button>
+                            </div>
+                        </div>
                     </div>
                 </aside>
 
@@ -324,8 +477,52 @@ const faqSchema = {
                                         ))
                                     }
                                 </select>
+                                <select
+                                    id="mobileService"
+                                    class="w-full bg-white border border-slate-200 p-3 text-sm"
+                                >
+                                    <option value="">All Services</option>
+                                    {
+                                        allServices.map((s) => (
+                                            <option value={s}>{s}</option>
+                                        ))
+                                    }
+                                </select>
+                                <button
+                                    type="button"
+                                    onclick="window.openAssessmentModal && window.openAssessmentModal('full')"
+                                    class="w-full bg-slate-950 text-white p-3 text-xs font-bold uppercase tracking-widest"
+                                >
+                                    Get matched instead
+                                </button>
                             </div>
                         </details>
+                    </div>
+
+                    <div class="mb-8 rounded-2xl border border-slate-200 bg-slate-50 p-5 md:p-6">
+                        <div class="grid md:grid-cols-[1fr_auto] gap-5 items-center">
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Directory mode</p>
+                                <h2 class="text-2xl font-bold text-slate-950 tracking-tight">Filter, inspect, then request a shortlist.</h2>
+                                <p class="text-sm text-slate-600 mt-2 max-w-2xl">
+                                    The best choice depends on your canton, family situation, permit path, and housing urgency. Use filters to narrow the field, or let ReloFinder review your requirements.
+                                </p>
+                            </div>
+                            <div class="grid grid-cols-3 gap-2 text-center">
+                                <div class="rounded-xl bg-white border border-slate-200 p-3">
+                                    <Search className="h-4 w-4 mx-auto text-[#FF6F61] mb-2" />
+                                    <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-500">Filter</span>
+                                </div>
+                                <div class="rounded-xl bg-white border border-slate-200 p-3">
+                                    <ShieldCheck className="h-4 w-4 mx-auto text-[#FF6F61] mb-2" />
+                                    <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-500">Verify</span>
+                                </div>
+                                <div class="rounded-xl bg-white border border-slate-200 p-3">
+                                    <Clock className="h-4 w-4 mx-auto text-[#FF6F61] mb-2" />
+                                    <span class="block text-[10px] font-bold uppercase tracking-wider text-slate-500">Shortlist</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div
@@ -391,11 +588,16 @@ const faqSchema = {
                                                 <h3 class="font-serif text-xl font-bold text-slate-900 group-hover:text-[#FF6F61] transition-colors line-clamp-1">
                                                     {company.data.name}
                                                 </h3>
-                                                {company.data.label && (
-                                                    <span class="inline-block px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 text-[10px] font-bold uppercase tracking-wide border border-slate-200 mt-1">
-                                                        {company.data.label}
+                                                <div class="flex flex-wrap items-center gap-2 mt-2 mb-3">
+                                                    {company.data.label && (
+                                                        <span class="inline-block px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 text-[10px] font-bold uppercase tracking-wide border border-slate-200">
+                                                            {company.data.label}
+                                                        </span>
+                                                    )}
+                                                    <span class="inline-block px-2 py-0.5 rounded-full bg-[#FFF1EF] text-[#B8463C] text-[10px] font-bold uppercase tracking-wide border border-[#FFD7D1]">
+                                                        {tier === "preferred" ? "Priority response" : tier === "partner" ? "Profile enhanced" : "Listed profile"}
                                                     </span>
-                                                )}
+                                                </div>
                                                 <p class="text-sm text-slate-500 leading-relaxed line-clamp-3">
                                                     {company.data.description}
                                                 </p>
@@ -421,6 +623,10 @@ const faqSchema = {
                                                             .slice(0, 3)
                                                             .join(", ")}
                                                     </span>
+                                                </div>
+                                                <div class="flex items-center justify-between pt-3">
+                                                    <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400">View profile</span>
+                                                    <span class="text-xs font-bold text-[#FF6F61]">Details</span>
                                                 </div>
                                             </div>
 
@@ -479,6 +685,7 @@ const faqSchema = {
             const serviceFilter = document.getElementById("serviceFilter");
             const verifiedBtn = document.getElementById("verifiedBtn");
             const resetBtn = document.getElementById("resetBtn");
+            const quickFilters = document.querySelectorAll(".quick-filter");
             const cards = document.querySelectorAll(".company-card");
             const countDisplay = document.getElementById("countDisplay");
             const noResults = document.getElementById("noResults");
@@ -487,10 +694,21 @@ const faqSchema = {
             // Mobile inputs sync (basic implementation)
             const mobileSearch = document.getElementById("mobileSearch");
             const mobileRegion = document.getElementById("mobileRegion");
+            const mobileService = document.getElementById("mobileService");
 
             if (mobileSearch)
                 mobileSearch.addEventListener("input", (e) => {
                     if (searchInput) searchInput.value = e.target.value;
+                    filter();
+                });
+            if (mobileRegion)
+                mobileRegion.addEventListener("change", (e) => {
+                    if (regionFilter) regionFilter.value = e.target.value;
+                    filter();
+                });
+            if (mobileService)
+                mobileService.addEventListener("change", (e) => {
+                    if (serviceFilter) serviceFilter.value = e.target.value;
                     filter();
                 });
 
@@ -549,6 +767,18 @@ const faqSchema = {
             if (searchInput) searchInput.addEventListener("input", filter);
             if (regionFilter) regionFilter.addEventListener("change", filter);
             if (serviceFilter) serviceFilter.addEventListener("change", filter);
+            quickFilters.forEach((button) => {
+                button.addEventListener("click", () => {
+                    const serviceHint = button.getAttribute("data-service") || "";
+                    if (serviceFilter) {
+                        const option = Array.from(serviceFilter.options).find((item) =>
+                            item.value.toLowerCase().includes(serviceHint),
+                        );
+                        serviceFilter.value = option ? option.value : "";
+                    }
+                    filter();
+                });
+            });
 
             if (verifiedBtn)
                 verifiedBtn.addEventListener("click", () => {

@@ -123,7 +123,7 @@ Check reviews across multiple platforms — Google, Trustpilot, Expatica forums,
 
 <div class="not-prose my-8 rounded-xl border border-gray-200 bg-gray-50 p-6">
   <p class="mb-2 text-lg font-semibold text-gray-900">See independently verified ratings</p>
-  <p class="mb-4 text-gray-600">ReloFinder aggregates reviews, analyst assessments, and service audits for 500+ Swiss relocation agencies.</p>
+  <p class="mb-4 text-gray-600">ReloFinder aggregates reviews, analyst assessments, and service audits for Swiss relocation agencies.</p>
   <a href="/companies/" class="inline-flex items-center rounded-lg bg-[#FF6F61] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#e5574a] transition-colors">Browse Verified Agencies →</a>
 </div>
 
@@ -198,7 +198,7 @@ Here's a practical, step-by-step approach to turning reviews into an actionable 
 
 <div class="not-prose my-10 rounded-2xl border-2 border-[#FF6F61]/20 bg-gradient-to-r from-[#FF6F61]/5 to-orange-50 p-8 text-center">
   <p class="mb-2 text-xl font-bold text-gray-900">Compare Verified Swiss Agencies</p>
-  <p class="mx-auto mb-5 max-w-lg text-gray-600">Don't rely on star ratings alone. See analyst assessments, verified reviews, and transparent pricing for 500+ Swiss relocation agencies.</p>
+  <p class="mx-auto mb-5 max-w-lg text-gray-600">Don't rely on star ratings alone. See analyst assessments, verified reviews, and transparent pricing for Swiss relocation agencies.</p>
   <a href="/companies/" class="inline-flex items-center rounded-lg bg-[#FF6F61] px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-[#e5574a] hover:shadow-lg transition-all">Browse All Agencies →</a>
 </div>
 

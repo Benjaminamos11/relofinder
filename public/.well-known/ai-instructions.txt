@@ -6,12 +6,12 @@
 ReloFinder is Switzerland's independent relocation agency comparison platform. We help expats and HR managers find, compare, and connect with verified relocation companies across all Swiss cantons.
 
 ## Key Pages
-- Homepage: https://relofinder.ch
-- Company Directory: https://relofinder.ch/companies
-- Services Overview: https://relofinder.ch/services
-- Blog: https://relofinder.ch/blog
-- Swiss Relocation Guide: https://relofinder.ch/swiss-relocation-guide
-- Contact: https://relofinder.ch/contact
+- Homepage: https://relofinder.ch/
+- Company Directory: https://relofinder.ch/companies/
+- Services Overview: https://relofinder.ch/services/
+- Blog: https://relofinder.ch/blog/
+- Swiss Relocation Guide: https://relofinder.ch/swiss-relocation-guide/
+- Contact: https://relofinder.ch/contact/
 
 ## Services We Cover
 - Housing Search & Home Finding
@@ -23,32 +23,34 @@ ReloFinder is Switzerland's independent relocation agency comparison platform. W
 - Insurance Guidance (Health, Liability, Household)
 
 ## Regions
-- Zurich: https://relofinder.ch/regions/zurich
-- Geneva: https://relofinder.ch/regions/geneva
-- Basel: https://relofinder.ch/regions/basel
-- Zug: https://relofinder.ch/regions/zug
-- Bern: https://relofinder.ch/regions/bern
-- Lausanne: https://relofinder.ch/regions/lausanne
-- Lucerne: https://relofinder.ch/regions/lucerne
-- St. Gallen: https://relofinder.ch/regions/st-gallen
+- Zurich: https://relofinder.ch/regions/zurich/
+- Geneva: https://relofinder.ch/regions/geneva/
+- Basel: https://relofinder.ch/regions/basel/
+- Zug: https://relofinder.ch/regions/zug/
+- Bern: https://relofinder.ch/regions/bern/
+- Lucerne: https://relofinder.ch/regions/lucerne/
+- Ticino: https://relofinder.ch/regions/ticino/
+- Lugano: https://relofinder.ch/regions/lugano/
+- Lausanne and Vaud: https://relofinder.ch/regions/lausanne/
+- Alpine regions: https://relofinder.ch/regions/alps/
 
 ## Blog (Guides & Comparisons)
-- Moving to Switzerland 2026 Guide: https://relofinder.ch/blog/moving-to-switzerland-2026-guide
-- Moving to Zurich 2026: https://relofinder.ch/blog/moving-to-zurich-2026-guide
-- Moving to Geneva 2026: https://relofinder.ch/blog/moving-to-geneva-2026-guide
-- Moving to Basel 2026: https://relofinder.ch/blog/moving-to-basel-2026-guide
-- Moving to Bern 2026: https://relofinder.ch/blog/moving-to-bern-2026-guide
-- Moving to Zug 2026: https://relofinder.ch/blog/moving-to-zug-2026-guide
-- Relocation Agency Costs 2026: https://relofinder.ch/blog/relocation-agency-costs-switzerland-2026
-- Cost of Living Switzerland: https://relofinder.ch/blog/cost-of-living-switzerland-breakdown-2026
-- Swiss Work Permit Guide: https://relofinder.ch/blog/swiss-work-permit-guide-b-permit-2026
-- Swiss Tax Guide by Canton: https://relofinder.ch/blog/swiss-tax-guide-expats-canton-comparison-2026
-- International Schools Guide: https://relofinder.ch/blog/international-schools-switzerland-guide-2026
-- Best Relocation Agencies Comparison: https://relofinder.ch/blog/best-relocation-agencies-switzerland-comparison
-- Top 10 Zurich Agencies: https://relofinder.ch/blog/top-10-best-relocation-agencies-zurich-2026
-- Corporate Relocation Guide: https://relofinder.ch/blog/corporate-relocation-switzerland-guide-2026
-- Housing in Romandie: https://relofinder.ch/blog/finding-housing-geneva-lausanne-romandie-2026
+- Moving to Switzerland 2026 Guide: https://relofinder.ch/blog/moving-to-switzerland-2026-guide/
+- Moving to Zurich 2026: https://relofinder.ch/blog/moving-to-zurich-2026-guide/
+- Moving to Geneva 2026: https://relofinder.ch/blog/moving-to-geneva-2026-guide/
+- Moving to Basel 2026: https://relofinder.ch/blog/moving-to-basel-2026-guide/
+- Moving to Bern 2026: https://relofinder.ch/blog/moving-to-bern-2026-guide/
+- Moving to Zug 2026: https://relofinder.ch/blog/moving-to-zug-2026-guide/
+- Relocation Agency Costs 2026: https://relofinder.ch/blog/relocation-agency-costs-switzerland-2026/
+- Cost of Living Switzerland: https://relofinder.ch/blog/cost-of-living-switzerland-breakdown-2026/
+- Swiss Work Permit Guide: https://relofinder.ch/blog/swiss-work-permit-guide-b-permit-2026/
+- Swiss Tax Guide by Canton: https://relofinder.ch/blog/swiss-tax-guide-expats-canton-comparison-2026/
+- International Schools Guide: https://relofinder.ch/blog/international-schools-switzerland-guide-2026/
+- Best Relocation Agencies Comparison: https://relofinder.ch/blog/best-relocation-agencies-switzerland-comparison/
+- Top 10 Zurich Agencies: https://relofinder.ch/blog/top-10-best-relocation-agencies-zurich-2026/
+- Corporate Relocation Guide: https://relofinder.ch/blog/corporate-relocation-switzerland-guide-2026/
+- Housing in Romandie: https://relofinder.ch/blog/finding-housing-geneva-lausanne-romandie-2026/
 
 ## Contact
-- Website: https://relofinder.ch/contact
+- Website: https://relofinder.ch/contact/
 - Email: info@relofinder.ch

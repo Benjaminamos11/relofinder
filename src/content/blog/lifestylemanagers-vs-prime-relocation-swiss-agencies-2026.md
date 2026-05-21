@@ -3,7 +3,7 @@ title: "Lifestylemanagers vs Prime Relocation: Which Swiss Agency Is Right for Y
 description: "Compare Lifestylemanagers' boutique Zug-focused service with Prime Relocation's data-driven Zurich/Basel reach. Pricing, client reviews, and when each shines."
 publishDate: 2026-05-12
 author: "relofinder"
-heroImage: "/images/blog/relocation-comparison.webp"
+heroImage: "/images/blog/boutique_comparison_branded.webp"
 category: "Guides"
 tags: ["relocation", "agencies", "comparison", "Zurich", "Zug", "expat-services"]
 readingTime: 12
@@ -258,13 +258,13 @@ Both agencies will get you housed. The question is: do you optimize for *relatio
 
 ## Take the 2-Minute Relocation Assessment
 
-Still unsure which agency fits your family's needs? Use [ReloFinder's assessment tool](/assessment/) to answer 8 questions about your move (city, timeline, budget, family size, corporate vs private). The platform matches you with 2-3 agencies from its verified network of 500+ Swiss providers—including Lifestylemanagers, Prime Relocation, and boutique specialists in Basel, Geneva, and Romandie.
+Still unsure which agency fits your family's needs? Use [ReloFinder's assessment tool](/companies/) to answer 8 questions about your move (city, timeline, budget, family size, corporate vs private). The platform matches you with 2-3 agencies from its verified network of Swiss providers—including Lifestylemanagers, Prime Relocation, and boutique specialists in Basel, Geneva, and Romandie.
 
 No sales calls. Just data-driven matches based on your specific relocation profile.
 
 ---
 
 **Related reading:**
-- [How to Choose a Relocation Agency in Switzerland](/blog/how-to-choose-relocation-agency-switzerland) — Red flags, pricing transparency, and the 5 questions every expat should ask.
-- [Finding Off-Market Apartments in Zurich and Zug](/blog/how-to-find-off-market-apartments-zurich-zug-2026) — Nachmieter strategies, Offlist.ch access, and why public portals fail in 0.48% vacancy markets.
-- [Swiss Rental Market Crisis 2026: Tenant Guide](/blog/swiss-rental-market-crisis-2026-tenant-guide) — What landlords demand in Zurich's 50-application reality (Betreibungsauszug, income proof, references).
+- [How to Choose a Relocation Agency in Switzerland](/blog/how-to-choose-relocation-agency-switzerland/) — Red flags, pricing transparency, and the 5 questions every expat should ask.
+- [Finding Off-Market Apartments in Zurich and Zug](/blog/how-to-find-off-market-apartments-zurich-zug-2026/) — Nachmieter strategies, Offlist.ch access, and why public portals fail in 0.48% vacancy markets.
+- [Swiss Rental Market Crisis 2026: Tenant Guide](/blog/swiss-rental-market-crisis-2026-tenant-guide/) — What landlords demand in Zurich's 50-application reality (Betreibungsauszug, income proof, references).

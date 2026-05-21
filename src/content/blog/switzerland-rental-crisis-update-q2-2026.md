@@ -158,7 +158,7 @@ Standard 2023 corporate relocation budgets now under-fund the Swiss housing line
 
 For corporate HR teams running 5+ moves per year into Zurich, Zug or Geneva, the budget conversation in 2026 is no longer about cost-cutting; it is about deal-closure risk. A senior hire who cannot find housing within 90 days frequently withdraws — and the cost of a failed hire dwarfs any agency-fee saving. See our [executive relocation guide](/blog/executive-relocation-services-switzerland-2026/) and the [corporate relocation overview](/blog/corporate-relocation-switzerland-guide-2026/) for the procurement-side detail.
 
-[Browse corporate relocation partners](/companies/) • [Settling-in services](/swiss-relocation-guide) • [Geneva region guide](/regions/geneva/)
+[Browse corporate relocation partners](/companies/) • [Settling-in services](/swiss-relocation-guide/) • [Geneva region guide](/regions/geneva/)
 
 ---
 
@@ -230,7 +230,7 @@ Public listings are now the loss-making channel for expat home searches. Registe
 
 ### Option 3: Explore Resources
 
-- [Swiss Relocation Guide](/swiss-relocation-guide)
+- [Swiss Relocation Guide](/swiss-relocation-guide/)
 - [Housing Search Services](/services/housing/)
 - [Visa & Immigration Support](/services/immigration/)
 - [Corporate Solutions](/corporate/)

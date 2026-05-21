@@ -4,7 +4,7 @@ description: "Complete Basel relocation guide for expats. Real costs, neighborho
 publishDate: 2026-05-11
 author: "relofinder"
 tags: ["basel", "city-guide", "expat-guide", "switzerland", "relocation", "pharma-jobs"]
-heroImage: "/images/blog/basel-guide-2026.jpg"
+heroImage: "/images/blog/swiss_relocation_2026_branded.webp"
 readingTime: 12
 category: "City Guides"
 featured: true
@@ -244,7 +244,7 @@ Relocating to Basel isn't just about landing a job—it's about structuring your
 
 Whether you need help comparing relocation agencies, optimizing your insurance package, or identifying off-market apartments, the right local expertise makes the difference between a stressful move and a strategic life upgrade.
 
-**Ready to plan your Basel move?** Take the [2-minute relocation assessment](/assessment/) to get matched with Basel-specific experts who can guide you through permits, housing, tax optimization, and cultural integration. Your Swiss career starts with the right first steps.
+**Ready to plan your Basel move?** Take the [2-minute relocation assessment](/companies/) to get matched with Basel-specific experts who can guide you through permits, housing, tax optimization, and cultural integration. Your Swiss career starts with the right first steps.
 
 ---
 

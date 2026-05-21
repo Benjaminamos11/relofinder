@@ -8,16 +8,18 @@ const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL || 'https://placeholder.
 const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key';
 
 if (!import.meta.env.PUBLIC_SUPABASE_URL || !import.meta.env.PUBLIC_SUPABASE_ANON_KEY) {
-  console.warn('⚠️ Supabase env vars not configured. Features requiring Supabase will not work.');
+  console.warn('[supabase] Public env vars not configured. Features requiring Supabase will not work.');
   console.warn('Set PUBLIC_SUPABASE_URL and PUBLIC_SUPABASE_ANON_KEY in your environment or .env file');
 } else {
-  console.log('✅ Supabase Client Initialized with URL:', import.meta.env.PUBLIC_SUPABASE_URL);
+  console.log('[supabase] Client initialized with URL:', import.meta.env.PUBLIC_SUPABASE_URL);
 }
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const supabaseServiceKey = import.meta.env.SUPABASE_SERVICE_ROLE_KEY || '';
-export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
+export const supabaseAdmin = supabaseServiceKey
+  ? createClient(supabaseUrl, supabaseServiceKey)
+  : supabase;
 
 // Type-safe database client
 export type Database = {

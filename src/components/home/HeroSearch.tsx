@@ -5,19 +5,19 @@ import AssessmentModal from '../individual/AssessmentModal';
 const cantons = [
     { name: "Zurich", code: "ZH", slug: "zurich" },
     { name: "Geneva", code: "GE", slug: "geneva" },
-    { name: "Basel-Stadt", code: "BS", slug: "basel-stadt" },
+    { name: "Basel-Stadt", code: "BS", slug: "basel" },
     { name: "Zug", code: "ZG", slug: "zug" },
-    { name: "Vaud", code: "VD", slug: "vaud" },
+    { name: "Vaud", code: "VD", slug: "lausanne" },
     { name: "Bern", code: "BE", slug: "bern" },
     { name: "Lucerne", code: "LU", slug: "lucerne" },
-    { name: "St. Gallen", code: "SG", slug: "st-gallen" }
+    { name: "St. Gallen", code: "SG", slug: "swiss-hubs" }
 ];
 
 const services = [
-    { name: "Housing Search", slug: "housing-search" },
-    { name: "Visa & Immigration", slug: "visa-immigration" },
+    { name: "Housing Search", slug: "housing" },
+    { name: "Visa & Immigration", slug: "immigration" },
     { name: "Moving Logistics", slug: "moving-logistics" },
-    { name: "School Search", slug: "school-search" },
+    { name: "School Search", slug: "education" },
     { name: "Strategic Advisory", slug: "advisory" }
 ];
 

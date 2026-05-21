@@ -60,7 +60,7 @@ We evaluated companies based on:
 **Quick Navigation:**
 - [All relocation companies](/companies/)
 - [Housing & home search services](/services/housing/)
-- [Visa & immigration support](/services/visa/)
+- [Visa & immigration support](/services/immigration/)
 - [Corporate relocation solutions](/corporate/)
 - [Zurich region guide](/regions/zurich/)
 - [Geneva region guide](/regions/geneva/)
@@ -153,7 +153,7 @@ Anchor Relocation combines 20+ years of experience with integrated property serv
 
 **Good to know:** Anchor's unique combination of relocation and real estate expertise makes them particularly valuable for clients interested in property purchase alongside their relocation.
 
-[View Anchor Relocation profile](/companies/anchor-relocation/) • [Property purchase services](/services/property-purchase/)
+[View Anchor Relocation profile](/companies/anchor-relocation/) • [Property purchase advisory](/services/advisory/)
 
 ---
 
@@ -187,7 +187,7 @@ Xpat Relocation offers transparent, flexible relocation services with a focus on
 
 **Good to know:** Xpat's perfect 5.0 rating reflects their hands-on approach and commitment to client satisfaction, particularly for individual expats and small families.
 
-[View Xpat Relocation profile](/companies/xpat-relocation/) • [Visa & immigration services](/services/visa/)
+[View Xpat Relocation profile](/companies/xpat-relocation/) • [Visa & immigration services](/services/immigration/)
 
 ---
 
@@ -221,7 +221,7 @@ Swiss Expat Realtor combines relocation services with specialized real estate kn
 
 **Good to know:** Their real estate focus makes them particularly valuable for clients who want expert property guidance integrated into their relocation process.
 
-[View Swiss Expat Realtor profile](/companies/swiss-expat-realtor/) • [Advisory services](/services/advisory-services/)
+[View Swiss Expat Realtor profile](/companies/swiss-expat-realtor/) • [Advisory services](/services/advisory/)
 
 ---
 
@@ -238,7 +238,7 @@ Connectiv Relocation offers tailored relocation services with a focus on individ
 
 **Good to know:** As a smaller boutique firm, Connectiv excels at providing flexible, customized services for clients with unique needs.
 
-[View Connectiv Relocation profile](/companies/connectiv-relocation/) • [Settling-in support](/services/settling-in/)
+[View Connectiv Relocation profile](/companies/connectiv-relocation-ag/) • [Settling-in support](/services/settling-in/)
 
 ---
 
@@ -256,7 +256,7 @@ Zurich, as Switzerland's largest city and financial capital, offers the most rel
 
 Geneva's international community benefits from firms like [Crown Relocations](/companies/crown-relocations/) with global network capabilities, and [Lodge Relocation](/companies/lodge-relocation/)'s strong French-speaking team. Both excel at supporting international organization employees and diplomats.
 
-[Explore Geneva relocation guide](/regions/geneva/) • [Immigration services](/services/visa/)
+[Explore Geneva relocation guide](/regions/geneva/) • [Immigration services](/services/immigration/)
 
 ### Basel Region
 **Top Choices:** Lodge Relocation, Alliance Relocation, Silver Nest
@@ -270,7 +270,7 @@ Basel's pharma industry attracts many expats, with [Lodge Relocation](/companies
 
 Zug's business-friendly environment is well-served by [Prime Relocation](/companies/prime-relocation/)'s local presence and [Matterhorn Relocation](/companies/matterhorn-relocation/)'s premium property access.
 
-[Explore Zug relocation guide](/regions/zug/) • [Property purchase services](/services/property-purchase/)
+[Explore Zug relocation guide](/regions/zug/) • [Property purchase advisory](/services/advisory/)
 
 ---
 
@@ -358,7 +358,7 @@ Not sure which company fits your needs? Book a free consultation with our reloca
 ### Option 3: Explore Resources
 - [Swiss Relocation Guide](/swiss-relocation-guide/) – comprehensive A-Z guide
 - [Housing Search Services](/services/housing/) – find apartments & homes
-- [Visa & Immigration Support](/services/visa/) – navigate Swiss permits
+- [Visa & Immigration Support](/services/immigration/) – navigate Swiss permits
 - [Corporate Solutions](/corporate/) – for HR and mobility teams
 - [Settling-In Services](/services/settling-in/) – integration support
 
@@ -379,4 +379,3 @@ Not sure which company fits your needs? Book a free consultation with our reloca
 ---
 
 *Moving to Switzerland? Start your journey with confidence. Compare top relocation companies, read verified reviews, and find the perfect partner for your Swiss relocation on [ReloFinder.ch](/).*
-

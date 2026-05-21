@@ -42,7 +42,7 @@ Finding an apartment in Switzerland has become one of the most stressful aspects
 - **Target Audience**: Expats, international professionals, embassy staff, employees of international organizations
 - **Cost**: Free for tenants
 
-**Quick Links**: [Housing Services](/services/housing) • [Zurich Guide](/regions/zurich) • [Zug Guide](/regions/zug) • [Contact Us](/contact)
+**Quick Links**: [Housing Services](/services/housing/) • [Zurich Guide](/regions/zurich/) • [Zug Guide](/regions/zug/) • [Contact Us](/contact/)
 
 ---
 
@@ -134,7 +134,7 @@ Visit [Offlist.ch](https://offlist.ch) and create your tenant profile. You'll in
 - **Budget**: Your maximum monthly rent
 - **Timeline**: When you need to move
 
-**Pro tip**: Be specific but realistic. A profile looking for "4.5 rooms in Zurich for under CHF 2,000" won't match any listings. Research market rates using our [Zurich housing guide](/regions/zurich) or [Zug housing guide](/regions/zug) before setting your budget.
+**Pro tip**: Be specific but realistic. A profile looking for "4.5 rooms in Zurich for under CHF 2,000" won't match any listings. Research market rates using our [Zurich housing guide](/regions/zurich/) or [Zug housing guide](/regions/zug/) before setting your budget.
 
 ### Step 2: Verify Your Employment
 
@@ -216,11 +216,11 @@ For landlords and agencies, expats and international professionals are ideal ten
 Offlist.ch works best as part of a multi-channel strategy:
 
 1. **Register on Offlist.ch** for passive, off-market discovery
-2. **Work with a [relocation agency](/companies)** for hands-on support
+2. **Work with a [relocation agency](/companies/)** for hands-on support
 3. **Monitor public listings** on traditional portals (but expect low success rates)
 4. **Leverage your network** — personal referrals still work
 
-**Related resources**: [Best Relocation Companies in Switzerland](/blog/best-relocation-agencies-switzerland-comparison/) • [Housing Search Services](/services/housing)
+**Related resources**: [Best Relocation Companies in Switzerland](/blog/best-relocation-agencies-switzerland-comparison/) • [Housing Search Services](/services/housing/)
 
 ---
 
@@ -347,15 +347,15 @@ Create your verified tenant profile and start receiving off-market listing invit
 
 Not sure where to start? Work with a verified relocation company who can guide you through the Swiss housing market.
 
-**[Browse Relocation Companies →](/companies)** | **[Book Free Consultation →](/contact)**
+**[Browse Relocation Companies →](/companies/)** | **[Book Free Consultation →](/contact/)**
 
 ### Option 3: Explore More Resources
 
 - **[Best Relocation Companies in Switzerland (2026)](/blog/best-relocation-agencies-switzerland-comparison/)** — Compare top agencies
-- **[Housing Search Services](/services/housing)** — Understand your options
-- **[Zurich Relocation Guide](/regions/zurich)** — City-specific insights
-- **[Zug Relocation Guide](/regions/zug)** — Business hub essentials
-- **[Corporate Relocation Solutions](/corporate)** — For HR teams
+- **[Housing Search Services](/services/housing/)** — Understand your options
+- **[Zurich Relocation Guide](/regions/zurich/)** — City-specific insights
+- **[Zug Relocation Guide](/regions/zug/)** — Business hub essentials
+- **[Corporate Relocation Solutions](/corporate/)** — For HR teams
 
 ---
 

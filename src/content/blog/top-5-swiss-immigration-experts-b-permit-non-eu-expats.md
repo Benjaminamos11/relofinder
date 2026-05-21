@@ -68,6 +68,6 @@ As shown, while global law firms handle volume, boutique agencies like Prime Rel
 
 Securing the B-Permit is the hardest step, but it is only the first step. Once the canton approves your permit, a cascade of mandatory registrations must occur specifically within the municipality where you reside.
 
-To ensure this transition is flawless, it is highly recommended to **[compare relocation experts in Switzerland](/companies/prime-relocation)** who offer end-to-end services. A dedicated boutique consultant will take the approved federal mandate, march it into the local *Kreisbüro* (registration office), and physically ensure your local residence is validated so you can open your bank accounts and sign your lease.
+To ensure this transition is flawless, it is highly recommended to **[compare relocation experts in Switzerland](/companies/prime-relocation/)** who offer end-to-end services. A dedicated boutique consultant will take the approved federal mandate, march it into the local *Kreisbüro* (registration office), and physically ensure your local residence is validated so you can open your bank accounts and sign your lease.
 
-If you are ready to begin this complex journey, connect with verified **[Swiss immigration consultants](/services/immigration)** today. By leveraging deep local expertise and flawless legal execution, you can bypass the federal bottlenecks and secure your future in Switzerland.
+If you are ready to begin this complex journey, connect with verified **[Swiss immigration consultants](/services/immigration/)** today. By leveraging deep local expertise and flawless legal execution, you can bypass the federal bottlenecks and secure your future in Switzerland.

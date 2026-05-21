@@ -3,7 +3,7 @@ title: "Tenant Rights & Rent Control in Switzerland: The 2026 Expat Guide"
 description: "Swiss tenant law protects expats — if you know your rights. From mandatory disclosure forms to rent reduction requests, here's what works in Basel, Geneva, and beyond."
 publishDate: 2026-05-13
 author: "relofinder"
-heroImage: "/images/blog/swiss-rental-crisis-2026.jpg"
+heroImage: "/images/blog/reverse-application-strategy.webp"
 category: "Housing & Living"
 tags: ["housing", "tenant-rights", "rent-control", "switzerland", "expat-guide", "basel", "geneva"]
 readingTime: 12
@@ -242,4 +242,4 @@ Swiss tenant law is powerful — but only if you act within the correct timefram
 
 Most expats discover these protections only after signing a bad lease or receiving an invalid termination. Now you know better.
 
-**Next step**: Take the [2-minute relocation assessment](/assessment/) to find housing, insurance, and permit support tailored to your canton, budget, and timeline. The right setup saves thousands of CHF per year — and protects your rights from day one.
+**Next step**: Take the [2-minute relocation assessment](/companies/) to find housing, insurance, and permit support tailored to your canton, budget, and timeline. The right setup saves thousands of CHF per year — and protects your rights from day one.

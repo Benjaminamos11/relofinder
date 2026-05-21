@@ -47,19 +47,19 @@ const topAgencies = [
 const cantons = [
   { name: "Zurich", code: "ZH", slug: "zurich" },
   { name: "Geneva", code: "GE", slug: "geneva" },
-  { name: "Basel-Stadt", code: "BS", slug: "basel-stadt" },
+  { name: "Basel-Stadt", code: "BS", slug: "basel" },
   { name: "Zug", code: "ZG", slug: "zug" },
-  { name: "Vaud", code: "VD", slug: "vaud" },
-  { name: "Bern", code: "BE", slug: "bern" },
-  { name: "Lucerne", code: "LU", slug: "lucerne" },
-  { name: "St. Gallen", code: "SG", slug: "st-gallen" }
+  { name: "Vaud", code: "VD", slug: "lausanne" },
+  { name: "Bern", code: "BE", slug: "swiss-hubs" },
+  { name: "Lucerne", code: "LU", slug: "swiss-hubs" },
+  { name: "St. Gallen", code: "SG", slug: "swiss-hubs" }
 ];
 
 const services = [
-  { name: "Housing Search", slug: "housing-search" },
-  { name: "Visa & Immigration", slug: "visa-immigration" },
+  { name: "Housing Search", slug: "housing" },
+  { name: "Visa & Immigration", slug: "immigration" },
   { name: "Moving Logistics", slug: "moving-logistics" },
-  { name: "School Search", slug: "school-search" }
+  { name: "School Search", slug: "education" }
 ];
 
 const faqs = [
@@ -83,6 +83,7 @@ const faqs = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <title>Compare Best Relocation Agencies Switzerland | ReloFinder</title>
     <meta name="description" content="Find and compare verified Swiss relocation agencies. Get free quotes, read analyst summaries, and download our 2025 Cost Benchmark Guide.">
     <style is:inline>
@@ -119,8 +120,8 @@ const faqs = [
 
             <!-- Desktop Nav Links -->
             <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-                <a href="/directory" class="hover:text-slate-900 transition-colors">Directory</a>
-                <a href="/cost-guide" class="hover:text-slate-900 transition-colors">Cost Guide</a>
+                <a href="/companies/" class="hover:text-slate-900 transition-colors">Directory</a>
+                <a href="/blog/relocation-agency-costs-switzerland-2026/" class="hover:text-slate-900 transition-colors">Cost Guide</a>
                 <a href="/login/" class="hover:text-slate-900 transition-colors">Login</a>
             </div>
 
@@ -129,7 +130,7 @@ const faqs = [
                 <a href="#" class="hidden md:block text-sm font-medium text-slate-600 hover:text-[#FF6F61] transition-colors">
                     For Individuals
                 </a>
-                <a href="/corporate-inquiry" class="bg-slate-800 text-white text-sm font-medium px-5 py-2.5 rounded-lg hover:bg-slate-700 transition-colors flex items-center gap-2 shadow-md">
+                <a href="/corporate/" class="bg-slate-800 text-white text-sm font-medium px-5 py-2.5 rounded-lg hover:bg-slate-700 transition-colors flex items-center gap-2 shadow-md">
                     <Building2 className="w-4 h-4" />
                     <span>For Corporate HR</span>
                 </a>
@@ -211,7 +212,7 @@ const faqs = [
                             </div>
                         </div>
 
-                        <a href="/directory" id="hero-cta" class="block w-full py-4 bg-[#FF6F61] hover:bg-[#f65d4e] text-white font-bold rounded-lg shadow-lg shadow-[#FF6F61]/20 transition-all transform hover:-translate-y-0.5 text-lg">
+                        <a href="/companies/" id="hero-cta" class="block w-full py-4 bg-[#FF6F61] hover:bg-[#f65d4e] text-white font-bold rounded-lg shadow-lg shadow-[#FF6F61]/20 transition-all transform hover:-translate-y-0.5 text-lg">
                             Compare Rates & Availability
                         </a>
                         
@@ -239,7 +240,7 @@ const faqs = [
                     <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-3">Top Rated Agencies</h2>
                     <p class="text-slate-500 text-lg">Selected based on verification status and independent analysis.</p>
                 </div>
-                <a href="/directory" class="hidden md:flex items-center gap-2 text-[#FF6F61] font-semibold hover:text-[#e05548] transition-colors border-b-2 border-[#FF6F61]/20 pb-1 hover:border-[#FF6F61]">
+                <a href="/companies/" class="hidden md:flex items-center gap-2 text-[#FF6F61] font-semibold hover:text-[#e05548] transition-colors border-b-2 border-[#FF6F61]/20 pb-1 hover:border-[#FF6F61]">
                     View All Agencies <ArrowRight className="w-4 h-4" />
                 </a>
             </div>
@@ -297,7 +298,7 @@ const faqs = [
             </div>
             
             <div class="mt-12 text-center md:hidden">
-                <a href="/directory" class="text-[#FF6F61] font-semibold">View All Agencies &rarr;</a>
+                <a href="/companies/" class="text-[#FF6F61] font-semibold">View All Agencies &rarr;</a>
             </div>
         </div>
     </section>
@@ -308,7 +309,7 @@ const faqs = [
             <h2 class="text-2xl font-bold text-slate-800 mb-10">Find Experts by Canton</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {cantons.map(canton => (
-                    <a href={`/canton/${canton.slug}`} class="relative h-32 flex flex-col justify-between p-6 bg-white border border-slate-200 rounded-xl hover:border-[#FF6F61] hover:shadow-md transition-all group overflow-hidden">
+                    <a href={`/regions/${canton.slug}/`} class="relative h-32 flex flex-col justify-between p-6 bg-white border border-slate-200 rounded-xl hover:border-[#FF6F61] hover:shadow-md transition-all group overflow-hidden">
                         
                         <!-- Content -->
                         <div class="relative z-10">
@@ -402,7 +403,7 @@ const faqs = [
                     <h4 class="text-white font-bold mb-6">Top Cantons</h4>
                     <ul class="space-y-3 text-sm text-slate-400">
                         {cantons.slice(0, 5).map(c => (
-                            <li><a href={`/canton/${c.slug}`} class="hover:text-[#FF6F61] transition-colors">{c.name}</a></li>
+                            <li><a href={`/regions/${c.slug}/`} class="hover:text-[#FF6F61] transition-colors">{c.name}</a></li>
                         ))}
                     </ul>
                 </div>
@@ -421,9 +422,9 @@ const faqs = [
                 <div>
                     <h4 class="text-white font-bold mb-6">For Business</h4>
                     <ul class="space-y-3 text-sm text-slate-400">
-                        <li><a href="/corporate-inquiry" class="hover:text-[#FF6F61] transition-colors">Corporate Solutions</a></li>
+                        <li><a href="/corporate/" class="hover:text-[#FF6F61] transition-colors">Corporate Solutions</a></li>
                         <li><a href="/login/" class="hover:text-slate-400 hover:underline transition-colors">Agency Login</a></li>
-                        <li><a href="/market-data" class="hover:text-slate-400 hover:underline transition-colors">Get 2025 Rate Cards</a></li>
+                        <li><a href="/blog/relocation-agency-costs-switzerland-2026/" class="hover:text-slate-400 hover:underline transition-colors">Get 2026 Rate Cards</a></li>
                     </ul>
                 </div>
             </div>

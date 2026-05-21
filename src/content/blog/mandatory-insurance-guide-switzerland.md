@@ -30,7 +30,7 @@ faqs:
 
 Relocating involves two types of paperwork: The paperwork to get *in* (Visas/Permits), and the paperwork to stay *safe* (Insurance).
 
-While [ReloFinder](/companies) helps you find the agency to manage your move, navigating the Swiss insurance jungle requires specialized advice.
+While [ReloFinder](/companies/) helps you find the agency to manage your move, navigating the Swiss insurance jungle requires specialized advice.
 
 ---
 
@@ -341,7 +341,7 @@ Don't guess on LAMal. Get personalized advice based on your situation.
 
 Once insurance is sorted, focus on finding the right agency to manage your move.
 
-**[Compare Agencies → ReloFinder](/companies)**
+**[Compare Agencies → ReloFinder](/companies/)**
 
 ---
 
@@ -358,7 +358,7 @@ The Swiss system is excellent once you're in it — but the entry paperwork requ
 **Your resources:**
 - **Health Insurance Expertise:** [Expat-Savvy.ch](https://expat-savvy.ch)
 - **Liability & Household Comparison:** [Insurance-Guide.ch](https://insurance-guide.ch)
-- **Relocation Agency Search:** [ReloFinder](/companies)
+- **Relocation Agency Search:** [ReloFinder](/companies/)
 
 ---
 

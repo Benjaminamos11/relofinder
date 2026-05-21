@@ -4,7 +4,7 @@ description: "Switzerland's vacancy rate hits 1.0% in 2026. Real rent prices, co
 publishDate: 2026-05-12
 author: "relofinder"
 tags: ["housing", "rental-market", "switzerland", "expat-guide", "zurich", "geneva", "relocation"]
-heroImage: "/images/blog/swiss-rental-crisis-2026.jpg"
+heroImage: "/images/blog/reverse-application-strategy.webp"
 readingTime: 11
 category: "Housing & Living"
 featured: true
@@ -209,7 +209,7 @@ Many Swiss employers offer 1-3 month temporary apartments for new hires. Negotia
 3. **Bern Suburbs:** Slower growth, better availability
 4. **Rural Ticino/Valais:** <cite index="3-1">Around 2.5%</cite> vacancy—actually balanced markets
 
-For detailed neighborhood guides, read our [Basel Expat Guide](/blog/basel-expat-guide-living-working-2026) or explore city-specific rental strategies via [Expat-Savvy.ch](https://expat-savvy.ch).
+For detailed neighborhood guides, read our [Basel Expat Guide](/blog/basel-expat-guide-living-working-2026/) or explore city-specific rental strategies via [Expat-Savvy.ch](https://expat-savvy.ch).
 
 ## Insurance & Financial Planning: Don't Forget These Costs
 
@@ -249,7 +249,7 @@ Switzerland's rental crisis in 2026 is real, but not insurmountable. Maria from 
 
 Navigating Switzerland's rental market alone is exhausting. Whether you're targeting Zurich's Seefeld, Geneva's Pâquis, or Basel's Gundeldingen, the right relocation partner makes the difference between months of frustration and a signed lease in 2-3 weeks.
 
-**[Start the relofinder assessment →](/assessment/)**
+**[Start the relofinder assessment →](/companies/)**
 
 Answer 8 questions about your move timeline, budget, and priorities. We'll match you with vetted relocation agencies, off-market listings, and city-specific strategies based on 2026 market data. It's free, takes 2 minutes, and has helped 1,200+ expats find housing 40% faster than DIY searching.
 

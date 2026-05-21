@@ -1,8 +1,6 @@
 
 ---
-import SEOHead from '../components/common/SEOHead.astro';
 import '../styles/global.css';
-import { ViewTransitions } from 'astro:transitions';
 
 export interface Props {
   title?: string;
@@ -40,8 +38,6 @@ const {
       @font-face { font-family: 'Playfair Display'; font-style: normal; font-weight: 600; font-display: optional; src: url('/fonts/playfair-600.woff2') format('woff2'); }
       @font-face { font-family: 'Playfair Display'; font-style: italic; font-weight: 400; font-display: optional; src: url('/fonts/playfair-400i.woff2') format('woff2'); }
     </style>
-    
-    <ViewTransitions />
   </head>
   <body class="bg-slate-50 min-h-screen font-sans text-slate-900 antialiased selection:bg-[#FF6F61] selection:text-white">
       <slot />

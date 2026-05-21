@@ -20,7 +20,7 @@ faqs:
   - question: "What questions should I ask a relocation agency before hiring?"
     answer: "Ask about their experience in your target canton, pricing transparency, what's included vs. extra, their response times, client references, and whether they offer a free initial consultation."
   - question: "Can I compare relocation agencies online?"
-    answer: "Yes. ReloFinder lets you compare 500+ verified Swiss agencies by region, service, pricing tier, and reviews — including independent analyst summaries and Google Reviews data."
+    answer: "Yes. ReloFinder lets you compare verified Swiss agencies by region, service, pricing tier, and reviews — including independent analyst summaries and Google Reviews data."
 ---
 
 # How to Choose a Relocation Agency in Switzerland (2026 Guide)
@@ -204,7 +204,7 @@ Most reputable agencies offer a complimentary 30–60 minute consultation to und
 
 <div class="not-prose my-8 rounded-xl border border-gray-200 bg-gray-50 p-6">
   <p class="mb-2 text-lg font-semibold text-gray-900">Ready to compare agencies?</p>
-  <p class="mb-4 text-gray-600">Browse 500+ verified Swiss relocation agencies. Filter by region, service, and read independent reviews.</p>
+  <p class="mb-4 text-gray-600">Browse verified Swiss relocation agencies. Filter by region, service, and read independent reviews.</p>
   <a href="/companies/" class="inline-flex items-center rounded-lg bg-[#FF6F61] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#e5574a] transition-colors">Compare Verified Agencies →</a>
 </div>
 
@@ -292,11 +292,11 @@ Global agencies like Crown and SIRVA suit large corporate moves with internation
 
 ### What questions should I ask a relocation agency before hiring?
 
-Ask about their experience in your target canton, pricing transparency, what's included vs. extra, their response times, client references, and whether they offer a free initial consultation. Also inquire about their cancellation policy and whether any work will be subcontracted. Our [agency comparison page](/companies/) shows these details for 500+ Swiss agencies.
+Ask about their experience in your target canton, pricing transparency, what's included vs. extra, their response times, client references, and whether they offer a free initial consultation. Also inquire about their cancellation policy and whether any work will be subcontracted. Our [agency comparison page](/companies/) shows these details for Swiss agencies.
 
 ### Can I compare relocation agencies online?
 
-Yes. ReloFinder lets you [compare 500+ verified Swiss agencies](/companies/) by region, service, pricing tier, and reviews — including independent analyst summaries and Google Reviews data. You can filter results, read detailed profiles, and request quotes directly through the platform.
+Yes. ReloFinder lets you [compare verified Swiss agencies](/companies/) by region, service, pricing tier, and reviews — including independent analyst summaries and Google Reviews data. You can filter results, read detailed profiles, and request quotes directly through the platform.
 
 ---
 

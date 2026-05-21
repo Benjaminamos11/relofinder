@@ -4,7 +4,6 @@ import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 import Navbar from "../../components/layout/Navbar.astro";
 import Footer from "../../components/layout/Footer.astro";
 import HeroSearch from "../../components/home/HeroSearch.astro";
-import UniversalContactModal from "../../components/common/UniversalContactModal.tsx";
 import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
 import {
     GraduationCap,
@@ -25,9 +24,10 @@ import {
 } from "lucide-react";
 
 const title =
-    "Education & School Search Switzerland | Best Schools Guide 2026 | ReloFinder";
+    "International Schools Switzerland & School Search Agencies | ReloFinder";
 const description =
-    "The definitive guide to the Swiss education system. Compare public vs. international schools, navigate admissions, and find school search experts for your family.";
+    "Compare Swiss public, private, and international school options. Find school search agencies for Zurich, Geneva, Basel, Zug, Lausanne, and expat family moves.";
+const canonical = "https://relofinder.ch/services/education/";
 
 const faqs = [
     {
@@ -65,7 +65,7 @@ const breadcrumbSchema = {
             "@type": "ListItem",
             position: 3,
             name: "Education & School Search",
-            item: "https://relofinder.ch/services/education",
+            item: "https://relofinder.ch/services/education/",
         },
     ],
 };
@@ -92,20 +92,10 @@ const faqSchema = {
 };
 ---
 
-<Layout title={title} description={description}>
-    <!-- SEO Schemas -->
-    <script
-        type="application/ld+json"
-        set:html={JSON.stringify(breadcrumbSchema)}
-    />
-    <script
-        type="application/ld+json"
-        set:html={JSON.stringify(serviceSchema)}
-    />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+<Layout title={title} description={description} canonical={canonical} schema={[breadcrumbSchema, serviceSchema, faqSchema]}>
     <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "Services", url: "/services" }, { name: "Education" }]} />
 
-    <Navbar client:load />
+    <Navbar />
 
     <main class="bg-slate-900">
         <!-- 1. The "Future-Proof" Hero -->
@@ -154,10 +144,7 @@ const faqSchema = {
                         <div
                             class="bg-white/5 backdrop-blur-md p-2 rounded-[2rem] border border-white/10 shadow-2xl"
                         >
-                            <HeroSearch
-                                client:load
-                                initialService="school-search"
-                            />
+                            <HeroSearch initialService="school-search" />
                         </div>
                     </div>
                 </div>
@@ -766,7 +753,7 @@ const faqSchema = {
                             results.
                         </p>
                         <a
-                            href="/search/results?service=school-search"
+                            href="/search/results/?service=school-search"
                             class="inline-flex items-center gap-3 bg-[#FF6F61] text-white px-12 py-5 rounded-full font-extrabold text-sm uppercase tracking-widest hover:scale-105 hover:shadow-2xl hover:shadow-[#FF6F61]/20 transition-all duration-300 relative z-10 shadow-xl no-underline"
                         >
                             Browse & Compare Education Experts
@@ -884,23 +871,6 @@ const faqSchema = {
             </div>
         </section>
     </main>
-
-    <UniversalContactModal client:load />
-
-    <script is:inline>
-        if (typeof window !== "undefined") {
-            window.universalOpenModal = function (context) {
-                const resolvedContext =
-                    context && typeof context === "object"
-                        ? context
-                        : { page: "education", topic: context };
-                if (window.relofinderModalStores) {
-                    window.relofinderModalStores.setContext(resolvedContext);
-                    window.relofinderModalStores.setOpen(true);
-                }
-            };
-        }
-    </script>
 </Layout>
 
 <style>

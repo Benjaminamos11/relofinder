@@ -48,7 +48,6 @@ export default defineConfig({
         && !page.includes('/design-system'),
       changefreq: 'weekly',
       priority: 0.7,
-      lastmod: new Date(),
       serialize(item) {
         // Boost priority for key pages
         if (item.url === 'https://relofinder.ch/') { item.priority = 1.0; item.changefreq = 'daily'; }
@@ -66,7 +65,7 @@ export default defineConfig({
   site: 'https://relofinder.ch',
   trailingSlash: 'always',
   build: {
-    inlineStylesheets: 'always', // Inline critical CSS for faster FCP
+    inlineStylesheets: 'auto',
     assets: 'assets'
   },
   vite: {

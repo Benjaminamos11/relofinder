@@ -44,7 +44,7 @@ const recentReviews = [
 
     <div class="grid md:grid-cols-3 gap-8 reviews-container">
       {recentReviews.map((review, index) => (
-        <a 
+        <a
           href={`/companies/${review.companySlug}/`}
           class={`block bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group review-card`}
           style={`animation-delay: ${index * 0.2}s`}
@@ -102,8 +102,8 @@ const recentReviews = [
           <div class="text-gray-600 font-medium">Successful Relocations</div>
         </div>
         <div class="space-y-2">
-          <div class="text-4xl font-bold gradient-text">500+</div>
-          <div class="text-gray-600 font-medium">Verified Partners</div>
+          <div class="text-4xl font-bold gradient-text">50+</div>
+          <div class="text-gray-600 font-medium">Swiss Providers</div>
         </div>
         <div class="space-y-2">
           <div class="text-4xl font-bold gradient-text">26</div>
@@ -118,8 +118,8 @@ const recentReviews = [
 
     <!-- View All Reviews CTA -->
     <div class="text-center mt-12">
-      <a 
-        href="/companies/" 
+      <a
+        href="/companies/"
         class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-coral-500 hover:bg-coral-600 transition-colors duration-200"
       >
         View All Companies & Reviews
@@ -160,4 +160,4 @@ const recentReviews = [
   .review-card {
     transition: all 0.3s ease-in-out;
   }
-</style> 
+</style>

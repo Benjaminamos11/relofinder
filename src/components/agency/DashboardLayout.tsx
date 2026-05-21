@@ -541,7 +541,7 @@ const LeadsView = ({ partner }: any) => {
                         Request Access
                     </button>
                     <a
-                        href="/partner"
+                        href="/partner/"
                         target="_blank"
                         className="flex-1 bg-white text-slate-600 border border-slate-200 px-6 py-3 rounded-lg font-bold text-sm hover:bg-slate-50 transition-all flex items-center justify-center gap-2"
                     >

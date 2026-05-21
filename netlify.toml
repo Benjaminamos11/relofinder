@@ -140,13 +140,6 @@
   status = 301
   force = true
 
-# Old region page
-[[redirects]]
-  from = "/regions/bern"
-  to = "/regions/"
-  status = 301
-  force = true
-
 # ============================================
 # OLD SITE REDIRECTS (dead URLs from previous version)
 # ============================================
@@ -208,8 +201,8 @@
   force = true
 
 [[redirects]]
-  from = "/regions/lugano"
-  to = "/regions/"
+  from = "/regions/st-gallen"
+  to = "/regions/swiss-hubs/"
   status = 301
   force = true
 

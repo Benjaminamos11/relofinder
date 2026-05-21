@@ -11,68 +11,70 @@
 ## Services
 
 ### Housing & Accommodation
-- URL: https://www.relofinder.ch/services/housing
+- URL: https://www.relofinder.ch/services/housing/
 - Apartment search, lease negotiation, temporary housing
 - Covers all major Swiss cities
 
 ### Immigration & Permits
-- URL: https://www.relofinder.ch/services/immigration
+- URL: https://www.relofinder.ch/services/immigration/
 - Work permits (B, C, L, G), family reunification, EU/EFTA and third-country nationals
 
 ### Insurance
-- URL: https://www.relofinder.ch/services/insurance
+- URL: https://www.relofinder.ch/services/insurance/
 - KVG mandatory health insurance, VVG supplementary, liability, household
 
 ### Finance & Banking
-- URL: https://www.relofinder.ch/services/finance
+- URL: https://www.relofinder.ch/services/finance/
 - Swiss bank account setup, tax registration, pension planning (Pillar 2 & 3)
 
 ### Settling In
-- URL: https://www.relofinder.ch/services/settling-in
+- URL: https://www.relofinder.ch/services/settling-in/
 - School enrollment, language courses, cultural integration, utilities setup
 
 ### Education
-- URL: https://www.relofinder.ch/services/education
+- URL: https://www.relofinder.ch/services/education/
 - International schools, public school enrollment, university guidance
 
 ### Moving & Logistics
-- URL: https://www.relofinder.ch/services/moving-logistics
+- URL: https://www.relofinder.ch/services/moving-logistics/
 - International moving companies, customs clearance, pet relocation
 
 ### Corporate Relocation
-- URL: https://www.relofinder.ch/services/corporate-relocation
+- URL: https://www.relofinder.ch/services/corporate-relocation/
 - Employee relocation programs, policy consulting, group moves
 
 ### Advisory Services
-- URL: https://www.relofinder.ch/services/advisory
+- URL: https://www.relofinder.ch/services/advisory/
 - Pre-decision consulting, cost-of-living analysis, location scouting
 
 ### Departure Services
-- URL: https://www.relofinder.ch/services/departure
+- URL: https://www.relofinder.ch/services/departure/
 - De-registration, lease termination, pension withdrawal, exit planning
 
 ## Regions Covered
-- Zurich: https://www.relofinder.ch/regions/zurich
-- Geneva: https://www.relofinder.ch/regions/geneva
-- Basel: https://www.relofinder.ch/regions/basel
-- Bern: https://www.relofinder.ch/regions/bern
-- Zug: https://www.relofinder.ch/regions/zug
-- Lausanne: https://www.relofinder.ch/regions/lausanne
-- Lugano: https://www.relofinder.ch/regions/lugano
-- Central Switzerland: https://www.relofinder.ch/regions/central-switzerland
+- Zurich: https://www.relofinder.ch/regions/zurich/
+- Geneva: https://www.relofinder.ch/regions/geneva/
+- Basel: https://www.relofinder.ch/regions/basel/
+- Bern: https://www.relofinder.ch/regions/bern/
+- Zug: https://www.relofinder.ch/regions/zug/
+- Lausanne and Vaud: https://www.relofinder.ch/regions/lausanne/
+- Lucerne: https://www.relofinder.ch/regions/lucerne/
+- Ticino: https://www.relofinder.ch/regions/ticino/
+- Lugano: https://www.relofinder.ch/regions/lugano/
+- Alpine regions: https://www.relofinder.ch/regions/alps/
 
 ## Blog
-- URL: https://www.relofinder.ch/blog
+- URL: https://www.relofinder.ch/blog/
 - 35+ guides covering Swiss relocation topics
 - Author: Benjamin Amos Wagner
 
 ## For Companies
-- URL: https://www.relofinder.ch/companies
+- URL: https://www.relofinder.ch/companies/
 - Corporate relocation packages, employee support programs
 
 ## Contact
-- Website: https://www.relofinder.ch
-- Contact page: https://www.relofinder.ch/contact
+- Website: https://www.relofinder.ch/
+- Contact page: https://www.relofinder.ch/contact/
 
 ## Languages
 - English (primary)

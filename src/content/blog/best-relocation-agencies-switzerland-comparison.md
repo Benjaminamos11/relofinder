@@ -97,19 +97,19 @@ These are Swiss-owned, owner-operated firms.
 
 ### Cons:
 - Highly variable pricing
-- Hard to compare without a tool like **[ReloFinder](/companies)**
+- Hard to compare without a tool like **[ReloFinder](/companies/)**
 - Quality depends entirely on the individual consultant
 - May lack resources for complex immigration cases
 
 ### Typical Tier 2 Providers:
-- [Prime Relocation](/companies/prime-relocation)
-- [Silver Nest Relocation](/companies/silver-nest-relocation)
-- [Lodge Relocation](/companies/lodge-relocation)
-- [Anchor Relocation](/companies/anchor-relocation)
+- [Prime Relocation](/companies/prime-relocation/)
+- [Silver Nest Relocation](/companies/silver-nest-relocation/)
+- [Lodge Relocation](/companies/lodge-relocation/)
+- [Anchor Relocation](/companies/anchor-relocation/)
 
 **Cost Range:** CHF 4,000 – CHF 10,000 (depending on scope)
 
-**Browse all boutique agencies:** [ReloFinder Directory →](/companies)
+**Browse all boutique agencies:** [ReloFinder Directory →](/companies/)
 
 ---
 
@@ -162,7 +162,7 @@ If you choose this route, we recommend **[Expat-Services.ch](https://expat-servi
 
 <div class="not-prose my-8 rounded-xl border border-gray-200 bg-gray-50 p-6">
   <p class="mb-2 text-lg font-semibold text-gray-900">Ready to compare agencies?</p>
-  <p class="mb-4 text-gray-600">Want to see the full directory? Compare 500+ verified agencies with ratings, reviews, and pricing on ReloFinder.</p>
+  <p class="mb-4 text-gray-600">Want to see the full directory? Compare verified agencies with ratings, reviews, and pricing on ReloFinder.</p>
   <a href="/companies/" class="inline-flex items-center rounded-lg bg-[#FF6F61] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#e5574a] transition-colors">Compare Verified Agencies →</a>
 </div>
 
@@ -210,7 +210,7 @@ Here's why comparing agencies is so difficult:
 
 This is why we built ReloFinder — to standardize what you're comparing.
 
-**[Get Comparable Quotes →](/contact)**
+**[Get Comparable Quotes →](/contact/)**
 
 ---
 
@@ -269,7 +269,7 @@ This hybrid approach works especially well for professionals who:
 
 **Recommendation:** Tier 2 for housing, DIY for everything else
 
-[Zürich Guide →](/regions/zurich) | [Zug Guide →](/regions/zug)
+[Zürich Guide →](/regions/zurich/) | [Zug Guide →](/regions/zug/)
 
 ### Geneva & Lausanne
 
@@ -278,9 +278,9 @@ This hybrid approach works especially well for professionals who:
 - French-language bureaucracy
 - Cross-border (France) options available
 
-**Recommendation:** Tier 2 or DIY both viable. For a detailed comparison of Romandie-specialist providers, see our [Best Relocation Agencies in Geneva guide](/blog/best-relocation-agencies-geneva-2026).
+**Recommendation:** Tier 2 or DIY both viable. For a detailed comparison of Romandie-specialist providers, see our [Best Relocation Agencies in Geneva guide](/blog/best-relocation-agencies-geneva-2026/).
 
-[Geneva Guide →](/regions/geneva) | [Lausanne Guide →](/regions/lausanne)
+[Geneva Guide →](/regions/geneva/) | [Lausanne Guide →](/regions/lausanne/)
 
 ### Basel
 
@@ -291,7 +291,7 @@ This hybrid approach works especially well for professionals who:
 
 **Recommendation:** Match to employer tier (often Tier 1)
 
-[Basel Guide →](/regions/basel)
+[Basel Guide →](/regions/basel/)
 
 ---
 
@@ -326,7 +326,7 @@ Three key areas:
 
 ### How do I compare relocation agency quotes fairly?
 
-Use a standardized comparison platform like [ReloFinder](/companies) to get anonymous, comparable quotes. Ensure you're comparing identical scope: same number of viewings, same immigration services, same departure coverage. Ask each agency to itemize third-party fees separately.
+Use a standardized comparison platform like [ReloFinder](/companies/) to get anonymous, comparable quotes. Ensure you're comparing identical scope: same number of viewings, same immigration services, same departure coverage. Ask each agency to itemize third-party fees separately.
 
 ### What is Expat-Services.ch?
 
@@ -343,7 +343,7 @@ Use a standardized comparison platform like [ReloFinder](/companies) to get anon
 
 Browse verified agencies, read reviews, and get comparable quotes.
 
-**[Browse All Companies →](/companies)**
+**[Browse All Companies →](/companies/)**
 
 ### Option 2: Go DIY with Expat-Services.ch
 
@@ -355,7 +355,7 @@ Access AI tools, verified directories, and Swiss bureaucracy glossaries.
 
 Not sure which tier fits? Book a free consultation with our team.
 
-**[Book Free Consultation →](/contact)**
+**[Book Free Consultation →](/contact/)**
 
 ---
 
@@ -363,7 +363,7 @@ Not sure which tier fits? Book a free consultation with our team.
 
 The "Best" agency is the one that fits your specific needs.
 
-- If you need a human to hold your hand → use our [comparison tool](/companies) to find the best-rated Boutique Agency
+- If you need a human to hold your hand → use our [comparison tool](/companies/) to find the best-rated Boutique Agency
 - If you need smart tools to do it yourself → head to **[Expat-Services.ch](https://expat-services.ch)**
 
 **Transparency is the only luxury that matters.**
@@ -380,6 +380,6 @@ The "Best" agency is the one that fits your specific needs.
 
 ---
 
-*Comparing relocation agencies in Switzerland? Start with the right tier for your needs. Use [ReloFinder](/companies) for agency quotes or [Expat-Services.ch](https://expat-services.ch) for DIY tools. Don't forget to protect your future by **[avoiding the Swiss Pillar 3a life insurance trap](https://expat-savvy.ch/3rd-pillar/bank-vs-insurance)**. Either way, don't pay for opacity.*
+*Comparing relocation agencies in Switzerland? Start with the right tier for your needs. Use [ReloFinder](/companies/) for agency quotes or [Expat-Services.ch](https://expat-services.ch) for DIY tools. Don't forget to protect your future by **[avoiding the Swiss Pillar 3a life insurance trap](https://expat-savvy.ch/3rd-pillar/bank-vs-insurance)**. Either way, don't pay for opacity.*
 
 

@@ -50,7 +50,7 @@ Auris Relocation is the largest privately owned independent relocation firm in S
 
 **Quick Links**: [Compare all relocation agencies](/companies/) • [Zurich relocation hub](/regions/zurich/) • [Zug relocation hub](/regions/zug/)
 
-**Need help choosing?** [Get matched with the right agency in 24 hours](/assessment/)
+**Need help choosing?** [Get matched with the right agency in 24 hours](/companies/)
 
 ---
 
@@ -87,7 +87,7 @@ Auris does not publish a public price list — pricing is quoted per assignment 
 
 > **Tip:** Always confirm what is *excluded* from the headline quote. Permit cantonal fees, school registration fees, and any short-term housing bridge are usually billed separately. ReloFinder's [agency cost guide](/blog/relocation-agency-costs-switzerland-2026/) breaks down the line items most clients miss.
 
-**[Compare Verified Quotes Side-by-Side → ReloFinder Assessment](/assessment/)**
+**[Compare Verified Quotes Side-by-Side → ReloFinder Assessment](/companies/)**
 
 ---
 
@@ -265,7 +265,7 @@ Ready to move from research to a shortlist?
 ### Option 1: Get Three Competing Quotes
 The cheapest mistake-prevention you can buy. Submit your move profile once and ReloFinder will return three matched agencies — including Auris alternatives if you specify preferences.
 
-[Start the matching assessment →](/assessment/)
+[Start the matching assessment →](/companies/)
 
 ### Option 2: Compare Agency Profiles Directly
 If you want to read individual profiles before talking to anyone, browse the verified agency directory.
@@ -307,4 +307,4 @@ If you want to read individual profiles before talking to anyone, browse the ver
 
 ---
 
-*For tailored matching, start with the [ReloFinder assessment](/assessment/), pair it with off-market reach via [Offlist.ch](https://offlist.ch), and lock in compliant Swiss health insurance through [Expat-Savvy.ch](https://expat-savvy.ch) before your move-in date.*
+*For tailored matching, start with the [ReloFinder assessment](/companies/), pair it with off-market reach via [Offlist.ch](https://offlist.ch), and lock in compliant Swiss health insurance through [Expat-Savvy.ch](https://expat-savvy.ch) before your move-in date.*

@@ -7,7 +7,7 @@ const regions = [
     title: "Switzerland's Financial Capital",
     description: "Dynamic business hub with lake views and Alpine backdrop",
     image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Zurich",
-    href: "/regions/zurich",
+    href: "/regions/zurich/",
     stats: {
       population: "402,762",
       avgRent: "CHF 2,200",
@@ -21,7 +21,7 @@ const regions = [
     title: "International Diplomacy Center",
     description: "Sophisticated lakeside city with global organizations",
     image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Geneva",
-    href: "/regions/geneva",
+    href: "/regions/geneva/",
     stats: {
       population: "201,818",
       avgRent: "CHF 2,500",
@@ -35,7 +35,7 @@ const regions = [
     title: "Cultural & Pharmaceutical Hub",
     description: "Rhine-side city known for art, culture, and life sciences",
     image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Basel",
-    href: "/regions/basel",
+    href: "/regions/basel/",
     stats: {
       population: "173,232",
       avgRent: "CHF 1,800",
@@ -50,7 +50,7 @@ const regions = [
     title: "Olympic Capital",
     description: "Vibrant university city on Lake Geneva's shores",
     image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Lausanne",
-    href: "/regions/lausanne",
+    href: "/regions/lausanne/",
     stats: {
       population: "139,111",
       avgRent: "CHF 1,700",
@@ -64,7 +64,7 @@ const regions = [
     title: "Gateway to Central Switzerland",
     description: "Picturesque lakeside town with mountain access",
     image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Lucerne",
-    href: "/regions/lucerne",
+    href: "/regions/lucerne/",
     stats: {
       population: "82,620",
       avgRent: "CHF 1,500",
@@ -78,7 +78,7 @@ const regions = [
     title: "Crypto Valley",
     description: "Business-friendly canton with blockchain innovation",
     image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Zug",
-    href: "/regions/zug",
+    href: "/regions/zug/",
     stats: {
       population: "30,542",
       avgRent: "CHF 2,000",
@@ -92,7 +92,7 @@ const regions = [
     title: "Industrial Heritage City",
     description: "Technology and cultural center near Zürich",
     image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Winterthur",
-    href: "/regions/winterthur",
+    href: "/regions/swiss-hubs/",
     stats: {
       population: "114,220",
       avgRent: "CHF 1,400",
@@ -106,7 +106,7 @@ const regions = [
     title: "Watchmaking Capital",
     description: "Historic city famous for precision timepieces",
     image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Neuchatel",
-    href: "/regions/neuchatel",
+    href: "/regions/swiss-hubs/",
     stats: {
       population: "33,455",
       avgRent: "CHF 1,300",
@@ -120,7 +120,7 @@ const regions = [
     title: "Bilingual Heritage City",
     description: "Medieval town bridging German and French cultures",
     image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Fribourg",
-    href: "/regions/fribourg",
+    href: "/regions/swiss-hubs/",
     stats: {
       population: "38,039",
       avgRent: "CHF 1,200",
@@ -134,7 +134,7 @@ const regions = [
     title: "Alpine Paradise",
     description: "Stunning mountain region with world-class skiing",
     image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Valais",
-    href: "/regions/valais",
+    href: "/regions/alps/",
     stats: {
       population: "348,503",
       avgRent: "CHF 1,100",
@@ -148,7 +148,7 @@ const regions = [
     title: "Luxury Alpine Resort",
     description: "Exclusive mountain destination for discerning residents",
     image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Gstaad",
-    href: "/regions/gstaad",
+    href: "/regions/alps/",
     stats: {
       population: "3,400",
       avgRent: "CHF 3,500",
@@ -162,7 +162,7 @@ const regions = [
     title: "Alpine Luxury Destination",
     description: "World-renowned resort town in the Engadin Valley",
     image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=St+Moritz",
-    href: "/regions/st-moritz",
+    href: "/regions/alps/",
     stats: {
       population: "5,067",
       avgRent: "CHF 4,000",
@@ -176,7 +176,7 @@ const regions = [
     title: "Alpine Village Resort",
     description: "Charming mountain village with year-round recreation",
     image: "https://via.placeholder.com/1200x800/e5e7eb/6b7280?text=Andermatt",
-    href: "/regions/andermatt",
+    href: "/regions/alps/",
     stats: {
       population: "1,550",
       avgRent: "CHF 2,800",
@@ -193,7 +193,7 @@ const defaultRegion = regions[0];
 <div class="py-12 bg-gray-50">
   <div class="container">
     <h2 class="text-3xl font-bold text-center mb-8">Choose a <span class="text-coral-500">Region</span></h2>
-    
+
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
       <!-- Left: Region Selector -->
       <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
@@ -206,10 +206,10 @@ const defaultRegion = regions[0];
             Choose a Region
           </div>
         </div>
-        
+
         <div class="region-list">
           {regions.map((region, index) => (
-            <button 
+            <button
               class={"w-full text-left py-4 px-5 border-b last:border-b-0 border-gray-100 hover:bg-gray-50 transition-colors " + (index === 0 ? 'bg-primary-50 text-coral-600 font-medium' : 'text-gray-700')}
               data-region-id={region.id}
             >
@@ -218,17 +218,17 @@ const defaultRegion = regions[0];
           ))}
         </div>
       </div>
-      
+
       <!-- Right: Region Details -->
       <div class="lg:col-span-2">
         {regions.map((region) => (
-          <div 
+          <div
             class={"region-detail bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 " + (region.id === defaultRegion.id ? 'block' : 'hidden')}
             id={`region-${region.id}`}
           >
             <!-- Region Image -->
             <div class="relative h-64 overflow-hidden">
-              <img 
+              <img
                 src={region.image}
                 alt={region.name + " Region"}
                 class="w-full h-full object-cover"
@@ -240,13 +240,13 @@ const defaultRegion = regions[0];
                 <h3 class="text-3xl font-bold text-white mt-2">{region.name}</h3>
               </div>
             </div>
-            
+
             <!-- Region Content -->
             <div class="p-6">
               <p class="text-accent-600 mb-6">
                 {region.description}
               </p>
-              
+
               <div class="mb-6">
                 <h4 class="text-lg font-semibold mb-3">Key Services in {region.name}:</h4>
                 <ul class="space-y-2">
@@ -260,8 +260,8 @@ const defaultRegion = regions[0];
                   ))}
                 </ul>
               </div>
-              
-              <a 
+
+              <a
                 href={`/services?region=${region.id}`}
                 class="inline-flex items-center px-5 py-2.5 bg-coral-500 text-white font-medium rounded-lg hover:bg-coral-600 transition-colors"
               >
@@ -286,7 +286,7 @@ const defaultRegion = regions[0];
     let currentRegionIndex = 0;
     let autoRotationTimer: number | undefined;
     let isPaused = false;
-    
+
     // Function to activate a specific region
     function activateRegion(regionId: string, buttonElement: HTMLButtonElement | null = null) {
       // Update button styles
@@ -294,7 +294,7 @@ const defaultRegion = regions[0];
         btn.classList.remove('bg-primary-50', 'text-coral-600', 'font-medium');
         btn.classList.add('text-gray-700');
       });
-      
+
       if (buttonElement) {
         buttonElement.classList.add('bg-primary-50', 'text-coral-600', 'font-medium');
         buttonElement.classList.remove('text-gray-700');
@@ -306,7 +306,7 @@ const defaultRegion = regions[0];
           button.classList.remove('text-gray-700');
         }
       }
-      
+
       // Show the selected region detail and hide others
       regionDetails.forEach(detail => {
         if (detail.id === `region-${regionId}`) {
@@ -317,7 +317,7 @@ const defaultRegion = regions[0];
           detail.classList.remove('block');
         }
       });
-      
+
       // Update current index for auto rotation
       regionButtons.forEach((btn, index) => {
         if (btn.getAttribute('data-region-id') === regionId) {
@@ -325,14 +325,14 @@ const defaultRegion = regions[0];
         }
       });
     }
-    
+
     // Start auto rotation
     function startAutoRotation() {
       // Clear any existing timer
       if (autoRotationTimer) {
         clearInterval(autoRotationTimer);
       }
-      
+
       // Set new timer for rotation every 3 seconds
       autoRotationTimer = window.setInterval(() => {
         if (!isPaused) {
@@ -343,41 +343,41 @@ const defaultRegion = regions[0];
         }
       }, 3000);
     }
-    
+
     // Add click event to each region button
     regionButtons.forEach(button => {
       // Click handling
       button.addEventListener('click', () => {
         const regionId = button.getAttribute('data-region-id') || '';
         activateRegion(regionId, button);
-        
+
         // Reset the timer when a user manually selects a region
         startAutoRotation();
       });
-      
+
       // Hover handling
       button.addEventListener('mouseenter', () => {
         isPaused = true;
         const regionId = button.getAttribute('data-region-id') || '';
         activateRegion(regionId, button);
       });
-      
+
       button.addEventListener('mouseleave', () => {
         isPaused = false;
       });
     });
-    
+
     // Pause rotation when hovering over region details
     regionDetails.forEach(detail => {
       detail.addEventListener('mouseenter', () => {
         isPaused = true;
       });
-      
+
       detail.addEventListener('mouseleave', () => {
         isPaused = false;
       });
     });
-    
+
     // Initialize auto rotation
     startAutoRotation();
   });
@@ -388,16 +388,16 @@ const defaultRegion = regions[0];
     height: 280px;
     position: relative;
   }
-  
+
   .regions-scroller {
     position: absolute;
     width: 100%;
     transition: transform 0.1s linear;
   }
-  
+
   @media (min-width: 768px) {
     .regions-container {
       height: 320px;
     }
   }
-</style> 
+</style>

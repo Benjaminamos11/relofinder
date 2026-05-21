@@ -6,7 +6,6 @@
 
 import Layout from "../../layouts/Layout.astro";
 import { supabase } from "../../lib/supabase";
-import UniversalContactModal from "../../components/common/UniversalContactModal";
 import ReviewSubmissionWrapper from "../../components/reviews/ReviewSubmissionWrapper";
 import swissMapImg from "../../assets/swiss-map-filled.png";
 import CloudinaryImage from "../../components/common/CloudinaryImage.astro";
@@ -85,6 +84,20 @@ const yearsExperience = companyData.founded
   ? new Date().getFullYear() - companyData.founded
   : null;
 const totalReviewCount = internalReviews.length + externalAggregate.count;
+const cleanString = (value: unknown) =>
+  typeof value === "string" && value.trim() && value.trim().toLowerCase() !== "null"
+    ? value.trim()
+    : null;
+const companyPhone = cleanString(companyData.phone);
+const companyEmail = cleanString(companyData.email);
+const companyWebsite = cleanString(companyData.website);
+const directContactParts = [
+  companyPhone ? `phone at ${companyPhone}` : null,
+  companyEmail ? `email at ${companyEmail}` : null,
+].filter(Boolean);
+const directContactCopy = directContactParts.length
+  ? `You can contact ${companyData.name} directly via ${directContactParts.join(" or ")}.`
+  : `${companyData.name} does not publish complete direct contact details in our current profile data.`;
 
 // Smart FAQ Generation (SEO & LLM Optimized)
 const defaultFaqs = [
@@ -102,7 +115,7 @@ const defaultFaqs = [
   },
   {
     question: `How do I contact ${companyData.name}?`,
-    answer: `You can contact ${companyData.name} directly via phone at ${companyData.phone} or email at ${companyData.email}. For the fastest response, use the "Start Inquiry" button on this profile to send a priority request.`,
+    answer: `${directContactCopy} For the fastest response, use the "Start Inquiry" button on this profile to send a structured request through ReloFinder.`,
   },
 ];
 
@@ -162,6 +175,11 @@ const seoOverrides: Record<string, { title: string; description: string }> = {
     description:
       "ReloFinder's 2026 audit of Anchor Relocation Zurich: real costs, off-market access, response times, and the alternative agencies expats compare them with.",
   },
+  "connectiv-relocation": {
+    title: "Connectiv Relocation Geneva Review 2026: Off-Market Costs",
+    description:
+      "ReloFinder's 2026 audit of Connectiv Relocation Geneva: off-market apartment access, real costs, response times, and how they compare to Welcome and Lodge.",
+  },
   "connectiv-relocation-ag": {
     title: "Connectiv Relocation Geneva Review 2026: Off-Market Costs",
     description:
@@ -171,6 +189,31 @@ const seoOverrides: Record<string, { title: string; description: string }> = {
     title: "AP Executive Switzerland Review 2026: Mobility Verdict",
     description:
       "ReloFinder's 2026 review of AP Executive Switzerland: executive mobility scope, real costs, response times, and the alternative providers HR teams compare.",
+  },
+  "zurich-relocation": {
+    title: "Zurich Relocation Review 2026: Costs, Services & Alternatives",
+    description:
+      "Compare Zurich Relocation in 2026: service scope, estimated fees, home-search strengths, response times, and the Swiss agencies expats compare before signing.",
+  },
+  "lifestylemanagers": {
+    title: "Lifestyle Managers Review 2026: Swiss Relocation Verdict",
+    description:
+      "ReloFinder's 2026 review of Lifestyle Managers: relocation scope, likely costs, response times, Zurich coverage, and alternative Swiss agencies to compare.",
+  },
+  "harsch": {
+    title: "Harsch Relocation Review 2026: Moving & Storage Verdict",
+    description:
+      "Compare Harsch for Swiss relocation in 2026: moving logistics, storage, destination services, estimated costs, and alternatives for full relocation support.",
+  },
+  "keller-swiss-group": {
+    title: "Keller Swiss Group Review 2026: Relocation Costs & Verdict",
+    description:
+      "ReloFinder's 2026 review of Keller Swiss Group: relocation services, likely costs, response times, Swiss coverage, and agencies to compare before choosing.",
+  },
+  "relocation-genevoise": {
+    title: "Relocation Genevoise Review 2026: Geneva Costs & Alternatives",
+    description:
+      "Compare Relocation Genevoise for 2026: Geneva home-search support, estimated costs, response times, and alternative relocation agencies for expats.",
   },
 };
 
@@ -192,6 +235,27 @@ const keywords = [
     .map((r: string) => `relocation ${r}`),
   "swiss relocation services",
 ];
+const topServices = (companyData.services || []).slice(0, 5);
+const topRegions =
+  companyData.slug === "lodge-relocation"
+    ? ["Geneva", "Vaud", "Zurich", "Basel"]
+    : (companyData.regions || companyData.regions_served || []).slice(0, 4);
+const typicalBudget =
+  companyData.slug === "welcome-service"
+    ? "CHF 4,500-9,500"
+    : companyData.slug === "prime-relocation"
+      ? "CHF 5,000-10,000"
+      : companyData.slug === "silver-nest-relocation"
+        ? "CHF 4,000-8,500"
+        : "Quote-based";
+const bestFor = companyData.slug.includes("corporate") || companyData.name.toLowerCase().includes("prime")
+  ? "Corporate moves and international professionals"
+  : companyData.services?.some((service: string) => service.toLowerCase().includes("school"))
+    ? "Families needing housing and school support"
+    : "Private expats comparing Swiss relocation support";
+const notIdealFor = typicalBudget === "Quote-based"
+  ? "Users who need instant fixed pricing before a consultation"
+  : "Very small moves where advisory-only support is enough";
 
 // Schema
 const schema = {
@@ -224,9 +288,9 @@ const schema = {
       "@type": "ProfessionalService",
       name: companyData.name,
       description: companyData.description,
-      url: companyData.website,
-      telephone: companyData.phone,
-      email: companyData.email,
+      url: companyWebsite || canonical,
+      ...(companyPhone && { telephone: companyPhone }),
+      ...(companyEmail && { email: companyEmail }),
       priceRange: "$$$",
       ...(companyData.address && {
         address: {
@@ -389,20 +453,66 @@ const schema = {
 
             <!-- Quick Actions -->
             <div class="flex flex-wrap gap-4 mt-10">
-              <a
-                href={isPreferred ? "#contact" : "#faq-contact"}
+              <button
+                type="button"
+                onclick={`window.universalOpenModal({ page: 'company_profile', service: 'relocation', source: 'profile_hero', company: '${companyData.slug}' })`}
                 class="bg-[#FF6F61] text-white px-8 py-4 rounded-full font-bold hover:bg-[#ff5a4d] transition-colors shadow-xl shadow-[#FF6F61]/20 flex items-center gap-2"
               >
-                Contact Provider <ArrowRight className="w-5 h-5" />
-              </a>
-              <a
-                href={companyData.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="bg-white border border-gray-200 text-gray-900 px-8 py-4 rounded-full font-bold hover:bg-gray-50 transition-colors flex items-center gap-2"
-              >
-                Visit Website <ExternalLink className="w-4 h-4" />
-              </a>
+                Start Inquiry <ArrowRight className="w-5 h-5" />
+              </button>
+              {companyWebsite && (
+                <a
+                  href={companyWebsite}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="bg-white border border-gray-200 text-gray-900 px-8 py-4 rounded-full font-bold hover:bg-gray-50 transition-colors flex items-center gap-2"
+                >
+                  Visit Website <ExternalLink className="w-4 h-4" />
+                </a>
+              )}
+            </div>
+
+            <div class="mt-10 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 lg:hidden">
+              <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p class="text-xs font-bold uppercase tracking-widest text-slate-400">
+                    ReloFinder fit
+                  </p>
+                  <h2 class="mt-2 text-xl font-bold text-slate-950">
+                    {bestFor}
+                  </h2>
+                </div>
+                <div class="shrink-0 rounded-2xl bg-white px-4 py-3 text-center shadow-sm">
+                  <p class="text-2xl font-bold text-slate-950">
+                    {weightedRating > 0 ? weightedRating.toFixed(1) : "New"}
+                  </p>
+                  <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                    Fit score
+                  </p>
+                </div>
+              </div>
+              <div class="mt-5 grid gap-3 sm:grid-cols-3">
+                <div>
+                  <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                    Budget
+                  </p>
+                  <p class="mt-1 text-sm font-bold text-slate-900">{typicalBudget}</p>
+                </div>
+                <div>
+                  <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                    Regions
+                  </p>
+                  <p class="mt-1 text-sm font-bold text-slate-900">
+                    {topRegions.length ? topRegions.slice(0, 2).join(", ") : "Switzerland"}
+                  </p>
+                </div>
+                <div>
+                  <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                    Compare if
+                  </p>
+                  <p class="mt-1 text-sm font-bold text-slate-900">{notIdealFor}</p>
+                </div>
+              </div>
             </div>
 
             <!-- Offices Card -->
@@ -454,7 +564,7 @@ const schema = {
                         </p>
                         <p class="text-sm text-gray-500">
                           {companyData.address.street}
-                          {companyData.phone ? ` · ${companyData.phone}` : ""}
+                          {companyPhone ? ` · ${companyPhone}` : ""}
                         </p>
                       </div>
                     </div>
@@ -490,47 +600,166 @@ const schema = {
               </div>
             </div>
           </div>
+          <aside class="lg:col-span-4 lg:sticky lg:top-28">
+            <div class="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-2xl shadow-slate-200/70">
+              <div class="mb-6 flex items-center justify-between gap-4">
+                <div class="flex h-16 w-32 items-center justify-center rounded-2xl border border-slate-100 bg-slate-50 px-4">
+                  {
+                    companyData.logo ? (
+                      <CloudinaryImage
+                        src={companyData.logo}
+                        alt={`${companyData.name} logo`}
+                        width={180}
+                        height={72}
+                        crop="fit"
+                        class="max-h-10 w-auto object-contain opacity-80"
+                      />
+                    ) : (
+                      <Building2 className="h-7 w-7 text-slate-300" />
+                    )
+                  }
+                </div>
+                <div class="text-right">
+                  <p class="text-xs font-bold uppercase tracking-widest text-slate-400">
+                    ReloFinder fit
+                  </p>
+                  <p class="text-2xl font-bold text-slate-900">
+                    {weightedRating > 0 ? weightedRating.toFixed(1) : "New"}
+                  </p>
+                </div>
+              </div>
+
+              <div class="rounded-2xl bg-slate-950 p-5 text-white">
+                <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#FF9A90]">
+                  Best for
+                </p>
+                <p class="mt-2 text-lg font-bold leading-snug">{bestFor}</p>
+              </div>
+
+              <dl class="mt-6 space-y-4">
+                <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-4">
+                  <dt class="text-sm font-semibold text-slate-500">Typical budget</dt>
+                  <dd class="text-right text-sm font-bold text-slate-900">{typicalBudget}</dd>
+                </div>
+                <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-4">
+                  <dt class="text-sm font-semibold text-slate-500">Strongest regions</dt>
+                  <dd class="text-right text-sm font-bold text-slate-900">
+                    {topRegions.length ? topRegions.join(", ") : "Switzerland"}
+                  </dd>
+                </div>
+                <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-4">
+                  <dt class="text-sm font-semibold text-slate-500">Not ideal for</dt>
+                  <dd class="text-right text-sm font-bold text-slate-900">{notIdealFor}</dd>
+                </div>
+              </dl>
+
+              <div class="mt-6">
+                <p class="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400">
+                  Common services
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  {
+                    topServices.length ? (
+                      topServices.map((service: string) => (
+                        <span class="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600">
+                          {service.replace(/-/g, " ")}
+                        </span>
+                      ))
+                    ) : (
+                      <span class="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-600">
+                        Relocation support
+                      </span>
+                    )
+                  }
+                </div>
+              </div>
+
+              <div class="mt-8 grid gap-3">
+                <button
+                  type="button"
+                  onclick={`window.universalOpenModal({ page: 'company_profile', service: 'relocation', source: 'profile_decision_card', company: '${companyData.slug}' })`}
+                  class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#FF6F61] px-5 py-4 text-sm font-bold text-white shadow-lg shadow-[#FF6F61]/20 transition-colors hover:bg-[#ff5a4d]"
+                >
+                  Request proposal <ArrowRight className="h-4 w-4" />
+                </button>
+                <a
+                  href="/companies/"
+                  class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-4 text-sm font-bold text-slate-900 transition-colors hover:bg-slate-50"
+                >
+                  Compare alternatives
+                </a>
+              </div>
+
+              <p class="mt-4 text-center text-xs leading-relaxed text-slate-500">
+                Independent profile. Partner status may affect visibility, not the review summary.
+              </p>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
 
-    <!-- 2. AI SUMMARY -->
+    <!-- 2. RELOFINDER VERDICT -->
     <section class="py-20 bg-slate-50 border-t border-b border-gray-200">
-      <div class="container mx-auto px-6 md:px-10 lg:px-16 max-w-5xl">
-        <div class="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
-          <div class="shrink-0 pt-2">
-            <div
-              class="w-16 h-16 bg-[#FF6F61] text-white rounded-2xl flex items-center justify-center shadow-lg transform -rotate-3"
-            >
-              <Quote className="w-8 h-8" />
+      <div class="container mx-auto px-6 md:px-10 lg:px-16 max-w-6xl">
+        <div class="grid lg:grid-cols-[0.8fr_1.2fr] gap-10 items-start">
+          <div>
+            <span class="text-[#FF6F61] font-bold uppercase tracking-widest text-xs mb-4 block">
+              ReloFinder verdict
+            </span>
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 leading-tight">
+              Should you shortlist {companyData.name}?
+            </h2>
+            <p class="mt-5 text-lg leading-relaxed text-slate-600">
+              We review public reputation, service coverage, region fit, and partner data so you can compare providers before booking calls.
+            </p>
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="rounded-2xl border border-slate-200 bg-white p-6">
+              <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Best fit</p>
+              <p class="mt-2 font-bold text-slate-900">{bestFor}</p>
+            </div>
+            <div class="rounded-2xl border border-slate-200 bg-white p-6">
+              <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Budget signal</p>
+              <p class="mt-2 font-bold text-slate-900">{typicalBudget}</p>
+            </div>
+            <div class="rounded-2xl border border-slate-200 bg-white p-6">
+              <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Compare if</p>
+              <p class="mt-2 font-bold text-slate-900">{notIdealFor}</p>
+            </div>
+            <div class="rounded-2xl border border-slate-200 bg-white p-6">
+              <p class="text-xs font-bold uppercase tracking-widest text-slate-400">Evidence base</p>
+              <p class="mt-2 font-bold text-slate-900">
+                {totalReviewCount > 0 ? `${totalReviewCount} review/data signals` : "Market and profile signals"}
+              </p>
             </div>
           </div>
-          <div>
-            <span
-              class="text-[#FF6F61] font-bold uppercase tracking-widest text-xs mb-4 block"
-              >Independent Analysis</span
-            >
-            {
-              reviewSummary?.seo_summary ? (
-                <blockquote class="text-2xl md:text-3xl font-serif text-gray-900 leading-relaxed">
-                  "{reviewSummary.seo_summary}"
-                </blockquote>
-              ) : (
-                <blockquote class="text-2xl md:text-3xl font-serif text-gray-900 leading-relaxed">
-                  "{companyData.name} is recognized for their local expertise in{" "}
-                  {companyData.address?.city} and comprehensive support network.
-                  Clients frequently highlight their responsiveness and ability
-                  to handle complex family relocations."
-                </blockquote>
-              )
-            }
-            <div class="mt-6 flex items-center gap-2">
-              <div class="h-px flex-1 bg-gray-300 w-12 max-w-[3rem]"></div>
-              <p class="text-sm text-gray-500 font-medium">
-                Generated from {
-                  totalReviewCount > 0 ? totalReviewCount : "market"
-                } data points
+        </div>
+
+        <div class="mt-10 rounded-[2rem] border border-slate-200 bg-white p-8 md:p-10">
+          <div class="flex flex-col gap-6 md:flex-row md:items-start">
+            <div class="shrink-0">
+              <div class="w-14 h-14 bg-[#FF6F61] text-white rounded-2xl flex items-center justify-center shadow-lg">
+                <Quote className="w-7 h-7" />
+              </div>
+            </div>
+            <div>
+              <p class="text-sm font-bold uppercase tracking-widest text-[#FF6F61] mb-3">
+                Independent analysis
               </p>
+              {
+                reviewSummary?.seo_summary ? (
+                  <blockquote class="text-xl md:text-2xl font-serif text-gray-900 leading-relaxed">
+                    "{reviewSummary.seo_summary}"
+                  </blockquote>
+                ) : (
+                  <blockquote class="text-xl md:text-2xl font-serif text-gray-900 leading-relaxed">
+                    "{companyData.name} is recognized for local expertise in{" "}
+                    {companyData.address?.city} and a comprehensive support network. Clients often highlight responsiveness and support with complex family relocations."
+                  </blockquote>
+                )
+              }
             </div>
           </div>
         </div>
@@ -974,7 +1203,7 @@ const schema = {
     {
       !isPreferred && (
         <section class="py-24 bg-[#FF6F61] text-white relative overflow-hidden">
-          <div class="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10" />
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.22)_1px,transparent_1px)] bg-[length:22px_22px] opacity-25" />
           <div class="container mx-auto px-6 md:px-10 lg:px-16 max-w-5xl relative z-10 text-center">
             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-bold uppercase tracking-widest mb-8">
               <Scale className="w-4 h-4" /> Market Benchmark
@@ -1033,35 +1262,47 @@ const schema = {
                 </p>
 
                 <div class="space-y-6">
-                  <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
-                    <Phone className="w-6 h-6 text-[#FF6F61]" />
-                    <div>
-                      <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">
-                        Phone
-                      </p>
-                      <a
-                        href={`tel:${companyData.phone}`}
-                        class="text-lg font-bold hover:text-[#FF6F61] transition-colors"
-                      >
-                        {companyData.phone}
-                      </a>
+                  {companyPhone && (
+                    <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+                      <Phone className="w-6 h-6 text-[#FF6F61]" />
+                      <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">
+                          Phone
+                        </p>
+                        <a
+                          href={`tel:${companyPhone}`}
+                          class="text-lg font-bold hover:text-[#FF6F61] transition-colors"
+                        >
+                          {companyPhone}
+                        </a>
+                      </div>
                     </div>
-                  </div>
+                  )}
 
-                  <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
-                    <Mail className="w-6 h-6 text-[#FF6F61]" />
-                    <div>
-                      <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">
-                        Email
-                      </p>
-                      <a
-                        href={`mailto:${companyData.email}`}
-                        class="text-lg font-bold hover:text-[#FF6F61] transition-colors"
-                      >
-                        {companyData.email}
-                      </a>
+                  {companyEmail && (
+                    <div class="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+                      <Mail className="w-6 h-6 text-[#FF6F61]" />
+                      <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest font-bold">
+                          Email
+                        </p>
+                        <a
+                          href={`mailto:${companyEmail}`}
+                          class="text-lg font-bold hover:text-[#FF6F61] transition-colors"
+                        >
+                          {companyEmail}
+                        </a>
+                      </div>
                     </div>
-                  </div>
+                  )}
+
+                  {!companyPhone && !companyEmail && (
+                    <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                      <p class="text-sm leading-relaxed text-gray-300">
+                        Direct contact details are not published in this profile. Use the inquiry form and ReloFinder will route a structured request.
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -1127,10 +1368,33 @@ const schema = {
       )
     }
 
+    <div class="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 px-4 py-3 shadow-[0_-16px_40px_rgba(15,23,42,0.12)] backdrop-blur md:hidden">
+      <div class="mx-auto flex max-w-md items-center gap-3">
+        <div class="min-w-0 flex-1">
+          <p class="truncate text-sm font-bold text-slate-900">{companyData.name}</p>
+          <p class="text-xs font-semibold text-slate-500">
+            {typicalBudget === "Quote-based" ? "Get a tailored quote" : typicalBudget}
+          </p>
+        </div>
+        <a
+          href="/companies/"
+          class="shrink-0 rounded-lg border border-slate-200 px-3 py-2 text-xs font-bold text-slate-700"
+        >
+          Compare
+        </a>
+        <button
+          type="button"
+          onclick={`window.universalOpenModal({ page: 'company_profile', service: 'relocation', source: 'mobile_sticky_profile_cta', company: '${companyData.slug}' })`}
+          class="shrink-0 rounded-lg bg-[#FF6F61] px-4 py-2 text-xs font-bold text-white shadow-lg shadow-[#FF6F61]/20"
+        >
+          Start Inquiry
+        </button>
+      </div>
+    </div>
+
     <!-- Script removed: Event listener replaced with inline onclick regarding user feedback for reliability -->
   </main>
 
-  <UniversalContactModal client:load />
 </Layout>
 
 <style>

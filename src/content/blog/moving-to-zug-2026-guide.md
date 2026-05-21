@@ -38,7 +38,7 @@ While most global hubs are raising taxes, Zug is doing the opposite. The cantona
 - **Family Deductions**: Standard deductions for children are increasing from **CHF 1,100 to CHF 1,600** per child.
 - **Wealth Tax Thresholds**: Favorable adjustments for those with significant global assets.
 
-**The Math**: A family earning CHF 300,000 can expect to save over **CHF 15,000 annually** in tax compared to a similar position in the Canton of Zurich. For a full canton-by-canton rate comparison and deduction tips, see our [Swiss Tax Guide for Expats](/blog/swiss-tax-guide-expats-canton-comparison-2026).
+**The Math**: A family earning CHF 300,000 can expect to save over **CHF 15,000 annually** in tax compared to a similar position in the Canton of Zurich. For a full canton-by-canton rate comparison and deduction tips, see our [Swiss Tax Guide for Expats](/blog/swiss-tax-guide-expats-canton-comparison-2026/).
 
 ---
 
@@ -68,7 +68,7 @@ Zug is small, but its educational offerings are world-class.
 - **Institute Montana (Zugerberg)**: A prestigious boarding and day school overlooking the city.
 - **Public Integration**: Zug's public schools are excellent and offer intensive German integration programs for expat children.
 
-For a comprehensive comparison of international schools across all Swiss regions, including application timelines and costs, see our [International Schools in Switzerland guide](/blog/international-schools-switzerland-guide-2026).
+For a comprehensive comparison of international schools across all Swiss regions, including application timelines and costs, see our [International Schools in Switzerland guide](/blog/international-schools-switzerland-guide-2026/).
 
 ---
 

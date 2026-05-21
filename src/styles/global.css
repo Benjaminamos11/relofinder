@@ -194,6 +194,10 @@
     /* Ensure touch events work properly on mobile */
     -webkit-overflow-scrolling: touch;
   }
+
+  body.rf-assessment-open .rf-chat-widget {
+    display: none !important;
+  }
   
   /* Mobile-specific button improvements */
   button, [role="button"] {

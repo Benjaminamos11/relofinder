@@ -31,7 +31,7 @@ seo:
 
 If you are relocating to Geneva in 2026, you are joining a city that functions less like a Swiss town and more like a global capital. Home to the **United Nations European headquarters**, the **World Health Organization**, **CERN**, the **World Trade Organization**, and over 200 international organizations, Geneva attracts a uniquely cosmopolitan workforce. Roughly **40% of the city's population holds a foreign passport**, making it arguably the most international city in Switzerland.
 
-But Geneva's prestige comes at a price. The city consistently ranks among the top five most expensive places to live globally, and its rental market is notoriously competitive. For a broader overview of what to expect financially, see our [Cost of Living in Switzerland breakdown](/blog/cost-of-living-switzerland-breakdown-2026). This guide gives you the data-driven insights you need to navigate your relocation successfully.
+But Geneva's prestige comes at a price. The city consistently ranks among the top five most expensive places to live globally, and its rental market is notoriously competitive. For a broader overview of what to expect financially, see our [Cost of Living in Switzerland breakdown](/blog/cost-of-living-switzerland-breakdown-2026/). This guide gives you the data-driven insights you need to navigate your relocation successfully.
 
 ## Why Geneva: The International Hub Advantage
 
@@ -77,7 +77,7 @@ Geneva's **vacancy rate sits at approximately 0.4%** in 2026, making it one of t
 | **Nations (Paquis area)** | CHF 2,800 - 3,500 | Near UN/WHO, diverse, cosmopolitan | Very practical |
 | **Nyon (30 min by train)** | CHF 2,200 - 2,800 | Lakeside town, family-friendly | Affordable |
 
-**Key insight**: The Romandie market moves fast but also values **relationships**. Having a local relocation partner who maintains landlord networks in Geneva can be the difference between securing a great apartment and spending months on waiting lists. For a deeper dive into Romandie-specific rental strategies, see our [Finding Housing in Geneva & Lausanne guide](/blog/finding-housing-geneva-lausanne-romandie-2026).
+**Key insight**: The Romandie market moves fast but also values **relationships**. Having a local relocation partner who maintains landlord networks in Geneva can be the difference between securing a great apartment and spending months on waiting lists. For a deeper dive into Romandie-specific rental strategies, see our [Finding Housing in Geneva & Lausanne guide](/blog/finding-housing-geneva-lausanne-romandie-2026/).
 
 ### Tips for the Geneva Rental Market
 
@@ -86,7 +86,7 @@ Geneva's **vacancy rate sits at approximately 0.4%** in 2026, making it one of t
 3. **Look across the border** -- Towns in neighboring France (Annemasse, Ferney-Voltaire) offer rents 40-60% lower, but factor in cross-border commuting logistics
 4. **Act immediately** -- Desirable apartments are rented within 48-72 hours of listing
 
-[Find a Geneva Housing Specialist →](/services/housing-search)
+[Find a Geneva Housing Specialist →](/services/housing/)
 
 ---
 
@@ -110,7 +110,7 @@ Health insurance is **mandatory** for all residents in Switzerland, and you must
 
 ### B-Permit (Residence Permit)
 
-For most expats relocating to Geneva on a work contract, the **B-permit** is the standard authorization. For a comprehensive overview of all permit types, quotas, and application steps, see our [Swiss Work Permit Guide](/blog/swiss-work-permit-guide-b-permit-2026). The process works as follows:
+For most expats relocating to Geneva on a work contract, the **B-permit** is the standard authorization. For a comprehensive overview of all permit types, quotas, and application steps, see our [Swiss Work Permit Guide](/blog/swiss-work-permit-guide-b-permit-2026/). The process works as follows:
 
 1. Your employer files the application with the **Office cantonal de la population et des migrations (OCPM)**
 2. EU/EFTA nationals receive near-automatic approval with a valid employment contract
@@ -145,7 +145,7 @@ Geneva's international school landscape is among the richest in the world, a dir
 - **College du Leman**: Bilingual French-English, boarding and day options
 - **Institut Le Rosey** (nearby Rolle): One of the world's most exclusive boarding schools, 40 minutes from Geneva
 
-**Waitlist warning**: The most sought-after schools, particularly Ecolint, have significant waiting lists. Begin the application process **6-12 months before your arrival**, especially for September intake. For a full comparison of schools across all Swiss regions, see our [International Schools in Switzerland guide](/blog/international-schools-switzerland-guide-2026).
+**Waitlist warning**: The most sought-after schools, particularly Ecolint, have significant waiting lists. Begin the application process **6-12 months before your arrival**, especially for September intake. For a full comparison of schools across all Swiss regions, see our [International Schools in Switzerland guide](/blog/international-schools-switzerland-guide-2026/).
 
 ---
 
@@ -169,11 +169,11 @@ Geneva rewards those who prepare thoroughly and move quickly. The combination of
 Here is a recommended timeline for your Geneva relocation:
 
 1. **3-6 months before**: Secure your employment contract, begin school applications, research neighborhoods
-2. **2-3 months before**: Engage a [relocation agency](/companies) for housing search, start your dossier preparation
+2. **2-3 months before**: Engage a [relocation agency](/companies/) for housing search, start your dossier preparation
 3. **1-2 months before**: Arrange viewings, compare health insurance quotes, open a Swiss bank account
 4. **First week**: Register at the commune office, activate health insurance, set up utilities
 
-[Compare Geneva Relocation Agencies →](/companies)
+[Compare Geneva Relocation Agencies →](/companies/)
 
 ---
 
@@ -198,8 +198,8 @@ Here is a recommended timeline for your Geneva relocation:
 
 ## Final Thoughts
 
-Geneva is not the cheapest or the easiest Swiss city to relocate to, but for professionals in international organizations, diplomacy, finance, or research, it offers an unmatched combination of career opportunity and quality of life. The key to a successful move is preparation: secure your housing early, understand the cross-border dynamics, and leverage local expertise. For help choosing the right partner, see our [Best Relocation Agencies in Geneva comparison](/blog/best-relocation-agencies-geneva-2026).
+Geneva is not the cheapest or the easiest Swiss city to relocate to, but for professionals in international organizations, diplomacy, finance, or research, it offers an unmatched combination of career opportunity and quality of life. The key to a successful move is preparation: secure your housing early, understand the cross-border dynamics, and leverage local expertise. For help choosing the right partner, see our [Best Relocation Agencies in Geneva comparison](/blog/best-relocation-agencies-geneva-2026/).
 
-[Start Your Geneva Relocation →](/companies)
+[Start Your Geneva Relocation →](/companies/)
 
 *Last updated: March 2026*

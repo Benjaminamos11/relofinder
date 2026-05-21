@@ -141,31 +141,9 @@ const blog = defineCollection({
   })
 });
 
-// Reviews Collection (for Google Reviews)
-const reviews = defineCollection({
-  type: 'data', // Using data type for JSON
-  schema: z.object({
-    companyName: z.string(),
-    companySlug: z.string(),
-    rating: z.number(),
-    reviewCount: z.number(),
-    lastUpdated: z.string(),
-    reviews: z.array(
-      z.object({
-        author: z.string(),
-        authorImage: z.string().optional(),
-        date: z.string(),
-        content: z.string(),
-        rating: z.number()
-      })
-    )
-  })
-});
-
 // Export all collections
 export const collections = {
   'services': services,
   'regions': regions,
-  'blog': blog,
-  'reviews': reviews
+  'blog': blog
 };

@@ -35,17 +35,15 @@ const CookieBanner = () => {
     if (!showBanner) return null;
 
     return (
-        <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white border-t border-gray-200 shadow-lg md:p-6">
-            <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-                <div className="text-sm text-gray-600">
-                    <p>
-                        We use cookies to improve your experience and analyze our traffic. By clicking "Accept", you consent to our use of cookies for these purposes.
-                    </p>
-                </div>
-                <div className="flex gap-4">
+        <div className="fixed bottom-20 left-4 right-4 z-40 md:bottom-6 md:left-6 md:right-auto md:max-w-md">
+            <div className="rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-2xl shadow-slate-900/10 backdrop-blur">
+                <div className="flex items-start gap-4">
+                    <div className="min-w-0 flex-1 text-sm leading-relaxed text-slate-600">
+                        We use privacy-friendly analytics to improve ReloFinder.
+                    </div>
                     <button
                         onClick={handleAccept}
-                        className="px-6 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
+                        className="shrink-0 rounded-xl bg-slate-900 px-4 py-2 text-sm font-bold text-white shadow-sm transition-colors hover:bg-[#FF6F61]"
                     >
                         Accept
                     </button>

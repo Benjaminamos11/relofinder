@@ -48,40 +48,63 @@ document.addEventListener('alpine:init', () => {
             return Math.round(((currentIndex + 1) / steps.length) * 100);
         },
 
+        get currentStepNumber() {
+            const steps = this.getStepFlow();
+            return Math.max(1, steps.indexOf(this.step) + 1);
+        },
+
+        get totalSteps() {
+            return this.getStepFlow().length;
+        },
+
+        get assessmentLabel() {
+            return this.mode === 'corporate' ? 'Corporate provider assessment' : 'Swiss move assessment';
+        },
+
+        get matchCount() {
+            if (this.mode === 'corporate') return '5-8';
+            const service = this.initialService.toLowerCase();
+            if (service.includes('housing')) return '3-5';
+            if (service.includes('immigration') || service.includes('visa')) return '2-4';
+            if (service.includes('education') || service.includes('school')) return '2-3';
+            return '4-6';
+        },
+
         getStepFlow() {
             const service = this.initialService.toLowerCase();
 
             // Corporate flow (Always takes precedence)
             if (service === 'corporate' || this.mode === 'corporate') {
-                return ['corpVolume', 'corpScope', 'corpRegions', 'corpPainPoints', 'corpOutcome', 'lead'];
+                return ['corpVolume', 'corpScope', 'corpRegions', 'corpPainPoints', 'corpOutcome', 'summary', 'lead'];
             }
 
             // VIP / Full Package flow
             if (service.includes('full') || service.includes('vip') || service.includes('settled') || service.includes('settling')) {
-                return ['household', 'priority', 'tempHousing', 'vipBudget', 'funding', 'lead'];
+                return ['household', 'priority', 'tempHousing', 'vipBudget', 'funding', 'summary', 'lead'];
             }
 
             // Housing flow
             if (service.includes('housing')) {
-                return ['household', 'area', 'budget', 'engagement', 'funding', 'lead'];
+                return ['household', 'area', 'budget', 'engagement', 'funding', 'summary', 'lead'];
             }
 
             // Immigration flow
             if (service.includes('immigration') || service.includes('visa')) {
-                return ['household', 'citizenship', 'purpose', 'employment', 'funding', 'lead'];
+                return ['household', 'citizenship', 'purpose', 'employment', 'funding', 'summary', 'lead'];
             }
 
             // Education/School flow
             if (service.includes('education') || service.includes('school')) {
-                return ['household', 'ages', 'system', 'funding', 'lead'];
+                return ['household', 'ages', 'system', 'funding', 'summary', 'lead'];
             }
 
             // Default flow
-            return ['household', 'funding', 'lead'];
+            return ['household', 'funding', 'summary', 'lead'];
         },
 
         open(config = {}) {
             this.isOpen = true;
+            document.body.classList.add('rf-assessment-open');
             this.mode = config.mode || 'private';
             this.initialCanton = config.initialCanton || '';
             this.initialService = config.initialService || '';
@@ -103,11 +126,13 @@ document.addEventListener('alpine:init', () => {
 
         close() {
             this.isOpen = false;
+            document.body.classList.remove('rf-assessment-open');
             document.body.style.overflow = '';
 
             // Reset after animation
             setTimeout(() => {
                 this.reset();
+                document.body.classList.remove('rf-assessment-open');
             }, 300);
         },
 
@@ -227,6 +252,25 @@ window.openAssessmentModal = (mode, initialCanton, initialService) => {
             initialService: initialService || ''
         });
     }
+};
+
+window.universalOpenModal = (context = {}) => {
+    if (!window.Alpine || !Alpine.store('assessmentModal')) return;
+
+    const rawContext = typeof context === 'string' ? { service: context } : context;
+    const service = rawContext.service || rawContext.topic || rawContext.initialService || rawContext.tab || 'full-package';
+    const isCorporate = rawContext.mode === 'corporate' || rawContext.tab === 'corporate' || service === 'corporate';
+    const mode = isCorporate ? 'corporate' : 'private';
+    const initialCanton = rawContext.canton || rawContext.region || rawContext.initialCanton || 'switzerland';
+
+    Alpine.store('assessmentModal').open({
+        mode,
+        initialCanton,
+        initialService: service,
+        company: rawContext.agency || rawContext.company || '',
+        volume: rawContext.volume || '',
+        when: rawContext.when || ''
+    });
 };
 
 window.openModal = (context) => {

@@ -17,7 +17,7 @@ const cities = [
         vibe: 'Fast-paced. Leases signed in 24h.',
         commute_title: 'Smart Commuter',
         commute_text: <>Can't find in the city? Look to the <strong className="text-slate-900">Silver Coast</strong> (Kilchberg, Thalwil) or <strong className="text-slate-900">Glattal</strong> (Wallisellen).</>,
-        link: '/regions/zurich'
+        link: '/regions/zurich/'
     },
     {
         id: 'zug',

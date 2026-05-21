@@ -65,7 +65,7 @@ Here is the master checklist used by professional relocation agencies.
 
 ### Start Your Research
 
-- [ ] **Request relocation quotes** — Use [ReloFinder](/companies) to get anonymous quotes from 3+ agencies
+- [ ] **Request relocation quotes** — Use [ReloFinder](/companies/) to get anonymous quotes from 3+ agencies
 - [ ] **Research health insurance options** — Read guides on [Expat-Savvy.ch](https://expat-savvy.ch) to understand franchise/deductible trade-offs
 - [ ] **Research schools** (if applicable) — International schools have waiting lists
 
@@ -204,7 +204,7 @@ You don't need to sign yet, but understand your options:
 ### 3 Months Out
 - [ ] Verify permit eligibility
 - [ ] Cancel home country contracts
-- [ ] Request agency quotes via [ReloFinder](/companies)
+- [ ] Request agency quotes via [ReloFinder](/companies/)
 
 ### 2 Months Out
 - [ ] **Register on [Offlist.ch](https://offlist.ch)** ← Critical
@@ -235,7 +235,7 @@ If this list feels overwhelming, you don't have to do it alone.
 
 Hire a professional relocation agency to manage everything.
 
-**[Compare Agencies → ReloFinder](/companies)**
+**[Compare Agencies → ReloFinder](/companies/)**
 
 ### Self-Service with Support
 
@@ -289,6 +289,6 @@ If you haven't secured permanent housing via [Offlist.ch](https://offlist.ch) or
 
 ---
 
-*Save this checklist and work through it phase by phase. Start with housing — [register on Offlist.ch](https://offlist.ch) today. For personalized support, [compare agencies on ReloFinder](/companies) or use [Expat-Services.ch](https://expat-services.ch) for DIY assistance.*
+*Save this checklist and work through it phase by phase. Start with housing — [register on Offlist.ch](https://offlist.ch) today. For personalized support, [compare agencies on ReloFinder](/companies/) or use [Expat-Services.ch](https://expat-services.ch) for DIY assistance.*
 
 

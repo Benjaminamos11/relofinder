@@ -288,7 +288,7 @@ const FeaturedAgencies = ({ companies, limit = 12 }: FeaturedAgenciesProps) => {
         {preferred.length > 4 && (
           <div className="mt-6 text-center">
             <a
-              href="/companies?tier=preferred"
+              href="/companies/?tier=preferred"
               className="inline-flex items-center gap-2 text-sm font-semibold text-[#B61919] hover:underline"
             >
               See all {preferred.length} Preferred Partners

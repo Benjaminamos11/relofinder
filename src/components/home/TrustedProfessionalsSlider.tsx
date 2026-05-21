@@ -396,9 +396,9 @@ export default function TrustedProfessionalsSlider({ companies }: Props) {
             </div>
             <div className="space-y-2">
               <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#B61919] to-[#DF3030] bg-clip-text text-transparent">
-                500+
+                50+
               </div>
-              <div className="text-sm md:text-base text-gray-600 font-medium">Verified Partners</div>
+              <div className="text-sm md:text-base text-gray-600 font-medium">Swiss Providers</div>
             </div>
             <div className="space-y-2">
               <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#B61919] to-[#DF3030] bg-clip-text text-transparent">
@@ -444,4 +444,3 @@ export default function TrustedProfessionalsSlider({ companies }: Props) {
     </section>
   );
 }
-

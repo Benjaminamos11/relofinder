@@ -100,6 +100,7 @@ import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 
 // Filter top-level headings for TOC
 const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+const isCostOfLivingGuide = post.slug === "cost-of-living-switzerland-breakdown-2026";
 ---
 
 <Layout
@@ -152,7 +153,7 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
 
         <!-- Hero Section -->
         <div class="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
-            <div class="absolute inset-0 bg-gray-900">
+            <div class="blog-hero-media absolute inset-0 bg-gray-900">
                 {
                     post.data.heroImage && (
                         <CloudinaryImage
@@ -209,15 +210,58 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
         <div
             class="container mx-auto px-6 lg:px-8 max-w-7xl relative z-10 py-12"
         >
-            <div class="flex flex-col lg:flex-row gap-12 lg:gap-20">
+            <div class="flex flex-col xl:flex-row gap-10 xl:gap-12">
                 {/* Main Content */}
-                <article class="flex-1 bg-white">
+                <article class="min-w-0 flex-1 bg-white">
                     {/* Lead Paragraph */}
                     <div
                         class="prose prose-lg md:prose-xl max-w-none mb-10 text-gray-600 font-serif leading-relaxed first-letter:text-5xl first-letter:font-bold first-letter:text-gray-900 first-letter:mr-3 first-letter:float-left"
                     >
                         {post.data.description}
                     </div>
+
+                    {
+                        isCostOfLivingGuide && (
+                            <section class="mb-12 rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 md:p-7">
+                                <div class="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
+                                    <div>
+                                        <p class="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-[#FF6F61]">
+                                            2026 budget snapshot
+                                        </p>
+                                        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-slate-950">
+                                            Plan around rent first, then optimize insurance and tax.
+                                        </h2>
+                                        <p class="mt-3 max-w-2xl text-sm md:text-base leading-relaxed text-slate-600">
+                                            For most expats, housing determines the budget. A faster long-term lease can save more than cutting groceries or transport.
+                                        </p>
+                                    </div>
+                                    <a
+                                        href="#lead-housing"
+                                        class="inline-flex shrink-0 items-center justify-center rounded-xl bg-[#FF6F61] px-5 py-4 text-sm font-bold uppercase tracking-widest text-white hover:bg-[#ff5a4d] transition-colors"
+                                    >
+                                        Estimate my move
+                                    </a>
+                                </div>
+                                <div class="mt-6 grid gap-3 md:grid-cols-3">
+                                    <div class="rounded-xl border border-slate-200 bg-white p-4">
+                                        <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Single professional</p>
+                                        <p class="mt-2 text-2xl font-bold text-slate-950">CHF 4k-5.5k</p>
+                                        <p class="mt-1 text-xs text-slate-500">Typical monthly spend before savings.</p>
+                                    </div>
+                                    <div class="rounded-xl border border-slate-200 bg-white p-4">
+                                        <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Couple</p>
+                                        <p class="mt-2 text-2xl font-bold text-slate-950">CHF 5.5k-8k</p>
+                                        <p class="mt-1 text-xs text-slate-500">Rent and insurance drive the range.</p>
+                                    </div>
+                                    <div class="rounded-xl border border-slate-200 bg-white p-4">
+                                        <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Family of 4</p>
+                                        <p class="mt-2 text-2xl font-bold text-slate-950">CHF 8k-12k</p>
+                                        <p class="mt-1 text-xs text-slate-500">Schooling and housing choice matter most.</p>
+                                    </div>
+                                </div>
+                            </section>
+                        )
+                    }
 
                     <div
                         class="prose prose-lg md:prose-xl max-w-none
@@ -278,16 +322,22 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
                 </article>
 
                 {/* Sidebar Sticky */}
-                <aside class="lg:w-80 lg:shrink-0 space-y-8 lg:pt-0">
+                <aside class="xl:w-72 xl:shrink-0 space-y-8 xl:pt-0">
                     <div class="sticky top-24 space-y-8">
                         {/* Table of Contents */}
                         {
                             toc.length > 0 && (
-                                <div class="hidden lg:block bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                                <div class="hidden xl:block bg-gray-50 p-6 rounded-2xl border border-gray-100">
                                     <h4 class="text-xs font-bold text-gray-900 uppercase tracking-widest mb-6 flex items-center gap-2">
                                         <span class="w-1.5 h-1.5 rounded-full bg-[#FF6F61]" />
                                         On This Page
                                     </h4>
+                                    <button
+                                        onclick="window.universalOpenModal && window.universalOpenModal('concierge')"
+                                        class="mb-5 w-full rounded-xl bg-slate-950 px-4 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#FF6F61]"
+                                    >
+                                        Ask an Expert
+                                    </button>
                                     <nav class="space-y-3 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
                                         {toc.map((heading) => (
                                             <a
@@ -325,17 +375,17 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
                                     </h4>
                                 </div>
                             </div>
-                            <p
-                                class="text-sm text-gray-500 leading-relaxed mb-6"
-                            >
-                                {authorData.bio}
-                            </p>
                             <button
                                 onclick="window.universalOpenModal && window.universalOpenModal('concierge')"
-                                class="w-full bg-gray-900 hover:bg-black text-white text-sm font-bold py-3 rounded-xl transition-colors"
+                                class="mb-4 w-full bg-gray-900 hover:bg-black text-white text-sm font-bold py-3 rounded-xl transition-colors"
                             >
                                 Ask an Expert
                             </button>
+                            <p
+                                class="text-sm text-gray-500 leading-relaxed"
+                            >
+                                {authorData.bio}
+                            </p>
                         </div>
 
                         {/* Share Buttons */}
@@ -370,7 +420,17 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
 
     <BlogStickyCTA />
 
-    <script>
+        <script>
+        function wrapArticleTables() {
+            document.querySelectorAll(".prose table:not([data-rf-wrapped])").forEach((table) => {
+                const wrapper = document.createElement("div");
+                wrapper.className = "rf-table-scroll";
+                table.setAttribute("data-rf-wrapped", "true");
+                table.parentNode?.insertBefore(wrapper, table);
+                wrapper.appendChild(table);
+            });
+        }
+
         // Modal Trigger Interceptor for Markdown Content
         function initModalInterceptors() {
             document.addEventListener("click", (e) => {
@@ -421,9 +481,11 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
 
         // Initial handle for Astro transitions
         document.addEventListener("astro:page-load", () => {
+            wrapArticleTables();
             initModalInterceptors();
         });
         // Initial load
+        wrapArticleTables();
         initModalInterceptors();
     </script>
 
@@ -439,13 +501,37 @@ const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
             border-radius: 20px;
         }
 
-        /* Robust Table Styling */
-        .prose table {
+        .blog-hero-media picture {
+            display: block;
             width: 100%;
+            height: 100%;
+        }
+
+        .blog-hero-media img {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+        }
+
+        .rf-table-scroll {
+            max-width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
             margin-top: 2rem;
             margin-bottom: 2rem;
+        }
+
+        /* Robust Table Styling */
+        .prose table {
+            width: max-content;
+            min-width: 100%;
+            max-width: none;
+            margin-top: 0;
+            margin-bottom: 0;
             border-collapse: collapse;
             font-size: 0.875rem; /* text-sm */
+            white-space: nowrap;
         }
         @media (min-width: 768px) {
             .prose table {

@@ -41,7 +41,7 @@ This guide breaks down the relocation process into manageable steps, highlightin
 | **Immigration** | EU citizens have it easy; Non-EU nationals face quotas. Secure your permit before you ship your furniture. | [Expat-Services.ch](https://expat-services.ch) |
 | **Housing** | The vacancy rate is near 0%. Don't rely on public portals; use private networks. | [Offlist.ch](https://offlist.ch) |
 | **Finance** | Banking and Insurance are complex. Use comparison tools to avoid overpaying. | [Expat-Savvy.ch](https://expat-savvy.ch) |
-| **Support** | Decide early: Full-service Agency or DIY Digital Assistant? | [ReloFinder](/companies) |
+| **Support** | Decide early: Full-service Agency or DIY Digital Assistant? | [ReloFinder](/companies/) |
 
 ---
 
@@ -148,10 +148,10 @@ To bypass the queue, smart expats use **[Offlist.ch](https://offlist.ch)**.
 | **5.5 Room (4 BR)** | CHF 4,500-7,000+ | CHF 4,000-6,500+ | CHF 3,200-5,000 |
 
 **Regional Guides:**
-- [Zürich Housing Guide →](/regions/zurich)
-- [Geneva Housing Guide →](/regions/geneva)
-- [Zug Housing Guide →](/regions/zug)
-- [Basel Housing Guide →](/regions/basel)
+- [Zürich Housing Guide →](/regions/zurich/)
+- [Geneva Housing Guide →](/regions/geneva/)
+- [Zug Housing Guide →](/regions/zug/)
+- [Basel Housing Guide →](/regions/basel/)
 
 ---
 
@@ -256,7 +256,7 @@ Do you need to hire a professional Relocation Agency?
 - [ ] You have limited time to manage logistics
 - [ ] You're relocating from outside Europe (complex immigration)
 
-**Use [ReloFinder](/companies)** to compare anonymous quotes from top Swiss agencies.
+**Use [ReloFinder](/companies/)** to compare anonymous quotes from top Swiss agencies.
 
 ### Go DIY If:
 
@@ -278,7 +278,7 @@ Many relocatees combine both:
 
 | Task | Approach |
 |------|----------|
-| **Housing Search** | Agency (via [ReloFinder](/companies)) — worth the investment in competitive markets |
+| **Housing Search** | Agency (via [ReloFinder](/companies/)) — worth the investment in competitive markets |
 | **Immigration** | Employer handles (standard) |
 | **Insurance** | DIY with expert advice ([Expat-Savvy.ch](https://expat-savvy.ch)) |
 | **Banking** | DIY (straightforward) |
@@ -341,7 +341,7 @@ Many relocatees combine both:
 
 **The Reality:** Prices vary 40-60% for identical services.
 
-**The Fix:** Get 3+ quotes via [ReloFinder](/companies) before committing.
+**The Fix:** Get 3+ quotes via [ReloFinder](/companies/) before committing.
 
 ---
 
@@ -352,7 +352,7 @@ Many relocatees combine both:
 | **Off-Market Housing** | [Offlist.ch](https://offlist.ch) | Access apartments before public listing |
 | **Health Insurance** | [Expat-Savvy.ch](https://expat-savvy.ch) | Expert optimization for expats |
 | **Liability/Household Insurance** | [Insurance-Guide.ch](https://insurance-guide.ch) | Quick comparison |
-| **Agency Comparison** | [ReloFinder](/companies) | Transparent quotes |
+| **Agency Comparison** | [ReloFinder](/companies/) | Transparent quotes |
 | **DIY Tools & Directory** | [Expat-Services.ch](https://expat-services.ch) | AI assistant + service providers |
 
 ---
@@ -379,7 +379,7 @@ Public portals like Homegate receive 100+ applications per listing within hours.
 
 ### Should I hire a relocation agency or do it myself?
 
-Hire an agency if you're a senior executive, have school-age children, or your company pays. Compare agencies on [ReloFinder](/companies) for transparent quotes. Use DIY tools like [Expat-Services.ch](https://expat-services.ch) if you're digitally savvy, budget-conscious, and relocating within Europe.
+Hire an agency if you're a senior executive, have school-age children, or your company pays. Compare agencies on [ReloFinder](/companies/) for transparent quotes. Use DIY tools like [Expat-Services.ch](https://expat-services.ch) if you're digitally savvy, budget-conscious, and relocating within Europe.
 
 ### What are the biggest challenges when relocating to Switzerland?
 
@@ -394,7 +394,7 @@ Switzerland rewards preparation. By using the right platforms, you can turn a st
 - **[Offlist.ch](https://offlist.ch)** for housing — bypass the public market chaos
 - **[Expat-Savvy.ch](https://expat-savvy.ch)** for insurance — optimize your coverage and costs
 - **[Expat-Services.ch](https://expat-services.ch)** for DIY tools — AI assistance and service directory
-- **[ReloFinder](/companies)** for agency support — compare and hire with transparency
+- **[ReloFinder](/companies/)** for agency support — compare and hire with transparency
 
 Welcome to Switzerland. The journey is complex, but the destination is worth it.
 
@@ -410,6 +410,6 @@ Welcome to Switzerland. The journey is complex, but the destination is worth it.
 
 ---
 
-*Ready to start your Swiss relocation? Begin with [Offlist.ch](https://offlist.ch) for housing, consult [Expat-Savvy.ch](https://expat-savvy.ch) for **[Pillar 3a](https://expat-savvy.ch/3rd-pillar/)** and insurance, and compare agencies on [ReloFinder](/companies). Your Swiss life awaits.*
+*Ready to start your Swiss relocation? Begin with [Offlist.ch](https://offlist.ch) for housing, consult [Expat-Savvy.ch](https://expat-savvy.ch) for **[Pillar 3a](https://expat-savvy.ch/3rd-pillar/)** and insurance, and compare agencies on [ReloFinder](/companies/). Your Swiss life awaits.*
 
 

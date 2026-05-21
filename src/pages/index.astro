@@ -55,7 +55,7 @@ const cantons = [
   { name: "Vaud", code: "VD", slug: "lausanne" },
   { name: "Bern", code: "BE", slug: "bern" },
   { name: "Lucerne", code: "LU", slug: "lucerne" },
-  { name: "St. Gallen", code: "SG", slug: "st-gallen" }
+  { name: "St. Gallen", code: "SG", slug: "swiss-hubs" }
 ];
 
 const servicesArr = [
@@ -80,8 +80,8 @@ const faqs = [
   }
 ];
 
-const title = "Swiss Relocation Agencies Compared | Free Quotes from 500+ Providers | ReloFinder";
-const description = "Find and compare the best relocation agencies in Switzerland. Get free quotes, read verified reviews, and choose from 500+ providers in Zurich, Geneva & Basel.";
+const title = "Swiss Relocation Agencies Compared | Free Shortlist | ReloFinder";
+const description = "Find and compare the best relocation agencies in Switzerland. Get free quotes, read verified reviews, and compare Swiss providers in Zurich, Geneva & Basel.";
 
 const homeFaqSchema = {
   "@context": "https://schema.org",
@@ -132,9 +132,8 @@ const homeSchema = {
   description={description}
   canonical="https://relofinder.ch/"
   keywords={['relocation switzerland', 'swiss relocation services', 'moving to switzerland', 'compare relocation agencies']}
-  schema={homeSchema}
+  schema={[homeSchema, homeFaqSchema]}
 >
-    <script type="application/ld+json" set:html={JSON.stringify(homeFaqSchema)} />
     <BreadcrumbSchema items={[{ name: "Home" }]} />
     <!-- Premium Hero: "Editorial Luxury" (Light Version) -->
     <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-950 group">

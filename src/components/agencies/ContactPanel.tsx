@@ -70,7 +70,7 @@ export default function ContactPanel({ agency, sourcePage }: ContactPanelProps) 
           This is a standard listing. To get personalized quotes and compare multiple providers, use our comparison tool.
         </p>
         <a
-          href="/companies?region=zurich"
+          href="/companies/?region=zurich"
           className="inline-flex items-center justify-center w-full px-6 py-3 bg-gray-800 text-white font-semibold rounded-xl hover:bg-gray-900 transition-colors"
         >
           Compare Providers

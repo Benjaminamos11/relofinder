@@ -161,7 +161,7 @@ Anchor Relocation has been operating in Zurich for over two decades and the long
 
 **Good to know:** Includes property purchase support, useful for executives accepting permanent Swiss assignments and considering ownership.
 
-[View Anchor Relocation profile](/companies/anchor-relocation/) • [Property purchase services](/services/property-purchase/) • [Zurich region guide](/regions/zurich/)
+[View Anchor Relocation profile](/companies/anchor-relocation/) • [Property purchase advisory](/services/advisory/) • [Zurich region guide](/regions/zurich/)
 
 ---
 

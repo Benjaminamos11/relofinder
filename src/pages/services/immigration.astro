@@ -21,7 +21,6 @@ import "../../styles/alpine-clarity.css";
 import SEOHead from "../../components/common/SEOHead.astro";
 import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
 import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
-import UniversalContactModal from "../../components/common/UniversalContactModal.tsx";
 import "../../lib/expose-modal-stores.client.ts";
 import Navbar from "../../components/layout/Navbar.astro";
 import Footer from "../../components/layout/Footer.astro";
@@ -52,7 +51,7 @@ const faqs = [
     },
     {
         q: "Do I need a visa to enter Switzerland?",
-        a: "EU/EFTA citizens do not need a visa. Non-EU citizens may need a 'Visa D' (long-stay visa) to enter the country for work, even if they have a work contract. This must be collected at a glorious Swiss embassy abroad before entering.",
+        a: "EU/EFTA citizens do not need a visa. Non-EU citizens may need a 'Visa D' (long-stay visa) to enter the country for work, even if they have a work contract. This must be collected at a Swiss embassy or consulate abroad before entering.",
     },
 ];
 
@@ -138,8 +137,9 @@ const structuredData = [serviceSchema, definedTermSchema, faqSchema];
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <SEOHead
-            title="Immigration & Visa Services Switzerland | Expert Guide | ReloFinder"
-            description="Swiss work permit and visa guide for expats. EU registration, Non-EU quota applications, and verified immigration agencies across Switzerland."
+            title="Swiss Work Permit & Immigration Agencies: B Permit Guide | ReloFinder"
+            description="Compare Swiss immigration agencies for B permits, EU registration, Non-EU quota applications, family reunification, and canton-specific permit support."
+            canonical="https://relofinder.ch/services/immigration/"
             keywords={[
                 "swiss work permit",
                 "immigration switzerland",
@@ -154,7 +154,7 @@ const structuredData = [serviceSchema, definedTermSchema, faqSchema];
                     "Mistakes with your work permit can delay your start date by months. Compare expert immigration providers.",
                 image: heroImage,
                 type: "service",
-                url: "https://relofinder.ch/services/immigration",
+                url: "https://relofinder.ch/services/immigration/",
             }}
             twitter={{
                 card: "summary_large_image",
@@ -222,7 +222,7 @@ const structuredData = [serviceSchema, definedTermSchema, faqSchema];
                     <h1
                         class="text-6xl md:text-8xl font-black tracking-tighter text-white mb-8 leading-[0.9] text-balance"
                     >
-                        Swiss Immigration: <br />
+                        Swiss Immigration:
                         <span class="relative">
                             <span
                                 class="bg-gradient-to-r from-slate-200 via-white to-slate-200 bg-clip-text text-transparent"
@@ -246,7 +246,7 @@ const structuredData = [serviceSchema, definedTermSchema, faqSchema];
                     <div
                         class="max-w-4xl mx-auto text-left transform hover:scale-[1.01] transition-all duration-700"
                     >
-                        <HeroSearch client:load />
+                        <HeroSearch />
                     </div>
                 </div>
 
@@ -606,7 +606,7 @@ const structuredData = [serviceSchema, definedTermSchema, faqSchema];
                         </ul>
 
                         <a
-                            href="/search/results?service=visa-immigration"
+                            href="/search/results/?service=visa-immigration"
                             class="inline-flex items-center justify-center w-full py-4 bg-[#FF6F61] text-white text-center font-bold text-sm uppercase tracking-widest hover:bg-[#e5574d] rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl no-underline"
                         >
                             Find Your Specialist Now <ArrowRight
@@ -644,7 +644,7 @@ const structuredData = [serviceSchema, definedTermSchema, faqSchema];
                 <div class="grid md:grid-cols-3 gap-8 mb-20">
                     <!-- Point 1: Expert Advocacy -->
                     <a
-                        href="/search/results?service=visa-immigration"
+                        href="/search/results/?service=visa-immigration"
                         class="p-10 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 hover:scale-[1.03] hover:shadow-2xl hover:shadow-[#FF6F61]/10 transition-all duration-500 group no-underline"
                     >
                         <div
@@ -669,7 +669,7 @@ const structuredData = [serviceSchema, definedTermSchema, faqSchema];
 
                     <!-- Point 2: Quota Management -->
                     <a
-                        href="/search/results?service=visa-immigration"
+                        href="/search/results/?service=visa-immigration"
                         class="p-10 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 hover:scale-[1.03] hover:shadow-2xl hover:shadow-[#FF6F61]/10 transition-all duration-500 group no-underline"
                     >
                         <div
@@ -694,7 +694,7 @@ const structuredData = [serviceSchema, definedTermSchema, faqSchema];
 
                     <!-- Point 3: Precision Timing -->
                     <a
-                        href="/search/results?service=visa-immigration"
+                        href="/search/results/?service=visa-immigration"
                         class="p-10 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 hover:scale-[1.03] hover:shadow-2xl hover:shadow-[#FF6F61]/10 transition-all duration-500 group no-underline"
                     >
                         <div
@@ -864,7 +864,7 @@ const structuredData = [serviceSchema, definedTermSchema, faqSchema];
                             for your specific canton?
                         </p>
                         <a
-                            href="/search/results?service=visa-immigration"
+                            href="/search/results/?service=visa-immigration"
                             class="inline-flex items-center gap-3 bg-slate-900 text-white px-12 py-5 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-[#FF6F61] hover:scale-105 hover:shadow-2xl hover:shadow-[#FF6F61]/20 transition-all duration-300 relative z-10 shadow-xl no-underline"
                         >
                             Find & Compare Immigration Experts
@@ -1124,73 +1124,6 @@ const structuredData = [serviceSchema, definedTermSchema, faqSchema];
         </section>
 
         <Footer theme="light" />
-
-        <!-- Modal Globals -->
-        <div
-            id="relofinder-modal-marker"
-            data-relofinder-modal="pending"
-            style="display: none;"
-            aria-hidden="true"
-        >
-        </div>
-        <UniversalContactModal client:load />
-
-        <!-- Scripts -->
-        <script is:inline>
-            if (typeof window !== "undefined") {
-                window.modalEventQueue = window.modalEventQueue || [];
-                window.modalReady = false;
-
-                window.universalOpenModal = function (context) {
-                    const resolvedContext =
-                        context && typeof context === "object"
-                            ? context
-                            : { page: "visa_service", topic: context };
-                    console.log(
-                        "📞 universalOpenModal called",
-                        resolvedContext,
-                    );
-                    if (window.modalReady && window.relofinderModalStores) {
-                        window.relofinderModalStores.setContext(
-                            resolvedContext,
-                        );
-                        window.relofinderModalStores.setOpen(true);
-                        return;
-                    }
-                    window.modalEventQueue.push({
-                        kind: "open",
-                        payload: resolvedContext,
-                    });
-                };
-
-                window.closeModal = function () {
-                    if (window.modalReady && window.relofinderModalStores) {
-                        window.relofinderModalStores.setOpen(false);
-                    } else {
-                        window.modalEventQueue.push({ kind: "close" });
-                    }
-                };
-            }
-
-            if (typeof window !== "undefined") {
-                const checkInterval = setInterval(() => {
-                    if (window.relofinderModalStores) {
-                        window.modalReady = true;
-                        window.modalEventQueue.forEach((item) => {
-                            if (item.kind === "open")
-                                (window.relofinderModalStores.setContext(
-                                    item.payload,
-                                ),
-                                    window.relofinderModalStores.setOpen(true));
-                            if (item.kind === "close")
-                                window.relofinderModalStores.setOpen(false);
-                        });
-                        window.modalEventQueue = [];
-                        clearInterval(checkInterval);
-                    }
-                }, 100);
-            }
-        </script>
         <AlpineSetup />
     </body>
 </html>

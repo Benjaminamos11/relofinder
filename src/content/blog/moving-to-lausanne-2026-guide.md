@@ -36,7 +36,7 @@ seo:
 
 # Moving to Lausanne 2026: Costs, Housing & Permits Guide
 
-**Lausanne is the quietly competitive choice for an English-speaking professional move to Switzerland in 2026.** It pairs the lakeside lifestyle and tax position of [Vaud](/regions/lausanne) with a denser concentration of international employers per capita than [Geneva](/regions/geneva) — EPFL, Nestlé, Logitech, Philip Morris International and the International Olympic Committee all sit within a 20-minute radius. The catch: a 0.67% rental vacancy rate that turns home search into a structured campaign, not a casual browse.
+**Lausanne is the quietly competitive choice for an English-speaking professional move to Switzerland in 2026.** It pairs the lakeside lifestyle and tax position of [Vaud](/regions/lausanne/) with a denser concentration of international employers per capita than [Geneva](/regions/geneva/) — EPFL, Nestlé, Logitech, Philip Morris International and the International Olympic Committee all sit within a 20-minute radius. The catch: a 0.67% rental vacancy rate that turns home search into a structured campaign, not a casual browse.
 
 This guide is built for the practitioner. It covers what you will actually pay, the neighbourhoods that match your profile, the permit you need, the schools that take international families, and the relocation providers that are credible in Romandie. It is the same brief we give to professionals comparing Lausanne with Zurich or Zug as a relocation destination.
 
@@ -52,7 +52,7 @@ This guide is built for the practitioner. It covers what you will actually pay, 
 - **Realistic home-search timeline**: 4-10 weeks with a complete rental dossier
 - **Best for**: French-speakers, EPFL-adjacent talent, families wanting lakeside lifestyle without Geneva pricing
 
-**Quick Links**: [Browse Vaud relocation companies](/companies/) • [Lausanne region guide](/regions/lausanne) • [Housing services](/services/housing) • [Immigration services](/services/immigration)
+**Quick Links**: [Browse Vaud relocation companies](/companies/) • [Lausanne region guide](/regions/lausanne/) • [Housing services](/services/housing/) • [Immigration services](/services/immigration/)
 
 **Need help choosing?** [Get matched with a verified Lausanne agency](/contact/)
 
@@ -67,7 +67,7 @@ Lausanne is the second-largest city in French-speaking Switzerland, the capital 
 - **Lower cost than Geneva, comparable lifestyle**: One-bedroom rents typically run 10-20% below central Geneva for an equivalent district, while school, healthcare and dining quality is largely interchangeable.
 - **Strategic position on the Geneva-Zurich axis**: Lausanne sits 35 minutes from Geneva by direct IC train and 2 hours 10 minutes from Zurich, allowing many professionals to live in Lausanne while serving cross-canton clients.
 
-[Explore Lausanne region guide](/regions/lausanne) • [Geneva region comparison](/regions/geneva) • [Switzerland housing services](/services/housing)
+[Explore Lausanne region guide](/regions/lausanne/) • [Geneva region comparison](/regions/geneva/) • [Switzerland housing services](/services/housing/)
 
 ---
 
@@ -92,7 +92,7 @@ Add CHF 25,000-38,000 per child per year for international school fees if you ch
 
 > **Tip:** Mandatory health insurance (LAMal/KVG) must be in place within 3 months of arrival. Premiums vary by canton and provider by up to 40% for identical coverage — get a personalised quote via **[Expat-Savvy.ch](https://expat-savvy.ch)** before defaulting to your employer's recommendation.
 
-[Compare Vaud cost of living](/blog/cost-of-living-switzerland-breakdown-2026) • [Mandatory insurance guide](/blog/mandatory-insurance-guide-switzerland) • [Health insurance services](/services/insurance)
+[Compare Vaud cost of living](/blog/cost-of-living-switzerland-breakdown-2026/) • [Mandatory insurance guide](/blog/mandatory-insurance-guide-switzerland/) • [Health insurance services](/services/insurance/)
 
 ---
 
@@ -123,7 +123,7 @@ Lausanne is built on three hills above the lake, and where you settle changes yo
 
 > **Action:** With Lausanne at 0.67% vacancy, public listings on Homegate and ImmoScout24 are picked over within hours. Register on **[Offlist.ch](https://offlist.ch)** before you arrive to get visibility into landlord-direct stock that never reaches the public portals.
 
-[Lausanne region deep dive](/regions/lausanne) • [Off-market apartment guide](/blog/how-to-find-off-market-apartments-zurich-zug-2026) • [Reverse-application strategy](/blog/reverse-application-strategy-finding-housing-switzerland-2026)
+[Lausanne region deep dive](/regions/lausanne/) • [Off-market apartment guide](/blog/how-to-find-off-market-apartments-zurich-zug-2026/) • [Reverse-application strategy](/blog/reverse-application-strategy-finding-housing-switzerland-2026/)
 
 ---
 
@@ -142,7 +142,7 @@ Founded in Geneva in 1957, Harsch is the rare company in Romandie that operates 
 **Coverage:** Geneva, Lausanne, Basel
 **Good to know:** Strong fit for cross-border French-Swiss moves and intra-Romandie transfers; they also operate the only fine-art moving division in Romandie.
 
-[View Harsch profile](/companies/harsch---the-art-of-moving-forward) • [Compare Lausanne movers](/services/moving-logistics)
+[View Harsch profile](/companies/harsch---the-art-of-moving-forward/) • [Compare Lausanne movers](/services/moving-logistics/)
 
 ---
 
@@ -157,7 +157,7 @@ La Boutique Relocation is the boutique-by-design Vaud-Geneva specialist that pai
 **Coverage:** Lausanne, Geneva
 **Good to know:** Lower volume, higher touch — typical case-load of 1-2 active clients per consultant. Plan on a 2-week kick-off lead time during peak season (June-September).
 
-[View La Boutique profile](/companies/la-boutique-relocation) • [Boutique vs global comparison](/blog/packimpex-crown-relocations-vs-boutique-swiss-agencies-2026)
+[View La Boutique profile](/companies/la-boutique-relocation/) • [Boutique vs global comparison](/blog/packimpex-crown-relocations-vs-boutique-swiss-agencies-2026/)
 
 ---
 
@@ -172,7 +172,7 @@ Léman Relocation specialises in destination services and cultural integration f
 **Coverage:** Vaud, Geneva, all Switzerland
 **Good to know:** Smaller team, direct partner involvement on every file. Pricing is project-based; ask for a written scope before signing.
 
-[View Léman Relocation profile](/companies/leman-relocation-srl) • [Lausanne housing services](/services/housing)
+[View Léman Relocation profile](/companies/leman-relocation-srl/) • [Lausanne housing services](/services/housing/)
 
 ---
 
@@ -187,7 +187,7 @@ Relocation Geneva covers the full arc from Geneva through Vaud and is well-set-u
 **Coverage:** Geneva, Lausanne, Vaud
 **Good to know:** Best paired with a separate immigration counsel for non-EU files; they outsource permit work.
 
-[View Relocation Geneva profile](/companies/relocation-geneva) • [All verified Romandie agencies](/companies/)
+[View Relocation Geneva profile](/companies/relocation-geneva/) • [All verified Romandie agencies](/companies/)
 
 ---
 
@@ -209,7 +209,7 @@ The permit you need depends on your nationality and the type of work. Vaud appli
 
 > **Action:** Permit and home-search timelines must be sequenced — most landlords in Vaud will not sign a lease without proof of a residence permit or at least a *promesse d'embauche* and the SPOP confirmation reference. Get permit support via **[Expat-Services.ch](https://expat-services.ch)** before booking flights.
 
-[Swiss work permit guide 2026](/blog/swiss-work-permit-guide-b-permit-2026) • [Top immigration experts (non-EU)](/blog/top-5-swiss-immigration-experts-b-permit-non-eu-expats) • [Immigration services](/services/immigration)
+[Swiss work permit guide 2026](/blog/swiss-work-permit-guide-b-permit-2026/) • [Top immigration experts (non-EU)](/blog/top-5-swiss-immigration-experts-b-permit-non-eu-expats/) • [Immigration services](/services/immigration/)
 
 ---
 
@@ -226,7 +226,7 @@ Public schools in canton Vaud are free, well-resourced and ranked among the stro
 
 > **Tip:** ISL and Haut-Lac both maintain waiting lists for September entry from January onwards. Apply within 2 weeks of accepting your job offer if you intend to use either school — relocation agencies cannot fast-track this.
 
-[International schools Switzerland 2026](/blog/international-schools-switzerland-guide-2026) • [School placement specialists](/blog/best-swiss-relocation-agencies-international-school-placement-2026)
+[International schools Switzerland 2026](/blog/international-schools-switzerland-guide-2026/) • [School placement specialists](/blog/best-swiss-relocation-agencies-international-school-placement-2026/)
 
 ---
 
@@ -242,7 +242,7 @@ A short list of the errors we see most often in Vaud:
 
 > **[Compare Liability Insurance → Insurance-Guide.ch](https://insurance-guide.ch)**
 
-[Reverse-application strategy](/blog/reverse-application-strategy-finding-housing-switzerland-2026) • [Switzerland rental crisis update](/blog/switzerland-rental-crisis-update-q2-2026)
+[Reverse-application strategy](/blog/reverse-application-strategy-finding-housing-switzerland-2026/) • [Switzerland rental crisis update](/blog/switzerland-rental-crisis-update-q2-2026/)
 
 ---
 
@@ -262,7 +262,7 @@ For professionals weighing Lausanne against the obvious alternatives:
 
 **Choose Lausanne if** you value lake + EPFL proximity and want lower rent than Geneva without German-speaking adaptation.
 
-[Zurich vs Zug comparison](/blog/zurich-vs-zug-relocation-comparison-2026) • [Geneva agency rankings](/blog/best-relocation-agencies-geneva-2026)
+[Zurich vs Zug comparison](/blog/zurich-vs-zug-relocation-comparison-2026/) • [Geneva agency rankings](/blog/best-relocation-agencies-geneva-2026/)
 
 ---
 
@@ -277,19 +277,19 @@ For professionals weighing Lausanne against the obvious alternatives:
 ## ❓ Frequently Asked Questions
 
 ### How much does it cost to live in Lausanne in 2026?
-A single professional should budget CHF 4,000-5,500 per month all-in: CHF 1,800-2,600 for a one-bedroom in or near the city centre, CHF 350-450 for mandatory health insurance, CHF 400-550 for groceries, plus transport, utilities and discretionary spend. A family of four typically lands between CHF 8,500 and CHF 12,500 per month before international school fees. [Compare with Zurich](/blog/cost-of-living-zurich-single-person-2026) or [get a personalised cost breakdown](/contact/).
+A single professional should budget CHF 4,000-5,500 per month all-in: CHF 1,800-2,600 for a one-bedroom in or near the city centre, CHF 350-450 for mandatory health insurance, CHF 400-550 for groceries, plus transport, utilities and discretionary spend. A family of four typically lands between CHF 8,500 and CHF 12,500 per month before international school fees. [Compare with Zurich](/blog/cost-of-living-zurich-single-person-2026/) or [get a personalised cost breakdown](/contact/).
 
 ### What is the rental vacancy rate in Lausanne?
-Lausanne city sits at approximately 0.67% in 2026, with canton Vaud at 0.89% per the Federal Statistical Office's June 2025 release. Anything below 2% is treated as a structural shortage. Plan on 4-10 weeks for the home search and arrive with a complete rental dossier — see our [reverse-application strategy](/blog/reverse-application-strategy-finding-housing-switzerland-2026) for the working method.
+Lausanne city sits at approximately 0.67% in 2026, with canton Vaud at 0.89% per the Federal Statistical Office's June 2025 release. Anything below 2% is treated as a structural shortage. Plan on 4-10 weeks for the home search and arrive with a complete rental dossier — see our [reverse-application strategy](/blog/reverse-application-strategy-finding-housing-switzerland-2026/) for the working method.
 
 ### Do I need to speak French to live in Lausanne?
 French is the working and administrative language. EPFL, Nestlé, Logitech, the IOC and most international employers operate in English, but landlords, doctors, schools and the cantonal authorities default to French. Plan on at least A2-B1 within 12 months of arrival. Most relocation agencies will help arrange immersion lessons as part of a settling-in package.
 
 ### Which permit do I need to move to Lausanne?
-EU/EFTA nationals receive a B-permit on presentation of a Swiss employment contract (2-4 weeks). Non-EU nationals require an employer-sponsored L (short-term) or B (resident) permit subject to federal quotas, salary thresholds and a labour-market test (8-14 weeks). Cross-border commuters from France use the G-permit. For non-EU files, see our [list of vetted immigration experts](/blog/top-5-swiss-immigration-experts-b-permit-non-eu-expats).
+EU/EFTA nationals receive a B-permit on presentation of a Swiss employment contract (2-4 weeks). Non-EU nationals require an employer-sponsored L (short-term) or B (resident) permit subject to federal quotas, salary thresholds and a labour-market test (8-14 weeks). Cross-border commuters from France use the G-permit. For non-EU files, see our [list of vetted immigration experts](/blog/top-5-swiss-immigration-experts-b-permit-non-eu-expats/).
 
 ### What are the best neighbourhoods in Lausanne for expats?
-For executives and couples without children, Ouchy, Sous-Gare and Cité offer lakeside living with metro access. Families typically prefer Pully, Lutry and Saint-Sulpice for green space, schools and parking. EPFL/UNIL staff cluster around Saint-Sulpice and Renens. Younger professionals favour Flon and Chauderon. [Compare with Geneva neighbourhoods](/regions/geneva).
+For executives and couples without children, Ouchy, Sous-Gare and Cité offer lakeside living with metro access. Families typically prefer Pully, Lutry and Saint-Sulpice for green space, schools and parking. EPFL/UNIL staff cluster around Saint-Sulpice and Renens. Younger professionals favour Flon and Chauderon. [Compare with Geneva neighbourhoods](/regions/geneva/).
 
 ### How are international schools structured in the Lausanne area?
 The two flagship IB World Schools are the International School of Lausanne (ISL, ~865 students from 75 nationalities) in Le Mont-sur-Lausanne, and Haut-Lac International Bilingual School (~600 students) in Saint-Légier near Vevey. Annual fees range from CHF 24,000 to CHF 38,000. Public schools in Vaud are excellent and free but operate in French.
@@ -310,15 +310,15 @@ Ready to start your move to Lausanne?
 Tell us your timeline, family size and target neighbourhood and we will match you with two or three verified providers from our Vaud directory within 24 hours. No fee, no obligation. [Start the matching brief →](/contact/)
 
 ### Option 2: Run the Off-Market Home Search
-If you have time to drive your own home search but want access to landlord-direct stock that never reaches Homegate, register a buyer profile on **[Offlist.ch](https://offlist.ch)** and pair it with our [reverse-application playbook](/blog/reverse-application-strategy-finding-housing-switzerland-2026).
+If you have time to drive your own home search but want access to landlord-direct stock that never reaches Homegate, register a buyer profile on **[Offlist.ch](https://offlist.ch)** and pair it with our [reverse-application playbook](/blog/reverse-application-strategy-finding-housing-switzerland-2026/).
 
 ### Option 3: Explore Resources
 
-- [Lausanne region guide](/regions/lausanne)
-- [Switzerland housing services](/services/housing)
-- [B-permit & immigration support](/services/immigration)
-- [Mandatory insurance guide](/blog/mandatory-insurance-guide-switzerland)
-- [Corporate relocation solutions](/services/corporate-relocation)
+- [Lausanne region guide](/regions/lausanne/)
+- [Switzerland housing services](/services/housing/)
+- [B-permit & immigration support](/services/immigration/)
+- [Mandatory insurance guide](/blog/mandatory-insurance-guide-switzerland/)
+- [Corporate relocation solutions](/services/corporate-relocation/)
 
 ---
 

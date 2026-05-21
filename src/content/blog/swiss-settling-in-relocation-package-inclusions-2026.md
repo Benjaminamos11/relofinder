@@ -70,4 +70,4 @@ While relocation agents assist intimately with utilities and banking, Swiss insu
 
 ## Conclusion
 
-Understanding your specific **[Swiss relocation package inclusions](/services/housing)** prevents dangerous gaps in your transition. To ensure you are receiving the comprehensive, hands-on support required to successfully integrate into Swiss society, skip the high-volume corporations. Demand a verified, boutique Swiss expert who will stand by your side until your life is fully operational.
+Understanding your specific **[Swiss relocation package inclusions](/services/housing/)** prevents dangerous gaps in your transition. To ensure you are receiving the comprehensive, hands-on support required to successfully integrate into Swiss society, skip the high-volume corporations. Demand a verified, boutique Swiss expert who will stand by your side until your life is fully operational.
