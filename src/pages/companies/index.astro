@@ -142,18 +142,9 @@ const companyFaqs = [
   }
 ];
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: companyFaqs.map(faq => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer }
-  }))
-};
 ---
 
-<Layout title={title} description={description} canonical={canonical} schema={faqSchema}>
+<Layout title={title} description={description} canonical={canonical}>
     <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "Directory" }]} />
     <!-- Hero Section -->
     <section
