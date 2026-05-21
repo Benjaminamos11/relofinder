@@ -3,7 +3,7 @@ title: "Welcome Service vs Anchor Relocation: Which Swiss Agency Fits Your Move?
 description: "Geneva family focus vs Zurich efficiency — compare two boutique Swiss relocation agencies. Real pricing, client reviews, and regional expertise for 2026."
 publishDate: 2026-05-19
 author: "relofinder"
-heroImage: "/images/blog/zurich-housing-market.webp"
+heroImage: "/images/blog/off_market_housing_hero.webp"
 category: "Guides"
 tags: ["relocation agencies", "Geneva", "Zurich", "agency comparison", "expat services", "family relocation", "home search"]
 readingTime: 12

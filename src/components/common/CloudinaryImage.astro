@@ -57,18 +57,18 @@ if (isOptimizable) {
       if (urlParts.length === 2) {
         baseUrl = urlParts[0] + '/upload/';
         const pathAfterUpload = urlParts[1];
-        
+
         // Robustly separate transformations from public ID
         // If there's a slash, the first part might be transformations (e.g., w_200/v123/path)
-        // or just folders/version (e.g., v123/folder/path). 
+        // or just folders/version (e.g., v123/folder/path).
         // Cloudinary handles transformations separately if they are separated by commas.
         // For simplicity, we assume everything after the last transformation segment or version is the public ID.
         const pathSegments = pathAfterUpload.split('/');
-        
+
         // Find the index where transformations end (usually the last segment is the filename/publicId)
         // We'll keep the folders and version if present.
-        publicId = pathAfterUpload; 
-        
+        publicId = pathAfterUpload;
+
         // Remove existing transformations if they are in the first segment and contain underscores/commas
         if (pathSegments.length > 1 && (pathSegments[0].includes('_') || pathSegments[0].includes(','))) {
            publicId = pathSegments.slice(1).join('/');
@@ -85,38 +85,38 @@ if (isOptimizable) {
       const transforms: string[] = [];
       const qualityParam = width <= 640 ? 'q_auto:eco' : 'q_auto:good';
       transforms.push(qualityParam);
-      
+
       if (height) {
         transforms.push(`w_${width},h_${height},c_${crop}`);
       } else {
         transforms.push(`w_${width},c_${crop}`);
       }
-      
+
       if (gravity && gravity !== 'auto') {
         transforms.push(`g_${gravity}`);
       }
-      
+
       transforms.push('dpr_auto');
       transforms.push('fl_progressive');
       transforms.push('fl_immutable_cache');
-      
+
       const baseTransformString = transforms.join(',');
       const sizes = [320, 384, 640, 768, 1024, 1280];
       const relevantSizes = sizes.filter(size => size <= width * 1.5);
-      
+
       avifSrcSet = relevantSizes.map(size => {
         return `${baseUrl}f_avif,${baseTransformString.replace(/w_\d+/, `w_${size}`)}/${publicId} ${size}w`;
       }).join(', ');
-      
+
       webpSrcSet = relevantSizes.map(size => {
         return `${baseUrl}f_webp,${baseTransformString.replace(/w_\d+/, `w_${size}`)}/${publicId} ${size}w`;
       }).join(', ');
-      
+
       srcSet = relevantSizes.map(size => {
         const formatParam = format === 'auto' ? 'f_auto' : `f_${format}`;
         return `${baseUrl}${formatParam},${baseTransformString.replace(/w_\d+/, `w_${size}`)}/${publicId} ${size}w`;
       }).join(', ');
-      
+
       const formatParam = format === 'auto' ? 'f_auto' : `f_${format}`;
       optimizedSrc = `${baseUrl}${formatParam},${baseTransformString}/${publicId}`;
     }
@@ -127,12 +127,13 @@ if (isOptimizable) {
 }
 
 // Enhanced sizes attribute
-const responsiveSizes = priority 
+const responsiveSizes = priority
   ? '(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 70vw'
   : '(max-width: 384px) 364px, (max-width: 640px) 90vw, (max-width: 768px) 80vw, (max-width: 1024px) 70vw, 60vw';
 
 const finalLoading = priority ? 'eager' : loading;
 const fetchPriority = priority ? 'high' : 'auto';
+const fallbackImage = '/images/blog/swiss_relocation_2026_branded.webp';
 ---
 
 <!-- Enhanced picture element for better format support and performance -->
@@ -140,22 +141,22 @@ const fetchPriority = priority ? 'high' : 'auto';
   <picture class="contents">
     <!-- AVIF format for modern browsers (best compression) -->
     {avifSrcSet && (
-      <source 
-        srcset={avifSrcSet} 
+      <source
+        srcset={avifSrcSet}
         sizes={responsiveSizes}
         type="image/avif"
       />
     )}
-    
+
     <!-- WebP format for wide browser support -->
     {webpSrcSet && (
-      <source 
-        srcset={webpSrcSet} 
+      <source
+        srcset={webpSrcSet}
         sizes={responsiveSizes}
         type="image/webp"
       />
     )}
-    
+
     <!-- Fallback image with optimized srcset -->
     <img
       src={optimizedSrc}
@@ -168,7 +169,7 @@ const fetchPriority = priority ? 'high' : 'auto';
       width={width}
       height={height}
       decoding="async"
-      onerror="this.src='https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=800&q=80'"
+      onerror={`this.onerror=null;this.src='${fallbackImage}';`}
     />
   </picture>
 ) : (
@@ -182,6 +183,6 @@ const fetchPriority = priority ? 'high' : 'auto';
     width={width}
     height={height}
     decoding="async"
-    onerror="this.src='https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=800&q=80'"
+    onerror={`this.onerror=null;this.src='${fallbackImage}';`}
   />
-)} 
+)}

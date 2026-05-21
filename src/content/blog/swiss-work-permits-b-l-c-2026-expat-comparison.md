@@ -3,7 +3,7 @@ title: "Swiss Work Permits Explained: B, L & C Permit Comparison for 2026"
 description: "B vs L vs C: processing times, salary thresholds, family rights & pathways to permanent residence. Everything expats need to know about Swiss work permits in 2026."
 publishDate: 2026-05-13
 author: "relofinder"
-heroImage: "/images/blog/zurich-hb-permit.webp"
+heroImage: "/images/blog/b_permit_hero.webp"
 category: "Immigration"
 tags: ["B-Permit", "work-permits", "residency", "immigration", "C-Permit", "expat-guide", "Switzerland"]
 readingTime: 13

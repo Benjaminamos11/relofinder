@@ -3,7 +3,7 @@ title: "It Now Takes 28 Years to Save for a House in Switzerland: The 2026 Buyer
 description: "House prices in Switzerland rose 3.5% in Q1 2026, with the average family needing 28 years to save—up from 10 years in 2010. Here's what expat buyers face in the tightest property market in Europe."
 publishDate: 2026-05-16
 author: "relofinder"
-heroImage: "/images/blog/zurich-housing-market.webp"
+heroImage: "/images/blog/off_market_housing_hero.webp"
 category: "Housing & Living"
 tags: ["housing affordability", "buying property Switzerland", "house prices", "mortgage rates", "real estate market", "expat homeownership", "Zurich property"]
 readingTime: 13

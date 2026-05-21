@@ -3,7 +3,7 @@ title: "Swiss Work Permit Quota Freeze 2026: What the Referendum Means for Your 
 description: "Switzerland froze 2026 work permit quotas at 8,500 as the June 14 referendum looms. Here's how expats and employers can navigate the hiring bottleneck."
 publishDate: 2026-05-15
 author: "relofinder"
-heroImage: "/images/blog/swiss-permits.webp"
+heroImage: "/images/blog/b_permit_hero.webp"
 category: "Immigration"
 tags: ["work permits", "B-permit", "L-permit", "immigration", "hiring", "referendum", "quota"]
 readingTime: 9

@@ -3,7 +3,7 @@ title: "Lugano Expat Guide 2026: Living in Switzerland's Italian-Speaking Gatewa
 description: "14% cheaper than Geneva, 300+ days of sunshine, and a 30-minute commute: why Lugano is Switzerland's most underrated expat destination in 2026."
 publishDate: 2026-05-18
 author: "relofinder"
-heroImage: "/images/blog/lugano-lake-view.webp"
+heroImage: "/images/blog/swiss_relocation_2026_branded.webp"
 category: "City Guides"
 tags: ["Lugano", "Ticino", "Italian-speaking Switzerland", "city guide", "expat living", "cost comparison", "quality of life"]
 readingTime: 12
