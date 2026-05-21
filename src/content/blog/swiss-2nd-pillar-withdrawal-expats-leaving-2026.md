@@ -3,7 +3,7 @@ title: "Swiss 2nd Pillar Withdrawal for Expats Leaving Switzerland in 2026"
 description: "Complete guide to BVG pension withdrawal when leaving Switzerland: EU/EFTA vs non-EU rules, cantonal tax strategies, vested benefits accounts, and the 5-figure mistakes to avoid."
 publishDate: 2026-05-21
 author: "relofinder"
-heroImage: "/images/blog/swiss-workplace.webp"
+heroImage: "/images/blog/pension_guide_hero.webp"
 category: "Finance"
 tags: ["pensions", "BVG", "2nd pillar", "expat finance", "leaving Switzerland", "vested benefits", "tax planning"]
 readingTime: 13
