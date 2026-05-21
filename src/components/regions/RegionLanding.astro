@@ -89,7 +89,7 @@ const regionSchema = {
 <Layout title={title} description={description} canonical={canonical} schema={[regionSchema, faqSchema]}>
   <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "Regions", url: "/regions/" }, { name: regionName }]} />
 
-  <section class="relative min-h-[760px] pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
+  <section class="relative min-h-[680px] pt-24 pb-12 md:min-h-[760px] lg:pt-36 lg:pb-24 overflow-hidden">
     <div class="absolute inset-0 z-0">
       <img src={heroImage} alt={heroAlt} class="h-full w-full object-cover" loading="eager" fetchpriority="high" />
       <div class="absolute inset-0 bg-gradient-to-b from-slate-950/65 via-slate-950/40 to-slate-950/75"></div>
@@ -100,7 +100,7 @@ const regionSchema = {
         <span class="inline-flex items-center rounded-full bg-slate-950/75 px-4 py-2 text-xs font-bold uppercase tracking-widest text-white ring-1 ring-white/15">
           {badge}
         </span>
-        <h1 class="mt-7 text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
+        <h1 class="mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
           Relocation to <span class="text-[#FF6F61]">{accentName}</span>
         </h1>
         <p class="mx-auto mt-6 max-w-2xl text-lg font-medium leading-relaxed text-white/90 md:text-xl">
@@ -108,7 +108,7 @@ const regionSchema = {
         </p>
       </div>
 
-      <div class="mx-auto mt-12 max-w-3xl rounded-2xl border border-white/15 bg-white p-1 shadow-2xl shadow-slate-950/20">
+      <div class="mx-auto mt-10 max-w-3xl rounded-2xl border border-white/15 bg-white p-1 shadow-2xl shadow-slate-950/20">
         <HeroSearch initialDestination={initialDestination} />
       </div>
 

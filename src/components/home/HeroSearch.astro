@@ -44,6 +44,8 @@ const services = [
         primaryDestination: '',
 
         handlePrivateSubmit() {
+            this.where = this.where || 'switzerland';
+            this.service = this.service || 'full-package';
             if (this.$store.assessmentModal) {
                 this.$store.assessmentModal.open({
                     mode: 'private',
@@ -55,6 +57,7 @@ const services = [
         },
 
         handleCorporateSubmit() {
+            this.primaryDestination = this.primaryDestination || 'switzerland';
             if (this.$store.assessmentModal) {
                 this.$store.assessmentModal.open({
                     mode: 'corporate',
@@ -70,21 +73,21 @@ const services = [
         service = '${initialService}';
         primaryDestination = '${initialDestination}';
     `}
-    class={`bg-white rounded-3xl shadow-[0_40px_80px_-20px_rgba(0,0,0,0.2)] ring-1 ring-slate-900/5 overflow-hidden w-full transition-all duration-300 min-h-[320px] md:min-h-[280px] ${className}`}
+    class={`bg-white rounded-2xl md:rounded-3xl shadow-[0_32px_70px_-24px_rgba(15,23,42,0.35)] ring-1 ring-slate-900/5 overflow-hidden w-full transition-all duration-300 ${className}`}
 >
     <!-- Tabs -->
     <div class="flex border-b border-slate-100">
         <button
             @click="activeTab = 'private'"
             :class="activeTab === 'private' ? 'bg-white text-slate-900 border-b-2 border-[#FF6F61]' : 'bg-slate-50/50 text-slate-500 border-b-2 border-transparent hover:text-slate-600 hover:bg-slate-50'"
-            class="flex-1 py-5 text-center font-bold text-xs uppercase tracking-widest transition-all"
+            class="flex-1 py-4 md:py-5 text-center font-bold text-[11px] md:text-xs uppercase tracking-widest transition-all"
         >
             Private Move
         </button>
         <button
             @click="activeTab = 'corporate'"
             :class="activeTab === 'corporate' ? 'bg-white text-slate-900 border-b-2 border-[#FF6F61]' : 'bg-slate-50/50 text-slate-500 border-b-2 border-transparent hover:text-slate-600 hover:bg-slate-50'"
-            class="flex-1 py-5 text-center font-bold text-xs uppercase tracking-widest transition-all"
+            class="flex-1 py-4 md:py-5 text-center font-bold text-[11px] md:text-xs uppercase tracking-widest transition-all"
         >
             Corporate / HR
         </button>
@@ -94,7 +97,7 @@ const services = [
     <form
         x-show="activeTab === 'private'"
         @submit.prevent="handlePrivateSubmit()"
-        class="p-8 space-y-6"
+        class="p-5 md:p-8 space-y-5 md:space-y-6"
         x-transition:enter="transition ease-out duration-200"
         x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100"
@@ -102,7 +105,7 @@ const services = [
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <!-- When -->
             <div>
-                <label for="hero-when" class="block text-sm font-medium text-slate-700 mb-2">
+                <label for="hero-when" class="block text-sm font-semibold text-slate-700 mb-2">
                     <svg
                         class="w-4 h-4 inline-block mr-2"
                         fill="none"
@@ -121,7 +124,7 @@ const services = [
                 <select
                     id="hero-when"
                     x-model="when"
-                    class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent transition-all"
+                    class="w-full px-4 py-3 text-base border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent transition-all"
                 >
                     <option value="">Select timeframe</option>
                     <option value="immediately"
@@ -136,7 +139,7 @@ const services = [
 
             <!-- Where -->
             <div>
-                <label for="hero-where" class="block text-sm font-medium text-slate-700 mb-2">
+                <label for="hero-where" class="block text-sm font-semibold text-slate-700 mb-2">
                     <svg
                         class="w-4 h-4 inline-block mr-2"
                         fill="none"
@@ -160,7 +163,7 @@ const services = [
                 <select
                     id="hero-where"
                     x-model="where"
-                    class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent transition-all"
+                    class="w-full px-4 py-3 text-base border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent transition-all"
                 >
                     <option value="">Select destination</option>
                     {
@@ -173,7 +176,7 @@ const services = [
 
             <!-- Service -->
             <div>
-                <label for="hero-service" class="block text-sm font-medium text-slate-700 mb-2">
+                <label for="hero-service" class="block text-sm font-semibold text-slate-700 mb-2">
                     <svg
                         class="w-4 h-4 inline-block mr-2"
                         fill="none"
@@ -192,7 +195,7 @@ const services = [
                 <select
                     id="hero-service"
                     x-model="service"
-                    class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent transition-all"
+                    class="w-full px-4 py-3 text-base border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent transition-all"
                 >
                     <option value="">Select service</option>
                     {
@@ -206,10 +209,15 @@ const services = [
 
         <button
             type="submit"
-            class="w-full bg-gradient-to-r from-[#FF6F61] to-[#FF8577] text-white font-bold py-4 px-6 rounded-xl hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+            class="w-full bg-[#FF6F61] text-white font-bold py-4 px-6 rounded-xl hover:bg-[#ff5a4d] hover:shadow-xl active:scale-[0.99] transition-all duration-200"
         >
-            Find Agencies
+            Get free shortlist
         </button>
+        <div class="grid grid-cols-3 gap-2 text-center text-[11px] font-bold text-slate-500">
+            <span class="rounded-lg bg-slate-50 px-2 py-2">Private first</span>
+            <span class="rounded-lg bg-slate-50 px-2 py-2">No obligation</span>
+            <span class="rounded-lg bg-slate-50 px-2 py-2">Swiss experts</span>
+        </div>
     </form>
 
     <!-- Corporate Form -->
@@ -217,7 +225,7 @@ const services = [
         x-show="activeTab === 'corporate'"
         x-cloak
         @submit.prevent="handleCorporateSubmit()"
-        class="p-8 space-y-6"
+        class="p-5 md:p-8 space-y-5 md:space-y-6"
         x-transition:enter="transition ease-out duration-200"
         x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100"
@@ -225,7 +233,7 @@ const services = [
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <!-- Company Name -->
             <div>
-                <label for="hero-company" class="block text-sm font-medium text-slate-700 mb-2">
+                <label for="hero-company" class="block text-sm font-semibold text-slate-700 mb-2">
                     <svg
                         class="w-4 h-4 inline-block mr-2"
                         fill="none"
@@ -246,14 +254,14 @@ const services = [
                     type="text"
                     x-model="companyName"
                     placeholder="Your company name"
-                    class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent transition-all"
+                    class="w-full px-4 py-3 text-base border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent transition-all"
                     required
                 />
             </div>
 
             <!-- Yearly Volume -->
             <div>
-                <label for="hero-volume" class="block text-sm font-medium text-slate-700 mb-2">
+                <label for="hero-volume" class="block text-sm font-semibold text-slate-700 mb-2">
                     <svg
                         class="w-4 h-4 inline-block mr-2"
                         fill="none"
@@ -272,7 +280,7 @@ const services = [
                 <select
                     id="hero-volume"
                     x-model="yearlyVolume"
-                    class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent transition-all"
+                    class="w-full px-4 py-3 text-base border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent transition-all"
                     required
                 >
                     <option value="">Select volume</option>
@@ -285,7 +293,7 @@ const services = [
 
             <!-- Primary Destination -->
             <div>
-                <label for="hero-destination" class="block text-sm font-medium text-slate-700 mb-2">
+                <label for="hero-destination" class="block text-sm font-semibold text-slate-700 mb-2">
                     <svg
                         class="w-4 h-4 inline-block mr-2"
                         fill="none"
@@ -309,7 +317,7 @@ const services = [
                 <select
                     id="hero-destination"
                     x-model="primaryDestination"
-                    class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent transition-all"
+                    class="w-full px-4 py-3 text-base border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent transition-all"
                 >
                     <option value="">Select destination</option>
                     {
@@ -323,10 +331,15 @@ const services = [
 
         <button
             type="submit"
-            class="w-full bg-gradient-to-r from-[#FF6F61] to-[#FF8577] text-white font-bold py-4 px-6 rounded-xl hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+            class="w-full bg-[#FF6F61] text-white font-bold py-4 px-6 rounded-xl hover:bg-[#ff5a4d] hover:shadow-xl active:scale-[0.99] transition-all duration-200"
         >
-            Get Corporate Solutions
+            Get provider benchmark
         </button>
+        <div class="grid grid-cols-3 gap-2 text-center text-[11px] font-bold text-slate-500">
+            <span class="rounded-lg bg-slate-50 px-2 py-2">Anonymous RFP</span>
+            <span class="rounded-lg bg-slate-50 px-2 py-2">Benchmarked</span>
+            <span class="rounded-lg bg-slate-50 px-2 py-2">Free for HR</span>
+        </div>
     </form>
 </div>
 
