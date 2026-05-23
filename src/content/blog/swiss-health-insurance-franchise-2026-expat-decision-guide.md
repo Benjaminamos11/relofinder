@@ -208,7 +208,7 @@ If you're working with a [relocation agency](https://primerelocation.ch) or [lif
 If you want true optimization, either:
 
 1. Run the math yourself using the 1,800 heuristic.
-2. Book a consultation with a fee-only insurance advisor ([expat-savvy.ch](https://expat-savvy.ch) or [insurance-guide.ch](https://insurance-guide.ch)) who can model your specific medical profile.
+2. Book a consultation with a fee-only insurance advisor ([expat-savvy.ch](https://expat-savvy.ch) or [insurance-guide.ch](https://insurance-guide.ch)) who can model your specific medical profile. Established Swiss families with semi-private or private hospital coverage and broader Vorsorge needs often work with a specialised local broker like [thatday.ch](https://thatday.ch/beratung/familien-setup) instead.
 
 For off-market housing searches that reduce stress (and therefore medical costs!), platforms like [offlist.ch](https://offlist.ch) can help you avoid the rental crisis chaos that drives expats to stress-induced GP visits.
 
