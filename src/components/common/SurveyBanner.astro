@@ -1,0 +1,533 @@
+---
+const sourceSite = 'relofinder.ch';
+const privacyHref = '/privacy/';
+---
+
+<div class="rf-survey" id="rfSurvey" data-source-site={sourceSite} data-privacy-href={privacyHref} hidden>
+  <div class="rf-survey__bar" role="region" aria-label="Expat survey">
+    <p class="rf-survey__text">
+      A quick question for expats in Switzerland: how is the "10-million" debate affecting you?
+      <span>30 seconds, anonymous.</span>
+    </p>
+    <div class="rf-survey__actions">
+      <button class="rf-survey__open" type="button" id="rfSurveyOpen">Take the survey</button>
+      <button class="rf-survey__dismiss" type="button" id="rfSurveyDismiss" aria-label="Dismiss survey">×</button>
+    </div>
+  </div>
+
+  <div class="rf-survey__overlay" id="rfSurveyOverlay" hidden>
+    <section
+      class="rf-survey__modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="rfSurveyTitle"
+      aria-describedby="rfSurveyIntro"
+      tabindex="-1"
+    >
+      <button class="rf-survey__close" type="button" id="rfSurveyClose" aria-label="Close survey">×</button>
+      <p class="rf-survey__eyebrow">Anonymous · 3 quick questions · aggregate results only</p>
+      <h2 id="rfSurveyTitle">How is the debate landing with expats?</h2>
+      <p id="rfSurveyIntro" class="rf-survey__intro">
+        Switzerland votes on the "10-million Switzerland" migration initiative on 14 June 2026. We are collecting anonymous expat responses to understand the mood around it.
+      </p>
+
+      <form class="rf-survey__form" id="rfSurveyForm">
+        <fieldset>
+          <legend>Has the public debate around the "10-million Switzerland" vote changed how welcome you feel in Switzerland?</legend>
+          <label><input required type="radio" name="q1" value="I feel less welcome" /> <span>I feel less welcome</span></label>
+          <label><input required type="radio" name="q1" value="No change" /> <span>No change</span></label>
+          <label><input required type="radio" name="q1" value="I feel more welcome" /> <span>I feel more welcome</span></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Has the debate affected your plans to stay in, or move to, Switzerland?</legend>
+          <label><input required type="radio" name="q2" value="Yes, I'm reconsidering" /> <span>Yes, I'm reconsidering</span></label>
+          <label><input required type="radio" name="q2" value="It's a factor, but not decisive" /> <span>It's a factor, but not decisive</span></label>
+          <label><input required type="radio" name="q2" value="No, my plans are unchanged" /> <span>No, my plans are unchanged</span></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Would the current climate change whether you'd recommend Switzerland to friends or colleagues abroad considering a move?</legend>
+          <label><input required type="radio" name="q3" value="Yes, I'd be more hesitant to recommend it" /> <span>Yes, I'd be more hesitant to recommend it</span></label>
+          <label><input required type="radio" name="q3" value="No difference" /> <span>No difference</span></label>
+          <label><input required type="radio" name="q3" value="I'd still strongly recommend it" /> <span>I'd still strongly recommend it</span></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>How long have you lived in Switzerland? <span>Optional</span></legend>
+          <label><input type="radio" name="q4" value="Less than 1 year" /> <span>Less than 1 year</span></label>
+          <label><input type="radio" name="q4" value="1–5 years" /> <span>1–5 years</span></label>
+          <label><input type="radio" name="q4" value="5+ years" /> <span>5+ years</span></label>
+          <label><input type="radio" name="q4" value="Planning to move / not yet there" /> <span>Planning to move / not yet there</span></label>
+        </fieldset>
+
+        <label class="rf-survey__textarea">
+          <span>Anything you'd like to add? <small>Optional, max 300 characters</small></span>
+          <textarea name="q5" maxlength="300" rows="3"></textarea>
+        </label>
+
+        <p class="rf-survey__privacy">
+          Responses are anonymous and may be reported in aggregate.
+          <a href={privacyHref}>Privacy policy</a>
+        </p>
+
+        <p class="rf-survey__error" id="rfSurveyError" role="alert" hidden>Couldn't send — please try again.</p>
+
+        <button class="rf-survey__submit" id="rfSurveySubmit" type="submit">Send</button>
+      </form>
+
+      <div class="rf-survey__thanks" id="rfSurveyThanks" hidden>
+        <h3>Thanks — your answer helps.</h3>
+        <p>We will only read the responses in aggregate. No names, emails, or identifying fields are collected.</p>
+      </div>
+    </section>
+  </div>
+</div>
+
+<style is:global>
+  body.rf-survey-active {
+    padding-top: var(--rf-survey-offset, 0px);
+  }
+  body.rf-survey-active #main-navbar {
+    top: var(--rf-survey-offset, 0px);
+  }
+  body.rf-survey-modal-open {
+    overflow: hidden;
+  }
+  body.rf-survey-modal-open .rf-chat-widget {
+    display: none !important;
+  }
+</style>
+
+<style>
+  .rf-survey {
+    --survey-ink: #0f172a;
+    --survey-muted: #64748b;
+    --survey-line: rgba(15, 23, 42, .14);
+    --survey-accent: #ff6f61;
+    --survey-paper: #ffffff;
+    position: relative;
+    z-index: 1000;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .rf-survey[hidden],
+  .rf-survey__overlay[hidden],
+  .rf-survey__form[hidden],
+  .rf-survey__thanks[hidden],
+  .rf-survey__error[hidden] {
+    display: none !important;
+  }
+  .rf-survey__bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 9px max(16px, env(safe-area-inset-left)) 9px max(16px, env(safe-area-inset-right));
+    background: #f8fafc;
+    border-bottom: 1px solid var(--survey-line);
+    color: var(--survey-ink);
+  }
+  .rf-survey__text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.35;
+    color: var(--survey-ink);
+  }
+  .rf-survey__text span {
+    color: var(--survey-muted);
+  }
+  .rf-survey__actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex: 0 0 auto;
+  }
+  .rf-survey__open,
+  .rf-survey__submit {
+    border: 1px solid var(--survey-accent);
+    border-radius: 999px;
+    background: var(--survey-accent);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 12px 18px;
+    cursor: pointer;
+    transition: transform 150ms cubic-bezier(.23, 1, .32, 1), background 150ms cubic-bezier(.23, 1, .32, 1);
+  }
+  .rf-survey__open:hover,
+  .rf-survey__submit:hover {
+    background: #f35d50;
+  }
+  .rf-survey__open:active,
+  .rf-survey__submit:active,
+  .rf-survey__dismiss:active,
+  .rf-survey__close:active {
+    transform: scale(.97);
+  }
+  .rf-survey__dismiss,
+  .rf-survey__close {
+    border: 1px solid var(--survey-line);
+    border-radius: 999px;
+    background: white;
+    color: var(--survey-ink);
+    width: 34px;
+    height: 34px;
+    display: inline-grid;
+    place-items: center;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 150ms cubic-bezier(.23, 1, .32, 1), border-color 150ms cubic-bezier(.23, 1, .32, 1), background 150ms cubic-bezier(.23, 1, .32, 1);
+  }
+  .rf-survey__dismiss:hover,
+  .rf-survey__close:hover {
+    border-color: rgba(15, 23, 42, .28);
+    background: #f8fafc;
+  }
+  .rf-survey button:focus-visible,
+  .rf-survey input:focus-visible,
+  .rf-survey textarea:focus-visible,
+  .rf-survey a:focus-visible {
+    outline: 2px solid var(--survey-accent);
+    outline-offset: 3px;
+  }
+  .rf-survey__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1001;
+    display: grid;
+    place-items: center;
+    padding: 72px 18px 24px;
+    background: rgba(15, 23, 42, .56);
+  }
+  .rf-survey__modal {
+    width: min(660px, 100%);
+    max-height: min(720px, calc(100vh - 96px));
+    overflow: auto;
+    position: relative;
+    background: var(--survey-paper);
+    border: 1px solid rgba(15, 23, 42, .18);
+    border-radius: 24px;
+    padding: clamp(22px, 3.2vw, 34px);
+    color: var(--survey-ink);
+    box-shadow: 0 24px 80px rgba(15, 23, 42, .18);
+    opacity: 0;
+    transform: translateY(10px) scale(.985);
+    animation: rfSurveyIn 190ms cubic-bezier(.23, 1, .32, 1) forwards;
+  }
+  @keyframes rfSurveyIn {
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  .rf-survey__close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+  }
+  .rf-survey__eyebrow {
+    margin: 0 44px 14px 0;
+    font-family: Montserrat, Inter, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--survey-accent);
+  }
+  .rf-survey h2 {
+    margin: 0;
+    max-width: 13ch;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(36px, 6vw, 56px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -.03em;
+    color: var(--survey-ink);
+  }
+  .rf-survey__intro {
+    margin: 14px 0 20px;
+    max-width: 58ch;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--survey-muted);
+  }
+  .rf-survey__form {
+    display: grid;
+    gap: 12px;
+  }
+  .rf-survey fieldset {
+    margin: 0;
+    padding: 12px 0 0;
+    border: 0;
+    border-top: 1px solid var(--survey-line);
+  }
+  .rf-survey legend,
+  .rf-survey__textarea > span {
+    display: block;
+    margin: 0 0 8px;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--survey-ink);
+  }
+  .rf-survey legend span,
+  .rf-survey small {
+    font-weight: 400;
+    color: var(--survey-muted);
+  }
+  .rf-survey label:not(.rf-survey__textarea) {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 6px 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--survey-muted);
+    cursor: pointer;
+  }
+  .rf-survey input[type="radio"] {
+    accent-color: var(--survey-accent);
+    margin-top: 2px;
+  }
+  .rf-survey__textarea {
+    display: block;
+    padding-top: 12px;
+    border-top: 1px solid var(--survey-line);
+  }
+  .rf-survey textarea {
+    width: 100%;
+    resize: vertical;
+    border: 1px solid var(--survey-line);
+    border-radius: 12px;
+    background: #f8fafc;
+    color: var(--survey-ink);
+    font: 400 15px/1.5 Inter, system-ui, sans-serif;
+    padding: 10px 12px;
+  }
+  .rf-survey__privacy,
+  .rf-survey__error {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--survey-muted);
+  }
+  .rf-survey__privacy a {
+    color: var(--survey-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--survey-accent);
+    text-underline-offset: 3px;
+  }
+  .rf-survey__error {
+    color: #dc2626;
+  }
+  .rf-survey__submit {
+    justify-self: start;
+    min-width: 132px;
+  }
+  .rf-survey__submit[disabled] {
+    opacity: .58;
+    cursor: wait;
+  }
+  .rf-survey__thanks {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--survey-line);
+  }
+  .rf-survey__thanks h3 {
+    margin: 0;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(30px, 5vw, 44px);
+    line-height: 1.05;
+    font-weight: 600;
+  }
+  .rf-survey__thanks p {
+    margin: 14px 0 0;
+    max-width: 50ch;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--survey-muted);
+  }
+  @media (max-width: 720px) {
+    .rf-survey__bar {
+      justify-content: flex-start;
+      gap: 12px;
+      padding: 9px 12px;
+    }
+    .rf-survey__text {
+      font-size: 12px;
+      flex: 1 1 auto;
+    }
+    .rf-survey__text span {
+      display: none;
+    }
+    .rf-survey__open {
+      padding: 10px 12px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .rf-survey__dismiss {
+      width: 32px;
+      height: 32px;
+      font-size: 20px;
+    }
+    .rf-survey__overlay {
+      place-items: end center;
+      padding: 62px 10px 10px;
+    }
+    .rf-survey__modal {
+      max-height: calc(100vh - 72px);
+      padding: 22px 18px;
+      border-radius: 18px;
+    }
+    .rf-survey h2 {
+      max-width: 11ch;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    var root = document.getElementById('rfSurvey');
+    if (!root || root.dataset.ready === 'true') return;
+    root.dataset.ready = 'true';
+
+    var SUPABASE_URL = 'https://sihwisfzrujleprykafx.supabase.co';
+    var SUPABASE_KEY = 'sb_publishable_hpZhnti8ODRsnH37vR0F5g_JQVlw7SP';
+    var SURVEY_ENDS = new Date('2026-06-15T00:00:00+02:00');
+    var STORAGE_KEY = 'survey_10mio_dismissed';
+    var sourceSite = root.getAttribute('data-source-site') || window.location.hostname || 'relofinder.ch';
+    var openButton = document.getElementById('rfSurveyOpen');
+    var dismissButton = document.getElementById('rfSurveyDismiss');
+    var overlay = document.getElementById('rfSurveyOverlay');
+    var modal = overlay ? overlay.querySelector('.rf-survey__modal') : null;
+    var closeButton = document.getElementById('rfSurveyClose');
+    var form = document.getElementById('rfSurveyForm');
+    var submitButton = document.getElementById('rfSurveySubmit');
+    var error = document.getElementById('rfSurveyError');
+    var thanks = document.getElementById('rfSurveyThanks');
+    var lastFocus = null;
+
+    function isDismissed() {
+      try {
+        return window.localStorage.getItem(STORAGE_KEY) === '1';
+      } catch (_) {
+        return false;
+      }
+    }
+
+    function setDismissed() {
+      try {
+        window.localStorage.setItem(STORAGE_KEY, '1');
+      } catch (_) {}
+    }
+
+    function measure() {
+      if (root.hidden) return;
+      var bar = root.querySelector('.rf-survey__bar');
+      var height = bar ? Math.ceil(bar.getBoundingClientRect().height) : 0;
+      document.documentElement.style.setProperty('--rf-survey-offset', height + 'px');
+    }
+
+    function showBanner() {
+      root.hidden = false;
+      document.body.classList.add('rf-survey-active');
+      measure();
+      window.addEventListener('resize', measure, { passive: true });
+    }
+
+    function hideBanner(markDismissed) {
+      if (markDismissed) setDismissed();
+      closeModal(false);
+      root.hidden = true;
+      document.body.classList.remove('rf-survey-active');
+      document.documentElement.style.removeProperty('--rf-survey-offset');
+      window.removeEventListener('resize', measure);
+    }
+
+    function openModal() {
+      if (!overlay || !modal) return;
+      lastFocus = document.activeElement;
+      overlay.hidden = false;
+      document.body.classList.add('rf-survey-modal-open');
+      window.setTimeout(function () { modal.focus(); }, 0);
+    }
+
+    function closeModal(restoreFocus) {
+      if (!overlay) return;
+      overlay.hidden = true;
+      document.body.classList.remove('rf-survey-modal-open');
+      if (restoreFocus && lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    function valueOf(formData, name) {
+      var value = formData.get(name);
+      return typeof value === 'string' && value.trim() ? value.trim() : null;
+    }
+
+    if (Date.now() > SURVEY_ENDS.getTime() || isDismissed()) return;
+    showBanner();
+
+    openButton && openButton.addEventListener('click', openModal);
+    dismissButton && dismissButton.addEventListener('click', function () { hideBanner(true); });
+    closeButton && closeButton.addEventListener('click', function () { closeModal(true); });
+    overlay && overlay.addEventListener('click', function (event) {
+      if (event.target === overlay) closeModal(true);
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && overlay && !overlay.hidden) closeModal(true);
+    });
+
+    form && form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      var formData = new FormData(form);
+      var payload = {
+        q1: valueOf(formData, 'q1'),
+        q2: valueOf(formData, 'q2'),
+        q3: valueOf(formData, 'q3'),
+        q4: valueOf(formData, 'q4'),
+        q5: valueOf(formData, 'q5'),
+        source_site: sourceSite
+      };
+      if (!payload.q1 || !payload.q2 || !payload.q3) return;
+      if (error) error.hidden = true;
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sending';
+      }
+      fetch(SUPABASE_URL + '/rest/v1/survey_responses', {
+        method: 'POST',
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: 'Bearer ' + SUPABASE_KEY,
+          'Content-Type': 'application/json',
+          Prefer: 'return=minimal'
+        },
+        body: JSON.stringify(payload)
+      }).then(function (response) {
+        if (!response.ok) throw new Error('Survey submit failed');
+        setDismissed();
+        form.hidden = true;
+        if (thanks) thanks.hidden = false;
+        window.setTimeout(function () { hideBanner(false); }, 2600);
+      }).catch(function () {
+        if (error) error.hidden = false;
+      }).finally(function () {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = 'Send';
+        }
+      });
+    });
+  })();
+</script>

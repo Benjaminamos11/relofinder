@@ -2,6 +2,7 @@
 import Navbar from "../components/layout/Navbar.astro";
 import Footer from "../components/layout/Footer.astro";
 import SEOHead from "../components/common/SEOHead.astro";
+import SurveyBanner from "../components/common/SurveyBanner.astro";
 import "../styles/global.css";
 import AssessmentModalAlpine from "../components/individual/AssessmentModalAlpine.astro";
 import GoogleTag from "../components/tracking/GoogleTag";
@@ -137,6 +138,7 @@ const {
   </head>
   <body class="min-h-screen flex flex-col bg-gray-50">
     <Navbar variant={navbarVariant} />
+    <SurveyBanner />
 
     <main class={`flex-grow ${navbarVariant === "solid" ? "pt-20" : ""}`}>
       <slot />
