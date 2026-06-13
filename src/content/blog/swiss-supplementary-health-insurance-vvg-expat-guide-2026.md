@@ -283,7 +283,7 @@ If you're newly arrived in Switzerland, here's the optimal insurance setup seque
 - Split basic and supplementary between different insurers if it saves meaningfully
 - Document everything: Anmeldebestätigung, permit copy, insurance confirmations, IPV approval
 
-For a guided walkthrough, [Offlist.ch](https://offlist.ch) (off-market real estate platform) and [Expat-Services.ch](https://expat-services.ch) both maintain updated insurance setup checklists.
+For a guided walkthrough, [Offlist.ch](https://offlist.ch) (off-market real estate platform) and [ReloFinder](/companies/) both maintain updated insurance setup checklists.
 
 <div class="callout callout-success">
 <p class="callout-title"><span class="callout-icon">✓</span> The One Rule That Saves You Thousands</p>

@@ -133,7 +133,7 @@ These are **unofficial benchmarks** distilled from cantonal practice and legal-s
 
 **Common refusal:** A sponsor in Lausanne applies for reunification listing a "3.5-room apartment" on the rental contract for a family of four (couple + 2 children). The migration office refuses: 3.5 rooms = living room + 2 bedrooms + small study. The officer interprets this as insufficient (the study is too small to count as a full bedroom for a child). The sponsor must either upgrade to a 4-room unit or provide architect floor plans proving the study exceeds 9m² and qualifies as a third bedroom under cantonal norms.
 
-Services like [lifestylemanagers.ch](https://lifestylemanagers.ch) and [expat-services.ch](https://expat-services.ch) assist with pre-approval housing searches, flagging apartments that meet migration-office room-count standards before you sign the lease—critical when vacancy rates in Zurich hover at 0.07% and re-leasing costs you 2–3 months.
+Services like [lifestylemanagers.ch](https://lifestylemanagers.ch) and [ReloFinder](/companies/) assist with pre-approval housing searches, flagging apartments that meet migration-office room-count standards before you sign the lease—critical when vacancy rates in Zurich hover at 0.07% and re-leasing costs you 2–3 months.
 
 ## Children Over 12: The 12-Month Deadline Cliff
 
@@ -266,6 +266,6 @@ The disparity is **legally defensible** under Swiss bilateral agreements, but pr
 
 Family reunification for non-EU permit holders isn't rocket science—it's **precise documentation, canton-specific thresholds, and deadline awareness**. If you're in year 2 of your B permit, start assembling payslips, housing proof, and language enrollment documentation *now*. If your child is 10 or 11, don't wait for year 3—file as soon as the 3-year clock expires.
 
-For personalized relocation support—housing searches sized for migration-office approval, permit-application walkthroughs, and income/documentation coaching—agencies like [expat-services.ch](https://expat-services.ch) and [lifestylemanagers.ch](https://lifestylemanagers.ch) specialize in the non-EU reunification gauntlet. And for health insurance comparison once your family arrives, [insurance-guide.ch](https://insurance-guide.ch) and [primai.ch](https://primai.ch) aggregate KVG plans by canton and family size.
+For personalized relocation support—housing searches sized for migration-office approval, permit-application walkthroughs, and income/documentation coaching—agencies like [ReloFinder](/companies/) and [lifestylemanagers.ch](https://lifestylemanagers.ch) specialize in the non-EU reunification gauntlet. And for health insurance comparison once your family arrives, [insurance-guide.ch](https://insurance-guide.ch) and [primai.ch](https://primai.ch) aggregate KVG plans by canton and family size.
 
 **[Take the 2-minute relocation assessment](/assessment/)** to map your family reunification timeline, identify your canton's income threshold, and get matched with the right support for your permit category and household size.

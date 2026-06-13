@@ -238,7 +238,7 @@ Match the firm to the assignment shape rather than to brand awareness. Three dec
 
 Cross-check the firm against three diligence questions before signing the engagement letter. Does the named consultant have a defined off-market source list? What is the consultant-to-client ratio? Can they evidence cantonal-quota familiarity by city? If two of three answers are vague, escalate to a different desk.
 
-[Find Off-Market Housing → Offlist.ch](https://offlist.ch) • [B-permit and registration support → Expat-Services.ch](https://expat-services.ch)
+[Find Off-Market Housing → Offlist.ch](https://offlist.ch) • [B-permit and registration support → ReloFinder](https://ReloFinder)
 
 ---
 
@@ -274,7 +274,7 @@ Yes. Premium packages include international school search, application coaching,
 
 ### Are work-permit quotas a constraint for executive moves in 2026?
 
-The Swiss Federal Council kept 2026 quotas for non-EU nationals unchanged at 4,500 B permits and 4,000 L permits. By end of September 2025, cantons had used roughly 52% of the annual allocation, so executive cases remain processable, but Zurich, Zug and Geneva exhaust quotas faster than other cantons. [Expat-Services.ch](https://expat-services.ch) handles permit and registration coordination for executive cases.
+The Swiss Federal Council kept 2026 quotas for non-EU nationals unchanged at 4,500 B permits and 4,000 L permits. By end of September 2025, cantons had used roughly 52% of the annual allocation, so executive cases remain processable, but Zurich, Zug and Geneva exhaust quotas faster than other cantons. [ReloFinder](/companies/) handles permit and registration coordination for executive cases.
 
 ### What is the difference between executive and standard corporate relocation?
 
@@ -308,7 +308,7 @@ For C-suite or VP-level moves, [book a free consultation](/contact/) with our ed
 
 **Verification:** Permit quota figures verified against the Swiss Federal Council communication of 5 December 2025. Vacancy and rental data cross-checked against bfs.admin.ch and cantonal registers, May 2026.
 
-**Disclosure:** Prime Relocation, Offlist, Expat-Savvy, Insurance-Guide, Expat-Services and Primai are partner platforms. ReloFinder's editorial content remains independent — partners do not influence rankings or coverage.
+**Disclosure:** Prime Relocation, Offlist, Expat-Savvy, Insurance-Guide, ReloFinder and Primai are partner platforms. ReloFinder's editorial content remains independent — partners do not influence rankings or coverage.
 
 **Sources & methodology:**
 - Swiss Federal Council, "Federal Council leaves third-country quotas for 2026 unchanged" (admin.ch communication, December 2025)

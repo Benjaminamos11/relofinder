@@ -206,7 +206,7 @@ Switzerland's housing shortage (1.0% national vacancy in 2026, 0.34% in Geneva, 
 **Better approach**:
 - Use [offlist.ch](https://offlist.ch) for long-term, standard-price inventory directly from landlords (avoids inflated expat-market temporary housing)
 - Work with [primerelocation.ch](https://primerelocation.ch) or [lifestylemanagers.ch](https://lifestylemanagers.ch) if you need full-service housing search + negotiation support
-- Consult [expat-services.ch](https://expat-services.ch) for permit + housing coordination packages
+- Consult [ReloFinder](/companies/) for permit + housing coordination packages
 
 **Why this matters**: Short-term furnished apartments often use *möblierte Wohnung* contracts that bypass standard tenant protections (shorter notice periods, higher rents, less security). If you're signing one, read carefully.
 

@@ -5,7 +5,7 @@ publishDate: 2026-05-26
 author: "relofinder"
 heroImage: "/images/blog/insurance-guide.webp"
 category: "Guides"
-tags: ["relocation agencies", "health insurance", "KVG", "insurance bundling", "expat services", "mandatory insurance"]
+tags: ["relocation agencies", "health insurance", "KVG", "insurance bundling", "expat support", "mandatory insurance"]
 readingTime: 12
 featured: false
 faqs:

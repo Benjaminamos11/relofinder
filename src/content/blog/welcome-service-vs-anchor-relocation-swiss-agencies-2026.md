@@ -5,7 +5,7 @@ publishDate: 2026-05-19
 author: "relofinder"
 heroImage: "/images/blog/off_market_housing_hero.webp"
 category: "Guides"
-tags: ["relocation agencies", "Geneva", "Zurich", "agency comparison", "expat services", "family relocation", "home search"]
+tags: ["relocation agencies", "Geneva", "Zurich", "agency comparison", "expat support", "family relocation", "home search"]
 readingTime: 12
 featured: false
 faqs:
@@ -83,7 +83,7 @@ Anchor Relocation's home search fee follows a success-based model: one month's r
 - **School application support**: Welcome Service's education consulting is integrated into family packages. Anchor charges separately for international school placement (CHF 1,500–2,000) unless bundled at contract signing.
 - **Departure services**: Neither agency includes departure support (finding a Nachmieter replacement tenant, apartment handover, de-registration) in standard packages. Budget an additional CHF 1,500–2,500 if you'll need help exiting Switzerland.
 
-Both agencies outperform digital platforms like [Expat-Services.ch](https://expat-services.ch/) (CHF 500–2,000 DIY tools) for families or complex relocations, but tech-savvy singles relocating within Europe might save CHF 4,000–6,000 going digital. Compare quotes on [ReloFinder](https://relofinder.ch/) to see itemized breakdowns.
+Both agencies outperform digital platforms like [ReloFinder](/companies/) (CHF 500–2,000 DIY tools) for families or complex relocations, but tech-savvy singles relocating within Europe might save CHF 4,000–6,000 going digital. Compare quotes on [ReloFinder](https://relofinder.ch/) to see itemized breakdowns.
 
 ## Family Services: Education-First vs Efficiency-First Philosophies
 

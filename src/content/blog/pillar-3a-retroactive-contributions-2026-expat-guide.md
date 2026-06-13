@@ -181,7 +181,7 @@ Self-employed persons without a pension fund can contribute up to **CHF 36,288 i
 
 Marco's catch-up is throttled to the employed person's cap, forcing him to stagger large catch-ups over multiple years (2026, 2027, 2028, etc.) until the gap is closed.
 
-For self-employed expats navigating Pillar 3a architecture, [ThatDay.ch](https://thatday.ch/vorsorge/?source=relofinder-retroactive-3a-body) and [expat-services.ch](https://expat-services.ch) offer specialized reviews that coordinate 3a, pension fund voluntary affiliation, and cross-border tax planning.
+For self-employed expats navigating Pillar 3a architecture, [ThatDay.ch](https://thatday.ch/vorsorge/?source=relofinder-retroactive-3a-body) and [ReloFinder](/companies/) offer specialized reviews that coordinate 3a, pension fund voluntary affiliation, and cross-border tax planning.
 
 ## The Bigger Picture: Why Switzerland Changed the Rules
 

@@ -176,7 +176,7 @@ If you're **EU/EFTA**:
 
 - You benefit from free movement. Register with your cantonal immigration office within 14 days of arrival. No quota applies.
 
-For employers without a Swiss entity, use an Employer of Record (EOR) like [expat-services.ch](https://expat-services.ch) to sponsor permits compliantly.
+For employers without a Swiss entity, use an Employer of Record (EOR) like [ReloFinder](/companies/) to sponsor permits compliantly.
 
 ## Minimum Wage Increases and the Cost-of-Living Squeeze
 

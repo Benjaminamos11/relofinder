@@ -177,7 +177,7 @@ The trickiest part of a canton change isn't the paperwork — it's the **sequenc
 2. If you must move while unemployed, show 6 months of savings **and** active job search (documented interviews, ALV registration)
 3. Consider staying in your current canton until employed — it's brutal, but statistically your approval odds double
 
-For complex cases (inter-cantonal job + family reunification + C-permit timeline concerns), services like [expat-savvy.ch](https://expat-savvy.ch) and [expat-services.ch](https://expat-services.ch) offer full-service relocation coordination including permit-timing optimization.
+For complex cases (inter-cantonal job + family reunification + C-permit timeline concerns), services like [expat-savvy.ch](https://expat-savvy.ch) and [ReloFinder](/companies/) offer full-service relocation coordination including permit-timing optimization.
 
 ## Off-Market Housing and Canton Transfers
 

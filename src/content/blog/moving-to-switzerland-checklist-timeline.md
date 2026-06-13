@@ -71,7 +71,7 @@ Here is the master checklist used by professional relocation agencies.
 
 ### Pro Tip
 
-> Confused by paperwork? The **[Expat-Services.ch](https://expat-services.ch)** AI Agent can draft motivation letters for migration offices and explain cantonal requirements.
+> Confused by paperwork? The **[ReloFinder](/companies/)** AI Agent can draft motivation letters for migration offices and explain cantonal requirements.
 
 ---
 
@@ -140,7 +140,7 @@ You don't need to sign yet, but understand your options:
 
 ### Moving Logistics
 
-- [ ] **Book moving company** — Get quotes via [Expat-Services Directory](https://expat-services.ch) or through your relocation agency
+- [ ] **Book moving company** — Get quotes via [ReloFinder directory](/companies/) or through your relocation agency
 - [ ] **Confirm shipping dates** — Align with your arrival
 - [ ] **Pack non-essential items first** — Leave essentials for carry-on
 - [ ] **Arrange pet transport** — Special regulations for animals
@@ -241,13 +241,13 @@ Hire a professional relocation agency to manage everything.
 
 Use digital tools and AI assistance for specific tasks.
 
-**[Expat-Services.ch](https://expat-services.ch)** offers:
+**[ReloFinder](/companies/)** offers:
 - AI Assistant for generating cancellation letters
 - Document templates for customs forms
 - Directory of service providers (movers, cleaners, tax advisors)
 - Swiss bureaucracy glossary
 
-**[Get AI Assistance → Expat-Services.ch](https://expat-services.ch)**
+**[Get AI Assistance → ReloFinder](https://ReloFinder)**
 
 ---
 
@@ -283,11 +283,11 @@ If you haven't secured permanent housing via [Offlist.ch](https://offlist.ch) or
 
 **Methodology:** This checklist reflects best practices from professional relocation agencies managing Swiss relocations. Timelines may vary based on individual circumstances.
 
-**Disclosure:** Offlist.ch, Expat-Services.ch, and ThatDay.ch are partner platforms. ReloFinder's editorial content remains independent.
+**Disclosure:** Offlist.ch, ReloFinder, and ThatDay.ch are partner platforms. ReloFinder's editorial content remains independent.
 
 **Last Updated:** January 6, 2026
 
 ---
 
-*Save this checklist and work through it phase by phase. Start with housing — [register on Offlist.ch](https://offlist.ch) today. For personalized support, [compare agencies on ReloFinder](/companies/) or use [Expat-Services.ch](https://expat-services.ch) for DIY assistance.*
+*Save this checklist and work through it phase by phase. Start with housing — [register on Offlist.ch](https://offlist.ch) today. For personalized support, [compare agencies on ReloFinder](/companies/) or use [ReloFinder](/companies/) for DIY assistance.*
 

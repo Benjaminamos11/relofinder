@@ -148,7 +148,7 @@ Exceed 40%? Italy taxes you as a resident (full IRPEF, no 80% CH credit), and yo
 - Expats hiring Italian talent remotely (track work-from-home days or risk tax audits).
 - Swiss residents considering Como/Varese living arbitrage (works *only* if you're NOT a cross-border employee—retirees and remote workers for non-CH companies are exempt).
 
-For detailed cross-border tax planning, consult [insurance-guide.ch](https://insurance-guide.ch) or a Ticino-based tax advisor. Many underestimate the 40% threshold—[expat-services.ch](https://expat-services.ch) offers payroll compliance audits for cross-border teams.
+For detailed cross-border tax planning, consult [insurance-guide.ch](https://insurance-guide.ch) or a Ticino-based tax advisor. Many underestimate the 40% threshold—[ReloFinder](/companies/) offers payroll compliance audits for cross-border teams.
 
 ## International Schools: Three Globally Recognized Options
 
@@ -304,7 +304,7 @@ Many Lugano expats (especially cross-border workers and remote employees) neglec
 Lugano's expat infrastructure is smaller than Zurich's—fewer English-speaking movers, real estate agents, and setup services. Recommended partners:
 - [Lifestyle Managers](https://lifestylemanagers.ch): Full-service concierge for luxury relocations (home search, school enrollment, car registration, staff hiring).
 - [Prime Relocation](https://primerelocation.ch): Corporate relocation packages for financial services professionals.
-- [Expat-services.ch](https://expat-services.ch): Modular relocation support (à la carte services for DIY-inclined expats).
+- [ReloFinder](/companies/): Modular relocation support (à la carte services for DIY-inclined expats).
 
 **Timeline:** Budget 6-8 weeks from job offer to move-in. Apartment hunting is less competitive than Zurich but still requires 2-3 in-person visits. Landlords prefer Swiss-registered employers and Swiss bank accounts (catch-22: you need a permit to open an account, but landlords want proof of account).
 

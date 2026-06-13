@@ -118,7 +118,7 @@ Border guards now see your **real-time day count** on their screens. If you're a
 
 For frequent business travellers—particularly UK, US, and Indian nationals shuttling between Switzerland and home offices—this automation is both a blessing and a risk. The blessing: you can check your remaining days online via the [EES traveller portal](https://www.eulisa.europa.eu/ees). The risk: if your employer doesn't track your trips centrally, you can accidentally breach the limit across multiple short visits.
 
-Corporate relocation and mobility providers like [Expat Services](https://expat-services.ch) now offer automated day-count tracking integrated with HR travel-booking systems—essential for compliance in the EES era.
+Corporate relocation and mobility providers like [ReloFinder](/companies/) now offer automated day-count tracking integrated with HR travel-booking systems—essential for compliance in the EES era.
 
 ## What Happens at Swiss Borders After Your First EES Registration?
 
@@ -164,7 +164,7 @@ EES doesn't affect your exits and re-entries to Switzerland **as long as you sho
 
 ### If you're a family with children under 12
 
-Children under 12 provide a face scan only (no fingerprints). Parents or guardians must accompany them to the kiosk or counter. The adult's enrollment is the same—four fingerprints and a face scan. If you're relocating with school-age kids, check whether their private school enrollment letters can support a **family reunification permit** application, which exempts the whole family from EES. [Expat Savvy](https://expat-savvy.ch) and [Expat Services](https://expat-services.ch) both offer family-permit consulting tailored to international school placements.
+Children under 12 provide a face scan only (no fingerprints). Parents or guardians must accompany them to the kiosk or counter. The adult's enrollment is the same—four fingerprints and a face scan. If you're relocating with school-age kids, check whether their private school enrollment letters can support a **family reunification permit** application, which exempts the whole family from EES. [Expat Savvy](https://expat-savvy.ch) and [ReloFinder](/companies/) both offer family-permit consulting tailored to international school placements.
 
 <div class="callout callout-success">
 <p class="callout-title"><span class="callout-icon">✓</span> Pro Move</p>
@@ -239,7 +239,7 @@ At the Swiss border, officers will check both your ETIAS approval and your EES b
 - **Bookmark the ETIAS site** and set a reminder for Q4 2026 to apply before your next trip.
 - **If you're relocating**, delay any tourist scouting trips until after your work permit is approved—use virtual tours and relocation agencies to minimize physical presence before your permit is active.
 
-For end-to-end relocation support—from permit coordination to apartment search to school placement—take the [relofinder assessment](/assessment/) to match with the right agency for your move. The 2-minute quiz factors in your nationality, employer type, family size, and timeline to recommend the best-fit providers, including [Prime Relocation](https://primerelocation.ch), [Lifestyle Managers](https://lifestylemanagers.ch), and [Expat Services](https://expat-services.ch).
+For end-to-end relocation support—from permit coordination to apartment search to school placement—take the [relofinder assessment](/assessment/) to match with the right agency for your move. The 2-minute quiz factors in your nationality, employer type, family size, and timeline to recommend the best-fit providers, including [Prime Relocation](https://primerelocation.ch), [Lifestyle Managers](https://lifestylemanagers.ch), and [ReloFinder](/companies/).
 
 The Schengen EES is now a permanent feature of Swiss border crossings. Understanding the 90/180-day rule, allowing extra time for first-time registration, and tracking your days in real time are no longer optional—they're the baseline for anyone moving to, visiting, or doing business in Switzerland. With the right tools and advance planning, EES is manageable; without them, a single miscounted day can derail your travel plans or future visa applications.
 

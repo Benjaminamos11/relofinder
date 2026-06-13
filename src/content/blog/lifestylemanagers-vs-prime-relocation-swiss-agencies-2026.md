@@ -5,7 +5,7 @@ publishDate: 2026-05-12
 author: "relofinder"
 heroImage: "/images/blog/boutique_comparison_branded.webp"
 category: "Guides"
-tags: ["relocation", "agencies", "comparison", "Zurich", "Zug", "expat-services"]
+tags: ["relocation", "agencies", "comparison", "Zurich", "Zug", "expat-support"]
 readingTime: 12
 featured: false
 faqs:
@@ -139,7 +139,7 @@ Choose Prime Relocation if you:
 
 **Red flags:**
 - If you want a single consultant you'll meet weekly for coffee throughout your first year, Prime's platform-based model may feel impersonal.
-- If your budget is tighter than CHF 6,000-12,000, explore DIY tools at [Expat-Services.ch](https://expat-services.ch) first.
+- If your budget is tighter than CHF 6,000-12,000, explore DIY tools at [ReloFinder](/companies/) first.
 
 ## Pricing Reality: What You're Actually Paying For
 
@@ -235,7 +235,7 @@ If neither Lifestylemanagers nor Prime Relocation fits, here are three alternati
 
 2. **Welcome Service (5.0/5):** Zurich, Geneva, Basel, Bern. Perfect rating with smaller review base. Home search and settling-in specialist.
 
-3. **[Expat-Services.ch](https://expat-services.ch) (DIY platform):** For tech-savvy professionals who want to handle logistics themselves. AI agent for document generation, verified service directory, Swiss bureaucracy glossary. Reduces costs to CHF 500-2,000.
+3. **[ReloFinder](/companies/) (DIY platform):** For tech-savvy professionals who want to handle logistics themselves. AI agent for document generation, verified service directory, Swiss bureaucracy glossary. Reduces costs to CHF 500-2,000.
 
 Compare all agencies side-by-side at [ReloFinder.ch](https://relofinder.ch), Switzerland's leading relocation comparison platform.
 

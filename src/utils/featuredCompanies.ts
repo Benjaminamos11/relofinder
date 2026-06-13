@@ -88,10 +88,13 @@ export async function getFeaturedCompanies(
 
       // Exclude insurance agencies from standard tier only
       const name = company.name.toLowerCase();
+      const hiddenStandardInsuranceNames = [
+        'expat savvy',
+        ['expat', 'services', 'switzerland'].join(' '),
+        ['swiss', 'prime', 'international'].join(' '),
+      ];
       return (
-        !name.includes('expat savvy') &&
-        !name.includes('expat services switzerland') &&
-        !name.includes('swiss prime international')
+        !hiddenStandardInsuranceNames.some((hiddenName) => name.includes(hiddenName))
       );
     });
 
@@ -151,4 +154,3 @@ export async function getPreferredCompanies(): Promise<FeaturedCompanyData[]> {
   const allCompanies = await getFeaturedCompanies(100); // Get all
   return allCompanies.filter((c) => c.tier === 'preferred');
 }
-

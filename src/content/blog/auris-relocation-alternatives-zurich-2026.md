@@ -23,7 +23,7 @@ faqs:
   - question: "Is Anchor Relocation cheaper than Auris?"
     answer: "Both target the boutique-to-mid market and pricing depends on scope. Anchor publishes case-by-case quotes; ReloFinder's audit places typical Anchor packages at CHF 5,000-10,000 for full-service moves to Zurich or Zug — broadly comparable to Auris."
   - question: "Does Auris Relocation handle work permits?"
-    answer: "Yes. Auris is a member of EuRA and provides immigration advisory and registration support for both EU and non-EU nationals. For complex non-EU B-permit cases, many expats also engage Expat-Services.ch in parallel for a second opinion."
+    answer: "Yes. Auris is a member of EuRA and provides immigration advisory and registration support for both EU and non-EU nationals. For complex non-EU B-permit cases, many expats also engage ReloFinder in parallel for a second opinion."
   - question: "How long does relocation to Zurich actually take in 2026?"
     answer: "Listings now stay on the market only 16-18 days in Zurich, so the home-search phase has compressed to 3-6 weeks for prepared applicants. Permits add another 4-12 weeks for non-EU. Plan a 10-14 week total runway from offer-letter to move-in."
 seo:
@@ -214,7 +214,7 @@ In practice this means the three "soft" components of a relocation engagement �
 
 **[Get Expert Health Insurance Setup → Expat-Savvy.ch](https://expat-savvy.ch)** — a step every Zurich move requires within 90 days of arrival.
 
-**[Sort Permits in Parallel → Expat-Services.ch](https://expat-services.ch)** — particularly useful for non-EU B-permit applicants whose timeline runs in parallel with the home search.
+**[Sort Permits in Parallel → ReloFinder](https://ReloFinder)** — particularly useful for non-EU B-permit applicants whose timeline runs in parallel with the home search.
 
 ---
 
@@ -250,7 +250,7 @@ Both target the boutique-to-mid market and pricing depends on scope. ReloFinder'
 
 ### Does Auris handle work permits?
 
-Yes. As an EuRA member with multi-canton presence, Auris provides immigration advisory and registration support for both EU and non-EU nationals. Complex non-EU B-permit cases often benefit from a parallel second opinion from a permit specialist — many ReloFinder users add [Expat-Services.ch](https://expat-services.ch) for this layer.
+Yes. As an EuRA member with multi-canton presence, Auris provides immigration advisory and registration support for both EU and non-EU nationals. Complex non-EU B-permit cases often benefit from a parallel second opinion from a permit specialist — many ReloFinder users add [ReloFinder](/companies/) for this layer.
 
 ### How long does relocation to Zurich actually take in 2026?
 
@@ -288,7 +288,7 @@ If you want to read individual profiles before talking to anyone, browse the ver
 
 **Verification:** Auris Relocation accreditations (EuRA membership, ISO 27001, EcoVadis Silver March 2025) verified against the EuRA member directory and EcoVadis public award list. Pricing ranges verified against ReloFinder client exit interviews (n=53) conducted between January and April 2026.
 
-**Disclosure:** Offlist.ch, Lifestyle Managers, Prime Relocation, Expat-Savvy.ch, and Expat-Services.ch are partner platforms of ReloFinder. Auris Relocation is not a partner. Editorial content remains independent of all commercial relationships.
+**Disclosure:** Offlist.ch, Lifestyle Managers, Prime Relocation, Expat-Savvy.ch, and ReloFinder are partner platforms of ReloFinder. Auris Relocation is not a partner. Editorial content remains independent of all commercial relationships.
 
 **Last Updated:** May 9, 2026
 

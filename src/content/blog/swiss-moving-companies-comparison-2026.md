@@ -224,7 +224,7 @@ Swiss moving companies offer two tiers:
 - **Long-term (3-12 months):** You're between assignments or waiting for your new build to complete. Self-storage units (PubliStorage, Zebrabox) run CHF 150-300/month for 8-12 m³.
 - **Climate-controlled:** Required for wine collections, antiques, electronics. Premium storage (CHF 400-560/month) with humidity/temperature control.
 
-**The trap:** <cite index="31-4">Local experts can help you prevent "storage trap" fees by syncing your delivery perfectly with your lease start date</cite>. Relocation consultants like [expat-services.ch](https://expat-services.ch) negotiate early handover with landlords or find short-term furnished rentals to bridge gaps.
+**The trap:** <cite index="31-4">Local experts can help you prevent "storage trap" fees by syncing your delivery perfectly with your lease start date</cite>. Relocation consultants like [ReloFinder](/companies/) negotiate early handover with landlords or find short-term furnished rentals to bridge gaps.
 
 ## The Comparison Matrix: Quick Decision Guide
 

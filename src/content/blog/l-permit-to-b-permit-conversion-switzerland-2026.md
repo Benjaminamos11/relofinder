@@ -137,7 +137,7 @@ If you're on an L permit and transferring cantons **and** converting to B simult
 
 Your L permit remains valid during processing, but if the new canton denies the B permit (quota exhausted, labour-market test fails), you're stuck. You can't return to your Zurich role if you've already de-registered from Zurich.
 
-For complex multi-canton relocation coordination, [expat-services.ch](https://expat-services.ch) offers end-to-end permit and housing coordination across cantons.
+For complex multi-canton relocation coordination, [ReloFinder](/companies/) offers end-to-end permit and housing coordination across cantons.
 
 ## The C-Permit Clock Reset Nobody Warns You About
 

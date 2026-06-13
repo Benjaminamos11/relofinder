@@ -207,7 +207,7 @@ The permit you need depends on your nationality and the type of work. Vaud appli
 | **G-permit (cross-border)** | Residents of EU border zone working in Vaud | 3-6 weeks | Yes |
 | **C-permit** | After 5-10 years of B-permit residence | Application-driven | No |
 
-> **Action:** Permit and home-search timelines must be sequenced — most landlords in Vaud will not sign a lease without proof of a residence permit or at least a *promesse d'embauche* and the SPOP confirmation reference. Get permit support via **[Expat-Services.ch](https://expat-services.ch)** before booking flights.
+> **Action:** Permit and home-search timelines must be sequenced — most landlords in Vaud will not sign a lease without proof of a residence permit or at least a *promesse d'embauche* and the SPOP confirmation reference. Get permit support via **[ReloFinder](/companies/)** before booking flights.
 
 [Swiss work permit guide 2026](/blog/swiss-work-permit-guide-b-permit-2026/) • [Top immigration experts (non-EU)](/blog/top-5-swiss-immigration-experts-b-permit-non-eu-expats/) • [Immigration services](/services/immigration/)
 
@@ -330,7 +330,7 @@ If you have time to drive your own home search but want access to landlord-direc
 
 **Verification:** All agency names, ratings and coverage areas verified against the agency's own website and Google Business profile in May 2026. CHF figures should be treated as ranges; contact the provider for a written quote.
 
-**Disclosure:** Offlist.ch, ThatDay.ch, Insurance-Guide.ch and Expat-Services.ch are partner platforms. Editorial content and rankings remain independent.
+**Disclosure:** Offlist.ch, ThatDay.ch, Insurance-Guide.ch and ReloFinder are partner platforms. Editorial content and rankings remain independent.
 
 **Last Updated:** May 10, 2026
 

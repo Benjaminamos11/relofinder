@@ -210,7 +210,7 @@ Deposit practices vary slightly by canton and city:
 
 - **Zug (0.42% vacancy):** Highest rents in Switzerland (often CHF 4,000+ for 3 rooms) = highest deposits (CHF 12,000+). Guarantee insurance is less common because landlords want cash security given the amounts involved.
 
-For city-specific relocation support (apartment search, move-in coordination, utilities setup), **[expat-services.ch](https://expat-services.ch)** operates in all major Swiss cities.
+For city-specific relocation support (apartment search, move-in coordination, utilities setup), **[ReloFinder](/companies/)** operates in all major Swiss cities.
 
 ## Common Deposit Disputes (And How to Avoid Them)
 

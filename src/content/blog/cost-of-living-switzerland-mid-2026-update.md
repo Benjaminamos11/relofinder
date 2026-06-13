@@ -267,7 +267,7 @@ Switzerland's high costs are unavoidable, but **strategic partnerships** reduce 
 - **[Primai.ch](https://primai.ch):** AI-powered KVG (basic health insurance) switching platform—compare all providers in your canton in under 3 minutes.
 - **[PrimeRelocation.ch](https://primerelocation.ch):** Full-service relocation agency—housing search, residence permit, bank account, school placement. Bundled packages start at CHF 3,500.
 - **[LifestyleManagers.ch](https://lifestylemanagers.ch):** Luxury relocation and concierge services for C-suite and UHNW expats—white-glove housing, school placement, VIP introductions.
-- **[Expat-Services.ch](https://expat-services.ch):** One-stop portal for residence permits, tax filing, insurance, banking—useful for DIY expats who want expert backup on demand.
+- **[ReloFinder](/companies/):** One-stop portal for residence permits, tax filing, insurance, banking—useful for DIY expats who want expert backup on demand.
 
 For a side-by-side agency comparison, see our [Best Relocation Agencies Switzerland](/blog/best-relocation-agencies-switzerland-comparison) guide.
 
@@ -296,4 +296,4 @@ Budget smart. Optimize aggressively. Enjoy the Alps.
 
 **Methodology:** Cost data sourced from Swiss Federal Statistical Office (FSO) Q1 2026 inflation and vacancy reports, Federal Office of Public Health (FOPH) 2026 premium database, Homegate/ZKB Rent Index Q1 2026, Moneyland.ch premium analysis, Investropa 2026 Switzerland rent market report, Statistik Stadt Zürich, Trading Economics Switzerland inflation tracker, Expat-Savvy.ch canton premium modeling, and Numbeo Cost of Living Index May 2026. All figures reflect mid-2026 market conditions for major Swiss cities. Individual costs vary by lifestyle, location, and family size.
 
-**Disclosure:** Offlist.ch, Expat-Savvy.ch, Insurance-Guide.ch, Primai.ch, PrimeRelocation.ch, LifestyleManagers.ch, and Expat-Services.ch are partner platforms. ReloFinder's editorial content remains independent.
+**Disclosure:** Offlist.ch, Expat-Savvy.ch, Insurance-Guide.ch, Primai.ch, PrimeRelocation.ch, LifestyleManagers.ch, and ReloFinder are partner platforms. ReloFinder's editorial content remains independent.

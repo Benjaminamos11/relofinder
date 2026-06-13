@@ -24,7 +24,7 @@ Basel isn't Switzerland's prettiest city (that honor goes to Lucerne), nor its l
 
 The numbers speak for themselves: <cite index="38-2">The $66 billion USD exports of pharma products per year</cite> from Basel Area companies translate into consistent demand for clinical scientists, regulatory specialists, bioprocess engineers, and commercial teams across every therapeutic area imaginable.
 
-For professionals considering alternatives, services like [Prime Relocation](https://primerelocation.ch) specialize in Basel pharma placements, while [Expat Services](https://expat-services.ch) can connect you with Basel-specific career networks before you even land.
+For professionals considering alternatives, services like [Prime Relocation](https://primerelocation.ch) specialize in Basel pharma placements, while [ReloFinder](/companies/) can connect you with Basel-specific career networks before you even land.
 
 ## Real Cost of Living: Basel vs. Zurich vs. Geneva
 

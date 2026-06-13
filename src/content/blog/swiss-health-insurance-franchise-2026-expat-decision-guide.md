@@ -216,7 +216,7 @@ For off-market housing searches that reduce stress (and therefore medical costs!
 
 The franchise decision sits at the intersection of insurance, tax optimization, and liquidity management. If you're maximizing [pillar 3a contributions](https://expat-savvy.ch/3rd-pillar/) (CHF 7,258 in 2026 for employees), you're already setting aside ~CHF 605/month tax-advantaged. Adding another CHF 150/month for self-insurance (CHF 2,500 franchise strategy) is a marginal increase that compounds your control over cash flow.
 
-For expats who also need to navigate **pillar 2 buy-ins**, **wealth tax optimization**, and **cross-border financial planning**, working with a holistic advisor (many listed via [expat-services.ch](https://expat-services.ch)) ensures your franchise choice aligns with your overall tax and investment strategy.
+For expats who also need to navigate **pillar 2 buy-ins**, **wealth tax optimization**, and **cross-border financial planning**, working with a holistic advisor (many listed via [ReloFinder](/companies/)) ensures your franchise choice aligns with your overall tax and investment strategy.
 
 <div class="callout callout-success">
 <p class="callout-title"><span class="callout-icon">✅</span> The Disciplined High-Franchise Playbook</p>

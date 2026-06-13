@@ -103,6 +103,9 @@ import ThatDayCTA from "../../components/common/ThatDayCTA.astro";
 // Filter top-level headings for TOC
 const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
 const isCostOfLivingGuide = post.slug === "cost-of-living-switzerland-breakdown-2026";
+const isInsuranceTopic = post.data.tags?.some((tag) =>
+    ["health-insurance", "insurance", "insurance-consultants", "finma", "expat-health"].includes(tag)
+) || post.slug.includes("insurance");
 const thatDayBlogCTAs: Record<string, {
     eyebrow: string;
     title: string;
@@ -351,6 +354,14 @@ const thatDayBlogCTA = thatDayBlogCTAs[post.slug];
                         )
                     }
 
+                    {
+                        thatDayBlogCTA && (
+                            <div class="mb-12">
+                                <ThatDayCTA {...thatDayBlogCTA} />
+                            </div>
+                        )
+                    }
+
                     <div
                         class="prose prose-lg md:prose-xl max-w-none
                         prose-headings:font-serif prose-headings:font-bold prose-headings:text-gray-900 prose-headings:mt-12 prose-headings:mb-6
@@ -363,14 +374,6 @@ const thatDayBlogCTA = thatDayBlogCTAs[post.slug];
                     >
                         <Content />
                     </div>
-
-                    {
-                        thatDayBlogCTA && (
-                            <div class="mt-12">
-                                <ThatDayCTA {...thatDayBlogCTA} />
-                            </div>
-                        )
-                    }
 
                     {/* FAQ Section */}
                     {
@@ -401,7 +404,8 @@ const thatDayBlogCTA = thatDayBlogCTAs[post.slug];
                     <div class="mt-16">
                         <SEOInternalLinks
                             variant="blog"
-                            title="Continue with provider and city comparisons"
+                            topic={isInsuranceTopic ? "insurance" : undefined}
+                            title={isInsuranceTopic ? "Continue with insurance and Vorsorge next steps" : "Continue with provider and city comparisons"}
                         />
                     </div>
 

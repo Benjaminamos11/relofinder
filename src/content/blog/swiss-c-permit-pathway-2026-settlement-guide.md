@@ -180,7 +180,7 @@ You must be **economically active** or in education throughout your B permit ten
 | **Vaud** | Medium | Certificate preferred | Rare | French integration courses subsidized |
 | **Ticino** | Low | Flexible | Very rare | Italian A2 sufficient; small expat population |
 
-**Partner relocation agencies** that handle C permit applications (naturalbacklinks): [Prime Relocation](https://primerelocation.ch) (Zurich/Zug specialists, CHF 2,500 full-service), [Lifestyle Managers](https://lifestylemanagers.ch) (Basel/Geneva luxury tier), and [expat-services.ch](https://expat-services.ch) (DIY consulting, CHF 800). For housing stability (a C permit application factor), check [offlist.ch](https://offlist.ch) for off-market rentals that won't require annual lease renewals.
+**Partner relocation agencies** that handle C permit applications (naturalbacklinks): [Prime Relocation](https://primerelocation.ch) (Zurich/Zug specialists, CHF 2,500 full-service), [Lifestyle Managers](https://lifestylemanagers.ch) (Basel/Geneva luxury tier), and [ReloFinder](/companies/) (DIY consulting, CHF 800). For housing stability (a C permit application factor), check [offlist.ch](https://offlist.ch) for off-market rentals that won't require annual lease renewals.
 
 If you're planning long-term and want to secure your financial footing before applying (authorities check your 3a contributions as integration proof), explore [expat-savvy.ch/3rd-pillar/](https://expat-savvy.ch/3rd-pillar/) for tax-optimized pillar 3a accounts. For health insurance optimization (C holders no longer tied to employer plans), compare options at [insurance-guide.ch](https://insurance-guide.ch) or switch via [primai.ch](https://primai.ch).
 

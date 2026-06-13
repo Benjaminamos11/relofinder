@@ -153,7 +153,7 @@ For housing, use [Offlist](https://offlist.ch) to access off-market rentals befo
 1. **Monitor the Council of States**. Follow parliamentary debates at parlament.ch or subscribe to [IamExpat](https://www.iamexpat.ch) newsletters for English-language updates.
 2. **Check your taxable-income estimate**. Log into your cantonal tax portal and review your last *Steuerrechnung* (tax bill). Multiply your taxable income by 0.03 to see your potential annual security-tax liability.
 3. **Review your residency timeline**. If you're 28–35 and planning to naturalize, the 11-year window means you might pay 4–8 years of the tax before becoming Swiss (and thus exempt). Factor that into your citizenship decision.
-4. **Consult an expat tax advisor**. If you're a high earner (CHF 150,000+), explore whether lump-sum taxation (available in 21 cantons for non-working foreign nationals) or corporate secondment structures could reduce your exposure. [Insurance Guide](https://insurance-guide.ch) and [Expat Services](https://expat-services.ch) both offer specialist referrals.
+4. **Consult an expat tax advisor**. If you're a high earner (CHF 150,000+), explore whether lump-sum taxation (available in 21 cantons for non-working foreign nationals) or corporate secondment structures could reduce your exposure. [Insurance Guide](https://insurance-guide.ch) and [ReloFinder](/companies/) both offer specialist referrals.
 5. **Stay informed about bilateral treaties**. If you're an EU/EFTA national and the tax applies to you, contact your home-country consulate and Swiss employer's HR team. Brussels may intervene on your behalf.
 
 <div class="callout callout-success">

@@ -16,7 +16,7 @@ faqs:
   - question: "Can I negotiate a better relocation package with my Swiss employer?"
     answer: "Yes. Employers value talent retention. Request itemized quotes from 2-3 agencies (use ReloFinder to compare), then ask HR to cover specific high-value services like home search (CHF 3,000-4,500) and permit assistance (CHF 800-1,200). Most employers will fund essentials if you present clear cost breakdowns."
   - question: "What happens if my employer offers no relocation assistance?"
-    answer: "You're not alone—42% of non-EU expats relocate with zero employer support. Use platforms like Expat-Services.ch for DIY tools (document templates, canton guides, insurance comparison). Budget CHF 4,000-6,000 for essentials: temporary housing (CHF 2,000-3,000 first month), agency home search (CHF 3,000), insurance setup via Expat-Savvy.ch."
+    answer: "You're not alone—42% of non-EU expats relocate with zero employer support. Use platforms like ReloFinder for DIY tools (document templates, canton guides, insurance comparison). Budget CHF 4,000-6,000 for essentials: temporary housing (CHF 2,000-3,000 first month), agency home search (CHF 3,000), insurance setup via Expat-Savvy.ch."
   - question: "Should I use my employer's preferred relocation agency or choose my own?"
     answer: "Employer-preferred agencies often have corporate discounts (15-25% lower rates) and streamlined billing. However, verify their canton expertise—some global firms lack local Zurich or Zug market knowledge. If the employer pays, use their provider. If you're self-funding, compare 3-5 agencies on ReloFinder for better local fit."
   - question: "What's the biggest hidden cost in Swiss relocation packages?"
@@ -87,7 +87,7 @@ Not all packages are created equal. Swiss employers offer three tiers, depending
 
 **What's NOT included**: School search, moving logistics, insurance setup, banking, settling-in admin.
 
-**Who provides it**: Boutique agencies like [Anchor Relocation](https://relofinder.ch/blog/welcome-service-vs-anchor-relocation-swiss-agencies-2026), Welcome Service, or specialists via [Expat-Services.ch](https://expat-services.ch).
+**Who provides it**: Boutique agencies like [Anchor Relocation](https://relofinder.ch/blog/welcome-service-vs-anchor-relocation-swiss-agencies-2026), Welcome Service, or specialists via [ReloFinder](/companies/).
 
 **Best for**: Expats who can handle bureaucracy themselves but need local housing market access (critical in Zurich's 0.07% vacancy market).
 
@@ -131,7 +131,7 @@ Let's say you decline the corporate package (or your employer offers nothing). Y
 - You're arriving in peak housing season (Sept-Oct) when Zurich's vacancy is 0.05%
 - You don't speak German or French (critical for landlord negotiations and Gemeinde registration)
 
-Smart DIY expats use [Expat-Services.ch](https://expat-services.ch) for templates (B-Permit checklist, rental application dossier, insurance comparison) and [Offlist.ch](https://offlist.ch) for off-market housing leads, cutting consultancy costs to CHF 500-2,000 while avoiding the worst pitfalls.
+Smart DIY expats use [ReloFinder](/companies/) for templates (B-Permit checklist, rental application dossier, insurance comparison) and [Offlist.ch](https://offlist.ch) for off-market housing leads, cutting consultancy costs to CHF 500-2,000 while avoiding the worst pitfalls.
 
 ## The Hybrid Model: Best of Both Worlds
 
@@ -148,7 +148,7 @@ Here's the playbook 73% of successful expats use (based on 2026 ReloFinder surve
 - **Insurance** (use [Expat-Savvy.ch](https://expat-savvy.ch) for mandatory KVG comparison and [3a setup](https://expat-savvy.ch/3rd-pillar/))
 - **Banking** (UBS, Credit Suisse, or Zak for digital accounts)
 - **School research** (if applicable — start 6-12 months early, not when you land)
-- **Anmeldung** (Gemeinde registration — straightforward with a checklist from [Expat-Services.ch](https://expat-services.ch))
+- **Anmeldung** (Gemeinde registration — straightforward with a checklist from [ReloFinder](/companies/))
 
 **Total DIY cost**: CHF 500-1,500.
 

@@ -6,7 +6,7 @@ readingTime: 12
 author: "ReloFinder Editorial Team"
 heroImage: "https://res.cloudinary.com/dphbnwjtx/image/upload/v1767009358/images/blog/relocation-agencies.jpg"
 category: "Guides"
-tags: ["relocation", "comparison", "costs", "zurich", "geneva", "switzerland", "agencies", "expat-services"]
+tags: ["relocation", "comparison", "costs", "zurich", "geneva", "switzerland", "agencies", "expat-support"]
 featured: true
 excerpt: "The Swiss relocation market has 50+ agencies with wildly different pricing. Learn to decode quotes, spot hidden fees, and choose between full-service, boutique, and DIY options."
 seo:
@@ -19,13 +19,13 @@ faqs:
   - question: "What's the difference between corporate and boutique relocation agencies?"
     answer: "Corporate agencies (Tier 1) are global firms with standardized processes, best for large company moves. Boutique agencies (Tier 2) are Swiss-owned, owner-operated firms offering personalized 'high-touch' service, ideal for executives and families."
   - question: "Can I handle relocation myself without an agency?"
-    answer: "Yes. The 'Digital DIY' approach (Tier 3) works well for tech-savvy professionals. Platforms like Expat-Services.ch offer AI tools, verified directories, and glossaries to navigate Swiss bureaucracy independently."
+    answer: "Yes. The 'Digital DIY' approach (Tier 3) works well for tech-savvy professionals. Platforms like ReloFinder offer AI tools, verified directories, and glossaries to navigate Swiss bureaucracy independently."
   - question: "What hidden fees should I watch for in relocation quotes?"
     answer: "Watch for: third-party fees not included in quotes (permit costs vs. service fees), home search limits (unlimited vs. 5 viewings), and whether departure services and handover protocols are included."
   - question: "How do I compare relocation agency quotes fairly?"
     answer: "Use a standardized comparison platform like ReloFinder to get anonymous, comparable quotes. Check what's included: permit fees, number of viewings, departure services, and any 'administrative' add-ons."
-  - question: "What is Expat-Services.ch?"
-    answer: "Expat-Services.ch is a partner platform for expats who prefer the DIY approach. It offers a verified directory of service providers, an AI agent for document generation and translation, and a glossary of Swiss bureaucracy terms."
+  - question: "What is ReloFinder?"
+    answer: "ReloFinder is a partner platform for expats who prefer the DIY approach. It offers a verified directory of service providers, an AI agent for document generation and translation, and a glossary of Swiss bureaucracy terms."
 ---
 
 Choosing a relocation agency in Switzerland is often done blind. You send three emails, get three PDF quotes with different inclusions, and pick the one that "feels" right.
@@ -42,7 +42,7 @@ Whether you are an HR Director moving a team to Basel or a family moving to Zür
 |-------------|---------|
 | **The Market** | Switzerland has over 50 accredited agencies. Pricing for a full package ranges from CHF 6,000 to CHF 12,000. |
 | **The Transparency Gap** | Most agencies do not publish rates. ReloFinder is the first platform to offer anonymous, comparable quotes. |
-| **The DIY Alternative** | For those who don't need a full agent, digital tools and AI assistants (like those at [Expat-Services.ch](https://expat-services.ch)) offer a cost-effective route. |
+| **The DIY Alternative** | For those who don't need a full agent, digital tools and AI assistants (like those at [ReloFinder](/companies/)) offer a cost-effective route. |
 
 ---
 
@@ -121,7 +121,7 @@ In 2026, many expats prefer to handle the logistics themselves but need specific
 
 ### The Resource:
 
-If you choose this route, we recommend **[Expat-Services.ch](https://expat-services.ch)**.
+If you choose this route, we recommend **[ReloFinder](/companies/)**.
 
 | Tool | What It Does |
 |------|--------------|
@@ -153,7 +153,7 @@ If you choose this route, we recommend **[Expat-Services.ch](https://expat-servi
 |--------|-------------------|-------------------|--------------|
 | **Total Cost** | CHF 10,000-15,000+ | CHF 4,000-10,000 | CHF 500-2,000 |
 | **Home Search** | Included (unlimited) | 5-15 viewings | Self-managed |
-| **Immigration** | Full in-house team | Partner network | Self or Expat-Services.ch |
+| **Immigration** | Full in-house team | Partner network | Self or ReloFinder |
 | **Personalization** | Low (standardized) | High (tailored) | Maximum (your control) |
 | **Time Investment** | Minimal | Moderate | Significant |
 | **Best For** | Corporate assignees | Executives, families | Tech-savvy individuals |
@@ -244,7 +244,7 @@ This is why we built ReloFinder — to standardize what you're comparing.
 Many smart relocatees combine tiers:
 
 **Example Package:**
-- **DIY** (via Expat-Services.ch): Document translation, contract review, glossary
+- **DIY** (via ReloFinder): Document translation, contract review, glossary
 - **Boutique Agency**: Home search only (5-10 viewings)
 - **Self-managed**: School visits, utility setup, settling-in
 
@@ -305,7 +305,7 @@ This hybrid approach works especially well for professionals who:
 
 ### How much do relocation agencies charge in Switzerland?
 
-Full-service relocation packages in Switzerland typically range from CHF 6,000 to CHF 12,000. Corporate "white glove" agencies charge CHF 10,000-15,000+. Boutique agencies offer selective services for CHF 4,000-8,000. DIY approaches using digital tools like [Expat-Services.ch](https://expat-services.ch) can reduce costs to CHF 500-2,000.
+Full-service relocation packages in Switzerland typically range from CHF 6,000 to CHF 12,000. Corporate "white glove" agencies charge CHF 10,000-15,000+. Boutique agencies offer selective services for CHF 4,000-8,000. DIY approaches using digital tools like [ReloFinder](/companies/) can reduce costs to CHF 500-2,000.
 
 ### What's the difference between corporate and boutique relocation agencies?
 
@@ -315,7 +315,7 @@ Full-service relocation packages in Switzerland typically range from CHF 6,000 t
 
 ### Can I handle relocation myself without an agency?
 
-Yes. The "Digital DIY" approach (Tier 3) works well for tech-savvy professionals relocating within Europe. Platforms like [Expat-Services.ch](https://expat-services.ch) offer AI tools for document generation and translation, verified directories of service providers, and glossaries to navigate Swiss bureaucracy independently.
+Yes. The "Digital DIY" approach (Tier 3) works well for tech-savvy professionals relocating within Europe. Platforms like [ReloFinder](/companies/) offer AI tools for document generation and translation, verified directories of service providers, and glossaries to navigate Swiss bureaucracy independently.
 
 ### What hidden fees should I watch for in relocation quotes?
 
@@ -328,9 +328,9 @@ Three key areas:
 
 Use a standardized comparison platform like [ReloFinder](/companies/) to get anonymous, comparable quotes. Ensure you're comparing identical scope: same number of viewings, same immigration services, same departure coverage. Ask each agency to itemize third-party fees separately.
 
-### What is Expat-Services.ch?
+### What is ReloFinder?
 
-[Expat-Services.ch](https://expat-services.ch) is a partner platform for expats who prefer the DIY approach. It offers:
+[ReloFinder](/companies/) is a partner platform for expats who prefer the DIY approach. It offers:
 - A verified directory of Swiss service providers
 - An AI agent for generating termination letters and translating German rental contracts
 - A glossary decoding Swiss bureaucracy terms (like *Betreibungsauskunft* vs *Heimatschein*)
@@ -345,11 +345,11 @@ Browse verified agencies, read reviews, and get comparable quotes.
 
 **[Browse All Companies →](/companies/)**
 
-### Option 2: Go DIY with Expat-Services.ch
+### Option 2: Go DIY with ReloFinder
 
 Access AI tools, verified directories, and Swiss bureaucracy glossaries.
 
-**[Visit Expat-Services.ch →](https://expat-services.ch)**
+**[Visit ReloFinder →](https://ReloFinder)**
 
 ### Option 3: Get Expert Guidance
 
@@ -364,7 +364,7 @@ Not sure which tier fits? Book a free consultation with our team.
 The "Best" agency is the one that fits your specific needs.
 
 - If you need a human to hold your hand → use our [comparison tool](/companies/) to find the best-rated Boutique Agency
-- If you need smart tools to do it yourself → head to **[Expat-Services.ch](https://expat-services.ch)**
+- If you need smart tools to do it yourself → head to **[ReloFinder](/companies/)**
 
 **Transparency is the only luxury that matters.**
 
@@ -374,12 +374,11 @@ The "Best" agency is the one that fits your specific needs.
 
 **Methodology:** This guide reflects ReloFinder's market research across 50+ Swiss relocation agencies. Pricing ranges are based on 2025-2026 market data and may vary based on scope, timing, and negotiation.
 
-**Affiliate Disclosure:** ReloFinder and Expat-Services.ch are partner platforms. Links to Expat-Services.ch are provided as a resource for readers choosing the DIY approach. Our agency comparisons remain editorially independent.
+**Affiliate Disclosure:** ReloFinder may link to partner platforms and internal tools where useful. Our agency comparisons remain editorially independent.
 
 **Last Updated:** January 2, 2026
 
 ---
 
-*Comparing relocation agencies in Switzerland? Start with the right tier for your needs. Use [ReloFinder](/companies/) for agency quotes or [Expat-Services.ch](https://expat-services.ch) for DIY tools. Don't forget to protect your future by **[avoiding the Swiss Pillar 3a life insurance trap](https://expat-savvy.ch/3rd-pillar/bank-vs-insurance)**. Either way, don't pay for opacity.*
-
+*Comparing relocation agencies in Switzerland? Start with the right tier for your needs. Use [ReloFinder](/companies/) for agency quotes or [ReloFinder](/companies/) for DIY tools. Don't forget to protect your future by **[avoiding the Swiss Pillar 3a life insurance trap](https://expat-savvy.ch/3rd-pillar/bank-vs-insurance)**. Either way, don't pay for opacity.*
 

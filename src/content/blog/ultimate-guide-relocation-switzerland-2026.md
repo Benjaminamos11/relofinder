@@ -23,7 +23,7 @@ faqs:
   - question: "What insurance is mandatory in Switzerland?"
     answer: "Health insurance (LAMal/KVG) is mandatory — you have 3 months to enroll after arrival. Liability insurance (Privathaftpflicht) is required to sign a rental contract. Household insurance is strongly recommended."
   - question: "Should I hire a relocation agency or do it myself?"
-    answer: "Hire an agency if you're a senior executive, have school-age children, or your company pays. Use DIY tools like Expat-Services.ch if you're digitally savvy and budget-conscious. Compare agencies on ReloFinder for transparent quotes."
+    answer: "Hire an agency if you're a senior executive, have school-age children, or your company pays. Use DIY tools like ReloFinder if you're digitally savvy and budget-conscious. Compare agencies on ReloFinder for transparent quotes."
   - question: "What are the biggest challenges when relocating to Switzerland?"
     answer: "Housing is the #1 challenge due to near-zero vacancy rates. Other challenges include: understanding the Swiss insurance system, navigating cantonal bureaucracy differences, and adapting to the high cost of living (offset by lower taxes)."
 ---
@@ -38,7 +38,7 @@ This guide breaks down the relocation process into manageable steps, highlightin
 
 | Pillar | Reality | Best Tool |
 |--------|---------|-----------|
-| **Immigration** | EU citizens have it easy; Non-EU nationals face quotas. Secure your permit before you ship your furniture. | [Expat-Services.ch](https://expat-services.ch) |
+| **Immigration** | EU citizens have it easy; Non-EU nationals face quotas. Secure your permit before you ship your furniture. | [ReloFinder](/companies/) |
 | **Housing** | The vacancy rate is near 0%. Don't rely on public portals; use private networks. | [Offlist.ch](https://offlist.ch) |
 | **Finance** | Banking and Insurance are complex. Use comparison tools to avoid overpaying. | [Expat-Savvy.ch](https://expat-savvy.ch) |
 | **Support** | Decide early: Full-service Agency or DIY Digital Assistant? | [ReloFinder](/companies/) |
@@ -85,13 +85,13 @@ You are subject to strict quotas. Your employer must prove they couldn't find a 
 
 Confused by cantonal requirements? Need help drafting motivation letters for migration offices?
 
-**[Expat-Services.ch](https://expat-services.ch)** offers an AI Agent that can:
+**[ReloFinder](/companies/)** offers an AI Agent that can:
 - Generate migration office correspondence
 - Explain canton-specific requirements
 - Decode Swiss bureaucracy terminology
 - Provide document checklists
 
-**[Get AI Assistance → Expat-Services.ch](https://expat-services.ch)**
+**[Get AI Assistance → ReloFinder](https://ReloFinder)**
 
 ---
 
@@ -266,7 +266,7 @@ Do you need to hire a professional Relocation Agency?
 - [ ] You've done international moves before
 - [ ] You prefer direct control over decisions
 
-**Use [Expat-Services.ch](https://expat-services.ch)** to access:
+**Use [ReloFinder](/companies/)** to access:
 - AI Assistant for document generation
 - Directory of specific service providers
 - Glossary of Swiss bureaucracy terms
@@ -282,7 +282,7 @@ Many relocatees combine both:
 | **Immigration** | Employer handles (standard) |
 | **Insurance** | DIY with expert advice ([Expat-Savvy.ch](https://expat-savvy.ch)) |
 | **Banking** | DIY (straightforward) |
-| **Moving Logistics** | DIY or use [Expat-Services Directory](https://expat-services.ch) |
+| **Moving Logistics** | DIY or use [ReloFinder directory](/companies/) |
 
 ---
 
@@ -333,7 +333,7 @@ Many relocatees combine both:
 
 **The Reality:** Each canton has different rules, forms, and timelines.
 
-**The Fix:** Use [Expat-Services.ch](https://expat-services.ch) AI tools to navigate canton-specific requirements.
+**The Fix:** Use [ReloFinder](/companies/) AI tools to navigate canton-specific requirements.
 
 ### Mistake 4: Overpaying for Relocation Services
 
@@ -353,7 +353,7 @@ Many relocatees combine both:
 | **Health Insurance** | [Expat-Savvy.ch](https://expat-savvy.ch) | Expert optimization for expats |
 | **Liability/Household Insurance** | [Insurance-Guide.ch](https://insurance-guide.ch) | Quick comparison |
 | **Agency Comparison** | [ReloFinder](/companies/) | Transparent quotes |
-| **DIY Tools & Directory** | [Expat-Services.ch](https://expat-services.ch) | AI assistant + service providers |
+| **DIY Tools & Directory** | [ReloFinder](/companies/) | AI assistant + service providers |
 
 ---
 
@@ -379,7 +379,7 @@ Public portals like Homegate receive 100+ applications per listing within hours.
 
 ### Should I hire a relocation agency or do it myself?
 
-Hire an agency if you're a senior executive, have school-age children, or your company pays. Compare agencies on [ReloFinder](/companies/) for transparent quotes. Use DIY tools like [Expat-Services.ch](https://expat-services.ch) if you're digitally savvy, budget-conscious, and relocating within Europe.
+Hire an agency if you're a senior executive, have school-age children, or your company pays. Compare agencies on [ReloFinder](/companies/) for transparent quotes. Use DIY tools like [ReloFinder](/companies/) if you're digitally savvy, budget-conscious, and relocating within Europe.
 
 ### What are the biggest challenges when relocating to Switzerland?
 
@@ -393,7 +393,7 @@ Switzerland rewards preparation. By using the right platforms, you can turn a st
 
 - **[Offlist.ch](https://offlist.ch)** for housing — bypass the public market chaos
 - **[Expat-Savvy.ch](https://expat-savvy.ch)** for insurance — optimize your coverage and costs
-- **[Expat-Services.ch](https://expat-services.ch)** for DIY tools — AI assistance and service directory
+- **[ReloFinder](/companies/)** for DIY tools — AI assistance and service directory
 - **[ReloFinder](/companies/)** for agency support — compare and hire with transparency
 
 Welcome to Switzerland. The journey is complex, but the destination is worth it.
@@ -404,7 +404,7 @@ Welcome to Switzerland. The journey is complex, but the destination is worth it.
 
 **Methodology:** This pillar guide consolidates ReloFinder's research across immigration, housing, insurance, and relocation services in Switzerland. Data reflects 2025-2026 market conditions.
 
-**Disclosure:** Offlist.ch, Expat-Savvy.ch, and Expat-Services.ch are partner platforms. ReloFinder's editorial content remains independent.
+**Disclosure:** Offlist.ch, Expat-Savvy.ch, and ReloFinder are partner platforms. ReloFinder's editorial content remains independent.
 
 **Last Updated:** January 5, 2026
 

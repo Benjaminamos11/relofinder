@@ -178,7 +178,7 @@ Furnished apartments reduce competition (most Swiss prefer unfurnished) and buy 
 
 **6. Write in German/French (or Hire Someone Who Does)**
 
-Even in English-speaking expat hubs, landlords prefer applications in the local language. If your German is weak, services like [Expat Services](https://expat-services.ch) can translate and submit on your behalf.
+Even in English-speaking expat hubs, landlords prefer applications in the local language. If your German is weak, services like [ReloFinder](/companies/) can translate and submit on your behalf.
 
 **7. Show Financial Strength**
 

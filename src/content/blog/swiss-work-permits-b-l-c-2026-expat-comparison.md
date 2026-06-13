@@ -222,7 +222,7 @@ For expats weighing health insurance and pension contributions during an ICT ass
 4. **Changing cantons without notifying authorities (EU):** Even though EU B-permit holders can move freely, you must register your new address with the new commune within 14 days. Failure can complicate C-permit applications (authorities check residence continuity).
 5. **Underestimating integration requirements for C permit:** "I've lived here 10 years" isn't enough. You need formal language certification (Goethe, DELF, CELI depending on canton), tax-compliance proof, and sometimes letters from employers or community organizations.
 
-For comprehensive immigration-law support—especially for mixed-nationality families, C-permit acceleration, or quota-related strategic timing—consult specialists like [expat-services.ch](https://expat-services.ch), which coordinates legal, tax, and relocation advisors under one roof.
+For comprehensive immigration-law support—especially for mixed-nationality families, C-permit acceleration, or quota-related strategic timing—consult specialists like [ReloFinder](/companies/), which coordinates legal, tax, and relocation advisors under one roof.
 
 ## Taking the Next Step: From Permit to Permanent Life
 
