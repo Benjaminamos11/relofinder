@@ -22,6 +22,7 @@ import ServiceHero from "../../components/services/ServiceHero.astro";
 import SchemaMarkup from "../../components/common/SchemaMarkup.astro";
 import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 import Layout from "../../layouts/Layout.astro";
+import ThatDayCTA from "../../components/common/ThatDayCTA.astro";
 
 // --- Assets ---
 const heroImage =
@@ -266,7 +267,7 @@ const structuredData = [serviceSchema, faqSchema];
             </h2>
 
             <div class="max-w-4xl mx-auto">
-                <!-- Insurance Card - Expat-Savvy Focus -->
+                <!-- Insurance Card - ThatDay Focus -->
                 <div
                     class="bg-white p-12 rounded-[3rem] border border-slate-200 shadow-xl relative overflow-hidden group"
                 >
@@ -283,11 +284,11 @@ const structuredData = [serviceSchema, faqSchema];
                             <p
                                 class="text-slate-600 mb-8 leading-relaxed text-lg font-light"
                             >
-                                Switzerland's insurance landscape is complex. We
-                                partner exclusively with <strong
-                                    >Expat-Savvy.ch</strong
-                                >, the leading specialist and consultant for
-                                relocation agencies in Switzerland.
+                                Switzerland's insurance landscape is complex.
+                                ThatDay is a trusted Swiss-focused consultation
+                                option for people who want to review KVG,
+                                supplementary cover, private hospital cover, and
+                                Vorsorge before the first deadlines arrive.
                             </p>
                             <ul class="space-y-4 mb-10">
                                 <li
@@ -296,7 +297,7 @@ const structuredData = [serviceSchema, faqSchema];
                                     <CheckCircle2
                                         className="w-5 h-5 text-green-500 shrink-0"
                                     />
-                                    <span>Specialist KVG/VVG coordination</span>
+                                    <span>KVG/VVG and franchise review</span>
                                 </li>
                                 <li
                                     class="flex items-center gap-3 text-slate-700 font-medium"
@@ -305,8 +306,8 @@ const structuredData = [serviceSchema, faqSchema];
                                         className="w-5 h-5 text-green-500 shrink-0"
                                     />
                                     <span
-                                        >Personal Liability (RC) for rental
-                                        contracts</span
+                                        >Private and semi-private hospital cover
+                                        check</span
                                     >
                                 </li>
                                 <li
@@ -316,19 +317,21 @@ const structuredData = [serviceSchema, faqSchema];
                                         className="w-5 h-5 text-green-500 shrink-0"
                                     />
                                     <span
-                                        >Direct billing with most relocation
-                                        agencies</span
+                                        >Pillar 3a, Vorsorge, and family setup
+                                        review</span
                                     >
                                 </li>
                             </ul>
-                            <button
-                                onclick="window.openAssessmentModal('settling')"
+                            <a
+                                href="https://thatday.ch/erstgespraech/?source=relofinder-settling&topic=full-consultation"
+                                target="_blank"
+                                rel="noopener sponsored"
                                 class="inline-flex items-center gap-2 bg-[#FF6F61] text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-[#e5574d] transition-all shadow-lg hover:shadow-xl hover:scale-105"
                             >
-                                Request Expert Consultation <ArrowRight
+                                Book ThatDay Erstgespraech <ArrowRight
                                     className="w-4 h-4"
                                 />
-                            </button>
+                            </a>
                         </div>
                         <div class="w-full md:w-1/3">
                             <div
@@ -342,6 +345,17 @@ const structuredData = [serviceSchema, faqSchema];
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="bg-white px-4 pb-24">
+        <div class="mx-auto max-w-4xl">
+            <ThatDayCTA
+                title="Add insurance and Vorsorge to your first-month checklist."
+                description="After registration and banking, review KVG, liability, supplementary cover, private hospital cover, and Pillar 3a before the 90-day health-insurance deadline turns into a rushed choice."
+                href="https://thatday.ch/erstgespraech/?source=relofinder-settling&topic=krankenkasse"
+                label="Book insurance setup call"
+            />
         </div>
     </section>
 
@@ -907,9 +921,10 @@ const structuredData = [serviceSchema, faqSchema];
         relocation (Amicus database), and handyman services for flat setup.
         Professional relocation agencies provide insider access to authorities,
         risk mitigation for compliance, and stress elimination for new arrivals.
-        Exclusive partnership with Expat-Savvy.ch for specialized insurance
-        consultation (KVG/VVG, Personal Liability RC). Soft landing support
-        includes language courses, spousal networking, and cultural coaching.
+        Trusted ThatDay consultation option for Swiss insurance and Vorsorge
+        review (KVG/VVG, private hospital cover, Pillar 3a, family setup).
+        Soft landing support includes language courses, spousal networking, and
+        cultural coaching.
         Frequently asked questions cover car imports, registration timelines,
         driving license conversion, and mandatory insurance requirements.
     </div>

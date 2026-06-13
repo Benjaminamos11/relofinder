@@ -169,7 +169,7 @@ With over 30% of residents being foreign nationals, Zürich offers a welcoming e
 - **Costs**: CHF 300-500/month for basic coverage
 - **Emergency services**: Efficient and reliable
 
-**Need help understanding Swiss health coverage?** Check out [Expat-Savvy's 2026 Health Insurance Guide](https://expat-savvy.ch/blog/best-health-insurance-switzerland-expats) — a comprehensive comparison of Swica, Helsana, Sanitas, and CSS written specifically for expats navigating the Swiss system.
+**Need help understanding Swiss health coverage?** Book a [ThatDay.ch review](https://thatday.ch/gesundheit/?source=relofinder-zurich-content) to compare Swica, Helsana, Sanitas, CSS, deductible strategy, supplementary cover, and hospital-cover options for expats navigating the Swiss system.
 
 ## Tips for Success
 
@@ -185,4 +185,4 @@ With over 30% of residents being foreign nationals, Zürich offers a welcoming e
 - **Take advantage of free activities**: Hiking, lake swimming, public events
 - **Buy generic brands**: Often same quality at lower cost
 
-Zürich offers an unmatched combination of career opportunities, quality of life, and natural beauty. While the cost of living is high, the salaries typically compensate, and the overall experience of living in this world-class city is truly exceptional. 
+Zürich offers an unmatched combination of career opportunities, quality of life, and natural beauty. While the cost of living is high, the salaries typically compensate, and the overall experience of living in this world-class city is truly exceptional.

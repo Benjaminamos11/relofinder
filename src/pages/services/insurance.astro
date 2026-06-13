@@ -4,6 +4,7 @@ import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 import HeroSearch from "../../components/home/HeroSearch.astro";
 import SchemaMarkup from "../../components/common/SchemaMarkup.astro";
 import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
+import ThatDayCTA from "../../components/common/ThatDayCTA.astro";
 import {
     ShieldCheck,
     FileText,
@@ -129,8 +130,9 @@ const faqSchema = {
                         class="text-xl md:text-2xl text-slate-400 font-light mb-16 leading-relaxed max-w-3xl mx-auto"
                     >
                         From mandatory Health Insurance to the tax-saving 3rd
-                        Pillar. We connect you with English-speaking brokers who
-                        optimize your coverage and handle the paperwork.
+                        Pillar. We connect you with Swiss-focused consultation
+                        options that help you read the conditions before you
+                        choose, switch, or combine policies.
                     </p>
 
                     <!-- Hero Search Integration -->
@@ -241,11 +243,12 @@ const faqSchema = {
                                         (deductible) is key to saving money.
                                     </p>
                                     <a
-                                        href="https://expat-savvy.ch/healthcare/best-health-insurance-switzerland/"
+                                        href="https://thatday.ch/gesundheit/"
                                         target="_blank"
+                                        rel="noopener sponsored"
                                         class="inline-flex items-center gap-2 text-[#FF6F61] font-bold hover:underline underline-offset-4 tracking-tight"
                                     >
-                                        Compare premiums at Expat-Savvy <ArrowRight
+                                        Review KVG setup with ThatDay <ArrowRight
                                             className="w-4 h-4"
                                         />
                                     </a>
@@ -280,7 +283,7 @@ const faqSchema = {
                     </div>
 
                     <div class="grid md:grid-cols-2 gap-12">
-                        <!-- Option A: Expat-Savvy -->
+                        <!-- Option A: ThatDay -->
                         <div
                             class="group relative bg-slate-900 p-16 rounded-[4rem] border border-slate-800 hover:border-[#FF6F61]/30 transition-all duration-700"
                         >
@@ -300,16 +303,17 @@ const faqSchema = {
                                 class="text-slate-400 text-lg leading-relaxed mb-10 font-light"
                             >
                                 You need optimized Swiss basic and supplementary
-                                insurance. Expat-Savvy specializes in
-                                English-speaking advisory for local residents,
-                                focusing on KVG, Pillar 3a, and Household cover.
+                                insurance. ThatDay reviews Krankenkasse,
+                                supplementary cover, private hospital cover,
+                                Pillar 3a, and Vorsorge as one setup instead of
+                                isolated products.
                             </p>
                             <ul class="space-y-4 mb-12">
                                 {
                                     [
-                                        "English-speaking local brokers",
-                                        "Tax-optimized 3rd Pillar",
-                                        "Household & Liability Certificates",
+                                        "KVG, VVG, and hospital-cover review",
+                                        "Pillar 3a and Vorsorge planning",
+                                        "FINMA broker consultation from Switzerland",
                                     ].map((item) => (
                                         <li class="flex items-center gap-4 text-slate-300 text-sm font-medium">
                                             <CheckCircle2 className="w-4 h-4 text-[#FF6F61]" />{" "}
@@ -319,11 +323,12 @@ const faqSchema = {
                                 }
                             </ul>
                             <a
-                                href="https://expat-savvy.ch"
+                                href="https://thatday.ch/erstgespraech/?source=relofinder-insurance&topic=full-consultation"
                                 target="_blank"
+                                rel="noopener sponsored"
                                 class="inline-flex items-center gap-4 bg-white/5 text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest text-[10px] hover:bg-white/10 border border-white/10 transition-all no-underline group shadow-lg"
                             >
-                                Consult Expat-Savvy <ArrowRight
+                                Book ThatDay Erstgespraech <ArrowRight
                                     className="w-5 h-5 group-hover:translate-x-2 transition-transform text-[#FF6F61]"
                                 />
                             </a>
@@ -442,11 +447,12 @@ const faqSchema = {
                                 </p>
                             </div>
                             <a
-                                href="https://expat-savvy.ch"
+                                href="https://thatday.ch/vorsorge/"
                                 target="_blank"
+                                rel="noopener sponsored"
                                 class="inline-flex items-center gap-4 bg-slate-900 text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest text-[10px] hover:bg-slate-800 transition-all no-underline group shadow-lg"
                             >
-                                Open a 3rd Pillar Account <ArrowRight
+                                Review Saeule 3a & Vorsorge <ArrowRight
                                     className="w-5 h-5 group-hover:translate-x-2 transition-transform text-[#FF6F61]"
                                 />
                             </a>
@@ -464,6 +470,17 @@ const faqSchema = {
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section class="bg-white px-4 pb-24">
+            <div class="mx-auto max-w-6xl">
+                <ThatDayCTA
+                    title="Need a human review, not just a premium table?"
+                    description="ThatDay reads Krankenkasse, supplementary insurance, private or semi-private hospital cover, Pillar 3a, and Vorsorge together. That is useful when you are relocating, settling in, or deciding whether switching would damage existing rights."
+                    href="https://thatday.ch/erstgespraech/?source=relofinder-insurance&topic=full-consultation"
+                    label="Book insurance and Vorsorge review"
+                />
             </div>
         </section>
 

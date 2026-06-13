@@ -66,7 +66,7 @@ Here is the master checklist used by professional relocation agencies.
 ### Start Your Research
 
 - [ ] **Request relocation quotes** — Use [ReloFinder](/companies/) to get anonymous quotes from 3+ agencies
-- [ ] **Research health insurance options** — Read guides on [Expat-Savvy.ch](https://expat-savvy.ch) to understand franchise/deductible trade-offs
+- [ ] **Research health insurance options** — Review KVG, franchise, supplementary cover, and hospital-cover trade-offs with [ThatDay.ch](https://thatday.ch/gesundheit/?source=relofinder-checklist-body)
 - [ ] **Research schools** (if applicable) — International schools have waiting lists
 
 ### Pro Tip
@@ -131,12 +131,12 @@ If you haven't secured permanent housing via [Offlist.ch](https://offlist.ch) ye
 
 You don't need to sign yet, but understand your options:
 
-- [ ] **Read Expat-Savvy.ch guides** — Understand "Franchise" and "Deductibles"
+- [ ] **Review KVG setup with ThatDay.ch** — Understand "Franchise", deductibles, models, and supplementary cover timing
 - [ ] **Calculate your expected healthcare usage** — High usage = low franchise; healthy = high franchise
 - [ ] **Compare providers** — Same coverage, different prices
 - [ ] **Note the 3-month deadline** — Coverage is retroactive from arrival
 
-**[Health Insurance Guide → Expat-Savvy.ch](https://expat-savvy.ch)**
+**[Book Health Insurance Review -> ThatDay.ch](https://thatday.ch/erstgespraech/?source=relofinder-checklist-body&topic=krankenkasse)**
 
 ### Moving Logistics
 
@@ -214,7 +214,7 @@ You don't need to sign yet, but understand your options:
 
 ### 1 Month Out
 - [ ] Book temporary housing (if needed)
-- [ ] Research health insurance on [Expat-Savvy.ch](https://expat-savvy.ch)
+- [ ] Research health insurance and first-month setup on [ThatDay.ch](https://thatday.ch/gesundheit/?source=relofinder-checklist-summary)
 - [ ] Book movers
 - [ ] Complete customs documentation
 
@@ -283,12 +283,11 @@ If you haven't secured permanent housing via [Offlist.ch](https://offlist.ch) or
 
 **Methodology:** This checklist reflects best practices from professional relocation agencies managing Swiss relocations. Timelines may vary based on individual circumstances.
 
-**Disclosure:** Offlist.ch, Expat-Services.ch, and Expat-Savvy.ch are partner platforms. ReloFinder's editorial content remains independent.
+**Disclosure:** Offlist.ch, Expat-Services.ch, and ThatDay.ch are partner platforms. ReloFinder's editorial content remains independent.
 
 **Last Updated:** January 6, 2026
 
 ---
 
 *Save this checklist and work through it phase by phase. Start with housing — [register on Offlist.ch](https://offlist.ch) today. For personalized support, [compare agencies on ReloFinder](/companies/) or use [Expat-Services.ch](https://expat-services.ch) for DIY assistance.*
-
 

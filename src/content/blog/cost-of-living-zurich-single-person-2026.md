@@ -135,7 +135,7 @@ Switching from the default standard model to Telmed with a CHF 2,500 deductible 
 
 > **Tip:** Zurich landlords often ask for proof of liability insurance (Privathaftpflicht) during the rental application — bundle it with household contents cover via [Insurance-Guide.ch](https://insurance-guide.ch). Total cost is CHF 200-350 per year.
 
-**[Get Expert Health Insurance Advice → Expat-Savvy.ch](https://expat-savvy.ch)**
+**[Get Expert Health Insurance Advice -> ThatDay.ch](https://thatday.ch/gesundheit/?source=relofinder-zurich-cost-body)**
 
 For the legal framework and what KVG covers vs. supplementary insurance, the [mandatory insurance guide](/blog/mandatory-insurance-guide-switzerland/) covers the full picture.
 
@@ -174,9 +174,9 @@ Pillar 3a is the third pillar of the Swiss pension system — a voluntary, tax-d
 | **Bank 3a account (savings)** | Low | Very low (interest only) | Pause/stop anytime |
 | **Insurance 3a (life insurance-linked)** | 1.5-3.0%+ | Lower after fees | Locked, surrender penalty in early years |
 
-For a single professional with no dependants, the digital pillar 3a route is almost always the right choice — lower fees, equity exposure, and full flexibility. Insurance-linked 3a only makes sense when life or disability cover is genuinely needed alongside the savings goal. See the [bank vs. insurance pillar 3a guide](/blog/bank-vs-insurance-pillar-3a-swiss-expat-guide-2026/) for the full comparison and the [Pillar 3a tax-optimisation guide](https://expat-savvy.ch/3rd-pillar/) from our Swiss insurance partner.
+For a single professional with no dependants, the digital pillar 3a route is almost always the right choice — lower fees, equity exposure, and full flexibility. Insurance-linked 3a only makes sense when life or disability cover is genuinely needed alongside the savings goal. See the [bank vs. insurance pillar 3a guide](/blog/bank-vs-insurance-pillar-3a-swiss-expat-guide-2026/) for the full comparison and a [Vorsorge review](https://thatday.ch/vorsorge/?source=relofinder-zurich-cost-body) from our Swiss insurance partner.
 
-**[Optimise Your Pillar 3a → Expat-Savvy.ch/3rd-pillar/](https://expat-savvy.ch/3rd-pillar/)**
+**[Optimise Your Pillar 3a -> ThatDay.ch](https://thatday.ch/vorsorge/?source=relofinder-zurich-cost-body)**
 
 ---
 
@@ -213,7 +213,7 @@ Cross-border shopping in Konstanz (DE) or Waldshut (DE) saves 30-40% on grocerie
 
 Most singles in Zurich leave material money on the table not because their salary is too low, but because three default settings stay un-touched. According to ReloFinder's 2026 audit, the following three changes — none of which require a lifestyle downgrade — typically free up CHF 2,500-4,500 per year on a CHF 100,000 gross salary.
 
-1. **Switch KVG to Telmed + CHF 2,500 deductible** — saves CHF 1,200-1,800 per year. Same legal cover, phone triage replaces a walk-in to your GP. Compare and switch via [Expat-Savvy.ch](https://expat-savvy.ch).
+1. **Switch KVG to Telmed + CHF 2,500 deductible** — saves CHF 1,200-1,800 per year. Same legal cover, phone triage replaces a walk-in to your GP. Review franchise, model, and supplementary timing via [ThatDay.ch](https://thatday.ch/gesundheit/?source=relofinder-zurich-cost-body).
 2. **Max pillar 3a (CHF 7,258 for 2026)** — saves around CHF 2,000-2,200 in tax at Zurich rates. Use a low-cost digital 3a provider rather than an insurance-linked product.
 3. **Secure a standard long-term lease early** — saves CHF 5,000-10,000 per move by avoiding 2-3 months of overpriced furnished serviced apartments. Use [Offlist.ch](https://offlist.ch) for off-market inventory or [Prime Relocation](/companies/prime-relocation/) for a paid search.
 
@@ -233,7 +233,7 @@ A 2.5-room apartment in central Zurich rents for CHF 2,200-3,000 per month and C
 
 ### How much is health insurance in Zurich for a single adult in 2026?
 
-Basic mandatory KVG health insurance for a single adult in Zurich runs CHF 350-500 per month for the standard model in 2026, after the average 4.4% national premium increase. Switching to a CHF 2,500 deductible plus Telmed model typically saves CHF 1,200-1,800 per year on identical legal cover. [Expat-Savvy.ch](https://expat-savvy.ch) handles the comparison and switching for English-speaking expats.
+Basic mandatory KVG health insurance for a single adult in Zurich runs CHF 350-500 per month for the standard model in 2026, after the average 4.4% national premium increase. Switching to a CHF 2,500 deductible plus Telmed model typically saves CHF 1,200-1,800 per year on identical legal cover. [ThatDay.ch](https://thatday.ch/gesundheit/?source=relofinder-zurich-cost-faq) reviews the comparison and switching timing for English-speaking expats.
 
 ### What net salary do you need to live comfortably as a single in Zurich?
 
@@ -245,7 +245,7 @@ On a CHF 100,000 gross salary, a single resident of Zurich pays roughly CHF 14,5
 
 ### Can pillar 3a really cut your Zurich tax bill?
 
-Yes. The 2026 pillar 3a maximum for employed persons is CHF 7,258, fully deductible from taxable income. At a Zurich marginal rate of around 30%, the full contribution saves roughly CHF 2,139 in tax for 2026. From 2026, retroactive buy-ins for up to ten missing years are also allowed. [Get Pillar 3a advice](https://expat-savvy.ch/3rd-pillar/) from our specialist partner.
+Yes. The 2026 pillar 3a maximum for employed persons is CHF 7,258, fully deductible from taxable income. At a Zurich marginal rate of around 30%, the full contribution saves roughly CHF 2,139 in tax for 2026. From 2026, retroactive buy-ins for up to ten missing years are also allowed. [Get Pillar 3a and Vorsorge advice](https://thatday.ch/vorsorge/?source=relofinder-zurich-cost-faq) from our specialist partner.
 
 ### Where do single expats save money in Zurich?
 
@@ -283,7 +283,7 @@ For a single professional move on a CHF 95,000-150,000 gross salary, [book a fre
 
 **Verification:** Pillar 3a 2026 maximum (CHF 7,258) verified against admin.ch. Tax estimates produced using illustrative Zurich-city rates for 2026 and rounded — exact figures vary by municipality, religion (church tax) and deductions claimed.
 
-**Disclosure:** Offlist, Expat-Savvy, Insurance-Guide, and Prime Relocation are partner platforms. ReloFinder's editorial content remains independent — partners do not influence rankings or coverage.
+**Disclosure:** Offlist, ThatDay, Insurance-Guide, and Prime Relocation are partner platforms. ReloFinder's editorial content remains independent — partners do not influence rankings or coverage.
 
 **Last Updated:** May 7, 2026
 
@@ -291,4 +291,4 @@ For a single professional move on a CHF 95,000-150,000 gross salary, [book a fre
 
 ---
 
-*For singles moving to Zurich in 2026, pair an [off-market housing search via Offlist.ch](https://offlist.ch) with a personal review of mandatory cover from [Expat-Savvy.ch](https://expat-savvy.ch). Then browse our [verified Zurich agency directory](/companies/) to brief two or three specialists in parallel.*
+*For singles moving to Zurich in 2026, pair an [off-market housing search via Offlist.ch](https://offlist.ch) with a personal review of mandatory cover from [ThatDay.ch](https://thatday.ch/erstgespraech/?source=relofinder-zurich-cost-footer&topic=krankenkasse). Then browse our [verified Zurich agency directory](/companies/) to brief two or three specialists in parallel.*

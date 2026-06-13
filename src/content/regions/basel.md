@@ -168,7 +168,7 @@ Basel offers world-class healthcare with:
 
 All residents must have mandatory health insurance, with many pharmaceutical employees receiving supplementary corporate health benefits.
 
-**Understanding your insurance options?** [Expat-Savvy's Best Health Insurance Guide](https://expat-savvy.ch/blog/best-health-insurance-switzerland-expats) provides a detailed comparison of Switzerland's top insurers — covering 2026 premiums, deductible strategies, and expat-specific considerations for Basel residents.
+**Understanding your insurance options?** [ThatDay.ch](https://thatday.ch/gesundheit/?source=relofinder-basel-content) can review 2026 KVG premiums, deductible strategy, supplementary cover, private hospital options, and expat-specific considerations for Basel residents.
 
 ## Transportation
 
@@ -243,4 +243,4 @@ Basel has a diverse culinary landscape including traditional Swiss restaurants, 
 4. **Get a Mobility Pass**: Public transportation is the easiest way to navigate the city
 5. **Embrace the Rhine Culture**: The river is the social center of Basel life, especially in summer
 
-Basel offers a unique combination of Swiss quality of life, international career opportunities, and rich cultural experiences, making it particularly attractive for professionals in pharmaceuticals, life sciences, and cultural fields. 
+Basel offers a unique combination of Swiss quality of life, international career opportunities, and rich cultural experiences, making it particularly attractive for professionals in pharmaceuticals, life sciences, and cultural fields.

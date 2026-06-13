@@ -131,7 +131,7 @@ Choosing the right setup can save CHF 1,500-3,000 per year:
 
 ### Expert Optimization
 
-Don't guess on insurance. Consult **[Expat-Savvy.ch](https://expat-savvy.ch)** to structure your package efficiently.
+Don't guess on insurance. Consult **[ThatDay.ch](https://thatday.ch/gesundheit/?source=relofinder-cost-of-living-body)** to structure your Swiss health insurance, supplementary cover, and hospital-cover choices efficiently.
 
 **What They Optimize:**
 - Franchise level based on your health profile
@@ -140,7 +140,7 @@ Don't guess on insurance. Consult **[Expat-Savvy.ch](https://expat-savvy.ch)** t
 - Family vs individual plans
 - Supplementary insurance needs
 
-**[Optimize Insurance → Expat-Savvy.ch](https://expat-savvy.ch)**
+**[Optimize Insurance -> ThatDay.ch](https://thatday.ch/gesundheit/?source=relofinder-cost-of-living-body)**
 
 ---
 
@@ -368,7 +368,7 @@ Your ability to live well in Switzerland depends on optimizing **rent** and **in
 | Cost | How to Optimize | Potential Savings |
 |------|-----------------|-------------------|
 | **Rent** | Use [Offlist.ch](https://offlist.ch) for off-market, fair-priced inventory | CHF 5,000-10,000/year |
-| **Insurance** | Consult [Expat-Savvy.ch](https://expat-savvy.ch) for optimized packages | CHF 1,500-3,000/year |
+| **Insurance** | Consult [ThatDay.ch](https://thatday.ch/erstgespraech/?source=relofinder-cost-of-living-body&topic=full-consultation) for optimized KVG, supplementary cover, and Vorsorge setup | CHF 1,500-3,000/year |
 
 **Combined Savings: CHF 6,500-13,000/year**
 
@@ -396,7 +396,7 @@ A 2.5-room apartment (1 bedroom) in Zürich costs CHF 2,200-3,000/month. A 3.5-r
 
 ### How much does health insurance cost in Switzerland?
 
-Basic health insurance (LAMal) costs CHF 250-450 per adult per month, depending on your canton (Geneva is most expensive), provider, deductible level (CHF 300-2,500), and insurance model (Standard, Telmed, HMO). Children cost CHF 80-150/month. A family of four typically pays CHF 1,000-1,400/month. Optimize with [Expat-Savvy.ch](https://expat-savvy.ch).
+Basic health insurance (LAMal) costs CHF 250-450 per adult per month, depending on your canton (Geneva is most expensive), provider, deductible level (CHF 300-2,500), and insurance model (Standard, Telmed, HMO). Children cost CHF 80-150/month. A family of four typically pays CHF 1,000-1,400/month. Review KVG, supplementary cover, and hospital options with [ThatDay.ch](https://thatday.ch/gesundheit/?source=relofinder-cost-of-living-faq).
 
 ### Are Swiss taxes really lower than other countries?
 
@@ -415,7 +415,7 @@ Yes, Switzerland is expensive. But looking at "Cost of Living" without looking a
 By optimizing your two biggest fixed costs:
 
 - **Rent** → Use [Offlist.ch](https://offlist.ch) for fair-priced, long-term housing
-- **Insurance** → Consult [Expat-Savvy.ch](https://expat-savvy.ch) for optimized packages and guidance on **[avoiding the Swiss Pillar 3a life insurance trap](https://expat-savvy.ch/3rd-pillar/bank-vs-insurance)**.
+- **Insurance** → Consult [ThatDay.ch](https://thatday.ch/erstgespraech/?source=relofinder-cost-of-living-conclusion&topic=full-consultation) for optimized KVG, supplementary cover, private hospital cover, and Vorsorge guidance.
 
 You can enjoy purchasing power significantly higher than London, Paris, or New York — in one of the world's safest, most beautiful countries.
 
@@ -439,11 +439,10 @@ ReloFinder helps you compare verified relocation agencies across Switzerland. Wh
 
 **Methodology:** Costs reflect 2025-2026 market data for major Swiss cities. Individual expenses vary based on lifestyle, location, and family size.
 
-**Disclosure:** Offlist.ch and Expat-Savvy.ch are partner platforms. ReloFinder's editorial content remains independent.
+**Disclosure:** Offlist.ch and ThatDay.ch are partner platforms. ReloFinder's editorial content remains independent.
 
 **Last Updated:** January 7, 2026
 
 ---
 
-*Planning your Swiss budget? Optimize your biggest expenses: find housing through [Offlist.ch](https://offlist.ch) and get expert **[Pillar 3a](https://expat-savvy.ch/3rd-pillar/)** and insurance advice from [Expat-Savvy.ch](https://expat-savvy.ch). The savings add up to thousands per year.*
-
+*Planning your Swiss budget? Optimize your biggest expenses: find housing through [Offlist.ch](https://offlist.ch) and get Swiss-focused insurance and **[Vorsorge](https://thatday.ch/vorsorge/?source=relofinder-cost-of-living-footer)** advice from [ThatDay.ch](https://thatday.ch). The savings add up to thousands per year.*

@@ -152,7 +152,7 @@ Zug offers excellent healthcare facilities:
 
 All residents must have mandatory health insurance, and many international employees receive supplementary private coverage through their employers.
 
-**Comparing Swiss health insurers?** For an expat-focused breakdown of premiums, coverage models, and provider comparisons, visit [Expat-Savvy's Health Insurance Guide](https://expat-savvy.ch/blog/best-health-insurance-switzerland-expats) — helping you choose between Helsana, Swica, Sanitas, and other major insurers.
+**Comparing Swiss health insurers?** For an expat-focused breakdown of premiums, coverage models, and provider comparisons, book a [ThatDay.ch setup review](https://thatday.ch/gesundheit/?source=relofinder-zug-content) before choosing between Helsana, Swica, Sanitas, and other major insurers.
 
 ## Transportation
 
@@ -228,4 +228,4 @@ Zug offers diverse dining options from traditional Swiss cuisine to internationa
 4. **Networking**: Join international clubs and business networks to build connections
 5. **Explore the Region**: Use Zug's central location to explore other parts of Switzerland
 
-Zug offers a unique combination of international business environment, low taxation, and exceptional quality of life, making it particularly attractive for executives, entrepreneurs, and professionals in finance, commodities, and technology sectors. 
+Zug offers a unique combination of international business environment, low taxation, and exceptional quality of life, making it particularly attractive for executives, entrepreneurs, and professionals in finance, commodities, and technology sectors.

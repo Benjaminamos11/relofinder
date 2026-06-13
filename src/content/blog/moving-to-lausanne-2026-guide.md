@@ -90,7 +90,7 @@ A single professional should budget between CHF 4,000 and CHF 5,500 per month in
 
 Add CHF 25,000-38,000 per child per year for international school fees if you choose ISL or Haut-Lac. Public schools in Vaud are free but instruction is in French.
 
-> **Tip:** Mandatory health insurance (LAMal/KVG) must be in place within 3 months of arrival. Premiums vary by canton and provider by up to 40% for identical coverage — get a personalised quote via **[Expat-Savvy.ch](https://expat-savvy.ch)** before defaulting to your employer's recommendation.
+> **Tip:** Mandatory health insurance (LAMal/KVG) must be in place within 3 months of arrival. Premiums vary by canton and provider by up to 40% for identical coverage — review KVG, supplementary cover, and hospital options via **[ThatDay.ch](https://thatday.ch/gesundheit/?source=relofinder-lausanne-body)** before defaulting to your employer's recommendation.
 
 [Compare Vaud cost of living](/blog/cost-of-living-switzerland-breakdown-2026/) • [Mandatory insurance guide](/blog/mandatory-insurance-guide-switzerland/) • [Health insurance services](/services/insurance/)
 
@@ -330,7 +330,7 @@ If you have time to drive your own home search but want access to landlord-direc
 
 **Verification:** All agency names, ratings and coverage areas verified against the agency's own website and Google Business profile in May 2026. CHF figures should be treated as ranges; contact the provider for a written quote.
 
-**Disclosure:** Offlist.ch, Expat-Savvy.ch, Insurance-Guide.ch and Expat-Services.ch are partner platforms. Editorial content and rankings remain independent.
+**Disclosure:** Offlist.ch, ThatDay.ch, Insurance-Guide.ch and Expat-Services.ch are partner platforms. Editorial content and rankings remain independent.
 
 **Last Updated:** May 10, 2026
 
@@ -338,4 +338,4 @@ If you have time to drive your own home search but want access to landlord-direc
 
 ---
 
-*For a faster path through Vaud's 0.67% vacancy market, pair the [ReloFinder agency match](/contact/) with off-market reach via [Offlist.ch](https://offlist.ch) and lock in mandatory health insurance through [Expat-Savvy.ch](https://expat-savvy.ch) before your move-in date.*
+*For a faster path through Vaud's 0.67% vacancy market, pair the [ReloFinder agency match](/contact/) with off-market reach via [Offlist.ch](https://offlist.ch) and review mandatory health insurance through [ThatDay.ch](https://thatday.ch/erstgespraech/?source=relofinder-lausanne-footer&topic=krankenkasse) before your move-in date.*

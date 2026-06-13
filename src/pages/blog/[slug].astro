@@ -98,10 +98,97 @@ const faqSchema = post.data.faqs
 import BlogStickyCTA from "../../components/blog/BlogStickyCTA.astro";
 import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 import SEOInternalLinks from "../../components/common/SEOInternalLinks.astro";
+import ThatDayCTA from "../../components/common/ThatDayCTA.astro";
 
 // Filter top-level headings for TOC
 const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
 const isCostOfLivingGuide = post.slug === "cost-of-living-switzerland-breakdown-2026";
+const thatDayBlogCTAs: Record<string, {
+    eyebrow: string;
+    title: string;
+    description: string;
+    href: string;
+    label: string;
+}> = {
+    "best-health-insurance-consultants-switzerland-2026": {
+        eyebrow: "Swiss health insurance consultation",
+        title: "Need a human review before choosing KVG or supplementary cover?",
+        description: "ThatDay is a Swiss-focused FINMA broker consultation option for Krankenkasse, supplementary insurance, private or semi-private hospital cover, and existing-policy reviews.",
+        href: "https://thatday.ch/gesundheit/?source=relofinder-health-consultants",
+        label: "Review health cover with ThatDay",
+    },
+    "how-to-compare-switch-swiss-health-insurance-2026": {
+        eyebrow: "Before you switch",
+        title: "Check whether a switch could damage existing supplementary rights.",
+        description: "ThatDay reviews KVG, VVG, old rights, hospital cover, health questions, and timing before you cancel or apply for a new Swiss insurance setup.",
+        href: "https://thatday.ch/gesundheit/?source=relofinder-switching",
+        label: "Check switch timing",
+    },
+    "swiss-health-insurance-franchise-2026-expat-decision-guide": {
+        eyebrow: "Franchise and model review",
+        title: "Model your KVG franchise with the rest of your setup.",
+        description: "A CHF 300, 2,500, Telmed, HMO, or standard-model decision should fit your canton, liquidity, family needs, and supplementary insurance. ThatDay can review the whole setup.",
+        href: "https://thatday.ch/erstgespraech/?source=relofinder-franchise&topic=krankenkasse",
+        label: "Book KVG setup call",
+    },
+    "mandatory-insurance-guide-switzerland": {
+        eyebrow: "Mandatory insurance review",
+        title: "Sort mandatory cover without rushing the 90-day deadline.",
+        description: "ThatDay reviews Swiss health insurance, supplementary cover, private hospital options, liability context, and family/Vorsorge needs for people relocating or settling in Switzerland.",
+        href: "https://thatday.ch/erstgespraech/?source=relofinder-mandatory-insurance&topic=full-consultation",
+        label: "Book insurance review",
+    },
+    "moving-to-switzerland-checklist-timeline": {
+        eyebrow: "First-month admin",
+        title: "Add insurance and Vorsorge review to your Swiss arrival checklist.",
+        description: "After registration and banking, review KVG, supplementary cover, private hospital cover, and Pillar 3a before the 90-day health-insurance deadline forces a rushed decision.",
+        href: "https://thatday.ch/erstgespraech/?source=relofinder-checklist&topic=krankenkasse",
+        label: "Book setup Erstgespraech",
+    },
+    "bank-vs-insurance-pillar-3a-swiss-expat-guide-2026": {
+        eyebrow: "Vorsorge and Pillar 3a",
+        title: "Compare bank 3a, insurance 3a, and family protection as one setup.",
+        description: "ThatDay reviews Pillar 3a, pension planning, income protection, tax logic, and whether insurance-linked Vorsorge belongs in your Swiss plan.",
+        href: "https://thatday.ch/vorsorge/saeule-3a/?source=relofinder-3a",
+        label: "Review Saeule 3a",
+    },
+    "pillar-3a-retroactive-contributions-2026-expat-guide": {
+        eyebrow: "Pension planning",
+        title: "Plan catch-up contributions before you move money.",
+        description: "ThatDay can help review Pillar 3a, retroactive contribution timing, pension gaps, family protection, and tax logic for expats building a Swiss Vorsorge setup.",
+        href: "https://thatday.ch/vorsorge/?source=relofinder-retroactive-3a",
+        label: "Review Vorsorge plan",
+    },
+    "swiss-tax-guide-expats-canton-comparison-2026": {
+        eyebrow: "Tax and Vorsorge",
+        title: "Use Pillar 3a deliberately, not as a last-minute deduction.",
+        description: "ThatDay reviews Pillar 3a, pension planning, insurance-linked solutions, and family/income protection so tax savings fit the rest of your Swiss setup.",
+        href: "https://thatday.ch/erstgespraech/?source=relofinder-tax&topic=vorsorge",
+        label: "Book Vorsorge Erstgespraech",
+    },
+    "cost-of-living-switzerland-breakdown-2026": {
+        eyebrow: "Fixed-cost review",
+        title: "Health insurance and Vorsorge are two of the easiest fixed costs to misjudge.",
+        description: "ThatDay reviews KVG, private hospital cover, Pillar 3a, and family protection so your Swiss budget is not built only around rent.",
+        href: "https://thatday.ch/erstgespraech/?source=relofinder-cost-of-living&topic=full-consultation",
+        label: "Review insurance and Vorsorge",
+    },
+    "cost-of-living-zurich-single-person-2026": {
+        eyebrow: "Zurich budget setup",
+        title: "Check KVG, hospital cover, and 3a before optimizing the rest.",
+        description: "ThatDay reviews franchise choice, supplementary insurance, and Pillar 3a planning for people settling into Switzerland's higher-cost cantons.",
+        href: "https://thatday.ch/erstgespraech/?source=relofinder-zurich-cost&topic=full-consultation",
+        label: "Book ThatDay review",
+    },
+    "relocation-agencies-insurance-bundling-switzerland-2026": {
+        eyebrow: "Unbundled insurance option",
+        title: "Using a relocation agency that does not handle insurance?",
+        description: "Book a separate ThatDay review for KVG, VVG, private hospital cover, Pillar 3a, and Vorsorge so housing, permits, and insurance do not drift apart.",
+        href: "https://thatday.ch/erstgespraech/?source=relofinder-bundling&topic=full-consultation",
+        label: "Book separate insurance review",
+    },
+};
+const thatDayBlogCTA = thatDayBlogCTAs[post.slug];
 ---
 
 <Layout
@@ -276,6 +363,14 @@ const isCostOfLivingGuide = post.slug === "cost-of-living-switzerland-breakdown-
                     >
                         <Content />
                     </div>
+
+                    {
+                        thatDayBlogCTA && (
+                            <div class="mt-12">
+                                <ThatDayCTA {...thatDayBlogCTA} />
+                            </div>
+                        )
+                    }
 
                     {/* FAQ Section */}
                     {

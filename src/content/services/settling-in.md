@@ -37,7 +37,7 @@ We assist with establishing your financial presence in Switzerland:
 
 Navigating Swiss insurance requirements is straightforward with our support:
 
-- Mandatory health insurance (Krankenkasse) selection and setup via trusted partners like [Expat-Savvy.ch](https://expat-savvy.ch/blog/best-health-insurance-switzerland-expats)
+- Mandatory health insurance (Krankenkasse), supplementary cover, and hospital-cover setup via trusted partners like [ThatDay.ch](https://thatday.ch/gesundheit/?source=relofinder-settling-content)
 - Supplementary health insurance options review
 - Household and personal property insurance
 - Liability insurance arrangements
@@ -88,4 +88,4 @@ Getting around Switzerland is easy with our transportation assistance:
 - Navigation systems and transportation apps setup
 - Parking permits and regulations information
 
-Our settling-in services create a solid foundation for your new life in Switzerland, reducing stress and allowing you to focus on enjoying your new surroundings. 
+Our settling-in services create a solid foundation for your new life in Switzerland, reducing stress and allowing you to focus on enjoying your new surroundings.

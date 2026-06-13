@@ -139,7 +139,7 @@ The Pillar 3a catch-up is independent of Pillar 2 (pension fund) buy-ins. Both a
 
 **Total deduction:** CHF 29,516. At a combined marginal rate of ~38% in Zurich, Anna saves approximately **CHF 11,216 in taxes** in 2026. Her net cost for the pension buy-in + catch-up is CHF 18,300 (CHF 29,516 - CHF 11,216), and she's built CHF 29,516 in tax-sheltered retirement capital.
 
-For more on coordinating 3a with pension fund buy-ins, see [expat-savvy.ch/3rd-pillar](https://expat-savvy.ch/3rd-pillar/).
+For more on coordinating 3a with pension fund buy-ins, see [ThatDay.ch Vorsorge](https://thatday.ch/vorsorge/?source=relofinder-retroactive-3a-body).
 
 <div class="callout callout-success">
 <p class="callout-title"><span class="callout-icon">✅</span> When You Leave Switzerland</p>
@@ -168,7 +168,7 @@ The new catch-up rule introduces a strategic option that didn't exist before: **
 
 This is **tax rate arbitrage**, and it's now legal and encouraged under Swiss law. The retroactive rule was designed precisely for this: to let workers smooth their pension contributions across volatile income years while maximizing tax efficiency.
 
-For more on strategic 3a timing, see [insurance-guide.ch](https://insurance-guide.ch) and [expat-savvy.ch/3rd-pillar](https://expat-savvy.ch/3rd-pillar/).
+For more on strategic 3a timing, see [insurance-guide.ch](https://insurance-guide.ch) and [ThatDay.ch Vorsorge](https://thatday.ch/vorsorge/?source=relofinder-retroactive-3a-body).
 
 ## What Happens If You're Self-Employed
 
@@ -181,7 +181,7 @@ Self-employed persons without a pension fund can contribute up to **CHF 36,288 i
 
 Marco's catch-up is throttled to the employed person's cap, forcing him to stagger large catch-ups over multiple years (2026, 2027, 2028, etc.) until the gap is closed.
 
-For self-employed expats navigating Pillar 3a architecture, [expat-savvy.ch](https://expat-savvy.ch) and [expat-services.ch](https://expat-services.ch) offer specialized reviews that coordinate 3a, pension fund voluntary affiliation, and cross-border tax planning.
+For self-employed expats navigating Pillar 3a architecture, [ThatDay.ch](https://thatday.ch/vorsorge/?source=relofinder-retroactive-3a-body) and [expat-services.ch](https://expat-services.ch) offer specialized reviews that coordinate 3a, pension fund voluntary affiliation, and cross-border tax planning.
 
 ## The Bigger Picture: Why Switzerland Changed the Rules
 
@@ -201,7 +201,7 @@ If you missed 2025 contributions (or contributed less than the maximum), here's 
 4. **Make the catch-up payment.** Transfer your 2025 gap amount (up to CHF 7,258) as a clearly designated catch-up before December 31, 2026.
 5. **File both deductions on your 2026 tax return.** Your provider will issue two separate tax certificates: one for the regular 2026 contribution, one for the 2025 catch-up. Attach both to your tax return.
 
-If you don't have a Pillar 3a account yet, open one immediately. Bank-based solutions (VIAC, Finpension, Frankly) offer low fees (0.39–0.5%) and investment flexibility. Insurance-based solutions (Swiss Life, Helvetia, AXA) include death/disability coverage and work better for mortgage collateral. For a detailed comparison, see [expat-savvy.ch/3rd-pillar/bank-vs-insurance](https://expat-savvy.ch/3rd-pillar/).
+If you don't have a Pillar 3a account yet, open one immediately. Bank-based solutions (VIAC, Finpension, Frankly) offer low fees (0.39–0.5%) and investment flexibility. Insurance-based solutions (Swiss Life, Helvetia, AXA) include death/disability coverage and work better for mortgage collateral. For a detailed comparison, see [ThatDay.ch Vorsorge](https://thatday.ch/vorsorge/?source=relofinder-retroactive-3a-body).
 
 ## Find Your Relocation Match
 

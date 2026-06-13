@@ -11,7 +11,7 @@ featured: true
 excerpt: "Health insurance is mandatory within 3 months. Liability insurance is required to rent. Here's everything you need to know before you sign anything."
 seo:
   title: "Health Insurance Switzerland for Expats 2026 | Mandatory Insurance Guide"
-  description: "Complete guide to Swiss mandatory insurances: LAMal health insurance, liability insurance for renting, and household coverage. Expert resources from Expat-Savvy.ch and Insurance-Guide.ch."
+  description: "Complete guide to Swiss mandatory insurances: LAMal health insurance, liability insurance for renting, household coverage, and expert Swiss insurance consultation resources."
   keywords: ["health insurance switzerland expats", "swiss health insurance", "lamal insurance", "liability insurance switzerland", "privathaftpflicht", "mandatory insurance switzerland", "expat insurance guide"]
 faqs:
   - question: "Is health insurance mandatory in Switzerland?"
@@ -106,15 +106,15 @@ Swiss health insurance premiums vary significantly based on:
 
 ### The Expert Resource
 
-For a deep dive into deductibles, insurance models, and optimizing your package, we recommend consulting **[Expat-Savvy.ch](https://expat-savvy.ch)**.
+For a deep dive into deductibles, insurance models, supplementary cover, and private hospital options, we recommend consulting **[ThatDay.ch](https://thatday.ch/gesundheit/?source=relofinder-mandatory-body)**.
 
-**Why Expat-Savvy:**
+**Why ThatDay:**
 - Specializes in international families and expat situations
 - Understands cross-border complexities (frontaliers, international schools)
 - Can optimize your package based on your actual healthcare usage
 - Speaks your language (literally — multilingual service)
 
-**[Get Expert Health Insurance Advice → Expat-Savvy.ch](https://expat-savvy.ch)**
+**[Get Expert Health Insurance Advice -> ThatDay.ch](https://thatday.ch/gesundheit/?source=relofinder-mandatory-body)**
 
 ---
 
@@ -280,10 +280,10 @@ Here's when to handle each insurance during your relocation:
 
 | Insurance | Status | Cost/Month | Required For | Expert Resource |
 |-----------|--------|-----------|--------------|-----------------|
-| **Health (LAMal)** | Mandatory | CHF 250-450 | Legal residency | [Expat-Savvy.ch](https://expat-savvy.ch) |
+| **Health (LAMal)** | Mandatory | CHF 250-450 | Legal residency | [ThatDay.ch](https://thatday.ch/gesundheit/?source=relofinder-mandatory-table) |
 | **Liability** | Required for renting | CHF 8-15 | Signing a lease | [Insurance-Guide.ch](https://insurance-guide.ch) |
 | **Household** | Recommended | CHF 12-25 | Protecting belongings | [Insurance-Guide.ch](https://insurance-guide.ch) |
-| **Supplementary Health** | Optional | CHF 20-100 | Dental, vision, private rooms | [Expat-Savvy.ch](https://expat-savvy.ch) |
+| **Supplementary Health** | Optional | CHF 20-100 | Dental, vision, private rooms | [ThatDay.ch](https://thatday.ch/gesundheit/?source=relofinder-mandatory-table) |
 
 ---
 
@@ -301,7 +301,7 @@ Yes. Swiss law (LAMal/KVG) requires everyone living in Switzerland to have basic
 
 ### How much does Swiss health insurance cost?
 
-Basic health insurance premiums range from CHF 250-450 per month for adults, depending on your canton (Geneva is most expensive, Appenzell least), chosen provider, deductible level (CHF 300-2,500), and insurance model (standard, telmed, or HMO). For personalized quotes, consult [Expat-Savvy.ch](https://expat-savvy.ch).
+Basic health insurance premiums range from CHF 250-450 per month for adults, depending on your canton (Geneva is most expensive, Appenzell least), chosen provider, deductible level (CHF 300-2,500), and insurance model (standard, telmed, or HMO). For a personalized setup review, consult [ThatDay.ch](https://thatday.ch/gesundheit/?source=relofinder-mandatory-faq).
 
 ### What is Privathaftpflicht and why do I need it?
 
@@ -335,7 +335,7 @@ Before you start apartment hunting, secure liability coverage.
 
 Don't guess on LAMal. Get personalized advice based on your situation.
 
-**[Expert Consultation → Expat-Savvy.ch](https://expat-savvy.ch)**
+**[Expert Consultation -> ThatDay.ch](https://thatday.ch/erstgespraech/?source=relofinder-mandatory-action&topic=krankenkasse)**
 
 ### 3. Find Your Relocation Agency
 
@@ -356,7 +356,7 @@ Don't let insurance be an afterthought.
 The Swiss system is excellent once you're in it — but the entry paperwork requires attention.
 
 **Your resources:**
-- **Health Insurance Expertise:** [Expat-Savvy.ch](https://expat-savvy.ch)
+- **Health Insurance Expertise:** [ThatDay.ch](https://thatday.ch/gesundheit/?source=relofinder-mandatory-resources)
 - **Liability & Household Comparison:** [Insurance-Guide.ch](https://insurance-guide.ch)
 - **Relocation Agency Search:** [ReloFinder](/companies/)
 
@@ -366,12 +366,11 @@ The Swiss system is excellent once you're in it — but the entry paperwork requ
 
 **Methodology:** This guide reflects current Swiss insurance regulations and typical market rates for 2025-2026. Individual premiums vary based on personal factors.
 
-**Disclosure:** Expat-Savvy.ch and Insurance-Guide.ch are recommended partner resources. ReloFinder's editorial content remains independent.
+**Disclosure:** ThatDay.ch and Insurance-Guide.ch are recommended partner resources. ReloFinder's editorial content remains independent.
 
 **Last Updated:** January 4, 2026
 
 ---
 
-*Relocating to Switzerland? Get your insurance sorted early. Start with liability insurance from [Insurance-Guide.ch](https://insurance-guide.ch), then consult [Expat-Savvy.ch](https://expat-savvy.ch) for health insurance optimization. Your future self will thank you.*
-
+*Relocating to Switzerland? Get your insurance sorted early. Start with liability insurance from [Insurance-Guide.ch](https://insurance-guide.ch), then consult [ThatDay.ch](https://thatday.ch/erstgespraech/?source=relofinder-mandatory-footer&topic=full-consultation) for health insurance, private hospital cover, and Vorsorge optimization. Your future self will thank you.*
 

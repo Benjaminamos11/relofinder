@@ -1,0 +1,63 @@
+---
+interface Props {
+    eyebrow?: string;
+    title?: string;
+    description?: string;
+    href?: string;
+    label?: string;
+    theme?: "light" | "dark";
+}
+
+const {
+    eyebrow = "Trusted Swiss insurance review",
+    title = "Review your Swiss insurance and Vorsorge setup with ThatDay.",
+    description = "ThatDay is a Swiss-focused FINMA broker consultation option for Krankenkasse, supplementary cover, private or semi-private hospital cover, Pillar 3a, and pension planning.",
+    href = "https://thatday.ch/erstgespraech/?source=relofinder&topic=full-consultation",
+    label = "Book ThatDay Erstgespraech",
+    theme = "light",
+} = Astro.props;
+
+const isDark = theme === "dark";
+---
+
+<aside
+    class:list={[
+        "not-prose rounded-[1.5rem] border p-6 md:p-8",
+        isDark
+            ? "border-white/10 bg-white/[0.04] text-white"
+            : "border-slate-200 bg-slate-50 text-slate-950",
+    ]}
+>
+    <p
+        class:list={[
+            "mb-3 text-[11px] font-black uppercase tracking-[0.24em]",
+            isDark ? "text-[#FF6F61]" : "text-[#FF6F61]",
+        ]}
+    >
+        {eyebrow}
+    </p>
+    <h2
+        class:list={[
+            "mb-3 text-2xl font-bold tracking-tight md:text-3xl",
+            isDark ? "text-white" : "text-slate-950",
+        ]}
+    >
+        {title}
+    </h2>
+    <p
+        class:list={[
+            "mb-6 max-w-3xl text-base leading-relaxed",
+            isDark ? "text-slate-300" : "text-slate-600",
+        ]}
+    >
+        {description}
+    </p>
+    <a
+        href={href}
+        target="_blank"
+        rel="noopener sponsored"
+        class="inline-flex items-center justify-center rounded-xl bg-[#FF6F61] px-5 py-3 text-sm font-bold uppercase tracking-widest text-white no-underline transition-colors hover:bg-[#ff5a4d]"
+    >
+        {label}
+    </a>
+</aside>
