@@ -205,7 +205,7 @@ curl -sS -X POST "$SUPABASE_URL/rest/v1/publisher_queue" \
   }')"
 ```
 
-Note: file path is `src/content/blog/<slug>.<ext>` (Astro is at nested `/relofinder/` inside the repo).
+**CRITICAL — `file_path` must be EXACTLY `src/content/blog/<slug>.<ext>`.** Do NOT prefix it with `relofinder/` or any repo/project name. The publisher checks paths against an allow-list (`src/content/blog/`, `public/`, `PUBLISH-LOG.md`); a `relofinder/src/...` prefix is rejected as "path not in allow-list" and the article never publishes. The repo root already IS the Astro app — write paths relative to it.
 
 ## Step 5 — Log + notify
 

@@ -79,6 +79,26 @@ def path_allowed(p: str) -> bool:
     return any(p == prefix or p.startswith(prefix) for prefix in ALLOWED_PATH_PREFIXES)
 
 
+def _strip_repo_prefix(p: str) -> str:
+    """Normalise the queued file_path.
+
+    The content-engine session intermittently prefixes the repo/project name
+    (e.g. 'relofinder/src/content/blog/x.md') instead of the clean repo-relative
+    path 'src/content/blog/x.md'. That fails the allow-list AND would write to
+    the wrong directory. Strip a leading './' and a leading '<project>/' so the
+    path validates and lands in the right place. Recurring bug — rows on
+    2026-05-23/24/27/28, 06-04, 06-07 and 06-17 were stuck 'path not in allow-list'.
+    """
+    p = p.lstrip("/")
+    if p.startswith("./"):
+        p = p[2:]
+    project = os.environ.get("SCRIBE_PROJECT", "relofinder")
+    for prefix in (f"{project}/", "relofinder/"):
+        if p.startswith(prefix):
+            return p[len(prefix):]
+    return p
+
+
 
 # -----------------------------------------------------------------------------
 # Frontmatter pre-validation (added 2026-05-13) — catches the universal failure
@@ -152,7 +172,7 @@ def validate_frontmatter(fp, content):
     return "; ".join(errs) if errs else None
 
 def write_one(row: dict) -> tuple[bool, str | None]:
-    fp = row["file_path"]
+    fp = _strip_repo_prefix(row["file_path"])
     if not path_allowed(fp):
         return False, f"path not in allow-list: {fp}"
     # Pre-validate frontmatter before write — keeps schema bugs out of Vercel
