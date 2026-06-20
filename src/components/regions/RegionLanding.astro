@@ -4,6 +4,7 @@ import BreadcrumbSchema from "../common/BreadcrumbSchema.astro";
 import HeroSearch from "../home/HeroSearch.astro";
 import SEOInsightBox from "../common/SEOInsightBox.astro";
 import SEOInternalLinks from "../common/SEOInternalLinks.astro";
+import RegionAgencies from "./RegionAgencies.astro";
 import { ArrowRight, CheckCircle2, MapPin } from "lucide-react";
 
 interface Highlight {
@@ -227,4 +228,5 @@ const regionSchema = {
       </div>
     </div>
   </section>
+  <RegionAgencies region={regionName} />
 </Layout>

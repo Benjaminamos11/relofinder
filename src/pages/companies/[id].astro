@@ -33,6 +33,15 @@ import {
 import { processCompany } from "../../lib/process-company";
 
 export const getStaticPaths = async () => {
+  // Duplicate profiles consolidated via 301 (see public/_redirects). These slugs
+  // are not built so they leave the sitemap; their URLs 301 to the canonical profile.
+  // (Declared inside getStaticPaths: Astro runs it before module top-level consts.)
+  const DUPLICATE_SLUGS = new Set([
+    "harsch", // -> harsch---the-art-of-moving-forward (richer, indexed)
+    "santa-fe-relocation-services", // -> santa-fe-relocation
+    "sgier-partner-2", // -> sgier-partner
+  ]);
+
   const { data: companies, error } = await supabase
     .from("relocators")
     .select("slug")
@@ -45,10 +54,11 @@ export const getStaticPaths = async () => {
 
   const paths = [];
   const BATCH_SIZE = 10;
-  console.log(`Building ${companies.length} companies...`);
+  const buildable = companies.filter((c: any) => !DUPLICATE_SLUGS.has(c.slug));
+  console.log(`Building ${buildable.length} companies (${companies.length - buildable.length} duplicates skipped)...`);
 
-  for (let i = 0; i < companies.length; i += BATCH_SIZE) {
-    const chunk = companies.slice(i, i + BATCH_SIZE);
+  for (let i = 0; i < buildable.length; i += BATCH_SIZE) {
+    const chunk = buildable.slice(i, i + BATCH_SIZE);
     const chunkResults = await Promise.all(
       chunk.map((c: any) => processCompany(c.slug)),
     );
@@ -85,6 +95,28 @@ const yearsExperience = companyData.founded
   ? new Date().getFullYear() - companyData.founded
   : null;
 const totalReviewCount = internalReviews.length + externalAggregate.count;
+// Individual Review items for structured data (real reviews only — never fabricated).
+// Drives ⭐ rich snippets and gives Google unique, dated content per profile.
+const schemaReviews = [...internalReviews, ...externalReviews]
+  .filter((r: any) => (r.text || r.comment || r.body) && r.rating)
+  .sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+  .slice(0, 20)
+  .map((r: any) => {
+    const d = r.created_at ? new Date(r.created_at) : null;
+    const datePublished = d && !isNaN(d.getTime()) ? d.toISOString().slice(0, 10) : null;
+    return {
+      "@type": "Review",
+      author: { "@type": "Person", name: r.author_name || "Verified client" },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: r.rating,
+        bestRating: "5",
+        worstRating: "1",
+      },
+      reviewBody: (r.text || r.comment || r.body || "").slice(0, 1000),
+      ...(datePublished && { datePublished }),
+    };
+  });
 const profileLogo = getCompanyLogo(companyData.slug, companyData.logo);
 const profileInitials = getCompanyInitials(companyData.name);
 const cleanString = (value: unknown) =>
@@ -286,7 +318,7 @@ const schema = {
           "@type": "ListItem",
           position: 2,
           name: "Companies",
-          item: "https://relofinder.ch/companies",
+          item: "https://relofinder.ch/companies/",
         },
         {
           "@type": "ListItem",
@@ -328,6 +360,7 @@ const schema = {
             worstRating: "1",
           },
         }),
+      ...(schemaReviews.length > 0 && { review: schemaReviews }),
     },
     {
       "@type": "FAQPage",

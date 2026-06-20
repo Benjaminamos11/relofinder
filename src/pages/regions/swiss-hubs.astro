@@ -15,6 +15,7 @@ import {
 import "../../styles/global.css";
 import "../../styles/alpine-clarity.css";
 import SEOHead from "../../components/common/SEOHead.astro";
+import RegionAgencies from "../../components/regions/RegionAgencies.astro";
 import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
 import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 import "../../lib/expose-modal-stores.client.ts";
@@ -761,6 +762,8 @@ const swissHubsFaqSchema = {
         </section>
 
         <!-- 8. Footer -->
+        <RegionAgencies region="Switzerland" title="Relocation agencies across Switzerland's main hubs" />
+
         <Footer theme="dark" />
         <AlpineSetup />
     </body>

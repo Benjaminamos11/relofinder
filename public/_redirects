@@ -26,7 +26,7 @@
 /companies/executive-relocation                                   /companies/executive-relocation/                                   301
 /companies/expat-savvy                                            /companies/expat-savvy/                                            301
 /companies/expat-services-switzerland                             /companies/expat-services-switzerland/                             301
-/companies/harsch                                                 /companies/harsch/                                                 301
+/companies/harsch                                                 /companies/harsch---the-art-of-moving-forward/                     301
 /companies/homes-basel                                            /companies/homes-basel/                                            301
 /companies/include-relocation                                     /companies/include-relocation/                                     301
 /companies/keller-swiss-group                                     /companies/keller-swiss-group/                                     301
@@ -85,7 +85,15 @@
 /services/technology-solutions    /services/corporate-relocation/  301
 
 # 2025 → 2026 post renames
-/blog/best-relocation-companies-switzerland-2025/         /blog/best-relocation-companies-switzerland-2026/         301
-/blog/best-relocation-companies-switzerland-2025          /blog/best-relocation-companies-switzerland-2026/         301
+# best-relocation-companies-2026 itself 301s to the comparison post, so point the
+# 2025 URL DIRECTLY at the final destination to avoid a 2-hop redirect chain.
+/blog/best-relocation-companies-switzerland-2025/         /blog/best-relocation-agencies-switzerland-comparison/    301
+/blog/best-relocation-companies-switzerland-2025          /blog/best-relocation-agencies-switzerland-comparison/    301
 /blog/best-health-insurance-consultants-switzerland-2025/ /blog/best-health-insurance-consultants-switzerland-2026/ 301
 /blog/best-health-insurance-consultants-switzerland-2025  /blog/best-health-insurance-consultants-switzerland-2026/ 301
+
+# Duplicate agency profiles consolidated to the canonical (richer/indexed) profile.
+# (harsch is handled above in the normalization block — pointed straight to canonical
+# to avoid a redirect loop now that /companies/harsch/ is no longer built.)
+/companies/santa-fe-relocation-services/    /companies/santa-fe-relocation/                 301
+/companies/sgier-partner-2/                 /companies/sgier-partner/                        301
