@@ -290,6 +290,12 @@ const thatDayBlogCTA = thatDayBlogCTAs[post.slug];
                             <Calendar className="w-4 h-4 text-[#FF6F61]" />
                             <span>{formatDate(post.data.publishDate)}</span>
                         </div>
+                        {post.data.updatedDate && (
+                            <div class="flex items-center gap-2">
+                                <Calendar className="w-4 h-4 text-[#FF6F61]" />
+                                <span>Updated {formatDate(post.data.updatedDate)}</span>
+                            </div>
+                        )}
                         <div class="flex items-center gap-2">
                             <Clock className="w-4 h-4 text-[#FF6F61]" />
                             <span>{post.data.readingTime} min read</span>

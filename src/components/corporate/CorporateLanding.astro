@@ -52,24 +52,63 @@ const hreflangs = {
   'fr-CH': 'https://relofinder.ch/fr/corporate/',
 };
 
-const corporateFaqs = lang === 'en' ? [
-  {
-    question: "How does ReloFinder help with corporate relocation?",
-    answer: "ReloFinder is a procurement platform that lets HR teams compare verified relocation providers across Switzerland. Submit one anonymous RFP and receive competitive proposals from multiple agencies — benchmarked for cost, scope, and quality."
-  },
-  {
-    question: "Is ReloFinder free for companies?",
-    answer: "Yes, ReloFinder is completely free for HR teams and corporate buyers. We charge a success fee to the winning relocation provider, so there's no cost to your company for using the platform."
-  },
-  {
-    question: "How many relocation providers does ReloFinder compare?",
-    answer: "ReloFinder compares Swiss relocation providers across all major cities including Zurich, Geneva, Basel, Zug, and Lausanne. Agencies are reviewed through public review signals, service audits, and direct partnerships."
-  },
-  {
-    question: "What corporate relocation services can I find on ReloFinder?",
-    answer: "Full-service relocation, housing search, visa and immigration support, school placement, settling-in services, moving logistics, and departure management. Filter providers by service type, region, and company size to find the best fit."
-  }
-] : [];
+const corporateFaqsByLang = {
+  en: [
+    {
+      question: "How does ReloFinder help with corporate relocation?",
+      answer: "ReloFinder is a procurement platform that lets HR teams compare verified relocation providers across Switzerland. Submit one anonymous RFP and receive competitive proposals from multiple agencies — benchmarked for cost, scope, and quality."
+    },
+    {
+      question: "Is ReloFinder free for companies?",
+      answer: "Yes, ReloFinder is completely free for HR teams and corporate buyers. We charge a success fee to the winning relocation provider, so there's no cost to your company for using the platform."
+    },
+    {
+      question: "How many relocation providers does ReloFinder compare?",
+      answer: "ReloFinder compares Swiss relocation providers across all major cities including Zurich, Geneva, Basel, Zug, and Lausanne. Agencies are reviewed through public review signals, service audits, and direct partnerships."
+    },
+    {
+      question: "What corporate relocation services can I find on ReloFinder?",
+      answer: "Full-service relocation, housing search, visa and immigration support, school placement, settling-in services, moving logistics, and departure management. Filter providers by service type, region, and company size to find the best fit."
+    }
+  ],
+  de: [
+    {
+      question: "Wie unterstützt ReloFinder bei Corporate Relocation?",
+      answer: "ReloFinder ist eine Beschaffungsplattform, auf der HR-Teams geprüfte Relocation-Anbieter in der ganzen Schweiz vergleichen. Reichen Sie eine anonyme Ausschreibung ein und erhalten Sie wettbewerbsfähige Angebote mehrerer Agenturen – nach Kosten, Umfang und Qualität benchmarkt."
+    },
+    {
+      question: "Ist ReloFinder für Unternehmen kostenlos?",
+      answer: "Ja, ReloFinder ist für HR-Teams und Einkäufer vollständig kostenlos. Wir berechnen eine Erfolgsgebühr an den ausgewählten Relocation-Anbieter, sodass für Ihr Unternehmen keine Kosten entstehen."
+    },
+    {
+      question: "Wie viele Relocation-Anbieter vergleicht ReloFinder?",
+      answer: "ReloFinder vergleicht Schweizer Relocation-Anbieter in allen grossen Städten, darunter Zürich, Genf, Basel, Zug und Lausanne. Agenturen werden anhand öffentlicher Bewertungssignale, Service-Audits und direkter Partnerschaften beurteilt."
+    },
+    {
+      question: "Welche Corporate-Relocation-Leistungen finde ich auf ReloFinder?",
+      answer: "Full-Service-Relocation, Wohnungssuche, Visa- und Immigrationsunterstützung, Schulplatzierung, Einlebehilfe, Umzugslogistik und Abreisemanagement. Filtern Sie Anbieter nach Leistungsart, Region und Unternehmensgrösse."
+    }
+  ],
+  fr: [
+    {
+      question: "Comment ReloFinder aide-t-il pour la relocation d'entreprise ?",
+      answer: "ReloFinder est une plateforme d'approvisionnement qui permet aux équipes RH de comparer des prestataires de relocation vérifiés dans toute la Suisse. Soumettez un appel d'offres anonyme et recevez des propositions concurrentielles de plusieurs agences, comparées en coût, périmètre et qualité."
+    },
+    {
+      question: "ReloFinder est-il gratuit pour les entreprises ?",
+      answer: "Oui, ReloFinder est entièrement gratuit pour les équipes RH et les acheteurs. Nous facturons une commission de succès au prestataire retenu, sans aucun coût pour votre entreprise."
+    },
+    {
+      question: "Combien de prestataires ReloFinder compare-t-il ?",
+      answer: "ReloFinder compare des prestataires suisses dans toutes les grandes villes, dont Zurich, Genève, Bâle, Zoug et Lausanne. Les agences sont évaluées via des signaux d'avis publics, des audits de service et des partenariats directs."
+    },
+    {
+      question: "Quels services de relocation d'entreprise puis-je trouver sur ReloFinder ?",
+      answer: "Relocation complète, recherche de logement, soutien visa et immigration, placement scolaire, services d'installation, logistique de déménagement et gestion des départs. Filtrez les prestataires par type de service, région et taille d'entreprise."
+    }
+  ]
+};
+const corporateFaqs = corporateFaqsByLang[lang] || corporateFaqsByLang.en;
 
 const corporateFaqSchema = corporateFaqs.length > 0 ? {
   "@context": "https://schema.org",
@@ -80,10 +119,44 @@ const corporateFaqSchema = corporateFaqs.length > 0 ? {
     acceptedAnswer: { "@type": "Answer", text: faq.answer }
   }))
 } : null;
+
+const serviceName = lang === 'en'
+  ? "Corporate Relocation Services in Switzerland"
+  : lang === 'de'
+  ? "Corporate-Relocation-Dienstleistungen in der Schweiz"
+  : "Services de relocation d'entreprise en Suisse";
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: serviceName,
+  serviceType: "Corporate relocation procurement",
+  areaServed: { "@type": "Country", name: "Switzerland" },
+  description: description,
+  provider: {
+    "@type": "Organization",
+    name: "ReloFinder",
+    url: "https://relofinder.ch",
+    logo: "https://relofinder.ch/logo.png"
+  },
+  url: canonical
+};
+
+const corporateLabel = lang === 'en' ? 'Corporate' : lang === 'de' ? 'Unternehmen' : 'Entreprises';
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://relofinder.ch/" },
+    { "@type": "ListItem", position: 2, name: corporateLabel, item: canonical }
+  ]
+};
+
+const corporateSchemas = [serviceSchema, breadcrumbSchema, corporateFaqSchema].filter(Boolean);
 ---
 
 <Layout title={title} description={description} canonical={canonical} hreflangs={hreflangs}>
-  {corporateFaqSchema && <script type="application/ld+json" set:html={JSON.stringify(corporateFaqSchema)} />}
+  {corporateSchemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
   
   <!-- 1. The Procurement Hero -->
   <section class="relative pt-16 pb-16 md:pt-24 md:pb-24 bg-slate-50 overflow-hidden">

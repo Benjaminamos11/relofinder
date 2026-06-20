@@ -6,7 +6,36 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import netlify from '@astrojs/netlify';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 // Alpine.js loaded manually via CDN to avoid conflicts with React hydration
+
+// Build a URL -> lastmod map from blog frontmatter so the sitemap carries real
+// freshness dates. @astrojs/sitemap's serialize() does not receive frontmatter,
+// so we precompute it here at config load. Uses updatedDate, falling back to
+// publishDate. Other page types fall back to the build date.
+const SITE = 'https://relofinder.ch';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const lastmodByUrl = {};
+try {
+  const blogDir = path.join(__dirname, 'src', 'content', 'blog');
+  for (const file of fs.readdirSync(blogDir)) {
+    if (!/\.mdx?$/.test(file)) continue;
+    const raw = fs.readFileSync(path.join(blogDir, file), 'utf-8');
+    const fm = raw.split(/^---\s*$/m)[1] || '';
+    const pub = fm.match(/^publishDate:\s*['"]?(\d{4}-\d{2}-\d{2})/m);
+    const upd = fm.match(/^updatedDate:\s*['"]?(\d{4}-\d{2}-\d{2})/m);
+    const date = (upd && upd[1]) || (pub && pub[1]);
+    if (date) {
+      const slug = file.replace(/\.mdx?$/, '');
+      lastmodByUrl[`${SITE}/blog/${slug}/`] = new Date(date).toISOString();
+    }
+  }
+} catch (e) {
+  console.warn('[sitemap lastmod] could not read blog frontmatter:', e?.message);
+}
+const buildLastmod = new Date().toISOString();
 
 export default defineConfig({
   prefetch: {
@@ -56,6 +85,8 @@ export default defineConfig({
         else if (item.url.includes('/services/')) { item.priority = 0.8; }
         else if (item.url.includes('/regions/')) { item.priority = 0.7; }
         else if (item.url.endsWith('/companies/') || item.url.endsWith('/blog/') || item.url.endsWith('/services/')) { item.priority = 0.9; }
+        // Real lastmod for blog posts (from frontmatter); build date for the rest.
+        item.lastmod = lastmodByUrl[item.url] || buildLastmod;
         return item;
       }
     })

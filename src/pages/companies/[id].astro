@@ -224,11 +224,20 @@ const seoOverride = seoOverrides[companyData.slug];
 const title = seoOverride
   ? seoOverride.title
   : `${companyData.name} — Reviews, Pricing & Services (Switzerland)`;
+// Clamp meta descriptions to ~155 chars at a word boundary so SERP snippets
+// don't truncate mid-sentence (reviewSummary.seo_summary can run 480-600 chars).
+const clampMeta = (text: string, max = 155) => {
+  const s = text.replace(/\s+/g, " ").trim();
+  if (s.length <= max) return s;
+  const cut = s.slice(0, max);
+  const lastSpace = cut.lastIndexOf(" ");
+  return (lastSpace > 0 ? cut.slice(0, lastSpace) : cut).trim() + "…";
+};
 const description = seoOverride
   ? seoOverride.description
   : reviewSummary?.seo_summary
-  ? reviewSummary.seo_summary
-  : `Independent profile of ${companyData.name}: services, regions (${companyData.regions?.slice(0, 4).join(", ")}...), verified reviews, and alternatives.`;
+  ? clampMeta(reviewSummary.seo_summary)
+  : `Compare ${companyData.name} in Switzerland — reviews, pricing, services & alternatives on ReloFinder.`;
 const canonical = `https://relofinder.ch/companies/${companyData.slug}/`;
 const keywords = [
   `${companyData.name} relocation`,

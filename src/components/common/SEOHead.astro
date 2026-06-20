@@ -54,11 +54,16 @@ const fullCanonical = canonical
     : `${siteUrl}${canonical}`
   : Astro.url.href;
 
-// Default Open Graph values
+// Default Open Graph values. og:image must be an absolute URL — some social and
+// AI scrapers reject root-relative paths, so normalize any relative path here.
+const toAbsolute = (url: string) =>
+  url.startsWith("http://") || url.startsWith("https://")
+    ? url
+    : `${siteUrl}${url.startsWith("/") ? "" : "/"}${url}`;
 const og = {
   title: openGraph?.title || title,
   description: openGraph?.description || description,
-  image: openGraph?.image || `${siteUrl}/og-image.jpg`,
+  image: toAbsolute(openGraph?.image || `${siteUrl}/og-image.jpg`),
   type: openGraph?.type || "website",
 };
 
