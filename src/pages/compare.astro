@@ -50,11 +50,36 @@ const features = [
     { label: "Service Coverage", key: "services", type: "list" },
     { label: "Regions", key: "regions", type: "list" },
 ];
+
+// Structured data: ItemList of the agencies being compared + breadcrumb.
+const compareSchema = [
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Swiss relocation agencies compared",
+        itemListElement: selectedCompanies.map((c, idx) => ({
+            "@type": "ListItem",
+            position: idx + 1,
+            name: c!.name,
+            url: `https://relofinder.ch/companies/${c!.slug}/`,
+        })),
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://relofinder.ch/" },
+            { "@type": "ListItem", position: 2, name: "Companies", item: "https://relofinder.ch/companies/" },
+            { "@type": "ListItem", position: 3, name: "Compare", item: "https://relofinder.ch/compare/" },
+        ],
+    },
+];
 ---
 
 <Layout
     title="Compare Agencies | ReloFinder"
     description="Compare top relocation agencies in Switzerland side-by-side."
+    schema={compareSchema}
 >
     <div class="bg-slate-50 min-h-screen py-24">
         <div class="container mx-auto px-4">
