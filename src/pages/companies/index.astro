@@ -143,9 +143,39 @@ const companyFaqs = [
   }
 ];
 
+// Structured data: ItemList of every agency profile (helps Google discover &
+// index the full directory) + FAQPage.
+const directorySchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Swiss Relocation Agency Directory",
+    url: "https://relofinder.ch/companies/",
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: sortedCompanies.length,
+      itemListElement: sortedCompanies.map((c, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `https://relofinder.ch/companies/${c.slug}/`,
+        name: c.data.name,
+      })),
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: companyFaqs.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  },
+];
+
 ---
 
-<Layout title={title} description={description} canonical={canonical} navbarVariant="solid">
+<Layout title={title} description={description} canonical={canonical} navbarVariant="solid" schema={directorySchema}>
     <BreadcrumbSchema items={[{ name: "Home", url: "/" }, { name: "Directory" }]} />
     <!-- Hero Section -->
     <section
