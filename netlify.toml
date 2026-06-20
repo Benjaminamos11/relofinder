@@ -301,6 +301,13 @@
   status = 301
   force = true
 
+# Consolidated June "price refresh" into the evergreen, well-linked cost guide
+[[redirects]]
+  from = "/blog/relocation-agency-costs-switzerland-mid-2026-refresh"
+  to = "/blog/relocation-agency-costs-switzerland-2026/"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/blog/corporate-relocation-best-practices"
   to = "/blog/corporate-relocation-switzerland-guide-2026/"
