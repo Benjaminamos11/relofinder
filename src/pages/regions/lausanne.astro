@@ -15,6 +15,7 @@ import {
 import "../../styles/global.css";
 import "../../styles/alpine-clarity.css";
 import SEOHead from "../../components/common/SEOHead.astro";
+import RegionAgencies from "../../components/regions/RegionAgencies.astro";
 import SEOInsightBox from "../../components/common/SEOInsightBox.astro";
 import BreadcrumbSchema from "../../components/common/BreadcrumbSchema.astro";
 import "../../lib/expose-modal-stores.client.ts";
@@ -814,6 +815,8 @@ const lausanneFaqSchema = {
         </section>
 
         <!-- 8. Footer -->
+        <RegionAgencies region="Lausanne" aliases={["Vaud"]} />
+
         <Footer theme="dark" />
         <AlpineSetup />
     </body>
