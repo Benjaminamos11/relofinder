@@ -5,19 +5,10 @@ import CloudinaryImage from '../components/common/CloudinaryImage.astro';
 import { Linkedin, Mail, ArrowUpRight, CheckCircle2, Building2, Users } from 'lucide-react';
 
 const title = 'About ReloFinder | The Swiss Relocation Ecosystem';
-const description = 'Founded by Benjamin Amos Wagner, ReloFinder brings transparency to the Swiss relocation market. We help expats and corporates compare rates and find the right partners.';
+const description = 'ReloFinder brings transparency to the Swiss relocation market. We help expats and corporates compare rates and find the right partners.';
 const canonical = 'https://relofinder.ch/about/';
 
 const team = [
-  {
-    name: 'Benjamin Amos Wagner',
-    role: 'Founder & CEO',
-    bio: 'Building the Swiss Relocation Ecosystem. Focused on transparency and simplifying the move to Switzerland.',
-    image: 'https://res.cloudinary.com/dphbnwjtx/image/upload/c_fill,g_center,h_780,w_650,y_20,e_improve,e_sharpen,r_20/v1747850395/DSC_7067_l2xm3b.webp',
-    position: 'object-center',
-    email: 'bw@relofinder.ch',
-    linkedin: 'https://www.linkedin.com/in/benjamin-wagner-relofinder/'
-  },
   {
     name: 'Ralf Degenhardt',
     role: 'Corporate Relations',
@@ -40,25 +31,6 @@ const team = [
 const teamSchemas = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "Person",
-      "name": "Benjamin Amos Wagner",
-      "url": "https://benjaminwagner.ch",
-      "jobTitle": "Founder & CEO",
-      "email": "bw@relofinder.ch",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "ReloFinder",
-        "url": "https://relofinder.ch"
-      },
-      "knowsAbout": [
-        "Swiss Relocation",
-        "Expat Housing",
-        "Off-Market Real Estate",
-        "Corporate Mobility"
-      ],
-      "sameAs": ["https://www.linkedin.com/in/benjamin-wagner-relofinder/"]
-    },
     {
       "@type": "Person",
       "name": "Ralf Degenhardt",
@@ -100,11 +72,6 @@ const orgSchema = {
     "addressCountry": "CH"
   },
   "email": "hello@relofinder.ch",
-  "founder": {
-    "@type": "Person",
-    "name": "Benjamin Amos Wagner",
-    "url": "https://benjaminwagner.ch"
-  },
   "sameAs": ["https://www.linkedin.com/company/5613839"]
 };
 
@@ -128,16 +95,6 @@ const ecosystem = [
     name: 'SIP',
     url: 'https://sip.ch',
     desc: 'Strategic Insurance Partner for medical and liability coverage.'
-  },
-  {
-    name: 'loaded.ch',
-    url: 'https://loaded.ch',
-    desc: 'Swiss web design agency — Astro.js, Next.js, SEO, and AI optimization.'
-  },
-  {
-    name: 'OpenHermit',
-    url: 'https://www.openhermit.com',
-    desc: 'SaaS for agent-ready websites — WebMCP, form detection, and analytics.'
   }
 ];
 ---
@@ -165,14 +122,11 @@ const ecosystem = [
             <div class="prose prose-lg text-gray-600 leading-relaxed mb-10">
               <p>
                 Moving to Switzerland is more than just logistics; it's a life-changing event. 
-                I built <strong>ReloFinder</strong> to introduce radical transparency to a market that has traditionally been fragmented and opaque.
+                We built <strong>ReloFinder</strong> to introduce radical transparency to a market that has traditionally been fragmented and opaque.
               </p>
               <p>
                 For <strong>individuals</strong>, we are the trusted compass—helping you compare agencies, understand fair pricing, and find the right experts. 
                 For <strong>corporates</strong>, we are the efficiency engine—providing data-driven insights to optimize relocation rates and ensure your top talent lands softly.
-              </p>
-              <p>
-                We partner with <a href="https://loaded.ch" target="_blank" rel="noopener noreferrer" class="text-[#FF6F61] font-semibold hover:underline">loaded.ch</a> for world-class web design and <a href="https://www.openhermit.com" target="_blank" rel="noopener noreferrer" class="text-[#FF6F61] font-semibold hover:underline">OpenHermit</a> for AI agent discovery.
               </p>
             </div>
             
@@ -186,14 +140,9 @@ const ecosystem = [
 
                <div class="pt-6 border-t border-gray-200/60">
                    <p class="text-xs font-bold tracking-widest text-[#FF6F61] uppercase mb-3">Swiss Headquarters</p>
-                   <p class="text-xl md:text-2xl font-serif font-bold text-gray-900 mb-8 leading-snug">
+                   <p class="text-xl md:text-2xl font-serif font-bold text-gray-900 leading-snug">
                        Chilegässli 12a, <br />8904 Aesch ZH
                    </p>
-
-                   <div class="text-[10px] uppercase tracking-wide text-gray-400">
-                       <p class="font-bold text-gray-500 mb-1">Legal Entity</p>
-                       Lang + Partner | Finanzdienstleistungen GmbH &bull; Chilegässli 12a &bull; 8904 Aesch ZH
-                   </div>
                </div>
             </div>
           </div>

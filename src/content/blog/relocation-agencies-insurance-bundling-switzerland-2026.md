@@ -74,7 +74,7 @@ Most pure-relocation agencies will email you a PDF checklist mentioning "insuran
 
 1. **Week 1-2 (Housing search phase)**: Your relocation consultant mentions insurance during the initial briefing and confirms the 90-day countdown starts at municipal registration, not apartment move-in.
 2. **Week 3-4 (Post-Anmeldung)**: Within days of registering at your Gemeinde, the relocation agency introduces you via warm handoff to their insurance broker partner (in Prime's case, Expat-Savvy's team).
-3. **Week 4-5 (Insurance setup)**: <cite index="31-2,31-4">The broker conducts a fully digital, bespoke demand assessment with industry veterans like Robert Kolar, avoiding the "Swiss Pillar 3a life insurance trap" and building your exact medical profile instead of generic calculator recommendations</cite>. They handle:
+3. **Week 4-5 (Insurance setup)**: <cite index="31-2,31-4">The broker conducts a fully digital, bespoke demand assessment with seasoned industry veterans, avoiding the "Swiss Pillar 3a life insurance trap" and building your exact medical profile instead of generic calculator recommendations</cite>. They handle:
    - KVG enrollment (mandatory, guaranteed acceptance, retroactive to arrival)
    - Franchise and model optimization based on your health profile and family size
    - Supplementary insurance applications (if desired — medical underwriting applies, so timing matters)
