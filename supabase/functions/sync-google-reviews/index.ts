@@ -9,6 +9,39 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// A Google Maps data_id (`0x…:0x…`) pins one specific business listing. It is
+// what the reviews endpoint actually consumes, and it can be lifted straight out
+// of a share/maps URL.
+const DATA_ID_RE = /(0x[0-9a-f]+:0x[0-9a-f]+)/i;
+// A Place ID: either the ChIJ… form or the 27-char opaque form.
+const PLACE_ID_RE = /^(ChIJ[A-Za-z0-9_-]+|[A-Za-z0-9_-]{27})$/;
+
+/**
+ * Resolve a PINNED Google identifier for an agency, or null.
+ *
+ * A business name is not an identifier. Searching Google Maps for one returns
+ * whatever ranks — which is how 161 reviews from Reloswiss RM (Gossau) and
+ * Xpress Relocations (Miami, FL) ended up filed under Rel-Ex, whose
+ * google_place_id held the literal text 'Rel-Ex Relocation Switzerland'.
+ * An agency without a pinned identifier is skipped, never guessed at.
+ */
+function resolveGoogleIdentifier(
+  placeId: string | null,
+  mapsUrl: string | null
+): { kind: 'data_id' | 'place_id'; value: string } | null {
+  for (const raw of [placeId, mapsUrl]) {
+    if (!raw || typeof raw !== 'string') continue;
+    const value = raw.trim();
+    if (!value) continue;
+
+    const dataId = value.match(DATA_ID_RE);
+    if (dataId) return { kind: 'data_id', value: dataId[1] };
+
+    if (PLACE_ID_RE.test(value)) return { kind: 'place_id', value };
+  }
+  return null;
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders });
@@ -28,11 +61,12 @@ serve(async (req) => {
       );
     }
 
-    // Get all relocators with Google Place IDs
+    // Any relocator carrying something we might pin a listing to. Whether it
+    // actually resolves is decided per agency by resolveGoogleIdentifier().
     const { data: relocators, error: relocatorsError } = await supabaseClient
       .from('relocators')
       .select('id, name, google_place_id, google_maps_url')
-      .not('google_place_id', 'is', null);
+      .or('google_place_id.not.is.null,google_maps_url.not.is.null');
 
     if (relocatorsError) {
       console.error('Error fetching relocators:', relocatorsError);
@@ -80,97 +114,62 @@ serve(async (req) => {
           }
         }
 
-        // Fetch from SerpAPI
-        const placeId = relocator.google_place_id || relocator.name;
-        
-        // Determine the correct search query
-        let searchQuery: string;
-        
-        if (placeId.startsWith('ChIJ') || placeId.match(/^[A-Za-z0-9_-]{27}$/)) {
-          // It's a valid Place ID - use it directly as search query
-          // SerpAPI will recognize it and use it for place lookup
-          searchQuery = placeId;
-        } else if (placeId.includes('google.com/maps/place/')) {
-          // Extract business name from URL
-          const nameMatch = placeId.match(/\/place\/([^/@]+)/);
-          if (nameMatch) {
-            // Decode URL-encoded name and add Switzerland for better results
-            searchQuery = decodeURIComponent(nameMatch[1].replace(/\+/g, ' ')) + ' Switzerland';
-          } else {
-            searchQuery = relocator.name + ' Switzerland';
-          }
-        } else {
-          // Use as-is (text search or business name)
-          searchQuery = placeId;
-        }
-        
-        // Always use search endpoint - it's more reliable and works with Place IDs too
-        const serpApiUrl = `https://serpapi.com/search?engine=google_maps&q=${encodeURIComponent(searchQuery)}&type=search&api_key=${serpApiKey}&hl=en&gl=ch`;
+        // Resolve a pinned identifier. No identifier → skip. We never fall back
+        // to a name search: that is what mis-attributed foreign businesses.
+        const identifier = resolveGoogleIdentifier(relocator.google_place_id, relocator.google_maps_url);
 
-        const response = await fetch(serpApiUrl);
-        
-        if (!response.ok) {
-          throw new Error(`SerpAPI request failed: ${response.status}`);
+        if (!identifier) {
+          console.warn(
+            `Skipping ${relocator.name}: google_place_id/google_maps_url hold no Place ID or data_id ` +
+              `(got ${JSON.stringify(relocator.google_place_id)}). Paste the business's Google Maps ` +
+              `share URL into google_maps_url to enable syncing.`
+          );
+          results.push({
+            relocator_id: relocator.id,
+            name: relocator.name,
+            status: 'unpinned_identifier',
+          });
+          continue;
         }
 
-        const data = await response.json();
-
-        if (data.error) {
-          throw new Error(`SerpAPI error: ${data.error}`);
-        }
-
-        // Handle different response structures
         let businessData = null;
+        let dataId: string | null = null;
 
-        if (data.place_results) {
-          // Direct place lookup response
-          businessData = data.place_results;
-        } else if (data.local_results && data.local_results.length > 0) {
-          // Search results - find the first result with reviews
-          for (const result of data.local_results) {
-            if (result.reviews && result.reviews > 0) {
-              businessData = result;
-              break;
-            }
+        if (identifier.kind === 'data_id') {
+          // Already pinned to one listing — no search, so no chance of matching
+          // a different business.
+          dataId = identifier.value;
+        } else {
+          const serpApiUrl = `https://serpapi.com/search?engine=google_maps&q=${encodeURIComponent(identifier.value)}&type=search&api_key=${serpApiKey}&hl=en&gl=ch`;
+
+          const response = await fetch(serpApiUrl);
+
+          if (!response.ok) {
+            throw new Error(`SerpAPI request failed: ${response.status}`);
           }
-        }
 
-        if (!businessData || !businessData.rating) {
-          console.log(`No reviews found for ${relocator.name}`);
-          results.push({
-            relocator_id: relocator.id,
-            name: relocator.name,
-            status: 'no_reviews',
-          });
-          continue;
-        }
+          const data = await response.json();
 
-        // Get data_id for fetching reviews
-        const dataId = businessData.data_id;
-        if (!dataId) {
-          console.log(`No data_id found for ${relocator.name}`);
-          results.push({
-            relocator_id: relocator.id,
-            name: relocator.name,
-            status: 'no_data_id',
-          });
-          continue;
-        }
+          if (data.error) {
+            throw new Error(`SerpAPI error: ${data.error}`);
+          }
 
-        // Insert external review snapshot (aggregate data)
-        const { error: insertError } = await supabaseClient
-          .from('external_reviews')
-          .insert({
-            relocator_id: relocator.id,
-            source: 'google',
-            rating: businessData.rating || 0,
-            review_count: businessData.reviews || 0,
-            payload: businessData,
-            captured_at: new Date().toISOString(),
-          });
+          // Only a direct place lookup is trustworthy here. local_results is a
+          // ranked search list: taking "the first result with reviews" from it
+          // is the guess that caused the mis-attribution.
+          businessData = data.place_results ?? null;
 
-        if (insertError) {
-          console.error(`Error inserting review for ${relocator.name}:`, insertError);
+          if (!businessData || !businessData.data_id) {
+            console.log(`Place ID ${identifier.value} did not resolve to a listing for ${relocator.name}`);
+            results.push({
+              relocator_id: relocator.id,
+              name: relocator.name,
+              status: 'unresolved_place_id',
+            });
+            continue;
+          }
+
+          dataId = businessData.data_id;
         }
 
         // Now fetch ALL individual reviews with pagination
@@ -200,6 +199,12 @@ serve(async (req) => {
             break;
           }
 
+          // The reviews endpoint reports the listing it actually served, so the
+          // first page is where we learn which business we pinned.
+          if (!businessData && reviewsData.place_info) {
+            businessData = reviewsData.place_info;
+          }
+
           if (reviewsData.reviews && reviewsData.reviews.length > 0) {
             allReviews = allReviews.concat(reviewsData.reviews);
             console.log(`Got ${reviewsData.reviews.length} reviews on page ${page}`);
@@ -216,6 +221,24 @@ serve(async (req) => {
         } while (nextPageToken && page <= maxPages);
 
         console.log(`Total reviews fetched: ${allReviews.length} for ${relocator.name}`);
+
+        // Aggregate snapshot for the listing we pinned.
+        if (businessData) {
+          const { error: insertError } = await supabaseClient
+            .from('external_reviews')
+            .insert({
+              relocator_id: relocator.id,
+              source: 'google',
+              rating: businessData.rating || 0,
+              review_count: businessData.reviews || 0,
+              payload: businessData,
+              captured_at: new Date().toISOString(),
+            });
+
+          if (insertError) {
+            console.error(`Error inserting review for ${relocator.name}:`, insertError);
+          }
+        }
 
         // Store individual reviews in google_reviews table
         if (allReviews.length > 0) {
@@ -247,15 +270,28 @@ serve(async (req) => {
           } else {
             console.log(`✓ Stored ${uniqueReviews.length} individual reviews for ${relocator.name}`);
           }
+
+          // Hand-seeded rows (google_review_id 'manual-…') exist only to carry a
+          // listing until its first real sync. Once that lands they are the same
+          // reviews under a different id, so drop them rather than double-count.
+          const { error: seedError } = await supabaseClient
+            .from('google_reviews')
+            .delete()
+            .eq('relocator_id', relocator.id)
+            .like('google_review_id', 'manual-%');
+
+          if (seedError) {
+            console.error(`Error clearing manual seed reviews for ${relocator.name}:`, seedError);
+          }
         }
 
-        console.log(`✓ Synced ${businessData.reviews} reviews for ${relocator.name} (${businessData.rating}★)`);
+        console.log(`✓ Synced ${businessData?.reviews ?? allReviews.length} reviews for ${relocator.name} (${businessData?.rating ?? 'n/a'}★)`);
         results.push({
           relocator_id: relocator.id,
           name: relocator.name,
           status: 'success',
-          rating: businessData.rating,
-          review_count: businessData.reviews,
+          rating: businessData?.rating ?? null,
+          review_count: businessData?.reviews ?? allReviews.length,
           individual_reviews_stored: allReviews.length,
         });
 
