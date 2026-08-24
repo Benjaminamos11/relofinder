@@ -7,6 +7,7 @@ import "../styles/global.css";
 import AssessmentModalAlpine from "../components/individual/AssessmentModalAlpine.astro";
 import GoogleTag from "../components/tracking/GoogleTag";
 import CookieBanner from "../components/tracking/CookieBanner";
+import FacebookPixel from "../components/tracking/FacebookPixel";
 import ReloFinderChat from "../components/ReloFinderChat";
 
 export interface Props {
@@ -149,6 +150,7 @@ const {
     <!-- Alpine.js Assessment Modal (replaces React) -->
     <AssessmentModalAlpine />
     <GoogleTag client:only="react" />
+    <FacebookPixel client:only="react" />
     <CookieBanner client:only="react" />
 
     <!-- ReloFinder AI Chat Widget -->
