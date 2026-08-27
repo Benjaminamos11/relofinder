@@ -35,10 +35,20 @@ const FacebookPixel = () => {
             n('track', 'PageView');
         };
 
-        if (localStorage.getItem('cookieConsent') === 'granted') load();
+        /* Opt-out statt Opt-in (Entscheidung Benjamin, 2026-08-28): nur eine
+           ausdrückliche Ablehnung hält das Pixel zurück. Das Schweizer DSG
+           verlangt Transparenz und eine Widerspruchsmöglichkeit, keine
+           vorherige Einwilligung; das Banner informiert und lässt ablehnen. */
+        if (localStorage.getItem('cookieConsent') !== 'denied') load();
 
         const onConsent = (e: Event) => {
-            if ((e as CustomEvent).detail?.status === 'granted') load();
+            const status = (e as CustomEvent).detail?.status;
+            if (status === 'granted') load();
+            /* Das Pixel läuft hier bereits — eine Ablehnung muss es aktiv
+               stoppen, sonst sendet es trotz Nein weiter. */
+            if (status === 'denied' && typeof (window as any).fbq === 'function') {
+                try { (window as any).fbq('consent', 'revoke'); } catch { /* egal */ }
+            }
         };
         window.addEventListener('relofinder:cookie-consent', onConsent);
         return () => window.removeEventListener('relofinder:cookie-consent', onConsent);
